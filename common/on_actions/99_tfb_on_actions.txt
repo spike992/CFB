@@ -1,0 +1,1163 @@
+on_actions = {
+	on_weekly = {
+		effect = {
+			if = {
+				limit = {
+					any_other_country = {
+						has_volunteers_amount_from = {
+							tag = ROOT
+							count > 0
+						}
+						ROOT = {
+							not = {
+								has_military_access_to = PREV
+							}
+						}
+					}
+				}
+				every_other_country = {
+					limit = {
+						has_volunteers_amount_from = {
+							tag = ROOT
+							count > 0
+						}
+						ROOT = {
+							not = {
+								has_military_access_to = PREV
+							}
+						}
+					}
+					give_military_access = ROOT
+				}
+			}
+		}
+		# Update Dockyard Consumer Goods
+		effect = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = dockyard_cg
+						option = ENABLED
+					}
+				}
+				every_country = {
+					dockyard_cg_calculation = yes
+				}
+			}
+		}
+
+		# Update Stalin Air Weekly
+		effect = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = soviet_air_changes
+						option = FULL_SOV_AIR
+					}
+				}
+				SOV = {
+					SOV_stalins_air_needs = yes
+				}
+			}
+		}
+
+		effect = {
+			every_country = {
+				for_each_scope_loop = {
+					array = THIS.CIVILIAN
+					if = {
+						limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian } } } }
+						PREV = { add_operation_token = { tag = PREV token = token_civilian } }
+						log = "Tried to Add Civilian Token - ROOT: [PREV.GetName] - TARGET: [THIS.GetName]"
+					}
+				}
+				for_each_scope_loop = {
+					array = THIS.ARMY
+					if = {
+						limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army } } } }
+						PREV = { add_operation_token = { tag = PREV token = token_army } }
+						log = "Tried to Add Army Token - ROOT: [PREV.GetName] - TARGET: [THIS.GetName]"
+					}
+				}
+				for_each_scope_loop = {
+					array = THIS.AIR
+					if = {
+						limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce } } } }
+						PREV = { add_operation_token = { tag = PREV token = token_airforce } }
+						log = "Tried to Add Air Token - ROOT: [PREV.GetName] - TARGET: [THIS.GetName]"
+					}
+				}
+				for_each_scope_loop = {
+					array = THIS.NAVY
+					if = {
+						limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy } } } }
+						PREV = { add_operation_token = { tag = PREV token = token_navy } }
+						log = "Tried to Add Navy Token - ROOT: [PREV.GetName] - TARGET: [THIS.GetName]"
+					}
+				}
+				for_each_scope_loop = {
+					array = THIS.RESISTANCE
+					if = {
+						limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_resistance_contacts } } } }
+						PREV = { add_operation_token = { tag = PREV token = token_resistance_contacts } }
+						log = "Tried to Add Resistance Contacts Token - ROOT: [PREV.GetName] - TARGET: [THIS.GetName]"
+					}
+				}
+			}
+		}
+	}
+	on_daily = {
+		effect = {
+			if = {
+				limit = {
+					GER = { NOT = { has_completed_focus = GER_prioritize_economic_growth }}
+				}
+				GER = {
+					# Update German Stuff
+					GER_check_steel = yes
+					GER_check_aluminium = yes
+					GER_check_rubber = yes
+					GER_check_tungsten = yes
+					GER_check_chromium = yes
+					GER_check_oil = yes
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						has_game_rule = {
+							rule = navy_cap
+							option = ONEFIFTYCAP
+						}
+						has_game_rule = {
+							rule = navy_cap
+							option = ONEHUNDREDCAP
+						}
+					}
+				}
+				HMP_check_fleet_size = yes 
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = coastal_raiders
+						option = ENABLED
+					}
+				}
+				MED_coastal_raiding_check = yes 
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					country_exists = VIC
+				}
+				set_variable = { FRA.SOUTHFRANCEOWNER = VIC }
+			}
+			if = {
+				limit = {
+					26 = { CONTROLLER = { tag = D04 } }
+				}
+				set_variable = { FRA.SOUTHFRANCEOWNER = D04 }
+			}
+			if = {
+				limit = {
+					26 = { CONTROLLER = { tag = D05 } }
+				}
+				set_variable = { FRA.SOUTHFRANCEOWNER = D05 }
+			}
+		}
+	}
+    on_startup = {
+		effect = {
+			# Update German Stuff
+			GER = {
+				GER_check_steel = yes
+				GER_check_aluminium = yes
+				GER_check_rubber = yes
+				GER_check_tungsten = yes
+				GER_check_chromium = yes
+				GER_check_oil = yes
+			}
+		}
+		# Apply Soviet Stuff
+		effect = {
+			SOV = {
+				add_ideas = SOV_soviet_industry
+				add_ideas = SOV_soviet_industry_railway_gun
+				add_tech_bonus = {
+					name = SOV_small_cannon
+					ahead_reduction = 1
+					uses = 2
+					technology = antiair_research1
+					technology = sov_t26_upgrade
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						has_game_rule = {
+							rule = soviet_air_changes
+							option = FULL_SOV_AIR
+						}
+						has_game_rule = {
+							rule = soviet_air_changes
+							option = START_SOV_AIR
+						}
+					}
+				}
+				SOV = {
+					add_dynamic_modifier = { modifier = soviet_air_mod_pre_war }
+					SOV_stalins_air_needs = yes
+				}
+			} else_if = {
+				limit = {
+					has_game_rule = {
+						rule = soviet_air_changes
+						option = FOCUS_SOV_AIR
+					}
+				}
+				SOV = {
+					add_dynamic_modifier = { modifier = soviet_air_mod_pre_war }
+				}
+			}
+		}		
+
+		# Dockyard Consumer Goods Debuff
+		effect = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = dockyard_cg
+						option = ENABLED
+					}
+				}
+				every_country = {
+					add_dynamic_modifier = { modifier = dockyard_cg_mod }
+					dockyard_cg_calculation = yes
+				}
+			}
+		}
+
+	   	# Mediteranian Raiders
+		effect = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = coastal_raiders
+						option = ENABLED
+					}
+				}
+				# Eastern Med
+				ENG = {  add_to_array = { ENG.eastern_med = 994 } }
+				ENG = {  add_to_array = { ENG.eastern_med = 447 } }
+				ENG = {  add_to_array = { ENG.eastern_med = 983 } }
+				ENG = {  add_to_array = { ENG.eastern_med = 452 } }
+				ENG = {  add_to_array = { ENG.eastern_med = 451 } }
+				ENG = {  add_to_array = { ENG.eastern_med = 446 } }
+				# Central Med
+				ENG = {  add_to_array = { ENG.central_med = 450 } }
+				ENG = {  add_to_array = { ENG.central_med = 449 } }
+				ENG = {  add_to_array = { ENG.central_med = 448 } }
+				ENG = {  add_to_array = { ENG.central_med = 665 } }
+				ENG = {  add_to_array = { ENG.central_med = 458 } }
+				# Western Med
+				ENG = {  add_to_array = { ENG.western_med = 290 } }
+				ENG = {  add_to_array = { ENG.western_med = 459 } }
+				ENG = {  add_to_array = { ENG.western_med = 460 } }
+
+				for_each_scope_loop = {
+					array = ENG.eastern_med
+					add_dynamic_modifier = {
+						modifier =  NO_coastal_raiding 
+					}
+				}
+				for_each_scope_loop = {
+					array = ENG.central_med
+					add_dynamic_modifier = {
+						modifier =  NO_coastal_raiding 
+					}
+				}
+				for_each_scope_loop = {
+					array = ENG.western_med
+					add_dynamic_modifier = {
+						modifier =  NO_coastal_raiding 
+					}
+				}
+			}
+		}
+		# State of the Pacific
+		effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_game_rule = {
+							rule = state_of_the_pacific
+							option = DISABLED
+						}	
+					}
+				}
+			   # Initialize Variables
+				set_variable = { global.PACIFIC_DEBUFF_INVASION_PENALTY = 0 } 
+				set_variable = { global.PACIFIC_DEBUFF_SPEED_PENALTY = 0 } 
+				set_variable = { global.PACIFIC_DEBUFF_ATTRITION_PENALTY = 0 } 
+
+			   # Atlantic Wall
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 99 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 912 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 909 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 58 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 59 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 56 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 36 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 7 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 35 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 6 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 29 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 785 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 15 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 14 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 30 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 23 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 19 } }
+				USA = {  add_to_array = { global.pacific_modifier_states_europe = 806 } }
+
+			   # Southern Europe Coast
+				if = {
+					limit = {
+						OR = {
+							has_game_rule = {
+								rule = state_of_the_pacific
+								option = COAST_WEST
+							}
+							has_game_rule = {
+								rule = state_of_the_pacific
+								option = COAST
+							}
+							has_game_rule = {
+								rule = state_of_the_pacific
+								option = ALL
+							}
+						}
+					}
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 31 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 22 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 21 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 851 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 735 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 158 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 162 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 2 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 117 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 156 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 849 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 44 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 805 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 185 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 186 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 47 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 731 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 184 } }
+
+				}
+
+			   # Western Europe Inland
+				if = {
+					limit = {
+						OR = {
+							has_game_rule = {
+								rule = state_of_the_pacific
+								option = COAST_WEST
+							}
+							has_game_rule = {
+								rule = state_of_the_pacific
+								option = WEST
+							}
+							has_game_rule = {
+								rule = state_of_the_pacific
+								option = ALL
+							}
+						}
+					}
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 16 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 24 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 33 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 25 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 26 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 20 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 32 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 18 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 17 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 27 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 28 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 34 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 8 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 42 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 51 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 57 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 55 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 50 } }
+
+					if = {
+						limit = {
+							has_game_rule = {
+								rule = state_of_the_pacific
+								option = WEST
+							}
+						}
+						USA = {  add_to_array = { global.pacific_modifier_states_europe = 31 } }
+						USA = {  add_to_array = { global.pacific_modifier_states_europe = 22 } }
+						USA = {  add_to_array = { global.pacific_modifier_states_europe = 21 } }
+					}					
+				}
+
+			   # Southern Europe Inland
+			   	if = {
+					limit = {
+						OR = {
+							has_game_rule = {
+								rule = state_of_the_pacific
+								option = ALL
+							}
+						}
+					}
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 159 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 161 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 157 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 160 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 850 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 39 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 736 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 852 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 102 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 853 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 103 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 163 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 104 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 105 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 804 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 802 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 106 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 934 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 48 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 803 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 108 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 107 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 109 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 212 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 211 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 845 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 3 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 847 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 151 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 846 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 153 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 848 } }
+					USA = {  add_to_array = { global.pacific_modifier_states_europe = 153 } }
+			   	}
+
+			   # Apply to the Correct States
+				for_each_scope_loop = {
+					array = global.pacific_modifier_states_europe
+					if = {
+						limit = {
+							NOT = {
+								has_dynamic_modifier = {
+									modifier = PACIFIC_COMMONWEALTH_controls_original 
+								}
+							}
+						}
+					}
+					add_dynamic_modifier = {
+						modifier = PACIFIC_COMMONWEALTH_controls_original 
+					}
+				}
+			}
+		}
+		effect = {
+			981 = {
+				add_dynamic_modifier = {
+					modifier =  NO_PORTS_CAN_BE_BUILT 
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = assault_gun
+						option = ASSAULT_GUN_SUPPORT
+					}
+				}
+				every_country = {
+					hidden_effect = {
+						set_technology = { 
+							assault_gun_support_company = 1 
+							popup = no
+						}
+					}
+				}
+			} else_if = {
+				limit = {
+					has_game_rule = {
+						rule = assault_gun
+						option = ASSAULT_GUN_LINE
+					}
+				}
+				every_country = {
+					hidden_effect = {
+						set_technology = { 
+							assault_gun_line_unit = 1 
+							popup = no
+						}
+					}
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						has_game_rule = {
+							rule = navy_cap
+							option = ONEFIFTYCAP
+						}
+						has_game_rule = {
+							rule = navy_cap
+							option = ONEFIFTYCAP
+						}
+					}
+				}
+				SWE = { HMP_startup_on_actions = yes }
+				every_country = {
+					set_variable = { global.update_monie_ui = 0 }
+					set_variable = { var = destroyer_count_calculator value = 0 }
+					set_variable = { var = light_cruiser_count_calculator value = 0 }
+					set_variable = { var = heavy_cruiser_count_calculator value = 0 }
+					set_variable = { var = battleship_count_calculator value = 0 }
+					set_variable = { var = battlecruiser_count_calculator value = 0 }
+					set_variable = { var = carrier_count_calculator value = 0 }
+					set_variable = { var = shbb_count_calculator value = 0 }
+					set_variable = { var = shcv_count_calculator value = 0 }
+					set_variable = { var = destroyer_count_calculator_total value = 0 }
+					set_variable = { var = light_cruiser_count_calculator_total value = 0 }
+					set_variable = { var = heavy_cruiser_count_calculator_total value = 0 }
+					set_variable = { var = battleship_count_calculator_total value = 0 }
+					set_variable = { var = battlecruiser_count_calculator_total value = 0 }
+					set_variable = { var = carrier_count_calculator_total value = 0 }
+					set_variable = { var = shbb_count_calculator_total value = 0 }
+					set_variable = { var = shcv_count_calculator_total value = 0 }
+					calculator_fleet_size = yes
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = navy_cap
+						option = ONEFIFTYCAP
+					}
+				}
+				# Set variable to 150
+				set_variable={GLOBAL.cap = 150}
+			}else_if = {
+				limit = {
+					has_game_rule = {
+						rule = navy_cap
+						option = ONEHUNDREDCAP
+					}
+				}
+				set_variable={GLOBAL.cap = 100}
+			}else = {
+				set_variable={GLOBAL.cap = 0}
+			}
+		}
+		effect = {
+			ENG = {
+				COMMONWEALTH_create_commonwealth_alliance = yes
+			}
+		}
+		effect = {
+			set_variable = { FRA.SOUTHFRANCEOWNER = VIC }
+		}
+		effect = {
+			# every_country = { 
+			# 	limit = { tag = GER }
+			# 	country_event = { 
+			# 		id = germany.mefoair 
+			# 	}
+			# }
+			# every_country = { 
+			# 	limit = { tag = MON }
+			# 	country_event = { 
+			# 		id = mongolia.start 
+			# 	}
+			# }	
+			# every_country = { 
+			# 	limit = { tag = ITA }
+			# 	country_event = { 
+			# 		id = italy.air 
+			# 	}
+			# }	
+			if = {
+				limit = {
+					is_historical_focus_on = no
+				}
+				every_country = { 
+					country_event = { 
+						id = startingevent.999
+					}
+				}	
+			}
+			if = {
+				limit = {
+					OR = {
+						VEN = { is_ai = no}
+						POR = { is_ai = no}
+						#BEL = { is_ai = no}
+						LUX = { is_ai = no}
+						SWI = { is_ai = no}
+						AUS = { is_ai = no}
+						CZE = { is_ai = no}
+						SWE = { is_ai = no}
+						DEN = { is_ai = no}
+						NOR = { is_ai = no}
+						AND = {
+							YUG = { is_ai = no}
+							BUL = { is_ai = no}
+						}
+						GRE = { is_ai = no}
+						LIT = { is_ai = no}
+						LAT = { is_ai = no}
+						EST = { is_ai = no}
+						CHI = { is_ai = no}
+						INS = { is_ai = no}						
+						PHI = { is_ai = no}
+						MAL = { is_ai = no}
+						TUR = { is_ai = no}						
+						IRQ = { is_ai = no}
+						PER = { is_ai = no}
+					}
+				}
+				every_country = { 
+					country_event = { 
+						id = startingevent.1000
+					}
+				}
+			}
+			every_country = { 
+				country_event = { 
+					id = startingevent.1001
+				}
+			}
+			every_country = { 
+				limit = { 
+					OR = {
+						tag = GER
+						tag = ITA
+						tag = USA
+						tag = ENG
+						tag = JAP
+						tag = FRA
+						tag = SOV
+					}
+				}
+				country_event = { 
+					id = startingevent.29
+				}
+			}	
+		}
+		effect = {
+			TUR = { set_country_flag = TUR_british_support }
+			TUR = { set_country_flag = TUR_soviets_defiant }
+			TUR = { set_country_flag = TUR_strait_compromise_set }
+			341 = { set_demilitarized_zone = no } 
+			797 = { set_demilitarized_zone = no } 
+			340 = { set_demilitarized_zone = no }
+		}
+		effect = {
+			SOV = {
+				mio:SOV_morozov_design_bureau_organization = {
+					add_mio_funds_gain_factor = -0.75
+				}
+				mio:SOV_astrov_design_bureau_organization = {
+					add_mio_funds_gain_factor = -0.75
+				}
+				mio:SOV_okmo_organization = {
+					add_mio_funds_gain_factor = -0.75
+				}
+				mio:SOV_mytishchy_machine_building_plant_organization = {
+					add_mio_funds_gain_factor = -0.75
+				}
+				mio:SOV_kirov_organization = {
+					add_mio_funds_gain_factor = -0.75
+				}
+			}
+		}
+		effect = {
+			SPR = { add_to_array = { global.nationalist_spain_states = 171 } }
+			SPR = { add_to_array = { global.nationalist_spain_states = 174 } }
+			SPR = { add_to_array = { global.nationalist_spain_states = 176 } }
+			SPR = { add_to_array = { global.nationalist_spain_states = 171 } }
+			SPR = { add_to_array = { global.nationalist_spain_states = 172 } }
+			SPR = { add_to_array = { global.nationalist_spain_states = 791 } }
+			SPR = { add_to_array = { global.nationalist_spain_states = 166 } }
+			SPR = { add_to_array = { global.nationalist_spain_states = 788 } }
+			SPR = { add_to_array = { global.nationalist_spain_states = 170 } }
+			SPR = { add_to_array = { global.nationalist_spain_states = 789 } }
+			SPR = { add_to_array = { global.nationalist_spain_states = 169 } }
+		}
+	}
+
+	on_capitulation = {
+		# Denied Czechs Stuff
+		effect = {
+			if = {
+				limit = {
+					original_tag = CZE
+					has_global_flag = DENIED_CZE
+				}
+				GER = {
+					set_technology = { ger_cze_tank_1 = 1 }
+					set_technology = { ger_cze_tank_2 = 1 }
+					create_equipment_variant = {
+						name = "LT-35"
+						type = ger_light_tank_chassis_p35
+						parent_version = 0
+						modules = {
+							main_armament_slot = tank_small_gun_1
+							turret_type_slot = tank_light_turret_1
+							suspension_type_slot = tank_bogie_suspension
+							armor_type_slot = tank_riveted_armor
+							engine_type_slot = tank_gasoline_engine
+						}
+						icon = "gfx/interface/technologies/tanks/ger/ger_cze_tank_1.dds"
+					}
+					create_equipment_variant = {
+						name = "PzKpfw 38(t)"
+						type = ger_light_tank_chassis_p38
+						parent_version = 0
+						modules = {
+							main_armament_slot = tank_small_gun_2
+							turret_type_slot = tank_light_turret_2
+							suspension_type_slot = tank_bogie_suspension
+							armor_type_slot = tank_riveted_armor
+							engine_type_slot = tank_gasoline_engine
+						}
+						icon = "gfx/interface/technologies/tanks/ger/ger_cze_tank_2.dds"
+					}
+				}
+			}
+		}
+		## Capitulation of China
+		# Japan Annexes all and then we use the Decisions
+		effect = {
+			if = {
+				limit = {
+					original_tag = CHI
+					FROM = { tag = JAP }
+				}
+				JAP = {
+					# white_peace = CHI
+					annex_country = {
+						target = CHI
+						transfer_troops = no
+					}
+					add_named_threat = {
+						threat = 30
+						name = JAP_threat_treaty_of_nanjing
+					}
+					set_country_flag = { flag = JAP_transfer_timer value = 1 days = 30 }
+					country_event = {  id = japan.506 } 
+				}
+				if = {
+					limit = {
+						MAN = { has_completed_focus = MAN_crush_the_bandits }
+					}
+					MAN = {
+						add_ideas = MAN_assert_mills
+					}
+				}
+			}
+		}
+		# # Going to the Peace Conference
+		# effect = {
+		# 	if = {
+		# 		limit = {
+		# 			original_tag = CHI
+		# 			FROM = { tag = JAP }
+		# 			AND = {
+		# 				NOT = { has_global_flag = JAP_split_china}
+		# 				NOT = { has_global_flag = JAP_take_china}
+		# 				NOT = { has_global_flag = JAP_give_china}
+		# 				NOT = { has_global_flag = JAP_puppet_china}
+		# 			}
+					
+		# 		}
+		# 		if = {
+		# 			limit = {
+		# 				MAN = { has_completed_focus = MAN_crush_the_bandits }
+		# 			}
+		# 			MAN = {
+		# 				add_ideas = MAN_assert_mills
+		# 			}
+		# 		}
+		# 	}
+		# }
+		# # Japan and Manchu split China
+		# effect = {
+		# 	if = {
+		# 		limit = {
+		# 			original_tag = CHI
+		# 			FROM = { tag = JAP }
+		# 			has_global_flag = JAP_split_china
+		# 		}
+		# 		# JAP = {
+		# 		# 	white_peace = CHI
+		# 		# }
+		# 		MAN = {
+		# 			transfer_state = 604 #Qinghai
+		# 			transfer_state = 608 #Beijing
+		# 			transfer_state = 616 #Ningxia
+		# 			transfer_state = 621 #Suiyuan
+		# 			transfer_state = 746 #Ordos
+		# 			transfer_state = 755 #Haixi
+		# 			transfer_state = 756 #Jinquan
+		# 		}
+		# 		if = {
+		# 			limit = {
+		# 				MAN = { has_completed_focus = MAN_crush_the_bandits }
+		# 			}
+		# 			MAN = {
+		# 				add_ideas = MAN_assert_mills
+		# 			}
+		# 		}
+		# 		JAP = {
+		# 			annex_country = {
+		# 				target = CHI
+		# 				transfer_troops = no
+		# 			}
+		# 			add_named_threat = {
+		# 				threat = 30
+		# 				name = JAP_threat_treaty_of_nanjing
+		# 			}
+		# 		}
+		# 	}
+		# }
+		# # Japan Takes all of China
+		# effect = {
+		# 	if = {
+		# 		limit = {
+		# 			original_tag = CHI
+		# 			FROM = { tag = JAP }
+		# 			has_global_flag = JAP_take_china
+		# 		}
+		# 		JAP = {
+		# 			# white_peace = CHI
+		# 			annex_country = {
+		# 				target = CHI
+		# 				transfer_troops = no
+		# 			}
+		# 			add_named_threat = {
+		# 				threat = 30
+		# 				name = JAP_threat_treaty_of_nanjing
+		# 			}
+		# 		}
+		# 		if = {
+		# 			limit = {
+		# 				MAN = { has_completed_focus = MAN_crush_the_bandits }
+		# 			}
+		# 			MAN = {
+		# 				add_ideas = MAN_assert_mills
+		# 			}
+		# 		}
+		# 	}
+		# }
+		# # Manchu takes all of China
+		# effect = {
+		# 	if = {
+		# 		limit = {
+		# 			original_tag = CHI
+		# 			FROM = { tag = JAP }
+		# 			has_global_flag = JAP_give_china
+		# 		}
+		# 		MAN = {
+		# 			# white_peace = CHI
+		# 			annex_country = {
+		# 				target = CHI
+		# 				transfer_troops = no
+		# 			}
+		# 		}
+		# 		if = {
+		# 			limit = {
+		# 				MAN = { has_completed_focus = MAN_crush_the_bandits }
+		# 			}
+		# 			MAN = {
+		# 				add_ideas = MAN_assert_mills
+		# 			}
+		# 		}
+		# 		JAP = {
+		# 			add_named_threat = {
+		# 				threat = 30
+		# 				name = JAP_threat_treaty_of_nanjing
+		# 			}
+		# 		}
+		# 	}
+		# }
+		# # Japan Puppets China
+		# effect = { 
+		# 	if = {
+		# 		limit = {
+		# 			original_tag = CHI
+		# 			FROM = { tag = JAP }
+		# 			has_global_flag = JAP_puppet_china
+		# 		}
+		# 		JAP = {
+		# 			puppet = CHI
+		# 			add_named_threat = {
+		# 				threat = 30
+		# 				name = JAP_threat_treaty_of_nanjing
+		# 			}
+		# 		}
+		# 		if = {
+		# 			limit = {
+		# 				MAN = { has_completed_focus = MAN_crush_the_bandits }
+		# 			}
+		# 			MAN = {
+		# 				add_ideas = MAN_assert_mills
+		# 			}
+		# 		}
+		# 	}
+		# }
+
+		# Italy takes Ethopia
+		effect = { 
+			if = {
+				limit = {
+					original_tag = ETH
+					FROM = { tag = ITA }
+				}
+				ITA = {
+					annex_country = {
+						target = ETH
+						transfer_troops = no
+					}
+					add_named_threat = { threat = -0.3 name = ITA_treaty_of_addis }
+					271 = { set_compliance = 60 }
+					271 = { add_dynamic_modifier = { modifier = ITA_ethiopia_local_supply } }
+					550 = { add_dynamic_modifier = { modifier = ITA_ethiopia_local_supply } }
+					559 = { add_dynamic_modifier = { modifier = ITA_ethiopia_local_supply } }
+					835 = { add_dynamic_modifier = { modifier = ITA_ethiopia_local_supply } }
+					836 = { add_dynamic_modifier = { modifier = ITA_ethiopia_local_supply } }
+					837 = { add_dynamic_modifier = { modifier = ITA_ethiopia_local_supply } }
+					838 = { add_dynamic_modifier = { modifier = ITA_ethiopia_local_supply } }
+					839 = { add_dynamic_modifier = { modifier = ITA_ethiopia_local_supply } }
+					840 = { add_dynamic_modifier = { modifier = ITA_ethiopia_local_supply } }
+					841 = { add_dynamic_modifier = { modifier = ITA_ethiopia_local_supply } }
+					842 = { add_dynamic_modifier = { modifier = ITA_ethiopia_local_supply } }
+					843 = { add_dynamic_modifier = { modifier = ITA_ethiopia_local_supply } }
+					844 = { add_dynamic_modifier = { modifier = ITA_ethiopia_local_supply } }
+					908 = { add_dynamic_modifier = { modifier = ITA_ethiopia_local_supply } }
+					add_equipment_to_stockpile = {
+						type = infantry_equipment_0
+						amount = 20000
+						producer = ITA
+					}
+					add_equipment_to_stockpile = {
+						type = squad_equipment_0
+						amount = 5000
+						producer = ITA
+					}
+					add_equipment_to_stockpile = {
+						type = horse_equipment_0
+						amount = 5000
+						producer = ITA
+					}
+					create_corps_commander = {
+						name = "Fresh Prince Amedeo"
+						portrait_path = GFX_Portrait_Duke_of_Aosta
+						traits = { politically_connected }
+						skill = 2
+						attack_skill = 2
+						defense_skill = 3
+						planning_skill = 1
+						logistics_skill = 2
+					}
+					add_victory_points = {
+						province = 5010
+						value = 25
+					}
+					add_victory_points = {
+						province = 7980
+						value = 14
+					}
+					add_victory_points = {
+						province = 1984
+						value = 14
+					}
+					add_victory_points = {
+						province = 12766
+						value = 15
+					}
+					add_victory_points = {
+						province = 12991
+						value = 15
+					}
+				}
+			}
+		}
+
+		# Spain takes Portugal
+		effect = { 
+			if = {
+				limit = {
+					original_tag = POR
+					FROM = { original_tag = SPA }
+					SPA = { NOT = { has_war_with = ENG } }
+				}
+				SPA = {
+					annex_country = {
+						target = POR
+						transfer_troops = no
+					}
+					add_named_threat = { threat = 5.6 name = SPA_treaty_of_lisbon }
+				}
+			}
+		}
+
+		# Poland Loses Agency Debuff
+		effect = { 
+			if = {
+				limit = {
+					original_tag = POL
+					OR = {
+						FROM = { original_tag = GER }
+						FROM = { original_tag = ROM }
+						FROM = { original_tag = HUN }
+						FROM = { original_tag = BUL }
+						FROM = { original_tag = YUG }
+						FROM = { original_tag = SOV }
+					}
+				}
+				POL = { remove_ideas = POL_no_agency }
+			}
+		}
+	}
+
+	# on_state_control_changed = {
+	# 	effect = {
+	# 		if = {
+	# 			limit = {
+	# 				FROM.FROM = { state = 110 }
+	# 			}
+	# 			FROM.FROM = {
+    #                 if = {
+	# 					limit = {
+	# 						CONTROLLER = {
+	# 							OR = {
+	# 								tag = ENG
+	# 								is_subject_of = ENG
+	# 								is_in_faction_with = ENG
+	# 								tag = SOV
+	# 								is_subject_of = SOV
+	# 								is_in_faction_with = SOV
+	# 							}
+	# 						}
+	# 					}
+	# 					GER = {
+	# 						set_country_flag = GER_start_sweden_allied_embargo_allies_mission
+	# 					}
+	# 				}
+    #             }
+
+	# 		}
+	# 	}
+	# }
+
+	on_naval_invasion = {
+		effect = { 
+			THIS = {
+				if = {
+					limit = {
+						NOT = { CONTROLLER = { tag = ROOT } }
+						NOT = { CONTROLLER = { has_country_flag = notif_disable_inv_warning } }
+					}
+					CONTROLLER = {
+						set_country_flag = ui_show_invasion_warning
+						set_variable = { ui_invaded_state = PREV }
+						set_variable = { ui_invaded_country = PREV.owner }
+						set_variable = { ui_invader_country = ROOT }
+					}
+					if = {
+						limit = { CONTROLLER = { is_puppet = yes } }
+						CONTROLLER = {
+							OVERLORD = {
+								set_country_flag = ui_show_invasion_warning
+								set_variable = { ui_invaded_state = PREV.PREV }
+								set_variable = { ui_invaded_country = PREV.PREV.owner }
+								set_variable = { ui_invader_country = ROOT }
+							}
+						}
+					} 
+					every_country = {
+						if = { 
+							limit = { 
+								PREV.CONTROLLER = { is_in_faction_with = THIS } 
+							}
+							set_country_flag = ui_show_invasion_warning
+							set_variable = { ui_invaded_state = PREV }
+							set_variable = { ui_invaded_country = PREV.CONTROLLER }
+							set_variable = { ui_invader_country = ROOT }
+						}
+					}
+
+				}
+			}
+		}
+	}
+	on_paradrop = {
+		effect = { 
+			THIS = {
+				if = {
+					limit = {
+						NOT = { CONTROLLER = { tag = ROOT } }
+						NOT = { CONTROLLER = { has_country_flag = notif_disable_para_warning } }
+					}
+					CONTROLLER = {
+						set_country_flag = ui_show_paradrop_warning
+						set_variable = { ui_invaded_state = PREV }
+						set_variable = { ui_invaded_country = PREV.owner }
+						set_variable = { ui_invader_country = ROOT }
+					}
+					if = {
+						limit = { CONTROLLER = { is_puppet = yes } }
+						CONTROLLER = {
+							OVERLORD = {
+								set_country_flag = ui_show_paradrop_warning
+								set_variable = { ui_invaded_state = PREV.PREV }
+								set_variable = { ui_invaded_country = PREV.PREV.owner }
+								set_variable = { ui_invader_country = ROOT }
+							}
+						}
+					} 
+					every_country = {
+						if = { 
+							limit = { 
+								PREV.CONTROLLER = { is_in_faction_with = THIS } 
+							}
+							set_country_flag = ui_show_paradrop_warning
+							set_variable = { ui_invaded_state = PREV }
+							set_variable = { ui_invaded_country = PREV.CONTROLLER }
+							set_variable = { ui_invader_country = ROOT }
+						}
+					}
+				}
+			}
+		}
+	}
+}

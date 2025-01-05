@@ -1,0 +1,30 @@
+NEW_player_decisions = {
+	priority = 10000
+
+	on_map_area = {
+		target_array = global.nationalist_spain_states
+		name = SPA_starting_states
+		zoom = 300
+		target_root_trigger = {
+			OR = {
+				original_tag = SPR
+				AND = {
+					date < 1936.7.1
+					OR = {
+						original_tag = FRA
+						original_tag = SOV
+						original_tag = GER
+						original_tag = ITA
+						original_tag = JAP
+					}
+				}
+			}
+		}
+	}
+
+	icon = generic_propaganda
+
+	visible = {
+		NOT = { has_country_flag = new_player_help_disabled }
+	}
+}

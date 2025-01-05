@@ -1,0 +1,95 @@
+#	Example:
+# 
+#	example_trigger = {
+#		tag = GER
+#		is_ai = no
+#	}
+#
+#
+#	In a script file:
+#
+#	trigger = {
+#		exampel_trigger = yes
+#	}
+# 
+#	THIS FILE IS FOR TRIGGERS SPECIFICALLY FOR THE GER TAG
+
+JAP_has_idea_JAP_intervene_in_china = {
+	if = {
+		limit = { has_idea = JAP_intervene_in_china_5 }
+		has_idea = JAP_intervene_in_china_5
+
+		else = {
+			if = {
+				limit = { has_idea = JAP_intervene_in_china_4 }
+				has_idea = JAP_intervene_in_china_4
+				
+				else = {
+					if = {
+						limit = { has_idea = JAP_intervene_in_china_3 }
+						has_idea = JAP_intervene_in_china_3
+					
+						else = {
+							if = {
+								limit = { has_idea = JAP_intervene_in_china_2 }
+								has_idea = JAP_intervene_in_china_2
+								else = {
+									has_idea = JAP_intervene_in_china_1
+								}	
+							}		
+						}
+					}		
+				}
+			}		
+		}
+	}
+}
+
+JAP_can_declare_on_the_allies = {
+	custom_trigger_tooltip = {
+		tooltip = JAP_war_start_tt
+		if = {
+			limit = {
+				NOT = { JAP = { has_completed_focus = JAP_early_war_industry_focus } }
+				NOT = { JAP = { has_completed_focus = JAP_mid_war_industry_focus } }
+				NOT = { JAP = { has_completed_focus = JAP_late_war_industry_focus } }
+			}
+			always = no
+		}
+		else_if = {
+			limit = {
+				JAP = { has_completed_focus = JAP_early_war_industry_focus } 
+			}
+			date > 1941.1.1
+		}
+		else_if = {
+			limit = {
+				JAP = { has_completed_focus = JAP_mid_war_industry_focus } 
+			}
+			date > 1941.7.1
+		}
+		else_if = {
+			limit = {
+				JAP = { has_completed_focus = JAP_late_war_industry_focus } 
+			}
+			date > 1941.12.1
+		}
+	}
+}
+
+JAP_has_finished_post_china_branch = {
+	custom_trigger_tooltip = {
+		tooltip = JAP_china_war_branch
+		if = {
+			limit = {
+				NOT = { JAP = { has_completed_focus = JAP_late_war_destruction_focus } }
+				NOT = { JAP = { has_completed_focus = JAP_mid_war_intel_focus } }
+				NOT = { JAP = { has_completed_focus = JAP_early_war_military_focus } }
+			}
+			always = no
+		}
+		else = {
+			always = yes
+		}
+	}
+}

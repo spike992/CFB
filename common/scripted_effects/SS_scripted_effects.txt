@@ -1,0 +1,68 @@
+SS_armored_division_standard = {
+	set_country_flag = SS_armored_division_standard
+	division_template = {
+			name = "Waffen-SS Panzer Division"
+			priority = 2
+			division_names_group = GER_SS_01
+			is_locked = yes
+			force_allow_recruiting = yes
+			template_counter = 129
+		regiments = {
+			medium_armor = { x = 0 y = 0 }
+			medium_armor = { x = 0 y = 1 }
+			medium_armor = { x = 0 y = 2 }
+			medium_armor = { x = 0 y = 3 }
+
+			medium_armor = { x = 1 y = 0 }
+			medium_armor = { x = 1 y = 1 }
+			medium_armor = { x = 1 y = 2 }
+
+			mechanized = { x = 2 y = 0 }
+			mechanized = { x = 2 y = 1 }
+			mechanized = { x = 2 y = 2 }
+
+			mechanized = { x = 3 y = 0 }
+			mechanized = { x = 3 y = 1 }
+			mechanized = { x = 3 y = 2 }
+			mechanized = { x = 3 y = 3 }
+
+			medium_tank_destroyer_brigade = { x = 4 y = 0 }
+			medium_tank_destroyer_brigade = { x = 4 y = 1 }
+
+		}
+		support = {
+			logistics_company = { x = 0 y = 0 }
+			logistics_company_mot = { x = 0 y = 1 }
+			light_tank_recon  = { x = 0 y = 2 }
+			light_sp_anti_air_brigade  = { x = 0 y = 3 }
+
+			ss_hq_company = { x = 1 y = 0 }
+			assault_engineer_tfb = { x = 1 y = 1 }
+			signal_company = { x = 1 y = 2 }
+			maintenance_company = { x = 1 y = 3 }
+		}
+		division_cap = 0 
+	}
+}
+
+GER_increase_SS_cap = { 
+	custom_effect_tooltip = GER_SS_div_cap_1_tt
+	hidden_effect = {
+		add_to_variable = { GER_SS_division_cap = GER_SS_cap_increase }
+		set_division_template_cap = { 
+			division_template = "Waffen-SS Panzer Division" 
+			division_cap = GER_SS_division_cap
+		}
+	}
+}
+
+GER_increase_SS_cap_double = { 
+	custom_effect_tooltip = GER_SS_div_cap_2_tt
+	hidden_effect = {
+		add_to_variable = { GER_SS_division_cap = GER_SS_cap_increase_double }
+		set_division_template_cap = { 
+			division_template = "Waffen-SS Panzer Division" 
+			division_cap = GER_SS_division_cap
+		}
+	}
+}

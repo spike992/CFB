@@ -1,0 +1,41 @@
+scripted_gui = {
+	horst_admiral_current_command_limit_used = {
+		context_type = player_context 
+		parent_window_name  = "navy_reserve_portrait_window" 
+		window_name = "horst_admiral_current_command_limit_used_window"
+		dynamic_lists = { 
+			admirals_leading_battlefleets_list = {
+				array = battle_admirals
+				value = v
+				index = i
+				change_scope = yes
+				entry_container = admirals_with_fleets_list
+			}
+		}
+		properties = {
+			admiral_portrait  = {
+				image = "[GetAdmiralPortrait]" 
+			}			
+		}		
+	}
+
+	over_cap= {
+		context_type = player_context
+
+		window_name = "over_cap_open_container"
+		visible = {
+			check_variable = { fleet_overstack_naval_damage_factor < 0 }		
+		}
+
+		effects = {
+			tool_open_click = {
+				# Change to Other Map Mode
+			}
+		}
+		triggers = {
+			tool_open_click_enabled = {
+				always = yes
+			}
+		}
+	}
+}

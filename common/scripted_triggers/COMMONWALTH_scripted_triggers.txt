@@ -1,0 +1,52 @@
+COMMONWEALTH_is_commonwealth = {
+	OR = {
+		original_tag = AST
+		original_tag = CAN
+		original_tag = RAJ
+		original_tag = IRE
+		original_tag = NZL
+		original_tag = SAF
+		#original_tag = ENG
+	}
+}
+#COMMONWEALTH_alliance_created_already = { # Checks if any of the COMMONWEALTH has been formed.  
+#	custom_trigger_tooltip = {
+#		#tooltip = COMMONWEALTH_alliance_created_already_TT
+#		has_global_flag = COMMONWEALTH_democratic_alliance_formed
+#	}
+#}
+
+COMMONWEALTH_basic_joint_trigger = {
+	custom_trigger_tooltip = {
+		#tooltip = COMMONWEALTH_is_joint_focus_member_TT
+		is_in_faction = yes 
+		#OR = {
+			#has_country_flag = COMMONWEALTH_council_leader
+		#	AND = {
+				#has_variable = global.COMMONWEALTH_alliance_leader
+		#		COMMONWEALTH_is_commonwealth = yes
+		#		is_in_faction_with = var:global.COMMONWEALTH_alliance_leader 
+		#	}	
+		#}
+	}
+	
+}
+
+COMMONWEALTH_basic_available_trigger = {
+	COMMONWEALTH_basic_joint_trigger = yes	
+	any_allied_country = {
+		COMMONWEALTH_basic_joint_trigger = yes
+	}
+}
+
+COMMONWEALTH_is_democratic = {
+	OR = {
+		original_tag = AST
+		original_tag = CAN
+		original_tag = RAJ
+		original_tag = IRE
+		original_tag = NZL
+		original_tag = SAF
+		original_tag = ENG
+	}
+}

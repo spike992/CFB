@@ -1,0 +1,67 @@
+How to update existing map:
+
+1) Go and make a github repo of the main HOI4 Game files from before the DLC. ROllback to a previous version if needed.
+2) Download the new patch so you can see all the changed files with the new patch
+	a) Also install WinMerge and point one side at Hoi4 and the other side at the mod
+3) Open up the map\definition.csv file
+	a) Import all of the changes that the new DLC has for the already existing Provinces. Usually they have like ~10 different tiles having a terrain type updated or something
+	b) Scroll down to the bottom, and get the ID of the first new province they added. 
+		i) For ToA they added 13273 through 13362 (89 provinces)
+	c) Now, go into the mods Definition.CSV file, and identify all of the provinces that were custom added by the mod. 
+		i)At the time of ToA, it was 13273 through 13317
+		ii) All Provinces must be sequentially numbered in the file, so they should be all at the end
+	d) To make this easy, we are going to now update the custom province files to be after the new ones from ToA, before actually importing the TOA stuff.
+		i) To do this, the easiest way is to go in VSCode in the top left corner, and search for all references in the Mod for the original number, and replace it with the new number
+		ii) For example. The first custom Province needs to go from being 13273, to 13366 (one past what Vanilla will add.)
+		iii) In the fop left corner, type in 13272 in the top search bar, and then click the arrow on the left to expand and show a new line
+		iv) In the new line, enter in 13366
+		v) Then, go through and replace the references of the old province. It will need to update a number of files, though *potentially* not all of them. But most of them for sure.
+		vi) When this is complete, you should have updated every province to be what the new province needs to be.
+	e) Next, go and copy in the text from Vanilla's definition.csv for the new provinces Vanilla added. It should fit *exactly* between the old vanilla provinces, and the mods custom provinces. 
+		i) You should check for RGB Collisions at this point and mark them down.
+		ii) 13273;*202;88;19*;land;true;plains;3
+			1) Area between the stars is the RGB Value of the province on the map. Highlight that for each new province added, and make sure there are no repeats in the definistions.csv file
+			2) If there are, mark them down for now and we will fix them later.
+	f) Now, go and copy over all of the new added states from Vanilla in the History/states folder
+		i) When pasted in, there will be some states with overlapping numbers due to us adding custom states, and agian all states needing to be ordered sequentially.
+		ii) In this case, simply rename the Mod specific States to start 1 after the last new added Vanilla state, and also inside the state files change their ID and name field to match the new number
+		iii) Additionally, there will be localization for those new state names (you can find it by searching STATE_###) and update the localization to the new number
+		iv) Now, go back and in your github, look at all of the states that Paradox has *modified* during the DLC.
+			1) Generally speaking, Paradox will take large states with lots of provinces, and break them into smaller states. This means that Provinces may change what state they were in.
+			2) Carefully go through the modified states, and remove provinces, buildings, and VP's that are taken from one state and given to the new states. Note that you won't have to *add* the provinces to the new states as they should already be in the new State file from Vanilla.
+		v) For ToA, in addition to the new states in South America that broke up existing states, small islands in Canada, the middle east, and SE Asia were broken into being seperate provinces. In addition to changing the provinces and stuff in the code, mark them down for map changes later.
+		vi) additionally, at this time you can remove the cores for nations that we don't use from the freshly added states. (peru, Bolivia, etc. for ToA)
+		vii) It would also make sense at this point to go and replace all of the references to the custom states with the new numbers in the code. Can use the same replacement technique in VSCode if you want. This probably only consists of
+			1) Generic Decisions and UK  Focus Tree for the Suez
+			2) Siam Focus Tree for Tessarim
+			3) USA Events, focus tree, and USA for the custom states added for them.
+	g) Repeate f but now for the map/strategicregions section.
+	h) Inspect the changes to the railways.txt file and copy over the necessary things from Vanilla. Should only be a few changes.
+	i) Inspect possible changes in map/adjacency_rules.txt
+	j) inspect map/adjacencys.csv, and copy in all of the new vanilla changes
+	k) You can try to copy map/airports.txt but you can regenerate it later fairly easily.
+	j) same with rocket sites
+	l) probably not worth trying with the unitstacks.txt and buildings.txt files
+	m) At this point, we should be done with the code portion of map updates. The game won't launch however.
+4) Open up the GIMP Photo tool.
+	a) We will need to update the map/provinces.bmp file in order to do anything else.
+	b) Open up both the updated DLC Map from Vanilla, and the Map from the mod folder.
+	c) In order to prevent having to go and remake all of the tiles, we are going to copy and paste chunks of the Vanilla map over the mod map.
+		i) For ToA where it focused on South America, I just highlighted all of the South America Area, and copy and pasted it in place over the mod map. Note that in Github Desktop, you can see the slider for what Vanilla has changed to help you see other changes.
+	d) earlier, you had to update some states that likely weren't related to the DLC from step F.v., and in the case of TOA I had some Islands to update around the world.
+	e) Go and copy and paste the changes from those different spots into the mod map.
+	f) Earlier you were asked to mark down any collisions from step 3.e.ii, and we will address them now. How the map works, is that each provinces has an RGB value in the definition.csv that directly corresponds to the RGB province on the map you are editing. So if there are 2 provinces with the same RGB value, they will collide on the map.
+		i) Change the RGB Value now of the custom province in the CSV file until its a Unique RGB Value.
+		ii) You should find where it is on the map, and then update the color of the tile on the map with the new RGB value you have picked. 
+		iii) If you need help finding it, search for what state the province is in based on the province ID. 
+	g) Save, but make sure when you export the .bmp file you check the middle checkbox to not send out the headers, or things wont work.
+	h) Take the file and paste it into the mod folder and overwrite the map file there.
+	i) At this point, you can try launching the game.
+		i) This should make it to the main menu without crashing.
+		ii) if it doesn't, then look at the error log
+		iii) If it does get to the main menu, go into the nudge tool. 
+			1) Look around the states and provinces to see if anything is out of places
+			2) Go to the buildings tab and click 'validate in all states'
+			3) Exit the game and copy from the Documents\Paradox Interactive\Hearts of Iron IV\map folder into the mod map folder and relaunch the game
+			4) Fix any errors in the error.log file relating to provinces and states. They should all appear at the top of the log file or the end of the log file
+			5) Eventually the map error won't complain and the map is done.
