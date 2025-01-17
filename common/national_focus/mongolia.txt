@@ -1,17 +1,3 @@
-#!gfx:interface\lw_goals.gfx
-#!gfx:interface\KR_goals.gfx
-#!gfx:interface\cic_goals.gfx
-#!gfx:interface\snek_teleport.gfx
-#!gfx:interface\replace\bruh_interface.gfx
-#!gfx:interface\replace\bruh_bra_interface.gfx
-#!gfx:interface\replace\bruh_eng_interface.gfx
-#!gfx:interface\replace\bruh_ger_interface.gfx
-#!gfx:interface\replace\bruh_hol_interface.gfx
-#!gfx:interface\replace\bruh_ita_interface.gfx
-#!gfx:interface\replace\bruh_jap_interface.gfx
-#!gfx:interface\replace\bruh_nsb_interface.gfx
-#!gfx:interface\replace\bruh_sov_interface.gfx
-
 focus_tree = {
 	id = mongolia_focus
 	
@@ -34,8 +20,9 @@ focus_tree = {
 	focus = {
 		id = MON_collectivisation
 		icon = GFX_focus_prc_agrarian_socialism
-		x = 8
-		y = 0
+		prerequisite = { focus = MON_industrialised_nation focus = MON_self_sufficient }
+		x = 17
+		y = 4
 		cost = 10
 		
 
@@ -54,16 +41,8 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			hidden_effect = {
-				swap_ideas = {
-					remove_idea = MON_collectivisation_1
-					add_idea = MON_collectivisation_2			
-				}
-			}
-			add_political_power = 150
-			330 = {
-				add_extra_state_shared_building_slots = 8
-			}
+			
+			add_ideas = MON_Agitrop
 		}
 	}
 
@@ -116,8 +95,7 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			MON_the_economy_dynamic_war_modifier_tt = yes
-			add_to_variable = {MON_economy_political_power_gain = -0.05 tooltip = political_power_gain_tt}
+			add_ideas = MON_mobilize_steppes
 		}
 	}
 	
@@ -142,7 +120,29 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			add_political_power = 200
+		
+				add_resource = {
+					type = tungsten
+					amount = 351
+					state = 617
+				}
+				add_resource = {
+					type = chromium
+					amount = 190
+					state = 617
+				}
+				add_resource = {
+					type = tungsten
+					amount = 350
+					state = 760
+				}
+				add_resource = {
+					type = chromium
+					amount = 190
+					state = 760
+				}
+			
+			
 		}
 	}
 	
@@ -176,7 +176,7 @@ focus_tree = {
 	focus = {
 		id = MON_the_purge
 		icon = GFX_SOV_goal_great_purge
-		x = 0
+		x = -1
 		y = 1
 		cost = 10
 		prerequisite = { focus = MON_trial_of_the_llamas }
@@ -212,10 +212,10 @@ focus_tree = {
 	focus = {
 		id = MON_follow_the_soviets
 		icon = GFX_focus_generic_join_comintern
-		x = -1
+		x = 1
 		y = 1
 		cost = 7
-		prerequisite = { focus = MON_the_purge }
+		 prerequisite = { focus = MON_the_purge }
 		relative_position_id = MON_the_purge
 		
 		available_if_capitulated = yes
@@ -226,18 +226,20 @@ focus_tree = {
 
 		completion_reward = {
 			
-			add_ideas = MON_Agitrop
+			add_ideas = MON_mobilise_the_workers_idea
+				
+			
 		}
 	}
 	
 	focus = {
 		id = MON_finish_collectivisation
 		icon = GFX_goal_generic_soviet_construction
-		x = 0
-		y = 1
+		x = 7
+		y = 0
 		cost = 7
-		prerequisite = { focus = MON_follow_the_soviets }
-		relative_position_id = MON_follow_the_soviets
+		# prerequisite = { focus = MON_follow_the_soviets }
+		# relative_position_id = MON_follow_the_soviets
 		
 		available_if_capitulated = yes
 		
@@ -258,9 +260,9 @@ focus_tree = {
 				add_extra_state_shared_building_slots = 4
 			}
 
-			build_railway = {
-				path = { 6380 6414 }
-			}
+		
+
+			add_timed_idea = { idea = MON_purge_1 days = 360 }
 		}
 	}
 
@@ -268,8 +270,8 @@ focus_tree = {
 	focus = {
 		id = MON_remove_religious_figureheads
 		icon = GFX_focus_mex_triumph_over_the_cristeros
-		x = 1
-		y = 1
+		x = 2
+		y = 0
 		cost = 7
 		prerequisite = { focus = MON_the_purge}
 		
@@ -295,14 +297,13 @@ focus_tree = {
 		focus = {
 			id = MON_exploit_ressources
 			icon = GFX_focus_mex_triumph_over_the_cristeros
-			x = 1
-			y = 2
+			x = 9
+			y = 0
 			cost = 7
-			prerequisite = { focus = MON_remove_religious_figureheads}
-			
+			# prerequisite = { focus = MON_follow_the_soviets}
 			available_if_capitulated = yes
 			
-			relative_position_id = MON_the_purge
+			# relative_position_id = MON_the_purge
 			
 			ai_will_do = {
 			factor = 2
@@ -313,27 +314,16 @@ focus_tree = {
 			}
 			
 			completion_reward = {
-				add_resource = {
-					type = tungsten
-					amount = 351
-					state = 617
+				hidden_effect = {
+					swap_ideas = {
+						remove_idea = MON_collectivisation_1
+						add_idea = MON_collectivisation_2			
+					}
 				}
-				add_resource = {
-					type = chromium
-					amount = 190
-					state = 617
+				add_political_power = 150
+				330 = {
+					add_extra_state_shared_building_slots = 8
 				}
-				add_resource = {
-					type = tungsten
-					amount = 350
-					state = 760
-				}
-				add_resource = {
-					type = chromium
-					amount = 190
-					state = 760
-				}
-			
 			}
 			}
 
@@ -505,9 +495,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			add_ideas = MON_mobilize_steppes
-			add_ideas = MON_mobilise_the_workers_idea
-		
+			
+			
+			swap_ideas = {
+				remove_idea = MON_collectivisation_2
+				add_idea = MON_collectivisation_3		
+			}
+			add_political_power = 150
+			330 = {
+				add_extra_state_shared_building_slots = 4
+			}
 	}
 }
 	
@@ -1173,12 +1170,7 @@ focus_tree = {
 
 		completion_reward = {
 			remove_ideas = MON_nomad_1
-			mio:SOV_morozov_design_bureau_organization = {
-				unlock_mio_trait_tooltip = MON_morozov_upgrade_buff
-			}
-			mio:SOV_morozov_design_bureau_organization = {
-				add_mio_size = 1
-			}
+			add_ideas = MON_improvement_of_motorization
 		}
 	}
 	##############################################################
@@ -1253,7 +1245,7 @@ focus_tree = {
 	focus = {
 		id = MON_mongolia_people_army
 		icon = GFX_SOV_red_army
-		x = 26
+		x = 28
 		y = 0
 
 		cost = 5
@@ -1648,7 +1640,6 @@ focus = {
 					}
 					support = {
 						light_tank_recon = { x = 0 y = 0 }
-						mech_engineers = { x = 0 y = 1 }
 						signal_company = { x = 0 y = 2 }
 						logistics_company_mot = { x = 0 y = 3 }
 						light_sp_anti_air_brigade = { x = 1 y = 0 }
@@ -1661,7 +1652,7 @@ focus = {
 					for_loop_effect = {
 						end = 9
 						create_unit = {
-							division = "division_template = \"Katyushas\" start_experience_factor = 0.5"
+							division = "division_template = \"Katyushas\" start_experience_factor = 1"
 							owner = MON
 						}
 					}
@@ -1677,9 +1668,9 @@ focus = {
 	focus = {
 		id = MON_war_mobilisation
 		icon = GFX_SOV_start_3_5_year_plan
-		
-		x = 17
-		y = 5
+		prerequisite = { focus = MON_support_the_anti_fascist_war}
+		x = 8
+		y = 3
 		relative_position_id = 1
 		cost = 5
 		
@@ -1693,11 +1684,13 @@ focus = {
 
 		completion_reward = {
 			add_ideas = tot_economic_mobilisation
+		
 			# add_ideas = SOV_war_mob
 			MON_the_economy_dynamic_war_modifier_tt = yes # tooltip
-			add_to_variable = { MON_soviet_economy_local_resources_factor = 0.10 tooltip = local_resources_factor_tt }
-			add_to_variable = { MON_soviet_economy_conscription = 0.02 tooltip = conscription_tt }
-			add_to_variable = { MON_soviet_economy_production_speed_arms_factory_factor = 0.2 tooltip = production_speed_arms_factory_factor_tt }
+
+			add_to_variable = { MON_economy_local_resources_factor = 0.10 tooltip = local_resources_factor_tt }
+			add_to_variable = { MON_economy_conscription = 0.02 tooltip = conscription_tt }
+			add_to_variable = { MON_economy_production_speed_arms_factory_factor = 0.2 tooltip = production_speed_arms_factory_factor_tt }
 			
 
 			# if = {
