@@ -1,0 +1,830 @@
+###MILITARY AI### DEV2.B4 (VK) 147
+## versione DEV2.B parallel  from DEV2.A2
+
+
+## the management of the Railway guns has been modified compared to the DEV2 (VK)
+
+
+  #UNIT_PRODUCTION (this line insert from DEV2.B2)
+
+
+default_unit_production = {
+
+
+##(VK)##(DEV2.B4)
+
+	enable = {
+		always = yes
+	}
+	abort = {
+		always = no
+	}
+
+   #ROLE_RATIO
+
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 160
+##(DEV2) before 100
+	}
+	
+	#ai_strategy = {
+	#	type = role_ratio
+	#	id = heavy_infantry
+	#	value = 100
+	#}
+
+	ai_strategy = {
+		type = role_ratio
+		id = mountaineers
+		value = 30
+##(DEV2.B) before 35
+
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = marines
+		value = 45
+##(DEV2.A1) before 35
+##(DEV2.A2) before 45
+##(DEV2.B) before 45
+##(VK)##(DEV2.B2) before 35
+
+
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = motorized
+		value = 10
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = armor_role
+		value = 25
+##(DEV2.A) before 65
+##(DEV2.A1) before 70
+##(DEV2.A2) before 80
+
+
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = heavy_armor_role
+		value = 0
+##(DEV2.A1) before 55
+
+	}
+
+  #UNIT_RATIO
+
+	#Air unit factors
+
+	ai_strategy = {
+		type = unit_ratio
+		id = fighter
+		value = 100
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = cas
+		value = 95
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = tactical_bomber
+		value = 15
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = strategic_bomber
+		value = 1
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = naval_bomber
+		value = 5
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = cv_fighter
+		value = 0
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = cv_naval_bomber
+		value = 0
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = cv_cas
+		value = -50
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = heavy_fighter
+		value = 0
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = scout_plane
+		value = 0
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = maritime_patrol_plane
+		value = 0
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = air_transport
+		value = 1
+	}
+
+   #EQUIPMENT
+   ai_strategy = {
+	type = equipment_variant_production_factor
+	id = cv_CAS_equipment
+	value = -1000
+	}
+   ai_strategy = {
+	type = equipment_variant_production_factor
+	id = pack_artillery_equipment
+	value = -1000
+	}
+	ai_strategy = {
+	type = equipment_variant_production_factor
+	id = pack_artillery_equipment_1
+	value = -1000
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = pack_artillery_equipment_2
+		value = -1000
+		}
+		ai_strategy = {
+			type = equipment_variant_production_factor
+			id = heavy_artillery_equipment
+			value = -1000
+		}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = heavy_artillery_equipment_1
+		value = -1000
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = heavy_artillery_equipment_2
+		value = -1000
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = heavy_artillery_equipment_3
+		value = -1000
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = fighter
+		value = 90
+	}
+	
+	ai_strategy = {
+		type = equipment_production_factor
+		id = cas
+		value = 70
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = naval_bomber
+		value = 10
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = tactical_bomber
+		value = 20
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = heavy_fighter
+		value = 0
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = strategic_bomber
+		value = 0
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = maritime_patrol_plane
+		value = 0
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = scout_plane
+		value = 0
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = infantry
+		value = 75
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = support
+		value = 15
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = artillery
+		value = 30
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = anti_tank
+		value = 15
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = anti_air
+		value = 10
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = motorized
+		value = 5
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = mechanized
+		value = 1
+##(DEV2.A2) before 50
+
+
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = armor
+		value = 35
+##(DEV2.A2) before 60
+
+	}
+
+	##ai_strategy = {
+	##	type = equipment_variant_production_factor
+	##	id = light_tank_chassis
+	##	factor = 0
+	##}
+
+	#ai_strategy = {
+	#	type = equipment_variant_production_factor
+	#	id = air_transport
+	#	value = 1
+	#}
+
+	
+	ai_strategy = { 
+		type = equipment_production_min_factories 
+		id = fighter 
+		value = 1 
+	}
+	
+	ai_strategy = { 
+		type = equipment_production_min_factories 
+		id = cas 
+		value = 1 
+	}
+	
+	ai_strategy = { 
+		type = equipment_production_min_factories 
+		id = tactical_bomber 
+		value = 1 
+	}
+	
+	ai_strategy = { 
+		type = equipment_production_min_factories 
+		id = strategic_bomber 
+		value = 0 
+	}
+
+	ai_strategy = { 
+		type = equipment_production_min_factories 
+		id = convoy 
+		value = 2
+	}
+}
+
+default_mountaineers_production = {
+	enable = {
+		ai_wants_divisions > 49
+	}
+	abort = {
+		ai_wants_divisions < 50
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = mountaineers
+		value = 5
+	}
+}
+
+default_marines_production = {
+	enable = {
+		ai_wants_divisions > 49
+	}
+	abort = {
+		ai_wants_divisions < 50
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = marines
+		value = 5
+	}
+}
+
+
+default_motorized_production = {
+	enable = {
+		ai_wants_divisions > 69
+##(VK)##(DEV2.B2) before 69
+
+	}
+	abort_when_not_enabled = yes
+
+
+	ai_strategy = {
+		type = unit_ratio
+		id = motorized
+		value = 2
+##(VK)##(DEV2.B2) before 8
+
+	}
+
+	#ai_strategy = {
+	#	type = unit_ratio
+	#	id = infantry
+	#	value = -4
+	#}
+}
+
+#default_mechanized_production = {
+#	enable = {
+#		ai_wants_divisions > 69
+#	}
+#	abort_when_not_enabled = yes
+#
+#
+#	ai_strategy = {
+#		type = unit_ratio
+#		id = mechanized
+#		value = 10
+#	}
+#
+#	ai_strategy = {
+#		type = unit_ratio
+#		id = infantry
+#		value = -4
+#	}
+#}
+
+default_light_armored_production = {
+	enable = {
+		ai_wants_divisions > 8
+		#ai_wants_divisions < 13
+		OR = {
+			has_tech = ger_light_tank_2
+			has_tech = eng_light_tank_1
+			has_tech = sov_bt_tank_2
+			has_tech = usa_light_tank_2
+			has_tech = fra_light_tank_1
+			has_tech = ita_light_tank_2
+			has_tech = hun_light_tank_1
+			has_tech = jap_light_tank_1
+		}
+		#NOT = {
+		#	OR = {
+		#		has_tech = ger_p3_tank_2
+		#		has_tech = eng_medium_tank_2
+		#		has_tech = sov_medium_tank_1
+		#		has_tech = usa_medium_tank_2
+		#		has_tech = basic_medium_tank_chassis
+		#		#has_tech = fra_medium_tank_1
+		#		has_tech = ita_medium_tank_1
+		#		has_tech = hun_medium_tank_1  
+		#		has_tech = jap_medium_tank_1 
+		#	}
+		#}
+		num_of_military_factories > 16
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = role_ratio
+		id = motorized
+		value = 1
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 5
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = eng_light_tank_chassis_mk6
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = ger_light_tank_chassis_p2
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = light_tank_chassis_2
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = sov_light_tank_chassis_bt7
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = usa_light_tank_chassis_lm2
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = fra_light_tank_chassis_h35
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = ita_light_tank_chassis_l6
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = hun_light_tank_chassis_38m
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = jap_light_tank_chassis_t95
+		value = 50
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = heavy_armor_role
+		value = 0
+	}
+	#ai_strategy = {
+	#	type = role_ratio
+	#	id = infantry
+	#	value = -10
+	#}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = armor
+		value = 10
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = motorized
+		value = 1
+	}
+}
+default_medium_armored_production = {
+	enable = {
+		ai_wants_divisions > 8
+		#ai_wants_divisions < 17
+		OR = {
+			has_tech = ger_p4_tank_1
+			has_tech = eng_medium_tank_2
+			has_tech = sov_medium_tank_1
+			has_tech = usa_medium_tank_2
+			has_tech = fra_medium_tank_1
+			has_tech = ita_medium_tank_1
+			has_tech = hun_medium_tank_1  
+			has_tech = jap_medium_tank_1 
+		}
+		num_of_military_factories > 25
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = role_ratio
+		id = motorized
+		value = 1
+	}
+	#ai_strategy = { 
+	#	type = equipment_production_min_factories 
+	#	id = medium_armor 
+	#	value = 1 
+	#}
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 15
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = eng_medium_tank_chassis_a13
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = ger_medium_tank_chassis_p3
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = fra_medium_tank_chassis_s35
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = jap_medium_tank_chassis_t97
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = sov_medium_tank_chassis_t34
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = ita_medium_tank_chassis_m11
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = medium_tank_chassis_1
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = hun_medium_tank_chassis_40m
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = usa_medium_tank_chassis_mm3
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = eng_light_tank_chassis_mk6
+		value = -25
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = ger_light_tank_chassis_p2
+		value = -25
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = light_tank_chassis_2
+		value = -25
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = sov_light_tank_chassis_bt7
+		value = -25
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = usa_light_tank_chassis_lm2
+		value = -25
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = fra_light_tank_chassis_h35
+		value = -25
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = ita_light_tank_chassis_l6
+		value = -25
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = hun_light_tank_chassis_38m
+		value = -25
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = jap_light_tank_chassis_t95
+		value = -25
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = light_armor_role
+		value = -10
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = heavy_armor_role
+		value = -20
+	}
+	#ai_strategy = {
+	#	type = role_ratio
+	#	id = infantry
+	#	value = -10
+	#}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = armor
+		value = 25
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = motorized
+		value = 5
+	}
+}
+default_heavy_armored_production = {
+	enable = {
+		ai_wants_divisions > 3
+		#ai_wants_divisions < 9
+		OR = {
+			has_tech = eng_heavy_tank_2
+			has_tech = ger_heavy_tank_1
+			has_tech = sov_heavy_tank_2
+			has_tech = fra_heavy_tank_1  
+		}
+		num_of_military_factories > 30
+	}
+	abort_when_not_enabled = yes
+	#ai_strategy = {
+	#	type = role_ratio
+	#	id = motorized
+	#	value = 1
+	#}
+	#ai_strategy = { 
+	#	type = equipment_production_min_factories 
+	#	id = heavy_armor 
+	#	value = 1 
+	#}
+	ai_strategy = {
+		type = role_ratio
+		id = heavy_armor_role
+		value = 25
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = eng_heavy_tank_chassis_a12
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = ger_medium_tank_chassis_p3
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = sov_heavy_tank_chassis_kv1
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = fra_heavy_tank_chassis_b1
+		value = 50
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = armor
+		value = 20
+	}
+	#ai_strategy = {
+	#	type = role_ratio
+	#	id = infantry
+	#	value = -5
+	#}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = motorized
+		value = 1
+	}
+}
+highered_armored_production = {
+	allowed = {	
+		tag = GER
+		tag = SOV
+	}
+	enable = {
+		num_of_military_factories > 59
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = role_ratio
+		id = motorized
+		value = 1
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = light_armor_role
+		value = -20
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 15
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = heavy_armor_role
+		value = 20
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = -15
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = armor
+		value = 30
+	}
+	ai_strategy = {
+		type = equipment_production_factor
+		id = motorized
+		value = 2
+	}
+}
+
+default_stockpile_management = {
+	
+	enable = {
+		num_divisions > 130
+	}
+
+	abort = {
+		num_divisions < 100
+	}
+
+	ai_strategy = {
+		type = equipment_stockpile_surplus_ratio
+		value = 35 # double base stockpile #from 25 to 35
+	}
+}
+
+default_produce_floating_harbors = {
+	enable = {
+		is_historical_focus_on = no
+		has_war = yes
+		num_of_naval_factories > 29
+		num_of_military_factories > 49 # floating harbors are used for invasions. Why do large invasions if you don't have the industrial capacity?
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = unit_ratio
+		id = floating_harbor # for floating harbors, 'unit_ratio' is actually not a ratio but an absolute desired number
+		value = 1
+	}
+}
+
+default_railway_gun_management = {
+	enable = {
+		num_divisions > 200
+		#is_major = yes
+		has_dlc = "No Step Back"
+	}
+	abort = {
+		num_divisions < 125
+	}
+
+	ai_strategy = { # This will add the specified value to the RAILWAY_GUN_PRODUCTION_BASE_DIVISIONS_RATIO_PERCENT define and use that as the desired railway guns / divisions ratio (in %)
+		type = railway_gun_divisions_ratio
+		value = 1
+	}
+
+}
+
