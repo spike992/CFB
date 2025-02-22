@@ -1191,6 +1191,7 @@ HUN_territorial_revision_category = {
 		}
 
 		visible = {
+			always = no
 			has_completed_focus = wuw_HUN_reaffirm_territorial_claims
 		}
 
@@ -2577,6 +2578,7 @@ HUN_territorial_revision_category = {
 		}
 
 		visible = { 
+			always = no
 			original_tag = HUN
 			OR = {
 				has_completed_focus = wuw_HUN_reaffirm_territorial_claims
@@ -5481,16 +5483,22 @@ operations = {
 		fire_only_once = yes
 		
 		available = {
-				date > 1938.1.1
-			
-			# 	has_completed_focus = wuw_HUN_the_toldi
-			# 	has_license = {
-			# 		from = SWE
-			# 		equipment = {
-			# 			type = hun_light_tank_chassis_38m
-			# 		}
-			# 	}
-			# }
+			OR = {
+				has_completed_focus = wuw_HUN_the_toldi
+				has_license = {
+					from = SWE
+ 					archetype = light_tank_chassis
+				}
+				date > 1939.1.1
+				# Can't check for the license of any "chassis" type thing. Only Archetype
+				# has_license = {
+				# 	from = SWE
+ 				# 	equipment = {
+				# 		type = hun_light_tank_chassis_38m
+				# 		version = 0
+				# 	} 
+				# }
+			}
 		}
 	
 		complete_effect = {
@@ -5534,13 +5542,16 @@ operations = {
 		
 		available = {
 			OR = {
-				has_license = {
-					from = GER
-					equipment = {
-						type = ger_light_tank_chassis_p35
-					}
-				}
+				# Can't check for the license of any "chassis" type thing. Only Archetype
+				# has_license = {
+				# 	from = GER
+				# 	equipment = {
+				# 		type = ger_light_tank_chassis_p35
+				# 	}
+				# }
 				has_completed_focus = wuw_HUN_the_turan
+				GER = { has_completed_focus = GER_fate_of_czechoslovakia }
+				GER = { has_completed_focus = GER_integrate_czechoslovakia }
 				AND = {
 					has_global_flag = DENIED_CZE
 					OR = {

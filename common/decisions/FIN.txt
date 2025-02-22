@@ -2677,611 +2677,611 @@ FIN_foreign_politics_decision_category = {
 	### ENDING THE CONTINUATION WAR ###
 	###################################
 
-	# Request the Moscow Armistice
-	FIN_request_an_armistice_with_moscow = {
-		priority = 50
+	# # Request the Moscow Armistice
+	# FIN_request_an_armistice_with_moscow = {
+	# 	priority = 50
 
-		icon = GFX_decision_hol_war_on_pacifism
+	# 	icon = GFX_decision_hol_war_on_pacifism
 
-		ai_will_do = { # This historically happnened on the 19th of September 1944
-			base = 0.2
-			modifier = {
-				add = ROOT.surrender_progress
-				always = yes 
-			}
+	# 	ai_will_do = { # This historically happnened on the 19th of September 1944
+	# 		base = 0.2
+	# 		modifier = {
+	# 			add = ROOT.surrender_progress
+	# 			always = yes 
+	# 		}
 
-			modifier = { # Try to do it by historical time if possible
-				factor = 2
-				is_historical_focus_on = yes
-				date > 1944.9.15
-			}
-			modifier = { # Try not to do it way to early if not an emergency
-				factor = 0.5
-				is_historical_focus_on = yes
-				date < 1942.11.11
-			}
-			modifier = { # Germany is crumbling ooops
-				factor = 2
-				is_historical_focus_on = yes
-				date > 1944.1.1
-				GER = {
-					has_war_with = SOV
-					has_country_flag = FIN_pact_for_continuation_war_flag
-					surrender_progress > 0.15
-				}
-			}
-			modifier = { # You do not control "greater finnish territory"
-				factor = 1.5
-				NOT = {
-					OR = {
-						213 = {
-							is_controlled_by = ROOT
-						}
-						215 = {
-							is_controlled_by = ROOT
-						}
-						216 = {
-							is_controlled_by = ROOT
-						}
-					}
-				}
-			}
-			modifier = { # If the Soviets have issued order 227, you start getting nervous
-				factor = 1.5
-				SOV = { has_country_flag = SOV_order_227_flag }
-			}
-			modifier = { # Don't Do it if you, Germany or any of their Allies hold Leningrad or Moscow and you are not very close to collapsing 
-				factor = 0
-				surrender_progress < 0.75
-				OR = {
-					195 = { # Leningrad
-						OR = { 
+	# 		modifier = { # Try to do it by historical time if possible
+	# 			factor = 2
+	# 			is_historical_focus_on = yes
+	# 			date > 1944.9.15
+	# 		}
+	# 		modifier = { # Try not to do it way to early if not an emergency
+	# 			factor = 0.5
+	# 			is_historical_focus_on = yes
+	# 			date < 1942.11.11
+	# 		}
+	# 		modifier = { # Germany is crumbling ooops
+	# 			factor = 2
+	# 			is_historical_focus_on = yes
+	# 			date > 1944.1.1
+	# 			GER = {
+	# 				has_war_with = SOV
+	# 				has_country_flag = FIN_pact_for_continuation_war_flag
+	# 				surrender_progress > 0.15
+	# 			}
+	# 		}
+	# 		modifier = { # You do not control "greater finnish territory"
+	# 			factor = 1.5
+	# 			NOT = {
+	# 				OR = {
+	# 					213 = {
+	# 						is_controlled_by = ROOT
+	# 					}
+	# 					215 = {
+	# 						is_controlled_by = ROOT
+	# 					}
+	# 					216 = {
+	# 						is_controlled_by = ROOT
+	# 					}
+	# 				}
+	# 			}
+	# 		}
+	# 		modifier = { # If the Soviets have issued order 227, you start getting nervous
+	# 			factor = 1.5
+	# 			SOV = { has_country_flag = SOV_order_227_flag }
+	# 		}
+	# 		modifier = { # Don't Do it if you, Germany or any of their Allies hold Leningrad or Moscow and you are not very close to collapsing 
+	# 			factor = 0
+	# 			surrender_progress < 0.75
+	# 			OR = {
+	# 				195 = { # Leningrad
+	# 					OR = { 
 							
-							is_controlled_by = ROOT
+	# 						is_controlled_by = ROOT
 
-							is_controlled_by = GER
+	# 						is_controlled_by = GER
 							
-							any_country = {
-								OR = {
-									is_in_faction_with = GER
-									is_subject_of = GER
-								}
-								controls_state = PREV
-							}
-						}
-					}
-					219 = { # Mocow
-						OR = { 
+	# 						any_country = {
+	# 							OR = {
+	# 								is_in_faction_with = GER
+	# 								is_subject_of = GER
+	# 							}
+	# 							controls_state = PREV
+	# 						}
+	# 					}
+	# 				}
+	# 				219 = { # Mocow
+	# 					OR = { 
 							
-							is_controlled_by = ROOT
+	# 						is_controlled_by = ROOT
 							
-							is_controlled_by = GER
+	# 						is_controlled_by = GER
 							
-							any_country = {
-								OR = {
-									is_in_faction_with = GER
-									is_subject_of = GER
-								}
-								controls_state = PREV
-							}
-						}
-					}
-				}
-			}
-			modifier = { # Stalingrad feels a little less safe than the others
-				factor = 0.5
-				surrender_progress < 0.75
-				217 = { # Stalingrad
-					OR = { 
+	# 						any_country = {
+	# 							OR = {
+	# 								is_in_faction_with = GER
+	# 								is_subject_of = GER
+	# 							}
+	# 							controls_state = PREV
+	# 						}
+	# 					}
+	# 				}
+	# 			}
+	# 		}
+	# 		modifier = { # Stalingrad feels a little less safe than the others
+	# 			factor = 0.5
+	# 			surrender_progress < 0.75
+	# 			217 = { # Stalingrad
+	# 				OR = { 
 						
-						is_controlled_by = ROOT
+	# 					is_controlled_by = ROOT
 						
-						is_controlled_by = GER
+	# 					is_controlled_by = GER
 						
-						any_country = {
-							OR = {
-								is_in_faction_with = GER
-								is_subject_of = GER
-							}
-							controls_state = PREV
-						}
-					}
-				}
-			}
-			modifier = { # You have started to lose home territory again
-				factor = 2
-				any_owned_state = {
-					is_core_of = ROOT
-					NOT = {
-						is_controlled_by = ROOT
-					}
-				}
-			}
-			modifier = { # Panic mode
-				add = 200
-				check_variable = { ROOT.surrender_progress > 0.75 } 
-			}
-		}
+	# 					any_country = {
+	# 						OR = {
+	# 							is_in_faction_with = GER
+	# 							is_subject_of = GER
+	# 						}
+	# 						controls_state = PREV
+	# 					}
+	# 				}
+	# 			}
+	# 		}
+	# 		modifier = { # You have started to lose home territory again
+	# 			factor = 2
+	# 			any_owned_state = {
+	# 				is_core_of = ROOT
+	# 				NOT = {
+	# 					is_controlled_by = ROOT
+	# 				}
+	# 			}
+	# 		}
+	# 		modifier = { # Panic mode
+	# 			add = 200
+	# 			check_variable = { ROOT.surrender_progress > 0.75 } 
+	# 		}
+	# 	}
 
-		allowed = {
-			original_tag = FIN
-		}
+	# 	allowed = {
+	# 		original_tag = FIN
+	# 	}
 
-		available = {
-			has_war_with = SOV
-			GER = {
-				has_war_with = SOV
-			}
-			OR = {
-				surrender_progress > 0.05
-				AND = {
-					812 = {
-						is_controlled_by = SOV
-					}
-					808 = {
-						is_controlled_by = SOV
-					}
-					11 = {
-						is_controlled_by = SOV
-					}
-					206 = {
-						is_controlled_by = SOV
-					}
-					763 = {
-						is_controlled_by = SOV
-					}
-				}
-				SOV = {
-					has_idea = SOV_the_rush_for_berlin
-				} 
-				SOV = {
-					has_active_mission = SOV_operation_iskra_ongoing
-				}
-				any_owned_state = {
-					NOT = { state = 145 } #ÅLAND
-					is_core_of = ROOT
-					NOT = {
-						is_controlled_by = ROOT
-					}
-				}
-			}
-			has_civil_war = no
-			is_in_faction = no
-			has_completed_focus = FIN_cooperation_with_germany
-		}
+	# 	available = {
+	# 		has_war_with = SOV
+	# 		GER = {
+	# 			has_war_with = SOV
+	# 		}
+	# 		OR = {
+	# 			surrender_progress > 0.05
+	# 			AND = {
+	# 				812 = {
+	# 					is_controlled_by = SOV
+	# 				}
+	# 				808 = {
+	# 					is_controlled_by = SOV
+	# 				}
+	# 				11 = {
+	# 					is_controlled_by = SOV
+	# 				}
+	# 				206 = {
+	# 					is_controlled_by = SOV
+	# 				}
+	# 				763 = {
+	# 					is_controlled_by = SOV
+	# 				}
+	# 			}
+	# 			SOV = {
+	# 				has_idea = SOV_the_rush_for_berlin
+	# 			} 
+	# 			SOV = {
+	# 				has_active_mission = SOV_operation_iskra_ongoing
+	# 			}
+	# 			any_owned_state = {
+	# 				NOT = { state = 145 } #ÅLAND
+	# 				is_core_of = ROOT
+	# 				NOT = {
+	# 					is_controlled_by = ROOT
+	# 				}
+	# 			}
+	# 		}
+	# 		has_civil_war = no
+	# 		is_in_faction = no
+	# 		has_completed_focus = FIN_cooperation_with_germany
+	# 	}
 
-		visible = {
-			has_war_with = SOV
-			GER = {
-				has_war_with = SOV
-			}
-			SOV = {
-				has_country_flag = SOV_great_patriotic_war_flag
-			}
-			has_completed_focus = FIN_cooperation_with_germany
-			has_civil_war = no
-			is_in_faction = no
-			NOT = {
-				has_country_flag = FIN_already_attempted_an_armistice
-			}
-			NOT = { has_country_flag = FIN_negotiating_switching_sides_flag } # Used to prevent Finland to activate both Armistice and Switch sides decisions at the same time
-		}
+	# 	visible = {
+	# 		has_war_with = SOV
+	# 		GER = {
+	# 			has_war_with = SOV
+	# 		}
+	# 		SOV = {
+	# 			has_country_flag = SOV_great_patriotic_war_flag
+	# 		}
+	# 		has_completed_focus = FIN_cooperation_with_germany
+	# 		has_civil_war = no
+	# 		is_in_faction = no
+	# 		NOT = {
+	# 			has_country_flag = FIN_already_attempted_an_armistice
+	# 		}
+	# 		NOT = { has_country_flag = FIN_negotiating_switching_sides_flag } # Used to prevent Finland to activate both Armistice and Switch sides decisions at the same time
+	# 	}
 
-		cost = 35
+	# 	cost = 35
 
-		complete_effect = {
-			hidden_effect = { # Used to prevent Finland to activate both Armistice and Switch sides decisions at the same time
-				set_country_flag = FIN_negotiating_armistice_flag
-			}
+	# 	complete_effect = {
+	# 		hidden_effect = { # Used to prevent Finland to activate both Armistice and Switch sides decisions at the same time
+	# 			set_country_flag = FIN_negotiating_armistice_flag
+	# 		}
 
-			SOV = {
-				country_event = { 
-					id = AAT_finland_continuation_war.08 
-					days = 1 
-					random_days = 3
-				}
-			}
+	# 		SOV = {
+	# 			country_event = { 
+	# 				id = AAT_finland_continuation_war.08 
+	# 				days = 1 
+	# 				random_days = 3
+	# 			}
+	# 		}
 
-			custom_effect_tooltip = if_they_accept_tt
-			effect_tooltip = {
+	# 		custom_effect_tooltip = if_they_accept_tt
+	# 		effect_tooltip = {
 
-				SOV = {
-					white_peace = FIN
+	# 			SOV = {
+	# 				white_peace = FIN
 
-					### TRANSFER STATES ###
-					#KARJALA
-					IF = {
-						limit = {	
-							146 = {
-								is_owned_by = FIN
-							}
-						}
-						SOV = {
-							transfer_state = 146
-						}
-					}
+	# 				### TRANSFER STATES ###
+	# 				#KARJALA
+	# 				IF = {
+	# 					limit = {	
+	# 						146 = {
+	# 							is_owned_by = FIN
+	# 						}
+	# 					}
+	# 					SOV = {
+	# 						transfer_state = 146
+	# 					}
+	# 				}
 
-					#SALLA
-					IF = {
-						limit = {
-							147 = {
-								is_owned_by = FIN
-							}
-						}
-						SOV = {
-							transfer_state = 147
-						}
-					}
+	# 				#SALLA
+	# 				IF = {
+	# 					limit = {
+	# 						147 = {
+	# 							is_owned_by = FIN
+	# 						}
+	# 					}
+	# 					SOV = {
+	# 						transfer_state = 147
+	# 					}
+	# 				}
 
-					#PETSAMO
-					IF = {
-						limit = {
-							722 = {	
-								is_owned_by = FIN
-							}
-						}
-						SOV = {
-							transfer_state = 722
-						}
-					}
-				}
+	# 				#PETSAMO
+	# 				IF = {
+	# 					limit = {
+	# 						722 = {	
+	# 							is_owned_by = FIN
+	# 						}
+	# 					}
+	# 					SOV = {
+	# 						transfer_state = 722
+	# 					}
+	# 				}
+	# 			}
 
-				ROOT = {
-					send_equipment = {
-						equipment = infantry_equipment
-						amount = 2500
-						target = SOV
-					}	
-					send_equipment = {
-						equipment = support_equipment
-						amount = 500
-						target = SOV
-					}
-					send_equipment = {
-						equipment = artillery_equipment
-						amount = 150
-						target = SOV
-					}
-				}
+	# 			ROOT = {
+	# 				send_equipment = {
+	# 					equipment = infantry_equipment
+	# 					amount = 2500
+	# 					target = SOV
+	# 				}	
+	# 				send_equipment = {
+	# 					equipment = support_equipment
+	# 					amount = 500
+	# 					target = SOV
+	# 				}
+	# 				send_equipment = {
+	# 					equipment = artillery_equipment
+	# 					amount = 150
+	# 					target = SOV
+	# 				}
+	# 			}
 
-				SOV = {
-					army_experience = 25
+	# 			SOV = {
+	# 				army_experience = 25
 
-					navy_experience = 25
+	# 				navy_experience = 25
 
-					air_experience = 25
+	# 				air_experience = 25
 
-					add_political_power = 100
-				}
-			}
+	# 				add_political_power = 100
+	# 			}
+	# 		}
 
-			hidden_effect = {
-				set_country_flag = FIN_already_attempted_an_armistice
-			}
-		}
-	}
+	# 		hidden_effect = {
+	# 			set_country_flag = FIN_already_attempted_an_armistice
+	# 		}
+	# 	}
+	# }
 
-	# Request to Join the Allies in return for peace
-	FIN_request_to_switch_sides_in_the_war = {
-		priority = 45
+	# # Request to Join the Allies in return for peace
+	# FIN_request_to_switch_sides_in_the_war = {
+	# 	priority = 45
 
-		icon = GFX_decision_generic_political_discourse
+	# 	icon = GFX_decision_generic_political_discourse
 
-		ai_will_do = { # This should not happen on historical, but should still be a possibility otherwise
-			base = 0.1
-			modifier = {
-				add = ROOT.surrender_progress
-				always = yes 
-			}
-			modifier = { # Don't do on historical pliz
-				factor = 0
-				is_historical_focus_on = yes
-			}
-			modifier = { # You do not control "greater finnish territory"
-				factor = 1.2
-				NOT = {
-					OR = {
-						213 = {
-							is_controlled_by = ROOT
-						}
-						215 = {
-							is_controlled_by = ROOT
-						}
-						216 = {
-							is_controlled_by = ROOT
-						}
-					}
-				}
-			}
-			modifier = { # Germany is crumbling ooops
-				factor = 2
-				is_historical_focus_on = yes
-				date > 1944.1.1
-				GER = {
-					has_war_with = SOV
-					has_country_flag = FIN_pact_for_continuation_war_flag
-					surrender_progress > 0.15
-				}
-			}
-			modifier = { # If the Soviets have issued order 227, you start getting nervous
-				factor = 1.2
-				FROM = { has_country_flag = SOV_order_227_flag }
-			}
-			modifier = { # Don't Do it if you, Germany or any of their Allies hold Leningrad or Moscow
-				factor = 0
-				OR = {
+	# 	ai_will_do = { # This should not happen on historical, but should still be a possibility otherwise
+	# 		base = 0.1
+	# 		modifier = {
+	# 			add = ROOT.surrender_progress
+	# 			always = yes 
+	# 		}
+	# 		modifier = { # Don't do on historical pliz
+	# 			factor = 0
+	# 			is_historical_focus_on = yes
+	# 		}
+	# 		modifier = { # You do not control "greater finnish territory"
+	# 			factor = 1.2
+	# 			NOT = {
+	# 				OR = {
+	# 					213 = {
+	# 						is_controlled_by = ROOT
+	# 					}
+	# 					215 = {
+	# 						is_controlled_by = ROOT
+	# 					}
+	# 					216 = {
+	# 						is_controlled_by = ROOT
+	# 					}
+	# 				}
+	# 			}
+	# 		}
+	# 		modifier = { # Germany is crumbling ooops
+	# 			factor = 2
+	# 			is_historical_focus_on = yes
+	# 			date > 1944.1.1
+	# 			GER = {
+	# 				has_war_with = SOV
+	# 				has_country_flag = FIN_pact_for_continuation_war_flag
+	# 				surrender_progress > 0.15
+	# 			}
+	# 		}
+	# 		modifier = { # If the Soviets have issued order 227, you start getting nervous
+	# 			factor = 1.2
+	# 			FROM = { has_country_flag = SOV_order_227_flag }
+	# 		}
+	# 		modifier = { # Don't Do it if you, Germany or any of their Allies hold Leningrad or Moscow
+	# 			factor = 0
+	# 			OR = {
 					
-					195 = { # Leningrad
-						OR = { 
+	# 				195 = { # Leningrad
+	# 					OR = { 
 							
-							is_controlled_by = ROOT
+	# 						is_controlled_by = ROOT
 
-							is_controlled_by = GER
+	# 						is_controlled_by = GER
 							
-							any_country = {
-								OR = {
-									is_in_faction_with = GER
-									is_subject_of = GER
-								}
-								controls_state = PREV
-							}
-						}
-					}
+	# 						any_country = {
+	# 							OR = {
+	# 								is_in_faction_with = GER
+	# 								is_subject_of = GER
+	# 							}
+	# 							controls_state = PREV
+	# 						}
+	# 					}
+	# 				}
 					
-					219 = { # Mocow
-						OR = { 
+	# 				219 = { # Mocow
+	# 					OR = { 
 							
-							is_controlled_by = ROOT
+	# 						is_controlled_by = ROOT
 							
-							is_controlled_by = GER
+	# 						is_controlled_by = GER
 							
-							any_country = {
-								OR = {
-									is_in_faction_with = GER
-									is_subject_of = GER
-								}
-								controls_state = PREV
-							}
-						}
-					}
+	# 						any_country = {
+	# 							OR = {
+	# 								is_in_faction_with = GER
+	# 								is_subject_of = GER
+	# 							}
+	# 							controls_state = PREV
+	# 						}
+	# 					}
+	# 				}
 					
-				}
-			}
-			modifier = { # Stalingrad feels a little less safe than the others
-				factor = 0.5
-				217 = { # Stalingrad
-					OR = { 
+	# 			}
+	# 		}
+	# 		modifier = { # Stalingrad feels a little less safe than the others
+	# 			factor = 0.5
+	# 			217 = { # Stalingrad
+	# 				OR = { 
 						
-						is_controlled_by = ROOT
+	# 					is_controlled_by = ROOT
 						
-						is_controlled_by = GER
+	# 					is_controlled_by = GER
 						
-						any_country = {
-							OR = {
-								is_in_faction_with = GER
-								is_subject_of = GER
-							}
-							controls_state = PREV
-						}
-					}
-				}
-			}
-			modifier = { # You have started to lose home territory again
-				factor = 1.5
-				any_owned_state = {
-					is_core_of = ROOT
-					NOT = {
-						is_controlled_by = ROOT
-					}
-				}
-			}
-			modifier = { # You actually really like democracy (((o(°▽°)o)))
-				factor = 1.5
-				democratic > 0.4
-			}
-			modifier = { # Democarcy is for nerds <(￣︶￣)>
-				factor = 0.2
-				democratic < 0.1
-			}
-			modifier = { # Don't ruin a players game with this
-				factor = 0
-				SOV = {
-					is_ai = no
-				}
-			}
-		}
+	# 					any_country = {
+	# 						OR = {
+	# 							is_in_faction_with = GER
+	# 							is_subject_of = GER
+	# 						}
+	# 						controls_state = PREV
+	# 					}
+	# 				}
+	# 			}
+	# 		}
+	# 		modifier = { # You have started to lose home territory again
+	# 			factor = 1.5
+	# 			any_owned_state = {
+	# 				is_core_of = ROOT
+	# 				NOT = {
+	# 					is_controlled_by = ROOT
+	# 				}
+	# 			}
+	# 		}
+	# 		modifier = { # You actually really like democracy (((o(°▽°)o)))
+	# 			factor = 1.5
+	# 			democratic > 0.4
+	# 		}
+	# 		modifier = { # Democarcy is for nerds <(￣︶￣)>
+	# 			factor = 0.2
+	# 			democratic < 0.1
+	# 		}
+	# 		modifier = { # Don't ruin a players game with this
+	# 			factor = 0
+	# 			SOV = {
+	# 				is_ai = no
+	# 			}
+	# 		}
+	# 	}
 
-		allowed = {
-			original_tag = FIN
-		}
+	# 	allowed = {
+	# 		original_tag = FIN
+	# 	}
 
-		available = {
-			has_war_with = SOV
-			GER = {
-				has_war_with = SOV
-			}
-			any_country = {
-				has_government = democratic
-				is_faction_leader = yes
-				has_war_with = GER
-			}
-			722 = {
-				is_owned_and_controlled_by = ROOT
-			}
-			OR = {
-				surrender_progress > 0.05
-				SOV = {
-					has_idea = SOV_the_rush_for_berlin
-				} 
-				SOV = {
-					has_active_mission = SOV_operation_iskra_ongoing
-				}
-				any_owned_state = {
-					NOT = { state = 145 } #ÅLAND
-					is_core_of = ROOT
-					NOT = {
-						is_controlled_by = ROOT
-					}
-				}
-			}
-			has_civil_war = no
-			is_in_faction = no
-			has_completed_focus = FIN_cooperation_with_germany
-		}
+	# 	available = {
+	# 		has_war_with = SOV
+	# 		GER = {
+	# 			has_war_with = SOV
+	# 		}
+	# 		any_country = {
+	# 			has_government = democratic
+	# 			is_faction_leader = yes
+	# 			has_war_with = GER
+	# 		}
+	# 		722 = {
+	# 			is_owned_and_controlled_by = ROOT
+	# 		}
+	# 		OR = {
+	# 			surrender_progress > 0.05
+	# 			SOV = {
+	# 				has_idea = SOV_the_rush_for_berlin
+	# 			} 
+	# 			SOV = {
+	# 				has_active_mission = SOV_operation_iskra_ongoing
+	# 			}
+	# 			any_owned_state = {
+	# 				NOT = { state = 145 } #ÅLAND
+	# 				is_core_of = ROOT
+	# 				NOT = {
+	# 					is_controlled_by = ROOT
+	# 				}
+	# 			}
+	# 		}
+	# 		has_civil_war = no
+	# 		is_in_faction = no
+	# 		has_completed_focus = FIN_cooperation_with_germany
+	# 	}
 
-		visible = {
-			has_war_with = SOV
-			GER = {
-				has_war_with = SOV
-			}
-			SOV = {
-				has_country_flag = SOV_great_patriotic_war_flag
-			}
-			has_completed_focus = FIN_cooperation_with_germany
-			has_civil_war = no
-			is_in_faction = no
-			NOT = {
-				has_country_flag = FIN_already_attempted_to_switch_sides
-			}
-			NOT = { has_country_flag = FIN_negotiating_armistice_flag }
-		}
+	# 	visible = {
+	# 		has_war_with = SOV
+	# 		GER = {
+	# 			has_war_with = SOV
+	# 		}
+	# 		SOV = {
+	# 			has_country_flag = SOV_great_patriotic_war_flag
+	# 		}
+	# 		has_completed_focus = FIN_cooperation_with_germany
+	# 		has_civil_war = no
+	# 		is_in_faction = no
+	# 		NOT = {
+	# 			has_country_flag = FIN_already_attempted_to_switch_sides
+	# 		}
+	# 		NOT = { has_country_flag = FIN_negotiating_armistice_flag }
+	# 	}
 
-		cost = 35
+	# 	cost = 35
 
-		complete_effect = {
-			hidden_effect = { # Used to prevent Finland to activate both Armistice and Switch sides decisions at the same time
-				set_country_flag = FIN_negotiating_switching_sides_flag
-			}
+	# 	complete_effect = {
+	# 		hidden_effect = { # Used to prevent Finland to activate both Armistice and Switch sides decisions at the same time
+	# 			set_country_flag = FIN_negotiating_switching_sides_flag
+	# 		}
 
-			add_war_support = -0.03
+	# 		add_war_support = -0.03
 
-			add_popularity = {
-				ideology = democratic
-				popularity = 0.05
-			}	
+	# 		add_popularity = {
+	# 			ideology = democratic
+	# 			popularity = 0.05
+	# 		}	
 
-			add_popularity = {
-				ideology = communism
-				popularity = 0.05
-			}
+	# 		add_popularity = {
+	# 			ideology = communism
+	# 			popularity = 0.05
+	# 		}
 
-			random_country = {
-				limit = {
-					has_government = democratic
-					is_faction_leader = yes
-					has_war_with = GER
-				}
-				set_country_flag = FIN_major_democratic_leader_flag
+	# 		random_country = {
+	# 			limit = {
+	# 				has_government = democratic
+	# 				is_faction_leader = yes
+	# 				has_war_with = GER
+	# 			}
+	# 			set_country_flag = FIN_major_democratic_leader_flag
 				
-				country_event = { 
-					id = AAT_finland_continuation_war.12
-					days = 3
-					random_days = 5
-				}
-			}
+	# 			country_event = { 
+	# 				id = AAT_finland_continuation_war.12
+	# 				days = 3
+	# 				random_days = 5
+	# 			}
+	# 		}
 
-			SOV = {
-				country_event = { 
-					id = AAT_finland_continuation_war.13
-					days = 1
-				}
-			}
+	# 		SOV = {
+	# 			country_event = { 
+	# 				id = AAT_finland_continuation_war.13
+	# 				days = 1
+	# 			}
+	# 		}
 
-			custom_effect_tooltip = if_they_accept_tt
-			effect_tooltip = {
+	# 		custom_effect_tooltip = if_they_accept_tt
+	# 		effect_tooltip = {
 
-				every_country = {
-					limit = {
-						has_war_with = ROOT
-					}
-					white_peace = ROOT
-				}
+	# 			every_country = {
+	# 				limit = {
+	# 					has_war_with = ROOT
+	# 				}
+	# 				white_peace = ROOT
+	# 			}
 
-				IF = {
-					limit = {
-						GER = {
-							has_military_access_to = ROOT
-						}
-					}
-					ROOT = {
-						diplomatic_relation = { 
-							country = GER
-							relation = military_access 
-							active = no
-						}
-						diplomatic_relation = { 
-							country = GER
-							relation = docking_rights 
-							active = no
-						}
-						diplomatic_relation = { 
-							country = GER
-							relation = non_aggression_pact 
-							active = no
-						}
-					}
-					GER = {
-						diplomatic_relation = { 
-							country = ROOT
-							relation = guarantee 
-							active = no
-						}
-					}
-				}
+	# 			IF = {
+	# 				limit = {
+	# 					GER = {
+	# 						has_military_access_to = ROOT
+	# 					}
+	# 				}
+	# 				ROOT = {
+	# 					diplomatic_relation = { 
+	# 						country = GER
+	# 						relation = military_access 
+	# 						active = no
+	# 					}
+	# 					diplomatic_relation = { 
+	# 						country = GER
+	# 						relation = docking_rights 
+	# 						active = no
+	# 					}
+	# 					diplomatic_relation = { 
+	# 						country = GER
+	# 						relation = non_aggression_pact 
+	# 						active = no
+	# 					}
+	# 				}
+	# 				GER = {
+	# 					diplomatic_relation = { 
+	# 						country = ROOT
+	# 						relation = guarantee 
+	# 						active = no
+	# 					}
+	# 				}
+	# 			}
 
-				SOV = {
-					add_timed_idea = {
-						idea = FIN_compensation_for_side_switch_good
-						days = 365
-					}	
-				}
-				ROOT = {
-					add_timed_idea = {
-						idea = FIN_compensation_for_side_switch_bad
-						days = 365
-					}
-				}
+	# 			SOV = {
+	# 				add_timed_idea = {
+	# 					idea = FIN_compensation_for_side_switch_good
+	# 					days = 365
+	# 				}	
+	# 			}
+	# 			ROOT = {
+	# 				add_timed_idea = {
+	# 					idea = FIN_compensation_for_side_switch_bad
+	# 					days = 365
+	# 				}
+	# 			}
 
-				IF = {
-					limit = {
-						ROOT = {
-							has_idea = FIN_the_lone_wolf
-						}
-					}
-					ROOT = {
-						remove_ideas = FIN_the_lone_wolf
-					}
-				}
+	# 			IF = {
+	# 				limit = {
+	# 					ROOT = {
+	# 						has_idea = FIN_the_lone_wolf
+	# 					}
+	# 				}
+	# 				ROOT = {
+	# 					remove_ideas = FIN_the_lone_wolf
+	# 				}
+	# 			}
 
-				random_country = {
-					limit = {
-						has_country_flag = FIN_major_democratic_leader_flag
-					}
-					add_to_faction = ROOT
-				}
+	# 			random_country = {
+	# 				limit = {
+	# 					has_country_flag = FIN_major_democratic_leader_flag
+	# 				}
+	# 				add_to_faction = ROOT
+	# 			}
 
-				ROOT = {
-					add_to_war = {
-					    targeted_alliance = ENG
-					    enemy = GER
-					    hostility_reason = asked_to_join
-					}
-				}
+	# 			ROOT = {
+	# 				add_to_war = {
+	# 				    targeted_alliance = ENG
+	# 				    enemy = GER
+	# 				    hostility_reason = asked_to_join
+	# 				}
+	# 			}
 
-				ROOT = {
-					add_popularity = {
-						ideology = democratic
-						popularity = 0.1
-					}	
-				}
+	# 			ROOT = {
+	# 				add_popularity = {
+	# 					ideology = democratic
+	# 					popularity = 0.1
+	# 				}	
+	# 			}
 
-			}
+	# 		}
 
-			hidden_effect = {
-				set_country_flag = FIN_already_attempted_to_switch_sides
-			}
-		}
-	}
+	# 		hidden_effect = {
+	# 			set_country_flag = FIN_already_attempted_to_switch_sides
+	# 		}
+	# 	}
+	# }
 
 	###################
 	##### BALTICS #####

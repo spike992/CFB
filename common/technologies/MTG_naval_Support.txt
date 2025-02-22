@@ -2193,9 +2193,9 @@ technologies = {
 
 	mtg_landing_craft = {
 
-		invasion_preparation = -0.5
+		invasion_preparation = -0.25
 		naval_invasion_penalty = -0.10
-		naval_invasion_capacity = 10
+		naval_invasion_capacity = 7
 
 		path = {
 			leads_to_tech = mtg_floating_harbors
@@ -2272,15 +2272,29 @@ technologies = {
 
 	mtg_tank_landing_craft = {
 
-		amphibious_invasion = 0.25
-		naval_invasion_penalty = -0.15
-		naval_invasion_capacity = 15
+		#amphibious_invasion = 0.25
+		invasion_preparation = -0.25
+		naval_invasion_penalty = -0.1
+		naval_invasion_capacity = 8
 
-		research_cost = 2
-		start_year = 1943
+		path = {
+			leads_to_tech = mtg_fast_unload_landing_craft 
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = mtg_expanded_landing_craft
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = mtg_protected_landing_craft 
+			research_cost_coeff = 1
+		}
+
+		research_cost = 3
+		start_year = 1941
 		folder = {
 			name = mtgnavalsupportfolder
-			position = { x = -12 y = 21 }
+			position = { x = -12 y = 16 }
 		}
 
 		ai_will_do = {
@@ -2317,6 +2331,202 @@ technologies = {
 		special_project_specialization = { specialization_naval }
 	}
 
+	
+	mtg_fast_unload_landing_craft = {
+
+		amphibious_invasion = 0.35
+		naval_invasion_penalty = -0.05
+		naval_invasion_capacity = 5
+
+		research_cost = 2
+		start_year = 1943
+		folder = {
+			name = mtgnavalsupportfolder
+			position = { x = -13 y = 21 }
+		}
+
+		allow = {
+			NOT = { has_tech = mtg_expanded_landing_craft }
+			NOT = { has_tech = mtg_protected_landing_craft }
+		} 
+
+		# Can't XOR 3 things in the GUI (WHY PARADOX????)
+		# XOR = {
+		# 	#mtg_fast_unload_landing_craft
+		# 	mtg_expanded_landing_craft
+		# 	mtg_protected_landing_craft
+		# }
+
+		
+
+		ai_will_do = {
+			factor = 2
+
+			modifier = {
+				factor = 0.5
+				has_war = no
+			}
+
+			modifier = {
+				factor = 20
+				tag = USA
+			}
+			modifier = {
+				factor = 2
+				has_war_with = JAP
+			}
+			modifier = {
+				factor = 3
+				tag = JAP
+			}
+
+			modifier = {
+				factor = 2
+				tag = ENG
+			}
+		}
+
+		categories = {
+			naval_equipment
+			tp_tech
+		}
+
+		on_research_complete = {
+			set_technology = { mtg_expanded_landing_craft = 0 }
+			set_technology = { mtg_protected_landing_craft = 0 }
+		}
+		
+		special_project_specialization = { specialization_naval }
+	}
+
+	mtg_expanded_landing_craft = {
+
+		naval_invasion_penalty = -0.05
+		naval_invasion_capacity = 20
+
+		research_cost = 2
+		start_year = 1943
+		folder = {
+			name = mtgnavalsupportfolder
+			position = { x = -12 y = 21 }
+		}
+
+		allow = {
+			NOT = { has_tech = mtg_fast_unload_landing_craft }
+			NOT = { has_tech = mtg_protected_landing_craft }
+		} 
+
+		# Can't XOR 3 things in the GUI (WHY PARADOX????)
+		# XOR = {
+		# 	mtg_fast_unload_landing_craft
+		# 	#mtg_expanded_landing_craft
+		# 	mtg_protected_landing_craft
+		# }
+
+		ai_will_do = {
+			factor = 2
+
+			modifier = {
+				factor = 0.5
+				has_war = no
+			}
+
+			modifier = {
+				factor = 20
+				tag = USA
+			}
+			modifier = {
+				factor = 2
+				has_war_with = JAP
+			}
+			modifier = {
+				factor = 3
+				tag = JAP
+			}
+
+			modifier = {
+				factor = 2
+				tag = ENG
+			}
+		}
+
+		categories = {
+			naval_equipment
+			tp_tech
+		}
+
+		on_research_complete = {
+			set_technology = { mtg_fast_unload_landing_craft = 0 }
+			set_technology = { mtg_protected_landing_craft = 0 }
+		}
+
+		special_project_specialization = { specialization_naval }
+	}
+
+	mtg_protected_landing_craft = {
+
+		naval_invasion_penalty = -0.05
+		amphibious_invasion_defence = 0.35
+		naval_invasion_capacity = 5
+
+		research_cost = 2
+		start_year = 1943
+		folder = {
+			name = mtgnavalsupportfolder
+			position = { x = -11 y = 21 }
+		}
+
+		allow = {
+			NOT = { has_tech = mtg_fast_unload_landing_craft }
+			NOT = { has_tech = mtg_expanded_landing_craft }
+		} 
+
+		# Can't XOR 3 things in the GUI (WHY PARADOX????)
+		# XOR = {
+		# 	mtg_fast_unload_landing_craft
+		# 	mtg_expanded_landing_craft
+		# 	#mtg_protected_landing_craft
+		# }
+
+		ai_will_do = {
+			factor = 2
+
+			modifier = {
+				factor = 0.5
+				has_war = no
+			}
+
+			modifier = {
+				factor = 20
+				tag = USA
+			}
+			modifier = {
+				factor = 2
+				has_war_with = JAP
+			}
+			modifier = {
+				factor = 3
+				tag = JAP
+			}
+
+			modifier = {
+				factor = 2
+				tag = ENG
+			}
+		}
+
+		categories = {
+			naval_equipment
+			tp_tech
+		}
+
+		on_research_complete = {
+			set_technology = { mtg_fast_unload_landing_craft = 0 }
+			set_technology = { mtg_expanded_landing_craft = 0 }
+		}
+		special_project_specialization = { specialization_naval }
+	}
+
 	mtg_floating_harbors = {
 
 		
@@ -2331,7 +2541,7 @@ technologies = {
 		
 		folder = {
 			name = mtgnavalsupportfolder
-			position = { x = -11 y = 16 }
+			position = { x = -10 y = 16 }
 		}
 		
 		ai_will_do = {
@@ -2407,12 +2617,12 @@ technologies = {
 		start_year = 1938
 		folder = {
 			name = mtgnavalsupportfolder
-			position = { x = -10 y = 9 }
+			position = { x = -9 y = 9 }
 		}
 
 		folder = {
 			name = naval_folder
-			position = { x = -10 y = 9 }
+			position = { x = -9 y = 9 }
 		}		
 
 		categories = {
@@ -2443,12 +2653,12 @@ technologies = {
 		start_year = 1943
 		folder = {
 			name = mtgnavalsupportfolder
-			position = { x = -10 y = 21 }
+			position = { x = -9 y = 21 }
 		}
 
 		folder = {
 			name = naval_folder
-			position = { x = -10 y = 21 }
+			position = { x = -9 y = 21 }
 		}		
 
 		categories = {

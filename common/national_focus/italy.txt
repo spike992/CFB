@@ -1304,7 +1304,7 @@ focus_tree = {
 						add_building_construction = {
 							type = bunker
 							level = 2
-							province = 13245
+							province = 13376
 							instant_build = yes
 						}						
 					}
@@ -5128,40 +5128,15 @@ focus_tree = {
 			}
 		}
 	}
-	
+
 	focus = {
-		id = ITA_replace_biplanes
-		icon = GFX_goal_generic_air_fighter
+		id = ITA_folgore
+		icon = GFX_goal_generic_air_fighter2		
 		prerequisite = { focus = ITA_airfield_expansion }
 		x = -1
 		y = 1
+		
 		relative_position_id = ITA_airfield_expansion
-		cost = 5
-		ai_will_do = {
-			factor = 1
-		}
-
-		available_if_capitulated = yes
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = doc_bonus
-				bonus = 0.50
-				uses = 1
-				category = light_fighter
-			}
-		}
-	}
-	
-	focus = {
-		id = ITA_folgore
-		icon = GFX_goal_generic_air_fighter2
-		prerequisite = { focus = ITA_replace_biplanes }
-		x = 0
-		y = 1
-		relative_position_id = ITA_replace_biplanes
 		cost = 5
 		ai_will_do = {
 			factor = 1
@@ -5180,6 +5155,33 @@ focus_tree = {
 			}
 		}
 	}
+	
+	focus = {
+		id = ITA_replace_biplanes
+		icon = GFX_goal_generic_air_fighter
+		prerequisite = { focus = ITA_folgore }
+		x = 0
+		y = 1
+		relative_position_id = ITA_folgore
+		cost = 5
+		ai_will_do = {
+			factor = 1
+		}
+
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = doc_bonus
+				bonus = 0.50
+				uses = 1
+				category = light_fighter
+			}
+		}
+	}	
+	
 	
 	focus = {
 		id = ITA_reform_air_ministry

@@ -67,14 +67,19 @@ no_garrison = {
 	sound_effect = "Martial_Law_Interface_No_Garrison"
 
 	state_modifier = {
-		resistance_target = 0.1
+		resistance_target = 0.2
 		no_compliance_gain = 1
-		required_garrison_factor = -1
+		required_garrison_factor = -0.95
 	}
 
 	suppressed_state_modifier = {
 		#no_compliance_gain = 1
+		resistance_target = 0.05
 		required_garrison_factor = -1
+	}
+
+	visible = {
+		NOT = {has_government = fascism}
 	}
 
 	available = {
@@ -117,7 +122,7 @@ autonomous_occupation = {
 
 	state_modifier = {
 		compliance_gain 				= 0.02
-		required_garrison_factor 		= -0.7	
+		required_garrison_factor 		= -0.6	
 		resistance_damage_to_garrison 	= -0.25	
 	}
 
@@ -141,10 +146,10 @@ foreign_civilian_oversight = {
 	sound_effect = "Martial_Law_Interface_Foreign_Cvilian_Oversight"
 
 	state_modifier = {
-		resistance_target 				= -0.10
-		required_garrison_factor 		= -0.50	
-		resistance_damage_to_garrison 	= -0.25	
-		compliance_gain 				= 0.000
+		#resistance_target 				= -0.10
+		required_garrison_factor 		= -0.40	
+		resistance_damage_to_garrison 	= 0 #-0.25	
+		compliance_gain 				= 0.005
 		local_factories 				= 0.00
 		local_resources 				= 0.00
 	}
@@ -168,8 +173,8 @@ local_police_force_garrison = {
 	state_modifier = {
 		resistance_target 				= -0.20
 		compliance_gain 				= -0.020
-		required_garrison_factor 		= -0.65
-		resistance_damage_to_garrison	= -0.5
+		required_garrison_factor 		= -0.5
+		resistance_damage_to_garrison	= 0 #-0.5
 		local_factories 				= 0.00
 		local_resources 				= 0.00
 	}
@@ -204,11 +209,11 @@ secret_police_oversight = {
 
 	state_modifier = {
 		resistance_target 				= -0.30
-		compliance_gain 				= -0.035
+		compliance_gain 				= -0.04 #-0.035
 		required_garrison_factor 		= -0.3	
 		resistance_damage_to_garrison 	= -0.15	
 		local_factories 				= 0.05
-		local_resources 				= 0.05
+		local_resources 				= 0 #0.05
 		enemy_operative_detection_chance_over_occupied_tag = 1 # offset detection chance by +1%
 		enemy_intel_network_gain_factor_over_occupied_tag = -0.25 # -25% scaled by the number of occupied states and the ratio of the network covering those occupied states
 		# todo + spy defense
@@ -243,12 +248,17 @@ military_governor_occupation = {
 
 	state_modifier = {
 		resistance_target 			= -0.4
-		compliance_gain 			= -0.040
+		compliance_gain 			= -0.03 #-0.040
 		required_garrison_factor 	= -0.1
 		#local_factories 			= 0.00
 		local_resources 			= 0.10
 		local_manpower 				= 0.08
 	}
+
+	visible = {
+		always = no
+	}
+
 	ai_will_do = {
 		base = 0
 
@@ -264,10 +274,10 @@ military_governor_occupation = {
 
 		#	add = 150
 		#}
-		modifier = {
-			check_variable  = { resistance_target_without_law > 0.55} 						
-			add = 400
-		}
+		# modifier = {
+		# 	check_variable  = { resistance_target_without_law > 0.55} 						
+		# 	add = 400
+		# }
 		
 	}
 }
@@ -311,7 +321,7 @@ forced_labor_occupation = {
 	sound_effect = "Martial_Law_Interface_Forced_Labor_Occupation"
 
 	state_modifier = {
-		resistance_target 					= -0.50
+		resistance_target 					= -0.4 #-0.50
 		compliance_gain 					= -0.1
 		resistance_damage_to_garrison 		= 0.3
 		required_garrison_factor 			= 0.75		
@@ -407,10 +417,10 @@ harsh_quotas_occupation = {
 	}
 
 	state_modifier = {
-		resistance_target 				= -0.5
+		resistance_target 				= -0.4 #-0.50
 		compliance_gain 				= -0.1
 		required_garrison_factor 		= 0.75
-		resistance_damage_to_garrison 	= 0.75		
+		resistance_damage_to_garrison 	= 0.50		
 	
 		local_factories 				= 0.35
 		local_resources 				= 0.05
@@ -451,8 +461,8 @@ brutally_oppressive_occupation = {
 	state_modifier = {		
 		resistance_target 				= -0.95
 		compliance_gain 				= -0.175
-		required_garrison_factor 		= 1.5
-		resistance_damage_to_garrison 	= 1.0
+		required_garrison_factor 		= 1
+		resistance_damage_to_garrison 	= 0.75
 		local_resources 				= 0.1
 		local_factories 				= 0.1
 		resistance_decay 				= 1.0

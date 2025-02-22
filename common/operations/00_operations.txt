@@ -280,9 +280,9 @@ operation_fake_intel = { ### 2 1/40
 			target = FROM
 			value > 0
 		}
-		FROM = {
-			has_war_with = ROOT
-		}
+		# FROM = {
+		# 	has_war_with = ROOT
+		# }
 	}
 	
 	scale_cost_independent_of_target = yes
@@ -1484,6 +1484,9 @@ operation_make_resistance_contacts = { ### 9 2/40
 
 	selection_target_state = {
 		has_resistance = yes
+		NOT = {
+			is_in_array = { GLOBAL.RESISTANCE_CONTACTS = THIS }
+		}
 	}
 
 	available = {
@@ -1517,6 +1520,7 @@ operation_make_resistance_contacts = { ### 9 2/40
 			}
 		}
 		add_to_array = { ROOT.RESISTANCE = FROM }
+		add_to_array = { GLOBAL.RESISTANCE_CONTACTS = FROM.FROM }
 	}
 	outcome_extra_execute = { # SCOPE_OPERATION
 		random_list = {
@@ -1528,6 +1532,7 @@ operation_make_resistance_contacts = { ### 9 2/40
 					}
 				}
 				add_to_array = { ROOT.RESISTANCE = FROM }
+				add_to_array = { GLOBAL.RESISTANCE_CONTACTS = FROM.FROM }
 				FROM.FROM = {
 					add_resistance_target = {
 						amount = 10
@@ -1545,6 +1550,7 @@ operation_make_resistance_contacts = { ### 9 2/40
 					}
 				}
 				add_to_array = { ROOT.RESISTANCE = FROM }
+				add_to_array = { GLOBAL.RESISTANCE_CONTACTS = FROM.FROM }
 				FROM.FROM = {
 					add_resistance_target = {
 						amount = 10
@@ -1922,6 +1928,17 @@ operation_steal_tech_civilian = { ### 12 3/35
 						target = FROM
 						uses = 1
 					}
+					if = {
+						limit = {
+							FROM = {
+								has_facility_specialization = specialization_nuclear
+							}
+						}
+						add_breakthrough_progress = {
+							specialization = specialization_nuclear
+							value = 0.1
+						}
+					}
 				}
 			}
 			67 = {
@@ -2077,6 +2094,7 @@ operation_targeted_sabotage_industry = { ### 13 3/35
 			}
 		}
 		remove_from_array = { ROOT.RESISTANCE = FROM }
+		remove_from_array = { GLOBAL.RESISTANCE_CONTACTS = FROM.FROM }
 	}
 	outcome_extra_execute = { # SCOPE_OPERATION
 		
@@ -2210,6 +2228,7 @@ operation_targeted_sabotage_infrastructure = { ### 14 3/35
 			}
 		}
 		remove_from_array = { ROOT.RESISTANCE = FROM }
+		remove_from_array = { GLOBAL.RESISTANCE_CONTACTS = FROM.FROM }
 	}
 	outcome_extra_execute = { # SCOPE_OPERATION
 		FROM.FROM = {
@@ -2331,7 +2350,7 @@ operation_targeted_sabotage_resources = { ### 15 3/35
 		FROM.FROM = {
 			add_to_variable = {
 				var = targeted_sabotage_resources
-				value = 5
+				value = 10
 			}
 			custom_effect_tooltip = targeted_sabotage_resources_2_tt
 		}
@@ -2342,6 +2361,7 @@ operation_targeted_sabotage_resources = { ### 15 3/35
 			}
 		}
 		remove_from_array = { ROOT.RESISTANCE = FROM }
+		remove_from_array = { GLOBAL.RESISTANCE_CONTACTS = FROM.FROM }
 	}
 	outcome_extra_execute = { # SCOPE_OPERATION
 		
@@ -2476,6 +2496,19 @@ operation_steal_tech_army = { ### 16 3/55
 	outcome_extra_execute = { # SCOPE_OPERATION
 		random_list = {
 			33 = {
+				if = {
+					limit = {
+						FROM = {
+							has_facility_specialization = specialization_land
+						}
+					}
+					ROOT = {
+						add_breakthrough_progress = {
+							specialization = specialization_land
+							value = 0.1
+						}
+					}
+				}
 				ROOT = {
 					steal_random_tech_bonus = {
 						folder = ger_armour_folder
@@ -2683,6 +2716,20 @@ operation_steal_tech_navy = { ### 17 3/55
 
 		random_list = {
 			33 = {
+				if = {
+					limit = {
+						FROM = {
+							has_facility_specialization = specialization_naval
+						}
+					}
+					ROOT = {
+						add_breakthrough_progress = {
+							specialization = specialization_naval
+							value = 0.1
+						}
+					}
+				}
+				
 				if = {
   					limit = { has_dlc = "Man the Guns"} 
 

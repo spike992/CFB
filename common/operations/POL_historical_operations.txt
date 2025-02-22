@@ -27,14 +27,24 @@ operation_warsaw_uprising = { ### 8 2/40
 			token = token_resistance_contacts
 		}
 		
+		NOT = { has_global_flag = warsaw_liberated_self_flag }
+	}
+
+	available = {
 		FROM = {
 			core_resistance = {
 				occupied_country_tag = POL
 				value > 50
 			}
 		}
-		
-		NOT = { has_global_flag = warsaw_liberated_self_flag }
+		10 = {
+			resistance > 80
+		}
+		OR = {
+			date > 1944.1.1
+			SOV = { surrender_progress > 0.45 }
+			SOV = { surrender_progress < 0.05 }
+		}
 	}
 
 	selection_target = {
@@ -43,7 +53,7 @@ operation_warsaw_uprising = { ### 8 2/40
 
 	selection_target_state = {
 		has_resistance = yes
-		is_core_of = POL
+		state = 10
 	}
 
 	equipment = {
@@ -121,18 +131,19 @@ operation_warsaw_uprising = { ### 8 2/40
 						state = 98
 					}
 					impassable = no
+					resistance > 70
 				}
 				
-				# move our armies to back home
-				teleport_armies = {
-					limit = { 
-						OR = {
-							is_ally_with = occupier_country
-							has_military_access_to = occupier_country
-						}
-					}
-					to_state_array = owned_controlled_states
-				}
+				# # move our armies to back home
+				# teleport_armies = {
+				# 	limit = { 
+				# 		OR = {
+				# 			is_ally_with = occupier_country
+				# 			has_military_access_to = occupier_country
+				# 		}
+				# 	}
+				# 	to_state_array = owned_controlled_states
+				# }
 				
 				# transfer state
 				if = {
@@ -152,7 +163,7 @@ operation_warsaw_uprising = { ### 8 2/40
 					
 					# create resistance units, number is relative to size of industry
 					set_temp_variable = { num_units_to_create = building_level@arms_factory }
-					add_to_temp_variable = { num_units_to_create = building_level@industrial_complex } 
+					#add_to_temp_variable = { num_units_to_create = building_level@industrial_complex } 
 					divide_temp_variable = { num_units_to_create = 3 }
 					add_to_temp_variable = { num_units_to_create = 2 }
 					round_temp_variable = num_units_to_create
