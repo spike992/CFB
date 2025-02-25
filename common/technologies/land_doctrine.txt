@@ -16,12 +16,12 @@ technologies = {
 		}
 		
 		
-		category_tanks = {
-			breakthrough = 0.05
-		}
-		category_assault_gun = {
-			breakthrough = 0.05
-		}
+		# category_tanks = {
+		# 	breakthrough = 0.05
+		# }
+		# category_assault_gun = {
+		# 	breakthrough = 0.05
+		# }
 		category_army = {
 			breakthrough = 0.05
 		}
@@ -819,10 +819,10 @@ technologies = {
 	firebrigades = { #Branch focused on mobile warfares
 	
 		category_all_infantry = {
-			max_strength = 2
+			max_strength = 1
 		}
 		category_militia = {
-			max_strength = 2
+			max_strength = 1
 		}
 	
 		xor={
@@ -937,10 +937,10 @@ technologies = {
 	modern_blitzkrieg = {
 		
 		category_assault_gun = {
-			breakthrough = 0.20
+			breakthrough = 0.15
 		}
 		category_tanks = {
-			breakthrough = 0.20
+			breakthrough = 0.15
 		}		
 		category_all_armor = {
 			default_morale = 0.2
@@ -1242,10 +1242,10 @@ technologies = {
 	mobile_defence = {
 
 		category_all_infantry = {
-			defense = 0.1			
+			defense = 0.05			
 		}
 		category_militia = {
-			defense = 0.1			
+			defense = 0.05
 		}
 		
 		enable_tactic = tactic_elastic_defense		
@@ -1530,6 +1530,43 @@ technologies = {
 			breakthrough = 0.10
 			max_strength = 2
 		}
+
+		
+		# 3 More Artillery each
+		artillery_brigade = { need = { artillery_equipment = 3  } breakthrough = 0.5 }
+		mot_artillery_brigade = { need = { artillery_equipment = 3  } breakthrough = 0.5 }
+		heavy_artillery_brigade = { need = { heavy_artillery_equipment = 3  } breakthrough = 0.5 }
+		mot_heavy_artillery_brigade = { need = { heavy_artillery_equipment = 3  } breakthrough = 0.5 }
+		pack_artillery_brigade = { need = { pack_artillery_equipment = 3  } breakthrough = 0.5 }
+		rocket_artillery_brigade = { need = { rocket_artillery_equipment = 3  } breakthrough = 0.5 }
+		motorized_rocket_brigade = { need = { motorized_rocket_equipment = 3  } breakthrough = 0.5 }
+
+		on_research_complete = {
+			set_temp_variable = { total_unit_art = num_battalions_with_type@artillery_brigade }
+			add_to_temp_variable = { total_unit_art = num_battalions_with_type@mot_artillery_brigade }
+			set_temp_variable = { total_unit_art_heavy = num_battalions_with_type@heavy_artillery_brigade }
+			set_temp_variable = { total_unit_art_heavy = num_battalions_with_type@mot_heavy_artillery_brigade }
+			set_temp_variable = { total_unit_art_pack = num_battalions_with_type@pack_artillery_brigade }
+			set_temp_variable = { total_unit_art_rocket = num_battalions_with_type@rocket_artillery_brigade }
+			set_temp_variable = { total_unit_art_mot_rocket = num_battalions_with_type@motorized_rocket_brigade }
+			set_temp_variable = { temp = 3 }
+			multiply_temp_variable = { total_unit_art = temp }
+			multiply_temp_variable = { total_unit_art_heavy = temp }
+			multiply_temp_variable = { total_unit_art_pack = temp }
+			multiply_temp_variable = { total_unit_art_rocket = temp }
+			multiply_temp_variable = { total_unit_art_mot_rocket = temp }
+
+			set_temp_variable = { art_stored = num_equipment@artillery_equipment }
+			set_temp_variable = { art_heavy_stored = num_equipment@artillery_equipment }
+			set_temp_variable = { art_pack_stored = num_equipment@artillery_equipment }
+			set_temp_variable = { art_rocket_stored = num_equipment@artillery_equipment }
+			set_temp_variable = { art_mot_rocket_stored = num_equipment@artillery_equipment }
+			custom_effect_tooltip = tooltip_more_arty
+			custom_effect_tooltip = tooltip_more_arty_heavy
+			custom_effect_tooltip = tooltip_more_arty_pack
+			custom_effect_tooltip = tooltip_more_arty_rocket
+			custom_effect_tooltip = tooltip_more_arty_motorized_rocket
+		}
 		
 		
 		enable_tactic = tactic_blitz
@@ -1785,6 +1822,16 @@ technologies = {
 			}
 		}
 		light_tank_recon = {
+			battalion_mult = {
+				category = category_all_armor
+				hard_attack = 0.075
+			}
+			battalion_mult = {
+				category = category_line_artillery
+				hard_attack = 0.075
+			}
+		}
+		helicopter_recon = {
 			battalion_mult = {
 				category = category_all_armor
 				hard_attack = 0.075
@@ -2061,6 +2108,16 @@ technologies = {
 				soft_attack = 0.075
 			}
 		}
+		helicopter_recon = {
+			battalion_mult = {
+				category = category_all_armor
+				soft_attack = 0.075
+			}
+			battalion_mult = {
+				category = category_line_artillery
+				soft_attack = 0.075
+			}
+		}
 
 		enable_tactic = tactic_breakthrough
 		
@@ -2209,12 +2266,12 @@ technologies = {
 	prepared_defense = {
 
 		category_all_infantry = {
-			defense = 0.10
+			defense = 0.05
 			max_organisation = 5
 		}
 
 		category_militia = {
-			defense = 0.10
+			defense = 0.05
 			max_organisation = 5
 		}
 		
@@ -2261,7 +2318,7 @@ technologies = {
 
 		category_army = {
 			breakthrough = 0.10
-			max_strength = 2
+			max_strength = 1.5
 		}
 		
 		enable_tactic = tactic_planned_attack
@@ -2538,6 +2595,14 @@ technologies = {
 			   motorized_equipment = 3
 		    }
 		}
+		armored_signal = {
+			initiative = 0.05
+			max_organisation = 5
+			default_morale = 0.1
+			need = {
+				armored_support_vehicle = 2
+		    }
+		}
 		on_research_complete = {
 			set_temp_variable = { temp = 3 }
 			set_temp_variable = { total_unit = num_battalions_with_type@signal_company }
@@ -2545,7 +2610,7 @@ technologies = {
 			set_temp_variable = { radios_stored = num_equipment@radio_equipment }
 			set_temp_variable = { trucks_stored = num_equipment@motorized_equipment }
 			custom_effect_tooltip = tooltip_3radio
-			custom_effect_tooltip = tooltip_3truck
+			custom_effect_tooltip = tooltip_3truck			
 		}
 		
 		enable_tactic = tactic_breakthrough
@@ -2985,6 +3050,10 @@ technologies = {
 			casualty_trickleback = 0.05
 			experience_loss_factor = -0.05
 		}
+		helicopter_field_hospital = {
+			casualty_trickleback = 0.05
+			experience_loss_factor = -0.05
+		}
 
 		enable_tactic = tactic_elastic_defense
 		
@@ -3180,6 +3249,7 @@ technologies = {
 
 		max_dig_in = 2.5
 		cas_damage_reduction = 0.10
+		supply_combat_penalties_on_core_factor = -0.1
 
         category_all_infantry = {
 			max_organisation = 5
@@ -3235,6 +3305,10 @@ technologies = {
 	
 		xor = {
 			peoples_army
+		}
+
+		military_police = {
+			default_morale = 1
 		}
 		
 		training_time_factor = -0.15

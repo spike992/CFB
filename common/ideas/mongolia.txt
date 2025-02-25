@@ -1,6 +1,84 @@
 ideas = {
 
+	hidden_ideas = {
+		MON_allow_soviet_trade = {		
+			removal_cost = -1
+			
+			allowed = {
+				always = no # Added via event
+			}
+
+			allowed_civil_war = {
+				has_government = communism
+			}
+
+			targeted_modifier = {
+				tag = SOV
+				extra_trade_to_target_factor = 1.0
+			}
+		}
+	}
+
 	country = {
+
+		MON_anti_fascism = {
+
+			picture = generic_manpower_bonus
+			
+			allowed = {
+				original_tag = MON
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+			
+			modifier = {
+				offence = 0.05
+				army_core_attack_factor = 0.05
+				defense_bonus_against = 0.05
+				army_core_defence_factor = 0.05
+			}
+
+		
+			# targeted_modifier = {
+			# 	tag = GER
+			# 	attack_bonus_against = 0.1
+			# 	defense_bonus_against = 0.1
+			# }
+			# targeted_modifier = {
+			# 	tag = ITA
+			# 	attack_bonus_against = 0.1
+			# 	defense_bonus_against = 0.1
+			# }
+			# targeted_modifier = {
+			# 	tag = HUN
+			# 	attack_bonus_against = 0.1
+			# 	defense_bonus_against = 0.1
+			# }
+			# targeted_modifier = {
+			# 	tag = ROM
+			# 	attack_bonus_against = 0.1
+			# 	defense_bonus_against = 0.1
+			# }
+			# targeted_modifier = {
+			# 	tag = BUL
+			# 	attack_bonus_against = 0.1
+			# 	defense_bonus_against = 0.1
+			# }
+			# targeted_modifier = {
+			# 	tag = FIN
+			# 	attack_bonus_against = 0.1
+			# 	defense_bonus_against = 0.1
+			# }
+			# targeted_modifier = {
+			# 	tag = VIC
+			# 	attack_bonus_against = 0.1
+			# 	defense_bonus_against = 0.1
+			# }
+		}
 
 		MON_nomadic_war_idea = {
 
@@ -17,7 +95,7 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				army_org_Factor = 0.05
+				army_org_Factor = 0.075
 				army_morale_factor = 0.10
 				supply_consumption_factor = -0.10
 				out_of_supply_factor = -0.25
@@ -26,7 +104,7 @@ ideas = {
 		}
 
 		MON_buddhist_compromise_idea = {
-			picture = MON_buddhist_compromise
+			picture = GFX_focus_generic_industry_3
 
 			allowed_civil_war = {
 
@@ -48,7 +126,7 @@ ideas = {
 			
 			equipment_bonus = {
 				armor = {
-					build_cost_ic = 0.33 instant = yes
+					build_cost_ic = -0.30 instant = yes
 				}
 			}
 		}
@@ -69,7 +147,7 @@ ideas = {
 			picture = generic_exploit_mines
 
 			modifier = {
-				local_resources_factor = 0.10
+				local_resources_factor = 0.50
 			}
 		}
 
@@ -94,7 +172,7 @@ ideas = {
 			modifier = {
 				send_volunteer_divisions_required = -1
 				send_volunteers_tension = -0.5
-				send_volunteer_size = 1
+				send_volunteer_size = 3
 			}
 
 		}
@@ -126,10 +204,49 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				cavalry_attack_factor = 0.1
-				cavalry_defence_factor = 0.1
+				special_forces_attack_factor = 0.05
+				special_forces_defence_factor = 0.05
 			}		
 
+		}
+
+		MON_sov_army_advisors = {
+
+			picture = generic_communist_army
+
+			allowed = {
+				always = no
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				army_defense_factor = 0.05
+				army_org_factor = 0.025
+				army_morale_factor = 0.05
+				army_dig_in_speed = 0.1
+			}
+		}
+
+
+		SOV_stalins_organ = {
+			picture = katyusha_idea
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+
+			equipment_bonus = {
+				motorized_rocket_equipment = {
+					soft_attack = 0.3 instant = yes
+				}
+			}
 		}
 	
 		MON_sov_advisors = {
@@ -166,6 +283,25 @@ ideas = {
 		
 		}
 	
+		MON_overlord_factories = {
+		
+			picture = generic_manpower_bonus
+			
+			allowed = {
+				always = no
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				
+				hidden_modifier = {
+				mic_to_overlord_factor = 0.30
+				}
+				
+			}		
+		
+		}
 		MON_sov_investments = {
 		
 			picture = home_of_revolution
@@ -177,8 +313,9 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				consumer_goods_factor = -0.15
-				production_speed_buildings_factor = 0.1
+				# consumer_goods_factor = -0.15
+				industrial_capacity_factory = 0.025
+				production_speed_buildings_factor = 0.05
 			}		
 		
 		}
@@ -264,7 +401,9 @@ ideas = {
 				MONTHLY_POPULATION = -0.33
 				conscription_factor = -0.33
 				political_power_factor = -0.25
-				consumer_goods_factor = -0.15
+				# consumer_goods_factor = -0.15
+				global_building_slots_factor = 0.10
+
 			}
 		}
 		
@@ -283,10 +422,11 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				MONTHLY_POPULATION = -0.5
-				conscription_factor = -0.50
-				political_power_factor = -0.40
-				consumer_goods_factor = -0.15
+				MONTHLY_POPULATION = -0.33 #-0.5
+				conscription_factor = -0.33 #-0.50
+				political_power_factor = -0.25 #-0.40
+				# consumer_goods_factor = -0.15
+				global_building_slots_factor = 0.10
 			}
 		}
 		
@@ -308,7 +448,8 @@ ideas = {
 				MONTHLY_POPULATION = -0.1
 				conscription_factor = -0.1
 				political_power_factor = -0.1
-				consumer_goods_factor = -0.15
+				# consumer_goods_factor = -0.15
+				global_building_slots_factor = 0.10
 			}
 		}
 		
@@ -327,7 +468,8 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				consumer_goods_factor = -0.15
+				# consumer_goods_factor = -0.15
+				global_building_slots_factor = 0.10
 			}
 		}
 
@@ -382,11 +524,7 @@ ideas = {
 				supply_consumption_factor = -0.1
 				mobilization_speed = -0.5
 			}
-			equipment_bonus = {
-				horse_equipment = {
-					build_cost_ic = -0.30 instant = yes
-				}
-			}
+			
 		}
 		
 		MON_nomad_2 = {
@@ -403,17 +541,19 @@ ideas = {
 
 			removal_cost = -1
 			
-			modifier = {
-				local_building_slots_factor = -0.2
-				industrial_capacity_factory = -0.1
-				local_resources_factor = -0.1
-				production_speed_buildings_factor = -0.1
-				supply_consumption_factor = -0.05
-				mobilization_speed = -0.25
-			}
+			
 			equipment_bonus = {
 				horse_equipment = {
-					build_cost_ic = -0.15 instant = yes
+					build_cost_ic = -0.1 instant = yes
+				}
+				infantry_equipment = {
+					build_cost_ic = -0.1 instant = yes
+				}
+				squad_equipment = {
+					build_cost_ic = -0.1 instant = yes
+				}
+				sf_equipment = {
+					build_cost_ic = -0.1 instant = yes
 				}
 			}
 		}	
@@ -433,14 +573,25 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				local_building_slots_factor = -0.1
-				industrial_capacity_factory = -0.05
-				production_speed_buildings_factor = -0.05
-				mobilization_speed = -0.1
+				local_building_slots_factor = 0
+				industrial_capacity_factory = 0
+				local_resources_factor = -0.2
+				production_speed_buildings_factor = 0
+				supply_consumption_factor = -0.1
+				mobilization_speed = -0.20
 			}
 			equipment_bonus = {
 				horse_equipment = {
-					build_cost_ic = -0.10 instant = yes
+					build_cost_ic = -0.1 instant = yes
+				}
+				infantry_equipment = {
+					build_cost_ic = -0.1 instant = yes
+				}
+				squad_equipment = {
+					build_cost_ic = -0.1 instant = yes
+				}
+				sf_equipment = {
+					build_cost_ic = -0.1 instant = yes
 				}
 			}
 		}
@@ -467,6 +618,69 @@ ideas = {
 				horse_equipment = {
 					build_cost_ic = -0.30 instant = yes
 				}
+			}
+		}
+
+		MON_nomad_5 = {
+
+			picture = chi_army_corruption2
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+			
+			modifier = {
+				local_building_slots_factor = 0
+				industrial_capacity_factory = 0.05
+				local_resources_factor = -0.1
+				production_speed_buildings_factor = 0
+				supply_consumption_factor = -0.15
+				mobilization_speed = 0
+			}
+			equipment_bonus = {
+				horse_equipment = {
+					build_cost_ic = -0.1 instant = yes
+				}
+				infantry_equipment = {
+					build_cost_ic = -0.1 instant = yes
+				}
+				squad_equipment = {
+					build_cost_ic = -0.1 instant = yes
+				}
+				sf_equipment = {
+					build_cost_ic = -0.1 instant = yes
+				}
+			}
+		}
+
+
+		MON_nomad_5 = {
+
+			picture = chi_army_corruption2
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+			
+			modifier = {
+				local_building_slots_factor = 0
+				industrial_capacity_factory = 0.2
+				local_resources_factor = 0.15
+				production_speed_buildings_factor = 0.2
+				supply_consumption_factor = 0.15
+				mobilization_speed = 0.4
 			}
 		}
 		
@@ -513,6 +727,117 @@ ideas = {
 			}
 		}
 
+
+	
+	MON_Agitrop = {
+		picture = chi_army_corruption
+
+		allowed = {
+			always = yes
+		}
+
+		
+		modifier = { 
+			
+			production_factory_max_efficiency_factor = 0.1
+			industrial_capacity_factory = 0.05
+			production_factory_start_efficiency_factor = 0.1
+
+		}
+
+		
+		}
+		MON_improvement_of_motorization = {
+		
+			picture = FRA_motorized_focus
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+	
+			equipment_bonus = {
+				motorized_equipment = {
+					build_cost_ic = -0.15
+					# hardness = 0.1 
+					instant = yes
+				}
+				mechanized_equipment = { 
+					build_cost_ic = -0.1
+					instant = yes
+				}
+			
+			}
+
+}	
+
+
+MON_improvement_of_motorization = {
+		
+			picture = FRA_motorized_focus
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+	
+			equipment_bonus = {
+				motorized_equipment = {
+					build_cost_ic = -0.15
+					# hardness = 0.1 
+					instant = yes
+				}
+				mechanized_equipment = { 
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				mechanized_td_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				mechanized_spg_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				mechanized_aa_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				mechanized_amphibious_chassis = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				mechanized_utility_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+			}
+		}
+
+
+
 	}
+
+	#	MON_anti_finland = {
+	#		picture = generic_manpower_bonus
+	#		allowed = {
+	#			original_tag = MON
+	#		}
+
+	#		removal_cost = -1
+			
+	#		targeted_modifier = {
+	#			tag = FIN
+	#			attack_bonus_against = 0.075
+	#			defense_bonus_against = 0.075
+	#		}
+	#	}
+	#}
+
+
+
+
 
 }

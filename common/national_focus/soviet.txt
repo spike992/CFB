@@ -751,7 +751,7 @@
 		}
 
 		completion_reward = {
-		add_offsite_building = { type = industrial_complex level = 5 }
+
 			404 = {
 				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
@@ -787,7 +787,7 @@
 		}
 
 		completion_reward = {
-		add_offsite_building = { type = industrial_complex level = 5 }
+	
 			576 = {
 				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
@@ -831,7 +831,7 @@
 		}
 
 		completion_reward = {
-		add_offsite_building = { type = industrial_complex level = 5 }
+
 			654 = {
 				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
@@ -2828,6 +2828,8 @@
 							AND = {
 								any_neighbor_state = { OR = { is_controlled_by = GER is_controlled_by = ROM is_controlled_by = HUN is_controlled_by = FIN is_controlled_by = ITA is_controlled_by = BUL  is_controlled_by = SPR is_controlled_by = VIC is_controlled_by = YUG is_controlled_by = JAP is_controlled_by = MAN is_controlled_by = SIA} }
 								is_controlled_by = SOV
+								NOT = {	state = 262 }
+								NOT = {	state = 825 }
 							}
 						}
 						create_unit = {
@@ -2854,18 +2856,20 @@
 							AND = {
 								any_neighbor_state = { OR = { is_controlled_by = GER is_controlled_by = ROM is_controlled_by = HUN is_controlled_by = FIN is_controlled_by = ITA is_controlled_by = BUL  is_controlled_by = SPR is_controlled_by = VIC is_controlled_by = YUG} }
 								is_controlled_by = SOV
+								NOT = {	state = 262 }
+								NOT = {	state = 825 }
 							}
 						}
 						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
 							owner = SOV
 						}
 						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
 							owner = SOV
 						}
 						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
 							owner = SOV
 						}
 						create_unit = {
@@ -4603,6 +4607,8 @@
 		y = 1
 		relative_position_id = SOV_baltic_security
 		cost = 2
+
+		
 		bypass = {
 			AND = {
 				owns_state = 78 
@@ -4615,7 +4621,18 @@
 			add_state_claim = 766
 			add_state_claim = 80
 			ROM = { country_event = { id = romania.1 days = 1 } }
+
+			add_offsite_building = {
+				type = industrial_complex
+				level = 40
+			}
+				add_offsite_building = {
+				type = arms_factory
+				level = 40
+			}
 		}
+		
+		
 	}
 	
 		

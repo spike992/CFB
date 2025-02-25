@@ -2,11 +2,40 @@ ger_inner_circle_inlay_window = {
 
     window_name = ger_inner_circle_ui_window
 
-    internal = yes
+    internal = no
     visible = {
-        NOT = { has_completed_focus = GER_oppose_hitler_ww }
-        NOT = { has_completed_focus = GER_oppose_hitler }
-        has_government = fascism
+        #NOT = { GER = { has_completed_focus = GER_prioritize_economic_growth } }
+        OR = {
+            tag = GER
+            tag = ITA
+            tag = ROM
+            tag = HUN
+            tag = BUL
+            tag = FIN
+            AND = {
+                tag = SPA
+                OR = {
+                    has_government = fascism
+                    has_government = neutrality
+                }
+            }
+            AND = {
+                tag = VIC
+                has_government = fascism
+            }
+            AND = {
+                tag = YUG
+                has_government = fascism
+            }
+            AND = {
+                tag = DEN
+                has_government = fascism
+            }
+            tag = JAP
+            tag = MAN
+            tag = SIA
+        }
+        #has_government = fascism
     }
 
     scripted_images = {
@@ -278,9 +307,40 @@ ger_autarky_inlay_window = {
 
     window_name = ger_autarky_ui_window
 
-    internal = yes
+    internal = no
     visible = {
-        NOT = { has_completed_focus = GER_prioritize_economic_growth }
+        NOT = { GER = { has_completed_focus = GER_prioritize_economic_growth } }
+        OR = {
+            tag = GER
+            tag = ITA
+            tag = ROM
+            tag = HUN
+            tag = BUL
+            tag = FIN
+            AND = {
+                tag = SPA
+                OR = {
+                    has_government = fascism
+                    has_government = neutrality
+                }
+            }
+            AND = {
+                tag = VIC
+                has_government = fascism
+            }
+            AND = {
+                tag = YUG
+                has_government = fascism
+            }
+            AND = {
+                tag = DEN
+                has_government = fascism
+            }
+            tag = JAP
+            tag = MAN
+            tag = SIA
+        }
+        #has_government = fascism
     }
 
     # scripted_images = {

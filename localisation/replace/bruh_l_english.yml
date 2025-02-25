@@ -1,9 +1,15 @@
 ﻿l_english:
  #### EVENTS ####
  DOD_romania.501.t:0 "Romania asks for ceasefire"
- DOD_romania.501.d:0 "Romanian envoys of the new King Michael have approached us asking for a ceasefire, promising to help us in the war against the Germans."
+ DOD_romania.501.desc:0 "Romanian envoys of the new King Michael have approached us asking for a ceasefire, promising to help us in the war against the Germans."
  DOD_romania.501.a:0 "Accept the Ceasefire"
  DOD_romania.501.b:0 "There will be no peace"
+ DOD_romania.502.t:0 "Soviets Accept"
+ DOD_romania.502.desc:0 "The Soviets have Accepted our ceasefire, and now welcome us to fight the fascists."
+ DOD_romania.502.a:0 "The war is not over yet."
+ DOD_romania.503.t:0 "They Decline"
+ DOD_romania.503.desc:0 "The Soviets have Declined our ceasefire, as they wish to make an example of us."
+ DOD_romania.503.a:0 "We must fight them with all our power!"
  romania.7.t:0 "Peace Negotiations With [SOV.GetNameDef]"
  romania.7.d:0 "[Root.GetAdjective] communist Constantin Parhon has contacted our government and offered his help in establishing contact with the [SOV.GetAdjective] regime. A meeting has been set up in a secret location in Germany, where we will be offered the opportunity to cede territory in return for continued [Root.GetAdjective] sovereignty. \n\nThe Romanian forces are rapidly depleting, and previous attempts to open a line of communication has been unsuccessful. This may be our only hope for a peaceful resolution to the conflict."
  romania.7.a_tt:0 "§YIf [SOV.GetName] accepts:\n§!"
@@ -105,6 +111,7 @@
  POL_purchase_equipment:0 "Buy From Our Friends"
  POL_purchase_usa:0 "Buy From the Americans"
  POL_purchase_commonwealth:0 "Buy From the Commonwealth"
+ warsaw_uprising_operation_tt:0 "Trigger a national uprising in Poland, creating new units in its states. §RWill only spawn divisions in states above 65% Resistance.§! Will not teleport the polish army back to Poland."
  #### COUNTRIES ####
  OMA_neutrality:0 "British Middle Eastern Protectorate"
  IRQ_neutrality:0 "Protectorate of Iraq"
@@ -286,6 +293,12 @@
  tooltip_faster_mech_tt:0 "\n§GIncreases Infantry (mot.) Speed from 4.5 KPH to 5.5 KPH§!\n§RIncrease the motorized equipment required for all Infantry (mot.) battalions by 10 (50%)§!\n(§YTotal Motorized Need/Total Stockpile:§! [?total_unit|R0]/[?trucks_stored|R0])"
  golden_song:0 "§OGoldenSpatulas§!"
 
+ tooltip_more_arty:0 "§RAll affected units will require 3 more Artillery pieces per battalion§! (§YTotal Artillery Need/Total Stockpile:§! [?total_unit_art|R0]/[?art_stored|R0])"
+ tooltip_more_arty_heavy:0 "§RAll affected units will require 3 more Heavy Artillery pieces per battalion§! (§YTotal Heavy Artillery Need/Total Stockpile:§! [?total_unit_art_heavy|R0]/[?art_heavy_stored|R0])"
+ tooltip_more_arty_pack:0 "§RAll affected units will require 3 more Pack Artillery pieces per battalion§! (§YTotal Pack Artillery Need/Total Stockpile:§! [?total_unit_art_pack|R0]/[?art_pack_stored|R0])"
+ tooltip_more_arty_rocket:0 "§RAll affected units will require 3 more Rocket Artillery pieces per battalion§! (§YTotal Artillery Need/Total Stockpile:§! [?total_unit_art_rocket|R0]/[?art_rocket_stored|R0])"
+ tooltip_more_arty_motorized_rocket:0 "§RAll affected units will require 3 more Motorized Rocket Artillery pieces per battalion§! (§YTotal Artillery Need/Total Stockpile:§! [?total_unit_art_mot_rocket|R0]/[?art_mot_rocket_stored|R0])"
+
  steel_yellow_tt: "[?resource@steel|0Y]"
  rubber_yellow_tt: "[?resource@rubber|0Y]"
  aluminium_yellow_tt: "[?resource@aluminium|0Y]"
@@ -298,7 +311,7 @@
  tungsten_green_tt: "[?resource@tungsten|0+]"
  chromium_green_tt: "[?resource@chromium|0+]"
 
- consumer_goods_factor_custom_tt: " $MODIFIER_CONSUMER_GOODS_FACTOR$: §Yset to 90%§!"
+ consumer_goods_factor_custom_tt: " $MODIFIER_CONSUMER_GOODS_FACTOR$: §Yset to 80%§!"
 
 
  marines_cap_tt: "$MODIFIER_MARINES_SPECIAL_FORCES_CONTRIBUTION_FACTOR$: $RIGHT|-=%1$"
@@ -332,6 +345,10 @@
  dockyard_cg_mod_major:0 "Calculation starts after 60 dockyards for majors"
  dockyard_cg_mod_minor:0 "Calculation starts at 25 for minors."
  dockyard_cg_mod_usa:0 "The calculation for the US starts at 60, but then increases to 85 after the 'War Production Board' focus."
+
+ dockyard_build_speed_mod:0 "§YDockyard Inefficiencies§!"
+ dockyard_build_speed_mod_desc:0 "§WFor every £dockyard_texticon §R1§! §YNaval Dockyards§! in land you §Yown and controll§!, you will lose §R2%§! £construction_speed_dockyard_texticon Dockyard Construction Speed for Major Nations or §R10%§! for Minor Nations to prevent spamming naval dockyards. §0[consumer_goods_dockyards_sl]§! \nThis does §RNOT§! apply when you are in the §BLondon Naval Treaty§!"
+
  startingevent.29.t:0 "Naval Fleet Size §0(Important)§!"
  startingevent.29.desc:0 "1) You should have multiple fleets, with no fleet exceeding a Command Limit of [?global.CAP].\n2) Fleets should have high screening values for capitals and carriers\n3) You need 1 destroyer for every 2 convoys in a battle, and one for every 40 convoys in a space for escort efficiency.\n4)Your host should require an admiral on all fleets\n\n§BFleet Command Limit§!\n\nEvery ship class has a 'command limit' value. A fleet (all taskforces underneath one admiral) can support at most [?global.CAP] 'command limit'. As long as you are at or below your command limit value for every fleet with an admiral leading it, then you will not have special debuffs applied to your admiral and country. Any admiral which is leading a fleet will appear in a list just right of the admiral portraits. This list contains useful information about your fleets so that you can easily adhere to this system.\n\nDestroyers/Submarines - 1 command limit\nLight Cruisers/Heavy Cruisers - 2 command limit\nBattleships and Battlecruisers - 6 command limit\nCarriers/Super Heavy Battleships - 8 command limit\nSuper Heavy Carriers - 14 command limit.\n\n§RIf you are over the cap you will deal 5% less damage, and for each Command Limit you are over the cap, your country will deal an additional 1% less naval damage.§! Command Limit is recalculated every week when there is no war, so you may need to wait to see the changes update. Once at war it will update the calculation daily."
  modifier_experience_gain_sh_battleship_training_factor:0 "Super Heavy Battleship Training Factor"
@@ -383,10 +400,13 @@ off_superior_tt:0 "A random §YSkill 3§! or lower General will gain §Y"Enginee
  logistics_company_mot:0 "Motorised Logistics"
  logistics_company_horse:0 "Horse-Drawn Logistics"
  heavy_anti_air:0 "Heavy Anti-Air"
+ mot_heavy_anti_air:0 "Motorized Heavy Anti-Air"
  anti_air:0 "Anti-Air"
  heavy_anti_tank_brigade:0 "Heavy Anti-Tank"
+ mot_heavy_anti_tank_brigade:0 "Motorized Heavy Anti-Tank"
  siege_artillery:0 "Siege Artillery"
  heavy_artillery_brigade:0 "Heavy Artillery"
+ mot_heavy_artillery_brigade:0 "Motorized Heavy Artillery"
  assault_gun_brigade:0 "Assault Gun"
  pack_artillery_brigade:0 "Pack Artillery"
  pack_antitank_brigade:0 "Pack Anti-Tank"
@@ -1318,7 +1338,10 @@ off_superior_tt:0 "A random §YSkill 3§! or lower General will gain §Y"Enginee
  wasteland_economy_TT:0 "0 Resources exported\n\n"
  ## Mexico ##
  tooltip_mexico_reform_the_cristero_guard:2 "Reform the §YCristero Guard§!:\nDeploy §Y8 Divisions§! of §Y10 Infantry§! battalions"
- ## FRANCE ##
+
+
+ operation_outcome_sabotage_infrastructure_tt:0 "Focuses local resistance on targeting infrastructure, Supply Hubs, and Railways, and increases the chance of successful attacks."
+
 
  ## Los Santos ##
  news.120.t:0 "The Fall of Los Santos"
@@ -1346,12 +1369,20 @@ off_superior_tt:0 "A random §YSkill 3§! or lower General will gain §Y"Enginee
   PARADROP_WARNING_TEXT: "Forces of §Y[?ui_invader_country.GetNameWithFlag]§! have successfully conducted a §CParadrop§! at [?ui_invaded_state.GetName]!"
   PARADROP_WARNING_DISABLE: "No longer show Enemy Paradrops with this popup."
 
+ consumer_goods_expected_value_tt: "£consumer_goods_texticon $MODIFIER_CONSUMER_GOODS_EXPECTED_VALUE$: $RIGHT|Y=%1$"
+
 
  add_convoy:0 "Add convoy"
  add_convoy_desc:0 "Adds and removes 1 convoy to fix Convoy bug on resyncing"
 
  diversify_special_forces_2: "Diversify Special Forces"
  diversify_special_forces_2_desc: "Our conventional forces simply aren't enough to combat the oncoming storm. We must innovate our Special Forces Further."
+
+ sp_naval_proximity_fuze_custom_tt: "$MODIFIER_NAVY_ANTI_AIR_ATTACK$ §G+10%§!"
+
+ mtg_fast_unload_landing_craft:0 "Fast Unloading Craft"
+ mtg_expanded_landing_craft:0 "Expanded Landing Craft"
+ mtg_protected_landing_craft:0 "Protected Landing Craft"
 
 
 # GAME RULES
@@ -1370,6 +1401,8 @@ off_superior_tt:0 "A random §YSkill 3§! or lower General will gain §Y"Enginee
  RULE_OPTION_NAVY_CAP_DISABLED_DESC:0 "Allow Admirals to have an unlimited number of ships under them"
  RULE_DOCK_CG:0 "Dockyard Consumer Goods"
  RULE_OPTION_DOCK_CG_ENABLED_DESC:0 "Dockyard Consumer Goods Mechanic Enabled"
+ RULE_OPTION_DOCK_BUILD_SPEED:0 "Build Speed Debuff Alternate"
+ RULE_OPTION_DOCK_BUILD_SPEED_DESC:0 "Uses Dockyard Build Speed Debuff Instead of Consumer Goods Debuff"
  RULE_OPTION_DOCK_CG_DISABLED_DESC:0 "Dockyard Consumer Goods Mechanic Disabled"
  RULE_SOV_AIR:0 "The Red Airforce"
  RULE_OPTION_SOV_FULL_AIR:0 "Soviets Need Air Consistently"
@@ -1421,3 +1454,107 @@ off_superior_tt:0 "A random §YSkill 3§! or lower General will gain §Y"Enginee
  RULE_TENSION_GAME_ENABLED_DESC:0 "UK can only do Limited Rearmament after 5% tension."
  RULE_OPTION_BELGIUM_FORTS_ENABLED_DESC:0 "Allow Belgium to go and do their fort path on the left of their tree."
  RULE_OPTION_BELGIUM_FORTS_DISABLED_DESC:0 "Prevent Belgium from being able to do their fortification focuses on the left side of their tree"
+
+ custom_explanation_description:0 "Effects are applied to all countries in the category and are applied instantly. §RCountries can only belong to 1 Group at a time.§! If you need to apply different effects to specific countries, remove them from their Faction group and add them to a new one."
+
+ custom_diff_industrial:0 "Construction"
+ custom_diff_production:0 "Production"
+ custom_diff_army:0 "£army_experience  Army"
+ custom_diff_air:0 "£air_experience  Airforce"
+ custom_diff_navy:0 "£navy_experience  Navy"
+ custom_diff_politics:0 "Political"
+
+ custom_diff_industrial_nerf:0 "Construction Nerf"
+ custom_diff_production_nerf:0 "Production Nerf"
+ custom_diff_army_nerf:0 "£army_experience  Army Nerf"
+ custom_diff_air_nerf:0 "£air_experience  Airforce Nerf"
+ custom_diff_navy_nerf:0 "£navy_experience  Navy Nerf"
+ custom_diff_politics_nerf:0 "Political Nerf"
+
+ custom_diff_industrial_idea:0 "Host Construction"
+ custom_diff_production_idea:0 "Host Production"
+ custom_diff_army_idea:0 "£army_experience  Host Army"
+ custom_diff_air_idea:0 "£air_experience  Host Airforce"
+ custom_diff_navy_idea:0 "£navy_experience  Host Navy"
+ custom_diff_politics_idea:0 "Host Political"
+
+ custom_diff_industrial_nerf_idea:0 "Host Construction Nerf"
+ custom_diff_production_nerf_idea:0 "Host Production Nerf"
+ custom_diff_army_nerf_idea:0 "£army_experience  Host Army Nerf"
+ custom_diff_air_nerf_idea:0 "£air_experience  Host Airforce Nerf"
+ custom_diff_navy_nerf_idea:0 "£navy_experience  Host Navy Nerf"
+ custom_diff_politics_nerf_idea:0 "Host Political Nerf"
+
+
+ ai_diff:0 "Custom Difficulty Bonus"
+ 
+ AI_DIFF_SETTING_NAME_TEXT:0 "[Type1][Type2][Type3][Type4][Type5][Type6][Type7][Type8][Type9][Type10][Type11][Type12][Type13][Type14][Type15][Type16][Type17][Type18][Type19][Type20]"
+ AI_DIFF_SETTING_NAME_TEXT_EDIT:0 "§Y$AI_DIFF_SETTING_NAME_TEXT$§!"
+ 
+ AI_DIFF_FLAG_TOOLTIP:0 "§YRight-Click§! to remove §Y[This.GetName]§! from this group\n§YShift-Click§! to create a new group for this country"
+ AI_DIFF_FLAG_TOOLTIP_DELAYED:0 "Removing a country from its group will remove all bonuses for it."
+ 
+ AI_DIFF_GROUP_TOOLTIP:0 "§YClick§! to select this group\n§YRight-Click§! to change its name, then press §YEnter§! to save"
+  
+ AI_DIFF_ADD_COUNTRIES_TOOLTIP:0 "§YClick§! to add more countries to this group"
+ 
+ AI_DIFF_OPEN_MODIFIER_TOOLTIP:0 "§YClick§! to view the §RAdvanced§! modifier settings."
+ AI_DIFF_CLEAR_ALL_MODIFIER_TOOLTIP:0 "§YClick§! to remove §Rall§! modifiers."
+ AI_DIFF_ADD_MODIFIER_TOOLTIP:0 "§YClick§! to add more modifiers."
+ 
+ # Buffs
+ AI_DIFF_MOD_ARMY:0 "§YArmy§!"
+ AI_DIFF_MOD_AIR:0 "§YAir§!"
+ AI_DIFF_MOD_NAVY:0 "§YNavy§!"
+ AI_DIFF_MOD_INDUSTRY:0 "§YIndustry§!"
+ AI_DIFF_MOD_SPECIAL:0 "§YAI Modifiers§!"
+  
+ AI_DIFF_PRODUCTION_BAR_TEXT:0 "[!production_bar_click]"
+ AI_DIFF_PRODUCTION_UP_TEXT:0 "[!production_up_click]"
+ AI_DIFF_PRODUCTION_DOWN_TEXT:0 "[!production_down_click]"
+ 
+ AI_DIFF_CONSTRUCTION_BAR_TEXT:0 "[!construction_bar_click]"
+ AI_DIFF_CONSTRUCTION_UP_TEXT:0 "[!construction_up_click]"
+ AI_DIFF_CONSTRUCTION_DOWN_TEXT:0 "[!construction_down_click]"
+ 
+ AI_DIFF_NAVY_BAR_TEXT:0 "[!navy_bar_click]"
+ AI_DIFF_NAVY_UP_TEXT:0 "[!navy_up_click]"
+ AI_DIFF_NAVY_DOWN_TEXT:0 "[!navy_down_click]"
+ 
+ AI_DIFF_AIR_BAR_TEXT:0 "[!air_bar_click]"
+ AI_DIFF_AIR_UP_TEXT:0 "[!air_up_click]"
+ AI_DIFF_AIR_DOWN_TEXT:0 "[!air_down_click]"
+ 
+ AI_DIFF_ARMY_BAR_TEXT:0 "[!army_bar_click]"
+ AI_DIFF_ARMY_UP_TEXT:0 "[!army_up_click]"
+ AI_DIFF_ARMY_DOWN_TEXT:0 "[!army_down_click]"
+ 
+ AI_DIFF_POLITICS_BAR_TEXT:0 "[!politics_bar_click]"
+ AI_DIFF_POLITICS_UP_TEXT:0 "[!politics_up_click]"
+ AI_DIFF_POLITICS_DOWN_TEXT:0 "[!politics_down_click]"
+
+ # Nerfs
+  
+ AI_DIFF_PRODUCTION_NERF_BAR_TEXT:0 "[!production_nerf_bar_click]"
+ AI_DIFF_PRODUCTION_NERF_UP_TEXT:0 "[!production_nerf_up_click]"
+ AI_DIFF_PRODUCTION_NERF_DOWN_TEXT:0 "[!production_nerf_down_click]"
+ 
+ AI_DIFF_CONSTRUCTION_NERF_BAR_TEXT:0 "[!construction_nerf_bar_click]"
+ AI_DIFF_CONSTRUCTION_NERF_UP_TEXT:0 "[!construction_nerf_up_click]"
+ AI_DIFF_CONSTRUCTION_NERF_DOWN_TEXT:0 "[!construction_nerf_down_click]"
+ 
+ AI_DIFF_NAVY_NERF_BAR_TEXT:0 "[!navy_nerf_bar_click]"
+ AI_DIFF_NAVY_NERF_UP_TEXT:0 "[!navy_nerf_up_click]"
+ AI_DIFF_NAVY_NERF_DOWN_TEXT:0 "[!navy_nerf_down_click]"
+ 
+ AI_DIFF_AIR_NERF_BAR_TEXT:0 "[!air_nerf_bar_click]"
+ AI_DIFF_AIR_NERF_UP_TEXT:0 "[!air_nerf_up_click]"
+ AI_DIFF_AIR_NERF_DOWN_TEXT:0 "[!air_nerf_down_click]"
+ 
+ AI_DIFF_ARMY_NERF_BAR_TEXT:0 "[!army_nerf_bar_click]"
+ AI_DIFF_ARMY_NERF_UP_TEXT:0 "[!army_nerf_up_click]"
+ AI_DIFF_ARMY_NERF_DOWN_TEXT:0 "[!army_nerf_down_click]"
+ 
+ AI_DIFF_POLITICS_NERF_BAR_TEXT:0 "[!politics_nerf_bar_click]"
+ AI_DIFF_POLITICS_NERF_UP_TEXT:0 "[!politics_nerf_up_click]"
+ AI_DIFF_POLITICS_NERF_DOWN_TEXT:0 "[!politics_nerf_down_click]"

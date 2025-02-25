@@ -2998,6 +2998,72 @@ country_event = {
 			base = 100
 		}
 		ROM = {
+			leave_faction = yes
+		}
+		effect_tooltip = {
+			ROM = {
+				every_country = {
+					limit = {
+						has_war_with = ROM
+						is_in_faction_with = SOV
+					}
+					white_peace = ROM
+				}
+				every_country = {
+					limit = {
+						has_war_with = ROM
+						is_in_faction_with = ENG
+					}
+					white_peace = ROM
+				}
+			}
+			white_peace = FROM
+			every_country = {
+				limit = {
+					is_subject_of = FROM
+					has_war_with = ROOT
+				}
+				white_peace = ROOT
+			}
+			SOV = { 
+				add_to_faction = ROM 
+				transfer_state = 78
+				transfer_state = 766
+				transfer_state = 80
+			}
+			GER = {
+				create_wargoal = {
+					type = puppet_wargoal_focus
+					target = ROM
+				}
+			}			
+		}
+		hidden_effect = {
+			ROM = { country_event = DOD_romania.502 }
+		}
+	}
+
+	option = { #rather not
+		name = DOD_romania.501.b
+		ai_chance = {
+			base = 0
+		}
+	}
+
+}
+
+#Actually do the rest of it.
+country_event = {
+	id = DOD_romania.502
+	title = DOD_romania.502.t
+	desc = DOD_romania.502.desc
+	picture = GFX_report_event_german_reichstag_gathering
+
+	is_triggered_only = yes
+	
+	option = { #They Accepted!
+		name = DOD_romania.502.a
+		ROM = {
 			every_country = {
 				limit = {
 					has_war_with = ROM
@@ -3013,16 +3079,13 @@ country_event = {
 				white_peace = ROM
 			}
 		}
-		white_peace = FROM
+		white_peace = SOV
 		every_country = {
 			limit = {
-				is_subject_of = FROM
-				has_war_with = ROOT
+				is_subject_of = SOV
+				has_war_with = ROM
 			}
-			white_peace = ROOT
-		}
-		FROM = {
-			leave_faction = yes
+			white_peace = ROM
 		}
 		SOV = { 
 			add_to_faction = ROM 
@@ -3037,12 +3100,18 @@ country_event = {
 			}
 		}
 	}
+}
 
-	option = { #rather not
-		name = DOD_romania.501.b
-		ai_chance = {
-			base = 0
-		}
+# They Declined.
+country_event = {
+	id = DOD_romania.503
+	title = DOD_romania.503.t
+	desc = DOD_romania.503.desc
+	picture = GFX_report_event_german_reichstag_gathering
+
+	is_triggered_only = yes
+	
+	option = { #They Declined!
+		name = DOD_romania.503.a
 	}
-
 }

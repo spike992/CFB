@@ -55,14 +55,14 @@ sabotage_arms_factory = {
 			}
 			damage_building = {
 				type = arms_factory
-				damage = 0.5
+				damage = 0.8
 			}
 			subtract_from_variable = { var = targeted_sabotage_industry value = 1 }
 		}
 		else = {
 			damage_building = {
 				type = arms_factory
-				damage = 0.25
+				damage = 0.3
 			}
 		}		
 	}
@@ -72,10 +72,15 @@ sabotage_arms_factory = {
 
 sabotage_infrastructure = {
 	available = {
-		non_damaged_building_level = {
-			building = infrastructure
-			level > 0
+		OR = {
+			non_damaged_building_level = {
+				building = infrastructure
+				level > 0
+			}
+			rail_way > 0
+			supply_node > 0
 		}
+
 	}
 
 	weight = {
@@ -94,16 +99,58 @@ sabotage_infrastructure = {
 				has_variable = targeted_sabotage_infrastructure
 				check_variable = { targeted_sabotage_infrastructure > 0 }
 			}
-			damage_building = {
-				type = infrastructure
-				damage = 1.0
+			if = {
+				limit = {
+					supply_node > 0
+				}
+				damage_building = {
+					type = supply_node
+					damage = 0.75
+				}
+			}
+			else_if = {
+				limit = {
+					rail_way > 0
+				}
+				damage_building = {
+					type = rail_way
+					damage = 1
+				}
+			} 
+			else = {
+				limit = {
+					non_damaged_building_level = {
+						building = infrastructure
+						level > 0
+					}
+				}
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
 			}
 			subtract_from_variable = { var = targeted_sabotage_infrastructure value = 1 }
 		}
 		else = {
-			damage_building = {
-				type = infrastructure
-				damage = 0.5
+			random_list = {
+				33 = {
+					damage_building = {
+						type = supply_node
+						damage = 0.1
+					}
+				}
+				33 = {
+					damage_building = {
+						type = rail_way
+						damage = 0.1
+					}
+				}
+				34 = {
+					damage_building = {
+						type = infrastructure
+						damage = 0.5
+					}
+				}
 			}
 		}		
 	}
@@ -141,14 +188,14 @@ sabotage_industrial_complex = {
 			}
 			damage_building = {
 				type = industrial_complex
-				damage = 0.5
+				damage = 0.8
 			}
 			subtract_from_variable = { var = targeted_sabotage_industry value = 1 }
 		}
 		else = {
 			damage_building = {
 				type = industrial_complex
-				damage = 0.25
+				damage = 0.3
 			}
 		}
 	}
@@ -171,7 +218,7 @@ sabotage_air_base = {
 	effect = {
 		damage_building = {
 			type = air_base
-			damage = 0.25
+			damage = 2.5
 		}
 	}
 
@@ -193,7 +240,7 @@ sabotage_dockyard = {
 	effect = {
 		damage_building = {
 			type = dockyard
-			damage = 0.25
+			damage = 1
 		}
 	}
 
@@ -215,7 +262,7 @@ sabotage_anti_air_building = {
 	effect = {
 		damage_building = {
 			type = anti_air_building
-			damage = 0.25
+			damage = 1
 		}
 	}
 
@@ -225,9 +272,19 @@ sabotage_anti_air_building = {
 
 sabotage_synthetic_refinery = {
 	available = {
-		non_damaged_building_level = {
-			building = synthetic_refinery
-			level > 0
+		OR = {
+			non_damaged_building_level = {
+				building = synthetic_refinery
+				level > 0
+			}
+			non_damaged_building_level = {
+				building = synthetic_rubber_refinery
+				level > 0
+			}
+			non_damaged_building_level = {
+				building = steel_refinery
+				level > 0
+			}
 		}
 	}
 
@@ -236,10 +293,43 @@ sabotage_synthetic_refinery = {
 	}
 
 	effect = {
-		damage_building = {
-			type = synthetic_refinery
-			damage = 0.25
-		}
+		# if = {
+		# 	limit = {
+		# 		non_damaged_building_level = {
+		# 			building = synthetic_rubber_refinery
+		# 			level > 0
+		# 		}
+		# 	}
+		# 	damage_building = {
+		# 		type = synthetic_rubber_refinery
+		# 		damage = 1
+		# 	}
+		# }
+		# else_if = {
+		# 	limit = {
+		# 		non_damaged_building_level = {
+		# 			building = synthetic_refinery
+		# 			level > 0
+		# 		}
+		# 	}
+		# 	damage_building = {
+		# 		type = synthetic_refinery
+		# 		damage = 1
+		# 	}
+		# } 
+		# else = {
+		# 	limit = {
+		# 		non_damaged_building_level = {
+		# 			building = steel_refinery
+		# 			level > 0
+		# 		}
+		# 	}
+		# 	damage_building = {
+		# 		type = steel_refinery
+		# 		damage = 1
+		# 	}
+		# }
+
 	}
 
 	alert_text = building_is_sabotaged
@@ -261,7 +351,7 @@ sabotage_fuel_silo = {
 	effect = {
 		damage_building = {
 			type = fuel_silo
-			damage = 0.25
+			damage = 1
 		}
 	}
 
@@ -284,7 +374,7 @@ sabotage_radar_station = {
 	effect = {
 		damage_building = {
 			type = radar_station
-			damage = 0.25
+			damage = 1
 		}
 	}
 
@@ -306,7 +396,7 @@ sabotage_rocket_site = {
 	effect = {
 		damage_building = {
 			type = rocket_site
-			damage = 0.25
+			damage = 0.45
 		}
 	}
 	
@@ -328,7 +418,7 @@ sabotage_nuclear_reactor = {
 	effect = {
 		damage_building = {
 			type = nuclear_reactor
-			damage = 0.15
+			damage = 0.35
 		}
 	}
 	

@@ -844,6 +844,15 @@ GER_autarky_achieved_effects = {
 			remove_dynamic_modifier = { modifier = GER_economy_of_conquest_modifier }
 			add_dynamic_modifier = { modifier = GER_wirtschaftswunder_modifier }
 		}
+		if = {
+			limit = { 
+				check_variable = { var = GER_industrial_consumer_goods_factor value = 1 compare = greater_than_or_equals }
+			}
+			clr_country_flag = GER_mefo_bills_penalty_flag #This flag is always set when reaching 100% CGFF
+			subtract_from_variable = { GER_industrial_consumer_goods_expected_value = GER_expected_consumer_goods_penalty }
+			add_to_variable = { GER_industrial_industrial_capacity_factory = GER_factory_output_penalty }
+			add_to_variable = { GER_industrial_industrial_capacity_dockyard = GER_dockyard_output_penalty }
+		}
 		custom_effect_tooltip = GER_replace_economy_of_conquest_with_wirtschaftswunder_tt
 	}
 	else_if = {
@@ -873,19 +882,19 @@ GER_autarky_achieved_effects = {
 		GER_industrial_industrial_capacity_dockyard = 0.05
 		tooltip = industrial_capacity_dockyard_tt
 	}
-	# set_variable = {
-	# 	GER_industrial_consumer_goods_factor = 0
-	# 	tooltip = consumer_goods_factor_tt
-	# }
+	set_variable = {
+		GER_industrial_consumer_goods_factor = 0
+		tooltip = consumer_goods_factor_tt
+	}
 }
 
 GER_autarky_partially_achieved_effects = {
 
 	if = {
 		limit = {
-			check_variable = { GER_industrial_consumer_goods_factor < 0.90}
+			check_variable = { GER_industrial_consumer_goods_factor < 0.80}
 		}
-		set_variable = { GER_industrial_consumer_goods_factor = 0.90 tooltip = consumer_goods_factor_custom_tt}
+		set_variable = { GER_industrial_consumer_goods_factor = 0.80 tooltip = consumer_goods_factor_custom_tt}
 	}
 	if = {
 		limit = {
@@ -1218,7 +1227,12 @@ GER_seize_gold_reserves_in_europe_peacefully = { #This will only work when ROOT 
 			ROOT = { set_temp_variable = { occupied_state_num_factory = 0 } } #This will show how many factories in total Germany controls from FROM's cores
 			#add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_military_factories_in_cores@GER }
 			add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_civilian_factories_in_cores@GER }
-			#add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_naval_factories_in_cores@GER }
+			add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_naval_factories_in_cores@GER }
+			add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_civilian_factories_in_cores@SLO }
+			add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_naval_factories_in_cores@SLO }
+			add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_civilian_factories_in_cores@HUN }
+			add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_naval_factories_in_cores@HUN }
+
 			FROM = {
 				every_core_state = {
 					limit = {
@@ -1450,9 +1464,9 @@ GER_improve_rosenbergs_trait_effect = {
 		}
 		#WARNING! If any of these values are changed - or other variables are added or removed - the same change must be done in the script block below, GER_worsen_rosenbergs_trait_effect, AND the loc string GER_rk_rosenberg_tt must be adjusted to reflect these changes
 		custom_effect_tooltip = GER_modify_GER_alfred_rosenberg_modifier_tt
-		add_to_variable = { GER_alfred_rosenberg_modifier_consumer_goods_factor = -0.005 tooltip = consumer_goods_factor_tt }
-		add_to_variable = { GER_alfred_rosenberg_modifier_production_speed_arms_factory_factor = 0.01 tooltip = production_speed_arms_factory_factor_tt }
-		add_to_variable = { GER_alfred_rosenberg_modifier_industrial_capacity_factory = 0.005 tooltip = industrial_capacity_factory_tt }
+		add_to_variable = { GER_alfred_rosenberg_modifier_consumer_goods_factor = -0.02 tooltip = consumer_goods_factor_tt }
+		add_to_variable = { GER_alfred_rosenberg_modifier_production_speed_arms_factory_factor = 0.04 tooltip = production_speed_arms_factory_factor_tt }
+		add_to_variable = { GER_alfred_rosenberg_modifier_industrial_capacity_factory = 0.02 tooltip = industrial_capacity_factory_tt }
 
 		subtract_from_variable = { GER_count_down_alfred_rosenberg_upgrades = 1 }
 		custom_effect_tooltip = GER_times_GER_alfred_rosenberg_has_been_modified_tt
@@ -1469,9 +1483,9 @@ GER_worsen_rosenbergs_trait_effect = {
 			check_variable = { GER_count_down_alfred_rosenberg_upgrades < GER_max_alfred_rosenberg_upgrades } #Don't go over the initial maximum limit
 		}
 		custom_effect_tooltip = GER_modify_GER_alfred_rosenberg_modifier_tt
-		add_to_variable = { GER_alfred_rosenberg_modifier_consumer_goods_factor = 0.005 tooltip = consumer_goods_factor_tt }
-		add_to_variable = { GER_alfred_rosenberg_modifier_production_speed_arms_factory_factor = -0.01 tooltip = production_speed_arms_factory_factor_tt }
-		add_to_variable = { GER_alfred_rosenberg_modifier_industrial_capacity_factory = -0.005 tooltip = industrial_capacity_factory_tt }
+		add_to_variable = { GER_alfred_rosenberg_modifier_consumer_goods_factor = 0.02 tooltip = consumer_goods_factor_tt }
+		add_to_variable = { GER_alfred_rosenberg_modifier_production_speed_arms_factory_factor = -0.04 tooltip = production_speed_arms_factory_factor_tt }
+		add_to_variable = { GER_alfred_rosenberg_modifier_industrial_capacity_factory = -0.02 tooltip = industrial_capacity_factory_tt }
 
 		add_to_variable = { GER_count_down_alfred_rosenberg_upgrades = 1 }
 		custom_effect_tooltip = GER_times_GER_alfred_rosenberg_has_been_modified_tt
@@ -1548,6 +1562,15 @@ GER_setup_GER_asia_sphere_of_influence_array = {
 			IF = {
 				limit = {
 					OR = {
+						#Islands
+						state = 712 # Cocos
+						state = 711 # Christmas
+						state = 710 # Diego Garcia
+						state = 709 # Seychelles
+						state = 707 # Mauritius
+						state = 713 # Kerguelen
+						state = 706 # Reunion
+
 						is_core_of = AST
 						is_core_of = NZL
 						is_core_of = MAL
@@ -1564,15 +1587,6 @@ GER_setup_GER_asia_sphere_of_influence_array = {
 						is_core_of = RAP
 						is_core_of = SRL
 						is_core_of = MLD
-
-						#Islands
-						state = 712 # Cocos
-						state = 711 # Christmas
-						state = 710 # Diego Garcia
-						state = 709 # Seychelles
-						state = 707 # Mauritius
-						state = 713 # Kerguelen
-						state = 706 # Reunion
 					}
 				}
 
@@ -3070,26 +3084,26 @@ GER_check_steel = {
 
 
 GER_check_aluminium = {
-	set_variable = { num_ger_aluminium = GER.resource_produced@aluminium }
+	set_variable = { GER.num_ger_aluminium = GER.resource_produced@aluminium }
 	set_variable = { GER.num_faction_aluminium = 0 }
 	set_variable = { GER.num_faction_total_aluminium = 0 }
 
 	# Add all Puppets
 	every_subject_country = {
-		add_to_variable = { num_ger_aluminium = resource_produced@aluminium }
+		add_to_variable = { GER.num_ger_aluminium = resource_produced@aluminium }
 	}
 	# Add Vichy 
 	if = {
 		limit = { country_exists = VIC }
-		VIC = { add_to_variable = { num_ger_aluminium = resource_produced@aluminium } }
+		VIC = { add_to_variable = { GER.num_ger_aluminium = resource_produced@aluminium } }
 	}
 	else_if = {
 		limit = { 26 = { CONTROLLER = { tag = D04 } } }
-		D04 = { add_to_variable = { num_ger_aluminium = resource_produced@aluminium } }
+		D04 = { add_to_variable = { GER.num_ger_aluminium = resource_produced@aluminium } }
 	}
 	else_if = {
 		limit = { 26 = { CONTROLLER = { tag = D05 } } }
-		D05 = { add_to_variable = { num_ger_aluminium = resource_produced@aluminium } }
+		D05 = { add_to_variable = { GER.num_ger_aluminium = resource_produced@aluminium } }
 	}
 
 	# Check against non Spain to see if Germany has more aluminium than anyone else in the faction
@@ -3129,32 +3143,32 @@ GER_check_aluminium = {
 	}
 	# Remove half for being Non-Core
 	multiply_variable = { num_iberian_aluminium = 0.5 }
-	subtract_from_variable = { num_ger_aluminium = num_iberian_aluminium }
+	subtract_from_variable = { GER.num_ger_aluminium = num_iberian_aluminium }
 
-	add_to_variable = {	GER.num_faction_total_aluminium = num_ger_aluminium }
+	add_to_variable = {	GER.num_faction_total_aluminium = GER.num_ger_aluminium }
 }
 
 GER_check_rubber = {
-	set_variable = { num_ger_rubber = GER.resource_produced@rubber }
+	set_variable = { GER.num_ger_rubber = GER.resource_produced@rubber }
 	set_variable = { GER.num_faction_rubber = 0 }
 	set_variable = { GER.num_faction_total_rubber = 0 }
 
 	# Add all Puppets
 	every_subject_country = {
-		add_to_variable = { num_ger_rubber = resource_produced@rubber }
+		add_to_variable = { GER.num_ger_rubber = resource_produced@rubber }
 	}
 	# Add Vichy 
 	if = {
 		limit = { country_exists = VIC }
-		VIC = { add_to_variable = { num_ger_rubber = resource_produced@rubber } }
+		VIC = { add_to_variable = { GER.num_ger_rubber = resource_produced@rubber } }
 	}
 	else_if = {
 		limit = { 26 = { CONTROLLER = { tag = D04 } } }
-		D04 = { add_to_variable = { num_ger_rubber = resource_produced@rubber } }
+		D04 = { add_to_variable = { GER.num_ger_rubber = resource_produced@rubber } }
 	}
 	else_if = {
 		limit = { 26 = { CONTROLLER = { tag = D05 } } }
-		D05 = { add_to_variable = { num_ger_rubber = resource_produced@rubber } }
+		D05 = { add_to_variable = { GER.num_ger_rubber = resource_produced@rubber } }
 	}
 
 	# Check against non Spain to see if Germany has more rubber than anyone else in the faction
@@ -3195,32 +3209,32 @@ GER_check_rubber = {
 	}
 	# Remove half for being Non-Core
 	multiply_variable = { num_iberian_rubber = 0.5 }
-	subtract_from_variable = { num_ger_rubber = num_iberian_rubber }
+	subtract_from_variable = { GER.num_ger_rubber = num_iberian_rubber }
 
-	add_to_variable = {	GER.num_faction_total_rubber = num_ger_rubber }
+	add_to_variable = {	GER.num_faction_total_rubber = GER.num_ger_rubber }
 }
 
 GER_check_tungsten = {
-	set_variable = { num_ger_tungsten = GER.resource_produced@tungsten }
+	set_variable = { GER.num_ger_tungsten = GER.resource_produced@tungsten }
 	set_variable = { GER.num_faction_tungsten = 0 }
 	set_variable = { GER.num_faction_total_tungsten = 0 }
 
 	# Add all Puppets
 	every_subject_country = {
-		add_to_variable = { num_ger_tungsten = resource_produced@tungsten }
+		add_to_variable = { GER.num_ger_tungsten = resource_produced@tungsten }
 	}
 	# Add Vichy 
 	if = {
 		limit = { country_exists = VIC }
-		VIC = { add_to_variable = { num_ger_tungsten = resource_produced@tungsten } }
+		VIC = { add_to_variable = { GER.num_ger_tungsten = resource_produced@tungsten } }
 	}
 	else_if = {
 		limit = { 26 = { CONTROLLER = { tag = D04 } } }
-		D04 = { add_to_variable = { num_ger_tungsten = resource_produced@tungsten } }
+		D04 = { add_to_variable = { GER.num_ger_tungsten = resource_produced@tungsten } }
 	}
 	else_if = {
 		limit = { 26 = { CONTROLLER = { tag = D05 } } }
-		D05 = { add_to_variable = { num_ger_tungsten = resource_produced@tungsten } }
+		D05 = { add_to_variable = { GER.num_ger_tungsten = resource_produced@tungsten } }
 	}
 
 	# Check against non Spain to see if Germany has more tungsten than anyone else in the faction
@@ -3260,33 +3274,33 @@ GER_check_tungsten = {
 	}
 	# Remove half for being Non-Core
 	multiply_variable = { num_iberian_tungsten = 0.5 }
-	subtract_from_variable = { num_ger_tungsten = num_iberian_tungsten }
+	subtract_from_variable = { GER.num_ger_tungsten = num_iberian_tungsten }
 
-	add_to_variable = {	GER.num_faction_total_tungsten = num_ger_tungsten }
+	add_to_variable = {	GER.num_faction_total_tungsten = GER.num_ger_tungsten }
 
 }
 
 GER_check_chromium = {
-	set_variable = { num_ger_chromium = GER.resource_produced@chromium }
+	set_variable = { GER.num_ger_chromium = GER.resource_produced@chromium }
 	set_variable = { GER.num_faction_chromium = 0 }
 	set_variable = { GER.num_faction_total_chromium = 0 }
 
 	# Add all Puppets
 	every_subject_country = {
-		add_to_variable = { num_ger_chromium = resource_produced@chromium }
+		add_to_variable = { GER.num_ger_chromium = resource_produced@chromium }
 	}
 	# Add Vichy 
 	if = {
 		limit = { country_exists = VIC }
-		VIC = { add_to_variable = { num_ger_chromium = resource_produced@chromium } }
+		VIC = { add_to_variable = { GER.num_ger_chromium = resource_produced@chromium } }
 	}
 	else_if = {
 		limit = { 26 = { CONTROLLER = { tag = D04 } } }
-		D04 = { add_to_variable = { num_ger_chromium = resource_produced@chromium } }
+		D04 = { add_to_variable = { GER.num_ger_chromium = resource_produced@chromium } }
 	}
 	else_if = {
 		limit = { 26 = { CONTROLLER = { tag = D05 } } }
-		D05 = { add_to_variable = { num_ger_chromium = resource_produced@chromium } }
+		D05 = { add_to_variable = { GER.num_ger_chromium = resource_produced@chromium } }
 	}
 
 
@@ -3329,32 +3343,32 @@ GER_check_chromium = {
 	}
 	# Remove half for being Non-Core
 	multiply_variable = { num_iberian_chromium = 0.5 }
-	subtract_from_variable = { num_ger_chromium = num_iberian_chromium }
+	subtract_from_variable = { GER.num_ger_chromium = num_iberian_chromium }
 	
-	add_to_variable = {	GER.num_faction_total_chromium = num_ger_chromium }
+	add_to_variable = {	GER.num_faction_total_chromium = GER.num_ger_chromium }
 }
 
 GER_check_oil = {
-	set_variable = { num_ger_oil = GER.resource_produced@oil }
+	set_variable = { GER.num_ger_oil = GER.resource_produced@oil }
 	set_variable = { GER.num_faction_oil = 0 }
 	set_variable = { GER.num_faction_total_oil = 0 }
 
 	# Add all Puppets
 	every_subject_country = {
-		add_to_variable = { num_ger_oil = resource_produced@oil }
+		add_to_variable = { GER.num_ger_oil = resource_produced@oil }
 	}
 	# Add Vichy 
 	if = {
 		limit = { country_exists = VIC }
-		VIC = { add_to_variable = { num_ger_oil = resource_produced@oil } }
+		VIC = { add_to_variable = { GER.num_ger_oil = resource_produced@oil } }
 	}
 	else_if = {
 		limit = { 26 = { CONTROLLER = { tag = D04 } } }
-		D04 = { add_to_variable = { num_ger_oil = resource_produced@oil } }
+		D04 = { add_to_variable = { GER.num_ger_oil = resource_produced@oil } }
 	}
 	else_if = {
 		limit = { 26 = { CONTROLLER = { tag = D05 } } }
-		D05 = { add_to_variable = { num_ger_oil = resource_produced@oil } }
+		D05 = { add_to_variable = { GER.num_ger_oil = resource_produced@oil } }
 	}
 
 
@@ -3396,7 +3410,7 @@ GER_check_oil = {
 	}
 	# Remove half for being Non-Core
 	multiply_variable = { num_iberian_oil = 0.5 }
-	subtract_from_variable = { num_ger_oil = num_iberian_oil }
+	subtract_from_variable = { GER.num_ger_oil = num_iberian_oil }
 
-	add_to_variable = {	GER.num_faction_total_oil = num_ger_oil }
+	add_to_variable = {	GER.num_faction_total_oil = GER.num_ger_oil }
 }

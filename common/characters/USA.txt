@@ -1334,7 +1334,12 @@ characters={
 			}
 			cost = 100
 			ai_will_do  = {
-				factor  = 1.000
+				base = 1
+				modifier = {
+					factor = 10
+					# I don't care that it's earlier than historical, the US needs army XP earlier...
+					date > 1938.6.1
+				}
 			}
 		}
 		name="george_marshall"
@@ -1602,4 +1607,52 @@ characters={
 		}
 	}
 
+	USA_skill_issue1={
+		name="USA_skill_issue1"
+		portraits={
+			army={
+				small="GFX_idea_generic_army_europe_2"
+			}
+		}
+		advisor={
+			slot = high_command
+			idea_token = USA_skill_issue1
+			ledger = army 
+			allowed = {
+				original_tag = USA
+			}
+			traits  = {
+				army_armored_2 
+			}
+			cost = 100
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+
+	USA_skill_issue2={
+		name="USA_skill_issue2"
+		portraits={
+			army={
+				small="GFX_idea_generic_army_europe_2"
+			}
+		}
+		advisor={
+			slot = high_command
+			idea_token = USA_skill_issue2
+			ledger = army 
+			allowed = {
+				original_tag = USA
+			}
+			traits  = {
+				army_cavalry_2
+			}
+			cost = 100
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+	
 }

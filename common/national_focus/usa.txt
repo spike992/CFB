@@ -2685,7 +2685,7 @@ focus_tree = {
 		icon = GFX_focus_eng_concessions_to_the_trade_unions
 		x = 0
 		y = 3
-		prerequisite = { focus = USA_side_with_big_business focus = USA_side_with_workers_union }
+		prerequisite = { focus = USA_sit_down_strikes }
 		relative_position_id = USA_flint_strikes
 		cost = 10
 
@@ -3231,6 +3231,7 @@ focus_tree = {
 			NOT = { has_idea = USA_neutrality_idea_3 }
 		}
 		completion_reward = {
+		add_political_power = 300
 			add_ideas = wartime_industry_focus
 			custom_effect_tooltip = available_designer
 			show_ideas_tooltip = USA_general_motors
@@ -3317,7 +3318,7 @@ focus_tree = {
 		available = {
 			has_war = yes
 		}
-		x = 2
+		x = -2
 		y = 1
 		cost = 10
 		#ai_will_do = {
@@ -3333,6 +3334,11 @@ focus_tree = {
 				technology = advanced_rubber_processing
 				technology = modern_rubber_processing
 			}
+			modify_building_resources = {
+				building = synthetic_rubber_refinery
+				resource = rubber
+				amount = 10
+			 }
 			if = {
 				limit = {
 					NOT = { has_tech = synth_oil_experiments }
@@ -3428,46 +3434,32 @@ focus_tree = {
 		continue_if_invalid = yes
 		
 		completion_reward = {
-			add_timed_idea = { idea = USA_vic_plan days = 180 }
+			add_timed_idea = { idea = USA_vic_plan days = 730 }
 			add_offsite_building = {
-				type = industrial_complex
-				level = 30
-			}
-			add_offsite_building = {
-				type = arms_factory
-				level = 30
+				type = dockyard
+				level = 50
 			}
 		    CAN = { 
-				add_timed_idea = { idea = allied_vic_plan days = 180 }
-				add_offsite_building = {
-				type = industrial_complex
-				level = 10
-			}
-				add_offsite_building = {
-				type = arms_factory
-				level = 20
-			}
+				add_timed_idea = { idea = allied_vic_plan days = 730 }
+				
 				} 
 			MEX = { 
-				add_timed_idea = { idea = allied_vic_plan days = 180 }
-				add_offsite_building = {
-				type = industrial_complex
-				level = 10
-			}
-				add_offsite_building = {
-				type = arms_factory
-				level = 20
-			}	
+				add_timed_idea = { idea = allied_vic_plan days = 730 }
+			
 					}
 			BRA = {
-				add_timed_idea = { idea = allied_vic_plan days = 180 }
+				add_timed_idea = { idea = allied_vic_plan days = 730 }
+		
+			}
+			ENG = {
+				add_timed_idea = { idea = allied_vic_plan days = 730 }
 				add_offsite_building = {
 				type = industrial_complex
-				level = 10
+				level = 50
 			}
 				add_offsite_building = {
 				type = arms_factory
-				level = 20
+				level = 100
 			}
 			}
 			
@@ -3489,8 +3481,9 @@ focus_tree = {
 		}
 		search_filters = {FOCUS_FILTER_RESEARCH}
 		completion_reward = {
+		add_political_power = 200
 			add_war_support = 0.2
-			add_political_power = 100
+			
 		}
 	}
 
@@ -3643,21 +3636,72 @@ focus_tree = {
 			add_research_slot = 1
 		}
 	}
-
+	
 	focus = {
-		id = USA_manhattan_project
-		icon = GFX_focus_wonderweapons
+		id = USA_investigate_uranium
+		icon = GFX_focus_generic_nuclear_development
 		prerequisite = { focus = USA_the_giant_wakes }
 		
-		x = -2
+		x = 2
 		y = 1
 		relative_position_id = USA_the_giant_wakes
-		cost = 10
+		cost = 5
 		#ai_will_do = {
 		#	factor = 1
 		#}
 		available = {
-			date > 1942.8.13
+			OR = {
+				date > 1940.2.1
+				#ENG = { has_completed_focus = ENG_tizard_mission }
+				has_tech = atomic_research
+			}
+			
+		}
+
+		available_if_capitulated = yes
+
+		search_filters = {FOCUS_FILTER_RESEARCH}
+		completion_reward = {
+			custom_effect_tooltip = USA_los_alamos_tt
+			hidden_effect = {
+				IF = {
+					limit = { 
+						376 = {
+							is_fully_controlled_by = ROOT
+							air_facility < 1
+							land_facility < 1
+							naval_facility < 1
+							nuclear_facility < 1
+						}
+					}
+
+					376 = {
+						add_building_construction = {
+							type = nuclear_facility
+							level = 1
+							instant_build = yes
+							province = 12552 # Los Alamos
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = USA_manhattan_project
+		icon = GFX_focus_wonderweapons
+		prerequisite = { focus = USA_investigate_uranium }
+		
+		x = 0
+		y = 1
+		relative_position_id = USA_investigate_uranium
+		cost = 5
+		#ai_will_do = {
+		#	factor = 1
+		#}
+		available = {
+			date > 1942.8.13			
 		}
 
 		available_if_capitulated = yes
@@ -5250,7 +5294,7 @@ focus_tree = {
 	focus = {
 		id = USA_two_ocean_navy_act
 		icon = GFX_focus_generic_navy_battleship2
-		x = 8
+		x = 11
 		y = 1
 		prerequisite = { focus = USA_war_department }
 		relative_position_id = USA_war_department
@@ -5345,7 +5389,7 @@ focus_tree = {
 	focus = {
 		id = USA_maritime_commission
 		icon = GFX_goal_generic_production2
-		x = -3
+		x = -6
 		y = 1
 		prerequisite = { focus = USA_two_ocean_navy_act }
 		relative_position_id = USA_two_ocean_navy_act
@@ -5370,34 +5414,16 @@ focus_tree = {
 		completion_reward = {
 			add_ideas = USA_maritime_commission
 		}
-	}
+	}	
 	
-	focus = {
-		id = USA_liberty_ships
-		icon = GFX_goal_generic_amphibious_assault
-		prerequisite = { focus = USA_maritime_commission }
-		x = -3
-		y = 2
-		relative_position_id = USA_two_ocean_navy_act
-		cost = 5
-		#ai_will_do = {
-		#	factor = 1
-		#}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_ideas = liberty_ships_focus
-		}
-	}
 
 	focus = {
 		id = USA_war_production_board
 		icon = GFX_focus_usa_recruit_the_free_corps
-		prerequisite = { focus = USA_liberty_ships }
-		x = -3
-		y = 3
-		relative_position_id = USA_two_ocean_navy_act
+		prerequisite = { focus = USA_maritime_commission }
+		x = 0
+		y = 1
+		relative_position_id = USA_maritime_commission
 		cost = 5
 		#ai_will_do = {
 		#	factor = 1
@@ -5418,7 +5444,7 @@ focus_tree = {
 		id = USA_build_up_west_pacific
 		icon = GFX_focus_generic_coastal_fort
 		prerequisite = { focus = USA_two_ocean_navy_act }
-		x = -1
+		x = -4
 		y = 1
 		cost = 5
 		relative_position_id = USA_two_ocean_navy_act
@@ -5484,7 +5510,7 @@ focus_tree = {
 		id = USA_build_up_central_pacific
 		icon = GFX_focus_generic_coastal_fort
 		prerequisite = { focus = USA_two_ocean_navy_act }
-		x = 5
+		x = -2
 		y = 1
 		cost = 5
 		relative_position_id = USA_two_ocean_navy_act
@@ -5646,7 +5672,7 @@ focus_tree = {
 				name = USA_advanced_mahanian_doctrine
 				cost_reduction = 0.25
 				uses = 2
-				category = cat_base_strike
+				category = cat_fleet_in_being
 			}
 		}
 	}
@@ -5655,9 +5681,9 @@ focus_tree = {
 		id = USA_advanced_basing
 		icon = GFX_goal_generic_occupy_states_coastal
 		x = 0
-		y = 2
-		prerequisite = { focus = USA_advanced_mahanian_doctrine }
-		relative_position_id = USA_battleship_primacy
+		y = 1
+		prerequisite = { focus = USA_build_up_west_pacific }
+		relative_position_id = USA_build_up_west_pacific
 		cost = 5
 
 		ai_will_do = {
@@ -5761,52 +5787,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
-		id = USA_naval_radar
-		icon = GFX_goal_generic_radar
-		x = 0
-		y = 1
-		prerequisite = { focus = USA_bureau_of_aeronautics }
-		relative_position_id = USA_bureau_of_aeronautics
-		cost = 5
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		available = {
-
-		}
-		
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		search_filters = {FOCUS_FILTER_RESEARCH}
-		completion_reward = {
-
-			add_breakthrough_progress = {
-				specialization = specialization_naval
-				value = 0.25
-			}
-			add_breakthrough_progress = {
-				specialization = specialization_air
-				value = 0.5
-			}
-
-			add_tech_bonus = {
-				name = USA_naval_radar
-				uses = 2
-				bonus = 0.5
-				category = radar_tech
-			}
-			
-		}
-	}
+	
 
 	focus = {
 		id = USA_escort_effort
@@ -5853,6 +5834,54 @@ focus_tree = {
 			}
 		}
 	}
+
+	focus = {
+		id = USA_naval_radar
+		icon = GFX_goal_generic_radar
+		x = 0
+		y = 1
+		prerequisite = { focus = USA_convoy_tactics }
+		relative_position_id = USA_convoy_tactics
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		search_filters = {FOCUS_FILTER_RESEARCH}
+		completion_reward = {
+
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.25
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+
+			add_tech_bonus = {
+				name = USA_naval_radar
+				uses = 2
+				bonus = 0.5
+				category = radar_tech
+			}
+			
+		}
+	}
+
 	focus = {
 		id = USA_fleet_submarines
 		icon = GFX_goal_generic_navy_submarine
@@ -5947,12 +5976,31 @@ focus_tree = {
 	}
 
 	focus = {
-		id = USA_expand_the_USMC
-		icon = GFX_goal_generic_special_forces
+		id = USA_liberty_ships
+		icon = GFX_goal_generic_amphibious_assault
 		prerequisite = { focus = USA_fund_the_navy }
-		x = 0
+		x = -0
 		y = 1
 		relative_position_id = USA_fund_the_navy
+		cost = 5
+		#ai_will_do = {
+		#	factor = 1
+		#}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = liberty_ships_focus
+		}
+	}
+
+	focus = {
+		id = USA_expand_the_USMC
+		icon = GFX_goal_generic_special_forces
+		prerequisite = { focus = USA_liberty_ships }
+		x = 0
+		y = 1
+		relative_position_id = USA_liberty_ships
 		cost = 5
 		#ai_will_do = {
 		#	factor = 1

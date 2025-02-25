@@ -127,8 +127,8 @@ flooded = { # on Province
 }
 
 unplanned_offensive = { # on Province
+	army_attack_factor = -0.90
 	army_speed_factor = -0.4
-	army_attack_factor = -0.5
 	local_org_regain = -0.33
 }
 
@@ -359,7 +359,10 @@ free_license = {
 ITA_military_agreements = {
 	valid_relation_trigger = {
 		FROM = {
-			is_in_faction_with = ROOT
+			OR = {
+				is_in_faction_with = ROOT
+				has_government = ROOT
+			}
 		}
 	}
 	license_purchase_cost = 0 #base cost reduction

@@ -296,14 +296,17 @@ GER_seize_gold_reserves_cat = {
 					has_country_flag = GER_dont_seize_gold_reserves_flag
 				}
 				any_core_state = {
-					is_controlled_by = ROOT
+					is_on_continent = europe
+					is_controlled_by_ROOT_or_ally = yes
 					NOT = { is_core_of = ROOT }
 					NOT = { has_state_flag = GER_seize_gold_reserves_state_flag }
 					OR = {
 						check_variable = { industrial_complex_level > 0 }
-						check_variable = { arms_factory_level > 0 }
+						#check_variable = { arms_factory_level > 0 }
 						check_variable = { building_level@dockyard > 0 }
 					}
+					# Specifically exclude Vichy France
+					NOT = { has_state_flag = VIC_dont_loot }
 				}
 			}
 		}
@@ -329,26 +332,48 @@ GER_seize_gold_reserves_cat = {
 		cost = 25
 
 		complete_effect = {
-			set_temp_variable = { occupied_state_num_factory = 0 } #This will show how many factories in total Germany controls from FROM's cores
-			add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_military_factories_in_cores@GER }
-			add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_civilian_factories_in_cores@GER }
-			add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_naval_factories_in_cores@GER }
+			set_temp_variable = { GER.occupied_state_num_factory = 0 } #This will show how many factories in total Germany controls from FROM's cores
+			#add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_military_factories_in_cores@GER }
+			# add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_civilian_factories_in_cores@GER }
+			# add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_naval_factories_in_cores@GER }
+			# add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_civilian_factories_in_cores@ITA }
+			# add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_naval_factories_in_cores@ITA }
+			# add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_civilian_factories_in_cores@HUN }
+			# add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_naval_factories_in_cores@HUN }
+			# add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_civilian_factories_in_cores@ROM }
+			# add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_naval_factories_in_cores@ROM }
+			# add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_civilian_factories_in_cores@BUL }
+			# add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_naval_factories_in_cores@BUL }
+			# add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_civilian_factories_in_cores@FIN }
+			# add_to_temp_variable = { GER.occupied_state_num_factory = FROM.num_of_naval_factories_in_cores@FIN }
+			# Doesn't do Spain, Vichy, Reickskomisriats, or Axis Yugo
 			FROM = {
 				every_core_state = {
 					limit = {
 						is_on_continent = europe
-						is_fully_controlled_by = ROOT
+						is_controlled_by_ROOT_or_ally = yes
 						NOT = { has_state_flag = GER_seize_gold_reserves_state_flag }
+						NOT = { has_state_flag = VIC_dont_loot }
 					}
+					add_to_temp_variable = { GER.occupied_state_num_factory = industrial_complex_level }
+					add_to_temp_variable = { GER.occupied_state_num_factory = building_level@dockyard }
 					add_compliance = -5
 					add_resistance = 10
 					set_state_flag = GER_seize_gold_reserves_state_flag
 					add_dynamic_modifier = { modifier = GER_overburdened_state_modifier days = 90 }
+					damage_building = {
+						type = industrial_complex
+						damage = 2 # levels of damage 
+					}
+					damage_building = {
+						type = dockyard
+						damage = 1 # levels of damage 
+					}
 				}
 			}
 			
-			divide_temp_variable = { occupied_state_num_factory = 200 } #This is necessary since a single factory will increase the occupied_state_num_factory number to 1, which in turn translates to -100% when subtracting from the Consumer Goods. Dividing it by 100 here will give you 1% instead, which is more like what we want.
-			multiply_temp_variable = { occupied_state_num_factory = -1 }
+			divide_temp_variable = { GER.occupied_state_num_factory = 200 } #This is necessary since a single factory will increase the occupied_state_num_factory number to 1, which in turn translates to -100% when subtracting from the Consumer Goods. Dividing it by 100 here will give you 1% instead, which is more like what we want.
+			multiply_temp_variable = { GER.occupied_state_num_factory = -1 }
 
 			#If Germany has seized Gold Reserves from Soviet states, deduct that amount when seizing the nation wide Gold Reserves from Soviet, so we're not double dipping
 			if = { 
@@ -359,12 +384,12 @@ GER_seize_gold_reserves_cat = {
 					#Check if Germany has seized Gold Reserves that needs to be deducted from the total amount
 					check_variable = { GER_reduce_russian_CG_bonus < 0 }
 				}
-				subtract_from_temp_variable = { occupied_state_num_factory = GER_reduce_russian_CG_bonus }
+				subtract_from_temp_variable = { GER.occupied_state_num_factory = GER_reduce_russian_CG_bonus }
 			}
 			
 			custom_effect_tooltip = GER_modify_economy_of_conquest_modifier_tt
 			add_to_variable = {
-				GER_industrial_consumer_goods_factor = occupied_state_num_factory
+				GER_industrial_consumer_goods_factor = GER.occupied_state_num_factory
 				tooltip = consumer_goods_factor_tt
 			}
 			GER_reduce_mefo_bills_penalty = yes
@@ -426,7 +451,7 @@ GER_seize_gold_reserves_cat = {
 				NOT = { is_core_of = ROOT }
 				OR = {
 					check_variable = { industrial_complex_level > 0 }
-					check_variable = { arms_factory_level > 0 }
+					#check_variable = { arms_factory_level > 0 }
 					check_variable = { building_level@dockyard > 0 }
 				}
 			}
@@ -456,7 +481,7 @@ GER_seize_gold_reserves_cat = {
 			#All temp variables need to be in the same scope to display the effect tooltip properly
 			FROM = {
 				set_temp_variable = { occupied_state_num_factory = 0 }
-				add_to_temp_variable = { occupied_state_num_factory = arms_factory_level }
+				#add_to_temp_variable = { occupied_state_num_factory = arms_factory_level }
 				add_to_temp_variable = { occupied_state_num_factory = industrial_complex_level }
 				add_to_temp_variable = { occupied_state_num_factory = building_level@dockyard }
 
@@ -464,6 +489,14 @@ GER_seize_gold_reserves_cat = {
 				add_compliance = -5
 				set_state_flag = GER_seize_gold_reserves_state_flag
 				add_dynamic_modifier = { modifier = GER_overburdened_state_modifier days = 90 }
+				damage_building = {
+					type = industrial_complex
+					damage = 2 # levels of damage 
+				}
+				damage_building = {
+					type = dockyard
+					damage = 1 # levels of damage 
+				}
 				
 				divide_temp_variable = { occupied_state_num_factory = 200 } #This is necessary since a single factory will increase the occupied_state_num_factory number to 1, which in turn translates to -100% when subtracting from the Consumer Goods. Dividing it by 100 here will give you 1% instead, which is more like what we want.
 				multiply_temp_variable = { occupied_state_num_factory = -1 }
@@ -493,6 +526,32 @@ GER_seize_gold_reserves_cat = {
 # Operational Planning
 GER_operational_planning_category = {
 
+	GER_planning_cooldown = {
+		priority = 100
+		allowed = { tag = GER }
+
+		#icon = generic_prepare_civil_war
+
+		available = {
+			hidden_trigger = { always = no }
+		}
+
+		days_mission_timeout = 44
+		is_good = no
+		fire_only_once = no
+
+		cancel_trigger = {
+			NOT = {has_country_flag = GER_operational_planning_flag}
+		}
+
+		visible = {
+		}
+
+		activation = {
+			has_country_flag = GER_operational_planning_flag
+		}
+		
+	}
 	# Campaign Instructions against [FROM.GetName]
 	GER_operational_planning = {
 		icon = GFX_decision_hol_draw_up_staff_plans
@@ -642,7 +701,7 @@ GER_operational_planning_category = {
 			has_army_experience > 14
 		}
 
-		custom_cost_text = decision_cost_CP_25_ArmXP_15 
+		custom_cost_text = decision_cost_CP_15_ArmXP_15 
 
 		available = { #Can't be target_root_trigger
 			NOT = {	has_country_flag = GER_operational_planning_flag }
@@ -666,11 +725,11 @@ GER_operational_planning_category = {
 			}
 		}
 
-	#	fire_only_once = yes
+		#fire_only_once = yes
 		
 		complete_effect = {
 			hidden_effect = {
-				add_command_power = -25
+				add_command_power = -15
 				army_experience = -15
 				set_country_flag = GER_operational_planning_flag
 			}
@@ -879,9 +938,9 @@ GER_operational_planning_category = {
 			has_army_experience > 14
 		}
 
-		custom_cost_text = decision_cost_CP_25_ArmXP_15
+		custom_cost_text = decision_cost_CP_15_ArmXP_15
 
-		visible = { has_completed_focus = GER_establish_the_afrikakorps }
+		#visible = { has_completed_focus = GER_establish_the_afrikakorps }
 
 		available = { #Can't be target_root_trigger
 			NOT = {	has_country_flag = GER_operational_planning_flag }
@@ -889,9 +948,9 @@ GER_operational_planning_category = {
 				has_war_with = FROM
 				has_wargoal_against = FROM
 			}
-			hidden_trigger = {
-				has_completed_focus = GER_establish_the_afrikakorps
-			}
+			#hidden_trigger = {
+			has_completed_focus = GER_establish_the_afrikakorps
+			#}
 		}
 
 		target_array = ROOT.GER_war_targets_array
@@ -924,7 +983,7 @@ GER_operational_planning_category = {
 		
 		complete_effect = {
 			hidden_effect = {
-				add_command_power = -25
+				add_command_power = -15
 				army_experience = -15
 				set_country_flag = GER_operational_planning_flag
 			}
@@ -961,7 +1020,7 @@ GER_operational_planning_category = {
 							is_on_continent = africa
 						}
 						add_dynamic_modifier = {
-							modifier = GER_blitzkrieg_modifier
+							modifier = GER_blitzkrieg_modifier_af
 							scope = GER
 							days = 45
 						}
@@ -978,7 +1037,7 @@ GER_operational_planning_category = {
 							is_on_continent = africa
 						}
 						add_dynamic_modifier = {
-							modifier = GER_blitzkrieg_modifier_lvl_2
+							modifier = GER_blitzkrieg_modifier_lvl_2_af
 							scope = GER
 							days = 45
 						}
@@ -994,7 +1053,7 @@ GER_operational_planning_category = {
 							is_on_continent = africa
 						}
 						add_dynamic_modifier = {
-							modifier = GER_blitzkrieg_modifier_lvl_3
+							modifier = GER_blitzkrieg_modifier_lvl_3_af
 							scope = GER
 							days = 45
 						}
@@ -3383,6 +3442,13 @@ operations = {
 		}
 
 		complete_effect = {
+			every_state = {
+				limit = {
+					is_fully_controlled_by = HUN
+					NOT = { is_owned_by = HUN }
+				}
+				transfer_state_to = GER
+			}
 			set_autonomy = {
 				target = HUN
 				autonomy_state = autonomy_reichsprotectorate
@@ -3393,6 +3459,7 @@ operations = {
 
 		timeout_effect = {
 			HUN = {
+				leave_faction = yes
 				white_peace = SOV
 				every_country = {
 					limit = {
@@ -3401,7 +3468,6 @@ operations = {
 					}
 					white_peace = HUN
 				}
-				leave_faction = yes
 			}
 			SOV = { add_to_faction = HUN }
 			create_wargoal = {
@@ -3816,7 +3882,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RKG
 				set_state_flag = GER_RK_capital_state_trasferred_RKG_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_norwegen_effect_tt
@@ -3839,7 +3905,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKG
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -3860,19 +3926,34 @@ GER_reichskommissariats = {
 					add_contested_owner = RKG
 					set_state_controller_to = RKG
 					add_claim_by = RKG
-					add_compliance = 25
+					add_compliance = 50
 				}
 
 				RKG = {
 					add_manpower = 50000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
+						type = infantry_equipment_0
 						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 500
+						amount = 300
 						producer = GER
 					}	
 					inherit_technology = GER
@@ -3974,7 +4055,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RKN
 				set_state_flag = GER_RK_capital_state_trasferred_RKN_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_niederlande_effect_tt
@@ -3997,7 +4078,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKN
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -4018,20 +4099,35 @@ GER_reichskommissariats = {
 					add_contested_owner = RKN
 					set_state_controller_to = RKN
 					add_claim_by = RKN
-					add_compliance = 25
+					add_compliance = 50
 				}
 				RKN = {
 					add_manpower = 50000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
+						type = infantry_equipment_0
 						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 500
+						amount = 300
 						producer = GER
-					}	
+					}		
 					inherit_technology = GER
 					add_offsite_building = { type = arms_factory level = 3 }
 					load_oob = "RK_OOB"
@@ -4138,7 +4234,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RKB
 				set_state_flag = GER_RK_capital_state_trasferred_RKB_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_belgien_effect_tt
@@ -4161,7 +4257,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKB
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -4182,20 +4278,35 @@ GER_reichskommissariats = {
 					add_contested_owner = RKB
 					set_state_controller_to = RKB
 					add_claim_by = RKB
-					add_compliance = 25
+					add_compliance = 50
 				}
 				RKB = {
 					add_manpower = 50000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
+						type = infantry_equipment_0
 						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 500
+						amount = 300
 						producer = GER
-					}	
+					}		
 					inherit_technology = GER
 					add_offsite_building = { type = arms_factory level = 3 }
 					load_oob = "RK_OOB"
@@ -4386,7 +4497,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RKO
 				set_state_flag = GER_RK_capital_state_trasferred_RKO_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_ostland_effect_tt
@@ -4409,7 +4520,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKO
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -4430,19 +4541,19 @@ GER_reichskommissariats = {
 					add_contested_owner = RKO
 					set_state_controller_to = RKO
 					add_claim_by = RKO
-					add_compliance = 25
+					add_compliance = 50
 				}
 
 				RKO = {
 					add_manpower = 50000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
+						type = infantry_equipment_0
 						amount = 5000
 						producer = GER
 					}	
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 500
+						amount = 300
 						producer = GER
 					}	
 					inherit_technology = GER
@@ -4596,7 +4707,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RKU
 				set_state_flag = GER_RK_capital_state_trasferred_RKU_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_ukraine_effect_tt
@@ -4622,7 +4733,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKU
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -4646,19 +4757,34 @@ GER_reichskommissariats = {
 					add_contested_owner = RKU
 					set_state_controller_to = RKU
 					add_claim_by = RKU
-					add_compliance = 25
+					add_compliance = 50
 				}
 
 				RKU = {
 					add_manpower = 50000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
+						type = infantry_equipment_0
 						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 500
+						amount = 300
 						producer = GER
 					}	
 					inherit_technology = GER
@@ -4751,7 +4877,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKU
-					add_compliance = 20
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -4769,7 +4895,7 @@ GER_reichskommissariats = {
 					add_contested_owner = RKU
 					set_state_controller_to = RKU
 					add_claim_by = RKU
-					add_compliance = 20
+					add_compliance = 50
 				}
 			}	
 
@@ -4857,7 +4983,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKU
-					add_compliance = 20
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -4875,7 +5001,7 @@ GER_reichskommissariats = {
 					add_contested_owner = RKU
 					set_state_controller_to = RKU
 					add_claim_by = RKU
-					add_compliance = 20
+					add_compliance = 50
 				}
 			}	
 
@@ -5004,7 +5130,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RKK
 				set_state_flag = GER_RK_capital_state_trasferred_RKK_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_kaukasien_effect_tt
@@ -5027,7 +5153,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKK
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -5048,7 +5174,7 @@ GER_reichskommissariats = {
 					add_contested_owner = RKK
 					set_state_controller_to = RKK
 					add_claim_by = RKK
-					add_compliance = 25
+					add_compliance = 50
 				}
 
 				RKK = {
@@ -5233,7 +5359,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RKT
 				set_state_flag = GER_RK_capital_state_trasferred_RKT_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_turkestan_effect_tt
@@ -5256,7 +5382,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKT
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -5277,19 +5403,34 @@ GER_reichskommissariats = {
 					add_contested_owner = RKT
 					set_state_controller_to = RKT
 					add_claim_by = RKT
-					add_compliance = 25
+					add_compliance = 50
 				}
 
 				RKT = {
 					add_manpower = 80000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
-						amount = 10000
+						type = infantry_equipment_0
+						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 1000
+						amount = 300
 						producer = GER
 					}	
 					inherit_technology = GER
@@ -5526,7 +5667,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RKM
 				set_state_flag = GER_RK_capital_state_trasferred_RKM_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_muscovy_effect_tt
@@ -5549,7 +5690,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKM
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -5570,19 +5711,34 @@ GER_reichskommissariats = {
 					add_contested_owner = RKM
 					set_state_controller_to = RKM
 					add_claim_by = RKM
-					add_compliance = 25
+					add_compliance = 50
 				}
 
 				RKM = {
 					add_manpower = 80000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
-						amount = 10000
+						type = infantry_equipment_0
+						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 1000
+						amount = 300
 						producer = GER
 					}	
 					inherit_technology = GER
@@ -6056,7 +6212,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKM
-					add_compliance = 20
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -6074,7 +6230,7 @@ GER_reichskommissariats = {
 					add_contested_owner = RKM
 					set_state_controller_to = RKM
 					add_claim_by = RKM
-					add_compliance = 20
+					add_compliance = 50
 				}
 			}	
 
@@ -6192,7 +6348,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKM
-					add_compliance = 20
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -6210,7 +6366,7 @@ GER_reichskommissariats = {
 					add_contested_owner = RKM
 					set_state_controller_to = RKM
 					add_claim_by = RKM
-					add_compliance = 20
+					add_compliance = 50
 				}
 			}	
 
@@ -6393,7 +6549,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = GEN
 				set_state_flag = GER_RK_capital_state_trasferred_GEN_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_generalgouvernement_effect_tt
@@ -6416,7 +6572,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = GEN
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -6437,19 +6593,34 @@ GER_reichskommissariats = {
 					add_contested_owner = GEN
 					set_state_controller_to = GEN
 					add_claim_by = GEN
-					add_compliance = 25
+					add_compliance = 50
 				}
 
 				GEN = {
 					add_manpower = 50000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
+						type = infantry_equipment_0
 						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 500
+						amount = 300
 						producer = GER
 					}	
 					inherit_technology = GER
@@ -6538,7 +6709,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = GEN
-					add_compliance = 20
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -6556,7 +6727,7 @@ GER_reichskommissariats = {
 					add_contested_owner = GEN
 					set_state_controller_to = GEN
 					add_claim_by = GEN
-					add_compliance = 20
+					add_compliance = 50
 				}
 			}	
 
@@ -6642,7 +6813,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RKH
 				set_state_flag = GER_RK_capital_state_trasferred_RKH_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_bohemia_effect_tt
@@ -6665,7 +6836,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKH
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -6686,20 +6857,35 @@ GER_reichskommissariats = {
 					add_contested_owner = RKH
 					set_state_controller_to = RKH
 					add_claim_by = RKH
-					add_compliance = 25
+					add_compliance = 50
 				}
 				RKH = {
 					add_manpower = 50000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
+						type = infantry_equipment_0
 						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 500
+						amount = 300
 						producer = GER
-					}	
+					}		
 					inherit_technology = GER
 					add_offsite_building = { type = arms_factory level = 2 }
 					load_oob = "RK_OOB"
@@ -6894,7 +7080,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RKI
 				set_state_flag = GER_RK_capital_state_trasferred_RKI_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_iberia_effect_tt
@@ -6917,7 +7103,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKI
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -6938,19 +7124,34 @@ GER_reichskommissariats = {
 					add_contested_owner = RKI
 					set_state_controller_to = RKI
 					add_claim_by = RKI
-					add_compliance = 25
+					add_compliance = 50
 				}
 
 				RKI = {
 					add_manpower = 60000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
+						type = infantry_equipment_0
 						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 500
+						amount = 300
 						producer = GER
 					}	
 					inherit_technology = GER
@@ -7155,7 +7356,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RKC
 				set_state_flag = GER_RK_capital_state_trasferred_RKC_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_balkan_effect_tt
@@ -7187,7 +7388,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKC
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -7217,21 +7418,36 @@ GER_reichskommissariats = {
 					add_contested_owner = RKC
 					set_state_controller_to = RKC
 					add_claim_by = RKC
-					add_compliance = 25
+					add_compliance = 50
 				}
 
 				RKC = {
 					add_manpower = 60000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
+						type = infantry_equipment_0
 						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 500
+						amount = 300
 						producer = GER
-					}	
+					}		
 					inherit_technology = GER
 					add_offsite_building = { type = arms_factory level = 3 }
 					load_oob = "RK_OOB"
@@ -7314,7 +7530,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKC
-					add_compliance = 20
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -7332,7 +7548,7 @@ GER_reichskommissariats = {
 					add_contested_owner = RKC
 					set_state_controller_to = RKC
 					add_claim_by = RKC
-					add_compliance = 20
+					add_compliance = 50
 				}
 			}	
 
@@ -7481,7 +7697,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RGB
 				set_state_flag = GER_RK_capital_state_trasferred_RGB_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_grossbritannien_effect_tt
@@ -7504,7 +7720,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RGB
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -7525,19 +7741,34 @@ GER_reichskommissariats = {
 					add_contested_owner = RGB
 					set_state_controller_to = RGB
 					add_claim_by = RGB
-					add_compliance = 25
+					add_compliance = 50
 				}
 
 				RGB = {
 					add_manpower = 60000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
-						amount = 6000
+						type = infantry_equipment_0
+						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 600
+						amount = 300
 						producer = GER
 					}	
 					inherit_technology = GER
@@ -7646,7 +7877,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKC
-					add_compliance = 15
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -7664,7 +7895,7 @@ GER_reichskommissariats = {
 					add_contested_owner = RKC
 					set_state_controller_to = RKC
 					add_claim_by = RKC
-					add_compliance = 15
+					add_compliance = 50
 				}
 			}	
 
@@ -7781,7 +8012,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKC
-					add_compliance = 20
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -7799,7 +8030,7 @@ GER_reichskommissariats = {
 					add_contested_owner = RKC
 					set_state_controller_to = RKC
 					add_claim_by = RKC
-					add_compliance = 20
+					add_compliance = 50
 				}
 			}	
 
@@ -8019,7 +8250,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RGB
-					add_compliance = 15
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -8037,7 +8268,7 @@ GER_reichskommissariats = {
 					add_contested_owner = RGB
 					set_state_controller_to = RGB
 					add_claim_by = RGB
-					add_compliance = 15
+					add_compliance = 50
 				}
 			}	
 
@@ -8265,7 +8496,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RNA
 				set_state_flag = GER_RK_capital_state_trasferred_RNA_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_nordafrika_effect_tt
@@ -8288,7 +8519,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RNA
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -8309,18 +8540,33 @@ GER_reichskommissariats = {
 					add_contested_owner = RNA
 					set_state_controller_to = RNA
 					add_claim_by = RNA
-					add_compliance = 25
+					add_compliance = 50
 				}
 				RNA = {
 					add_manpower = 100000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
-						amount = 9000
+						type = infantry_equipment_0
+						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 900
+						amount = 300
 						producer = GER
 					}	
 					inherit_technology = GER
@@ -8685,7 +8931,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RKA
 				set_state_flag = GER_RK_capital_state_trasferred_RKA_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_mittelafrika_effect_tt
@@ -8708,7 +8954,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKA
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -8729,18 +8975,33 @@ GER_reichskommissariats = {
 					add_contested_owner = RKA
 					set_state_controller_to = RKA
 					add_claim_by = RKA
-					add_compliance = 25
+					add_compliance = 50
 				}
 				RKA = {
 					add_manpower = 90000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
-						amount = 8000
+						type = infantry_equipment_0
+						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 1000
+						amount = 300
 						producer = GER
 					}	
 					inherit_technology = GER
@@ -8829,7 +9090,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKA
-					add_compliance = 20
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -8847,7 +9108,7 @@ GER_reichskommissariats = {
 					add_contested_owner = RKA
 					set_state_controller_to = RKA
 					add_claim_by = RKA
-					add_compliance = 20
+					add_compliance = 50
 				}
 			}	
 
@@ -9102,7 +9363,7 @@ GER_reichskommissariats = {
 	# 			}
 	# 			transfer_state_to = RKV
 	# 			set_state_flag = GER_RK_capital_state_trasferred_RKV_flag
-	# 			add_compliance = 25
+	# 			add_compliance = 50
 	# 		}
 
 	# 		custom_effect_tooltip = GER_reichskommissariat_klein_venedig_effect_tt
@@ -9125,7 +9386,7 @@ GER_reichskommissariats = {
 	# 					}
 	# 				}
 	# 				transfer_state_to = RKV
-	# 				add_compliance = 25
+	# 				add_compliance = 50
 	# 			}
 	# 			every_state = {	
 	# 				limit = {
@@ -9146,7 +9407,7 @@ GER_reichskommissariats = {
 	# 				add_contested_owner = RKV
 	# 				set_state_controller_to = RKV
 	# 				add_claim_by = RKV
-	# 				add_compliance = 25
+	# 				add_compliance = 50
 	# 			}
 	# 			RKV = {
 	# 				add_manpower = 60000
@@ -9375,7 +9636,7 @@ GER_reichskommissariats = {
 	# 			}
 	# 			transfer_state_to = RAN
 	# 			set_state_flag = GER_RK_capital_state_trasferred_RAN_flag
-	# 			add_compliance = 25
+	# 			add_compliance = 50
 	# 		}
 
 	# 		custom_effect_tooltip = GER_reichskommissariat_anden_effect_tt
@@ -9398,7 +9659,7 @@ GER_reichskommissariats = {
 	# 					}
 	# 				}
 	# 				transfer_state_to = RAN
-	# 				add_compliance = 25
+	# 				add_compliance = 50
 	# 			}
 	# 			every_state = {	
 	# 				limit = {
@@ -9419,7 +9680,7 @@ GER_reichskommissariats = {
 	# 				add_contested_owner = RAN
 	# 				set_state_controller_to = RAN
 	# 				add_claim_by = RAN
-	# 				add_compliance = 25
+	# 				add_compliance = 50
 	# 			}
 	# 			RAN = {
 	# 				add_manpower = 60000
@@ -9700,7 +9961,7 @@ GER_reichskommissariats = {
 	# 			}
 	# 			transfer_state_to = RCO
 	# 			set_state_flag = GER_RK_capital_state_trasferred_RCO_flag
-	# 			add_compliance = 25
+	# 			add_compliance = 50
 	# 		}
 
 	# 		custom_effect_tooltip = GER_reichskommissariat_kolumbus_effect_tt
@@ -9723,7 +9984,7 @@ GER_reichskommissariats = {
 	# 					}
 	# 				}
 	# 				transfer_state_to = RCO
-	# 				add_compliance = 25
+	# 				add_compliance = 50
 	# 			}
 	# 			every_state = {	
 	# 				limit = {
@@ -9744,7 +10005,7 @@ GER_reichskommissariats = {
 	# 				add_contested_owner = RCO
 	# 				set_state_controller_to = RCO
 	# 				add_claim_by = RCO
-	# 				add_compliance = 25
+	# 				add_compliance = 50
 	# 			}
 	# 			RCO = {
 	# 				add_manpower = 60000
@@ -10033,7 +10294,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RUS
 				set_state_flag = GER_RK_capital_state_trasferred_RUS_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_nordamerika_effect_tt
@@ -10056,7 +10317,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RUS
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -10077,18 +10338,33 @@ GER_reichskommissariats = {
 					add_contested_owner = RUS
 					set_state_controller_to = RUS
 					add_claim_by = RUS
-					add_compliance = 25
+					add_compliance = 50
 				}
 				RUS = {
 					add_manpower = 80000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
-						amount = 7000
+						type = infantry_equipment_0
+						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 700
+						amount = 300
 						producer = GER
 					}	
 					inherit_technology = GER
@@ -10181,7 +10457,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RUS
-					add_compliance = 20
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -10203,7 +10479,7 @@ GER_reichskommissariats = {
 					add_contested_owner = RUS
 					set_state_controller_to = RUS
 					add_claim_by = RUS
-					add_compliance = 20
+					add_compliance = 50
 				}
 			}	
 
@@ -10498,7 +10774,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKM
-					add_compliance = 20
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -10516,7 +10792,7 @@ GER_reichskommissariats = {
 					add_contested_owner = RKM
 					set_state_controller_to = RKM
 					add_claim_by = RKM
-					add_compliance = 20
+					add_compliance = 50
 				}
 			}	
 
@@ -10623,7 +10899,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RKT
-					add_compliance = 20
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -10641,7 +10917,7 @@ GER_reichskommissariats = {
 					add_contested_owner = RKT
 					set_state_controller_to = RKT
 					add_claim_by = RKT
-					add_compliance = 20
+					add_compliance = 50
 				}
 			}	
 
@@ -10831,7 +11107,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RAR
 				set_state_flag = GER_RK_capital_state_trasferred_RAR_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_arabien_effect_tt
@@ -10854,7 +11130,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RAR
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -10875,18 +11151,33 @@ GER_reichskommissariats = {
 					add_contested_owner = RAR
 					set_state_controller_to = RAR
 					add_claim_by = RAR
-					add_compliance = 25
+					add_compliance = 50
 				}
 				RAR = {
 					add_manpower = 60000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
-						amount = 7000
+						type = infantry_equipment_0
+						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 8500
+						amount = 300
 						producer = GER
 					}	
 					inherit_technology = GER
@@ -11041,7 +11332,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RAR
-					add_compliance = 15
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -11059,7 +11350,7 @@ GER_reichskommissariats = {
 					add_contested_owner = RAR
 					set_state_controller_to = RAR
 					add_claim_by = RAR
-					add_compliance = 15
+					add_compliance = 50
 				}
 			}	
 
@@ -11182,7 +11473,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RAR
-					add_compliance = 15
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -11200,7 +11491,7 @@ GER_reichskommissariats = {
 					add_contested_owner = RAR
 					set_state_controller_to = RAR
 					add_claim_by = RAR
-					add_compliance = 15
+					add_compliance = 50
 				}
 			}	
 
@@ -11438,7 +11729,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RHD
 				set_state_flag = GER_RK_capital_state_trasferred_RHD_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_hindustan_effect_tt
@@ -11461,7 +11752,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RHD
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -11482,20 +11773,35 @@ GER_reichskommissariats = {
 					add_contested_owner = RHD
 					set_state_controller_to = RHD
 					add_claim_by = RHD
-					add_compliance = 25
+					add_compliance = 50
 				}
 				RHD = {
 					add_manpower = 90000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
-						amount = 9000
+						type = infantry_equipment_0
+						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 900
+						amount = 300
 						producer = GER
-					}	
+					}		
 					inherit_technology = GER
 					add_offsite_building = { type = arms_factory level = 3 }
 					load_oob = "RK_OOB"
@@ -11987,7 +12293,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = ROA
 				set_state_flag = GER_RK_capital_state_trasferred_ROA_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_ostasien_effect_tt
@@ -12010,7 +12316,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = ROA
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -12031,18 +12337,33 @@ GER_reichskommissariats = {
 					add_contested_owner = ROA
 					set_state_controller_to = ROA
 					add_claim_by = ROA
-					add_compliance = 25
+					add_compliance = 50
 				}
 				ROA = {
 					add_manpower = 90000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
-						amount = 9000
+						type = infantry_equipment_0
+						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 900
+						amount = 300
 						producer = GER
 					}	
 					inherit_technology = GER
@@ -12315,7 +12636,7 @@ GER_reichskommissariats = {
 				}
 				transfer_state_to = RAA
 				set_state_flag = GER_RK_capital_state_trasferred_RAA_flag
-				add_compliance = 25
+				add_compliance = 50
 			}
 
 			custom_effect_tooltip = GER_reichskommissariat_australasien_effect_tt
@@ -12338,7 +12659,7 @@ GER_reichskommissariats = {
 						}
 					}
 					transfer_state_to = RAA
-					add_compliance = 25
+					add_compliance = 50
 				}
 				every_state = {	
 					limit = {
@@ -12359,18 +12680,33 @@ GER_reichskommissariats = {
 					add_contested_owner = RAA
 					set_state_controller_to = RAA
 					add_claim_by = RAA
-					add_compliance = 25
+					add_compliance = 50
 				}
 				RAA = {
 					add_manpower = 70000
 					add_equipment_to_stockpile = { 
-						type = infantry_equipment
-						amount = 7000
+						type = infantry_equipment_0
+						amount = 5000
 						producer = GER
-					}	
+					}
+					add_equipment_to_stockpile = { 
+						type = squad_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = radio_equipment_0
+						amount = 300
+						producer = GER
+					}
+					add_equipment_to_stockpile = { 
+						type = horse_equipment_0
+						amount = 300
+						producer = GER
+					}
 					add_equipment_to_stockpile = { 
 						type = support_equipment
-						amount = 700
+						amount = 300
 						producer = GER
 					}	
 					inherit_technology = GER
@@ -13267,7 +13603,7 @@ special_projects = {
 		}
 		remove_effect = {
 			15 = {
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_bunker
             	    province = {
 						all_provinces = yes
@@ -13276,7 +13612,7 @@ special_projects = {
 					level = 2
             	    instant_build = yes
             	}
-				set_building_level  = {
+				add_building_construction  = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes
@@ -13285,7 +13621,7 @@ special_projects = {
 					level = 3
 					instant_build = yes
 				}
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_fortress
             	    province = {
 						all_provinces = yes
@@ -13296,7 +13632,7 @@ special_projects = {
             	}
 			}
 			14 = {
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_bunker
             	    province = {
 						all_provinces = yes
@@ -13305,7 +13641,7 @@ special_projects = {
 					level = 2
             	    instant_build = yes
             	}
-				set_building_level  = {
+				add_building_construction  = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes
@@ -13314,7 +13650,7 @@ special_projects = {
 					level = 3
 					instant_build = yes
 				}
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_fortress
             	    province = {
 						all_provinces = yes
@@ -13374,7 +13710,7 @@ special_projects = {
 		}
 		remove_effect = {
 			30 = {
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_bunker
             	    province = {
 						all_provinces = yes
@@ -13383,7 +13719,7 @@ special_projects = {
 					level = 1
             	    instant_build = yes
             	}
-				set_building_level  = {
+				add_building_construction  = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes
@@ -13392,7 +13728,7 @@ special_projects = {
 					level = 3
 					instant_build = yes
 				}
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_fortress
             	    province = {
 						all_provinces = yes
@@ -13403,7 +13739,7 @@ special_projects = {
             	}
 			}
 			19 = {
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_bunker
             	    province = {
 						all_provinces = yes
@@ -13412,7 +13748,7 @@ special_projects = {
 					level = 1
             	    instant_build = yes
             	}
-				set_building_level  = {
+				add_building_construction  = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes
@@ -13421,7 +13757,7 @@ special_projects = {
 					level = 3
 					instant_build = yes
 				}
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_fortress
             	    province = {
 						all_provinces = yes
@@ -13432,7 +13768,7 @@ special_projects = {
             	}
 			}
 			23 = {
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_bunker
             	    province = {
 						all_provinces = yes
@@ -13441,7 +13777,7 @@ special_projects = {
 					level = 1
             	    instant_build = yes
             	}
-				set_building_level  = {
+				add_building_construction  = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes
@@ -13450,7 +13786,7 @@ special_projects = {
 					level = 3
 					instant_build = yes
 				}
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_fortress
             	    province = {
 						all_provinces = yes
@@ -13503,7 +13839,7 @@ special_projects = {
 		}
 		remove_effect = {
 			785 = {
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_bunker
             	    province = {
 						all_provinces = yes
@@ -13512,7 +13848,7 @@ special_projects = {
 					level = 3
             	    instant_build = yes
             	}
-				set_building_level  = {
+				add_building_construction  = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes
@@ -13521,7 +13857,7 @@ special_projects = {
 					level = 5
 					instant_build = yes
 				}
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_fortress
             	    province = {
 						all_provinces = yes
@@ -13532,7 +13868,7 @@ special_projects = {
             	}
 			}
 			29 = {
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_bunker
             	    province = {
 						all_provinces = yes
@@ -13541,7 +13877,7 @@ special_projects = {
 					level = 3
             	    instant_build = yes
             	}
-				set_building_level  = {
+				add_building_construction  = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes
@@ -13550,7 +13886,7 @@ special_projects = {
 					level = 5
 					instant_build = yes
 				}
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_fortress
             	    province = {
 						all_provinces = yes
@@ -13617,7 +13953,7 @@ special_projects = {
 		}
 		remove_effect = {
 			6 = {
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_bunker
             	    province = {
 						all_provinces = yes
@@ -13626,7 +13962,7 @@ special_projects = {
 					level = 1
             	    instant_build = yes
             	}
-				set_building_level  = {
+				add_building_construction  = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes
@@ -13635,7 +13971,7 @@ special_projects = {
 					level = 3
 					instant_build = yes
 				}
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_fortress
             	    province = {
 						all_provinces = yes
@@ -13646,7 +13982,7 @@ special_projects = {
             	}
 			}
 			35 = {
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_bunker
             	    province = {
 						all_provinces = yes
@@ -13655,7 +13991,7 @@ special_projects = {
 					level = 1
             	    instant_build = yes
             	}
-				set_building_level  = {
+				add_building_construction  = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes
@@ -13664,7 +14000,7 @@ special_projects = {
 					level = 3
 					instant_build = yes
 				}
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_fortress
             	    province = {
 						all_provinces = yes
@@ -13675,7 +14011,7 @@ special_projects = {
             	}
 			}
 			7 = {
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_bunker
             	    province = {
 						all_provinces = yes
@@ -13684,7 +14020,7 @@ special_projects = {
 					level = 1
             	    instant_build = yes
             	}
-				set_building_level  = {
+				add_building_construction  = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes
@@ -13693,7 +14029,7 @@ special_projects = {
 					level = 3
 					instant_build = yes
 				}
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_fortress
             	    province = {
 						all_provinces = yes
@@ -13704,7 +14040,7 @@ special_projects = {
             	}
 			}
 			36 = {
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_bunker
             	    province = {
 						all_provinces = yes
@@ -13713,7 +14049,7 @@ special_projects = {
 					level = 1
             	    instant_build = yes
             	}
-				set_building_level  = {
+				add_building_construction  = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes
@@ -13722,7 +14058,7 @@ special_projects = {
 					level = 3
 					instant_build = yes
 				}
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_fortress
             	    province = {
 						all_provinces = yes
@@ -13789,7 +14125,7 @@ special_projects = {
 		}
 		remove_effect = {
 			56 = {
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_bunker
             	    province = {
 						all_provinces = yes
@@ -13798,7 +14134,7 @@ special_projects = {
 					level = 2
             	    instant_build = yes
             	}
-				set_building_level  = {
+				add_building_construction  = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes
@@ -13807,7 +14143,7 @@ special_projects = {
 					level = 3
 					instant_build = yes
 				}
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_fortress
             	    province = {
 						all_provinces = yes
@@ -13818,7 +14154,7 @@ special_projects = {
             	}
 			}
 			59 = {
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_bunker
             	    province = {
 						all_provinces = yes
@@ -13827,7 +14163,7 @@ special_projects = {
 					level = 2
             	    instant_build = yes
             	}
-				set_building_level  = {
+				add_building_construction  = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes
@@ -13836,7 +14172,7 @@ special_projects = {
 					level = 3
 					instant_build = yes
 				}
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_fortress
             	    province = {
 						all_provinces = yes
@@ -13847,7 +14183,7 @@ special_projects = {
             	}
 			}
 			58 = {
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_bunker
             	    province = {
 						all_provinces = yes
@@ -13856,7 +14192,7 @@ special_projects = {
 					level = 2
             	    instant_build = yes
             	}
-				set_building_level  = {
+				add_building_construction  = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes
@@ -13865,7 +14201,7 @@ special_projects = {
 					level = 3
 					instant_build = yes
 				}
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_fortress
             	    province = {
 						all_provinces = yes
@@ -13876,7 +14212,7 @@ special_projects = {
             	}
 			}
 			99 = {
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_bunker
             	    province = {
 						all_provinces = yes
@@ -13885,7 +14221,7 @@ special_projects = {
 					level = 2
             	    instant_build = yes
             	}
-				set_building_level  = {
+				add_building_construction  = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes
@@ -13894,7 +14230,7 @@ special_projects = {
 					level = 3
 					instant_build = yes
 				}
-				set_building_level  = {
+				add_building_construction  = {
             	    type = coastal_fortress
             	    province = {
 						all_provinces = yes
@@ -15386,257 +15722,257 @@ GER_influence_countries_cat = {
 		}
 	}
 
-	GER_influence_middle_east_decision = {
-		priority = 1
-		icon = GFX_decision_SWI_expand_covert_operations 
+	# GER_influence_middle_east_decision = {
+	# 	priority = 1
+	# 	icon = GFX_decision_SWI_expand_covert_operations 
 
-		ai_will_do = {
-			base = 25
-			modifier = {
-				factor = 0.5
-				FROM = {
-					is_major = yes
-				}
-			}
-			modifier = {
-				factor = 2
-				strength_ratio = {
-					tag = FROM 
-					ratio > 1
-				}
-			}
-			modifier = {
-				factor = 2
-				strength_ratio = {
-					tag = FROM 
-					ratio > 1.25
-				}
-			}
-			modifier = {
-				factor = 2
-				strength_ratio = {
-					tag = FROM 
-					ratio > 1.5
-				}
-			}
-		}
+	# 	ai_will_do = {
+	# 		base = 25
+	# 		modifier = {
+	# 			factor = 0.5
+	# 			FROM = {
+	# 				is_major = yes
+	# 			}
+	# 		}
+	# 		modifier = {
+	# 			factor = 2
+	# 			strength_ratio = {
+	# 				tag = FROM 
+	# 				ratio > 1
+	# 			}
+	# 		}
+	# 		modifier = {
+	# 			factor = 2
+	# 			strength_ratio = {
+	# 				tag = FROM 
+	# 				ratio > 1.25
+	# 			}
+	# 		}
+	# 		modifier = {
+	# 			factor = 2
+	# 			strength_ratio = {
+	# 				tag = FROM 
+	# 				ratio > 1.5
+	# 			}
+	# 		}
+	# 	}
 
-		targets = { PER IRQ SYR SAU EGY JOR LEB OMA YEM PAL KUW QAT UAE KUR }
+	# 	targets = { PER IRQ SYR SAU EGY JOR LEB OMA YEM PAL KUW QAT UAE KUR }
 
-		target_trigger = {
-			FROM = {
-				NOT = { has_war_with = ROOT }
-				is_subject = no
-				OR = {
-					is_in_faction = no
-					is_in_faction_with = ROOT
-				}
-				NOT = { has_government = fascism }
-				fascism < 50
-			}
-		}
+	# 	target_trigger = {
+	# 		FROM = {
+	# 			NOT = { has_war_with = ROOT }
+	# 			is_subject = no
+	# 			OR = {
+	# 				is_in_faction = no
+	# 				is_in_faction_with = ROOT
+	# 			}
+	# 			NOT = { has_government = fascism }
+	# 			fascism < 50
+	# 		}
+	# 	}
 
-		target_root_trigger =  {
-			OR = {
-				has_completed_focus = GER_influence_the_middle_east
-				has_completed_focus = GER_german_hegemony_in_the_middle_east
-			}
-			has_government = fascism
-		}
+	# 	target_root_trigger =  {
+	# 		OR = {
+	# 			has_completed_focus = GER_influence_the_middle_east
+	# 			has_completed_focus = GER_german_hegemony_in_the_middle_east
+	# 		}
+	# 		has_government = fascism
+	# 	}
 
-		fire_only_once = no
+	# 	fire_only_once = no
 
-		cost = 25
+	# 	cost = 25
 
-		days_re_enable = 732 #Match the Timed NS below + couple of days to make sure NS is gone when the decision comes back
+	# 	days_re_enable = 732 #Match the Timed NS below + couple of days to make sure NS is gone when the decision comes back
 
-		complete_effect = {
-			hidden_effect = {
-				FROM = {
-					country_event = { id = wuw_GER_diplomacy.10 days = 1 } 
-				}
-			}
+	# 	complete_effect = {
+	# 		hidden_effect = {
+	# 			FROM = {
+	# 				country_event = { id = wuw_GER_diplomacy.10 days = 1 } 
+	# 			}
+	# 		}
 
-			effect_tooltip = {
-				FROM = {
-					add_timed_idea = {
-						idea = GER_fascism_influence
-						days = 730 #Match the days_re_enable above
-					}
-					add_opinion_modifier = { 
-						target = GER 
-						modifier = GER_german_influence
-					}
-				}
-			}
-		}
-	}
+	# 		effect_tooltip = {
+	# 			FROM = {
+	# 				add_timed_idea = {
+	# 					idea = GER_fascism_influence
+	# 					days = 730 #Match the days_re_enable above
+	# 				}
+	# 				add_opinion_modifier = { 
+	# 					target = GER 
+	# 					modifier = GER_german_influence
+	# 				}
+	# 			}
+	# 		}
+	# 	}
+	# }
 
-	GER_influence_middle_east_democratic_decision = {
-		priority = 1
-		icon = GFX_decision_SWI_expand_covert_operations 
+	# GER_influence_middle_east_democratic_decision = {
+	# 	priority = 1
+	# 	icon = GFX_decision_SWI_expand_covert_operations 
 
-		ai_will_do = {
-			base = 25
-			modifier = {
-				factor = 0.5
-				FROM = {
-					is_major = yes
-				}
-			}
-			modifier = {
-				factor = 2
-				strength_ratio = {
-					tag = FROM 
-					ratio > 1
-				}
-			}
-			modifier = {
-				factor = 2
-				strength_ratio = {
-					tag = FROM 
-					ratio > 1.25
-				}
-			}
-			modifier = {
-				factor = 2
-				strength_ratio = {
-					tag = FROM 
-					ratio > 1.5
-				}
-			}
-		}
+	# 	ai_will_do = {
+	# 		base = 25
+	# 		modifier = {
+	# 			factor = 0.5
+	# 			FROM = {
+	# 				is_major = yes
+	# 			}
+	# 		}
+	# 		modifier = {
+	# 			factor = 2
+	# 			strength_ratio = {
+	# 				tag = FROM 
+	# 				ratio > 1
+	# 			}
+	# 		}
+	# 		modifier = {
+	# 			factor = 2
+	# 			strength_ratio = {
+	# 				tag = FROM 
+	# 				ratio > 1.25
+	# 			}
+	# 		}
+	# 		modifier = {
+	# 			factor = 2
+	# 			strength_ratio = {
+	# 				tag = FROM 
+	# 				ratio > 1.5
+	# 			}
+	# 		}
+	# 	}
 
-		targets = { PER IRQ SYR SAU EGY JOR LEB OMA YEM PAL KUW QAT UAE KUR }
+	# 	targets = { PER IRQ SYR SAU EGY JOR LEB OMA YEM PAL KUW QAT UAE KUR }
 
-		target_trigger = {
-			FROM = {
-				NOT = { has_war_with = ROOT }
-				is_subject = no
-				OR = {
-					is_in_faction = no
-					is_in_faction_with = ROOT
-				}
-				NOT = { has_government = democratic }
-				democratic < 50
-			}
-		}
+	# 	target_trigger = {
+	# 		FROM = {
+	# 			NOT = { has_war_with = ROOT }
+	# 			is_subject = no
+	# 			OR = {
+	# 				is_in_faction = no
+	# 				is_in_faction_with = ROOT
+	# 			}
+	# 			NOT = { has_government = democratic }
+	# 			democratic < 50
+	# 		}
+	# 	}
 
-		target_root_trigger =  {
-			has_completed_focus = GER_german_hegemony_in_the_middle_east
-			has_government = democratic
-		}
+	# 	target_root_trigger =  {
+	# 		has_completed_focus = GER_german_hegemony_in_the_middle_east
+	# 		has_government = democratic
+	# 	}
 
-		fire_only_once = no
+	# 	fire_only_once = no
 
-		cost = 25
+	# 	cost = 25
 
-		days_re_enable = 732 #Match the Timed NS below + couple of days to make sure NS is gone when the decision comes back
+	# 	days_re_enable = 732 #Match the Timed NS below + couple of days to make sure NS is gone when the decision comes back
 
-		complete_effect = {
-			hidden_effect = {
-				FROM = {
-					country_event = { id = wuw_GER_diplomacy.10 days = 1 } 
-				}
-			}
+	# 	complete_effect = {
+	# 		hidden_effect = {
+	# 			FROM = {
+	# 				country_event = { id = wuw_GER_diplomacy.10 days = 1 } 
+	# 			}
+	# 		}
 
-			effect_tooltip = {
-				FROM = {
-					add_timed_idea = {
-						idea = GER_democratic_influence
-						days = 730 #Match the days_re_enable above
-					}
-					add_opinion_modifier = { 
-						target = GER 
-						modifier = GER_german_influence
-					}
-				}
-			}
-		}
-	}
+	# 		effect_tooltip = {
+	# 			FROM = {
+	# 				add_timed_idea = {
+	# 					idea = GER_democratic_influence
+	# 					days = 730 #Match the days_re_enable above
+	# 				}
+	# 				add_opinion_modifier = { 
+	# 					target = GER 
+	# 					modifier = GER_german_influence
+	# 				}
+	# 			}
+	# 		}
+	# 	}
+	# }
 
-	GER_influence_middle_east_neutrality_decision = {
-		priority = 1
-		icon = GFX_decision_SWI_expand_covert_operations 
+	# GER_influence_middle_east_neutrality_decision = {
+	# 	priority = 1
+	# 	icon = GFX_decision_SWI_expand_covert_operations 
 
-		ai_will_do = {
-			base = 25
-			modifier = {
-				factor = 0.5
-				FROM = {
-					is_major = yes
-				}
-			}
-			modifier = {
-				factor = 2
-				strength_ratio = {
-					tag = FROM 
-					ratio > 1
-				}
-			}
-			modifier = {
-				factor = 2
-				strength_ratio = {
-					tag = FROM 
-					ratio > 1.25
-				}
-			}
-			modifier = {
-				factor = 2
-				strength_ratio = {
-					tag = FROM 
-					ratio > 1.5
-				}
-			}
-		}
+	# 	ai_will_do = {
+	# 		base = 25
+	# 		modifier = {
+	# 			factor = 0.5
+	# 			FROM = {
+	# 				is_major = yes
+	# 			}
+	# 		}
+	# 		modifier = {
+	# 			factor = 2
+	# 			strength_ratio = {
+	# 				tag = FROM 
+	# 				ratio > 1
+	# 			}
+	# 		}
+	# 		modifier = {
+	# 			factor = 2
+	# 			strength_ratio = {
+	# 				tag = FROM 
+	# 				ratio > 1.25
+	# 			}
+	# 		}
+	# 		modifier = {
+	# 			factor = 2
+	# 			strength_ratio = {
+	# 				tag = FROM 
+	# 				ratio > 1.5
+	# 			}
+	# 		}
+	# 	}
 
-		targets = { PER IRQ SYR SAU EGY JOR LEB OMA YEM PAL KUW QAT UAE KUR }
+	# 	targets = { PER IRQ SYR SAU EGY JOR LEB OMA YEM PAL KUW QAT UAE KUR }
 
-		target_trigger = {
-			FROM = {
-				NOT = { has_war_with = ROOT }
-				is_subject = no
-				OR = {
-					is_in_faction = no
-					is_in_faction_with = ROOT
-				}
-				NOT = { has_government = neutrality }
-				neutrality < 50
-			}
-		}
+	# 	target_trigger = {
+	# 		FROM = {
+	# 			NOT = { has_war_with = ROOT }
+	# 			is_subject = no
+	# 			OR = {
+	# 				is_in_faction = no
+	# 				is_in_faction_with = ROOT
+	# 			}
+	# 			NOT = { has_government = neutrality }
+	# 			neutrality < 50
+	# 		}
+	# 	}
 
-		target_root_trigger =  {
-			has_completed_focus = GER_german_hegemony_in_the_middle_east
-			has_government = neutrality
-		}
+	# 	target_root_trigger =  {
+	# 		has_completed_focus = GER_german_hegemony_in_the_middle_east
+	# 		has_government = neutrality
+	# 	}
 
-		fire_only_once = no
+	# 	fire_only_once = no
 
-		cost = 25
+	# 	cost = 25
 
-		days_re_enable = 732 #Match the Timed NS below + couple of days to make sure NS is gone when the decision comes back
+	# 	days_re_enable = 732 #Match the Timed NS below + couple of days to make sure NS is gone when the decision comes back
 
-		complete_effect = {
-			hidden_effect = {
-				FROM = {
-					country_event = { id = wuw_GER_diplomacy.10 days = 1 } 
-				}
-			}
+	# 	complete_effect = {
+	# 		hidden_effect = {
+	# 			FROM = {
+	# 				country_event = { id = wuw_GER_diplomacy.10 days = 1 } 
+	# 			}
+	# 		}
 
-			effect_tooltip = {
-				FROM = {
-					add_timed_idea = {
-						idea = GER_neutrality_influence
-						days = 730 #Match the days_re_enable above
-					}
-					add_opinion_modifier = { 
-						target = GER 
-						modifier = GER_german_influence
-					}
-				}
-			}
-		}
-	}
+	# 		effect_tooltip = {
+	# 			FROM = {
+	# 				add_timed_idea = {
+	# 					idea = GER_neutrality_influence
+	# 					days = 730 #Match the days_re_enable above
+	# 				}
+	# 				add_opinion_modifier = { 
+	# 					target = GER 
+	# 					modifier = GER_german_influence
+	# 				}
+	# 			}
+	# 		}
+	# 	}
+	# }
 
 	GER_influence_balkans_neutrality_decision = {
 		priority = 1
@@ -15979,34 +16315,34 @@ GER_invite_to_faction_cat = {
 					has_completed_focus = GER_influence_the_benelux
 				}
 			}
-			if = {
-				limit = {
-					FROM = {
-						OR = {
-							original_tag = PER
-							original_tag = IRQ
-							original_tag = SYR
-							original_tag = SAU
-							original_tag = EGY
-							original_tag = JOR
-							original_tag = LEB
-							original_tag = OMA
-							original_tag = YEM
-							original_tag = PAL
-							original_tag = KUW 
-							original_tag = QAT 
-							original_tag = UAE
-							original_tag = KUR
-						}
-					}
-				}
-				ROOT = {
-					OR = {
-						has_completed_focus = GER_influence_the_middle_east
-						has_completed_focus = GER_german_hegemony_in_the_middle_east
-					}
-				}
-			}
+			# if = {
+			# 	limit = {
+			# 		FROM = {
+			# 			OR = {
+			# 				original_tag = PER
+			# 				original_tag = IRQ
+			# 				original_tag = SYR
+			# 				original_tag = SAU
+			# 				original_tag = EGY
+			# 				original_tag = JOR
+			# 				original_tag = LEB
+			# 				original_tag = OMA
+			# 				original_tag = YEM
+			# 				original_tag = PAL
+			# 				original_tag = KUW 
+			# 				original_tag = QAT 
+			# 				original_tag = UAE
+			# 				original_tag = KUR
+			# 			}
+			# 		}
+			# 	}
+			# 	ROOT = {
+			# 		OR = {
+			# 			has_completed_focus = GER_influence_the_middle_east
+			# 			has_completed_focus = GER_german_hegemony_in_the_middle_east
+			# 		}
+			# 	}
+			# }
 			if = {
 				limit = {
 					FROM = {
@@ -16073,189 +16409,189 @@ GER_invite_to_faction_cat = {
 	}	
 }
 	
-GER_middle_eastern_trade_cat = {
+# GER_middle_eastern_trade_cat = {
 
-	GER_middle_eastern_trade_decision = {
-		priority = 1
-		icon = GFX_decision_eng_trade_unions_support 
+# 	GER_middle_eastern_trade_decision = {
+# 		priority = 1
+# 		icon = GFX_decision_eng_trade_unions_support 
 
-		ai_will_do = {
-			base = 1
-			modifier = {
-				factor = 2
-				any_enemy_country = {
-					has_war_with = FROM
-				}
-			}
-			modifier = {
-				factor = 2
-				FROM = {
-					is_in_faction = no
-				}
-			}
-			modifier = {
-				factor = 3
-				FROM = {
-					any_core_state = {
-						is_fully_controlled_by = FROM
-						OR = {
-							has_resources_amount = {
-								resource = oil
-								amount > 14
-							}
-							has_resources_amount = {
-								resource = aluminium
-								amount > 14
-							}
-							has_resources_amount = {
-								resource = rubber
-								amount > 14
-							}
-							has_resources_amount = {
-								resource = tungsten
-								amount > 14
-							}
-							has_resources_amount = {
-								resource = steel
-								amount > 14
-							}
-							has_resources_amount = {
-								resource = chromium
-								amount > 14
-							}
-						}
-					}
-				}
-			}
-			modifier = {
-				factor = 3
-				FROM = {
-					any_core_state = {
-						is_fully_controlled_by = FROM
-						OR = {
-							has_resources_amount = {
-								resource = oil
-								amount > 24
-							}
-							has_resources_amount = {
-								resource = aluminium
-								amount > 24
-							}
-							has_resources_amount = {
-								resource = rubber
-								amount > 24
-							}
-							has_resources_amount = {
-								resource = tungsten
-								amount > 24
-							}
-							has_resources_amount = {
-								resource = steel
-								amount > 24
-							}
-							has_resources_amount = {
-								resource = chromium
-								amount > 24
-							}
-						}
-					}
-				}
-			}
-			modifier = {
-				factor = 0.5
-				FROM = {
-					is_enemy_ideology = yes
-				}
-			}
-			modifier = {
-				factor = 2
-				FROM = {
-					has_government = ROOT
-				}
-			}
-		}
+# 		ai_will_do = {
+# 			base = 1
+# 			modifier = {
+# 				factor = 2
+# 				any_enemy_country = {
+# 					has_war_with = FROM
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 2
+# 				FROM = {
+# 					is_in_faction = no
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 3
+# 				FROM = {
+# 					any_core_state = {
+# 						is_fully_controlled_by = FROM
+# 						OR = {
+# 							has_resources_amount = {
+# 								resource = oil
+# 								amount > 14
+# 							}
+# 							has_resources_amount = {
+# 								resource = aluminium
+# 								amount > 14
+# 							}
+# 							has_resources_amount = {
+# 								resource = rubber
+# 								amount > 14
+# 							}
+# 							has_resources_amount = {
+# 								resource = tungsten
+# 								amount > 14
+# 							}
+# 							has_resources_amount = {
+# 								resource = steel
+# 								amount > 14
+# 							}
+# 							has_resources_amount = {
+# 								resource = chromium
+# 								amount > 14
+# 							}
+# 						}
+# 					}
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 3
+# 				FROM = {
+# 					any_core_state = {
+# 						is_fully_controlled_by = FROM
+# 						OR = {
+# 							has_resources_amount = {
+# 								resource = oil
+# 								amount > 24
+# 							}
+# 							has_resources_amount = {
+# 								resource = aluminium
+# 								amount > 24
+# 							}
+# 							has_resources_amount = {
+# 								resource = rubber
+# 								amount > 24
+# 							}
+# 							has_resources_amount = {
+# 								resource = tungsten
+# 								amount > 24
+# 							}
+# 							has_resources_amount = {
+# 								resource = steel
+# 								amount > 24
+# 							}
+# 							has_resources_amount = {
+# 								resource = chromium
+# 								amount > 24
+# 							}
+# 						}
+# 					}
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0.5
+# 				FROM = {
+# 					is_enemy_ideology = yes
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 2
+# 				FROM = {
+# 					has_government = ROOT
+# 				}
+# 			}
+# 		}
 
-		targets = { PER IRQ SYR SAU EGY JOR LEB OMA YEM KUW QAT UAE }
+# 		targets = { PER IRQ SYR SAU EGY JOR LEB OMA YEM KUW QAT UAE }
 
-		target_trigger = {
-			FROM = {
-				is_subject = no
-				NOT = {
-					has_war_with = ROOT
-				}
-				any_core_state = {
-					is_fully_controlled_by = FROM
-					OR = {
-						has_resources_amount = {
-							resource = oil
-							amount > 9
-							delivered = yes
+# 		target_trigger = {
+# 			FROM = {
+# 				is_subject = no
+# 				NOT = {
+# 					has_war_with = ROOT
+# 				}
+# 				any_core_state = {
+# 					is_fully_controlled_by = FROM
+# 					OR = {
+# 						has_resources_amount = {
+# 							resource = oil
+# 							amount > 9
+# 							delivered = yes
 
-						}
-						has_resources_amount = {
-							resource = aluminium
-							amount > 9
-							delivered = yes
-						}
-						has_resources_amount = {
-							resource = rubber
-							amount > 9
-							delivered = yes
-						}
-						has_resources_amount = {
-							resource = tungsten
-							amount > 9
-							delivered = yes
-						}
-						has_resources_amount = {
-							resource = steel
-							amount > 9
-							delivered = yes
-						}
-						has_resources_amount = {
-							resource = chromium
-							amount > 9
-							delivered = yes
-						}
-					}
-				}
-			}
-		}
+# 						}
+# 						has_resources_amount = {
+# 							resource = aluminium
+# 							amount > 9
+# 							delivered = yes
+# 						}
+# 						has_resources_amount = {
+# 							resource = rubber
+# 							amount > 9
+# 							delivered = yes
+# 						}
+# 						has_resources_amount = {
+# 							resource = tungsten
+# 							amount > 9
+# 							delivered = yes
+# 						}
+# 						has_resources_amount = {
+# 							resource = steel
+# 							amount > 9
+# 							delivered = yes
+# 						}
+# 						has_resources_amount = {
+# 							resource = chromium
+# 							amount > 9
+# 							delivered = yes
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
 
-		available = {
-		}
+# 		available = {
+# 		}
 
-		visible = {	
-			has_completed_focus = GER_influence_the_middle_east
-		}
+# 		visible = {	
+# 			has_completed_focus = GER_influence_the_middle_east
+# 		}
 
-		fire_only_once = yes
+# 		fire_only_once = yes
 
-		cost = 25
+# 		cost = 25
 
-		days_remove = 365
+# 		days_remove = 365
 
-		complete_effect = {
-			FROM = {
-				country_event = { id = wuw_GER_diplomacy.1 days = 1 } 
-			}
+# 		complete_effect = {
+# 			FROM = {
+# 				country_event = { id = wuw_GER_diplomacy.1 days = 1 } 
+# 			}
 
-			#custom_effect_tooltip = if_they_accept_tt
+# 			#custom_effect_tooltip = if_they_accept_tt
 
-			effect_tooltip = {
-				FROM = {
+# 			effect_tooltip = {
+# 				FROM = {
 
-					add_ideas = GER_german_trade_ns
-					add_opinion_modifier = {
-						target = PREV
-						modifier = GER_trading_partners
-					}
-					custom_effect_tooltip = war_will_cancel_deal_tt
-				}
-			}
-		}
-	}
-}
+# 					add_ideas = GER_german_trade_ns
+# 					add_opinion_modifier = {
+# 						target = PREV
+# 						modifier = GER_trading_partners
+# 					}
+# 					custom_effect_tooltip = war_will_cancel_deal_tt
+# 				}
+# 			}
+# 		}
+# 	}
+# }
 
 GER_mitteleuropa_allied_trade_cat = {
 
@@ -23899,31 +24235,31 @@ GER_propaganda_campaigns = {
 		}
 		targeted_modifier = {
 			tag = USA
-			attack_bonus_against = -0.10
+			attack_bonus_against = -0.05
 		}
 		targeted_modifier = {
 			tag = ENG
-			attack_bonus_against = -0.10
+			attack_bonus_against = -0.05
 		}
 		targeted_modifier = {
 			tag = SAF
-			attack_bonus_against = -0.10
+			attack_bonus_against = -0.05
 		}
 		targeted_modifier = {
 			tag = CAN
-			attack_bonus_against = -0.10
+			attack_bonus_against = -0.05
 		}
 		targeted_modifier = {
 			tag = IRE
-			attack_bonus_against = -0.10
+			attack_bonus_against = -0.05
 		}
 		targeted_modifier = {
 			tag = BRA
-			attack_bonus_against = -0.10
+			attack_bonus_against = -0.05
 		}
 		targeted_modifier = {
 			tag = MEX
-			attack_bonus_against = -0.10
+			attack_bonus_against = -0.05
 		}
 
 		complete_effect = {
@@ -24006,11 +24342,11 @@ GER_propaganda_campaigns = {
 		cost = 25
 		targeted_modifier = {
 			tag = SOV
-			attack_bonus_against = -0.15
+			attack_bonus_against = -0.10
 		}
 		targeted_modifier = {
 			tag = MON
-			attack_bonus_against = -0.15
+			attack_bonus_against = -0.10
 		}
 		targeted_modifier = {
 			tag = USA

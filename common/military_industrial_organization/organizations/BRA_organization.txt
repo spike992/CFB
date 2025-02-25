@@ -15,25 +15,17 @@
  		#has_dlc = "Trial of Allegiance"
  		tag = BRA 
  	}
-
- 	available = {
- 		IF = {
- 			limit = {
- 				FROM = { NOT = { original_tag = BRA } }
- 			}
- 			FROM = { NOT = { has_war_with = BRA } }
- 		}
- 		ELSE = { #original_tag = BRA
- 			FROM = {
- 				OR = {
- 					has_completed_focus = SMB_domestic_production
- 					has_completed_focus = SMB_foreign_designs
- 				}
- 			}
- 		} 
- 	}
  }
 
+ BRA_henschel_organization = {
+	include = generic_pmfu_light_tank_organization
+	icon = GFX_idea_henschel
+	
+	allowed = {	
+		#has_dlc = "Trial of Allegiance"
+		tag = BRA 
+	}
+}
 
 #####################
 
@@ -54,20 +46,6 @@ BRA_amrj_organization = {
 		#has_dlc = "Trial of Allegiance"
 		# TODO_JUNO: Add correct DLC check!
 		tag = BRA 
-	}
-
-	available = {
-		IF = {
-			limit = {
-				FROM = { NOT = { original_tag = BRA } }
-			}
-			FROM = { NOT = { has_war_with = BRA } }
-		}
-		ELSE = { #original_tag = BRA
-			FROM = {
-				controls_state = 500 #Rio de Janeiro
-			}
-		} 
 	}
 }
 
@@ -91,22 +69,6 @@ BRA_embraer_organization = {
 		#has_dlc = "Trial of Allegiance"
 		# TODO_JUNO: Add correct DLC check!
 		tag = BRA 
-	}
-
-	available = {
-		IF = {
-			limit = {
-				FROM = { NOT = { original_tag = BRA } }
-			}
-			FROM = { NOT = { has_war_with = BRA } }
-		}
-		ELSE = {
-			FROM = {
-				OR = {
-					has_completed_focus = SMB_establish_aircraft_industry
-				}
-			}
-		}
 	}
 }
 
@@ -161,21 +123,6 @@ BRA_fnm_organization = {
 		#has_dlc = "Trial of Allegiance"
 		tag = BRA
 	}
-	available = { 
-		IF = {
-			limit = {
-				FROM = { NOT = { original_tag = BRA } }
-			}
-			FROM = { NOT = { has_war_with = BRA } }
-		}
-		ELSE = {
-			FROM = { 
-				OR = { 
-					has_completed_focus = SMB_motorized 
-					has_completed_focus = BRA_fabrica_nacional_de_motores
-				}
-			}
-		}
-	}
+
 }
 

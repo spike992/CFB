@@ -1,0 +1,1392 @@
+guiTypes = {
+	containerWindowType = {       
+		name = "BI_country_selection_container"
+		position = { x = -290 y = -330 } #990
+		size = { width = 452 height = 700 } 
+		orientation = CENTER
+		origo = CENTER
+		moveable = yes 
+		
+		background = {
+			name = "Background" 
+			position = { x = -2 y = 0 } #990
+			quadTextureSprite = "GFX_tiled_window_1b_thin_border"
+		}
+		
+		iconType ={   
+			name = "BI_filter_header" 
+			spriteType = "GFX_header_bg_444"   
+			position = { x =3 y = 8 } 
+			alwaystransparent = yes 
+		}
+		
+		instantTextBoxType = {  
+			name = "BI_filter_header_text"
+			position = { x =15 y = 8 }
+			font = "hoi_36header"     
+			text = "Country Selection"
+			maxWidth = 420
+			maxHeight = 23
+			format = left 
+			allwaystransparent = yes
+		}
+		
+		buttonType ={   
+			name = "BI_filter_close_button" 
+			spriteType = "GFX_closebutton"  
+			position = { x =406 y = 11 } 
+		}
+		
+		containerWindowType = {      
+			name = "BI_filter_owned_neighbors_container"
+			position = { x =0 y = 40 } 
+			 
+			buttonType ={   
+				name = "BI_filter_owned_neighbors" 
+				spriteType = "GFX_EAI_checkbox_on"  
+				position = { x =10 y = 10 } 
+			}
+			instantTextBoxType = {  
+				name = "BI_filter_owned_neighbors_text"
+				position = { x =50 y = 15 }
+				font = "hoi_18mbs"     
+				text = "Neighbours (owned)"
+				maxWidth = 250
+				maxHeight = 23
+				format = left 
+				allwaystransparent = yes
+			}
+		}
+		
+		containerWindowType = {      
+			name = "BI_filter_neighbors_container"
+			position = { x =0 y = 70 } 
+			 
+			buttonType ={   
+				name = "BI_filter_neighbors" 
+				spriteType = "GFX_EAI_checkbox_on"  
+				position = { x =10 y = 10 } 
+			}
+			instantTextBoxType = {  
+				name = "BI_filter_neighbors_text"
+				position = { x =50 y = 15 }
+				font = "hoi_18mbs"     
+				text = "Neighbours"
+				maxWidth = 250
+				maxHeight = 23
+				format = left 
+				allwaystransparent = yes
+			}
+		}
+		
+		containerWindowType = {      
+			name = "BI_filter_major_container"
+			position = { x =0 y = 100 } 
+			 
+			buttonType ={   
+				name = "BI_filter_major"  
+				spriteType = "GFX_EAI_checkbox_on"  
+				position = { x =10 y = 10 } 
+			}
+			instantTextBoxType = {  
+				name = "BI_filter_major_text"
+				position = { x =50 y = 15 }
+				font = "hoi_18mbs"     
+				text = "Majors"
+				maxWidth = 250
+				maxHeight = 23
+				format = left 
+				allwaystransparent = yes
+			}
+		}
+		
+		containerWindowType = {      
+			name = "BI_filter_faction_container"
+			position = { x =250 y = 40 } 
+			 
+			buttonType ={   
+				name = "BI_filter_faction"  
+				spriteType = "GFX_EAI_checkbox_on"  
+				position = { x =10 y = 10 } 
+			}
+			instantTextBoxType = {  
+				name = "BI_filter_faction_text"
+				position = { x =50 y = 15 }
+				font = "hoi_18mbs"     
+				text = "Allies"
+				maxWidth = 250
+				maxHeight = 23
+				format = left 
+				allwaystransparent = yes
+			}
+		}
+		
+		containerWindowType = {      
+			name = "BI_filter_subjects_container"
+			position = { x =250 y = 70 } 
+			 
+			buttonType ={   
+				name = "BI_filter_subjects"  
+				spriteType = "GFX_EAI_checkbox_on"  
+				position = { x =10 y = 10 } 
+			}
+			instantTextBoxType = {  
+				name = "BI_filter_subjects_text"
+				position = { x =50 y = 15 }
+				font = "hoi_18mbs"     
+				text = "Subjects"
+				maxWidth = 250
+				maxHeight = 23
+				format = left 
+				allwaystransparent = yes
+			}
+		}
+		containerWindowType = {      
+			name = "BI_filter_enemies_container"
+			position = { x =250 y = 100 } 
+			 
+			buttonType ={   
+				name = "BI_filter_enemies"  
+				spriteType = "GFX_EAI_checkbox_on"  
+				position = { x =10 y = 10 } 
+			}
+			instantTextBoxType = {  
+				name = "BI_filter_enemies_text"
+				position = { x =50 y = 15 }
+				font = "hoi_18mbs"     
+				text = "Enemies"
+				maxWidth = 250
+				maxHeight = 23
+				format = left 
+				allwaystransparent = yes
+			}
+		}
+		
+		containerWindowType = {
+			name = "topbar_country_container"
+			position = {x = 0 y = 140 }
+			size = {width = 450 height = 560 } 
+            margin = { top = 10 left = 10 bottom = 10 }
+			Orientation = upper_left
+			background = {
+				name = "background"
+				quadTextureSprite = "GFX_tiled_window_1b_thin_border"
+			}
+			verticalScrollbar = "right_vertical_slider"
+			smooth_scrolling = yes 
+			scroll_wheel_factor = 40
+			
+			#background = {
+			#	name = "background_box"
+			#	quadTextureSprite = "GFX_tiled_window_small"
+			#}
+			# this grid will be dynamically populated
+			gridboxtype = {
+				name = "topbar_country_list"
+				position = { x = 0 y = 0}
+				size = { width = 82 height = 52 } 
+				slotsize = { width = 82 height = 52 } #if width or height is 1, it will use slot element's dimension
+				
+				max_slots_horizontal = 5	 
+			}
+		}
+	} 
+
+	containerWindowType = {
+		name = "topbar_country_container"  
+		position = { x = 0 y = 0}	  
+		size = { width = 173 height = 23 }  
+		 
+		buttonType = {
+			name = "flag"
+			quadTextureSprite = "GFX_shield_medium"   
+			position = { x = 0 y = 0 }    
+			Orientation = "UPPER_LEFT"
+			pdx_tooltip = "GET_NAME"    
+			pdx_tooltip_delayed = "BI_SELECT_COUNTRY_DELAYED_TT"     
+		}	
+		
+	}
+
+	### BICE panel
+	containerWindowType = {
+		name = "bicepanel_container"
+		position = { x = -305 y = 3 }
+		Orientation = UPPER_RIGHT
+
+		buttonType = {
+			name ="open_ai_bonus"
+			spriteType = "GFX_EAI_config_button"
+			position = { x= -50 y = 0 }
+			
+			pdx_tooltip = "BICE_CONTROL_PANEL"
+		} 
+	}
+
+
+	containerWindowType = {        
+		name = "ai_difficulty_country_container"
+		position = { x = 0 y = 0 } 
+		size = { width = 690 height = 700 } 
+		orientation = CENTER
+		origo = CENTER
+		clipping = no
+		moveable = yes  
+		
+		background = {
+			name = "Background" 
+			position = { x = 0 y = -34 } 
+			quadTextureSprite = "GFX_tiled_window_1b_thin_border"
+		}
+		
+		containerWindowType = {  
+			name = "setting_target_window"
+			position = {x =0 y = 3 } 
+			size = { width = 100%% height = 100 }
+			margin = { top = 7 bottom = 7 }
+			orientation = upper_left					
+			verticalScrollbar = "right_vertical_slider"
+			smooth_scrolling = yes 
+			scroll_wheel_factor = 50 
+			
+			background = {
+				name = "Background"
+				spriteType ="GFX_tiled_window_1b_thin_border"
+			}
+			
+			# this grid will be dynamically populated
+			gridboxtype = {
+				name = "setting_target"
+				position = { x = 6 y = 0}
+				size = { width = 223 height = 44 }
+				slotsize = { width = 218 height = 40 } #if width or height is 1, it will use slot element's dimension
+				
+				max_slots_horizontal = 3
+			}
+		}
+		containerWindowType = {
+			name = "setting_target_countries_title"
+			position = {x = 10 y = 160 } 
+			size = {width = 160 height = 50 } 
+			background = {
+				name = "background_box"
+				quadTextureSprite = "GFX_mini_bg"
+				alwaystransparent = yes
+			}
+			instantTextBoxType = {  
+				name = "modifiers" 
+				position = { x = 2 y = 4 } 
+				font = "hoi_24header"    
+				text = "Countries"
+				maxWidth = 160 
+				maxHeight = 23
+				format = centre
+				allwaystransparent = yes
+			}	
+		}
+		containerWindowType = {  
+			name = "setting_target_countries_window"
+			position = {x =10 y = 190 } 
+			size = { width = 654 height = 95 }        
+			orientation = upper_left					
+			verticalScrollbar = "right_vertical_slider"
+			smooth_scrolling = yes 
+			scroll_wheel_factor = 50 
+			
+			background = {
+				name = "Background"
+				spriteType ="GFX_mini_bg"
+				alwaystransparent = yes
+			}
+			
+			# this grid will be dynamically populated
+			gridboxtype = {
+				name = "setting_target_countries"
+				position = { x = 9 y = 6}
+				size = { width = 41 height = 26 }
+				slotsize = { width = 46 height = 28 } #if width or height is 1, it will use slot element's dimension
+				
+				max_slots_horizontal = 14
+				max_slots_vertical = 3
+			}
+		}
+
+		instantTextboxType = {
+			name = "custom_explanation_description_box"
+			position = { x = 0 y = 100 }
+			font = "hoi_18mbs"
+			text = "custom_explanation_description"
+			maxWidth = 670
+			maxHeight = 18
+			format = centre 
+			alwaystransparent = yes
+		}
+
+		buttonType = { 
+			name = "add_countries_button"
+			position = { x = 630 y = 160 }
+			spriteType ="GFX_production_line_arrow_right"
+			pdx_tooltip = AI_DIFF_ADD_COUNTRIES_TOOLTIP
+		} 
+		buttonType = { 
+			name = "debug_button"
+			position = { x = 4 y = 5 }
+			spriteType ="GFX_closebutton"
+		}	
+		
+		containerWindowType = {       
+			name ="sliders"
+			position = { x = 0 y = 40 } 
+
+		  # Buffs
+			containerWindowType = {
+				name = "buffs_title"
+				position = {x = 300 y = 250 } 
+				size = {width = 80 height = 35 } 
+				background = {
+					name = "background_box"
+					quadTextureSprite = "GFX_mini_bg"
+					alwaystransparent = yes
+				}
+				instantTextBoxType = {  
+					name = "modifiers" 
+					position = { x = 0 y = 4 } 
+					font = "hoi_24header"    
+					text = "Buffs"
+					maxWidth = 80 
+					maxHeight = 20
+					format = centre
+					allwaystransparent = yes
+				}	
+			}
+
+			containerWindowType = {       
+				name ="army"
+				position = { x = 10 y = 355 } 
+				size = { width = 210 height = 60 }
+				clipping = no 
+				
+				background = {
+					name = "background"     
+					quadTextureSprite ="GFX_tiled_generic_bg_1"
+				}
+				
+				containerWindowType = {
+					name = "difficulty_slider"
+					position = { x = 5 y = 30 }
+					size = { width = 200 height = 30 }
+						
+					background = {
+						name = "Background"	
+						quadTextureSprite = "GFX_custom_setting_slider_bg"
+						position = { x= -1 y = -4 }
+					}
+					
+					iconType = { 
+						name = "army_bar"	  
+						quadTextureSprite = "GFX_ai_slider"
+						position = { x=22 y = 2 }
+						pdx_tooltip = AI_DIFF_ARMY_BAR_TEXT			
+					}
+			
+					buttonType = {
+						name = "army_down"
+						quadTextureSprite = "yearslider_leftbutton"
+						position = { x=3 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_ARMY_DOWN_TEXT
+					}
+					
+					buttonType = {
+						name = "army_up"
+						quadTextureSprite = "yearslider_rightbutton"
+						position = { x=170 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_ARMY_UP_TEXT
+					}
+				}
+				
+				instantTextboxType = {
+					name = "custom_difficulty_name"
+					position = { x = 0 y = 5 }
+					font = "hoi_18mbs"
+					text = "custom_diff_army"
+					maxWidth = 210
+					maxHeight = 18
+					format = centre 
+					alwaystransparent = yes
+				}
+					
+			}
+			containerWindowType = {       
+				name ="air"
+				position = { x = 230 y = 355 } 
+				size = { width = 210 height = 60 }
+				clipping = no 
+				
+				background = {
+					name = "background"     
+					quadTextureSprite ="GFX_tiled_generic_bg_1"
+				}
+				
+				containerWindowType = {
+					name = "difficulty_slider"
+					position = { x = 5 y = 30 }
+					size = { width = 200 height = 30 }
+						
+					background = {
+						name = "Background"	
+						quadTextureSprite = "GFX_custom_setting_slider_bg"
+						position = { x= -1 y = -4 }
+					}
+					
+					iconType = { 
+						name = "air_bar"	  
+						quadTextureSprite = "GFX_ai_slider"
+						position = { x=22 y = 2 }
+						pdx_tooltip = AI_DIFF_AIR_BAR_TEXT				
+					}
+			
+					buttonType = {
+						name = "air_down"
+						quadTextureSprite = "yearslider_leftbutton"
+						position = { x=3 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_AIR_DOWN_TEXT
+					}
+					
+					buttonType = {
+						name = "air_up"
+						quadTextureSprite = "yearslider_rightbutton"
+						position = { x=170 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_AIR_UP_TEXT
+					}
+				}
+				
+				instantTextboxType = {
+					name = "custom_difficulty_name"
+					position = { x = 0 y = 5 }
+					font = "hoi_18mbs"
+					text = "custom_diff_air"
+					maxWidth = 210
+					maxHeight = 18
+					format = centre 
+					alwaystransparent = yes
+				}
+					
+			}   
+			containerWindowType = {       
+				name ="navy"
+				position = { x = 450 y = 355 } 
+				size = { width = 210 height = 60 }
+				clipping = no 
+				
+				background = {
+					name = "background"     
+					quadTextureSprite ="GFX_tiled_generic_bg_1"
+				}
+				
+				containerWindowType = {
+					name = "difficulty_slider"
+					position = { x = 5 y = 30 }
+					size = { width = 200 height = 30 }
+						
+					background = {
+						name = "Background"	
+						quadTextureSprite = "GFX_custom_setting_slider_bg"
+						position = { x= -1 y = -4 }
+					}
+					
+					iconType = { 
+						name = "navy_bar"	  
+						quadTextureSprite = "GFX_ai_slider"
+						position = { x=22 y = 2 }
+						pdx_tooltip = AI_DIFF_NAVY_BAR_TEXT				
+					}
+			
+					buttonType = {
+						name = "navy_down"
+						quadTextureSprite = "yearslider_leftbutton"
+						position = { x=3 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_NAVY_DOWN_TEXT
+					}
+					
+					buttonType = {
+						name = "navy_up"
+						quadTextureSprite = "yearslider_rightbutton"
+						position = { x=170 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_NAVY_UP_TEXT
+					}
+				}
+				
+				instantTextboxType = {
+					name = "custom_difficulty_name"
+					position = { x = 0 y = 5 }
+					font = "hoi_18mbs"
+					text = "custom_diff_navy"
+					maxWidth = 210
+					maxHeight = 18
+					format = centre 
+					alwaystransparent = yes
+				}
+					
+			}  
+			
+			containerWindowType = {       
+				name ="politics" 
+				position = { x = 10 y = 290 } 
+				size = { width = 210 height = 60 }
+				clipping = no 
+				
+				background = {
+					name = "background"     
+					quadTextureSprite ="GFX_tiled_generic_bg_1"
+				}
+				
+				containerWindowType = {
+					name = "difficulty_slider"
+					position = { x = 5 y = 30 }
+					size = { width = 200 height = 30 }
+						
+					background = {
+						name = "Background"	
+						quadTextureSprite = "GFX_custom_setting_slider_bg"
+						position = { x= -1 y = -4 }
+					}
+					
+					iconType = { 
+						name = "politics_bar"	  
+						quadTextureSprite = "GFX_ai_slider"
+						position = { x=22 y = 2 }	
+						pdx_tooltip = AI_DIFF_POLITICS_BAR_TEXT			
+					}
+			
+					buttonType = {
+						name = "politics_down"
+						quadTextureSprite = "yearslider_leftbutton"
+						position = { x=3 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_POLITICS_DOWN_TEXT
+					}
+					
+					buttonType = {
+						name = "politics_up"
+						quadTextureSprite = "yearslider_rightbutton"
+						position = { x=170 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_POLITICS_UP_TEXT
+					}
+				}
+				
+				instantTextboxType = {
+					name = "custom_difficulty_name"
+					position = { x = 0 y = 5 }
+					font = "hoi_18mbs"
+					text = "custom_diff_politics"
+					maxWidth = 210
+					maxHeight = 18
+					format = centre 
+					alwaystransparent = yes
+				}
+					
+			} 
+			containerWindowType = {       
+				name ="construction"
+				position = { x = 230 y = 290 } 
+				size = { width = 210 height = 60 }
+				clipping = no 
+				
+				background = {
+					name = "background"     
+					quadTextureSprite ="GFX_tiled_generic_bg_1"
+				}
+				
+				containerWindowType = {
+					name = "difficulty_slider"
+					position = { x = 5 y = 30 }
+					size = { width = 200 height = 30 }
+						
+					background = {
+						name = "Background"	
+						quadTextureSprite = "GFX_custom_setting_slider_bg"
+						position = { x= -1 y = -4 }
+					}
+					
+					iconType = { 
+						name = "construction_bar"	  
+						quadTextureSprite = "GFX_ai_slider"
+						position = { x=22 y = 2 }
+						pdx_tooltip = AI_DIFF_CONSTRUCTION_BAR_TEXT			
+					}
+			
+					buttonType = {
+						name = "construction_down"
+						quadTextureSprite = "yearslider_leftbutton"
+						position = { x=3 y = 1 } 
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_CONSTRUCTION_DOWN_TEXT
+					}
+					
+					buttonType = {
+						name = "construction_up"
+						quadTextureSprite = "yearslider_rightbutton"
+						position = { x=170 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_CONSTRUCTION_UP_TEXT
+					}
+				}
+				
+				instantTextboxType = {
+					name = "custom_difficulty_name"
+					position = { x = 0 y = 5 }
+					font = "hoi_18mbs"
+					text = "custom_diff_industrial"
+					maxWidth = 210
+					maxHeight = 18
+					format = centre 
+					alwaystransparent = yes
+				}
+					
+			}     
+			containerWindowType = {       
+				name ="production"
+				position = { x = 450 y = 290 } 
+				size = { width = 210 height = 60 }
+				clipping = no 
+				
+				background = {
+					name = "background"     
+					quadTextureSprite ="GFX_tiled_generic_bg_1"
+				}
+				
+				containerWindowType = {
+					name = "difficulty_slider"
+					position = { x = 5 y = 30 }
+					size = { width = 200 height = 30 }
+						
+					iconType = {
+						name = "Background"	
+						quadTextureSprite = "GFX_custom_setting_slider_bg"
+						position = { x= -1 y = -4 }
+					}
+					
+					iconType = { 
+						name = "production_bar"	  
+						quadTextureSprite = "GFX_ai_slider"
+						position = { x=22 y = 2 } 
+						pdx_tooltip = AI_DIFF_PRODUCTION_BAR_TEXT
+					}
+			
+					buttonType = {
+						name = "production_down"
+						quadTextureSprite = "yearslider_leftbutton"
+						position = { x=3 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_PRODUCTION_DOWN_TEXT
+					}
+					
+					buttonType = { 
+						name = "production_up"
+						quadTextureSprite = "yearslider_rightbutton"
+						position = { x=170 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_PRODUCTION_UP_TEXT
+					}
+				} 
+				
+				instantTextboxType = {
+					name = "custom_difficulty_name"
+					position = { x = 0 y = 5 }
+					font = "hoi_18mbs"
+					text = "custom_diff_production"
+					maxWidth = 210
+					maxHeight = 18
+					format = centre 
+					alwaystransparent = yes
+				}
+					
+			} 
+
+		  # Nerf
+
+			containerWindowType = {
+				name = "nerfs_title"
+				position = {x = 300 y = 445 } 
+				size = {width = 80 height = 35 } 
+				background = {
+					name = "background_box"
+					quadTextureSprite = "GFX_mini_bg"
+					alwaystransparent = yes
+				}
+				instantTextBoxType = {  
+					name = "modifiers" 
+					position = { x = 0 y = 4 } 
+					font = "hoi_24header"    
+					text = "Nerfs"
+					maxWidth = 80 
+					maxHeight = 20
+					format = centre
+					allwaystransparent = yes
+				}	
+			}
+
+			containerWindowType = {       
+				name ="armynerf"
+				position = { x = 10 y = 550 } 
+				size = { width = 210 height = 60 }
+				clipping = no 
+				
+				background = {
+					name = "background"     
+					quadTextureSprite ="GFX_tiled_generic_bg_1"
+				}
+				
+				containerWindowType = {
+					name = "difficulty_slider"
+					position = { x = 5 y = 30 }
+					size = { width = 200 height = 30 }
+						
+					background = {
+						name = "Background"	
+						quadTextureSprite = "GFX_custom_setting_slider_bg"
+						position = { x= -1 y = -4 }
+					}
+					
+					iconType = { 
+						name = "army_nerf_bar"	  
+						quadTextureSprite = "GFX_ai2_slider"
+						position = { x=22 y = 2 }
+						pdx_tooltip = AI_DIFF_ARMY_NERF_BAR_TEXT			
+					}
+			
+					buttonType = {
+						name = "army_nerf_down"
+						quadTextureSprite = "yearslider_leftbutton"
+						position = { x=3 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_ARMY_NERF_DOWN_TEXT
+					}
+					
+					buttonType = {
+						name = "army_nerf_up"
+						quadTextureSprite = "yearslider_rightbutton"
+						position = { x=170 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_ARMY_NERF_UP_TEXT
+					}
+				}
+				
+				instantTextboxType = {
+					name = "custom_difficulty_name"
+					position = { x = 0 y = 5 }
+					font = "hoi_18mbs"
+					text = "custom_diff_army_nerf"
+					maxWidth = 210
+					maxHeight = 18
+					format = centre 
+					alwaystransparent = yes
+				}
+					
+			}
+			containerWindowType = {       
+				name ="airnerf"
+				position = { x = 230 y = 550 } 
+				size = { width = 210 height = 60 }
+				clipping = no 
+				
+				background = {
+					name = "background"     
+					quadTextureSprite ="GFX_tiled_generic_bg_1"
+				}
+				
+				containerWindowType = {
+					name = "difficulty_slider"
+					position = { x = 5 y = 30 }
+					size = { width = 200 height = 30 }
+						
+					background = {
+						name = "Background"	
+						quadTextureSprite = "GFX_custom_setting_slider_bg"
+						position = { x= -1 y = -4 }
+					}
+					
+					iconType = { 
+						name = "air_nerf_bar"	  
+						quadTextureSprite = "GFX_ai2_slider"
+						position = { x=22 y = 2 }
+						pdx_tooltip = AI_DIFF_AIR_NERF_BAR_TEXT				
+					}
+			
+					buttonType = {
+						name = "air_nerf_down"
+						quadTextureSprite = "yearslider_leftbutton"
+						position = { x=3 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_AIR_NERF_DOWN_TEXT
+					}
+					
+					buttonType = {
+						name = "air_nerf_up"
+						quadTextureSprite = "yearslider_rightbutton"
+						position = { x=170 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_AIR_NERF_UP_TEXT
+					}
+				}
+				
+				instantTextboxType = {
+					name = "custom_difficulty_name"
+					position = { x = 0 y = 5 }
+					font = "hoi_18mbs"
+					text = "custom_diff_air_nerf"
+					maxWidth = 210
+					maxHeight = 18
+					format = centre 
+					alwaystransparent = yes
+				}
+					
+			}   
+			containerWindowType = {       
+				name ="navynerf"
+				position = { x = 450 y = 550 } 
+				size = { width = 210 height = 60 }
+				clipping = no 
+				
+				background = {
+					name = "background"     
+					quadTextureSprite ="GFX_tiled_generic_bg_1"
+				}
+				
+				containerWindowType = {
+					name = "difficulty_slider"
+					position = { x = 5 y = 30 }
+					size = { width = 200 height = 30 }
+						
+					background = {
+						name = "Background"	
+						quadTextureSprite = "GFX_custom_setting_slider_bg"
+						position = { x= -1 y = -4 }
+					}
+					
+					iconType = { 
+						name = "navy_nerf_bar"	  
+						quadTextureSprite = "GFX_ai2_slider"
+						position = { x=22 y = 2 }
+						pdx_tooltip = AI_DIFF_NAVY_NERF_BAR_TEXT				
+					}
+			
+					buttonType = {
+						name = "navy_nerf_down"
+						quadTextureSprite = "yearslider_leftbutton"
+						position = { x=3 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_NAVY_NERF_DOWN_TEXT
+					}
+					
+					buttonType = {
+						name = "navy_nerf_up"
+						quadTextureSprite = "yearslider_rightbutton"
+						position = { x=170 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_NAVY_NERF_UP_TEXT
+					}
+				}
+				
+				instantTextboxType = {
+					name = "custom_difficulty_name"
+					position = { x = 0 y = 5 }
+					font = "hoi_18mbs"
+					text = "custom_diff_navy_nerf"
+					maxWidth = 210
+					maxHeight = 18
+					format = centre 
+					alwaystransparent = yes
+				}
+					
+			}  
+			
+			containerWindowType = {       
+				name ="politicsnerf" 
+				position = { x = 10 y = 485 } 
+				size = { width = 210 height = 60 }
+				clipping = no 
+				
+				background = {
+					name = "background"     
+					quadTextureSprite ="GFX_tiled_generic_bg_1"
+				}
+				
+				containerWindowType = {
+					name = "difficulty_slider"
+					position = { x = 5 y = 30 }
+					size = { width = 200 height = 30 }
+						
+					background = {
+						name = "Background"	
+						quadTextureSprite = "GFX_custom_setting_slider_bg"
+						position = { x= -1 y = -4 }
+					}
+					
+					iconType = { 
+						name = "politics_nerf_bar"	  
+						quadTextureSprite = "GFX_ai2_slider"
+						position = { x=22 y = 2 }	
+						pdx_tooltip = AI_DIFF_POLITICS_NERF_BAR_TEXT			
+					}
+			
+					buttonType = {
+						name = "politics_nerf_down"
+						quadTextureSprite = "yearslider_leftbutton"
+						position = { x=3 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_POLITICS_NERF_DOWN_TEXT
+					}
+					
+					buttonType = {
+						name = "politics_nerf_up"
+						quadTextureSprite = "yearslider_rightbutton"
+						position = { x=170 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_POLITICS_NERF_UP_TEXT
+					}
+				}
+				
+				instantTextboxType = {
+					name = "custom_difficulty_name"
+					position = { x = 0 y = 5 }
+					font = "hoi_18mbs"
+					text = "custom_diff_politics_nerf"
+					maxWidth = 210
+					maxHeight = 18
+					format = centre 
+					alwaystransparent = yes
+				}
+					
+			} 
+			containerWindowType = {       
+				name ="constructionnerf"
+				position = { x = 230 y = 485 } 
+				size = { width = 210 height = 60 }
+				clipping = no 
+				
+				background = {
+					name = "background"     
+					quadTextureSprite ="GFX_tiled_generic_bg_1"
+				}
+				
+				containerWindowType = {
+					name = "difficulty_slider"
+					position = { x = 5 y = 30 }
+					size = { width = 200 height = 30 }
+						
+					background = {
+						name = "Background"	
+						quadTextureSprite = "GFX_custom_setting_slider_bg"
+						position = { x= -1 y = -4 }
+					}
+					
+					iconType = { 
+						name = "construction_nerf_bar"	  
+						quadTextureSprite = "GFX_ai2_slider"
+						position = { x=22 y = 2 }
+						pdx_tooltip = AI_DIFF_CONSTRUCTION_NERF_BAR_TEXT			
+					}
+			
+					buttonType = {
+						name = "construction_nerf_down"
+						quadTextureSprite = "yearslider_leftbutton"
+						position = { x=3 y = 1 } 
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_CONSTRUCTION_NERF_DOWN_TEXT
+					}
+					
+					buttonType = {
+						name = "construction_nerf_up"
+						quadTextureSprite = "yearslider_rightbutton"
+						position = { x=170 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_CONSTRUCTION_NERF_UP_TEXT
+					}
+				}
+				
+				instantTextboxType = {
+					name = "custom_difficulty_name"
+					position = { x = 0 y = 5 }
+					font = "hoi_18mbs"
+					text = "custom_diff_industrial_nerf"
+					maxWidth = 210
+					maxHeight = 18
+					format = centre 
+					alwaystransparent = yes
+				}
+					
+			}     
+			containerWindowType = {       
+				name ="productionnerf"
+				position = { x = 450 y = 485 } 
+				size = { width = 210 height = 60 }
+				clipping = no 
+				
+				background = {
+					name = "background"     
+					quadTextureSprite ="GFX_tiled_generic_bg_1"
+				}
+				
+				containerWindowType = {
+					name = "difficulty_slider"
+					position = { x = 5 y = 30 }
+					size = { width = 200 height = 30 }
+						
+					iconType = {
+						name = "Background"	
+						quadTextureSprite = "GFX_custom_setting_slider_bg"
+						position = { x= -1 y = -4 }
+					}
+					
+					iconType = { 
+						name = "production_nerf_bar"	  
+						quadTextureSprite = "GFX_ai2_slider"
+						position = { x=22 y = 2 } 
+						pdx_tooltip = AI_DIFF_PRODUCTION_NERF_BAR_TEXT
+					}
+			
+					buttonType = {
+						name = "production_nerf_down"
+						quadTextureSprite = "yearslider_leftbutton"
+						position = { x=3 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_PRODUCTION_NERF_DOWN_TEXT
+					}
+					
+					buttonType = { 
+						name = "production_nerf_up"
+						quadTextureSprite = "yearslider_rightbutton"
+						position = { x=170 y = 1 }
+						clicksound = click_scroll
+						pdx_tooltip = AI_DIFF_PRODUCTION_NERF_UP_TEXT
+					}
+				} 
+				
+				instantTextboxType = {
+					name = "custom_difficulty_name"
+					position = { x = 0 y = 5 }
+					font = "hoi_18mbs"
+					text = "custom_diff_production_nerf"
+					maxWidth = 210
+					maxHeight = 18
+					format = centre 
+					alwaystransparent = yes
+				}
+					
+			}   
+		}
+		
+		iconType = { 
+			name = "header"
+			position = { x = 5 y = -32 }
+			spriteType ="GFX_construction_header_bg"
+			alwaystransparent = yes
+		}
+		instantTextboxType = {
+			name = "header_title"
+			position = { x = 25 y = -32 }
+			font = "hoi_36header"
+			text = "Country Bonuses"
+			maxWidth = 310
+			maxHeight = 18
+			format = left 
+			alwaystransparent = yes
+		}
+		buttonType = { 
+			name = "close_button"
+			position = { x = 652 y = -28 }
+			spriteType ="GFX_closebutton"
+			shortcut = ESCAPE
+		}
+	}
+	containerWindowType = {        
+		name = "setting_target_window"
+		position = { x = 0 y = 0 } 
+		size = { width = 223 height = 44 }
+		 
+		buttonType = {  
+			name = "setting_target_button"
+			position = { x = 0 y = 0 }
+			spriteType ="GFX_tab_large_thin"
+			buttonfont = "hoi_18mbs"
+			buttontext = "[ai_GetDiffSettingName]"   
+			pdx_tooltip = "AI_DIFF_GROUP_TOOLTIP"   
+			alwaystransparent = no
+		}
+		
+	} 
+	containerWindowType = {         
+		name = "setting_target_countries_window"
+		position = { x = 0 y = 0 } 
+		  
+		buttonType = {
+			name = "flag"
+			quadTextureSprite = "GFX_flag_small2"   
+			position = { x = 0 y = 0 }    
+			Orientation = "UPPER_LEFT" 
+			pdx_tooltip = "AI_DIFF_FLAG_TOOLTIP"    
+			pdx_tooltip_delayed = "AI_DIFF_FLAG_TOOLTIP_DELAYED"
+		}	
+	}
+
+	containerWindowType = {
+		name = "gamesetup_custom_gameplay_settings_window"
+		position = { x = -339 y = -360 }
+		show_position = { x = -150 y = -300 }
+		hide_position = { x = -150 y = 10 }
+		size = { width = 678 height = 600 }
+		Orientation = center
+		moveable = yes
+		fade_time = 500
+		fade_type = linear
+		clipping = no
+
+		background = {
+			name = "Background"
+			quadTextureSprite = "GFX_tiled_window2_1b_border"
+		}
+
+		containerWindowType = {
+			name = "window_title_bar"
+			position = { x = 15 y = 15 }
+			size = { width = 636 height = 40 }
+
+			instantTextboxType = {
+				name = "window_title"
+				position = { x = -262 y = -19 }
+				font = "hoi_36header"
+				text = "CUSTOM_GAME_RULES_TITLE"
+				maxWidth = 524
+				maxHeight = 24
+				format = center
+				Orientation = "CENTER"
+			}
+		}
+		
+		containerWindowType = {
+			name = "scrollable_container"
+			position = { x = 0 y = 56 }
+			size = { width = 100%% height = 484 }
+			margin = { top = 0 bottom = 0 right = 26 left = 15 }
+			verticalScrollbar = "right_vertical_slider"
+			scroll_wheel_factor = 35
+			smooth_scrolling = yes
+
+			background = {
+				name = "Background"
+				quadTextureSprite = "GFX_tiled_window_transparent"
+			}
+
+			gridBoxType = {
+				name = "settings_groups_grid"
+				position = { x = 0 y = 0 }
+				slotsize = { width = 100%% height = 1 }
+				format = "UPPER_LEFT"
+				max_slots_horizontal = 1
+			}
+		}
+
+		containerWindowType = {
+			name = "button_bar"
+			position = { x = 15 y = 545 }
+			size = { width = 636 height = 40 }
+
+			buttonType = {
+				name = "close_button"
+				position = { x = 10 y = -39}
+				quadTextureSprite ="GFX_button_123x34"
+				orientation = "LOWER_LEFT"
+				buttonText = "CUSTOM_GAME_SETTINGS_BACK"
+				buttonFont = "hoi_18mbs"
+				clicksound = click_default
+				shortcut = "ESCAPE"
+			}
+
+			buttonType = {
+				name = "revert_button"
+				position = { x = -393 y = -39 }
+				quadTextureSprite ="GFX_button_123x34"
+				orientation = "LOWER_RIGHT"
+				buttonText = "CUSTOM_GAME_SETTINGS_REVERT"
+				buttonFont = "hoi_18mbs"
+				clicksound = click_default
+			}
+
+			buttonType = {
+				name = "load_button"
+				position = { x = -264 y = -39 }
+				quadTextureSprite ="GFX_button_123x34"
+				orientation = "LOWER_RIGHT"
+				buttonText = "CUSTOM_GAME_SETTINGS_LOAD"
+				buttonFont = "hoi_18mbs"
+				clicksound = click_default
+			}
+
+			buttonType = {
+				name = "save_button"
+				position = { x = -135 y = -39 }
+				quadTextureSprite ="GFX_button_123x34"
+				orientation = "LOWER_RIGHT"
+				buttonText = "CUSTOM_GAME_SETTINGS_SAVE"
+				buttonFont = "hoi_18mbs"
+				clicksound = click_default
+			}
+		}
+	}
+	
+	containerWindowType = {
+		name = "game_setting_group_header"
+		size = { width = 100%% height = 40 }
+
+		background = {
+			name = "group_header_bg"
+			quadTextureSprite = "GFX_tiled_header_1"
+			clicksound = click_default
+		}
+
+		instantTextboxType = {
+			name = "group_name"
+			position = { x = 42 y = 7 }
+			font = "hoi_24header"
+			maxWidth = 524
+			maxHeight = 24
+			format = left
+		}
+		
+		buttonType = {
+			name = "expand_button"
+			position = { x = 11 y = 11 }
+			quadTextureSprite = "GFX_expand_collapse_sideways" # Frame 1 = expanded, 2 = collapsed
+			buttonFont = "Main_14_black"
+			Orientation = "UPPER_LEFT"
+			clicksound = click_default
+		}
+
+		checkBoxType = {
+			name = "use_custom_settings_checkbox"
+			position = { x = -38 y = 7 }
+			quadTextureSprite ="GFX_changed_slider_indicator"
+			Orientation = "UPPER_RIGHT"
+			frame = 1
+			clicksound = click_checkbox
+		}
+	}
+	
+	containerWindowType = {
+		name ="difficulty_setting_item"
+		position = { x = 0 y = 0 } 
+		size = { width = 636 height = 30 }
+		clipping = no 
+		
+		background = {
+			name = "background"     
+			quadTextureSprite ="GFX_tiled_generic_bg_1"
+		}
+		
+		background = {
+			name = "on_indicator"
+			quadTextureSprite ="GFX_changed_slider_indicator"
+			position = { x = -10000 y = 0 }
+		}
+		
+		iconType = {
+			name = "custom_difficulty_icon"
+			spriteType = "gfx_transparency_white"
+			position = { x = 3 y = 4 }
+			alwaystransparent = yes
+		}
+
+		instantTextboxType = {
+			name = "custom_difficulty_name"
+			position = { x = -1000 y = 5 }
+			font = "hoi_18mbs"
+			maxWidth = 195
+			maxHeight = 18
+			format = centre 
+			multiline = no
+		}
+
+		extendedScrollbarType = {
+			name = "difficulty_slider"
+			position = { x = -10000 y = 30 }
+			size = { width = 200 height = 18 }
+			tileSize = { width = 10 height = 12 }
+			maxValue = 0
+			minValue = 0
+			stepSize = 1
+			startValue = 0
+			horizontal = yes
+			clickonly = yes
+			
+			background = {
+				name = "Background"
+				quadTextureSprite = "GFX_custom_setting_slider_bg"
+				position = { x= -1 y = -4 }
+			}
+			
+			slider = {
+				name = "Slider"	
+				quadTextureSprite = "GFX_scroll_drager"
+				position = { x=0 y = 1 }
+			}
+	
+			track = {
+				name = "Track"
+				quadTextureSprite = "GFX_scroll_track_horisontal"
+				position = { x = 0 y = 5 }
+				alwaystransparent = yes
+			}	
+	
+			decreaseButton = {
+				name = "Decrease"
+				quadTextureSprite = "yearslider_leftbutton"
+				position = { x=3 y = 1 }
+				clicksound = click_scroll
+			}
+			
+			increaseButton = {
+				name = "Increase"
+				quadTextureSprite = "yearslider_rightbutton"
+				position = { x=-23 y = -17 }
+				clicksound = click_scroll
+			}
+		}
+		
+		
+		instantTextboxType = {
+			name = "info"
+			position = { x = 0 y = 5 }
+			font = "hoi_18mbs"
+			text = "Custom Difficulty Sliders can be accessed in-game"
+			maxWidth = 636
+			maxHeight = 18
+			format = centre 
+		}
+		     
+	}   
+	  
+	containerWindowType = { 
+		name = "difficulty_setting_group_window"
+		position = { x = 0 y = 0 }
+		size = { width = 636 height = 40 }
+
+		gridboxtype = {
+			name = "difficulty_grid" 
+			position = { x = 0 y = 0 }
+			size = { width = 0 height = 0 }
+			slotsize = { width = 210 height = 60 }
+			max_slots_horizontal = 3
+			format = "UPPER_LEFT"
+		}
+		
+	}
+
+}

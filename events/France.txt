@@ -490,7 +490,6 @@ country_event = {
 				FRA_philippe_petain= {
 					add_country_leader_role = {
 						country_leader = {
-							expire = "1965.1.1"
 							ideology = fascism_ideology
 							traits = {
 								
@@ -499,19 +498,84 @@ country_event = {
 						promote_leader = yes
 					}
 				}
+				set_variable = { FRA.FRA_naval_keep = 0.85}
+				set_variable = { FRA.FRA_air_keep = 1}
+				set_variable = { FRA.FRA_army_keep = 1}
+				set_variable = { FRA.FRA_stockpile_keep = 1}
+				set_variable = { FRA.FRA_legit = FRA.legitimacy }
+
+				# Set Army Value, Caps at keeping 25% of the Army, minimum 5% of the Army
+				divide_variable = { FRA.FRA_legit = 4 } # For every 4 legitimacy, Gain 1 Army Unit
+				divide_variable = { FRA.FRA_legit = 100 } # For every 4 legitimacy, Gain 1 Army 
+				
+				if = { 
+					limit = { check_variable = { FRA.FRA_legit < 0.05 } } 
+					set_variable = { FRA.FRA_army_keep = 0.95 }
+				} 
+				else = {
+					subtract_from_variable = { FRA.FRA_army_keep = FRA_legit }
+				}
+
+				# Set Stockpile Value, Caps at keeping 20% of the Stockpile, but has a minimum of 5%
+				multiply_variable = { FRA.FRA_legit = 4 } # Revert the 4 per Unit Kept
+				divide_variable = { FRA.FRA_legit = 5 } # And make it 5 Legitimacy you get 1% 
+
+				if = { 
+					limit = { check_variable = { FRA.FRA_legit < 0.05 } } 
+					set_variable = { FRA.FRA_stockpile_keep = 0.95 }
+				} 
+				else = {
+					subtract_from_variable = { FRA.FRA_stockpile_keep = FRA.FRA_legit }
+				}
+
+				# ~2% Navy Kept per Focus Done (Max of 30%, Vanilla is 15%)
+				if = { limit = { FRA = { has_completed_focus = FRA_naval_rearmament }} subtract_from_variable = { FRA.FRA_naval_keep = 0.03 } } #3% for the first one
+				if = { limit = { FRA = { has_completed_focus = FRA_colonial_naval_bases }} subtract_from_variable = { FRA.FRA_naval_keep = 0.02 } }
+				if = { limit = { FRA = { has_completed_focus = FRA_develop_colonial_dockyards }} subtract_from_variable = { FRA.FRA_naval_keep = 0.02 } }
+				if = { limit = { FRA = { has_completed_focus = FRA_the_young_school }} subtract_from_variable = { FRA.FRA_naval_keep = 0.02 } }
+				if = { limit = { FRA = { has_completed_focus = FRA_the_old_school }} subtract_from_variable = { FRA.FRA_naval_keep = 0.02 } }
+				if = { limit = { FRA = { has_completed_focus = FRA_capital_ship_focus }} subtract_from_variable = { FRA.FRA_naval_keep = 0.02 } }
+				if = { limit = { FRA = { has_completed_focus = FRA_rush_the_richelieus }} subtract_from_variable = { FRA.FRA_naval_keep = 0.02 } }
+				if = { limit = { FRA = { has_completed_focus = FRA_carrier_focus }} subtract_from_variable = { FRA.FRA_naval_keep = 0.02 } }
+				if = { limit = { FRA = { has_completed_focus = FRA_prioritize_the_joffre }} subtract_from_variable = { FRA.FRA_naval_keep = 0.02 } }
+				#if = { limit = { FRA = { has_completed_focus = FRA_carrier_planes }} subtract_from_variable = { FRA_naval_keep = 0.02 } } Left out to keep sides balanced
+
+				# ~2% Air Kept per Focus Done for a max of 10% Air Force Kept (vanilla is 0%)
+				if = { limit = { FRA = { has_completed_focus = FRA_air_focus }} subtract_from_variable = { FRA.FRA_air_keep = 0.02 } }
+				if = { limit = { FRA = { has_completed_focus = FRA_fighter_focus }} subtract_from_variable = { FRA.FRA_air_keep = 0.03 } } # Put at 3% to Keep Left/Right Balanced
+				if = { limit = { FRA = { has_completed_focus = FRA_heavy_fighter_focus }} subtract_from_variable = { FRA.FRA_air_keep = 0.03 } } # Put at 3% to Keep Left/Right Balanced
+				if = { limit = { FRA = { has_completed_focus = FRA_air_doctrine }} subtract_from_variable = { FRA.FRA_air_keep = 0.02 } }
+				if = { limit = { FRA = { has_completed_focus = FRA_bomber_focus }} subtract_from_variable = { FRA.FRA_air_keep = 0.02 } }
+				if = { limit = { FRA = { has_completed_focus = FRA_heavy_bomber_focus }} subtract_from_variable = { FRA.FRA_air_keep = 0.02 } }
+				if = { limit = { FRA = { has_completed_focus = FRA_naval_bomber_focus }} subtract_from_variable = { FRA.FRA_air_keep = 0.02 } }
+
+				log = "% of French Stuff going to Vichy France: (Legitmacy [?FRA.FRA_legitimacy] - Army [?FRA.FRA_army_keep] - Navy [?FRA.FRA_naval_keep] - Air [?FRA.FRA_air_keep] - Stockpile [?FRA.FRA_stockpile_keep]"				
+
 				add_dynamic_modifier = { modifier = dockyard_cg_mod }
 				add_ideas = FRA_occupation_costs_4
 				load_focus_tree = vichy_french_focus
+
 				FRA = {
 					transfer_units_fraction = {
 						target = event_target:vichy_france
 						size = 0.95
-						stockpile_ratio = 0.8
-						army_ratio = 0.8
-						navy_ratio = 0.85
-						air_ratio = 1.0
+						stockpile_ratio = FRA.FRA_stockpile_keep
+						army_ratio = FRA.FRA_army_keep
+						navy_ratio = FRA.FRA_naval_keep
+						air_ratio = FRA.FRA_air_keep
 					}
 				}
+				# Old one for Posterity
+				# FRA = {
+				# 	transfer_units_fraction = {
+				# 		target = event_target:vichy_france
+				# 		size = 0.95
+				# 		stockpile_ratio = 0.8
+				# 		army_ratio = 0.8
+				# 		navy_ratio = 0.85
+				# 		air_ratio = 1.0
+				# 	}
+				# }
 				if = {
 					limit = { FRA = { has_country_flag = become_vichy } }
 					change_tag_from = FRA

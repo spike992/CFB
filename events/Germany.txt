@@ -133,12 +133,12 @@ country_event = {
 		hidden_effect = {
 			news_event = { hours = 6 id = news.36 }
 
-			BEL = {
-				country_event = {
-					id = AUS_political_events.63
-					hours = 12
-				}
-			}
+			# BEL = {
+			# 	country_event = {
+			# 		id = AUS_political_events.63
+			# 		hours = 12
+			# 	}
+			# }
 		}
 	}
 }
@@ -685,68 +685,68 @@ country_event = {
 
 	fire_only_once = yes
 
-	#is_triggered_only = yes
+	is_triggered_only = yes
 
 	immediate = { 
 		set_country_flag = GER_second_vienna_award_flag
 	}
 
-	trigger = {
-		date > 1940.7.15
-		#date < 1941.7.15
-		original_tag = GER
-		GER = {
-			has_government = fascism
-			has_war_with_major = yes
-			is_subject = no
-			has_capitulated = no
-			#OR = {
-			#	AND = { #Either Germany is allied with both countries
-			#		is_in_faction_with = ROM
-			#		is_in_faction_with = HUN
-			#	}
-			#	AND = { #Or Germany is allied with Hungary and is more than willing to hand some Romainian territory to its ally
-			#		NOT = { is_in_faction_with = ROM }
-			#		is_in_faction_with = HUN
-			#	}
-			#}
-		}
-		HUN = {
-			exists = yes
-			is_subject = no
-			has_capitulated = no
-			is_friend_or_potential_friend_of_GER = yes
-			OR = {
-				has_government = neutrality
-				has_government = fascism
-			}
-		}
-		ROM = {
-			exists = yes
-			is_subject = no
-			has_capitulated = no
-			NOT = {
-				has_war_with = GER
-				has_war_with = HUN
-			}
-			controls_state = 76
-			controls_state = 77
-			controls_state = 83
-			controls_state = 84
-		}
-		#BUL = { is_friend_or_potential_friend_of_GER = yes }
-	}
+	# trigger = {
+	# 	date > 1940.7.15
+	# 	#date < 1941.7.15
+	# 	original_tag = GER
+	# 	GER = {
+	# 		has_government = fascism
+	# 		has_war_with_major = yes
+	# 		is_subject = no
+	# 		has_capitulated = no
+	# 		#OR = {
+	# 		#	AND = { #Either Germany is allied with both countries
+	# 		#		is_in_faction_with = ROM
+	# 		#		is_in_faction_with = HUN
+	# 		#	}
+	# 		#	AND = { #Or Germany is allied with Hungary and is more than willing to hand some Romainian territory to its ally
+	# 		#		NOT = { is_in_faction_with = ROM }
+	# 		#		is_in_faction_with = HUN
+	# 		#	}
+	# 		#}
+	# 	}
+	# 	HUN = {
+	# 		exists = yes
+	# 		is_subject = no
+	# 		has_capitulated = no
+	# 		is_friend_or_potential_friend_of_GER = yes
+	# 		OR = {
+	# 			has_government = neutrality
+	# 			has_government = fascism
+	# 		}
+	# 	}
+	# 	ROM = {
+	# 		exists = yes
+	# 		is_subject = no
+	# 		has_capitulated = no
+	# 		NOT = {
+	# 			has_war_with = GER
+	# 			has_war_with = HUN
+	# 		}
+	# 		controls_state = 76
+	# 		controls_state = 77
+	# 		controls_state = 83
+	# 		controls_state = 84
+	# 	}
+	# 	#BUL = { is_friend_or_potential_friend_of_GER = yes }
+	# }
 
-	mean_time_to_happen = {
-		days = 30
-		modifier = {
-			factor = 0.1
-			GER = {
-				is_in_faction_with = ROM
-				is_in_faction_with = HUN
-			}
-		}
-	}
+	# mean_time_to_happen = {
+	# 	days = 30
+	# 	modifier = {
+	# 		factor = 0.1
+	# 		GER = {
+	# 			is_in_faction_with = ROM
+	# 			is_in_faction_with = HUN
+	# 		}
+	# 	}
+	# }
 
 	option = { # Give Hungary Northern Transylvania
 		name = germany.20.a
@@ -1243,6 +1243,10 @@ country_event = {
 					}
 				}
 			}
+		}
+
+		hidden_effect = {
+			add_named_threat = { threat = 5 name = germany.4.t }
 		}
 
 		AUS_arthur_seyss-inquart = {
@@ -3144,7 +3148,7 @@ country_event = {
 					is_controlled_by = ROOT
 				}
 				add_claim_by = GER
-				set_compliance = 50
+				set_compliance = 25
 			}
 		}
 
@@ -3200,6 +3204,7 @@ country_event = {
 			}
 		}
 		HUN = { country_event = germany.56 }
+
 		add_war_support = 0.1
 		if = {
 			limit = {
@@ -3226,8 +3231,10 @@ country_event = {
 			}
 		}
 		
-		GER_czechoslovakia_modify_mefo_bills_or_economy_of_conquest = yes
-		GER_seize_gold_reserves_in_europe_peacefully = yes
+		effect_tooltip = {
+			GER_czechoslovakia_modify_mefo_bills_or_economy_of_conquest = yes
+			GER_seize_gold_reserves_in_europe_peacefully = yes	
+		}
 
 		add_to_variable = { var = GER_mefo_bill_counter value = -10 }
 	}
@@ -3316,7 +3323,7 @@ country_event = {
 					is_controlled_by = ROOT
 				}
 				add_claim_by = GER
-				set_compliance = 50
+				set_compliance = 25
 			}
 		}
 
@@ -3394,11 +3401,63 @@ country_event = {
 				}
 			}
 			transfer_state_to = ROOT
+			set_compliance = 25
 		}
 		hidden_effect = {
 			GER = {
 				annex_country = { target = CZE }
 				add_to_faction = HUN
+				CZE = {
+					every_core_state = {
+						limit = {
+							is_controlled_by = GER
+						}
+						add_claim_by = GER
+						set_compliance = 25
+					}
+				}
+				if = {
+					limit = { 
+						OR = {
+							has_dynamic_modifier = { modifier = GER_mefo_bills_modifier }
+							has_dynamic_modifier = { modifier = GER_economy_of_conquest_modifier }
+						}
+					}
+					set_temp_variable = { GER.occupied_state_num_factory = 0 }
+					9 = { 
+						add_to_temp_variable = { GER.occupied_state_num_factory = industrial_complex_level } 
+						set_state_flag = GER_seize_gold_reserves_state_flag
+					}
+					75 = { 
+						add_to_temp_variable = { GER.occupied_state_num_factory = industrial_complex_level } 
+						set_state_flag = GER_seize_gold_reserves_state_flag
+					}
+
+					divide_temp_variable = {  GER.occupied_state_num_factory = 200 } #This is necessary since a single factory will increase the occupied_state_num_factory number to 1, which in turn translates to -100% when subtracting from the Consumer Goods. Dividing it by 100 here will give you 1% instead, which is more like what we want.
+					multiply_temp_variable = {  GER.occupied_state_num_factory = -1 }
+
+					GER = {	
+						
+						if = {
+							limit = {
+								has_dynamic_modifier = { modifier = GER_mefo_bills_modifier }
+							}
+							custom_effect_tooltip = GER_modify_mefo_bills_modifier_tt
+						}
+						else_if = {
+							limit = {
+								has_dynamic_modifier = { modifier = GER_economy_of_conquest_modifier }
+							}
+							custom_effect_tooltip = GER_modify_economy_of_conquest_modifier_tt
+						}
+		
+						add_to_variable = {
+							GER_industrial_consumer_goods_factor = occupied_state_num_factory
+							tooltip = consumer_goods_factor_tt
+						}
+						GER_reduce_mefo_bills_penalty = yes
+					}
+				}
 			}
 			HUN = {
 				add_ai_strategy = {

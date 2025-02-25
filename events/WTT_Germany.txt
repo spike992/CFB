@@ -643,6 +643,21 @@ country_event = {
 				id = wtt_germany.4 
 				days = 1 
 			}
+			effect_tooltip = {
+				GER_wilhelm_ii = {
+					add_country_leader_role = {
+						country_leader = {
+							expire = "1965.1.1"
+							ideology = despotism
+							traits = {
+								anti_democrat
+								imperial_connections				
+							}
+						}
+						promote_leader = yes
+					}
+				}
+			}
 		}
 		FRA = { 
 			country_event = { 
@@ -724,7 +739,14 @@ country_event = {
 		}
 		hidden_effect = { 
 			news_event = { id = wtt_news.3 hours = 6 } 
-			set_cosmetic_tag = GER_neutrality
+			if = {
+				limit = {
+					NOT = {
+						has_dlc = "Gotterdammerung"
+					}
+				}
+				set_cosmetic_tag = GER_neutrality
+			}
 		}
 	}
 }

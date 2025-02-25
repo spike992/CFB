@@ -926,7 +926,7 @@ on_actions = {
 			# European States Array
 			if = {
 				limit = {
-					ROOT = { #Countries Germany can seize gold reserves from and use Operational Planning against
+					ROOT = {
 						capital_scope = { is_on_continent = europe }
 					}
 				}
@@ -963,7 +963,7 @@ on_actions = {
 			# European States Array
 			if = {
 				limit = {
-					ROOT = { #Countries Germany can seize gold reserves from and use Operational Planning against
+					ROOT = {
 						capital_scope = { is_on_continent = europe }
 					}
 				}
@@ -1164,7 +1164,7 @@ on_actions = {
 			# European States Array
 			if = {
 				limit = {
-					ROOT = { #Countries Germany can seize gold reserves from and use Operational Planning against
+					ROOT = {
 						capital_scope = { is_on_continent = europe }
 					}
 				}
@@ -1416,6 +1416,23 @@ on_actions = {
 				ROOT = {
 					clr_country_flag = GER_reichskommissariats_puppet_flag
 				}
+			}
+		}
+
+		#Count how many major countries Germany has capped so they can take the Supreme Leader Focus
+		effect = {
+			if = {
+				limit = {
+					FROM = {
+						original_tag = GER
+					}
+					ROOT = {
+						is_major = yes
+					}
+				}
+			}
+			FROM = {
+				add_to_variable = { GER_capitulated_major_countries = 1 }
 			}
 		}
 	}
@@ -1943,7 +1960,7 @@ on_actions = {
 	on_startup = {
 		effect = {
 			# European States Array
-			every_country = { #Countries Germany can seize gold reserves from
+			every_country = {
 				limit = {
 					capital_scope = { is_on_continent = europe }
 				}
