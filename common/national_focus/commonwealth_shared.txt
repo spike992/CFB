@@ -32,10 +32,25 @@
 		}
 	}
 	offset = {
+		x = -42
+		y = 11
+		trigger = {
+			tag = RAJ
+			AND = {
+                has_dlc = "Graveyard of Empires"
+                is_using_old_raj = no
+            }
+		}
+	}
+	offset = {
 		x = 3
 		y = 0
 		trigger = {
 			tag = RAJ
+			OR = {
+                NOT = { has_dlc = "Graveyard of Empires" }
+                is_using_old_raj = yes
+            }
 		}
 	}
 	offset = {
@@ -101,8 +116,8 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		add_offsite_building = { type = industrial_complex level = 15 }
-		add_offsite_building = { type = arms_factory level = 15 }
+		add_offsite_building = { type = industrial_complex level = 3 }
+		add_offsite_building = { type = arms_factory level = 3 }
 		add_legitimacy = 25
 	}
 }
@@ -126,8 +141,8 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		add_offsite_building = { type = industrial_complex level = 15 }
-		add_offsite_building = { type = arms_factory level = 15 }
+		add_offsite_building = { type = industrial_complex level = 2 }
+		add_offsite_building = { type = arms_factory level = 5 }
 	}
 }
 
@@ -150,8 +165,8 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		add_offsite_building = { type = industrial_complex level = 20 }
-		add_offsite_building = { type = arms_factory level = 20 }
+		add_offsite_building = { type = industrial_complex level = 2 }
+		add_offsite_building = { type = arms_factory level = 5 }
 	}
 }
 
@@ -323,9 +338,22 @@ joint_focus = {
 			limit = {
 				tag = RAJ
 			}
-			mio:RAJ_ordnance_factories_board_organization = {
-				add_mio_size = 2
+			if = {
+				limit = {
+					OR = {
+						is_using_old_raj = yes
+						NOT = { has_dlc = "Graveyard of Empires" }
+					}
+				}
+				mio:RAJ_ordnance_factories_board_organization = {
+					add_mio_size = 2
+				}
+			}else = {
+				mio:RAJ_ordnance_factory_kanpur_organization = {
+					add_mio_size = 2
+				}
 			}
+
 		}
 		else = {
 			unlock_military_industrial_organization_tooltip = mio:COM_royal_arsenal_organization

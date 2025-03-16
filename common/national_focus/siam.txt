@@ -237,7 +237,7 @@ focus_tree = {
             add_state_core = 286
             add_state_core = 741
             add_state_core = 670
-			add_state_core = 982
+			add_state_core = 994
            
 		}
 	}
@@ -933,16 +933,16 @@ focus_tree = {
             controls_state  = 432
 			controls_state  = 434
             controls_state  = 324
-            controls_state  = 982
+            controls_state  = 994
         }
 
 		completion_reward = {
-                add_state_core = 288
-                add_state_core = 640
-                add_state_core = 432
-                add_state_core = 434
-                add_state_core = 324
-                add_state_core = 982
+			add_state_core = 288
+			add_state_core = 640
+			add_state_core = 432
+			add_state_core = 434
+			add_state_core = 324
+			add_state_core = 994
            
 		}
 	}
@@ -1122,7 +1122,7 @@ focus_tree = {
             controls_state = 432
             controls_state = 434
             controls_state = 324
-            controls_state = 982
+            controls_state = 994
         }
         completion_reward = {
             288 = {
@@ -1160,7 +1160,7 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-            982 = {
+            994 = {
 				add_building_construction = {
 					type = infrastructure
 					level = 2
@@ -1516,7 +1516,7 @@ focus_tree = {
         icon = GFX_focus_generic_japanese_imperial_glory
         prerequisite = { focus = SIA_japanese_military }
 
-        x = 0
+        x = -1
         y = 1
         relative_position_id = SIA_japanese_military
 
@@ -1528,6 +1528,69 @@ focus_tree = {
 			show_ideas_tooltip = SIA_army_commando
         }
 
+    }
+
+	focus = {
+        id = SIA_elephants_for_the_modern_age_tfb
+        icon = GFX_focus_RAJ_indian_gentlemen_offcers
+        prerequisite = { focus = SIA_japanese_military }
+        #mutually_exclusive = { }
+        x = 1
+        y = 1
+        relative_position_id = SIA_japanese_military
+
+        cost = 5 # This was 70 Days???
+
+        ai_will_do = {
+            factor = 1
+        }
+
+        available = {
+        }
+        
+        bypass = {
+
+        }
+
+        cancel_if_invalid = yes
+        continue_if_invalid = no
+        available_if_capitulated = no
+
+        search_filters = {FOCUS_FILTER_RESEARCH FOCUS_FILTER_ARMY_XP}
+
+        completion_reward = {
+
+            set_technology = {
+                elephantry = 1
+                popup = no
+            }
+
+            division_template = {
+                name = "Gajhastas"
+                is_locked = no
+                priority = 1 # optional 
+                template_counter = 108 # optional
+                regiments = {
+                    elephantry = { x = 0 y = 0 }
+                    elephantry = { x = 0 y = 1 }
+                    elephantry = { x = 0 y = 2 }
+                    elephantry = { x = 0 y = 3 }
+                    elephantry = { x = 1 y = 0 }
+                    elephantry = { x = 1 y = 1 }
+                    elephantry = { x = 1 y = 2 }
+                    elephantry = { x = 1 y = 3 }
+                }
+
+            }
+            capital_scope = {
+                create_unit = {
+                    division = "name = \"Gajhastas\" division_template = \"Gajhastas\" start_experience_factor = 0.2 start_equipment_factor = 1 start_manpower_factor = 1"
+                    owner = ROOT
+                    allow_spawning_on_enemy_provs = yes 
+                    count = 1
+                }
+            }
+        }
     }
 # Start Navy
 	focus = {

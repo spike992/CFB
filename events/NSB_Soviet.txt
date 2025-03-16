@@ -3556,23 +3556,15 @@ country_event = {
 # }
 
 # Generic Ultimatum - Event for target
+# Generic Ultimatum - Event for target ### (ITA uses this too)
 country_event = {
 	id = NSB_soviet_foreign_politics_events.200
 	title = NSB_soviet_foreign_politics_events.200.t
 	desc = NSB_soviet_foreign_politics_events.200.desc
-	picture = GFX_report_event_SOV_demands
+	picture = "[GetUltimatumGFX]"
 
 	is_triggered_only = yes
-
-	# immediate = {
-	# 	log = "FROM is [FROM.GetName]"
-	# 	log = "FROM.FROM [FROM.FROM.GetName]"
-	# 	log = "FROM.PREV [FROM.PREV.GetName]"
-	# 	log = "FROM.FROM.PREV [FROM.FROM.PREV.GetName]"
-	# 	log = "ROOT.FROM [ROOT.FROM.GetName]"
-	# 	log = "ROOT.PREV [ROOT.PREV.GetName]"
-	# }
-			
+		
 	option = { # Become a puppet
 		name = NSB_soviet_foreign_politics_events.200.a
 
@@ -3790,6 +3782,12 @@ country_event = {
 					value > 75
 				}
 			}
+
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+
 			modifier = {
 				add = 0.5
 				OR = {

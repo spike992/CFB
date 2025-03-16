@@ -834,6 +834,10 @@ focus_tree = {
 
 			custom_effect_tooltip = GER_replace_recovering_economy_with_wirtschaftswunder_tt
 			add_to_variable = { 
+				GER_industrial_consumer_goods_factor = -0.2
+				tooltip = consumer_goods_factor_tt
+			}
+			add_to_variable = { 
 				GER_industrial_production_speed_buildings_factor = 0.1
 				tooltip = production_speed_buildings_factor_tt
 			}
@@ -1087,7 +1091,7 @@ focus_tree = {
 		x = 2
 		y = 1
 		relative_position_id = GER_prioritize_economic_growth
-		cost = 5
+		cost = 4
 		available = {
 			OR = {
 				has_full_control_of_state = 64 #Brandenburg
@@ -1218,7 +1222,7 @@ focus_tree = {
 		x = 2
 		y = 1
 		relative_position_id = GER_construct_the_reichsautobahn
-		cost = 5
+		cost = 2
 		available = {
 			is_subject = no
 			AND = {
@@ -1367,13 +1371,16 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = GER_kdf_wagen_factories
-		cost = 5
+		cost = 2
 		available = {
 			OR = {
 				53 = { #Niederbayern
 					state_is_fully_controlled_by_ROOT_or_subject = yes
 				}
 				52 = { #Oberbayern
+					state_is_fully_controlled_by_ROOT_or_subject = yes
+				}
+				50 = { #Wurttemberg
 					state_is_fully_controlled_by_ROOT_or_subject = yes
 				}
 				152 = { #Upper Austria
@@ -1415,6 +1422,21 @@ focus_tree = {
 					}
 				}
 				52 = { 
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					50 = { #Wurttemberg
+						infrastructure < 10
+						state_is_fully_controlled_by_ROOT_or_subject = yes
+					}
+				}
+				50 = { 
 					add_building_construction = {
 						type = infrastructure
 						level = 2
@@ -1481,7 +1503,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = GER_kdf_wagen_factories
-		cost = 5
+		cost = 2
 		available = {
 			OR = {
 				68 = { #Ostmark
@@ -1490,10 +1512,16 @@ focus_tree = {
 				63 = { #Hinterpommern
 					state_is_fully_controlled_by_ROOT_or_subject = yes
 				}
+				62 = { #Vorpommern
+					state_is_fully_controlled_by_ROOT_or_subject = yes
+				}
 				807 = { #Gdynia
 					state_is_fully_controlled_by_ROOT_or_subject = yes
 				}
 				85 = { #Danzig
+					state_is_fully_controlled_by_ROOT_or_subject = yes
+				}
+				86 = { #Ponzan
 					state_is_fully_controlled_by_ROOT_or_subject = yes
 				}
 			}
@@ -1538,6 +1566,21 @@ focus_tree = {
 			}
 			if = {
 				limit = {
+					62 = { #Vorpommern
+						infrastructure < 10
+						state_is_fully_controlled_by_ROOT_or_subject = yes
+					}
+				}
+				62 = { 
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
 					807 = { #Gdynia
 						infrastructure < 10
 						state_is_fully_controlled_by_ROOT_or_subject = yes
@@ -1559,6 +1602,21 @@ focus_tree = {
 					}
 				}
 				85 = { 
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					86 = { #Ponzan
+						infrastructure < 10
+						state_is_fully_controlled_by_ROOT_or_subject = yes
+					}
+				}
+				86 = { 
 					add_building_construction = {
 						type = infrastructure
 						level = 2
@@ -1663,10 +1721,10 @@ focus_tree = {
 					}
 				}
 				random_select_amount = 2
-				add_extra_state_shared_building_slots = 1
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
-					level = 1
+					level = 2
 					instant_build = yes
 				}
 			}
@@ -2388,6 +2446,8 @@ focus_tree = {
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
+			custom_effect_tooltip = GER_increase_consumer_goods_tt
+
 			GER_modify_industrial_modifier = yes
 			add_to_variable = { 
 				GER_industrial_consumer_goods_factor = 0.075
@@ -2419,8 +2479,6 @@ focus_tree = {
 		relative_position_id = GER_seize_foreign_industries
 		cost = 5
 		available = {
-			date > 1942.1.1
-			has_war_with = SOV
 			all_core_state = {
 				is_fully_controlled_by = ROOT
 			}
@@ -6077,10 +6135,7 @@ focus_tree = {
 
 			custom_effect_tooltip = GER_controls_atlantic_coast_brittany_finnmark_effects_tt
 			every_state = {
-				limit = { 
-					anti_air_building < 5
-					state_is_fully_controlled_by_ROOT_or_subject = yes
-					is_coastal = yes 
+				limit = {
 					OR = {
 						state = 925
 						state = 924
@@ -6109,6 +6164,10 @@ focus_tree = {
 						state = 15
 						state = 14
 					}
+					anti_air_building < 5
+					state_is_fully_controlled_by_ROOT_or_subject = yes
+					is_coastal = yes 
+
 				}
 				add_building_construction = {
 					type = anti_air_building
@@ -6494,7 +6553,7 @@ focus_tree = {
 		x = 12
 		y = 0
 		relative_position_id = GER_expanding_the_luftwaffe
-		cost = 5
+		cost = 4
 		available = {
 		}
 
@@ -6532,7 +6591,7 @@ focus_tree = {
 		x = -2
 		y = 1
 		relative_position_id = GER_strengthen_the_kriegsmarine
-		cost = 5
+		cost = 4
 		available = {
 			OR = {
 				NOT = { has_completed_focus = GER_trade_interdiction }
@@ -6575,7 +6634,7 @@ focus_tree = {
 		x = -2
 		y = 1
 		relative_position_id = GER_plan_z
-		cost = 5
+		cost = 4
 		available = {
 			#NOT = { has_completed_focus = GER_high_seas_fleet }
 		}
@@ -6889,7 +6948,7 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = GER_expand_kriegsmarinewerft
-		cost = 5
+		cost = 4
 		available = {
 			NOT = { has_completed_focus = GER_high_seas_fleet }
 			has_tech = early_ship_hull_carrier
@@ -7097,7 +7156,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = GER_expand_kriegsmarinewerft
-		cost = 5
+		cost = 4
 		available = {
 			NOT = { has_completed_focus = GER_high_seas_fleet }
 			has_tech = improved_ship_hull_heavy
@@ -7264,7 +7323,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = GER_construct_aircraft_carriers
-		cost = 5
+		cost = 4
 		available = {
 		}
 
@@ -7339,7 +7398,7 @@ focus_tree = {
 		x = 0
 		y = 2
 		relative_position_id = GER_strengthen_the_kriegsmarine
-		cost = 5
+		cost = 4
 		available = {
 		}
 
@@ -7379,7 +7438,7 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = GER_re_establish_the_seekriegsleitung
-		cost = 5
+		cost = 4
 		available = {
 		}
 
@@ -7427,7 +7486,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = GER_re_establish_the_seekriegsleitung
-		cost = 5
+		cost = 4
 		available = { #These states start out with naval bases in western France
 			14 = { #Brittany
 				state_is_fully_controlled_by_ROOT_or_subject = yes
@@ -7518,7 +7577,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = GER_marinestosstrupp
-		cost = 5
+		cost = 4
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = GER_controls_an_atantic_island_tt
@@ -7656,7 +7715,7 @@ focus_tree = {
 		x = 2
 		y = 1
 		relative_position_id = GER_strengthen_the_kriegsmarine
-		cost = 5
+		cost = 4
 	
 		available = {
 			OR = {
@@ -7701,7 +7760,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = GER_trade_interdiction
-		cost = 5
+		cost = 4
 		available = {
 			NOT = { has_completed_focus = GER_unrestricted_convoy_raiding }
 		}
@@ -7829,7 +7888,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = GER_cruiser_warfare
-		cost = 5
+		cost = 4
 		available = {
 			NOT = { has_completed_focus = GER_unrestricted_convoy_raiding }
 		}
@@ -7844,30 +7903,30 @@ focus_tree = {
 				category = ca_tech
 			}
 
-			IF = {
-				limit = {
-					has_dlc =  "Man the Guns"
-				}
-				custom_effect_tooltip = generic_skip_one_line_tt
-				create_equipment_variant = {
-					name = "Panzer Class"
-					type = ship_hull_cruiser_3
-					name_group = GER_CA_HISTORICAL
-					modules = {
-						fixed_ship_battery_slot = ship_medium_battery_2
-						fixed_ship_anti_air_slot = ship_anti_air_1
-						fixed_ship_fire_control_system_slot = ship_fire_control_system_0
-						fixed_ship_radar_slot = ship_radar_1
-						fixed_ship_engine_slot= cruiser_ship_engine_3
-						fixed_ship_armor_slot = ship_armor_cruiser_2
-						fixed_ship_secondaries_slot = ship_secondaries_1
-						front_1_custom_slot = ship_anti_air_1
-						mid_1_custom_slot = ship_anti_air_1
-						mid_2_custom_slot = ship_airplane_launcher_1
-						rear_1_custom_slot = ship_medium_battery_2
-					}
-				}	
-			}
+			# IF = {
+			# 	limit = {
+			# 		has_dlc =  "Man the Guns"
+			# 	}
+			# 	custom_effect_tooltip = generic_skip_one_line_tt
+			# 	create_equipment_variant = {
+			# 		name = "Panzer Class"
+			# 		type = ship_hull_cruiser_3
+			# 		name_group = GER_CA_HISTORICAL
+			# 		modules = {
+			# 			fixed_ship_battery_slot = ship_medium_battery_2
+			# 			fixed_ship_anti_air_slot = ship_anti_air_1
+			# 			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			# 			fixed_ship_radar_slot = ship_radar_1
+			# 			fixed_ship_engine_slot= cruiser_ship_engine_3
+			# 			fixed_ship_armor_slot = ship_armor_cruiser_2
+			# 			fixed_ship_secondaries_slot = ship_secondaries_1
+			# 			front_1_custom_slot = ship_anti_air_1
+			# 			mid_1_custom_slot = ship_anti_air_1
+			# 			mid_2_custom_slot = ship_airplane_launcher_1
+			# 			rear_1_custom_slot = ship_medium_battery_2
+			# 		}
+			# 	}	
+			# }
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 			
@@ -7906,7 +7965,7 @@ focus_tree = {
 		x = 3
 		y = 1
 		relative_position_id = GER_trade_interdiction
-		cost = 5
+		cost = 4
 		available = {
 			NOT = { has_completed_focus = GER_unrestricted_convoy_raiding }
 			has_war = yes
@@ -7975,7 +8034,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = GER_wolfpack_tactics
-		cost = 5
+		cost = 4
 		available = {
 			NOT = { has_completed_focus = GER_unrestricted_convoy_raiding }
 		}
@@ -8082,7 +8141,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = GER_panzerschiff_raiders
-		cost = 5
+		cost = 4
 		available = {
 		}
 
@@ -8160,7 +8219,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = GER_atlantic_naval_dominance
 
-		cost = 5
+		cost = 4
 		available = {
 		}
 
@@ -15011,9 +15070,9 @@ focus_tree = {
 					reverse_add_opinion_modifier = { target = ITA modifier = GER_first_ljubljana_award_other }
 				}				
 			}
-			#hidden_effect = {
-			#	news_event = { hours = 6 id = news.208 }
-			#}
+			hidden_effect = {
+				news_event = { days = 1 id = news.168 }
+			}
 		}
 	}
 
@@ -17000,7 +17059,7 @@ focus_tree = {
 		
 		completion_reward = {
 			BUL = {			
-				give_resource_rights = { receiver = GER state = 106 }
+				give_resource_rights = { receiver = GER state = 212 }
 			}
 			if = {
 				limit = { 106 = { is_owned_and_controlled_by = BUL } }
@@ -40781,90 +40840,4 @@ focus_tree = {
 		}
 	}
 
-
-
-######################################
-######### INNER CIRCLE DEBUG #########
-######################################
-
-#	focus = {
-#		id = GER_RESET_INNER_CIRCLE #TODO_Manu: REMOVE WHEN APPROPRIATE!!
-#		x = -2
-#		y = 0
-#		relative_position_id = GER_fuhrerprinzip
-#		cost = 0
-#		ai_will_do = {
-#			factor = 0
-#		}
-#		allow_branch = { #TODO_Manu: Enable later! (Adjust shared focuses if any)
-#			if = {
-#				limit = {
-#					has_game_rule = {
-#						rule = obsolete_focus_branches_visibility
-#						option = HIDE
-#					}
-#				}
-#				NOT = {
-#					OR = {
-#						has_completed_focus = GER_oppose_hitler
-#						has_completed_focus = GER_oppose_hitler_ww
-#					}
-#				}
-#			}
-#		}
-#		completion_reward = {
-#			custom_effect_tooltip = "DEBUG: RESTES INNER CIRCLE ADVISORS (and removes their modifiers)"
-	
-#			set_variable = { GER_ascended_advisor_1 = 0 } #Ascended Advisor Portrait
-#			set_variable = { GER_ascended_advisor_2 = 0 } #Ascended Advisor Portrait
-#			set_variable = { GER_ascended_advisor_3 = 0 } #Ascended Advisor Portrait
-#			uncomplete_national_focus = {
-#				focus = GER_ascension_of_todt
-#				uncomplete_children = yes
-#				refund_political_power = no
-#			}
-#			uncomplete_national_focus = {
-#				focus = GER_ascension_of_speer
-#				uncomplete_children = yes
-#				refund_political_power = no
-#			}
-#			uncomplete_national_focus = {
-#				focus = GER_ascension_of_goring
-#				uncomplete_children = yes
-#				refund_political_power = no
-#			}
-#			uncomplete_national_focus = {
-#				focus = GER_ascension_of_himmler
-#				uncomplete_children = yes
-#				refund_political_power = no
-#			}
-#			uncomplete_national_focus = {
-#				focus = GER_ascension_of_goebbels
-#				uncomplete_children = yes
-#				refund_political_power = no
-#			}
-#			uncomplete_national_focus = {
-#				focus = GER_party_chancellor_hess
-#				uncomplete_children = yes
-#				refund_political_power = no
-#			}
-#			uncomplete_national_focus = {
-#				focus = GER_party_chancellor_bormann
-#				uncomplete_children = yes
-#				refund_political_power = no
-#			}
-	
-#			GER_remove_todt_effects = yes
-#			GER_remove_speer_effects = yes
-#			GER_remove_goring_effects = yes
-#			GER_remove_himmler_effects = yes
-#			GER_remove_goebbels_effects = yes
-#			GER_remove_hess_effects = yes
-#			GER_remove_bormann_effects = yes
-	
-#			uncomplete_national_focus = {
-#				focus = GER_RESET_INNER_CIRCLE
-#			}
-#		}
-#	}
 }

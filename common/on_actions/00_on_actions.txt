@@ -24,6 +24,26 @@ on_actions = {
 				}
 			}
 		}
+		#Setup Colonial Powers
+		effect = {
+			if = {
+				limit = {
+					any_country = {
+						any_owned_state = {
+							NOT = { is_core_of = PREV }
+						}
+					}
+				}
+				every_country = {
+					limit = {
+						any_owned_state = {
+							NOT = { is_core_of = PREV }
+						}
+					}
+					add_to_array = { global.colonial_powers = THIS }
+				}
+			}
+		}
 	}
 	# country
 	on_new_term_election = {
@@ -1467,6 +1487,14 @@ on_actions = {
 					remove_ideas = BUL_second_national_catastrophe_02
 				}
 			}
+			if = {
+				limit = {
+					has_dlc = "Graveyard of Empires"
+					original_tag = PER
+					has_cosmetic_tag = PER_loyalist_iran
+				}
+				drop_cosmetic_tag = yes
+			}
 		}
 	}
 
@@ -1495,6 +1523,16 @@ on_actions = {
 				}
 				add_country_leader_trait = stalins_puppet
 			}
+			if = {
+				limit = {
+					NOT = { has_elections = yes }
+					has_government = democratic
+				}
+				set_politics = {
+					ruling_party = democratic
+					elections_allowed = yes
+				}
+			}
 		}
 	}
 
@@ -1522,13 +1560,34 @@ on_actions = {
 				}
 				add_country_leader_trait = stalins_puppet
 			}
+			if = {
+				limit = {
+					NOT = { has_elections = yes }
+					has_government = democratic
+				}
+				set_politics = {
+					ruling_party = democratic
+					elections_allowed = yes
+				}
+			}
 		}
 	}
 
 	#ROOT is winner #FROM gets annexed - For civil wars on_civil_war_end is also fired
 	on_annex = {
 		effect = {
-			
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = RAJ
+						original_tag = CAN
+						original_tag = MAL
+						original_tag = INS
+					}
+					is_puppet = no
+				}
+				abandon_colony_tag = yes
+			}
 		}
 	}
 
@@ -2591,29 +2650,113 @@ on_actions = {
 				}
 			}
 			RAJ = {
-				if = {
-					limit = {
-						has_dlc = "Together for Victory"
-						OR = {
-							AND = {
-								is_historical_focus_on = no
-								has_game_rule = {
-									rule = RAJ_ai_behavior
-									option = DEFAULT
-								}
-							}
-							has_game_rule = {
-								rule = RAJ_ai_behavior
-								option = RANDOM
-							}
-						}
-					}
-					random_list = {
-						25 = { set_country_flag = RAJ_AI_RANDOM_COMMUNIST }
-						50 = { set_country_flag = RAJ_AI_DEMOCRATIC_HISTORICAL }
-						25 = { set_country_flag = RAJ_AI_RANDOM_FASCIST }
-					}
-				}
+				# if = {
+				# 	limit = {
+				# 		has_dlc = "Together for Victory"
+				# 		OR = {
+				# 			is_using_old_raj = yes
+				# 			NOT = { has_dlc = "Graveyard of Empires" }
+				# 		}
+				# 		OR = {
+				# 			AND = {
+				# 				is_historical_focus_on = no
+				# 				has_game_rule = {
+				# 					rule = RAJ_ai_behavior
+				# 					option = DEFAULT
+				# 				}
+				# 			}
+				# 			has_game_rule = {
+				# 				rule = RAJ_ai_behavior
+				# 				option = RANDOM
+				# 			}
+				# 		}
+				# 	}
+				# 	random_list = {
+				# 		25 = { set_country_flag = RAJ_AI_RANDOM_COMMUNIST }
+				# 		50 = { set_country_flag = RAJ_AI_DEMOCRATIC_HISTORICAL }
+				# 		25 = { set_country_flag = RAJ_AI_RANDOM_FASCIST }
+
+				# 	}
+				# }
+
+				# if = {
+				# 	limit = {
+				# 		AND = {
+				# 			has_dlc = "Graveyard of Empires"
+				# 			is_using_old_raj = no
+				# 		}
+				# 		OR = {
+				# 			AND = {
+				# 				is_historical_focus_on = no
+				# 				has_game_rule = {
+				# 					rule = RAJ_ai_behavior
+				# 					option = DEFAULT
+				# 				}
+				# 			}
+				# 			has_game_rule = {
+				# 				rule = RAJ_ai_behavior
+				# 				option = RANDOM
+				# 			}
+				# 		}
+				# 	}
+
+				# 	random_list = {
+				# 		40 = {
+				# 			modifier = {
+				# 				factor = 0.25
+				# 				game_weight_can_add_democratic = no
+				# 			}
+				# 			set_country_flag = RAJ_AI_RANDOM_INDIA_UNITED
+				# 			set_add_democratic_weight_small = yes
+				# 		}
+
+				# 		10 = {
+				# 			modifier = {
+				# 				factor = 0.1
+				# 				game_weight_can_add_fascist = no
+				# 			}
+				# 			set_country_flag = RAJ_AI_RANDOM_INDIA_BOSE
+				# 			set_add_fascist_weight_small = yes
+				# 		}
+
+				# 		10 = {
+				# 			modifier = {
+				# 				factor = 0.10
+				# 				game_weight_can_add_fascist = no
+				# 			}
+				# 			set_country_flag = RAJ_AI_RANDOM_INDIA_HINDUTVA
+				# 			set_add_fascist_weight_small = yes
+				# 		}
+
+				# 		15 = {
+				# 			modifier = {
+				# 				factor = 0.15
+				# 				game_weight_can_add_unaligned = no
+				# 			}
+				# 			set_country_flag = RAJ_AI_RANDOM_INDIA_EAST_INDIA_COMPANY
+				# 			set_add_unaligned_weight_small = yes
+				# 		}
+
+				# 		10 = {
+				# 			modifier = {
+				# 				factor = 0.10
+				# 				game_weight_can_add_unaligned = no
+				# 			}
+				# 			set_country_flag = RAJ_AI_RANDOM_INDIA_MUGHAL
+				# 			set_add_unaligned_weight_small = yes
+				# 		}
+
+				# 		15 = {
+				# 			modifier = {
+				# 				factor = 0.15
+				# 				game_weight_can_add_communist = no
+				# 			}
+				# 			set_country_flag = RAJ_AI_RANDOM_INDIA_COMMUNISM
+				# 			set_add_communist_weight_small = yes
+				# 		}
+
+				# 	}
+				# }
 			}
 			POL = {
 				if = {
@@ -3652,15 +3795,22 @@ on_actions = {
 					}
 				}
 			}
-			RAJ = {
-				if = {
-					limit = { has_dlc = "Together for Victory" }
+			# RAJ = {
+			# 	if = {
+			# 		limit = { 
+			# 			has_dlc = "Together for Victory" 
+			# 			OR = {
+			# 				is_using_old_raj = yes
+			# 				NOT = { has_dlc = "Graveyard of Empires" }
+			# 			}
+			# 		}
 					
-					set_variable = { RAJ_agrarian_society_value = -0.70 }
-					add_dynamic_modifier = { modifier = RAJ_agrarian_society_dynamic }
-					remove_ideas = RAJ_agrarian_society #For startup screen
-				}
-			}
+					
+			# 		set_variable = { RAJ_agrarian_society_value = -0.70 }
+			# 		add_dynamic_modifier = { modifier = RAJ_agrarian_society_dynamic }
+			# 		remove_ideas = RAJ_agrarian_society #For startup screen
+			# 	}
+			# }
 			SWE = {
 				if = {
 					limit = {
@@ -4268,7 +4418,78 @@ on_actions = {
 				   id = GER
 				   value = -2000
 				}
-			}		
+			}
+			AFG = {
+				IF = {
+					limit = {
+						has_dlc = "Graveyard of Empires"
+						OR = {
+							AND = {
+								is_historical_focus_on = no
+								has_game_rule = {
+									rule = AFG_AI_BEHAVIOR
+									option = DEFAULT
+								}
+							}
+							has_game_rule = {
+								rule = AFG_AI_BEHAVIOR
+								option = RANDOM
+							}
+						}
+					}
+					random_list = {
+						50 = {
+							AFG = { set_country_flag = AFG_AI_RANDOM_HISTORICAL }
+						}
+						20 = {
+							AFG = { set_country_flag = AFG_AI_RANDOM_FASCISM }
+						}
+						10 = {
+							AFG = { set_country_flag = AFG_AI_RANDOM_DEMOCRATIC }
+						}
+						20 = {
+							AFG = { set_country_flag = AFG_AI_RANDOM_COMMUNIST }
+						}
+					}
+				}
+			}
+			IRQ = {
+				IF = {
+					limit = {
+						has_dlc = "Graveyard of Empires"
+						OR = {
+							AND = {
+								is_historical_focus_on = no
+								has_game_rule = {
+									rule = IRQ_AI_BEHAVIOR
+									option = DEFAULT
+								}
+							}
+							has_game_rule = {
+								rule = IRQ_AI_BEHAVIOR
+								option = RANDOM
+							}
+						}
+					}
+					random_list = {
+						50 = {
+							IRQ = { set_country_flag = IRQ_AI_RANDOM_HISTORICAL }
+						}
+						15 = {
+							IRQ = { set_country_flag = IRQ_AI_RANDOM_FASCISM }
+						}
+						15 = {
+							IRQ = { set_country_flag = IRQ_AI_RANDOM_HASHEMITE }
+						}
+						10 = {
+							IRQ = { set_country_flag = IRQ_AI_RANDOM_KURDISTAN }
+						}
+						10 = {
+							IRQ = { set_country_flag = IRQ_AI_RANDOM_SIDQI }
+						}
+					}
+				}
+			}	
 		}
 	}
 
@@ -4417,6 +4638,46 @@ on_actions = {
 					JAP = { has_government = democratic }
 				}
 				play_guns_are_silent_effect = yes
+			}
+		}
+		effect = {
+			#Country becomes a colonial power
+			if = {
+				limit = {
+					ROOT = {
+						any_owned_state = {
+							NOT = { is_core_of = PREV }
+						}
+						NOT = {
+							is_in_array = {
+								array = global.colonial_powers
+								value = THIS
+							}
+						}
+					}
+				}
+				ROOT = {
+					add_to_array = { global.colonial_powers = THIS }
+				}
+			}
+			#Country loses colonial possessions
+			if = {
+				limit = {
+					ROOT = {
+						is_in_array = {
+							array = global.colonial_powers
+							value = THIS
+						}
+						NOT = {
+							any_owned_state = {
+								NOT = { is_core_of = PREV }
+							}
+						}
+					}
+				}
+				ROOT = {
+					remove_from_array = { global.colonial_powers = THIS }
+				}
 			}
 		}
 	}
@@ -4824,6 +5085,48 @@ on_actions = {
 							subtract_from_variable = {	GER_monthly_consumer_goods_increase = GER_change_monthly_CG_occupied_states } #Reduce monthly CG change
 						}
 					}
+				}
+			}
+		}
+		#ROOT is new controller #FROM is old controller #FROM.FROM is state ID
+		#Modify Colonial Powers
+		effect = {
+			#Country becomes a colonial power
+			if = {
+				limit = {
+					ROOT = {
+						any_owned_state = {
+							NOT = { is_core_of = PREV }
+						}
+						NOT = {
+							is_in_array = {
+								array = global.colonial_powers
+								value = THIS
+							}
+						}
+					}
+				}
+				ROOT = {
+					add_to_array = { global.colonial_powers = THIS }
+				}
+			}
+			#Country loses colonial possessions
+			if = {
+				limit = {
+					FROM = {
+						is_in_array = {
+							array = global.colonial_powers
+							value = THIS
+						}
+						NOT = {
+							any_owned_state = {
+								NOT = { is_core_of = PREV }
+							}
+						}
+					}
+				}
+				FROM = {
+					remove_from_array = { global.colonial_powers = THIS }
 				}
 			}
 		}

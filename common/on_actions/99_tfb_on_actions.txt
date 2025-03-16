@@ -179,6 +179,112 @@ on_actions = {
 
 			}
 		}
+
+		# Reset Friendly Intel on Hotjoin
+		effect = {
+
+			# Axis / East Asia Co Prosperity Sphere
+			if = {
+				limit = {
+					has_global_flag = japan_is_at_war_with_allies
+				}
+				for_each_scope_loop = {
+					array = JAP.faction_intel_shared
+					for_each_scope_loop = {
+						array = GER.faction_intel_shared
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_airforce_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_army_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_navy_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_civilian_friendly } }
+						}
+					}
+				}
+				for_each_scope_loop = {
+					array = JAP.faction_intel_shared
+					for_each_scope_loop = {
+						array = GER.faction_intel_shared
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_airforce_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_army_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_navy_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_civilian_friendly } }
+						}
+					}
+				}
+			}
+
+			# Allies / Comintern
+			if = {
+				limit = {
+					has_global_flag = japan_is_at_war_with_allies
+				}
+				for_each_scope_loop = {
+					array = ENG.faction_intel_shared
+					for_each_scope_loop = {
+						array = SOV.faction_intel_shared
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_airforce_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_army_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_navy_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_civilian_friendly } }
+						}
+					}
+				}
+				for_each_scope_loop = {
+					array = SOV.faction_intel_shared
+					for_each_scope_loop = {
+						array = ENG.faction_intel_shared
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_airforce_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_army_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_navy_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_civilian_friendly } }
+						}
+					}
+				}
+			}
+		}
 	}
 	on_daily = {
 		effect = {
@@ -247,6 +353,37 @@ on_actions = {
 		}
 	}
     on_startup = {
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						NOT = { has_dlc = "Graveyard of Empires" }
+						has_game_rule = {
+							rule = raj_version
+							option = DISABLED
+						}
+					}
+				}
+				set_global_flag = using_old_raj
+				RAJ = {
+					load_focus_tree = indian_focus
+					set_variable = { RAJ_agrarian_society_value = -0.70 }
+					add_dynamic_modifier = { modifier = RAJ_agrarian_society_dynamic }
+					remove_dynamic_modifier = { modifier = idea_RAJ_agrarian_society } 
+					remove_ideas = RAJ_agrarian_society #For startup screen
+					load_oob = "RAJ_1936"
+				}
+			} else = {
+				RAJ = {
+					load_oob = "RAJ_1936_GOE"
+					remove_ideas = RAJ_agrarian_society #For startup screen	
+					set_variable = { RAJ_agrarian_society_conscription_factor = -0.72 } #3
+					set_variable = { RAJ_agrarian_society_mobilization_laws_cost_factor = 2.16 } #9
+					set_variable = { RAJ_agrarian_society_mobilization_speed = -0.72 } #3
+					add_ideas = idea_RAJ_great_depression_1
+				}
+			}
+		}
 		effect = {
 			# Update German Stuff
 			GER = {
@@ -329,6 +466,49 @@ on_actions = {
 			}
 		}
 
+		# Friendly Faction Intel
+		effect = {
+			# Allies
+			ENG = {  add_to_array = { ENG.faction_intel_shared = ENG } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = CAN } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = USA } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = MEX } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = BRA } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = FRA } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = IRE } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = BEL } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = SAF } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = COG } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = HOL } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = NOR } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = GRE } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = RAJ } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = AST } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = NZL } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = PHI } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = COG } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = MAL } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = INS } }
+			ENG = {  add_to_array = { ENG.faction_intel_shared = POL } }
+			# Commintern
+			SOV = {  add_to_array = { SOV.faction_intel_shared = SOV } }
+			SOV = {  add_to_array = { SOV.faction_intel_shared = MON } }
+			# Axis
+			GER = {  add_to_array = { GER.faction_intel_shared = GER } }
+			GER = {  add_to_array = { GER.faction_intel_shared = ITA } }
+			GER = {  add_to_array = { GER.faction_intel_shared = SPA } }
+			GER = {  add_to_array = { GER.faction_intel_shared = HUN } }
+			GER = {  add_to_array = { GER.faction_intel_shared = ROM } }
+			GER = {  add_to_array = { GER.faction_intel_shared = BUL } }
+			GER = {  add_to_array = { GER.faction_intel_shared = DEN } }
+			GER = {  add_to_array = { GER.faction_intel_shared = FIN } }
+			GER = {  add_to_array = { GER.faction_intel_shared = AUS } }
+			# EACPS
+			JAP = {  add_to_array = { JAP.faction_intel_shared = JAP } }
+			JAP = {  add_to_array = { JAP.faction_intel_shared = MAN } }
+			JAP = {  add_to_array = { JAP.faction_intel_shared = SIA } }
+		}
+
 	   	# Mediteranian Raiders
 		effect = {
 			if = {
@@ -339,9 +519,9 @@ on_actions = {
 					}
 				}
 				# Eastern Med
-				ENG = {  add_to_array = { ENG.eastern_med = 994 } }
+				ENG = {  add_to_array = { ENG.eastern_med = 1028 } }
 				ENG = {  add_to_array = { ENG.eastern_med = 447 } }
-				ENG = {  add_to_array = { ENG.eastern_med = 983 } }
+				ENG = {  add_to_array = { ENG.eastern_med = 1017 } }
 				ENG = {  add_to_array = { ENG.eastern_med = 452 } }
 				ENG = {  add_to_array = { ENG.eastern_med = 451 } }
 				ENG = {  add_to_array = { ENG.eastern_med = 446 } }
@@ -570,7 +750,7 @@ on_actions = {
 			}
 		}
 		effect = {
-			993 = {
+			1027 = {
 				add_dynamic_modifier = {
 					modifier =  NO_PORTS_CAN_BE_BUILT 
 				}
@@ -1195,12 +1375,14 @@ on_actions = {
 						NOT = { CONTROLLER = { tag = ROOT } }
 						NOT = { CONTROLLER = { has_country_flag = notif_disable_inv_warning } }
 					}
+					# If the one getting dropped on, Give the alert
 					CONTROLLER = {
 						set_country_flag = ui_show_invasion_warning
 						set_variable = { ui_invaded_state = PREV }
 						set_variable = { ui_invaded_country = PREV.owner }
 						set_variable = { ui_invader_country = ROOT }
 					}
+					# If its a puppet, alert the overlord
 					if = {
 						limit = { CONTROLLER = { is_puppet = yes } }
 						CONTROLLER = {
@@ -1212,10 +1394,11 @@ on_actions = {
 							}
 						}
 					} 
+					# If its in the same faction as that country landed in, alert them
 					every_country = {
 						if = { 
 							limit = { 
-								PREV.CONTROLLER = { is_in_faction_with = THIS } 
+								THIS = { is_in_faction_with = PREV.PREV.CONTROLLER }
 							}
 							set_country_flag = ui_show_invasion_warning
 							set_variable = { ui_invaded_state = PREV }
@@ -1236,12 +1419,14 @@ on_actions = {
 						NOT = { CONTROLLER = { tag = ROOT } }
 						NOT = { CONTROLLER = { has_country_flag = notif_disable_para_warning } }
 					}
+					# If the one getting dropped on, Give the alert
 					CONTROLLER = {
 						set_country_flag = ui_show_paradrop_warning
 						set_variable = { ui_invaded_state = PREV }
 						set_variable = { ui_invaded_country = PREV.owner }
 						set_variable = { ui_invader_country = ROOT }
 					}
+					# If its a puppet, alert the overlord
 					if = {
 						limit = { CONTROLLER = { is_puppet = yes } }
 						CONTROLLER = {
@@ -1253,10 +1438,11 @@ on_actions = {
 							}
 						}
 					} 
+					# If its in the same faction as that country landed in, alert them
 					every_country = {
 						if = { 
 							limit = { 
-								PREV.CONTROLLER = { is_in_faction_with = THIS } 
+								THIS = { is_in_faction_with = PREV.PREV.CONTROLLER } 
 							}
 							set_country_flag = ui_show_paradrop_warning
 							set_variable = { ui_invaded_state = PREV }

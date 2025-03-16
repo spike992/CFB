@@ -1196,7 +1196,7 @@ ENG_home_guard = {
 
 	ai_strategy = { #closest sea zones
 	    type = put_unit_buffers
-	    ratio = 0.35
+	    ratio = 0.25
 	    states = {
 			127
 			338
@@ -1388,7 +1388,7 @@ ENG_raid_the_channel = {
 			126 = { NOT = { is_fully_controlled_by = ENG } }
 			125 = { NOT = { is_fully_controlled_by = ENG } }
 		}
-		
+
 	}
 	abort_when_not_enabled = yes
 
@@ -1416,7 +1416,7 @@ ENG_raid_the_north_sea = {
 			136 = { NOT = { is_fully_controlled_by = ENG } }
 			120 = { NOT = { is_fully_controlled_by = ENG } }
 		}
-		
+
 	}
 	abort_when_not_enabled = yes
 
@@ -1447,7 +1447,7 @@ ENG_raid_the_western_appproaches = {
 			338 = { NOT = { is_fully_controlled_by = ENG } }
 			131 = { NOT = { is_fully_controlled_by = ENG } }
 		}
-		
+
 	}
 	abort_when_not_enabled = yes
 
@@ -2038,10 +2038,7 @@ ENG_unit_buffer_for_african_defense = {
 		type = put_unit_buffers
 
 		# ratio of total armies in country to be buffered
-		ratio = 0.1
-
-		# you can specify an order id. ratio of same orders ids will be share same ratio
-		#order_id = 2
+		ratio = 0.12
 
 		# states to put garrison orders (if no state is friendly, strat is invalid)
 		states = {
@@ -2052,7 +2049,49 @@ ENG_unit_buffer_for_african_defense = {
 
 		area = suez
 
-		subtract_invasions_from_need = yes
+		subtract_invasions_from_need = no
+		subtract_fronts_from_need = yes
+	}
+}
+
+ENG_prepare_for_war_with_iraq = {
+	allowed = {
+		original_tag = ENG
+	}
+	enable = {
+		IRQ = {
+			focus_progress = {
+				focus = IRQ_revoke_anglo_iraq_treaty
+				progress > 0 
+			}
+		}
+		NOT = { is_in_faction_with = IRQ }
+	}
+
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = prepare_for_war
+		id = IRQ
+		value = 100
+	}
+	ai_strategy = {
+		type = front_unit_request
+		tag = IRQ
+		value = 100
+	}
+	ai_strategy = {
+		type = put_unit_buffers
+
+		ratio = 0.05
+
+		# you can specify an order id. ratio of same orders ids will be share same ratio
+		#order_id = 2
+
+		# states to put garrison orders (if no state is friendly, strat is invalid)
+
+		area = middle_east
+
+		subtract_invasions_from_need = no
 		subtract_fronts_from_need = yes
 	}
 }
@@ -2396,47 +2435,47 @@ ENG_USA_d_day = {
 	}
 }
 
-ENG_RAJ_the_hot_gates = {
-	allowed = {
-		OR = {
-			original_tag = ENG
-			original_tag = RAJ
-		}
-	}
-	enable = {
-		OR = {
-			671 = { is_controlled_by = JAP }
-			670 = { is_controlled_by = JAP }
-		}
-	}
-	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = area_priority
-		id = burma
-		value = 60
-	}
-
-	ai_strategy = {
-		type = front_unit_request
-		area = burma
-		value = 8
-	}
-
-	ai_strategy = {
-		type = put_unit_buffers
-		# burmese states
-		states = {
-			288
-			640
-			430
-		}
-		ratio = 0.05
-		area = burma
-		subtract_invasions_from_need = no
-		subtract_fronts_from_need = yes
-	}
-}
+#ENG_RAJ_the_hot_gates = {
+#	allowed = {
+#		OR = {
+#			original_tag = ENG
+#			original_tag = RAJ
+#		}
+#	}
+#	enable = {
+#		OR = {
+#			671 = { is_controlled_by = JAP }
+#			670 = { is_controlled_by = JAP }
+#		}
+#	}
+#	abort_when_not_enabled = yes
+#
+#	ai_strategy = {
+#		type = area_priority
+#		id = burma
+#		value = 60
+#	}
+#
+#	ai_strategy = {
+#		type = front_unit_request
+#		area = burma
+#		value = 8
+#	}
+#
+#	ai_strategy = {
+#		type = put_unit_buffers
+#		# burmese states
+#		states = {
+#			288
+#			640
+#			430
+#		}
+#		ratio = 0.05
+#		area = burma
+#		subtract_invasions_from_need = no
+#		subtract_fronts_from_need = yes
+#	}
+#}
 
 ENG_ALLIES_we_hate_fighting_in_the_balkans = {
 

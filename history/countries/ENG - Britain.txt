@@ -12,6 +12,21 @@ if = {
 }
 
 load_oob = "ENG_Motorized"
+if = {
+	limit = {
+		has_dlc = "Gotterdammerung"
+	}
+	give_guarantee = BEL
+}
+if = {
+	limit = {
+		has_dlc = "Graveyard of Empires"
+	}
+	give_guarantee = IRQ
+	IRQ = {
+		give_military_access = ENG
+	}
+}
 
 set_research_slots = 6
 
@@ -139,6 +154,25 @@ if = {
 	set_global_flag = { flag = MTG_naval_treaty_signatories value = 5 }
 }
 
+if = {
+	limit = {
+		has_dlc = "La Resistance"
+	}
+	set_technology = {
+		armored_car1 = 1
+	}
+}
+
+IF = {
+	limit = {
+		has_dlc = "La Resistance"
+	}
+	load_oob = "ENG_LAR_Motorized"
+	ELSE = {
+		load_oob = "ENG_Motorized"
+	}
+}
+
 # if = {
 # 	limit = { has_dlc = "By Blood Alone" }
 # 		set_air_oob = "ENG_1936_air_bba"
@@ -261,7 +295,6 @@ add_to_faction = CAN
 add_to_faction = AST
 add_to_faction = NZL
 add_to_faction = SAF
-add_to_faction = GRE
 #add_to_faction = USA
 
 give_military_access = RAJ
@@ -343,6 +376,13 @@ recruit_character = ENG_john_cockcroft
 recruit_character = ENG_charles_goodeve
 recruit_character = ENG_nevil_shute
 recruit_character = ENG_robert_watson_watt
+
+if = {
+	limit = {
+		has_dlc = "Graveyard of Empires"
+	}
+	recruit_character = ENG_jack_churchill 
+}
 
 
 

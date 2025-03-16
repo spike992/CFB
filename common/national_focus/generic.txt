@@ -1018,6 +1018,42 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 200
+			modifier = {
+				factor = 6
+				original_tag = SIA
+			}
+			modifier = {
+				factor = 6
+				is_in_array = {
+					array = RAJ.raj_releasables
+					value = THIS
+				}
+				is_subject_of = RAJ
+			}
+			modifier = {
+				factor = 0
+				date < 1939.1.1
+				OR = { 
+					# we dont want chinese minors to go crazy on slots early since they get eaten
+					tag = GXC 
+					tag = YUN
+					tag = SHX
+					tag = XSM
+					tag = BEL
+					tag = LUX
+					tag = HOL
+					tag = DEN
+
+					# we also dont want tiny nations to go crazy with slots right away
+					num_of_controlled_states < 2
+				}	
+				NOT = {
+					is_in_array = {
+						array = RAJ.raj_releasables
+						value = THIS
+					}
+				}			
+			}
 		}
 	}
 
@@ -1037,6 +1073,14 @@ focus_tree = {
 		
 		ai_will_do = {
 			factor = 200
+			modifier = {
+				factor = 6
+				is_in_array = {
+					array = RAJ.raj_releasables
+					value = THIS
+				}
+				is_subject_of = RAJ
+			}
 		}
 
 		bypass = {
@@ -1122,6 +1166,18 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 150			
+			modifier = {
+				factor = 6
+				original_tag = SIA
+			}
+			modifier = {
+				factor = 5
+				is_in_array = {
+					array = RAJ.raj_releasables
+					value = THIS
+				}
+				is_subject_of = RAJ
+			}	
 		}
 
 		bypass = {
@@ -1195,6 +1251,18 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 200
+			modifier = {
+				factor = 6
+				original_tag = SIA
+			}
+			modifier = {
+				factor = 5
+				is_in_array = {
+					array = RAJ.raj_releasables
+					value = THIS
+				}
+				is_subject_of = RAJ
+			}
 		}
 
 		bypass = {
@@ -1268,6 +1336,18 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 150
+			modifier = {
+				factor = 6
+				original_tag = SIA
+			}
+			modifier = {
+				factor = 5
+				is_in_array = {
+					array = RAJ.raj_releasables
+					value = THIS
+				}
+				is_subject_of = RAJ
+			}
 		}
 
 		bypass = {
@@ -1339,6 +1419,10 @@ focus_tree = {
 		available_if_capitulated = yes
 		ai_will_do = {
 			factor = 200
+			modifier = {
+				factor = 6
+				original_tag = SIA
+			}
 		}
 		bypass = {
 			custom_trigger_tooltip = {
@@ -1438,6 +1522,18 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 150
+			modifier = {
+				factor = 6
+				original_tag = SIA
+			}
+			modifier = {
+				factor = 5
+				is_in_array = {
+					array = RAJ.raj_releasables
+					value = THIS
+				}
+				is_subject_of = RAJ
+			}
 		}
 
 		bypass = {
@@ -1509,6 +1605,10 @@ focus_tree = {
 		available_if_capitulated = yes
 		ai_will_do = {
 			factor = 50
+			modifier = {
+				factor = 6
+				original_tag = SIA
+			}
 		}
 		bypass = {
 			custom_trigger_tooltip = {
@@ -1608,6 +1708,17 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 200
+			modifier = {
+				factor = 6
+				original_tag = SIA
+			}
+			modifier = {
+				add = 5
+				is_in_array = {
+					array = RAJ.raj_releasables
+					value = THIS
+				}
+			}
 		}
 
 		bypass = {
@@ -1908,6 +2019,19 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 55
+			modifier = {
+				factor = 0.05
+				is_historical_focus_on = yes
+				original_tag = SIA
+			}
+			modifier = {
+				factor = 0.05
+				is_in_array = {
+					array = RAJ.raj_releasables
+					value = THIS
+				}
+				is_subject_of = RAJ
+			}
 			modifier = {
 				factor = 2
 				any_neighbor_country = {

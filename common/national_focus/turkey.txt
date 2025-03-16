@@ -585,10 +585,19 @@
 		}
 
 		bypass = {
-			AND = {
-				AFG = { exists = no }
-				PER = { exists = no }
-				IRQ = { exists = no }
+			OR = {
+				AND = {
+					AFG = { exists = no }
+					PER = { exists = no }
+					IRQ = { exists = no }
+				}
+				is_subject = yes
+				IF = {
+					limit = {
+						has_dlc = "Graveyard of Empires"
+					}
+					has_global_flag = PER_saadabad_pact
+				}
 			}
 		}
 
@@ -598,7 +607,7 @@
 				limit = {
 					AFG = { 
 						exists = yes
-						is_puppet = no 
+						is_subject = no 
 					}
 				}
 				AFG = { country_event = { id = bftb_turkey.23 } }
@@ -607,7 +616,7 @@
 				limit = {
 					EGY = { 
 						exists = yes
-						is_puppet = no 
+						is_subject = no 
 					}
 				}
 				EGY = { country_event = { id = bftb_turkey.23 } }
@@ -616,7 +625,7 @@
 				limit = {
 					PER = { 
 						exists = yes
-						is_puppet = no 
+						is_subject = no 
 					}
 				}
 				PER = { country_event = { id = bftb_turkey.23 } }
@@ -625,7 +634,7 @@
 				limit = {
 					IRQ = { 
 						exists = yes
-						is_puppet = no 
+						is_subject = no 
 					}
 				}
 				IRQ = { country_event = { id = bftb_turkey.23 } }
@@ -634,12 +643,21 @@
 				limit = {
 					SYR = { 
 						exists = yes
-						is_puppet = no 
+						is_subject = no 
 					}
 				}
 				SYR = { country_event = { id = bftb_turkey.23 } }
 			}
 			add_war_support = 0.05
+
+			hidden_effect = {
+				IF = {
+					limit = {
+						has_dlc = "Graveyard of Empires"
+					}
+					set_global_flag = PER_saadabad_pact
+				}
+			}
 		}
 	}
 
@@ -655,7 +673,7 @@
 				has_completed_focus = TUR_halk_ve_devlet
 				NOT = { 
 					has_country_leader = {
-						name = "Mustafa Kemal Atatürk"
+						character = TUR_mustafa_kemal_ataturk
 						ruling_only = yes
 					}
 				}
@@ -696,7 +714,7 @@
 					has_completed_focus = TUR_fully_integrate_the_is_bank
 					NOT = { 
 						has_country_leader = {
-							name = "Adnan Menderes"
+							character = TUR_adnan_menderes
 							ruling_only = yes
 						}
 					}
@@ -707,7 +725,7 @@
 				limit = {
 					has_completed_focus = TUR_fully_integrate_the_is_bank
 					has_country_leader = {
-						name = "Adnan Menderes"
+						character = TUR_adnan_menderes
 						ruling_only = yes
 					}
 				}
@@ -740,6 +758,15 @@
 			if = {
 				limit = {
 					FRA = { owns_state = 799 }
+				}
+				FRA = { country_event = { id = bftb_turkey.25 hours = 6 } }
+			}
+			else_if = {
+				limit = {
+					SYR = { 
+						owns_state = 799 
+						is_subject_of = FRA
+					}
 				}
 				FRA = { country_event = { id = bftb_turkey.25 hours = 6 } }
 			}
@@ -787,7 +814,7 @@
 			TUR = { 
 				OR = { 
 					has_country_leader = {
-						name = "İsmet İnönü"
+						character = TUR_ismet_inonu
 						ruling_only = yes
 					}
 					has_idea = TUR_ismet_inonu
@@ -820,15 +847,15 @@
 		available = {
 			OR = { 
 				has_country_leader = {
-					name = "İsmet İnönü"
+					character = TUR_ismet_inonu
 					ruling_only = yes
 				}
 				has_idea = TUR_ismet_inonu
 				has_country_leader = {
-					name = "Fevzi Çakmak"
+					character = TUR_fevzi_cakmak
 					ruling_only = yes
 				}
-				has_idea = TUR_fevzi_cakmak
+				has_idea = TUR_fevzi_cakmak_prime_minister
 			}
 		}
 		x = 7
@@ -865,6 +892,10 @@
 			every_owned_state = {
 				limit = { 
 					has_dynamic_modifier = { modifier = kemalist_loyalties }
+					free_building_slots = {
+						building = infrastructure
+						size > 0
+					}
 				}
 				add_building_construction = {
 					type = infrastructure
@@ -875,6 +906,10 @@
 			every_owned_state = {
 				limit = { 
 					is_core_of = KUR
+					free_building_slots = {
+						building = infrastructure
+						size > 0
+					}
 				}
 				add_building_construction = {
 					type = infrastructure
@@ -2521,19 +2556,38 @@
 		}
 
 		search_filters = { FOCUS_FILTER_ANNEXATION }
+
 		completion_reward = {
-			677 = {
-				controller = {
-					if = {
-						limit = {
-							controls_state = 554
-							controls_state = 553
-							controls_state = 680
+
+			IF = {
+				limit = {
+					677 = {
+						controller = {
+							is_subject = no
 						}
-						country_event = { id = bftb_turkey.102 }
+					}
+				}
+				677 = {
+					controller = {
+						country_event = { 
+							id = bftb_turkey.102 
+							hours = 2
+						}
 					}
 				}
 			}
+			ELSE = {
+				every_country = {
+					limit = {
+						has_subject = 677.controller
+					}
+					country_event = { 
+						id = bftb_turkey.102 
+						hours = 2
+					}
+				}
+			}
+			
 		}
 	}
 
@@ -6141,7 +6195,22 @@
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			IRQ = { country_event = { id = bftb_turkey.67 hours = 8 } }
+			IF = {
+				limit = {
+					NOT = {
+						has_dlc = "Graveyard of Empires"
+					}
+				}
+				IRQ = { country_event = { id = bftb_turkey.67 hours = 8 } }
+			}
+			ELSE = {
+				IRQ = {
+					add_timed_idea = {
+						idea = AFG_fascism_influence
+						days = 365
+					}
+				}
+			}			
 		}
 	}
 
@@ -6158,12 +6227,16 @@
 			base = 10
 		}
 
+		available = {
+			is_subject = no
+		}
+
 		bypass = {
 			IRQ = {
 				OR = { 
 					exists = no
 					has_capitulated = yes
-					is_puppet = yes
+					is_subject = yes
 					is_in_faction_with = ROOT
 					has_war_with = ROOT
 				}
@@ -6191,10 +6264,14 @@
 			base = 10
 		}
 
+		available = {
+			is_subject = no
+		}
+
 		bypass = {
 			GRE = {
 				OR = {
-					is_puppet = yes
+					is_subject = yes
 					exists = no
 					has_capitulated = yes
 					is_in_faction_with = ROOT

@@ -1511,6 +1511,74 @@ on_actions = {
 		
 			}
 		}
+
+
+		# Japan Goes to War with the UK in ANY scenario
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						AND = {
+							FROM = { original_tag = JAP }
+							ROOT = { original_tag = ENG }
+						}
+						AND = {
+							FROM = { original_tag = ENG }
+							ROOT = { original_tag = JAP }
+						}
+					}
+				}
+
+				set_global_flag = japan_is_at_war_with_allies
+
+				# Setup Shared Faction Intelligence
+				for_each_scope_loop = {
+					array = JAP.faction_intel_shared
+					for_each_scope_loop = {
+						array = GER.faction_intel_shared
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_airforce_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_army_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_navy_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_civilian_friendly } }
+						}
+					}
+				}
+				for_each_scope_loop = {
+					array = JAP.faction_intel_shared
+					for_each_scope_loop = {
+						array = GER.faction_intel_shared
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_airforce_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_army_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_navy_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_civilian_friendly } }
+						}
+					}
+				}
+			}
+		}
+
 		# This is the Fallback Brabrossa Code, that will trigger anytime Germany and the Soviets go to war with eachother.
 		effect = {
 			if = {
@@ -1531,6 +1599,54 @@ on_actions = {
 						GER = { has_idea = GER_good_weather_army }	
 					}
 					GER = { remove_ideas = GER_good_weather_army }
+				}
+
+				set_global_flag = soviets_are_at_war_with_germany
+
+				# Setup Shared Faction Intelligence
+				for_each_scope_loop = {
+					array = ENG.faction_intel_shared
+					for_each_scope_loop = {
+						array = SOV.faction_intel_shared
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_airforce_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_army_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_navy_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_civilian_friendly } }
+						}
+					}
+				}
+				for_each_scope_loop = {
+					array = SOV.faction_intel_shared
+					for_each_scope_loop = {
+						array = ENG.faction_intel_shared
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_airforce_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_army_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_navy_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_civilian_friendly } }
+						}
+					}
 				}
 
 				if = {
@@ -1648,7 +1764,7 @@ on_actions = {
 				}
 				country_event = { id = NSB_soviet_propaganda_capmaign_events.2 hours = 4 random_hours = 2 }
 			}
-			else_if = { #SOV is defender - SOV gets mild punishment // #TODO_Manu: This is not triggering when someone declares on SOV
+			else_if = { #SOV is defender - SOV gets mild punishment // #MM: This is not triggering when someone declares on SOV
 				limit = {
 					FROM = { original_tag = SOV }
 					SOV = {

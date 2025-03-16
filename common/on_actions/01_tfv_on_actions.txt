@@ -69,9 +69,15 @@ on_actions = {
 						original_tag = RAJ
 						original_tag = MAL
 						original_tag = INS
+						original_tag = JOR
+						original_tag = EGY
+						original_tag = PAL
+						original_tag = SYR
+						original_tag = LEB
+						original_tag = KUW
 					}
 				}
-				abandon_colony_tag = yes
+				#abandon_colony_tag = yes
 			}
 			if = {
 				limit = { 
@@ -101,6 +107,10 @@ on_actions = {
 			if = {
 				limit = {
 					original_tag = RAJ
+					OR = {
+						is_using_old_raj = yes
+						NOT = { has_dlc = "Graveyard of Empires" }
+					}
 				}				
 				remove_ideas = {
 					RAJ_quit_india_movement
@@ -202,6 +212,10 @@ on_actions = {
 				limit = {
 					tag = RAJ
 					has_autonomy_state = autonomy_dominion
+					OR = {
+						is_using_old_raj = yes
+						NOT = { has_dlc = "Graveyard of Empires" }
+					}
 				}
 				set_politics = {
 					ruling_party = democratic

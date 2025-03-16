@@ -707,7 +707,7 @@ POL_defensive_plans = {
 
 		icon = hol_draw_up_staff_plans
 
-		state_target = yes
+		state_target = any_controlled_state
 		target_root_trigger = {
 			has_completed_focus = POL_local_eastern_plans
 			has_war_with = SOV
@@ -729,11 +729,8 @@ POL_defensive_plans = {
 						}
 					}
 				}
-				ROOT = {
-					has_completed_focus = POL_local_eastern_plans
-					has_war_with = SOV
-				}
 			}
+			has_war_with = SOV
 		}
 		target_trigger = {
 			FROM = {
@@ -754,25 +751,7 @@ POL_defensive_plans = {
 			}
 		}
 		visible = {
-			FROM = {
-				OR = {
-					AND = {
-						is_controlled_by = POL
-						any_neighbor_state = {
-							is_controlled_by = SOV
-						}
-					}
-					AND = {
-						is_controlled_by = SOV
-						any_neighbor_state = {
-							is_controlled_by = POL
-						}
-					}
-				}
-				ROOT = {
-					has_completed_focus = POL_local_eastern_plans
-				}
-			}
+			has_completed_focus = POL_local_eastern_plans
 		}
 
 		fire_only_once = no
@@ -798,7 +777,7 @@ POL_defensive_plans = {
 
 		icon = hol_draw_up_staff_plans
 
-		state_target = yes
+		state_target = any_controlled_state
 
 		available = {
 			FROM = {
@@ -816,11 +795,8 @@ POL_defensive_plans = {
 						}
 					}
 				}
-				ROOT = {
-					has_completed_focus = POL_local_western_plans
-					has_war_with = GER
-				}
 			}
+			has_war_with = GER
 		}
 		target_trigger = {
 			FROM = {
@@ -841,26 +817,28 @@ POL_defensive_plans = {
 			}
 		}
 		visible = {
-			FROM = {
-				OR = {
-					AND = {
-						is_controlled_by = POL
-						any_neighbor_state = {
-							is_controlled_by = GER
-						}
-					}
-					AND = {
-						is_controlled_by = GER
-						any_neighbor_state = {
-							is_controlled_by = POL
-						}
-					}
-				}
-				ROOT = {
-					has_completed_focus = POL_local_western_plans
+			has_completed_focus = POL_local_western_plans
+		}
+
+		fire_only_once = no
+		cost = 50
+
+		days_re_enable = 60
+		on_map_mode = map_only
+		complete_effect = {
+			FROM = { 
+				add_dynamic_modifier = {
+					modifier = POL_anti_german_offensive
+					days = 60
+					scope = POL
 				}
 			}
 		}
+
+		ai_will_do = {
+			base = 10
+		}
+	}
 
 		fire_only_once = no
 		cost = 50

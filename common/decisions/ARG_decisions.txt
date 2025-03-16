@@ -13,13 +13,12 @@ ARG_intervenciones_federales_decisions = {
 		}
 
 		available = {
-			has_completed_focus = ARG_intervenciones_federales
 		} 
 
 		visible = { 
 			has_completed_focus = ARG_intervenciones_federales 
 		}
-		state_target = yes
+		state_target = any_owned_state
 		target_trigger = {
 	        FROM = {
 	           	has_dynamic_modifier = {
@@ -40,8 +39,8 @@ ARG_intervenciones_federales_decisions = {
 
 		remove_effect = {
 
-		custom_effect_tooltip = ARG_federal_intervention_tt
-		custom_effect_tooltip = CHL_skip_one_line_tt
+			custom_effect_tooltip = ARG_federal_intervention_tt
+			custom_effect_tooltip = CHL_skip_one_line_tt
 
 			add_popularity = {
 				ideology = neutrality 
@@ -1079,124 +1078,124 @@ ARG_military_coup_decisions = {
 
 	ARG_military_state_absorption_mission = {
 
-			priority = 99
-	
-			icon = GFX_decision_eng_blackshirt_speech 
-	
-			available = {
-				hidden_trigger = { always = no }
-			}
-	
-			days_mission_timeout = 75
-			days_re_enable = 1
-	
-			fire_only_once = no
-	
-			activation = {
-				original_tag = ARG
-				has_completed_focus = ARG_the_castillo_cabinet
-				NOT = {
-					has_government = fascism
-				}
-				NOT = { has_global_flag = military_coup_attempt_happened }
-				NOT = { has_completed_focus = ARG_subdue_dissension }
-				NOT = { has_completed_focus = ARG_march_to_la_casa_rosada }
-			}
-	
-			visible = {
-				tag = ARG 
-				NOT = {
-					has_government = fascism
-				}
-				NOT = { has_global_flag = military_coup_attempt_happened }
-				NOT = { has_completed_focus = ARG_subdue_dissension } 
-				NOT = { has_completed_focus = ARG_march_to_la_casa_rosada }  
+		priority = 99
 
+		icon = GFX_decision_eng_blackshirt_speech 
+
+		available = {
+			hidden_trigger = { always = no }
+		}
+
+		days_mission_timeout = 75
+		days_re_enable = 1
+
+		fire_only_once = no
+
+		activation = {
+			original_tag = ARG
+			has_completed_focus = ARG_the_castillo_cabinet
+			NOT = {
+				has_government = fascism
 			}
-	
-			cancel_if_not_visible = yes
-	
-			timeout_effect = {
-				custom_effect_tooltip = ARG_military_state_absorption_timer_tt
-	
-				random_owned_state = {
-					limit = {
-						NOT = {
-							OR = {
-								has_dynamic_modifier = {
-								modifier = ARG_military_owned_state
-								}
-								has_dynamic_modifier = {
-									modifier = ARG_federal_intervention_modifier
-								}
+			NOT = { has_global_flag = military_coup_attempt_happened }
+			NOT = { has_completed_focus = ARG_subdue_dissension }
+			NOT = { has_completed_focus = ARG_march_to_la_casa_rosada }
+		}
+
+		visible = {
+			tag = ARG 
+			NOT = {
+				has_government = fascism
+			}
+			NOT = { has_global_flag = military_coup_attempt_happened }
+			NOT = { has_completed_focus = ARG_subdue_dissension } 
+			NOT = { has_completed_focus = ARG_march_to_la_casa_rosada }  
+
+		}
+
+		cancel_if_not_visible = yes
+
+		timeout_effect = {
+			custom_effect_tooltip = ARG_military_state_absorption_timer_tt
+
+			random_owned_state = {
+				limit = {
+					NOT = {
+						OR = {
+							has_dynamic_modifier = {
+							modifier = ARG_military_owned_state
+							}
+							has_dynamic_modifier = {
+								modifier = ARG_federal_intervention_modifier
 							}
 						}
-
-						NOT = { state = 278 }
 					}
 
-					add_dynamic_modifier = {
-						modifier = ARG_military_owned_state
-					}
+					NOT = { state = 278 }
+				}
+
+				add_dynamic_modifier = {
+					modifier = ARG_military_owned_state
 				}
 			}
 		}
+	}
 
 		### DECISIONS ###
 
-		ARG_sanction_the_generals = {
+	ARG_sanction_the_generals = {
 
-			priority = 98
+		priority = 98
 
-			icon = GFX_decision_eng_trade_unions_support
+		icon = GFX_decision_eng_trade_unions_support
 
-			ai_will_do = {
-				base = 50
+		ai_will_do = {
+			base = 50
+		}
+
+		allowed = {
+			original_tag = ARG
+		}
+
+		available = {
+			has_completed_focus = ARG_the_castillo_cabinet
+			NOT = { has_government = fascism }
+			NOT = { has_global_flag = military_coup_attempt_happened }
+			NOT = { has_completed_focus = ARG_subdue_dissension } 
+			NOT = { has_completed_focus = ARG_march_to_la_casa_rosada } 
+		}
+
+		visible = {
+			tag = ARG
+			has_completed_focus = ARG_the_castillo_cabinet
+			NOT = { has_government = fascism }
+			NOT = { has_global_flag = military_coup_attempt_happened }
+			NOT = { has_completed_focus = ARG_subdue_dissension } 
+			NOT = { has_completed_focus = ARG_march_to_la_casa_rosada }   
+		}
+
+		days_remove = 50
+
+		cost = 100
+
+		complete_effect = {
+
+		}
+
+		modifier = {
+			political_power_factor = -0.15
+		}
+
+		remove_effect = {
+
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.05
 			}
 
-			allowed = {
-				original_tag = ARG
-			}
+			custom_effect_tooltip = CHL_skip_one_line_tt
 
-			available = {
-				has_completed_focus = ARG_the_castillo_cabinet
-				NOT = { has_government = fascism }
-				NOT = { has_global_flag = military_coup_attempt_happened }
-				NOT = { has_completed_focus = ARG_subdue_dissension } 
-				NOT = { has_completed_focus = ARG_march_to_la_casa_rosada } 
-			}
-
-			visible = {
-				tag = ARG
-				has_completed_focus = ARG_the_castillo_cabinet
-				NOT = { has_government = fascism }
-				NOT = { has_global_flag = military_coup_attempt_happened }
-				NOT = { has_completed_focus = ARG_subdue_dissension } 
-				NOT = { has_completed_focus = ARG_march_to_la_casa_rosada }   
-			}
-
-			days_remove = 50
-
-			cost = 100
-
-			complete_effect = {
-
-			}
-
-			modifier = {
-				political_power_factor = -0.15
-			}
-
-			remove_effect = {
-
-				add_popularity = {
-					ideology = fascism
-					popularity = -0.05
-				}
-
-				custom_effect_tooltip = CHL_skip_one_line_tt
-
-				add_days_mission_timeout = {
+			add_days_mission_timeout = {
 				mission = ARG_military_coup_attempt
 				days = 75
 			}
@@ -1207,57 +1206,57 @@ ARG_military_coup_decisions = {
 
 	ARG_increase_military_salaries = {
 
-			priority = 97
+		priority = 97
 
-			icon = GFX_decision_eng_trade_unions_support 
+		icon = GFX_decision_eng_trade_unions_support 
 
-			ai_will_do = {
-				base = 50
+		ai_will_do = {
+			base = 50
+		}
+
+		allowed = {
+			original_tag = ARG
+		}
+
+		available = {
+			has_completed_focus = ARG_the_castillo_cabinet
+			NOT = { has_government = fascism }
+			NOT = { has_global_flag = military_coup_attempt_happened }
+			NOT = { has_completed_focus = ARG_subdue_dissension } 
+			NOT = { has_completed_focus = ARG_march_to_la_casa_rosada } 
+		}
+
+		visible = {
+			tag = ARG
+			has_completed_focus = ARG_the_castillo_cabinet
+			NOT = { has_government = fascism }
+			NOT = { has_global_flag = military_coup_attempt_happened }
+			NOT = { has_completed_focus = ARG_subdue_dissension } 
+			NOT = { has_completed_focus = ARG_march_to_la_casa_rosada }   
+		}
+
+		days_remove = 50
+
+		cost = 50
+
+		complete_effect = {
+
+		}
+
+		modifier = {
+			consumer_goods_factor = 0.15
+		}
+
+		remove_effect = {
+
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.05
 			}
 
-			allowed = {
-				original_tag = ARG
-			}
+			custom_effect_tooltip = CHL_skip_one_line_tt
 
-			available = {
-				has_completed_focus = ARG_the_castillo_cabinet
-				NOT = { has_government = fascism }
-				NOT = { has_global_flag = military_coup_attempt_happened }
-				NOT = { has_completed_focus = ARG_subdue_dissension } 
-				NOT = { has_completed_focus = ARG_march_to_la_casa_rosada } 
-			}
-
-			visible = {
-				tag = ARG
-				has_completed_focus = ARG_the_castillo_cabinet
-				NOT = { has_government = fascism }
-				NOT = { has_global_flag = military_coup_attempt_happened }
-				NOT = { has_completed_focus = ARG_subdue_dissension } 
-				NOT = { has_completed_focus = ARG_march_to_la_casa_rosada }   
-			}
-
-			days_remove = 50
-
-			cost = 50
-
-			complete_effect = {
-
-			}
-
-			modifier = {
-				consumer_goods_factor = 0.15
-			}
-
-			remove_effect = {
-
-				add_popularity = {
-					ideology = fascism
-					popularity = -0.05
-				}
-
-				custom_effect_tooltip = CHL_skip_one_line_tt
-
-				add_days_mission_timeout = {
+			add_days_mission_timeout = {
 				mission = ARG_military_coup_attempt
 				days = 75
 			}
@@ -1282,7 +1281,6 @@ ARG_south_american_unity_decisions = {
 		}
 
 		available = {
-
 			OR = {
 				has_completed_focus = ARG_south_american_unity
 				has_completed_focus = ARG_integrate_the_motherland
@@ -1295,24 +1293,21 @@ ARG_south_american_unity_decisions = {
 				has_completed_focus = ARG_integrate_the_motherland
 			} 
 		}
-		state_target = yes
+
+		state_target = any_owned_state
+
 		target_trigger = {
 			FROM = {
 				impassable = no	
 				AND = {
-					is_on_continent = south_america
-					NOT = { 
-						is_core_of = ROOT 
-						OR = {
-							is_core_of = PAN
-							is_core_of = NIC
-							is_core_of = HON
-							is_core_of = COS
-							is_core_of = ELS
-						}
+					OR = {
+						is_on_continent = south_america
+						state = 948
 					}
-
 					is_owned_and_controlled_by = ROOT
+				}
+				NOT = {
+					is_core_of = ROOT
 				}
 			}
 		}
@@ -1328,7 +1323,6 @@ ARG_south_american_unity_decisions = {
 		}
 
 		remove_effect = {
-
 			FROM = {
 				add_core_of = ROOT
 			}

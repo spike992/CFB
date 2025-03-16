@@ -770,6 +770,94 @@ focus_tree = {
 		}
 	}
 
+	focus = {
+        id = RAJ_elephants_for_the_modern_age_tfb2
+        icon = GFX_focus_RAJ_indian_gentlemen_offcers
+        prerequisite = { focus = RAJ_lessons_of_the_great_war }
+        #mutually_exclusive = { }
+        x = -3
+        y = 1
+        relative_position_id = RAJ_lessons_of_the_great_war
+
+        cost = 5.5
+
+        ai_will_do = {
+            factor = 1
+        }
+
+		allow_branch = {
+			has_dlc = "Graveyard of Empires"
+		}
+
+        available = {
+        }
+        
+        bypass = {
+
+        }
+
+        cancel_if_invalid = yes
+        continue_if_invalid = no
+        available_if_capitulated = no
+
+        search_filters = {FOCUS_FILTER_RESEARCH FOCUS_FILTER_ARMY_XP}
+
+        completion_reward = {
+
+            set_technology = {
+                elephantry = 1
+                popup = no
+            }
+
+            division_template = {
+                name = "Gajhastas"
+                is_locked = no
+                #division_names_group = NAMELIST_ID # optional
+                priority = 1 # optional 
+                template_counter = 108 # optional
+                regiments = {
+                    elephantry = { x = 0 y = 0 }
+                    elephantry = { x = 0 y = 1 }
+                    elephantry = { x = 0 y = 2 }
+                    elephantry = { x = 0 y = 3 }
+                    elephantry = { x = 1 y = 0 }
+                    elephantry = { x = 1 y = 1 }
+                    elephantry = { x = 1 y = 2 }
+                    elephantry = { x = 1 y = 3 }
+                }
+                #support = {
+                #    artillery = { x = 0 y = 0 }
+                #}
+            }
+            capital_scope = {
+                create_unit = {
+                    division = "name = \"Gajhastas\" division_template = \"Gajhastas\" start_experience_factor = 0.2 start_equipment_factor = 1 start_manpower_factor = 1"
+                    owner = ROOT
+                    allow_spawning_on_enemy_provs = yes 
+                    count = 2
+                }
+            }
+
+            #army_experience = 70
+
+            custom_effect_tooltip = generic_skip_one_line_tt
+            if = {
+                limit = {
+                    amount_taken_ideas = {
+                        amount < 1
+                        slots = { army_spirit }
+                    }
+                    has_dlc = "No Step Back"
+                    NOT = {
+                        has_idea = proper_heritage_spirit
+                    }
+                }
+                add_ideas = proper_heritage_spirit
+            }
+            #add_extra_state_shared_building_slots = 1
+        }
+    }
+
 	############################
 	####### INDIAN ARMY ########
 	############################
@@ -2695,7 +2783,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = RAJ_great_indian_peninsula_railway
 
-		cost = 5
+		cost = 10
 
 		ai_will_do = {
 			factor = 25
@@ -2706,7 +2794,22 @@ focus_tree = {
 		}
 
 		bypass = {
-
+			NOT = {
+				AND = {
+					OR = {
+						controls_state = 640
+						BRM = { controls_state = 640 }
+					}
+					OR = {
+						controls_state = 288
+						BRM = { controls_state = 288 }
+					}
+					OR = {
+						controls_state = 430
+						BRM = { controls_state = 430 }
+					}
+				}
+			}
 		}
 
 		cancel_if_invalid = yes

@@ -94,7 +94,7 @@ country_event = {
 					has_dlc = "Together for Victory"
 				}
 				set_autonomy = { target = RAJ autonomy_state = autonomy_dominion }
-			}
+			}	
 			if = {
 				limit = {
 					tag = PAK
@@ -113,7 +113,45 @@ country_event = {
 				}
 				set_autonomy = { target = RAJ autonomy_state = autonomy_dominion }
 			}
-			retire_country_leader = yes
+			if = {
+				limit = {
+					OR = {
+						is_using_old_raj = yes
+						NOT = { has_dlc = "Graveyard of Empires" }
+					}
+				}
+				retire_country_leader = yes
+			}
+			else = { 
+
+				if = {
+					limit = {
+						has_country_leader = {
+							character = RAJ_lord_linlithgow
+						}
+
+						has_country_leader_with_trait = aloof_authority
+					}
+
+					remove_country_leader_trait = {
+						 trait = aloof_authority 
+					}
+				}
+
+				if = {
+					limit = {
+						has_country_leader = {
+							character = RAJ_freeman_freeman_thomas
+						}
+
+						has_country_leader_with_trait = staunch_imperialist
+					}
+
+					remove_country_leader_trait = {
+						 trait = staunch_imperialist 
+					}
+				}
+			}
 		}
 	}
 }
@@ -3502,6 +3540,14 @@ country_event = {
 
 	trigger = {
 		always = no
+		# tag = PAK
+		# NOT = { country_exists = BAN }
+		# NOT = { has_country_flag = PAK_civil_war }
+		# NOT = { ENG = { has_completed_focus = ENG_the_three_nation_solution } }
+		# is_subject = no
+		# has_war = no
+		# has_dlc = "Man the Guns"
+		# NOT = { has_dlc = "Graveyard of Empires" }
 	}
 	
 	fire_only_once = yes

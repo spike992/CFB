@@ -1234,6 +1234,10 @@ communism_on_the_rise = {
 			OR = {
 				has_idea_with_trait = communist_revolutionary
 				has_idea_with_trait = ambitious_union_boss
+				AND = {
+					has_idea_with_trait = ARG_communist_insurrectionist
+					original_tag = IRQ
+				}
 			}
 			NOT = { has_government = communism }
 			check_has_focus_tree_to_switch_to_communism = yes
@@ -1264,6 +1268,10 @@ communism_on_the_rise = {
 			OR = {
 				has_idea_with_trait = communist_revolutionary
 				has_idea_with_trait = ambitious_union_boss
+				AND = {
+					has_idea_with_trait = ARG_communist_insurrectionist
+					original_tag = IRQ
+				}
 			}
 			NOT = { has_government = communism }
 			check_has_focus_tree_to_switch_to_communism = yes
@@ -1301,6 +1309,10 @@ communism_on_the_rise = {
 			OR = {
 				has_idea_with_trait = communist_revolutionary
 				has_idea_with_trait = ambitious_union_boss
+				AND = {
+					has_idea_with_trait = ARG_communist_insurrectionist
+					original_tag = IRQ
+				}
 			}
 			NOT = { has_government = communism }
 			check_has_focus_tree_to_switch_to_communism = yes
@@ -1360,6 +1372,10 @@ communism_on_the_rise = {
 			OR = {
 				has_idea_with_trait = communist_revolutionary
 				has_idea_with_trait = ambitious_union_boss
+				AND = {
+					has_idea_with_trait = ARG_communist_insurrectionist
+					original_tag = IRQ
+				}
 			}
 			NOT = { has_government = communism }
 			any_army_leader = {
@@ -1396,6 +1412,10 @@ communism_on_the_rise = {
 			OR = {
 				has_idea_with_trait = communist_revolutionary
 				has_idea_with_trait = ambitious_union_boss
+				AND = {
+					has_idea_with_trait = ARG_communist_insurrectionist
+					original_tag = IRQ
+				}
 			}
 			NOT = { has_government = communism }
 			any_army_leader = {
@@ -1437,6 +1457,10 @@ communism_on_the_rise = {
 			OR = {
 				has_idea_with_trait = communist_revolutionary
 				has_idea_with_trait = ambitious_union_boss
+				AND = {
+					has_idea_with_trait = ARG_communist_insurrectionist
+					original_tag = IRQ
+				}
 			}
 			NOT = { has_government = communism }
 			check_has_focus_tree_to_switch_to_communism = yes
@@ -1474,6 +1498,10 @@ communism_on_the_rise = {
 			OR = {
 				has_idea_with_trait = communist_revolutionary
 				has_idea_with_trait = ambitious_union_boss
+				AND = {
+					has_idea_with_trait = ARG_communist_insurrectionist
+					original_tag = IRQ
+				}
 			}
 			NOT = { has_government = communism }
 			check_has_focus_tree_to_switch_to_communism = yes
@@ -1508,6 +1536,10 @@ communism_on_the_rise = {
 			OR = {
 				has_idea_with_trait = communist_revolutionary
 				has_idea_with_trait = ambitious_union_boss
+				AND = {
+					has_idea_with_trait = ARG_communist_insurrectionist
+					original_tag = IRQ
+				}
 			}
 			NOT = { has_government = communism }
 			check_has_focus_tree_to_switch_to_communism = yes
@@ -1543,6 +1575,10 @@ communism_on_the_rise = {
 			OR = {
 				has_idea_with_trait = communist_revolutionary
 				has_idea_with_trait = ambitious_union_boss
+				AND = {
+					has_idea_with_trait = ARG_communist_insurrectionist
+					original_tag = IRQ
+				}
 			}
 			NOT = { has_government = communism }
 			check_has_focus_tree_to_switch_to_communism = yes
@@ -1660,6 +1696,10 @@ communism_on_the_rise = {
 			OR = {
 				has_idea_with_trait = communist_revolutionary
 				has_idea_with_trait = ambitious_union_boss
+				AND = {
+					has_idea_with_trait = ARG_communist_insurrectionist
+					original_tag = IRQ
+				}
 			}
 			NOT = { has_government = communism }
 			check_has_focus_tree_to_switch_to_communism = yes
@@ -1694,6 +1734,10 @@ communism_on_the_rise = {
 			OR = {
 				has_idea_with_trait = communist_revolutionary
 				has_idea_with_trait = ambitious_union_boss
+				AND = {
+					has_idea_with_trait = ARG_communist_insurrectionist
+					original_tag = IRQ
+				}
 			}
 		}
 
@@ -2140,7 +2184,20 @@ political_actions = {
 		icon = generic_civil_support
 
 		available = {
-			fascism < 0.2
+			if = {
+				limit = {
+					AND = {
+						has_dlc = "Graveyard of Empires"
+						is_using_old_raj = no
+					}
+					original_tag = RAJ
+					has_idea = ENG_dominion_fascist_propaganda
+					
+				}
+			}
+			else = {
+				fascism < 0.2
+			}
 			IF = {
 				limit = {
 					tag = SPR
@@ -2172,6 +2229,16 @@ political_actions = {
 							has_idea = idea_CHL_near_anarchic_society_3
 							has_idea = idea_CHL_near_anarchic_society_4
 						}
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					original_tag = RAJ
+					AND = {
+						has_dlc = "Graveyard of Empires"
+						is_using_old_raj = no
 					}
 				}
 			}
@@ -2235,6 +2302,12 @@ political_actions = {
 			remove_fascist_spirits_effect = yes
 			custom_effect_tooltip = ban_fascist_party_tt
 			add_stability = ban_ideology_var
+			if = {
+				limit = {
+					has_idea = ENG_dominion_fascist_propaganda
+				}
+				remove_ideas = ENG_dominion_fascist_propaganda
+			}
 		}
 
 		ai_will_do = {

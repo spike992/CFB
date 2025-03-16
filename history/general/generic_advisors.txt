@@ -31,6 +31,19 @@ every_possible_country = {
 			limit = { has_dlc = "Gotterdammerung" }
 			NOT = { tag = HUN tag = AUS tag = COG tag = BEL }
 		}
+		IF = {
+			limit = { has_dlc = "Graveyard of Empires" }
+			NOT = { tag = AFG tag = IRQ tag = PER }
+		}
+		IF = {
+			limit = {
+				AND = {
+					has_dlc = "Graveyard of Empires"
+					is_using_old_raj = no
+				}
+			}
+			NOT = { tag = RAJ }
+		}
 	}
 	generate_character = {
 		token_base = generic_communist_revolutionary # token will be TAG_token_base
@@ -81,6 +94,19 @@ every_possible_country = {
 		IF = {
 			limit = { has_dlc = "Gotterdammerung"}
 			NOT = { OR = { tag = AUS tag = COG tag = BEL }}
+		}
+		IF = {
+			limit = { has_dlc = "Graveyard of Empires" }
+			NOT = { tag = AFG tag = IRQ tag = PER }
+		}
+		IF = {
+			limit = {
+				AND = {
+					has_dlc = "Graveyard of Empires"
+					is_using_old_raj = no
+				}
+			}
+			NOT = { tag = RAJ }
 		}
 	}
 	generate_character = {
@@ -139,7 +165,20 @@ every_possible_country = {
 		}
 		IF = {
 			limit = { has_dlc = "Gotterdammerung" }
-			NOT = { tag = HUN tag = AUS tag = COG tag = BEL }
+			NOT = { tag = HUN tag = AUS tag = COG }
+		}
+		IF = {
+			limit = { has_dlc = "Graveyard of Empires" }
+			NOT = { tag = AFG tag = IRQ tag = PER }
+		}
+		IF = {
+			limit = {
+				AND = {
+					has_dlc = "Graveyard of Empires"
+					is_using_old_raj = no
+				}
+			}
+			NOT = { tag = RAJ }
 		}
 	}
 	generate_character = {
@@ -162,6 +201,10 @@ every_possible_country = {
 		}
 	}
 }
+
+
+
+
 
 every_possible_country = {
 	limit = {
@@ -492,7 +535,7 @@ every_possible_country = {
 		token_base = generic_air_close_air_sup # token will be TAG_token_base
 		advisor = {
 			slot = air_chief
-			traits = { air_close_air_support_2 }
+			traits = { air_chief_ground_support_2 }
 		}
 		portraits = { 
 			army = { small = GFX_idea_viktor_schutze }
@@ -535,6 +578,177 @@ every_possible_country = { #BEL has no chief of navy, nor any naval theorists
 		}
 		portraits = { 
 			army = { small = GFX_idea_ENG_generic_navy_1 }
+		}
+	}
+}
+
+every_possible_country = { #IRQ has no chief of navy
+	limit = {
+		original_tag = IRQ
+	}
+	generate_character = {
+		token_base = navy_chief_reform # token will be TAG_token_base
+		advisor = {
+			slot = navy_chief
+			traits = { navy_chief_reform_1 }
+			cost = 50
+		}
+		portraits = { 
+			army = { small = GFX_idea_generic_navy_arab_3 }
+		}
+	}
+}
+
+every_possible_country = { #AFG has no chief of navy, nor any naval theorists
+	limit = {
+		original_tag = AFG
+		has_dlc = "Graveyard of Empires"
+	}
+	generate_character = {
+		token_base = generic_naval_theorist # token will be TAG_token_base
+		advisor = {
+			slot = theorist
+			traits = { naval_theorist }
+			ledger = navy
+			cost = 50
+			available = {
+				has_completed_focus = AFG_naval_academy
+			}
+		}
+		portraits = { 
+			army = { small = GFX_portrait_AFG_generic_navy_1_small }
+		}
+	}
+	generate_character = {
+		token_base = navy_chief_reform # token will be TAG_token_base
+		advisor = {
+			slot = navy_chief
+			traits = { navy_chief_reform_1 }
+			cost = 50
+			available = {
+				has_completed_focus = AFG_naval_academy
+			}
+		}
+		portraits = { 
+			army = { small = GFX_portrait_AFG_generic_navy_2_small }
+		}
+	}
+	generate_character = {
+		token_base = generic_army_chief_off # token will be TAG_token_base
+		advisor = {
+			slot = army_chief
+			traits = { army_chief_offensive_1 }
+			cost = 50
+		}
+		portraits = { 
+			army = { small = GFX_portrait_AFG_generic_land_1_small }
+		}
+	}
+	generate_character = {
+		token_base = generic_army_chief_def # token will be TAG_token_base
+		advisor = {
+			slot = army_chief
+			traits = { army_chief_defensive_1 }
+			cost = 50
+		}
+		portraits = { 
+			army = { small = GFX_portrait_AFG_generic_land_2_small }
+		}
+	}
+	generate_character = {
+		token_base = generic_air_close_air_sup # token will be TAG_token_base
+		advisor = {
+			slot = air_chief
+			traits = { air_close_air_support_2 }
+			cost = 100
+		}
+		portraits = { 
+			army = { small = GFX_portrait_AFG_generic_land_2_small }
+		}
+	}
+	generate_character = {
+		token_base = generic_air_chief_all_weather # token will be TAG_token_base
+		advisor = {
+			slot = air_chief
+			traits = { air_chief_all_weather_2 }
+			cost = 100
+		}
+		portraits = { 
+			army = { small = GFX_portrait_AFG_generic_land_4_small }
+		}
+	}
+		# generic high command
+	generate_character = {
+		token_base = generic_army_art # token will be TAG_token_base
+		advisor = {
+			slot = high_command
+			traits = { army_artillery_1 }
+			ledger = army
+			cost = 50
+		}
+		portraits = { 
+			army = { small = GFX_portrait_AFG_generic_land_1_small }
+		}
+	}
+	generate_character = {
+		token_base = generic_army_log # token will be TAG_token_base
+		advisor = {
+			slot = high_command
+			traits = { army_logistics_2 }
+			ledger = army
+			cost = 100
+		}
+		portraits = { 
+			army = { small = GFX_portrait_AFG_generic_land_2_small }
+		}
+	}
+	generate_character = {
+		token_base = generic_navy_fleet_log # token will be TAG_token_base
+		advisor = {
+			slot = high_command
+			traits = { navy_fleet_logistics_1 }
+			ledger = navy
+			cost = 50
+		}
+		portraits = { 
+			army = { small = GFX_portrait_AFG_generic_navy_1_small }
+		}
+	}
+	generate_character = {
+		token_base = generic_air_air_combat_trainer # token will be TAG_token_base
+		advisor = {
+			slot = high_command
+			traits = { air_air_combat_training_2 }
+			ledger = air
+			cost = 100
+		}
+		portraits = { 
+			army = { small = GFX_portrait_AFG_generic_land_2_small }
+		}
+	}
+	# generic theorists
+	generate_character = {
+		token_base = generic_military_theorist # token will be TAG_token_base
+		advisor = {
+			slot = theorist
+			traits = { military_theorist }
+			ledger = army
+			cost = 50
+		}
+		portraits = { 
+			army = { small = GFX_portrait_AFG_generic_land_3_small }
+		}
+	}
+	generate_character = {
+		token_base = generic_air_warfare_theorist # token will be TAG_token_base
+		advisor = {
+			slot = theorist
+			traits = { air_warfare_theorist }
+			ledger = air
+			cost = 50
+		}
+		portraits = { 
+			army = { small = GFX_portrait_AFG_generic_land_2_small }
 		}
 	}
 }

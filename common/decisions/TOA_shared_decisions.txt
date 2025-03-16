@@ -1313,12 +1313,22 @@ improving_our_army_category = {
 
 		allowed = { 
 			OR = {
-				original_tag = URG
-				original_tag = PAR 
-				original_tag = BOL
-				original_tag = BRA
-				original_tag = ARG
-				original_tag = CHL 
+				AND = {
+					has_dlc = "Trial of Allegiance"
+					OR = {
+						original_tag = URG
+						original_tag = PAR 
+						original_tag = BOL
+						original_tag = BRA
+						original_tag = ARG
+						original_tag = CHL 
+					}
+				}
+				AND = {
+					has_dlc = "Graveyard of Empires"
+					original_tag = AFG
+				}
+
 			}
 		} 
 
@@ -1367,7 +1377,10 @@ improving_our_army_category = {
 					}
 				}
 			}
-			has_completed_focus = SMB_purchase_aircraft
+			OR = {
+				has_completed_focus = SMB_purchase_aircraft
+				has_completed_focus = AFG_purchase_aircraft
+			}
 
 			NOT = {
 				has_dlc = "Arms Against Tyranny"
@@ -2807,6 +2820,12 @@ JUNO_promote_immigration_cat = {
 
 		state_target = yes
 
+		targets = {
+			500 501 499 # BRA
+		    278 956 512 # ARG
+			950 949 507 # CHL
+		}
+
 		target_trigger = {
 			FROM = {
 				is_owned_and_controlled_by = ROOT
@@ -2920,6 +2939,7 @@ JUNO_promote_immigration_cat = {
 		on_map_mode = decision_view_only
 
 		state_target = yes
+		targets = { 500 501 499 }
 
 		target_trigger = {
 			FROM = {
@@ -3001,6 +3021,7 @@ JUNO_promote_immigration_cat = {
 		on_map_mode = decision_view_only
 
 		state_target = yes
+		targets = { 500 501 499 }
 
 		target_trigger = {
 			FROM = {
@@ -3091,6 +3112,11 @@ JUNO_promote_immigration_cat = {
 
 		state_target = yes
 
+		targets = {
+			278 956 512 # ARG
+			279 950 949 # CHL
+		}
+
 		target_trigger = {
 			FROM = {
 				is_owned_and_controlled_by = ROOT
@@ -3169,11 +3195,7 @@ JUNO_promote_immigration_cat = {
 		fire_only_once = yes
 	
 		allowed = {
-			AND = {
-				OR = {
-					original_tag = CHL
-				}
-			}
+			original_tag = CHL
 		}
 	
 		available = {
@@ -3196,25 +3218,13 @@ JUNO_promote_immigration_cat = {
 		on_map_mode = decision_view_only
 
 		state_target = yes
+		targets = { 279 949 507 }
 
 		target_trigger = {
 			FROM = {
 				is_owned_and_controlled_by = ROOT
 				NOT = {
 					has_state_flag = JUNO_promote_immigration_complete
-				}
-
-				if = {
-					limit = {
-						ROOT = {
-							original_tag = CHL
-						}
-					}
-					OR = {
-						state = 279
-						state = 949
-						state = 507
-					}
 				}
 			}
 		}
@@ -3262,11 +3272,7 @@ JUNO_promote_immigration_cat = {
 		fire_only_once = yes
 	
 		allowed = {
-			AND = {
-				OR = {
-					original_tag = ARG
-				}
-			}
+			original_tag = ARG
 		}
 	
 		available = {
@@ -3289,25 +3295,13 @@ JUNO_promote_immigration_cat = {
 		on_map_mode = decision_view_only
 
 		state_target = yes
+		targets = { 278 956 512 }
 
 		target_trigger = {
 			FROM = {
 				is_owned_and_controlled_by = ROOT
 				NOT = {
 					has_state_flag = JUNO_promote_immigration_complete
-				}
-
-				if = {
-					limit = {
-						ROOT = {
-							original_tag = ARG
-						}
-					}
-					OR = {
-						state = 278
-						state = 956
-						state = 512
-					}
 				}
 			}
 		}

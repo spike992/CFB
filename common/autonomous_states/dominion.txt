@@ -53,14 +53,45 @@ autonomy_state = {
 			limit = {
 				original_tag = RAJ
 			}
-			has_completed_focus = RAJ_quit_india_movement
+			if = {
+				limit = {
+					AND = {
+						has_dlc = "Graveyard of Empires"
+						is_using_old_raj = no
+					}
+				}
+				AND = {
+					OR = {
+						has_completed_focus = RAJ_a_secular_state
+						has_completed_focus = RAJ_united_bengal
+						has_completed_focus = RAJ_eastern_pakistan
+						has_completed_focus = RAJ_red_in_the_shadows
+					}
+					if = {
+						limit = {
+							has_completed_focus = RAJ_united_bengal
+						}
+						430 = { is_fully_controlled_by = RAJ}
+					}
+				}
+			}
+			else = {
+				has_completed_focus = RAJ_quit_india_movement
+			}
+
+			
 		}
 	}
 
 	can_lose_level = {
-		if = {
+		IF = {
 			limit = {
-
+				OVERLORD = { original_tag = BEL } 
+				original_tag = COG
+				has_dlc = "Gotterdammerung"			
+			}
+			NOT = {
+				has_completed_focus = CONGO_dominion_of_congo
 			}
 		}
 	}

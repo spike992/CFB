@@ -2868,6 +2868,36 @@ on_actions = {
 				unlock_national_focus = USA_ally_with_the_silver_shirts
 				unlock_national_focus = USA_invite_foreign_support
 			}
+			if = {
+				limit = {
+					OR = {
+						AND = {
+							FROM = { original_tag = PAK }
+							ROOT = { original_tag = RAJ }
+						}
+						AND = {
+							FROM = { original_tag = RAJ }
+							ROOT = { original_tag = PAK }
+						}
+					}
+				}
+				FROM = {
+					delete_unit_template_and_units = {
+						division_template = "Pakistani Liberation Army"
+					}
+					delete_unit_template_and_units = {
+						division_template = "Hindu Militia"
+					}
+				}
+				ROOT = {
+					delete_unit_template_and_units = {
+						division_template = "Pakistani Liberation Army"
+					}
+					delete_unit_template_and_units = {
+						division_template = "Hindu Militia"
+					}
+				}
+			}
 		}
 	}
 
@@ -2979,6 +3009,28 @@ on_actions = {
 					}
 				}
 				set_country_flag = assuming_direct_control_achievement_flag
+			}
+		}
+	}
+	on_monthly_MEX = {
+		effect = { # Effect to make Trotsky appear in Mexico if the player doesn't have AAT 
+			if = {
+				limit = {
+					has_aat = no
+					NOT = { has_country_flag = MEX_trotsky_event_triggered }
+				}
+				if = {
+					limit = {
+						date > 1937.01.01 # Historically arrived in January 9th 1937
+					}
+					MEX = { # I know I don't need to do this but I don't want to take my chances 
+						set_country_flag = MEX_trotsky_event_triggered
+						country_event = {
+							id = mexico.17
+							days = 8
+						}
+					}
+				}
 			}
 		}
 	}
