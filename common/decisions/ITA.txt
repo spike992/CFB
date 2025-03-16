@@ -118,99 +118,125 @@ prospect_for_resources = {
 }
 
 political_actions = {
+	prospect_for_resources = {
 
-
-	ITA_unify_colonies = {
-
-		icon = generic_nationalism
-
-		allowed = {
-			original_tag = ITA
-		}
-
-		fire_only_once = yes
-
-		available = {
-			NOT = { has_war_with = ETH}
-		}
-
-		visible = {
-			# 550 = {
-			# 	CONTROLLER = {
-			# 		OR = {
-			# 			tag = ITA
-			# 			is_subject_of = ITA
-			# 		}
-			# 	}
-			# }
-			# 271 = {
-			# 	CONTROLLER = {
-			# 		OR = {
-			# 			tag = ITA
-			# 			is_subject_of = ITA
-			# 		}
-			# 	}
-			# }
-			# 559 = {
-			# 	CONTROLLER = {
-			# 		OR = {
-			# 			tag = ITA
-			# 			is_subject_of = ITA
-			# 		}
-			# 	}
-			# }
-			550 = { is_controlled_by_ROOT_or_ally = yes }
-			842 = { is_controlled_by_ROOT_or_ally = yes }
-			841 = { is_controlled_by_ROOT_or_ally = yes }
-			843 = { is_controlled_by_ROOT_or_ally = yes }
-			908 = { is_controlled_by_ROOT_or_ally = yes }
-			840 = { is_controlled_by_ROOT_or_ally = yes }
-			839 = { is_controlled_by_ROOT_or_ally = yes }
-			838 = { is_controlled_by_ROOT_or_ally = yes }
-			837 = { is_controlled_by_ROOT_or_ally = yes }
-			271 = { is_controlled_by_ROOT_or_ally = yes }
-			836 = { is_controlled_by_ROOT_or_ally = yes }
-			835 = { is_controlled_by_ROOT_or_ally = yes }
-			844 = { is_controlled_by_ROOT_or_ally = yes }
-			559 = { is_controlled_by_ROOT_or_ally = yes }
-		}
-		
-		complete_effect = {
-			add_political_power = 100
-			ETH = {
-				# transfer_state = 550
-				# transfer_state = 271
-				# transfer_state = 559
-				transfer_state = 550
-				transfer_state = 842
-				transfer_state = 841
-				transfer_state = 843
-				transfer_state = 908
-				transfer_state = 840
-				transfer_state = 839
-				transfer_state = 838
-				transfer_state = 837
-				transfer_state = 271
-				transfer_state = 836
-				transfer_state = 835
-				transfer_state = 844
-				transfer_state = 559
-				set_cosmetic_tag = ETH_ITA
-				create_country_leader = {
-					name = "Fresh Prince Amedeo"
-					picture = "gfx/leaders/ITA/Portrait_Duke_of_Aosta.dds"
-					expire = "1965.1.1"
-					ideology = fascism_ideology
-					traits = {
-						prince_of_terror
+		ITA_search_for_oil = {
+	
+			icon = oil
+	
+			allowed = {
+				tag = ITA
+			}
+			
+			available = {
+				has_completed_focus = ITA_oil_prospecting
+				OR = {
+					NOT = { has_country_flag = ITA_lib_3 }
+					has_tech = excavation1
+				}
+				OR = {
+					NOT = { has_country_flag = ITA_lib_4 }
+					has_tech = excavation2
+				}
+				OR = {
+					NOT = { has_country_flag = ITA_lib_5 }
+					has_tech = excavation3
+				}
+			}
+			
+			visible = {
+				450 = {
+					CONTROLLER = {
+						OR = {
+							tag = ITA
+							is_subject_of = ITA
+						}
 					}
 				}
-				
-			set_autonomy = { target = ETH autonomy_state = autonomy_integrated_puppet }
+				NOT = { has_country_flag = ITA_lib_6 }
+			}
+	
+			days_remove = 120
+			
+			modifier = {
+				civilian_factory_use = 8
+			}
+	
+			remove_effect = {
+				if = {
+					limit = {
+						has_country_flag = ITA_lib_1
+					}
+					set_country_flag = ITA_lib_2
+					clr_country_flag = ITA_lib_1
+					add_resource = {
+						type = oil
+						amount = 120
+						state = 450
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = ITA_lib_2
+					}
+					set_country_flag = ITA_lib_3
+					clr_country_flag = ITA_lib_2
+					add_resource = {
+						type = oil
+						amount = 140
+						state = 450
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = ITA_lib_3
+					}
+					set_country_flag = ITA_lib_4
+					clr_country_flag = ITA_lib_3
+					add_resource = {
+						type = oil
+						amount = 160
+						state = 450
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = ITA_lib_4
+					}
+					set_country_flag = ITA_lib_5
+					clr_country_flag = ITA_lib_4
+					add_resource = {
+						type = oil
+						amount = 180
+						state = 450
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = ITA_lib_5
+					}
+					set_country_flag = ITA_lib_6
+					clr_country_flag = ITA_lib_5
+					add_resource = {
+						type = oil
+						amount = 200
+						state = 450
+					}
+				}
+				else = {
+					set_country_flag = ITA_lib_1
+					add_resource = {
+						type = oil
+						amount = 100
+						state = 450
+					}
+				}
+	
+			}
 			
 		}
 	}
-
+	
 	ITA_annex_bul = {
 
 		allowed = {
