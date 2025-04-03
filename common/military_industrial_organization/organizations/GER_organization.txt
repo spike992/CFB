@@ -725,14 +725,17 @@ GER_daimler_benz_organization = {
 	include = generic_tank_organization
 	icon = GFX_idea_GER_daimler_benz
 	
-	allowed = {	
-		# OR = {
-			tag = GER 
-		# 	AND = {
-		# 		tag = BRA
-		# 		has_dlc = "Trial of Allegiance"
-		# 	}
-		# }
+	allowed = {
+		OR = {
+			tag = GER
+			AND = {
+				tag = HUN
+				has_dlc = "Battle for the Bosporus"
+			}
+			AND = {
+				tag = SPR
+			}
+		}
 	}
 
 	available = {
@@ -742,6 +745,17 @@ GER_daimler_benz_organization = {
 			}
 			FROM = { NOT = { has_war_with = GER } }
 		}
+		IF = {
+            limit = { FROM = { original_tag = HUN } }
+
+            FROM = {
+                OR = {
+                    is_subject = no
+                    is_subject_of = GER
+                }
+                has_completed_focus = wuw_HUN_seek_german_contracts
+            }
+        }
 		# IF = {
 		# 	limit = {
 		# 		FROM = {
