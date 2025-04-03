@@ -3,5 +3,5 @@ tags={
 	"Balance"
 }
 name="Chip's Finest Bruh"
-supported_version="1.16.1"
+supported_version="1.16.4"
 remote_file_id="3198204937"
