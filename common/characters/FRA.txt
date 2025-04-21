@@ -144,7 +144,19 @@ characters={
 				original_tag = FRA
 			}
 			available = {
-				has_completed_focus = FRA_aggressive_focus
+				OR = {
+					OR = {
+						has_completed_focus = FRA_aggressive_focus
+						AND = {
+							has_government = democratic
+							has_global_flag = FRA_AGGRESSIVE
+						}
+					}
+					AND = {
+						has_government = fascism
+						has_global_flag = FRA_DEFENSIVE
+					}
+				}
 			}
 			cost = 100.000
 			traits = {
@@ -184,7 +196,19 @@ characters={
 				original_tag = FRA
 			}
 			available = {
-				has_completed_focus = FRA_defensive_focus
+				OR = {
+					OR = {
+						has_completed_focus = FRA_defensive_focus
+						AND = {
+							has_government = democratic
+							has_global_flag = FRA_DEFENSIVE
+						}
+					}
+					AND = {
+						has_government = fascism
+						has_global_flag = FRA_AGGRESSIVE
+					}
+				}
 			}
 			cost = 100.000
 			traits = {
@@ -282,9 +306,12 @@ characters={
 			}
 			available = {
 				OR = {
-				has_completed_focus = FRA_battle_of_maneuver
-				has_capitulated = yes 
+					has_completed_focus = FRA_battle_of_maneuver
+					has_capitulated = yes 
 				}
+			}
+			visible = {
+				NOT = { has_government = fascism }
 			}
 			cost = 75.000
 			
@@ -412,6 +439,7 @@ characters={
 			allowed = {
 				original_tag = FRA
 			}
+			
 			traits = {
 				army_logistics_1
 			}
@@ -419,6 +447,10 @@ characters={
 			ai_will_do = {
 				factor = 1.000
 			}
+		}
+
+		allowed_civil_war = {
+			has_government = fascism
 		}
 		
 		corps_commander={
@@ -510,6 +542,9 @@ characters={
 			ai_will_do = {
 				factor = 1.000
 			}
+		}
+		allowed_civil_war = {
+			has_government = fascism
 		}
 
 		navy_leader={
@@ -624,6 +659,9 @@ characters={
 				factor = 1.000
 			}
 		}
+		allowed_civil_war = {
+			has_government = fascism
+		}
 		
 		navy_leader={
 			traits={ aviation_enthusiast naval_lineage }
@@ -682,7 +720,10 @@ characters={
 				original_tag = FRA
 			}
 			traits = { naval_theorist }
-		}		
+		}
+		allowed_civil_war = {
+			has_government = fascism
+		}	
 	}
 
 	FRA_jean_marie_bergeret={
@@ -702,6 +743,9 @@ characters={
 			}
 			traits = { air_warfare_theorist }
 		}
+		allowed_civil_war = {
+			has_government = fascism
+		}	
 	}
 
 	FRA_louis_kahn={
@@ -1032,6 +1076,9 @@ characters={
 			ai_will_do = {
 				factor = 1.000
 			}
+		}
+		allowed_civil_war = {
+			has_government = fascism
 		}
 	}
 

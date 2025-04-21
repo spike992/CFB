@@ -437,6 +437,22 @@ country_event = {
 			add_to_variable = { JUNO_army_modifier_army_artillery_attack_factor = 0.05 tooltip = army_artillery_attack_factor_tt }
 			add_to_variable = { JUNO_army_modifier_army_artillery_defence_factor = 0.075 tooltip = army_artillery_defence_factor_tt }
 		}
+		ELSE_IF = {
+			limit = {
+				original_tag = PAR
+			}
+			custom_effect_tooltip = PAR_modify_paraguayan_army_ns_intro
+			add_to_variable = { JUNO_army_modifier_army_artillery_attack_factor = 0.05 tooltip = army_artillery_attack_factor_tt }
+			add_to_variable = { JUNO_army_modifier_army_artillery_defence_factor = 0.075 tooltip = army_artillery_defence_factor_tt }
+		}
+		ELSE_IF = {
+			limit = {
+				original_tag = URG
+			}
+			custom_effect_tooltip = URG_modify_uruguayan_army_ns_intro
+			add_to_variable = { JUNO_army_modifier_army_artillery_attack_factor = 0.05 tooltip = army_artillery_attack_factor_tt }
+			add_to_variable = { JUNO_army_modifier_army_artillery_defence_factor = 0.075 tooltip = army_artillery_defence_factor_tt }
+		}
 		ELSE = {
 			custom_effect_tooltip = JUNO_modify_south_american_army_ns_intro
 			add_to_variable = { JUNO_army_modifier_army_artillery_attack_factor = 0.05 tooltip = army_artillery_attack_factor_tt }
@@ -469,6 +485,20 @@ country_event = {
 				original_tag = ARG
 			}
 			custom_effect_tooltip = ARG_modify_argentine_army_ns_intro
+			add_to_variable = { JUNO_army_modifier_production_speed_anti_air_building_factor = 0.1 tooltip = production_speed_anti_air_building_factor_tt }
+		}
+		ELSE_IF = {
+			limit = {
+				original_tag = PAR
+			}
+			custom_effect_tooltip = PAR_modify_paraguayan_army_ns_intro
+			add_to_variable = { JUNO_army_modifier_production_speed_anti_air_building_factor = 0.1 tooltip = production_speed_anti_air_building_factor_tt }
+		}
+		ELSE_IF = {
+			limit = {
+				original_tag = URG
+			}
+			custom_effect_tooltip = URG_modify_uruguayan_army_ns_intro
 			add_to_variable = { JUNO_army_modifier_production_speed_anti_air_building_factor = 0.1 tooltip = production_speed_anti_air_building_factor_tt }
 		}
 		ELSE = {
@@ -3110,3 +3140,36 @@ news_event = {
 		}
 	}
 } 
+
+#Fires off when Mexico starts to send National Spirits to change countries to Fascism
+country_event = {
+	id = south_american_events.63
+	title = south_american_events.63.t
+	desc = south_american_events.63.desc
+	picture = GFX_report_event_eng_blackshirt_march
+
+	is_triggered_only = yes
+
+	option = { #Accept Fascism
+		ai_chance = {
+			base = 100
+		}
+		name = south_american_events.63.a
+
+		add_timed_idea = {
+				idea = MEX_synarchist_influence
+				days = 720
+			}
+		set_country_flag = received_MEX_bolivarian_agitation
+	}
+
+	option = { #Clamp Down on Fascism
+		ai_chance = {
+			base = 0
+		}
+		name = south_american_events.63.b
+		
+		add_political_power = -20
+		add_stability = 0.1
+	}
+}

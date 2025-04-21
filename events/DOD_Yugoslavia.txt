@@ -3766,22 +3766,22 @@ country_event = {
 		}
 		add_opinion_modifier = { target = YUG modifier = tripartite_pact_opinion }
 		reverse_add_opinion_modifier = { target = YUG modifier = tripartite_pact_opinion }
-		if = {
-			limit = { 
-				ENG = {
-					is_faction_leader = yes
-					has_government = democratic
-					NOT = { has_country_flag = has_already_decided_yugo_coup_flag }
-				}
-			}
-			ENG = { country_event = { id = DOD_yugoslavia.702 days = 20 } }
-		}
-		else = {
-			get_best_alliance_match_democratic_effect = yes
-			var:best_leader = {
-				country_event = { id = DOD_yugoslavia.702 days = 20 }
-			}
-		}
+		# if = {
+		# 	limit = { 
+		# 		ENG = {
+		# 			is_faction_leader = yes
+		# 			has_government = democratic
+		# 			NOT = { has_country_flag = has_already_decided_yugo_coup_flag }
+		# 		}
+		# 	}
+		# 	ENG = { country_event = { id = DOD_yugoslavia.702 days = 20 } }
+		# }
+		# else = {
+		# 	get_best_alliance_match_democratic_effect = yes
+		# 	var:best_leader = {
+		# 		country_event = { id = DOD_yugoslavia.702 days = 20 }
+		# 	}
+		# }
 	}
 
 	option = {
@@ -4221,5 +4221,72 @@ country_event = {
 			enemy = GER
 			hostility_reason = asked_to_join
 		}
+	}
+}
+
+# Germany: Italy demands lands in Vichy France
+country_event = {
+	id = DOD_yugoslavia.104
+	title = DOD_yugoslavia.104.t
+	desc = DOD_yugoslavia.104.d
+ 
+ 
+	picture = GFX_report_event_german_italian_pact
+
+	is_triggered_only = yes
+
+	# Yugo gets Albania
+	option = {
+		ai_chance = { base = 70 }
+		name = DOD_yugoslavia.104.a
+		ITA = {
+			44 = { transfer_state_to = YUG }
+			934 = { transfer_state_to = YUG }
+			805 = { transfer_state_to = YUG }
+		}
+		YUG = { country_event = { id = DOD_yugoslavia.105 hours = 1 } }
+	}
+
+	# Yugo gets nothing
+	option = {
+		ai_chance = { base = 0 }
+		name = DOD_yugoslavia.104.b
+		YUG = { country_event = { id = DOD_yugoslavia.106 hours = 1 } }
+	}
+}
+
+# Italy Gives Land
+country_event = {
+	id = DOD_yugoslavia.105
+	title = DOD_yugoslavia.105.t
+	desc = DOD_yugoslavia.105.d
+ 
+ 
+	picture = GFX_report_event_german_italian_pact
+
+	is_triggered_only = yes
+
+	# Yugo gets nothing
+	option = {
+		ai_chance = { base = 0 }
+		name = DOD_yugoslavia.105.a
+	}
+}
+
+# Italy Gives Nothing
+country_event = {
+	id = DOD_yugoslavia.106
+	title = DOD_yugoslavia.106.t
+	desc = DOD_yugoslavia.106.d
+ 
+ 
+	picture = GFX_report_event_german_italian_pact
+
+	is_triggered_only = yes
+
+	# Yugo gets nothing
+	option = {
+		ai_chance = { base = 0 }
+		name = DOD_yugoslavia.106.a
 	}
 }

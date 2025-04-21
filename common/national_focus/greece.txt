@@ -1898,16 +1898,16 @@ focus_tree = {
 			
 			hidden_effect = {
 				delete_unit_template_and_units = {
-					division_template = "TmÃ­ma VasilikÃ­s SynodeÃ­as"
+					division_template = "Tmíma Vasilikís Synodeías"
 					disband = yes #if yes, will refund equipment/manpower.
 				}
 				delete_unit_template_and_units = {
-					division_template = "Ãli VasilikÃ­s FrourÃ¡s"
+					division_template = "Íli Vasilikís Frourás"
 					disband = yes #if yes, will refund equipment/manpower.
 				}
 
 				division_template = {
-					name = "TmÃ­ma VasilikÃ­s SynodeÃ­as"		
+					name = "Tmíma Vasilikís Synodeías"		
 					division_names_group = GRE_INF_01
 					is_locked = no
 					regiments = {
@@ -1922,7 +1922,7 @@ focus_tree = {
 					# }
 				}
 				division_template = {
-					name = "Ãli VasilikÃ­s FrourÃ¡s"		
+					name = "Íli Vasilikís Frourás"		
 					division_names_group = GRE_CAV_01
 					is_locked = no
 					regiments = {
@@ -1945,7 +1945,7 @@ focus_tree = {
 					is_core_of = ROOT
 				}
 				create_unit = {
-				    division = "name = \"TmÃ­ma VasilikÃ­s SynodeÃ­as'\" division_template = \"TmÃ­ma VasilikÃ­s SynodeÃ­as\" start_experience_factor = 0.4 start_equipment_factor = 0.9"
+				    division = "name = \"Tmíma Vasilikís Synodeías'\" division_template = \"Tmíma Vasilikís Synodeías\" start_experience_factor = 0.4 start_equipment_factor = 0.9"
 				    owner = ROOT
 				}
 			}
@@ -1957,7 +1957,7 @@ focus_tree = {
 					is_core_of = ROOT
 				}
 				create_unit = {
-				    division = "name = \"Ãli VasilikÃ­s FrourÃ¡s'\" division_template = \"Ãli VasilikÃ­s FrourÃ¡s\" start_experience_factor = 0.4 start_equipment_factor = 0.9"
+				    division = "name = \"Íli Vasilikís Frourás'\" division_template = \"Íli Vasilikís Frourás\" start_experience_factor = 0.4 start_equipment_factor = 0.9"
 				    owner = ROOT
 				}
 			}
@@ -2323,39 +2323,61 @@ focus_tree = {
 				name = "George II"
 				ruling_only = yes
 			}
-			OR = {
-				HUN = { 
-					if = {
-						limit = {
-							has_dlc = "Gotterdammerung"
-						}
-						has_completed_focus = wuw_HUN_the_lands_of_the_crown_of_saint_stephen 
-					}
-					else = {
-						has_completed_focus = HUN_proclaim_the_restoration_of_austria_hungary 
-					}
+			IF = {
+				limit = {
+					has_dlc = "Gotterdammerung"
 				}
-				if = {
-					limit = {
-						has_dlc = "Gotterdammerung"
+				OR = {
+					GER = {
+						has_completed_focus = GER_revive_the_kaiserreich_ww
+						OR = {
+							is_in_faction = no
+							is_faction_leader = yes
+						}
+					}
+					HUN = {
+						has_completed_focus = wuw_HUN_the_lands_of_the_crown_of_saint_stephen
+						OR = {
+							is_in_faction = no
+							is_faction_leader = yes
+						}
 					}
 					AUS = {
-						has_completed_focus = AUS_reinstate_the_imperial_council 
-					}
-				}
-				GER = { 
-					if = {
-						limit = {
-							has_dlc = "Gotterdammerung"
-							has_completed_focus = GER_revive_the_kaiserreich_ww
+						has_completed_focus = AUS_reinstate_the_imperial_council
+						OR = {
+							is_in_faction = no
+							is_faction_leader = yes
 						}
 					}
-					else = {
+				}
+			}
+			ELSE = {
+				OR = {
+					GER = {
 						has_completed_focus = GER_revive_the_kaiserreich
+						OR = {
+							is_in_faction = no
+							is_faction_leader = yes
+						}
 					}
-					OR = {
-						is_in_faction = no
-						is_faction_leader = yes
+					HUN = {
+						has_completed_focus = wuw_HUN_the_lands_of_the_crown_of_saint_stephen
+						OR = {
+							is_in_faction = no
+							is_faction_leader = yes
+						}
+					}
+					AND = {
+						custom_trigger_tooltip = {
+							tooltip = GRE_AUS_is_HUN_EMPIRE_tt
+							AUS = {
+								has_cosmetic_tag = HUN_EMPIRE
+							}
+						}
+						OR = {
+							is_in_faction = no
+							is_faction_leader = yes
+						}
 					}
 				}
 			}
@@ -2373,32 +2395,42 @@ focus_tree = {
 		}
 
 		bypass = { 
-			GRE = { 
+			IF = {
+				limit = {
+					has_dlc = "Gotterdammerung"
+				}
 				OR = {
-					AND = { 
-						is_in_faction_with = GER
-						GER = { has_completed_focus = GER_oppose_hitler }
+					GER = {
+						has_completed_focus = GER_revive_the_kaiserreich_ww
+						is_in_faction_with = ROOT 
+						}
+					HUN = {
+						has_completed_focus = wuw_HUN_the_lands_of_the_crown_of_saint_stephen
+						is_in_faction_with = ROOT 
 					}
-					AND = { 
-						is_in_faction_with = HUN
-						if = {
-							limit = {
-								NOT = { has_dlc = "Gotterdammerung" }
-							}
-							has_completed_focus = HUN_proclaim_the_restoration_of_austria_hungary 
-						}
-						else = {
-							has_completed_focus = wuw_HUN_the_lands_of_the_crown_of_saint_stephen 
-						}
+					AUS = {
+						has_completed_focus = AUS_reinstate_the_imperial_council
+						is_in_faction_with = ROOT 
 					}
-					if = {
-						limit = {
-							has_dlc = "Gotterdammerung"
+				}
+				
+			}
+			ELSE = {
+				OR = {
+					GER = {
+						has_completed_focus = GER_revive_the_kaiserreich
+						is_in_faction_with = ROOT 
 						}
-						AND = { 
-							is_in_faction_with = AUS
-							AUS = { has_completed_focus = AUS_reinstate_the_imperial_council }
+					HUN = {
+						has_completed_focus = GER_revive_the_kaiserreich
+						is_in_faction_with = ROOT 
+					}
+					AUS = {
+						custom_trigger_tooltip = {
+							tooltip = GRE_AUS_is_HUN_EMPIRE_tt
+							has_cosmetic_tag = HUN_EMPIRE
 						}
+						is_in_faction_with = ROOT 
 					}
 				}
 			}

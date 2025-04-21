@@ -68,7 +68,7 @@ leader_traits = {
 			OWNER = { set_country_flag = command_school_target }
 		}
 	
-		ai_will_do = { factor = 0 }
+		ai_will_do = { base = 0 }
 		
 		gui_row = 0
 	}
@@ -1426,7 +1426,7 @@ leader_traits = {
 				attack = 0.05
 			}
 			fort = {
-                attack = 0.1
+                attack = 0.05
             }
 		}
 		non_shared_modifier = {
@@ -2133,7 +2133,7 @@ leader_traits = {
 		type = navy
 		cost = 500
 		gain_xp = {
-			fastest_unit > 3.7
+			fastest_unit > 3
 		}
 		modifier = {
 			naval_retreat_chance = 0.2
@@ -2229,7 +2229,7 @@ leader_traits = {
 			}
 		}
 		custom_gain_xp_trigger_tooltip = IRONSIDE_TRIGGER_TT
-		cost = 500
+		cost = 300
 		modifier = {
 			naval_retreat_chance = -0.25
 			ships_at_battle_start = 0.1
@@ -2252,7 +2252,7 @@ leader_traits = {
 		}
 		cost = 500
 		modifier = {
-			navy_carrier_air_targetting_factor = 0.1 # Airplanes from carriers has better naval targetting
+			navy_carrier_air_targetting_factor = 0.2 # Airplanes from carriers has better naval targetting
 			sortie_efficiency = 0.1
 		}
 		
@@ -2309,7 +2309,7 @@ leader_traits = {
 	lancer = {
 		type = navy
 		modifier = {
-			naval_torpedo_screen_penetration_factor = 0.1
+			naval_torpedo_screen_penetration_factor = 0.15
 		}
 				
 		ai_will_do = {
@@ -2317,7 +2317,7 @@ leader_traits = {
 		}
 		
 		trait_type = assignable_trait
-		any_parent = { seawolf spotter fleet_protector superior_tactician }
+		any_parent = { seawolf spotter fleet_protector }
 		
 		mutually_exclusive = silent_hunter
 		
@@ -2355,7 +2355,7 @@ leader_traits = {
 	loading_drill_master = { 
 		type = navy
 		modifier = {
-			naval_torpedo_cooldown_factor = -0.15
+			naval_torpedo_cooldown_factor = -0.25
 		}
 				
 		ai_will_do = {
@@ -2375,7 +2375,7 @@ leader_traits = {
 		type = navy
 		modifier = {
 			navy_submarine_detection_factor = 0.2
-			navy_submarine_attack_factor = 0.1
+			#sub_detection = 0.1
 		}
 
 		slot = high_command
@@ -2536,9 +2536,20 @@ leader_traits = {
 
 	big_guns_expert = { 
 		type = navy
-		modifier = {
-			navy_capital_ship_attack_factor = 0.1
-		}
+		# modifier = {
+		# 	navy_capital_ship_attack_factor = 0.1
+		# }
+		sub_unit_modifiers = {
+			battleship = {
+				naval_damage_factor = 0.1
+			}
+			battle_cruiser = {
+				naval_damage_factor = 0.1
+			}
+			sh_battleship = {
+				naval_damage_factor = 0.1
+			}
+		}	
 				
 		slot = high_command
 		specialist_advisor_trait = navy_capital_ship_1
@@ -2634,7 +2645,7 @@ leader_traits = {
 	flight_deck_manager = { 
 		type = navy
 		modifier = {
-			 sortie_efficiency = 0.1
+			sortie_efficiency = 0.2
 		}
 		
 		slot = high_command
@@ -3048,7 +3059,7 @@ leader_traits = {
 	
 		modifier = {
 			navy_capital_ship_attack_factor = 0.1
-			navy_anti_air_attack_factor = -0.2	
+			navy_anti_air_attack_factor = -0.1	
 		}
 		new_commander_weight = {
 			factor = 1  
@@ -3103,7 +3114,7 @@ leader_traits = {
 		trait_type = personality_trait
 		
 		modifier = {
-			ships_at_battle_start = -0.25
+			ships_at_battle_start = -0.1
 		}
 		new_commander_weight = {
 			factor = 1  

@@ -590,16 +590,18 @@ shared_focus = {
 	available_if_capitulated = no
 
 	completion_reward = {
+
 		custom_effect_tooltip = CHI_experimental_mechanised_unit_effect
-		if = {
+
+		IF = {
 			limit = {
 				has_dlc = "Arms Against Tyranny"
 			}
-			if = {
+			IF = {
 				limit = {
 					NOT = {
 						has_completed_focus = CHI_closer_ties_with_germany
-						has_completed_focus = CHI_closer_ties_with_germany
+						has_completed_focus = CHI_rapprochement_with_soviet_union
 					}
 				}
 				add_equipment_subsidy = {
@@ -608,7 +610,7 @@ shared_focus = {
 					seller_trigger = CHI_tank_seller_for_subsidy
 				}
 			}
-			else_if = {
+			ELSE_IF = {
 				limit = {
 					has_completed_focus = CHI_closer_ties_with_germany
 				}
@@ -618,7 +620,7 @@ shared_focus = {
 					seller_tags = { GER } 
 				}
 			}
-			else_if = {
+			ELSE_IF = {
 				limit = {
 					has_completed_focus = CHI_rapprochement_with_soviet_union
 				}
@@ -629,6 +631,7 @@ shared_focus = {
 				}
 			}
 		}
+
 		hidden_effect = {
 			if = {
 				limit = {
