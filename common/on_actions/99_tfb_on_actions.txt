@@ -755,19 +755,6 @@ on_actions = {
 					modifier =  NO_PORTS_CAN_BE_BUILT 
 				}
 			}
-			ITA = {
-				every_core_state = {
-					if = {
-						limit = {
-							NOT = { state = 158 }
-						}
-						add_dynamic_modifier = {
-							modifier = no_father_italy
-						}
-					}
-
-				}
-			}
 		}
 		effect = {
 			if = {
@@ -1343,77 +1330,9 @@ on_actions = {
 						FROM = { original_tag = HUN }
 						FROM = { original_tag = BUL }
 						FROM = { original_tag = YUG }
-						FROM = { original_tag = ITA }
-						FROM = { original_tag = FIN }
 					}
 				}
 				set_global_flag = SOV_has_capitulated
-			}
-		}
-
-		effect = {
-			if = {
-				limit = {
-					original_tag = FRA
-					OR = {
-						FROM = { original_tag = GER }
-						FROM = { original_tag = ROM }
-						FROM = { original_tag = HUN }
-						FROM = { original_tag = BUL }
-						FROM = { original_tag = YUG }
-						FROM = { original_tag = ITA }
-						FROM = { original_tag = FIN }
-					}
-				}
-				ITA = {
-					every_core_state = {
-						remove_dynamic_modifier = {
-							modifier = no_father_italy
-						}
-					}
-					set_global_flag = remove_italy_father
-				}
-			}
-		}
-	}
-
-	on_state_control_changed = {
-		effect = {
-			if = {
-				limit = {
-					NOT = { has_global_flag = remove_italy_father }
-					OR = {
-						FROM.FROM = { state = 458 }
-						FROM.FROM = { state = 665 }
-						FROM.FROM = { state = 513 }
-						FROM.FROM = { state = 460 }
-						FROM.FROM = { state = 459 }
-						FROM.FROM = { state = 461 }
-						FROM.FROM = { state = 462 }
-						FROM.FROM = { state = 462 }
-						FROM.FROM = { state = 118 }
-						FROM.FROM = { state = 116 }
-						FROM.FROM = { state = 183 }
-						FROM.FROM = { state = 452 }
-						FROM.FROM = { state = 1017 }
-						FROM.FROM = { state = 447 }
-						FROM.FROM = { state = 907 }
-						FROM.FROM = { state = 446 }
-						FROM.FROM = { state = 1028 }
-						FROM.FROM = { state = 453 }
-						FROM.FROM = { state = 454 }
-						FROM.FROM = { state = 553 }
-						FROM.FROM = { state = 677 }
-					}
-				}
-				ITA = {
-					every_core_state = {
-						remove_dynamic_modifier = {
-							modifier = no_father_italy
-						}
-					}
-					set_global_flag = remove_italy_father
-				}
 			}
 		}
 	}

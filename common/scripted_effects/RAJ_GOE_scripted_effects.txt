@@ -33,7 +33,6 @@ try_build_civ_in_core_otherwise_build_in_controlled = {
                 include_locked = yes
             }
             is_controlled_by = ROOT
-            NOT = { is_core_of = PAK }
         }
         add_extra_state_shared_building_slots = 2
         add_building_construction = {
@@ -90,7 +89,6 @@ try_build_dockyard_in_core_otherwise_build_in_controlled = {
             }
             is_coastal = yes
             is_controlled_by = ROOT
-            NOT = { is_core_of = PAK }
         }
         add_extra_state_shared_building_slots = 2
         add_building_construction = {
@@ -145,7 +143,6 @@ try_build_infra_in_core_otherwise_build_in_controlled = {
         limit = {
             infrastructure < 9
             is_controlled_by = ROOT
-            NOT = { is_core_of = PAK }
         }
         add_building_construction = {
              type = infrastructure
@@ -194,7 +191,6 @@ try_build_mil_in_core_otherwise_build_in_controlled = {
                 include_locked = yes
             }
             is_controlled_by = ROOT
-            NOT = { is_core_of = PAK }
         }
         add_extra_state_shared_building_slots = 2
         add_building_construction = {
@@ -681,7 +677,7 @@ calc_expected_consumer_goods_for_taxes = {
 eic_low_investments = {
     hidden_effect = {
         every_owned_state = {
-            random_select_amount = 2
+            random_select_amount = 1
             limit = { check_variable = { industrial_complex_level > 0 }  }
             remove_building = {
                 type = industrial_complex 
@@ -692,15 +688,15 @@ eic_low_investments = {
 
     custom_effect_tooltip = eic_low_investments_cost  #Need to update both tt and how many civs gets removed if changing
     custom_effect_tooltip = RAJ_GOE_modify_dividends
-    set_variable = { RAJ_eic_dividends_investment_efficiency_max = 0.025 tooltip = production_factory_efficiency_gain_factor_tt } 
-    set_variable = { RAJ_eic_dividends_investment_building_speed = 0.075 tooltip = production_speed_buildings_factor_tt }
+    set_variable = { RAJ_eic_dividends_investment_efficiency_max = 0.04 tooltip = production_factory_efficiency_gain_factor_tt } 
+    set_variable = { RAJ_eic_dividends_investment_building_speed = 0.1 tooltip = production_speed_buildings_factor_tt }
     custom_effect_tooltip = RAJ_GOE_modify_dividends_2
 }
 
 eic_normal_investments = {
     hidden_effect = {
         every_owned_state = {
-            random_select_amount = 4
+            random_select_amount = 2
             limit = { check_variable = { industrial_complex_level > 0 }  }
             remove_building = {
                 type = industrial_complex 
@@ -711,15 +707,15 @@ eic_normal_investments = {
     
     custom_effect_tooltip = eic_normal_investments_cost  #Need to update both tt and how many civs gets removed if changing
     custom_effect_tooltip = RAJ_GOE_modify_dividends
-    set_variable = { RAJ_eic_dividends_investment_efficiency_max = 0.075 tooltip = production_factory_efficiency_gain_factor_tt } 
-    set_variable = { RAJ_eic_dividends_investment_building_speed = 0.15 tooltip = production_speed_buildings_factor_tt }
+    set_variable = { RAJ_eic_dividends_investment_efficiency_max = 0.09 tooltip = production_factory_efficiency_gain_factor_tt } 
+    set_variable = { RAJ_eic_dividends_investment_building_speed = 0.23 tooltip = production_speed_buildings_factor_tt }
     custom_effect_tooltip = RAJ_GOE_modify_dividends_2
 }
 
 eic_high_investments = {
     hidden_effect = {
         every_owned_state = {
-            random_select_amount = 8
+            random_select_amount = 4
             limit = { check_variable = { industrial_complex_level > 0 }  }
             remove_building = {
                 type = industrial_complex 
@@ -730,8 +726,8 @@ eic_high_investments = {
     custom_effect_tooltip = eic_high_investments_cost  #Need to update both tt and how many civs gets removed if changing
 
     custom_effect_tooltip = RAJ_GOE_modify_dividends
-    set_variable = { RAJ_eic_dividends_investment_efficiency_max = 0.15 tooltip = production_factory_efficiency_gain_factor_tt } 
-    set_variable = { RAJ_eic_dividends_investment_building_speed = 0.25 tooltip = production_speed_buildings_factor_tt }
+    set_variable = { RAJ_eic_dividends_investment_efficiency_max = 0.16 tooltip = production_factory_efficiency_gain_factor_tt } 
+    set_variable = { RAJ_eic_dividends_investment_building_speed = 0.35 tooltip = production_speed_buildings_factor_tt }
     custom_effect_tooltip = RAJ_GOE_modify_dividends_2
 }
 
@@ -943,270 +939,5 @@ bose_civil_war_capital_check = {
             }
         }
         
-    }
-}
-
-bathe_in_hellfire_nuclear = {
-    if = {
-        limit = {
-            has_event_target = nuclear_gandhi_actor_country
-            event_target:nuclear_gandhi_actor_country = {
-                original_tag = RAJ
-                has_completed_focus = RAJ_bathe_in_hellfire
-            }
-            has_dlc = "Graveyard of Empires"
-
-        }
-
-        clear_global_event_target = nuclear_gandhi_actor_country
-
-        THIS = {
-            set_variable = { t_arms_factory_level = arms_factory_level }
-            if = {
-                limit = {
-                    check_variable = { t_arms_factory_level > 0 }
-                }
-
-                multiply_variable = { t_arms_factory_level = 0.5 } 
-                round_variable = t_arms_factory_level #highest int is chosen 
-                if = {
-                    limit = {
-                        check_variable = { t_arms_factory_level > 0 }
-                    }
-
-                    remove_building = {
-                        type =  arms_factory
-                        level = t_arms_factory_level
-                    }
-                }
-            }
-        }
-    }
-}
-
-bathe_in_hellfire_thermonuclear = {
-    if = {
-        limit = {
-            has_event_target = nuclear_gandhi_actor_country
-            event_target:nuclear_gandhi_actor_country = {
-                original_tag = RAJ
-                has_completed_focus = RAJ_bathe_in_hellfire
-            }
-            has_dlc = "Graveyard of Empires"
-
-        }
-
-        clear_global_event_target = nuclear_gandhi_actor_country
-
-        THIS = {
-            set_variable = { t_arms_factory_level = arms_factory_level }
-            if = {
-                limit = {
-                    check_variable = { t_arms_factory_level > 0 }
-                }
-
-                multiply_variable = { t_arms_factory_level = 1 } 
-                round_variable = t_arms_factory_level #highest int is chosen 
-                if = {
-                    limit = {
-                        check_variable = { t_arms_factory_level > 0 }
-                    }
-
-                    remove_building = {
-                        type =  arms_factory
-                        level = t_arms_factory_level
-                    }
-                }
-            }
-        }
-    }
-}
-
-was_raj_a_subject = {
-    if = {
-        limit = {
-            RAJ = {
-                is_subject = yes
-                has_dlc = "Graveyard of Empires"
-            }
-        }
-
-        RAJ = {
-            set_variable = { saved_autonomy_ratio = autonomy_ratio }
-
-            set_variable = { saved_democratic_support = party_popularity_100@democratic }
-            set_variable = { saved_neutrality_support = party_popularity_100@neutrality }
-            set_variable = { saved_communism_support = party_popularity_100@communism }
-            set_variable = { saved_fascism_support = party_popularity_100@fascism }
-
-            if = {
-                limit = { has_government = communism }
-                set_country_flag = was_communist
-            }
-            else_if = {
-                limit = { has_government = fascism }
-                set_country_flag = was_fascist
-            }
-            else_if = {
-                limit = { has_government = neutrality }
-                set_country_flag = was_unaligned
-            }
-            else = {
-                set_country_flag = was_democratic
-            }
-
-        }
-                
-        set_global_flag = RAJ_was_a_subject_pre_cw_of_uk
-    }
-}
-
-
-
-raj_was_a_subject_reset_party_ideology_after_independence = {
-    if = {
-        limit = {
-
-            has_global_flag = RAJ_was_a_subject_pre_cw_of_uk
-        }
-        if = {
-            limit = {
-                RAJ = { is_subject = no }
-            }
-            RAJ = {
-                ROOT = {
-                    set_autonomy = {
-                        target=RAJ
-                        autonomy_state = autonomy_dominion
-                        freedom_level = var:saved_autonomy_ratio # 0-1 
-                        end_wars  = no # default yes. will not cancel non civil wars if set to no
-                        end_civil_wars = no # default yes. will not cancel civil wars if set to no
-                    }
-                }
-
-                if = {
-                    limit = {
-                        has_country_flag = was_communist
-                        NOT = { has_government = communism }
-                    }
-
-                    set_politics = {
-                        ruling_party = communism
-                        elections_allowed = no
-                    }
-                }
-                else_if = {
-                    limit = {
-                        has_country_flag = was_fascist
-                        NOT = { has_government = fascism }
-                    }
-
-                    set_politics = {
-                        ruling_party = fascism
-                        elections_allowed = no
-                    }
-                }
-                else_if = {
-                    limit = {
-                        has_country_flag = was_unaligned
-                        NOT = { has_government = neutrality }
-                    }
-
-                    set_politics = {
-                        ruling_party = neutrality
-                        elections_allowed = yes
-                    }
-                }
-                else = {
-                    set_politics = {
-                        ruling_party = democratic
-                        elections_allowed = yes
-                    }
-                }
-
-                set_popularities = {
-                    democratic= var:saved_democratic_support 
-                    neutrality = var:saved_neutrality_support 
-                    fascism = var:saved_fascism_support 
-                    communism = var:saved_communism_support 
-                }
-            }
-            
-        }
-        else = {
-            RAJ = {
-                OVERLORD = {
-                    if = {
-                        limit = {
-                            has_government = fascism
-                        }
-                        set_autonomy = {
-                            target=RAJ
-                            autonomy_state = autonomy_satellite
-                            freedom_level = var:saved_autonomy_ratio # 0-1 
-                            end_wars  = no # default yes. will not cancel non civil wars if set to no
-                            end_civil_wars = no # default yes. will not cancel civil wars if set to no
-                        }
-                    }
-                    else = {
-                        set_autonomy = {
-                            target=RAJ
-                            autonomy_state = autonomy_dominion
-                            freedom_level = var:saved_autonomy_ratio # 0-1 
-                            end_wars  = no # default yes. will not cancel non civil wars if set to no
-                            end_civil_wars = no # default yes. will not cancel civil wars if set to no
-                        }
-                    }
-
-                }
-
-                if = {
-                    limit = {
-                        has_country_flag = was_communist
-                        NOT = { has_government = communism }
-                    }
-
-                    set_politics = {
-                        ruling_party = communism
-                        elections_allowed = no
-                    }
-                }
-                else_if = {
-                    limit = {
-                        has_country_flag = was_fascist
-                        NOT = { has_government = fascism }
-                    }
-
-                    set_politics = {
-                        ruling_party = fascism
-                        elections_allowed = no
-                    }
-                }
-                else_if = {
-                    limit = {
-                        has_country_flag = was_unaligned
-                        NOT = { has_government = neutrality }
-                    }
-
-                    set_politics = {
-                        ruling_party = neutrality
-                        elections_allowed = yes
-                    }
-                }
-                else = {
-                    set_politics = {
-                        ruling_party = democratic
-                        elections_allowed = yes
-                    }
-                }
-
-                set_popularities = {
-                    democratic= var:saved_democratic_support 
-                    neutrality = var:saved_neutrality_support 
-                    fascism = var:saved_fascism_support 
-                    communism = var:saved_communism_support 
-                }
-            }
-        }
     }
 }

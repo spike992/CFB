@@ -395,19 +395,19 @@ on_actions = {
 			}
 		}
 
-		# effect = {
-		# 	IF = {
-		# 		limit = {
-		# 			FROM = {
-		# 				original_tag = BEL
-		# 				has_completed_focus = BEL_interpreters
-		# 			}
-		# 		}
-		# 		ROOT = {
-		# 			add_ideas = BEL_interpreters_ns
-		# 		}
-		# 	}
-		# }
+		effect = {
+			IF = {
+				limit = {
+					FROM = {
+						original_tag = BEL
+						has_completed_focus = BEL_interpreters
+					}
+				}
+				ROOT = {
+					add_ideas = BEL_interpreters_ns
+				}
+			}
+		}
 
 	}
 
@@ -625,19 +625,19 @@ on_actions = {
 			}
 		}
 
-		# effect = {
-		# 	IF = {
-		# 		limit = {
-		# 			ROOT = {
-		# 				original_tag = BEL
-		# 				has_completed_focus = BEL_interpreters
-		# 			}
-		# 		}
-		# 		FROM = {
-		# 			add_ideas = BEL_interpreters_ns
-		# 		}
-		# 	}
-		# }
+		effect = {
+			IF = {
+				limit = {
+					ROOT = {
+						original_tag = BEL
+						has_completed_focus = BEL_interpreters
+					}
+				}
+				FROM = {
+					add_ideas = BEL_interpreters_ns
+				}
+			}
+		}
 	}
 
 	# FROM is the one that joins the faction. Trigger the following commands whenever a country creates a faction.	
@@ -771,9 +771,6 @@ on_actions = {
 					FROM = {
 						original_tag = GER
 						has_completed_focus = GER_shared_rd_programs_ww
-					}
-					ROOT = {
-						NOT = { is_in_faction_with = FROM }
 					}
 				}
 				FROM = {
@@ -986,6 +983,20 @@ on_actions = {
 				}
 				101 = {
 					set_state_controller_to = GRN 
+				}
+			}
+		}
+
+		effect = {
+			IF = {
+				limit = {
+					FROM = {
+						original_tag = GER
+						has_completed_focus = GER_shared_rd_programs_ww
+					}
+				}
+				FROM = {
+					GER_one_more_member_increase_rnd_program_strength = yes
 				}
 			}
 		}
@@ -1539,7 +1550,10 @@ on_actions = {
 							}
 							OR = {
 								original_tag = GER
-								is_in_faction_with = GER
+								any_country = {
+									is_in_faction_with = GER
+							
+								}
 							}
 						}						
 					}
@@ -2465,10 +2479,10 @@ on_actions = {
 					}
 					else_if =  {
 						limit = {
-							has_dynamic_modifier = { modifier = GER_navy_imperial_modifier }
+							has_dynamic_modifier = { modifier = GER_navy_fascist_modifier }
 						}
 						remove_dynamic_modifier = {
-							modifier = GER_navy_imperial_modifier
+							modifier = GER_navy_fascist_modifier
 						}
 						add_dynamic_modifier = {
 							modifier = GER_navy_communist_modifier

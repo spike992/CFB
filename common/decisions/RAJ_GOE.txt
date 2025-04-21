@@ -87,7 +87,7 @@ RAJ_GOE_independence_movement = {
 			}
 		}
 		on_map_mode = map_only
-		cost = 13
+		cost = 20
 		fire_only_once = no
 		days_remove = 90
 		ai_will_do = {
@@ -109,8 +109,7 @@ RAJ_GOE_independence_movement = {
 		}
 		complete_effect = {
 			FROM = {
-				add_resistance = 50
-				add_compliance = -10
+				add_resistance = 35
 			}
 			ROOT = {
 				army_experience = 5
@@ -343,13 +342,6 @@ RAJ_GOE_sikh_recruitment_cat = {
 				FROM = { state = 433 }
 			}
 		}
-
-		highlight_states = {
-			highlight_state_targets = {
-				state = 440
-				state = 433
-			}
-		}
 		
 		cost = 30
 		fire_only_once = yes
@@ -358,31 +350,26 @@ RAJ_GOE_sikh_recruitment_cat = {
 			base = 1
 
 		}
-		remove_effect = {
-			if = {
-				limit = {
-					NOT = {has_template = "Sikh Division"}
+		complete_effect = {
+			division_template = {
+				name = "Sikh Division"
+				is_locked = yes
+				division_names_group = RAJ_SIKH_01 # optional
+				priority = 2 # optional 
+				
+				regiments = {
+					mountaineers = { x = 0 y = 0 }
+					mountaineers = { x = 0 y = 1 }
+					mountaineers = { x = 0 y = 2 }
+					mountaineers = { x = 0 y = 3 }
+					mountaineers = { x = 1 y = 0 }
+					mountaineers = { x = 1 y = 1 }
+					mountaineers = { x = 1 y = 2 }
+					mountaineers = { x = 1 y = 3 }
 				}
-				division_template = {
-					name = "Sikh Division"
-					is_locked = yes
-					division_names_group = RAJ_SIKH_01 # optional
-					priority = 2 # optional 
-					
-					regiments = {
-						mountaineers = { x = 0 y = 0 }
-						mountaineers = { x = 0 y = 1 }
-						mountaineers = { x = 0 y = 2 }
-						mountaineers = { x = 0 y = 3 }
-						mountaineers = { x = 1 y = 0 }
-						mountaineers = { x = 1 y = 1 }
-						mountaineers = { x = 1 y = 2 }
-						mountaineers = { x = 1 y = 3 }
-					}
-					support = {
-						#artillery = { x = 0 y = 0 }
-						engineer = { x = 0 y = 1 }
-					}
+				support = {
+					#artillery = { x = 0 y = 0 }
+					engineer = { x = 0 y = 1 }
 				}
 			}
 			FROM = {
@@ -433,10 +420,9 @@ RAJ_GOE_india_indivisible_cat = {
 		target_trigger = {			
 			FROM = { 
 				NOT = { is_core_of = ROOT }  
-				is_in_array = { array = RAJ.owned_states_at_game_start value = THIS } 
-				is_controlled_by = ROOT
-				NOT = { is_core_of = BUR }			
-			}
+			 	is_in_array = { array = RAJ.owned_states_at_game_start value = THIS } 
+			 	is_controlled_by = ROOT
+			 }
 		}
 
 		remove_effect = {
@@ -1074,13 +1060,13 @@ RAJ_akhand_bharat_cat = {
 					tooltip = RAJ_akhand_bharat_availability_tt 
 				}
 			}
-			NOT = { has_dynamic_modifier = { modifier = idea_RAJ_famine_country } }
 		}
 
 		visible = {
 			BAN = {
 				any_core_state = {
 					NOT = { is_core_of = ROOT }
+					NOT = { has_dynamic_modifier = { modifier = idea_RAJ_famine_state } }
 				}
 			}
 		}
@@ -1342,7 +1328,6 @@ RAJ_akhand_bharat_cat = {
 					tooltip = RAJ_akhand_bharat_availability_tt 
 				}
 			}
-			NOT = { has_dynamic_modifier = { modifier = idea_RAJ_famine_country } }
 		}
 		highlight_states = {
 			highlight_states_trigger = {
@@ -1886,8 +1871,6 @@ RAJ_GOE_partition_cat = {
 	    	
 	    }
 	    timeout_effect = {
-			set_global_flag = RAJ_GOE_partition_is_over
-			set_country_flag = RAJ_allow_release_states
 	    	if = {
 	    		limit = {
 	    			NOT = { has_variable = princely_state_timeout_count  }
@@ -1907,19 +1890,15 @@ RAJ_GOE_partition_cat = {
 	    					is_controlled_by = PAK
 	    					is_controlled_by = BAN
 	    				}
-
-    					owner = {
-    						NOT = { has_war_with = ROOT }
-    					}
 	    			}
 	    			
 		    		set_temp_variable = { t_RAJ_pressure_scaled  = RAJ_pressure }
 		    		set_variable = { t_PAK_pressure_scaled  = PAK_pressure }
 		    		set_temp_variable = { t_BAN_pressure_scaled  = BAN_pressure }
 
-		    		multiply_temp_variable = { t_RAJ_pressure_scaled  = 1.25 }
-		    		multiply_variable = { t_PAK_pressure_scaled  = 1.25 }
-		    		multiply_temp_variable = { t_BAN_pressure_scaled  = 1.25 } #
+		    		multiply_temp_variable = { t_RAJ_pressure_scaled  = 1.5 }
+		    		multiply_variable = { t_PAK_pressure_scaled  = 1.5 }
+		    		multiply_temp_variable = { t_BAN_pressure_scaled  = 1.5 } #
 
 
 		    		if = {
@@ -1935,12 +1914,6 @@ RAJ_GOE_partition_cat = {
 		    			RAJ = {
 		    				transfer_state = PREV
 		    			}
-		    			if = {
-		    				limit = {
-		    					NOT = { is_core_of = RAJ }
-		    				}
-		    				add_core_of = RAJ
-		    			}
 		    		}
 		    		else_if = {
 		    			limit = {
@@ -1955,13 +1928,6 @@ RAJ_GOE_partition_cat = {
 		    			PAK = {
 		    				transfer_state = PREV
 		    			}
-
-		    			if = {
-		    				limit = {
-		    					NOT = { is_core_of = PAK }
-		    				}
-		    				add_core_of = PAK
-		    			}
 		    		}
 		    		else_if = {
 		    			limit = {
@@ -1970,34 +1936,27 @@ RAJ_GOE_partition_cat = {
 		    					is_subject = no
 		    				}
 		    				check_variable = { BAN_pressure > t_RAJ_pressure_scaled }
-		    				check_variable = { BAN_pressure > t_PAK_pressure_scaled }
+		    				check_variable = { BAN_pressure > t_BAN_pressure_scaled }
 		    				check_variable = { BAN_pressure > 0 }
 		    			}
 		    			BAN = {
 		    				transfer_state = PREV
 		    			}
-
-		    			if = {
-		    				limit = {
-		    					NOT = { is_core_of = BAN }
-		    				}
-		    				add_core_of = BAN
-		    			}
 		    		}
 		    	}
     		}
 
-
+    		if = {
+    			limit = { check_variable = { princely_state_timeout_count > 0 } } #WAS 3
+    			
+    			set_global_flag = RAJ_GOE_partition_is_over
+    			set_country_flag = RAJ_allow_release_states
+    		}
 
     		hidden_effect = {
-    			if = {
-    				limit = {
-    					NOT = { has_completed_focus = RAJ_i_am_death }
-    				}
-
-					set_rule = { can_declare_war_on_same_ideology = no }
-					set_rule = { can_only_justify_war_on_threat_country = yes }
-    			}
+    		
+				set_rule = { can_declare_war_on_same_ideology = no }
+				set_rule = {  can_only_justify_war_on_threat_country = yes }
     		}
 
     		if = {
@@ -2021,10 +1980,10 @@ RAJ_GOE_partition_cat = {
     						has_idea = neutrality_idea	
     					}
     				}
-    				PAK = { remove_ideas = neutrality_idea }
+    				remove_ideas = neutrality_idea
     			}
 
-    			PAK = { set_rule = { can_join_factions = yes } }
+    			set_rule = { can_join_factions = yes }
     		}
 
     		if = {
@@ -2040,10 +1999,10 @@ RAJ_GOE_partition_cat = {
     						has_idea = neutrality_idea	
     					}
     				}
-    				BAN = { remove_ideas = neutrality_idea }
+    				remove_ideas = neutrality_idea
     			}
 
-    			BAN = { set_rule = { can_join_factions = yes } }
+    			set_rule = { can_join_factions = yes }
     		}
 
     		for_each_scope_loop = {
@@ -2072,7 +2031,7 @@ RAJ_GOE_partition_cat = {
 
 	    icon = GFX_decision_mission_icon     # For GFX_decision_mission_icon
 	    is_good = no
-	    days_mission_timeout = 40
+	    days_mission_timeout = 30
 	    selectable_mission = no
 
 	    timeout_effect = {
@@ -2092,15 +2051,14 @@ RAJ_GOE_partition_cat = {
 
 	RAJ_GOE_cease_hostilities = {
 		priority = 30
-
+	    activation = {
+	    	always = no #enabled by on_action
+	    }
 	    available = {
-	    	has_war_with = PAK
-	    	
+			always = no
 	    }
 	    visible = {
-	    	
 	    	NOT = { has_completed_focus = RAJ_india_united }
-	    	NOT = { has_global_flag = RAJ_GOE_partition_is_over }
 	    }
 
 	    cost = 0
@@ -2170,7 +2128,7 @@ RAJ_GOE_partition_cat = {
 		
 		cost = 0
 		fire_only_once = no
-		days_remove = 8
+		days_remove = 15
 		ai_will_do = {
 			base = 1
 
@@ -2797,13 +2755,6 @@ RAJ_GOE_eic_hostile_takeover_cat = {
 			has_completed_focus = RAJ_hostile_takeover
 			FROM.owner = {
 				is_in_faction_with = RAJ
-				
-			}
-			OR = {
-				NOT = { FROM = { is_core_of = FROM.OWNER } }
-				FROM.OWNER = {
-					original_tag = RAJ
-				}
 			}
 		}
 		days_re_enable = 14
@@ -3085,22 +3036,7 @@ RAJ_GOE_mughal_independence_category = {
 				division_template = "Princely Personal Guard"
 				is_locked = no
 			}
-
-			#hidden_effect = {
-			#	every_state = {
-			#		limit = {
-			#			owner = { tag = BRM }
-			#		}
-			#		teleport_armies = { 
-			#			#only define one. if neither is defined will teleport to unit to their capital  
-			#			to_state = 988
-			#			to_province = 5105
-			#			limit = { 
-			#				tag = RAJ
-			#			}
-			#		}
-			#	}
-			#}
+			
 		}
 	}
 	

@@ -1310,42 +1310,8 @@ on_actions = {
 						country_event = { id = denmark_occupation_event.1 hours = 1 } 
 						set_country_flag = DEN_attacked #Used to check if DEN was attacked by GER in Tests
 					}
-				}	
-			}
-			#This is done so that Denmark's Election Events will NOT be triggered normally when at war
-			if = {
-				limit = {
-					OR = {
-						ROOT = {
-							original_tag = DEN
-							NOT = { has_country_flag = DEN_at_war_flag }
-						}
-						FROM = {
-							original_tag = DEN
-							NOT = { has_country_flag = DEN_at_war_flag }
-						}
-					}
 				}
-				if = {
-					limit = {
-						ROOT = {
-							original_tag = DEN
-						}
-					}
-					ROOT = {
-						set_country_flag = DEN_at_war_flag
-					}
-				}
-				else_if = {
-					limit = {
-						FROM = {
-							original_tag = DEN
-						}
-					}
-					FROM = {
-						set_country_flag = DEN_at_war_flag
-					}
-				}
+					
 			}
 		}
 

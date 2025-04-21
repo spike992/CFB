@@ -12,19 +12,6 @@ characters={
 			id=-1
 		}
 	}
-	YUG_milan_stojadinovic={
-		name=YUG_milan_stojadinovic
-		portraits={
-			civilian={
-				large=GFX_portrait_YUG_milan_stojadinovic
-			}
-		}
-		country_leader={
-			ideology=fascism_ideology
-			expire="1965.1.1.1"
-			id=-1
-		}
-	}
 	YUG_milan_grol={
 		name=YUG_milan_grol
 		portraits={
@@ -38,52 +25,30 @@ characters={
 			id=-1
 		}
 	}
-	YUG_peter_ii={
-		name=YUG_peter_ii
+	YUG_josip_broz_tito={
+		name="Josip Broz Tito"
 		portraits={
 			civilian={
-				large="GFX_portrait_yugoslavia_peter_ii_young"
+				large="gfx/leaders/YUG/Portrait_Yugoslavia_Josip_Broz_Tito.dds"
 			}
 		}
 		country_leader={
-			ideology=despotism
-			traits={ underage_monarch }
+			ideology=leninism
 			expire="1965.1.1.1"
 			id=-1
 		}
-		country_leader={
-			ideology=conservatism
-			traits={ underage_monarch }
-			expire="1965.1.1.1"
-			id=-1
-		}
-	}
-	YUG_josip_broz_tito={
-		name=YUG_josip_broz_tito
 		advisor={
 			slot = army_chief
 			idea_token = YUG_josip_broz_tito
 			allowed = {
-					OR = {
-						original_tag = YUG
-						#original_tag = SWE
-						#original_tag = CHL
-					}
+					original_tag = YUG
 				}
 				available = {
-					OR = {
-						AND = {
-							custom_trigger_tooltip = {
-								tooltip = tito_is_not_dead_tt
-								not = {
-									has_global_flag = Tito_killed
-								}
-							}
+					custom_trigger_tooltip = {
+						tooltip = tito_is_not_dead_tt
+						not = {
+							has_global_flag = Tito_killed
 						}
-
-						#SWE_refuge_for_revolutionaries_trigger = yes
-
-						#CHL_hub_of_the_revolution_trigger = yes
 					}
 				}
 				traits = {
@@ -94,18 +59,18 @@ characters={
 					factor = 1.000
 				}
 		}
-		country_leader={
-			ideology=leninism
-			expire="1966.1.1.1"
-			id=-1
-		}
+	}
+	YUG_milan_stojadinović={
+		name="Milan Stojadinović"
 		portraits={
-			army={
-				small="GFX_idea_YUG_josip_broz_tito"
-			}
 			civilian={
-				large=GFX_portrait_YUG_josip_broz_tito
+				large="gfx/leaders/YUG/Portrait_Yugoslavia_Milan_Stojadinovic.dds"
 			}
+		}
+		country_leader={
+			ideology=fascism_ideology
+			expire="1965.1.1.1"
+			id=-1
 		}
 	}
 	YUG_vladimir_Cukavac={
@@ -229,38 +194,23 @@ characters={
 			slot = navy_chief
 			idea_token = YUG_petar_kosic
 			allowed = {
-					original_tag = YUG
-				}
-				traits = {
-					navy_chief_decisive_battle_2
-				}
-				cost = 100
-				ai_will_do = {
-					factor = 1.000
-				}
-		}
-	}
-	YUG_josef_depre={
-		name=YUG_josef_depre
-		portraits={
-			army={
-				large="GFX_portrait_yugoslavia_josef_depre"
-				small=GFX_portrait_YUG_josef_depre_small
+				original_tag = YUG
+			}
+			traits = {
+				navy_chief_decisive_battle_2
+			}
+			cost = 100
+			ai_will_do = {
+				factor = 1.000
 			}
 		}
-		corps_commander={
-			traits={ cavalry_officer }
-			skill=2
-			attack_skill=2
-			defense_skill=1
-			planning_skill=3
-			logistics_skill=3
-			legacy_id=-1
-		}
 	}
-	YUG_marijan_polic={
-		name=YUG_marijan_polic
+	YUG_marijan_polić={
+		name="Marijan Polić"
 		portraits={
+			army={
+				small="GFX_Portrait_yugoslavia_marijan_polic_small"
+			}
 			army={
 				large="GFX_Portrait_yugoslavia_marijan_polic"
 				small=GFX_portrait_YUG_marijan_polic_small
@@ -272,7 +222,7 @@ characters={
 			attack_skill=2
 			defense_skill=2
 			maneuvering_skill=1
-			coordination_skill=2
+			coordination_skill=1
 			legacy_id=-1
 		}
 		advisor={
@@ -340,16 +290,15 @@ characters={
 			slot = high_command
 			idea_token = YUG_borivoje_mirkovic
 			ledger = air
-				allowed = {
-					original_tag = YUG
-				}
-				traits = {
-					air_bomber_interception_1
-				}
-				cost =  50
-				ai_will_do = {
-					factor = 1.000
-				}
+			allowed = {
+				original_tag = YUG
+			}
+			traits = {
+				air_bomber_interception_1
+			}
+			ai_will_do = {
+				factor = 1.000
+			}
 		}
 		name=YUG_borivoje_mirkovic
 		portraits={
@@ -492,19 +441,19 @@ characters={
 	}
 	YUG_arso_jovanovic={
 		advisor={
-			slot = high_command
+			slot = army_chief
 			idea_token = YUG_arso_jovanovic
 			ledger = army
-				allowed = {
-					original_tag = YUG
-				}
-				traits = {
-					army_entrenchment_2
-				}
-				cost = 100
-				ai_will_do = {
-					factor = 1.000
-				}
+			allowed = {
+				original_tag = YUG
+			}
+			traits = {
+				army_chief_drill_2
+			}
+			cost = 100
+			ai_will_do = {
+				factor = 1.000
+			}
 		}
 		name=YUG_arso_jovanovic
 		portraits={
@@ -585,7 +534,7 @@ characters={
 					original_tag  = YUG
 				}
 				traits  = {
-					captain_of_industry 
+					war_industrialist 
 				}
 		}
 		name=YUG_ivan_ribar
@@ -660,11 +609,11 @@ characters={
 			}
 		}
 		corps_commander = {
-			traits = { brilliant_strategist militias_officer infantry_leader }
-			skill = 3
-			attack_skill = 2
-			defense_skill = 2
-			planning_skill = 2
+			traits = { brilliant_strategist trait_reckless militias_officer infantry_leader }
+			skill = 4
+			attack_skill = 4
+			defense_skill = 3
+			planning_skill = 3
 			logistics_skill = 2
 		
 		}

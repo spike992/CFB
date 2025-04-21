@@ -249,13 +249,9 @@ PER_memphis_initiative_category = {
 			FROM = {
 				impassable = no	
 				AND = {
-					OR = {
-						is_on_continent = middle_east
-						is_core_of = EGY
-					}
+					is_core_of = EGY
 					NOT = { 
 						is_core_of = ROOT 
-						is_core_of = TUR
 					}
 
 					is_fully_controlled_by = ROOT
@@ -507,10 +503,7 @@ PER_mass_protests = {
 		visible = {
 			has_completed_focus = PER_stage_mass_protests
 			NOT = {
-				OR = {
-					has_global_flag = PER_civil_war_happened
-					has_global_flag = PER_non_lethal_takeover
-				}
+				has_global_flag = PER_civil_war_happened
 			}
 		}
 		state_target = any_controlled_state
@@ -569,7 +562,6 @@ PER_mass_protests = {
 					has_completed_focus = PER_force_abdication
 					has_completed_focus = PER_constitutional_monarchy
 					has_global_flag = PER_civil_war_happened
-					has_country_flag = PER_civil_war_was_bypassed
 				}
 			}	
 		}
@@ -577,7 +569,6 @@ PER_mass_protests = {
 	    target_trigger = {
 	        FROM = {
 	           	is_fully_controlled_by = ROOT
-	           	is_core_of = ROOT
 	           	NOT = {
 	           		OR = {
 	           			has_state_flag = PER_established_cell_here

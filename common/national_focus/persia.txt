@@ -418,7 +418,6 @@ focus_tree = {
 				add_equipment_to_stockpile = {
 					type = train_equipment
 					amount = 15
-					producer = GER
 				}
 			}
 
@@ -426,7 +425,6 @@ focus_tree = {
 				add_equipment_to_stockpile = {
 					type = train_equipment
 					amount = 20
-					producer = GER
 				}
 			}
 		}
@@ -709,7 +707,7 @@ focus_tree = {
 
 	focus = { #INDUSTRIAL
 		id = PER_women_vote
-		icon = GFX_focus_generic_universal_suffrage
+		icon = GFX_focus_generic_universal_suffrage #TODO_EILIDH fix this icon
 		prerequisite = { focus = PER_price_stabilization focus = PER_abolish_feudalism }
 		x = 0
 		y = 1
@@ -928,21 +926,21 @@ focus_tree = {
 			421 = {
 				add_resource = {
 					type = oil
-					amount = 250
+					amount = 25
 				}	
 			}
 
 			413 = {
 				add_resource = {
 					type = oil
-					amount = 150
+					amount = 15
 				}	
 			}
 
 			412 = {
 				add_resource = {
 					type = oil
-					amount = 180
+					amount = 18
 				}	
 			}
 		}
@@ -974,6 +972,7 @@ focus_tree = {
 				}
 				remove_ideas = PER_anglo_iranian_oil_ns
 			}
+			#TODO_EILIDH: EVENT (add something that pisses england off lol)
 		}
 	}
 
@@ -1046,7 +1045,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_ARMY_XP FOCUS_FILTER_INDUSTRY
+			FOCUS_FILTER_ARMY_XP
 		}
 
 		completion_reward = {
@@ -1090,7 +1089,9 @@ focus_tree = {
 			factor = 0
 		}
 
-		search_filters = { FOCUS_FILTER_MANPOWER }
+		search_filters = {
+
+		}
 
 		completion_reward = {
 
@@ -1101,7 +1102,7 @@ focus_tree = {
 				division_template = {
 					name = "Iranian Imperial Guard"		
 					is_locked = no
-					template_counter = 4
+					template_counter = 4 #TODO_EILIDH CHANGE TO UNIQUE
 					regiments = {
 						infantry = { x = 0 y = 0 }
 						infantry = { x = 0 y = 1 }
@@ -1513,7 +1514,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_MILITARY_CHARACTER FOCUS_FILTER_ARMY_XP
+			FOCUS_FILTER_MILITARY_CHARACTER
 		}
 
 		completion_reward = {
@@ -2128,7 +2129,9 @@ focus_tree = {
 			factor = 0
 		}
 
-		search_filters = { FOCUS_FILTER_MANPOWER }
+		search_filters = {
+
+		}
 
 		completion_reward = {
 			custom_effect_tooltip = PER_expand_immortal_legion_tt
@@ -2185,7 +2188,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #ARMY #TODO_EILIDH: IMPLEMENT GÖTTERDAMMERUNG SPECIAL PROJECTS
 		id = PER_cyrus_initiative
 		icon = GFX_focus_PER_cyrus_initiative
 		prerequisite = { focus = PER_import_rocketry }
@@ -2357,6 +2360,7 @@ focus_tree = {
 
 			}
 
+			add_extra_state_shared_building_slots = 1
 			add_building_construction = {
 				type = air_base
 				level = 1
@@ -2406,6 +2410,7 @@ focus_tree = {
 		}
 
 		completion_reward = {
+		#TODO_EILIDH: Think of alternative for non AAT
 			IF = {
 				limit = {
 					has_dlc = "Arms Against Tyranny"
@@ -2428,27 +2433,27 @@ focus_tree = {
 
 				custom_effect_tooltip = generic_skip_one_line_tt
 			}
-			# if = {
-			# 	limit = {
-			# 		has_dlc = "By Blood Alone"
-			# 	}
-			# 	add_equipment_to_stockpile = {
-			# 		type = small_plane_airframe_0
-			# 		amount = 25
-			# 		producer = ENG
-			# 	}	
-			# 	add_equipment_to_stockpile = {
-			# 		type = small_plane_cas_airframe_0
-			# 		amount = 25
-			# 		producer = ENG
-			# 	}	
-			# 	add_equipment_to_stockpile = {
-			# 		type = medium_plane_airframe_0
-			# 		amount = 25
-			# 		producer = ENG
-			# 	}	
-			# }
-			# else = {
+			if = {
+				limit = {
+					has_dlc = "By Blood Alone"
+				}
+				add_equipment_to_stockpile = {
+					type = small_plane_airframe_0
+					amount = 25
+					producer = ENG
+				}	
+				add_equipment_to_stockpile = {
+					type = small_plane_cas_airframe_0
+					amount = 25
+					producer = ENG
+				}	
+				add_equipment_to_stockpile = {
+					type = medium_plane_airframe_0
+					amount = 25
+					producer = ENG
+				}	
+			}
+			else = {
 				add_equipment_to_stockpile = {
 					type = fighter_equipment_0
 					amount = 25
@@ -2464,7 +2469,7 @@ focus_tree = {
 					amount = 25
 					producer = ENG
 				}
-			# }
+			}
 		}	
 	}
 
@@ -2483,7 +2488,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_INTERNATIONAL_TRADE
+			FOCUS_FILTER_INDUSTRY
 		}
 
 		completion_reward = {
@@ -2510,27 +2515,27 @@ focus_tree = {
 
 				custom_effect_tooltip = generic_skip_one_line_tt
 			}
-			# if = {
-			# 	limit = {
-			# 		has_dlc = "By Blood Alone"
-			# 	}
-			# 	add_equipment_to_stockpile = {
-			# 		type = small_plane_airframe_0
-			# 		amount = 25
-			# 		producer = GER
-			# 	}	
-			# 	add_equipment_to_stockpile = {
-			# 		type = small_plane_cas_airframe_0
-			# 		amount = 25
-			# 		producer = GER
-			# 	}	
-			# 	add_equipment_to_stockpile = {
-			# 		type = medium_plane_airframe_0
-			# 		amount = 25
-			# 		producer = GER
-			# 	}	
-			# }
-			# else = {
+			if = {
+				limit = {
+					has_dlc = "By Blood Alone"
+				}
+				add_equipment_to_stockpile = {
+					type = small_plane_airframe_0
+					amount = 25
+					producer = GER
+				}	
+				add_equipment_to_stockpile = {
+					type = small_plane_cas_airframe_0
+					amount = 25
+					producer = GER
+				}	
+				add_equipment_to_stockpile = {
+					type = medium_plane_airframe_0
+					amount = 25
+					producer = GER
+				}	
+			}
+			else = {
 				add_equipment_to_stockpile = {
 					type = fighter_equipment_0
 					amount = 25
@@ -2546,7 +2551,7 @@ focus_tree = {
 					amount = 25
 					producer = GER
 				}
-			# }
+			}
 		}
 	}
 
@@ -2591,7 +2596,9 @@ focus_tree = {
 			factor = 15
 		}
 
-		search_filters = { FOCUS_FILTER_INDUSTRY }
+		search_filters = {
+
+		}
 
 		completion_reward = {
 			custom_effect_tooltip = PER_modify_iranian_airforce_ns_intro
@@ -2692,6 +2699,7 @@ focus_tree = {
 
 				is_owned_and_controlled_by = ROOT
 			}
+			add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = air_base
 					level = 1
@@ -2703,6 +2711,7 @@ focus_tree = {
 				air_base < 5
 				is_owned_and_controlled_by = ROOT
 			}
+			add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = air_base
 					level = 1
@@ -2730,7 +2739,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_RESEARCH FOCUS_FILTER_AIR_XP FOCUS_FILTER_RESEARCH
+			FOCUS_FILTER_RESEARCH
 		}
 
 		completion_reward = {
@@ -2908,7 +2917,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_NAVY_XP FOCUS_FILTER_INDUSTRY
+			FOCUS_FILTER_NAVY_XP
 		}
 
 		completion_reward = {
@@ -2966,7 +2975,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_NAVY_XP FOCUS_FILTER_MILITARY_CHARACTER
+			FOCUS_FILTER_NAVY_XP
 		}
 
 		completion_reward = {
@@ -3013,7 +3022,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_NAVY_XP FOCUS_FILTER_INDUSTRY
+			FOCUS_FILTER_NAVY_XP
 		}
 
 		completion_reward = {
@@ -3047,7 +3056,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_INDUSTRY
+
 		}
 
 		completion_reward = {
@@ -3102,6 +3111,10 @@ focus_tree = {
 			factor = 15
 		}
 
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+
 		completion_reward = {
 			add_timed_idea = {
 				idea = PER_coastal_fortifications_idea
@@ -3110,7 +3123,7 @@ focus_tree = {
 		}
 	}
 
-	focus = { 
+	focus = { #NAVY #TODO_EILIDH: Add effects after Map Changes
 		id = PER_bolster_the_caspian
 		icon = GFX_focus_PER_bolster_the_caspian
 		prerequisite = { focus = PER_construct_naval_bases focus = PER_officers_to_italy }
@@ -3225,7 +3238,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_INDUSTRY FOCUS_FILTER_INDUSTRY
+			FOCUS_FILTER_INDUSTRY
 		}
 
 		completion_reward = {
@@ -3500,7 +3513,8 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_HISTORICAL FOCUS_FILTER_RESEARCH
+			FOCUS_FILTER_STABILITY
+			FOCUS_FILTER_HISTORICAL
 		}
 
 		completion_reward = {
@@ -3803,6 +3817,8 @@ focus_tree = {
 		}
 
 		completion_reward = {
+
+		#TODO_EILIDH I want to get the effects in for testing, but I need to come back to this and make some narrative edits after reading into the historical event more
 
 			GER = {
 				country_event = {
@@ -4253,6 +4269,8 @@ focus_tree = {
 		}
 
 		completion_reward = {
+
+		#TODO_EILIDH: What if Soviets are no longer existing or at war
 	
 			SOU = {
 					country_event = {
@@ -5570,7 +5588,7 @@ focus_tree = {
 			division_template = {
 					name = "Bakhtiari Rebels"		
 					is_locked = no
-					template_counter = 4
+					template_counter = 4 #TODO_EILIDH CHANGE TO UNIQUE
 					regiments = {
 						infantry = { x = 0 y = 0 }
 						infantry = { x = 0 y = 1 }
@@ -5590,7 +5608,7 @@ focus_tree = {
 				division_template = {
 					name = "Qashqai Rebels"		
 					is_locked = no
-					template_counter = 4
+					template_counter = 4 #TODO_EILIDH CHANGE TO UNIQUE
 					regiments = {
 						infantry = { x = 0 y = 0 }
 						infantry = { x = 0 y = 1 }
@@ -5781,11 +5799,11 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			factor = 0
+			factor = 20
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -5912,7 +5930,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_RESEARCH FOCUS_FILTER_STABILITY
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -6022,7 +6040,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -6065,7 +6083,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_INDUSTRY
+			FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY
 		}
 
 		completion_reward = {
@@ -6116,7 +6134,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -6175,7 +6193,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_MANPOWER FOCUS_FILTER_STABILITY
+			FOCUS_FILTER_POLITICAL FOCUS_FILTER_MANPOWER
 		}
 
 		completion_reward = {
@@ -6213,7 +6231,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_RESEARCH FOCUS_FILTER_MANPOWER
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -6305,6 +6323,7 @@ focus_tree = {
 		}
 
 		completion_reward = {
+			#TODO_EILIDH: ADD A WAY FOR THIS TO CONNECT TO A FOCUS THAT WILL LET YOU PUPPET AFG AND IRQ
 			AFG = {
 				add_opinion_modifier = {
 				target = PER
@@ -6344,7 +6363,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -6444,10 +6463,11 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
+			#TODO_EILIDH: ONCE BRITAIN HAS THE OIL, ADD EVENT THAT CAUSES TENSION TO RISE
 			remove_ideas = PER_anglo_iranian_oil_ns
 			custom_effect_tooltip = CHL_skip_one_line_tt
 			random_owned_state = {
@@ -6491,7 +6511,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -6529,7 +6549,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_RESEARCH FOCUS_FILTER_MANPOWER
+			FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY		
 		}
 
 		completion_reward = {
@@ -6584,7 +6604,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_STABILITY
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -6720,7 +6740,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL
+			FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY	
 		}
 
 		completion_reward = {
@@ -6754,7 +6774,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_RESEARCH
+			FOCUS_FILTER_RESEARCH FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -6784,7 +6804,7 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			factor = 100
+			factor = 0
 		}
 
 		search_filters = {
@@ -6851,7 +6871,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -6877,7 +6897,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -6904,7 +6924,7 @@ focus_tree = {
 		}
 
 		search_filters = { 
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_RESEARCH
+			FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -6950,7 +6970,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL FOCUS_FILTER_RESEARCH
+			FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -6995,7 +7015,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_RESEARCH FOCUS_FILTER_WAR_SUPPORT
+			FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -7153,7 +7173,7 @@ focus_tree = {
 				hidden_effect = {
 					division_template = {
 						name = "Immortal Legion"		
-						is_locked = yes
+						is_locked = no
 						template_counter = 107 
 						regiments = {
 							infantry = { x = 0 y = 0 }
@@ -7194,7 +7214,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #IMPERIAL #TODO_EILIDH: ADD EFFECTS AFTER IRAQ MAP CHANGE
 		id = PER_demand_iraqi_territory
 		icon = GFX_focus_PER_demand_iraqi_territory
 		prerequisite = { focus = PER_tehran_moscow_pact }
@@ -7237,7 +7257,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -7259,7 +7279,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
+	focus = { #IMPERIAL #TODO_EILIDH: ADD EFFECTS AFTER AFGHAN MAP CHANGE
 		id = PER_demand_afghan_territory
 		icon = GFX_focus_PER_demand_afghan_territory
 		prerequisite = { focus = PER_tehran_moscow_pact }
@@ -7302,7 +7322,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -7406,7 +7426,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -7580,18 +7600,12 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_STABILITY
+			FOCUS_FILTER_WAR_SUPPORT	
 		}
 
 		completion_reward = {
 			add_country_leader_trait = {
 				trait = PER_glory_of_cyrus_trait
-			}
-			every_state = {
-				limit = {
-					is_core_of = AFG
-				}
-				add_core_of = ROOT
 			}
 		}
 	}
@@ -7620,7 +7634,7 @@ focus_tree = {
 		}
 
 		search_filters = { 
-			FOCUS_FILTER_WAR_SUPPORT
+			FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_STABILITY
 		}
 
 		completion_reward = {
@@ -7674,7 +7688,9 @@ focus_tree = {
 			factor = 0
 		}
 
-		search_filters = { FOCUS_FILTER_ANNEXATION }
+		search_filters = {
+
+		}
 
 		completion_reward = {
 
@@ -8324,13 +8340,11 @@ focus_tree = {
 		}
 
 		available = {
-			is_subject = no
 			has_government = neutrality
 			is_in_faction = no
 		}
 
 		bypass = {
-			is_subject = yes
 			is_in_faction_with = GER
 		}
 
@@ -8384,6 +8398,8 @@ focus_tree = {
 		y = 1
 		relative_position_id = PER_align_with_axis
 		cost = 5
+
+		#TODO_EILIDH: ADD EFFECTS WHEN OIL CONTROL HAS BEEN FIXED
 		
 		available = {
 			has_government = neutrality
@@ -8460,7 +8476,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -8972,7 +8988,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_RESEARCH
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -9018,7 +9034,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -9063,7 +9079,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_RESEARCH FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_MANPOWER
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -9141,7 +9157,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_MANPOWER
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -9182,7 +9198,7 @@ focus_tree = {
 				}
 				set_politics = {
 					ruling_party = democratic
-					elections_allowed = yes
+					elections_allowed = no
 				}
 			}
 			remove_dynamic_modifier = { modifier = PER_opposition_modifier }
@@ -9219,7 +9235,6 @@ focus_tree = {
 		search_filters = {
 			FOCUS_FILTER_STABILITY
 			FOCUS_FILTER_POLITICAL
-			FOCUS_FILTER_POLITICAL_CHARACTER
 		}
 
 		completion_reward = {
@@ -9271,7 +9286,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_POLITICAL_CHARACTER
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -9484,7 +9499,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH
+			FOCUS_FILTER_INDUSTRY
 		}
 
 		completion_reward = {
@@ -9536,19 +9551,19 @@ focus_tree = {
 			411 = {
 				add_resource = {
 					type = oil
-					amount = 60
+					amount = 6
 				}
 			}
 			412 = {
 				add_resource = {
 					type = oil
-					amount = 30
+					amount = 3
 				}
 			}
 			413 = {
 				add_resource = {
 					type = oil
-					amount = 50
+					amount = 5
 				}
 			}
 		}
@@ -9588,7 +9603,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL
+			FOCUS_FILTER_INDUSTRY
 		}
 
 		completion_reward = {
@@ -9653,7 +9668,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_INDUSTRY
+			FOCUS_FILTER_WAR_SUPPORT
 		}
 
 		completion_reward = {
@@ -9791,7 +9806,7 @@ focus_tree = {
 			417 = {
 				add_resource = {
 					type = oil
-					amount = 80
+					amount = 8
 				}
 			}
 			add_tech_bonus = {
@@ -9813,7 +9828,6 @@ focus_tree = {
 		cost = 10
 		
 		available = {
-			is_subject = no
 			has_government = democratic
 			is_in_faction = no
 		}
@@ -10059,6 +10073,7 @@ focus_tree = {
 		}
 
 		completion_reward = {
+		#TODO_EILIDH: Maybe add an event asking the countries to be annexed?
 			415 = { add_core_of = ROOT }
 			1009 = { add_core_of = ROOT }
 			1008 = { add_core_of = ROOT }
@@ -10442,9 +10457,8 @@ focus_tree = {
 					ruling_party = communism
 					elections_allowed = no
 				}
-
 				hidden_effect = {
-					set_country_flag = PER_civil_war_was_bypassed
+					set_global_flag = PER_non_lethal_takeover
 				}
 			}
 		}
@@ -10461,14 +10475,13 @@ focus_tree = {
 		cost = 10
 		
 		available = {
-			is_subject = no
 			has_civil_war = no
 			has_government = communism
 			is_in_faction = no
 		}
 
 		bypass = {
-			is_subject = yes
+
 		}
 
 		allow_branch = {
@@ -10814,7 +10827,6 @@ focus_tree = {
 
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
-			FOCUS_FILTER_MILITARY_CHARACTER
 		}
 
 		completion_reward = {
@@ -10905,7 +10917,6 @@ focus_tree = {
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 			FOCUS_FILTER_MILITARY_CHARACTER
-			FOCUS_FILTER_ARMY_XP
 		}
 
 		completion_reward = {
@@ -10963,6 +10974,7 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = PER_workers_army
+		mutually_exclusive = { focus = PER_the_peoples_navy }
 		cost = 5
 		
 		available = {
@@ -10984,7 +10996,6 @@ focus_tree = {
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
 			FOCUS_FILTER_RESEARCH
-			FOCUS_FILTER_AIR_XP
 		}
 
 		completion_reward = {
@@ -11094,18 +11105,17 @@ focus_tree = {
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
 			FOCUS_FILTER_RESEARCH
-			FOCUS_FILTER_AIR_XP
 		}
 
 		completion_reward = {
-			# IF = {
-			# 	limit = { has_dlc = "By Blood Alone"}
-			# 	set_technology = { iw_small_airframe = 1 }
-			# 	set_technology = { aa_lmg = 1 }
-			# 	set_technology = { early_bombs = 1 }
-			# 	air_experience = 15
-			# }
-			# ELSE = {
+			IF = {
+				limit = { has_dlc = "By Blood Alone"}
+				set_technology = { iw_small_airframe = 1 }
+				set_technology = { aa_lmg = 1 }
+				set_technology = { early_bombs = 1 }
+				air_experience = 15
+			}
+			ELSE = {
 				add_tech_bonus = {
 					name = PER_tech_share_bonus
 					bonus = 0.5
@@ -11113,7 +11123,7 @@ focus_tree = {
 					category = light_air
 				}
 				air_experience = 25	
-			# }
+			}
 		}
 	}
 
@@ -11310,6 +11320,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = PER_workers_army
+		mutually_exclusive = { focus = PER_the_peoples_airforce }
 		cost = 5
 		
 		available = {
@@ -11331,7 +11342,6 @@ focus_tree = {
 		search_filters = {
 			FOCUS_FILTER_RESEARCH
 			FOCUS_FILTER_INDUSTRY
-			FOCUS_FILTER_NAVY_XP
 		}
 
 		completion_reward = {
@@ -11495,7 +11505,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_RESEARCH FOCUS_FILTER_NAVY_XP
+
 		}
 
 		completion_reward = {
@@ -11558,13 +11568,11 @@ focus_tree = {
 		cost = 10
 		
 		available = {
-			is_subject = no
 			has_civil_war = no
 			has_government = communism
 		}
 
 		bypass = {
-			is_subject = yes
 		}
 
 		allow_branch = {
@@ -11970,9 +11978,6 @@ focus_tree = {
 		}
 		search_filters = {
 			FOCUS_FILTER_ANNEXATION
-			FOCUS_FILTER_STABILITY
-			FOCUS_FILTER_WAR_SUPPORT
-			FOCUS_FILTER_POLITICAL
 		}
 		completion_reward = {
 			#custom_effect_tooltip = "TODO: decisions or wargoals to take Saudia Arabia and Yemen. Defense bonus against major powers."
@@ -12037,7 +12042,6 @@ focus_tree = {
 
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
-			FOCUS_FILTER_STABILITY
 		}
 
 		completion_reward = {
@@ -12259,7 +12263,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_STABILITY
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -12589,7 +12593,7 @@ focus_tree = {
 			factor = 0
 		}
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_POLITICAL_CHARACTER
+			FOCUS_FILTER_POLITICAL
 		}
 		completion_reward = {
 			custom_effect_tooltip = PER_finding_a_shah_tt
@@ -12662,6 +12666,10 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 0
+		}
+
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
 		}
 
 		completion_reward = {
@@ -12855,7 +12863,7 @@ focus_tree = {
 		}
 
 		search_filters = {
-			FOCUS_FILTER_POLITICAL FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_WAR_SUPPORT
+			FOCUS_FILTER_POLITICAL
 		}
 
 		completion_reward = {
@@ -12897,7 +12905,6 @@ focus_tree = {
 		cost = 5
 		
 		available = {
-			is_subject = no
 			has_government = fascism
 			SOU = {
 				exists = yes
@@ -12906,7 +12913,6 @@ focus_tree = {
 		}
 
 		bypass = {
-			is_subject = yes
 			SOU = {
 				OR = {
 					exists = no
@@ -12963,7 +12969,9 @@ focus_tree = {
 			factor = 0
 		}
 
-		search_filters = { FOCUS_FILTER_ANNEXATION FOCUS_FILTER_POLITICAL FOCUS_FILTER_MANPOWER }
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
 
 		completion_reward = {
 			set_cosmetic_tag = PER_greater_iran
@@ -13289,7 +13297,9 @@ focus_tree = {
 			factor = 0
 		}
 
-		search_filters = { FOCUS_FILTER_ANNEXATION FOCUS_FILTER_POLITICAL }
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
 
 		completion_reward = {
 			create_wargoal = {

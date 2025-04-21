@@ -230,10 +230,8 @@ ideas = {
 						}
 					}
 					ELSE = {
-						OR = {
-							has_completed_focus = wuw_HUN_secret_rearmament
-							NOT = { has_idea = HUN_treaty_of_triannon_wuw }
-						}
+						has_completed_focus = wuw_HUN_secret_rearmament
+						NOT = { has_idea = HUN_treaty_of_triannon_wuw }
 					}
 				}
 				OR = {
@@ -258,51 +256,6 @@ ideas = {
 			}
 
 			cancel_if_invalid = no
-
-			ai_will_do = {
-   				factor = 2
-
-   				modifier = {
-					factor = 20
-
-					is_major = yes
-				}
-				
-				modifier = {
-					add = 80
-					original_tag = SOV
-					date < 1937.1.1
-					NOT = { 
-						OR = {
-							has_idea = war_economy 
-							has_idea = tot_economic_mobilisation
-						}
-					}
-				}
-				
-				modifier = {
-					original_tag = SIA
-					NOT = { 
-						OR = {
-							has_idea = war_economy 
-							has_idea = tot_economic_mobilisation
-						}
-					}
-					add = 1200 #Prep for invasion
-				}
-
-				modifier = {
-					factor = 100
-					OR = {
-						original_tag = URG
-						original_tag = PAR
-					}
-					NOT = {
-						has_idea = war_economy
-					}
-					has_completed_focus = GUAY_coup_detat
-				}
-   			}
 		}
 
 		war_economy = {
@@ -516,7 +469,7 @@ ideas = {
 			modifier = {
 				consumer_goods_expected_value = 0.10
 				conscription = -0.02
-				production_speed_arms_factory_factor = 0.2
+				production_speed_arms_factory_factor = 0.20
 				production_speed_dockyard_factor = 0.2
 				conversion_cost_civ_to_mil_factor= -0.3
 				conversion_cost_mil_to_civ_factor = -0.3
@@ -1128,7 +1081,7 @@ ideas = {
 				production_speed_buildings_factor = 0.2
 				civilian_intel_to_others = 80
 				navy_intel_to_others = 30.0
-				resource_trade_cost_bonus_per_factory = 10
+				resource_trade_cost_bonus_per_factory = 1
 			}
 
 			cancel_if_invalid = no
