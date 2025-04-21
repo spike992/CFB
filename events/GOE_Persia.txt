@@ -115,6 +115,7 @@ country_event = { #Iran gives away resource rights
 			}
 		}
 		add_offsite_building = { type = industrial_complex  level = 3 }
+		set_country_flag = PER_sold_oil_flag
 	}
 }
 country_event = { #FROM doesn't want our oil
@@ -352,7 +353,7 @@ country_event = { #Raj counter offer
 		}
 			effect_tooltip = {
 				PER = {
-				declare_war_on = {
+				create_wargoal = {
 					target = RAJ
 					type = annex_everything
 				}
@@ -408,7 +409,7 @@ country_event = { #Iran declares War
 		name = PER_imperial_events.14.a
 
 		PER = {
-			declare_war_on = {
+			create_wargoal = {
 				target = RAJ
 				type = annex_everything
 			}
@@ -445,7 +446,7 @@ country_event = { #India refuses
 		name = PER_imperial_events.16.a
 
 		PER = {
-			declare_war_on = {
+			create_wargoal = {
 				target = RAJ
 				type = annex_everything
 			}
@@ -1720,7 +1721,6 @@ country_event = { #Fealty Accepted
 			}
 			ROOT = {
 				complete_national_focus = PER_free_elections
-				#TODO_EILIDH: Change country name
 			}
 		}
 		IF = {
@@ -1731,7 +1731,6 @@ country_event = { #Fealty Accepted
 			}
 			ROOT = {
 				complete_national_focus = PER_roll_back_reforms
-				#TODO_EILIDH: Change country name
 			}
 		}
 		IF = {
@@ -1744,7 +1743,6 @@ country_event = { #Fealty Accepted
 			ROOT = {
 				complete_national_focus = PER_strengthen_the_tudeh
 				complete_national_focus = PER_soviet_alignment
-				#TODO_EILIDH: Change country name
 			}
 			ELSE = {
 				limit = {
@@ -1758,7 +1756,6 @@ country_event = { #Fealty Accepted
 				ROOT = {
 					complete_national_focus = PER_elevate_the_iran_party
 					complete_national_focus = PER_iranian_socialism
-					#TODO_EILIDH: Change country name
 				}
 			}
 		}
@@ -2142,7 +2139,7 @@ country_event = {
 		ai_chance = {
 			base = 0
 		}
-		retire_country_leader = yes
+		hidden_effect = { retire_country_leader = yes }
 		promote_character = {
 			character = PER_mohammad_mosaddegh 
 			ideology = conservatism 
@@ -2154,7 +2151,7 @@ country_event = {
 		ai_chance = {
 			base = 10
 		}
-		retire_country_leader = yes
+		hidden_effect = { retire_country_leader = yes }
 		promote_character = {
 			character = PER_mohammad_ali_foroughi 
 			ideology = conservatism 
