@@ -22,7 +22,7 @@ focus_tree = {
         }
     }
     default = no
-    continuous_focus_position = { x = 1 y = 1 }
+    continuous_focus_position = { x = 1000 y = 1300 }
 
     shared_focus = COM_commonwealth_command
 
@@ -66,22 +66,21 @@ focus_tree = {
                     random_list = {
                         seed = random 
                         25 = {
-                            add_logistics = 2
-                            add_attack = 1
-                        }
-                        25 = {
                             add_planning = 1
-                            add_attack = 2
-                        }
-                        25 = {
-                            add_defense = 3
+                            add_attack = 1
                         }
                         25 = {
                             add_logistics = 1
                             add_attack = 1
+                        }
+                        25 = {
+                            add_planning = 1
                             add_defense = 1
                         }
-                        
+                        25 = {
+                            add_logistics = 1
+                            add_defense = 1
+                        }
                     }
                 }
             }
@@ -115,6 +114,7 @@ focus_tree = {
         }
 
         allow_branch = {
+            always = no
             NOT = {
                 has_completed_focus = RAJ_provincial_autonomy
             }
@@ -292,6 +292,7 @@ focus_tree = {
         }
 
         allow_branch = {
+            always = no
             NOT = { has_completed_focus = RAJ_look_to_the_past }
             NOT = { has_completed_focus = RAJ_provincial_autonomy }
         }
@@ -393,6 +394,9 @@ focus_tree = {
                     country_event = { id = GOE_RAJ.31 hours = 2  }
                 }
             }
+            custom_effect_tooltip = generic_skip_one_line_tt 
+            custom_effect_tooltip = AFG_promote_the_counter_elite_tt
+            show_ideas_tooltip = RAJ_jim_corbett
 
 
         } 
@@ -701,6 +705,9 @@ focus_tree = {
 						save_global_event_target_as = UK_INDIA
 					}
                     add_dynamic_modifier = { modifier = idea_RAJ_agrarian_society }
+                    set_variable = { RAJ_agrarian_society_conscription_factor = RAJ.RAJ_agrarian_society_conscription_factor } #3
+                    set_variable = { RAJ_agrarian_society_mobilization_laws_cost_factor = RAJ.RAJ_agrarian_society_mobilization_laws_cost_factor } #9
+                    set_variable = { RAJ_agrarian_society_mobilization_speed = RAJ.RAJ_agrarian_society_mobilization_speed } #3
                     add_ideas = RAJ_marginalized_muslim_community_angry
                     add_ideas = RAJ_princely_states
                     add_ideas = RAJ_risk_of_famine
@@ -2400,10 +2407,12 @@ focus_tree = {
         search_filters = { FOCUS_FILTER_INDUSTRY}
 
         completion_reward = {
+
             build_railway = {
                 level = 3
                 start_province = 4709
                 target_province = 4893 
+                build_only_on_allied = yes
             }
             add_ideas = BRA_road_investment
             add_ideas = BRA_rail_investment
@@ -3172,6 +3181,9 @@ focus_tree = {
                     add_to_tech_sharing_group = commonwealth_research
                     set_cosmetic_tag = RAJ_UK
                     add_dynamic_modifier = { modifier = idea_RAJ_agrarian_society }
+                    set_variable = { RAJ_agrarian_society_conscription_factor = RAJ.RAJ_agrarian_society_conscription_factor } #3
+                    set_variable = { RAJ_agrarian_society_mobilization_laws_cost_factor = RAJ.RAJ_agrarian_society_mobilization_laws_cost_factor } #9
+                    set_variable = { RAJ_agrarian_society_mobilization_speed = RAJ.RAJ_agrarian_society_mobilization_speed } #3
                     add_ideas = RAJ_marginalized_muslim_community
                     add_ideas = RAJ_princely_states
                     add_ideas = RAJ_risk_of_famine
@@ -3306,7 +3318,7 @@ focus_tree = {
             set_variable = { tier_one_taxes_tax_tt = tier_one_taxes_tax }
             multiply_variable = { tier_one_taxes_tax_tt = 100 } 
             #tier two
-            set_variable = { tier_two_taxes_threshold = 30 } 
+            set_variable = { tier_two_taxes_threshold = 20 } 
             set_variable = { tier_two_taxes_threshold_plus_4 = tier_two_taxes_threshold }
             add_to_variable = { tier_two_taxes_threshold_plus_4 = 4 } #only for tooltip
 
@@ -3317,7 +3329,7 @@ focus_tree = {
             multiply_variable = { tier_two_taxes_tax_tt = 100 }
 
             #tier 3
-            set_variable = { tier_three_taxes_threshold =  60 }
+            set_variable = { tier_three_taxes_threshold =  40 }
             set_variable = { tier_three_taxes_threshold_plus_4 = tier_three_taxes_threshold }
             add_to_variable = { tier_three_taxes_threshold_plus_4 = 4 } #only for tooltip
 
@@ -3327,7 +3339,7 @@ focus_tree = {
             set_variable = { tier_three_taxes_tax_tt = tier_three_taxes_tax }
             multiply_variable = { tier_three_taxes_tax_tt = 100 }
             #tier 4
-            set_variable = { tier_four_taxes_threshold = 100 }
+            set_variable = { tier_four_taxes_threshold = 60 }
             set_variable = { tier_four_taxes_threshold_plus_4 = tier_four_taxes_threshold }
             add_to_variable = { tier_four_taxes_threshold_plus_4 = 4 } #only for tooltip
 
@@ -3931,6 +3943,11 @@ focus_tree = {
 
 
         completion_reward = {
+
+            set_rule = { 
+                can_send_volunteers = yes # rule to use, e.g.  can_not_declare_war = yes
+            }
+            
             swap_ideas = {
                 remove_idea = idea_RAJ_empowered_police_force
                 add_idea = idea_RAJ_pmc
@@ -3984,11 +4001,7 @@ focus_tree = {
                     irregular_infantry = { x = 2 y = 1 }
                 }
             }
-            hidden_effect = {
-                set_rule = { 
-                    can_send_volunteers = yes # rule to use, e.g.  can_not_declare_war = yes
-                }
-            }
+
             swap_ideas = {
                 remove_idea = idea_RAJ_pmc
                 add_idea = idea_RAJ_pmc_2
@@ -4430,10 +4443,10 @@ focus_tree = {
 
         completion_reward = {
             429 = {
-                add_extra_state_shared_building_slots = 5
+                add_extra_state_shared_building_slots = 3
                 add_building_construction = {
                     type = dockyard
-                    level = 5
+                    level = 3
                     instant_build = yes
                 }
             }
@@ -4478,6 +4491,7 @@ focus_tree = {
                     has_dlc = "Man the Guns"
                 }
                 add_tech_bonus = {
+                    name = RAJ_take_in_british_naval_experts
                     bonus = 0.4
                     uses = 2
                     category = ship_modules_tech # optional 
@@ -4533,10 +4547,10 @@ focus_tree = {
 
         completion_reward = {
             429 = {
-                add_extra_state_shared_building_slots = 5
+                add_extra_state_shared_building_slots = 2
                 add_building_construction = {
                     type = dockyard
-                    level = 5
+                    level = 2
                     instant_build = yes
                 }
             }
@@ -5377,24 +5391,24 @@ focus_tree = {
 
         completion_reward = {
             custom_effect_tooltip = modify_taxation_bracket_all
-            add_to_variable = { tier_one_taxes_tax = -0.07 }
+            add_to_variable = { tier_one_taxes_tax = -0.05 }
             set_variable = { tier_one_taxes_tax_tt = tier_one_taxes_tax }
             multiply_variable = { tier_one_taxes_tax_tt = 100 }
 
-            add_to_variable = { tier_two_taxes_tax = -0.07 }
+            add_to_variable = { tier_two_taxes_tax = -0.05 }
             set_variable = { tier_two_taxes_tax_tt = tier_two_taxes_tax }
             multiply_variable = { tier_two_taxes_tax_tt = 100 }
             #custom_effect_tooltip = newline_tt
 
             # custom_effect_tooltip = modify_taxation_third_bracket
              #tier 3
-            add_to_variable = { tier_three_taxes_tax = -0.07 }
+            add_to_variable = { tier_three_taxes_tax = -0.05 }
             set_variable = { tier_three_taxes_tax_tt = tier_three_taxes_tax }
             multiply_variable = { tier_three_taxes_tax_tt = 100 }
             custom_effect_tooltip = newline_tt
              
             # custom_effect_tooltip = modify_taxation_fourth_bracket
-            add_to_variable = { tier_four_taxes_tax = -0.07 }
+            add_to_variable = { tier_four_taxes_tax = -0.05 }
             set_variable = { tier_four_taxes_tax_tt = tier_four_taxes_tax } #for tooltipping val*100
             multiply_variable = { tier_four_taxes_tax_tt = 100 }
            # custom_effect_tooltip = newline_tt 
@@ -5438,24 +5452,24 @@ focus_tree = {
 
         completion_reward = {
             custom_effect_tooltip = modify_taxation_bracket_all
-            add_to_variable = { tier_one_taxes_tax = -0.07 }
+            add_to_variable = { tier_one_taxes_tax = -0.05 }
             set_variable = { tier_one_taxes_tax_tt = tier_one_taxes_tax }
             multiply_variable = { tier_one_taxes_tax_tt = 100 }
 
-            add_to_variable = { tier_two_taxes_tax = -0.07 }
+            add_to_variable = { tier_two_taxes_tax = -0.05 }
             set_variable = { tier_two_taxes_tax_tt = tier_two_taxes_tax }
             multiply_variable = { tier_two_taxes_tax_tt = 100 }
             #custom_effect_tooltip = newline_tt
 
             # custom_effect_tooltip = modify_taxation_third_bracket
              #tier 3
-            add_to_variable = { tier_three_taxes_tax = -0.07 }
+            add_to_variable = { tier_three_taxes_tax = -0.05 }
             set_variable = { tier_three_taxes_tax_tt = tier_three_taxes_tax }
             multiply_variable = { tier_three_taxes_tax_tt = 100 }
             custom_effect_tooltip = newline_tt
              
             # custom_effect_tooltip = modify_taxation_fourth_bracket
-            add_to_variable = { tier_four_taxes_tax = -0.07 }
+            add_to_variable = { tier_four_taxes_tax = -0.05 }
             set_variable = { tier_four_taxes_tax_tt = tier_four_taxes_tax } #for tooltipping val*100
             multiply_variable = { tier_four_taxes_tax_tt = 100 }
            # custom_effect_tooltip = newline_tt 
@@ -5932,7 +5946,12 @@ focus_tree = {
         }
         
         bypass = {
-
+            all_other_country = {
+                NOT = {
+                    has_government = communism
+                    communism > 0.45
+                }
+            }
         }
 
         cancel_if_invalid = yes
@@ -6298,24 +6317,24 @@ focus_tree = {
 
         completion_reward = {
             custom_effect_tooltip = modify_taxation_bracket_all
-            add_to_variable = { tier_one_taxes_tax = -0.07 }
+            add_to_variable = { tier_one_taxes_tax = -0.05 }
             set_variable = { tier_one_taxes_tax_tt = tier_one_taxes_tax }
             multiply_variable = { tier_one_taxes_tax_tt = 100 }
 
-            add_to_variable = { tier_two_taxes_tax = -0.07 }
+            add_to_variable = { tier_two_taxes_tax = -0.05 }
             set_variable = { tier_two_taxes_tax_tt = tier_two_taxes_tax }
             multiply_variable = { tier_two_taxes_tax_tt = 100 }
             #custom_effect_tooltip = newline_tt
 
             # custom_effect_tooltip = modify_taxation_third_bracket
              #tier 3
-            add_to_variable = { tier_three_taxes_tax = -0.07 }
+            add_to_variable = { tier_three_taxes_tax = -0.05 }
             set_variable = { tier_three_taxes_tax_tt = tier_three_taxes_tax }
             multiply_variable = { tier_three_taxes_tax_tt = 100 }
             custom_effect_tooltip = newline_tt
              
             # custom_effect_tooltip = modify_taxation_fourth_bracket
-            add_to_variable = { tier_four_taxes_tax = -0.07 }
+            add_to_variable = { tier_four_taxes_tax = -0.05 }
             set_variable = { tier_four_taxes_tax_tt = tier_four_taxes_tax } #for tooltipping val*100
             multiply_variable = { tier_four_taxes_tax_tt = 100 }
            # custom_effect_tooltip = newline_tt 
@@ -7100,33 +7119,33 @@ focus_tree = {
         id = RAJ_trade_port
         icon = GFX_focus_POL_develop_polish_shipbuilding
         prerequisite = { focus = RAJ_great_depression_price_controls focus = RAJ_provincial_autonomy }
-        x = 9
+        x = 24
         y = 1
         relative_position_id = RAJ_great_depression_price_controls 
 
-        offset = {
-            x = -4
-            y = 0
-            trigger = {
-                has_game_rule = {
-                    rule = obsolete_focus_branches_visibility
-                    option = HIDE
-                }
-                has_completed_focus = RAJ_great_depression_price_controls
-            }
-        }
+        # offset = {
+        #     x = -4
+        #     y = 0
+        #     trigger = {
+        #         has_game_rule = {
+        #             rule = obsolete_focus_branches_visibility
+        #             option = HIDE
+        #         }
+        #         has_completed_focus = RAJ_great_depression_price_controls
+        #     }
+        # }
 
-        offset = {
-            x = 15
-            y = 0
-            trigger = {
-                has_game_rule = {
-                    rule = obsolete_focus_branches_visibility
-                    option = HIDE
-                }
-                has_completed_focus = RAJ_provincial_autonomy
-            }
-        }
+        # offset = {
+        #     x = 15
+        #     y = 0
+        #     # trigger = {
+        #     #     has_game_rule = {
+        #     #         rule = obsolete_focus_branches_visibility
+        #     #         option = HIDE
+        #     #     }
+        #     #     has_completed_focus = RAJ_provincial_autonomy
+        #     # }
+        # }
 
         # offset = {
         #     x = -12
@@ -7250,7 +7269,7 @@ focus_tree = {
 
                 add_building_construction = {
                     type = dockyard
-                    level = 5
+                    level = 1
                     instant_build = yes
                 }
                 add_building_construction = {
@@ -7342,8 +7361,8 @@ focus_tree = {
         id = RAJ_mahatma
         icon = GFX_focus_RAJ_mahatma
         prerequisite = { focus = RAJ_purna_swaraj }
-        x = -7
-        y = 8
+        x = -9
+        y = 1
         relative_position_id = RAJ_purna_swaraj
         mutually_exclusive = { focus = RAJ_league_against_gandhism }
         cost = 5 # This was 70 Days???
@@ -7361,15 +7380,15 @@ focus_tree = {
         }
 
         offset = {
-            x = -2
-            y = -5
-            trigger = {
-                has_game_rule = {
-                    rule = obsolete_focus_branches_visibility
-                    option = HIDE
-                }
-                has_completed_focus = RAJ_provincial_autonomy
-            }
+            # x = -2
+            # y = -5
+            # trigger = {
+            #     has_game_rule = {
+            #         rule = obsolete_focus_branches_visibility
+            #         option = HIDE
+            #     }
+            #     has_completed_focus = RAJ_provincial_autonomy
+            # }
         }
 
         allow_branch = {
@@ -8977,9 +8996,6 @@ focus_tree = {
 
         completion_reward = {
             custom_effect_tooltip = available_political_advisor
-            show_ideas_tooltip = RAJ_jim_corbett
-            custom_effect_tooltip = generic_skip_one_line_tt
-            custom_effect_tooltip = available_political_advisor
             show_ideas_tooltip = RAJ_puran_chand_joshi
             custom_effect_tooltip = generic_skip_one_line_tt
             custom_effect_tooltip = available_political_advisor
@@ -9076,7 +9092,42 @@ focus_tree = {
                 idea = idea_RAJ_confiscated_princely_wealth
                 days = 740
             }
+            set_country_flag = RAJ_exiled_princes_flag
         }
+    }
+
+    focus = {
+        id = RAJ_integrate_the_princes
+        icon = GFX_focus_rom_handle_king
+        prerequisite = { focus = RAJ_exile_princes }
+        x = 0
+        y = 1
+        relative_position_id = RAJ_exile_princes
+
+        cost = 5
+
+        ai_will_do = {
+            factor = 1
+        }
+
+        available = {
+            has_country_flag = {
+                flag = RAJ_exiled_princes_flag
+                days > 365
+            }
+        }
+
+        bypass = {
+
+        }
+
+        search_filters = {FOCUS_FILTER_POLITICAL}
+        search_filters={FOCUS_FILTER_ANNEXATION}
+
+        completion_reward = {
+            custom_effect_tooltip = RAJ_india_indivisible_tt
+        }
+
     }
 
 
@@ -9598,7 +9649,7 @@ focus_tree = {
         }
 
         available = {
-
+            is_subject = no
         }
 
         bypass = {
@@ -10000,10 +10051,10 @@ focus_tree = {
                     is_coastal = yes
                 }
                 prioritize = { 423 424 426 431 }
-                add_extra_state_shared_building_slots = 5
+                add_extra_state_shared_building_slots = 3
                 add_building_construction = {
                     type = dockyard
-                    level = 5
+                    level = 3
                     instant_build = yes
                 }
             }
@@ -10605,7 +10656,9 @@ focus_tree = {
                     }
                     ####### Add Tank division #######
                 }
-
+                #First check if the "other" raj has any valid state that it can possily have as a capital
+               # bose_civil_war_capital_check = yes
+               clr_country_flag = bose_opponent_has_valid_capital
                 ### Restore cores and spawn divisions ####
                 for_each_scope_loop = {
                     array =  RAJ.owned_states_at_game_start 
@@ -10655,6 +10708,13 @@ focus_tree = {
                             allow_spawning_on_enemy_provs = yes 
                             count = 1
                         }
+
+                        if = {
+                            limit = {
+                                NOT = { RAJ = { has_country_flag = bose_opponent_has_valid_capital } }
+                            }
+                            RAJ = { set_country_flag = bose_opponent_has_valid_capital }
+                        }
                     }
 
                     if = {
@@ -10667,6 +10727,7 @@ focus_tree = {
                         remove_core_of = DIP 
                         add_core_of = RAJ
                     }
+
                 }
 
                 random_state = { #this used to be a part of the for loop by mistake, leading to the funniest bug report i have ever read: "notice there are 34 newly spawned tank divisions" 
@@ -10720,8 +10781,7 @@ focus_tree = {
             }
 
 
-            #First check if the "other" raj has any valid state that it can possily have as a capital
-            bose_civil_war_capital_check = yes
+
             if = {
                 limit = { RAJ = { has_country_flag = bose_opponent_has_valid_capital } }
 
@@ -10785,6 +10845,14 @@ focus_tree = {
                     }
 
                     clear_array = RAJ.owned_states_copy
+                }
+
+                if = {
+                    limit = { NOT = { has_war_with = var:revolter_tag } }
+                    declare_war_on = {
+                        target = var:revolter_tag
+                        type = annex_everything
+                    }
                 }
             }
 
@@ -13974,7 +14042,7 @@ focus_tree = {
                     is_historical_focus_on = yes
                     has_game_rule = {
                         rule = RAJ_ai_behavior
-                        option = HISTORICAL
+                        option = GOE_HISTORICAL
                     }
                 }
             }
@@ -14438,10 +14506,10 @@ focus_tree = {
         }
 
         completion_reward = {
-            add_stability = 0.1
+            add_stability = 0.05
             add_popularity = {
                 ideology = democratic
-                popularity = 0.15
+                popularity = 0.075
             }
         }
     }
@@ -14678,22 +14746,13 @@ focus_tree = {
         }
 
         completion_reward = {
-            if = {
+            random_owned_controlled_state = {
                 limit = {
-                    controls_state = 439
-                    NOT = {
-                        439 = {
-                            air_facility > 0
-                        }
-                    }
+                    can_construct_building = air_facility
                 }
-                439 = {
-                    add_building_construction = {
-                        type = air_facility
-                        level = 1
-                        instant_build = yes
-                        province = 2086 
-                    }
+                prioritize = { 439 }
+                construct_building_in_random_province = {
+                    air_facility = 1
                 }
             }
 
@@ -14764,13 +14823,11 @@ focus_tree = {
         ai_will_do = {
             factor = 1
         }
-
-        available = {
-
-        }
         
         bypass = {
-
+            321 = {
+                is_owned_by = RAJ
+            }
         }
 
         cancel_if_invalid = yes
@@ -14947,7 +15004,7 @@ focus_tree = {
 
         completion_reward = {
             try_build_civ_in_core_otherwise_build_in_controlled_2_civs = yes
-            try_build_mil_in_core_otherwise_build_in_controlled = yes
+            #try_build_mil_in_core_otherwise_build_in_controlled = yes
         }
     }
 
@@ -14994,6 +15051,7 @@ focus_tree = {
             }
 
             add_tech_bonus = {
+                name = RAJ_fight_malnutrition
                 bonus = 0.5
                 uses = 1
                 category = motorized_equipment # optional 
@@ -15432,8 +15490,8 @@ focus_tree = {
         completion_reward = {
            #add_research_slot = 1
            try_build_civ_in_core_otherwise_build_in_controlled_2_civs = yes
-           try_build_civ_in_core_otherwise_build_in_controlled_2_civs = yes
-           try_build_mil_in_core_otherwise_build_in_controlled_2_mil = yes
+           #try_build_civ_in_core_otherwise_build_in_controlled_2_civs = yes
+           #try_build_mil_in_core_otherwise_build_in_controlled_2_mil = yes
            try_build_mil_in_core_otherwise_build_in_controlled_2_mil = yes
         }
     }
@@ -15608,30 +15666,8 @@ focus_tree = {
         search_filters = {FOCUS_FILTER_INDUSTRY}
 
         completion_reward = {
-            random_core_state = {
-                add_extra_state_shared_building_slots = 2
-                add_building_construction = {
-                    type = arms_factory
-                    level = 2
-                    instant_build = yes
-                }
-            }
-            random_core_state = {
-                add_extra_state_shared_building_slots = 2
-                add_building_construction = {
-                    type = arms_factory
-                    level = 2
-                    instant_build = yes
-                }
-            }
-            random_core_state = {
-                add_extra_state_shared_building_slots = 2
-                add_building_construction = {
-                    type = arms_factory
-                    level = 2
-                    instant_build = yes
-                }
-            }
+            ETH_add_random_mil_factory_effect = yes
+            ETH_add_random_mil_factory_effect = yes
         }
     }
 
@@ -16106,6 +16142,7 @@ focus_tree = {
                 bonus = 0.75
                 uses = 2
                 category = infantry_tech
+                category = infantry_weapons
             }
             add_tech_bonus = {
                 name = RAJ_for_the_people_by_the_people
@@ -16785,10 +16822,10 @@ focus_tree = {
                     is_owned_by = RAJ
                 }
                 prioritize = { 429 } #optional: to pick those states first if they fulfill the limit
-                add_extra_state_shared_building_slots = 4
+                add_extra_state_shared_building_slots = 2
                 add_building_construction = {
                     type = arms_factory
-                    level = 4
+                    level = 2
                     instant_build = yes
                 }
             }
@@ -16873,8 +16910,7 @@ focus_tree = {
         continue_if_invalid = no
         available_if_capitulated = no
 
-        search_filters = {FOCUS_FILTER_WAR_SUPPORT}
-        search_filters = {FOCUS_FILTER_POLITICAL}
+        search_filters = {FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_INDUSTRY}
 
         completion_reward = {
             add_timed_idea = { idea = idea_RAJ_military_pensions days = 400 }
@@ -17089,7 +17125,7 @@ focus_tree = {
         bypass = {
             NOT = { has_dynamic_modifier = { modifier = idea_RAJ_agrarian_society } }
         }
-        search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_MANPOWER }
+        search_filters = { FOCUS_FILTER_MANPOWER }
         cancel_if_invalid = yes
         continue_if_invalid = no
         available_if_capitulated = no
@@ -17261,7 +17297,6 @@ focus_tree = {
         bypass = {
             NOT = { has_dynamic_modifier = { modifier = idea_RAJ_agrarian_society } }
         }
-        search_filters = { FOCUS_FILTER_MANPOWER }
         cancel_if_invalid = yes
         continue_if_invalid = no
         available_if_capitulated = no
@@ -17544,7 +17579,6 @@ focus_tree = {
         available = {
             has_war_support > 0.55
         }
-        search_filters = { FOCUS_FILTER_MANPOWER }
         bypass = {
             NOT = { has_dynamic_modifier = { modifier = idea_RAJ_agrarian_society } }
         }
@@ -17638,13 +17672,21 @@ focus_tree = {
         available_if_capitulated = no
 
         completion_reward = {
-            add_doctrine_cost_reduction = {
-                name = RAJ_gurkhas
-                cost_reduction = 0.35
-                uses = 3
-                category = special_forces_doctrine
+            if = {
+                limit = {
+                    has_dlc = "Arms Against Tyranny"
+                }
+                add_doctrine_cost_reduction = {
+                    name = RAJ_gurkhas
+                    cost_reduction = 0.35
+                    uses = 3
+                    category = special_forces_doctrine
+                }
+                add_potential_special_forces_tree = yes
             }
-            add_potential_special_forces_tree = yes
+            else = {
+                army_experience = 100
+            }
             division_template = {
                 name = "Gurkha Rifles"
                 is_locked = no
@@ -17744,7 +17786,7 @@ focus_tree = {
         continue_if_invalid = no
         available_if_capitulated = no
 
-        search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_ARMY_XP }
+        search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_ARMY_XP FOCUS_FILTER_WAR_SUPPORT }
         completion_reward = {
             add_ideas = idea_RAJ_lions_of_the_great_war
             army_experience = 30
@@ -18408,7 +18450,7 @@ focus_tree = {
         continue_if_invalid = no
         available_if_capitulated = no
 
-
+        search_filters = { FOCUS_FILTER_INDUSTRY }
 
         completion_reward = {
             if = {
@@ -18457,7 +18499,7 @@ focus_tree = {
         continue_if_invalid = no
         available_if_capitulated = no
 
-
+        search_filters = {FOCUS_FILTER_INDUSTRY}
 
         completion_reward = {
             
@@ -18515,7 +18557,7 @@ focus_tree = {
         continue_if_invalid = no
         available_if_capitulated = no
 
-        search_filters = { FOCUS_FILTER_RESEARCH }
+        search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY }
 
         completion_reward = {
             if = {
@@ -18575,7 +18617,7 @@ focus_tree = {
         continue_if_invalid = no
         available_if_capitulated = no
 
-        search_filters = {FOCUS_FILTER_RESEARCH}
+        search_filters = {FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY}
 
         completion_reward = {
             add_tech_bonus = {
@@ -18836,7 +18878,7 @@ focus_tree = {
         continue_if_invalid = no
         available_if_capitulated = no
 
-
+        search_filters = {FOCUS_FILTER_AIR_XP}
 
         completion_reward = {
             custom_effect_tooltip = idea_RAJ_indian_air_force_modify_tt
@@ -19399,7 +19441,7 @@ focus_tree = {
         continue_if_invalid = no
         available_if_capitulated = no
 
-
+        search_filters = {FOCUS_FILTER_ARMY_XP FOCUS_FILTER_AIR_XP FOCUS_FILTER_NAVY_XP FOCUS_FILTER_RESEARCH}
 
         completion_reward = {
             if = {
@@ -19413,7 +19455,7 @@ focus_tree = {
             }
             if = {
                 limit = {
-                    has_dlc = "No Step Back"
+                    has_dlc = "Arms Against Tyranny"
                 }
 
                 add_doctrine_cost_reduction = {
@@ -19421,16 +19463,15 @@ focus_tree = {
                     uses = 1
                     category = special_forces_doctrine
                 }
+                army_experience = 30
+                navy_experience = 30
+                air_experience = 30
             }
             else = {
-                army_experience = 15
-                navy_experience = 15
-                air_experience = 15
+                army_experience = 45
+                navy_experience = 45
+                air_experience = 45
             }
-            
-            army_experience = 30
-            navy_experience = 30
-            air_experience = 30
         }
     }
     
@@ -19674,10 +19715,10 @@ focus_tree = {
                 limit = {
                     has_state_flag = RAJ_expand_mazagon_dock_dlc
                 }
-                add_extra_state_shared_building_slots = 5
+                add_extra_state_shared_building_slots = 2
                 add_building_construction = {
                     type = dockyard
-                    level = 5
+                    level = 2
                     instant_build = yes
                 }
                 if = {
@@ -19704,10 +19745,10 @@ focus_tree = {
                         include_locked = yes
                     }
                 }
-                add_extra_state_shared_building_slots = 5
+                add_extra_state_shared_building_slots = 2
                 add_building_construction = {
                     type = dockyard
-                    level = 5
+                    level = 2
                     instant_build = yes
                 }
                 set_state_flag = RAJ_expand_mazagon_dock_dlc
@@ -19885,10 +19926,10 @@ focus_tree = {
                 limit = {
                     is_coastal = yes
                 }
-                add_extra_state_shared_building_slots = 5
+                add_extra_state_shared_building_slots = 2
                 add_building_construction = {
                     type = dockyard
-                    level = 5
+                    level = 2
                     instant_build = yes
                 }
             }
@@ -19929,10 +19970,10 @@ focus_tree = {
                 limit = {
                     has_state_flag = RAJ_found_scindia_shipyard_dlc
                 }
-                add_extra_state_shared_building_slots = 5
+                add_extra_state_shared_building_slots = 2
                 add_building_construction = {
                     type = dockyard
-                    level = 5
+                    level = 2
                     instant_build = yes
                 }
                 if = {
@@ -19959,10 +20000,10 @@ focus_tree = {
                         include_locked = yes
                     }
                 }
-                add_extra_state_shared_building_slots = 5
+                add_extra_state_shared_building_slots = 2
                 add_building_construction = {
                     type = dockyard
-                    level = 5
+                    level = 2
                     instant_build = yes
                 }
                 set_state_flag = RAJ_found_scindia_shipyard_dlc
@@ -20082,10 +20123,10 @@ focus_tree = {
                 limit = {
                     is_coastal = yes
                 }
-                add_extra_state_shared_building_slots = 5
+                add_extra_state_shared_building_slots = 3
                 add_building_construction = {
                     type = dockyard
-                    level = 5
+                    level = 3
                     instant_build = yes
                 }
             }
