@@ -5011,7 +5011,7 @@ focus_tree = {
 		relative_position_id = FIN_repurpose_small_industries
 		cost = 5
 		available = {
-			has_tech = construction4
+			has_tech = construction3
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
@@ -6211,7 +6211,6 @@ focus_tree = {
 			is_subject = no
 			NOT = { has_government = communism }
 			NOT = { is_in_faction_with = SOV }
-			NOT = { has_non_aggression_pact_with = SOV }
 			NOT = { has_guaranteed = SOV }
 			NOT = { has_country_flag = FIN_winter_war_ongoing_flag }
 			GER = {
@@ -6945,6 +6944,27 @@ focus_tree = {
 			show_unit_leaders_tooltip = FIN_paavo_talvela
 		}
 	}
+	focus = {
+		id = SOV_slacken_inf
+		icon = GFX_focus_SOV_builder_of_the_red_army
+		prerequisite = { focus = FIN_union_of_finnish_brothers_in_arms }		
+		cost = 4
+		x = -1
+		y = 1
+		relative_position_id = FIN_union_of_finnish_brothers_in_arms
+		available = {
+		}
+		completion_reward = {
+			
+			hidden_effect = {
+				set_technology = {
+					slacken_inf_tech = 1
+				}
+				add_ideas = SOV_slacken_infantry 
+			}
+			custom_effect_tooltip = SOV_slacken_inf_tt
+		}
+	}
 
 	focus = {
 		id = FIN_parmis_devils
@@ -7434,8 +7454,8 @@ focus_tree = {
 				has_completed_focus = FIN_prepare_a_military_coup
 				AND = {
 					has_completed_focus = FIN_discredit_the_democratic_system
-					fascism > 0.6
-					has_stability > 0.6
+					fascism > 0.4
+					has_stability > 0.4
 				}
 			}
 		}
@@ -9589,7 +9609,7 @@ focus_tree = {
 		relative_position_id = FIN_sotilaalliset_kappalaiset
 		cost = 5
 		available = {
-			fascism > 0.9
+			fascism > 0.6
 			has_stability > 0.8
 		}
 
@@ -10158,10 +10178,10 @@ focus_tree = {
 					controls_state = 111
 				}
 				111 = { #UUSIMAA (Helsinki)
-					add_extra_state_shared_building_slots = 2
+					add_extra_state_shared_building_slots = 4
 					add_building_construction = {
 						type = industrial_complex
-						level = 1
+						level = 4
 						instant_build = yes
 					}
 				}
@@ -10172,10 +10192,10 @@ focus_tree = {
 					limit = {
 						is_controlled_by = ROOT
 					}
-					add_extra_state_shared_building_slots = 2
+					add_extra_state_shared_building_slots = 4
 					add_building_construction = {
 						type = industrial_complex
-						level = 1
+						level = 4
 						instant_build = yes
 					}
 				}
@@ -10186,10 +10206,10 @@ focus_tree = {
 					controls_state = 926
 				}
 				926 = { #TURKU
-					add_extra_state_shared_building_slots = 2
+					add_extra_state_shared_building_slots = 5
 					add_building_construction = {
 						type = industrial_complex
-						level = 1
+						level = 3
 						instant_build = yes
 					}
 				}
@@ -10200,10 +10220,10 @@ focus_tree = {
 					limit = {
 						is_controlled_by = ROOT
 					}
-					add_extra_state_shared_building_slots = 2
+					add_extra_state_shared_building_slots = 3
 					add_building_construction = {
 						type = industrial_complex
-						level = 1
+						level = 3
 						instant_build = yes
 					}
 				}
