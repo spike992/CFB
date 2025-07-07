@@ -40,6 +40,45 @@ characters={
 				dynasty_founder
 				}
 			}
+			advisor={
+				cost = 100
+				
+				slot = political_advisor
+				idea_token = PER_reza_shah_pahlavi
+					allowed = {
+						OR = {
+							original_tag = PER
+							original_tag = SAF
+						}
+					}
+					
+					traits = {
+						PER_deposed_shah_trait
+					}
+
+					visible = {
+						OR = {
+							has_country_flag = PER_pahlavis_deposed_flag
+							has_global_flag = PER_pahlavis_exiled_flag
+						}
+					}
+
+					available = {
+						NOT = {
+							has_government =  communism
+							has_country_leader = {
+								ruling_only = yes
+								character = PER_reza_shah_pahlavi
+							}
+						}
+					}
+				}
+
+			portraits={
+				army={
+					small = GFX_portrait_PER_reza_shah_pahlavi_small
+				}
+			}
 			field_marshal = {
 				traits = { old_guard brilliant_strategist }
 				skill = 3
@@ -105,7 +144,10 @@ characters={
 				slot = political_advisor
 				idea_token = PER_mohammed_reza_pahlavi
 					allowed = {
-						original_tag = PER
+						OR = {
+							original_tag = PER
+							original_tag = SAF
+						}
 					}
 					
 					traits = {
@@ -140,56 +182,73 @@ characters={
 		}
 	}
 
-	PER_mohammad_ali_foroughi = {
-			name = PER_mohammad_ali_foroughi
+	PER_mohammad_hassan_mirza = {
+		name = PER_mohammad_hassan_mirza
 			portraits = {
 				civilian = {
-					large = GFX_portrait_PER_mohammad_ali_foroughi
+					large = GFX_portrait_PER_mohammad_hassan_mirza_qajar
 				}
 			}
 			country_leader={
-				ideology=conservatism
+				ideology=despotism
 				expire="1965.1.1.1"
 				id=-1
 				traits = {
-					renaissance_man
+					PER_rightful_king_trait
 				}
 			}
 		}
+
+	PER_mohammad_ali_foroughi = {
+		name = PER_mohammad_ali_foroughi
+		portraits = {
+			civilian = {
+				large = GFX_portrait_PER_mohammad_ali_foroughi
+			}
+		}
+		country_leader={
+			ideology=conservatism
+			expire="1965.1.1.1"
+			id=-1
+			traits = {
+				renaissance_man
+			}
+		}
+	}
 
 	PER_abol_ghasem_kashani = {
-			name = PER_abol_ghasem_kashani
-			portraits = {
-				civilian = {
-					large = GFX_portrait_PER_abol_ghasem_kashani
-				}
+		name = PER_abol_ghasem_kashani
+		portraits = {
+			civilian = {
+				large = GFX_portrait_PER_abol_ghasem_kashani
 			}
-			#country_leader={
-			#	ideology=conservatism
-			#	expire="1965.1.1.1"
-			#	id=-1
-			#	traits = {
-			#		SWE_ardent_conservative
-			#	}
-			#}
 		}
+		#country_leader={
+		#	ideology=conservatism
+		#	expire="1965.1.1.1"
+		#	id=-1
+		#	traits = {
+		#		SWE_ardent_conservative
+		#	}
+		#}
+	}
 
 	PER_zia_ol_din_tabatabee = {
-			name = PER_zia_ol_din_tabatabee
-			portraits = {
-				civilian = {
-					large = GFX_portrait_PER_zia_ol_din_tabatabee
-				}
-			}
-			country_leader={
-				ideology=conservatism
-				expire="1965.1.1.1"
-				id=-1
-				traits = {
-					dynastic_reformer
-				}
+		name = PER_zia_ol_din_tabatabee
+		portraits = {
+			civilian = {
+				large = GFX_portrait_PER_zia_ol_din_tabatabee
 			}
 		}
+		country_leader={
+			ideology=conservatism
+			expire="1965.1.1.1"
+			id=-1
+			traits = {
+				dynastic_reformer
+			}
+		}
+	}
 
 	PER_iraj_eskandari = {
 		name = PER_iraj_eskandari
@@ -332,6 +391,7 @@ characters={
 
 			available = {
 				has_completed_focus = PER_women_vote
+				NOT = { has_government = fascism }
 			}
 
 			traits = {
@@ -362,6 +422,7 @@ characters={
 
 			available = {
 				has_completed_focus = PER_women_vote
+				NOT = { has_government = fascism }
 			}
 
 			traits = {
@@ -388,7 +449,7 @@ characters={
 			}
 
 			visible = {
-				
+				NOT = { has_government = communism }
 			}
 
 			available = {
@@ -531,6 +592,10 @@ characters={
 						ruling_only = yes
 						character = PER_mohammad_mosaddegh
 					}
+					has_country_leader = { #was very anti shah!
+						ruling_only = yes
+						character = PER_reza_shah_pahlavi
+					}
 				}
 			}
 
@@ -649,7 +714,7 @@ characters={
 			}
 
 			visible = {
-				
+				is_subject = no
 			}
 
 			available = {
@@ -816,6 +881,100 @@ characters={
 		}
 	}
 
+	PER_karim_buzarjamehri = {
+		name = PER_karim_buzarjamehri
+		portraits = {
+			civilian = {
+				small = GFX_portrait_PER_karim_buzarjamehri_small
+			}
+		}
+
+		advisor = {
+			slot = political_advisor
+			idea_token = PER_karim_buzarjamehri
+
+			allowed = {
+				original_tag = PER
+			}
+
+			visible = {
+				has_country_leader = {
+					ruling_only = yes # default = yes
+					character = PER_reza_shah_pahlavi
+				}
+			}
+
+			available = {
+				
+			}
+
+			traits = {
+				PER_head_of_transport
+			}
+		}
+	}
+
+	PER_abdolsamad_kambakhsh = {
+		name = PER_abdolsamad_kambakhsh
+		portraits = {
+			civilian = {
+				small = GFX_portrait_PER_abdolsamad_kambakhsh_small
+			}
+		}
+
+		advisor = {
+			slot = political_advisor
+			idea_token = PER_abdolsamad_kambakhsh
+
+			allowed = {
+				original_tag = PER
+			}
+
+			visible = {
+				has_completed_focus = PER_strengthen_the_tudeh
+			}
+
+			available = {
+				
+			}
+
+			traits = {
+				patriotic_socialist
+			}
+		}
+	}
+
+	PER_rokneddin_mokhtari = {
+		name = PER_rokneddin_mokhtari
+		portraits = {
+			civilian = {
+				small = GFX_portrait_PER_rokneddin_mokhtari_small
+			}
+		}
+
+		advisor = {
+			slot = political_advisor
+			idea_token = PER_rokneddin_mokhtari
+
+			allowed = {
+				original_tag = PER
+				has_Dlc = "La Resistance"
+			}
+
+			visible = {
+				NOT = { has_completed_focus = PER_rally_the_reformers }
+			}
+
+			available = {
+				
+			}
+
+			traits = {
+				PER_head_of_military_police
+			}
+		}
+	}
+
 	#################
 	### THEORISTS ###
 	#################
@@ -862,16 +1021,16 @@ characters={
 				ai_will_do = {
 					factor = 1.000
 				}
-		}
+			}
 
-		name=PER_ahmad_khan_nakhjavan
-		portraits={
-			army={
-				small = GFX_portrait_PER_ahmad_khan_nakhjavan_small
+			name=PER_ahmad_khan_nakhjavan
+			portraits={
+				army={
+					small = GFX_portrait_PER_ahmad_khan_nakhjavan_small
+				}
 			}
 		}
 	}
-}
 
 	######################
 	### MILITARY STAFF ###
@@ -1165,27 +1324,29 @@ characters={
 			logistics_skill = 1
 			legacy_id=-1
 			visible = {
-					has_completed_focus = PER_united_progressive_parties
-				}
+				has_completed_focus = PER_united_progressive_parties
+				has_government = communism
+			}
 		}
 		advisor = {
 			slot = high_command
 			idea_token = PER_ghulam_yahya_daneshian
 			ledger = army
-				allowed = {
-					original_tag = PER
-				}
-				available = {
-					has_completed_focus = PER_united_progressive_parties
-				}
-				traits = {
-					army_regrouping_2
-				}
-				cost = 100
-				ai_will_do = {
-					factor = 1.000
-				}
+			allowed = {
+				original_tag = PER
 			}
+			available = {
+				has_completed_focus = PER_united_progressive_parties
+				has_government = communism
+			}
+			traits = {
+				army_regrouping_2
+			}
+			cost = 100
+			ai_will_do = {
+				factor = 1.000
+			}
+		}
 	}
 
 	PER_jafar_kavian ={
@@ -1193,6 +1354,62 @@ characters={
 		portraits={
 			army={
 				large = GFX_portrait_PER_jafar_kavian
+				small=GFX_portrait_PER_jafar_kavian_small 
+			}
+		}
+		corps_commander={
+			skill=2
+			attack_skill = 1
+			defense_skill = 3
+			planning_skill = 2
+			logistics_skill = 2
+			legacy_id=-1
+			visible = {
+				has_completed_focus = PER_united_progressive_parties
+				has_government = communism
+			}
+		}
+	}
+
+	PER_fazlollah_zahedi ={
+		instance = {
+			allowed = { has_dlc = "Graveyard of Empires" }
+			name=PER_fazlollah_zahedi
+			portraits={
+				army={
+					large = GFX_portrait_PER_fazlollah_zahedi
+					small=GFX_portrait_PER_fazlollah_zahedi_small 
+				}
+			}
+			corps_commander={
+				skill=2
+				attack_skill=2
+				defense_skill=2
+				planning_skill=1
+				logistics_skill=3
+				legacy_id=-1
+			}
+		}
+		instance = {
+			allowed = { NOT = { has_dlc = "Graveyard of Empires" } }
+			advisor={
+				
+				
+				slot = high_command
+				idea_token = PER_fazlollah_zahedi
+				ledger = army
+				allowed = {
+					original_tag = PER
+				}
+			}
+		}
+	}
+
+	PER_assadollah_hosseinpoor = {
+		name=PER_assadollah_hosseinpoor
+		portraits={
+			army={
+				large = GFX_portrait_PER_assadollah_hosseinpoor
 				small=GFX_portrait_PLACEHOLDER_small
 			}
 		}
@@ -1204,57 +1421,85 @@ characters={
 			logistics_skill = 2
 			legacy_id=-1
 			visible = {
-					has_completed_focus = PER_united_progressive_parties
-				}
+	
+			}
+			traits = {
+				cavalry_leader
 			}
 		}
+	}
 
-	PER_fazlollah_zahedi ={
-		instance = {
-		allowed = { has_dlc = "Graveyard of Empires" }
-		name=PER_fazlollah_zahedi
+	PER_haj_ali_razmara ={
+		name=PER_haj_ali_razmara
 		portraits={
 			army={
-				large = GFX_portrait_PER_fazlollah_zahedi
-				small=GFX_portrait_PLACEHOLDER_small
+				large = GFX_portrait_PER_haj_ali_razmara
+				small=GFX_portrait_PER_haj_ali_razmara_small
 			}
 		}
 		corps_commander={
 			skill=2
-			attack_skill=2
-			defense_skill=2
-			planning_skill=1
-			logistics_skill=3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
 			legacy_id=-1
-		}
-	}
-	instance = {
-		allowed = { NOT = { has_dlc = "Graveyard of Empires" } }
-		advisor={
-			
-			
-			slot = high_command
-			idea_token = PER_fazlollah_zahedi
-			ledger = army
-				allowed = {
-					original_tag = PER
-				}
-				traits = {
-					army_infantry_2
-				}
-				cost = 100
-				ai_will_do = {
-					factor = 1.000
-				}
-		}
-		name=PER_fazlollah_zahedi
-		portraits={
-			army={
-				small="GFX_idea_generic_army_arab_2"
+			visible = {
+
+			}
+			traits = {
+				infantry_leader
 			}
 		}
 	}
-}
+
+	##################
+	### SCIENTISTS ###
+	##################
+
+	PER_kazem_hasibi = {
+		name = PER_kazem_hasibi
+		portraits = {
+			army = {
+				large = GFX_portrait_PER_kazem_hasibi
+			}
+		}
+
+		scientist = {
+			traits = { scientist_trait_electronics_specialist scientist_trait_fast_learner }
+			skills = {
+				specialization_air = 1
+			}
+
+			visible = {
+				owner = {
+					has_completed_focus = PER_royal_college_funding
+				}
+			}
+		}
+	}
+
+	PER_ahmad_zirakzadeh = {
+		name = PER_ahmad_zirakzadeh
+		portraits = {
+			army = {
+				large = GFX_portrait_PER_ahmad_zirakzadeh
+			}
+		}
+
+		scientist = {
+			traits = { scientist_trait_bright }
+			skills = {
+				specialization_naval = 2
+			}
+
+			visible = {
+				owner = {
+					has_completed_focus = PER_increase_faculty_staffing_budget
+				}
+			}
+		}
+	}
 
 
 	###############
@@ -1676,5 +1921,3 @@ characters={
 		}
 	}
 }
-
-# GFX_portrait_PER_mohammad_hassan_mirza_qajar

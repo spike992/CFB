@@ -656,7 +656,7 @@ characters = {
 				has_dlc = "Graveyard of Empires"
 				OR = {
 					original_tag = IRQ
-					original_tag = PAL
+					#original_tag = PAL
 				}
 			}
 			available = {
@@ -696,6 +696,7 @@ characters = {
 				OR = {
 					has_completed_focus = IRQ_kurdish_outreach
 					has_completed_focus = IRQ_promote_kurdish_culture
+					has_completed_focus = IRQ_encourage_federalism
 				}
 			}
 			cost = 150
@@ -931,6 +932,38 @@ characters = {
 		}
 	}
 
+	IRQ_maruf_al_rusafi = {
+		name = IRQ_maruf_al_rusafi
+		portraits = {
+			army = {
+				small = GFX_portrait_IRQ_maruf_al_rusafi_small
+			}
+		}
+
+		advisor={
+			allowed = {
+				has_dlc = "Graveyard of Empires" 
+			} 
+			slot = political_advisor
+			idea_token = IRQ_maruf_al_rusafi
+
+			traits  = {
+				IRQ_poet_of_freedom
+			}
+			allowed = { 
+				original_tag = IRQ
+			}
+			available = {
+				NOT = {
+					has_government = fascism
+				}
+			}
+			ai_will_do  = {
+				factor  = 0.000
+			}
+		}
+	}
+
 	IRQ_salah_al_din_al_sabbagh = { #This guy could be both a general/CoA and advisor.
 		name = IRQ_salah_al_din_al_sabbagh
 		portraits = {
@@ -956,6 +989,10 @@ characters = {
 			available = {
 				#Golden Square
 				has_government = fascism
+				NOT = { has_completed_focus = IRQ_kurdish_revolt}
+			}
+			visible = {
+				NOT = { has_completed_focus = IRQ_kurdish_revolt}
 			}
 			ai_will_do  = {
 				base = 1
@@ -969,6 +1006,12 @@ characters = {
 			cost = 100
 			traits = {
 				air_air_superiority_2
+			}
+			visible = {
+				NOT = { has_completed_focus = IRQ_kurdish_revolt}
+			}
+			available = {
+				NOT = { has_completed_focus = IRQ_kurdish_revolt}
 			}
 			ai_will_do  = {
 				base = 1
@@ -984,6 +1027,7 @@ characters = {
 			logistics_skill = 2
 			visible = {
 				#likely from start,  but might not stick around if going anything but golden square
+				NOT = { has_completed_focus = IRQ_kurdish_revolt}
 			}
 		}
 	}
@@ -1337,6 +1381,12 @@ characters = {
 			traits = {
 				air_warfare_theorist
 			}
+			available = {
+				NOT = { has_completed_focus = IRQ_kurdish_revolt}
+			}
+			visible = {
+				NOT = { has_completed_focus = IRQ_kurdish_revolt}
+			}
 			cost = 100
 			ai_will_do = {
 				factor = 1.000
@@ -1354,6 +1404,12 @@ characters = {
 			traits = {
 				air_chief_ground_support_2
 			}
+			available = {
+				NOT = { has_completed_focus = IRQ_kurdish_revolt}
+			}
+			visible = {
+				NOT = { has_completed_focus = IRQ_kurdish_revolt}
+			}
 		}
 	}
 
@@ -1361,7 +1417,7 @@ characters = {
 		name = IRQ_muhammad_ali_jawad
 		portraits = {
 			army = {
-				small = GFX_idea_generic_air_arab_3 # TODO_JA: hook in unique portrait if time allows
+				small = GFX_portrait_IRQ_muhammad_ali_jawad_small
 			}
 		}
 		advisor = {
@@ -1607,6 +1663,12 @@ characters = {
 				slot = high_command
 				idea_token = IRQ_fahmi_said
 				ledger = army
+				available = {
+					NOT = { has_completed_focus = IRQ_kurdish_revolt}
+				}
+				visible = {
+					NOT = { has_completed_focus = IRQ_kurdish_revolt}
+				}
 				traits = {
 					army_CombinedArms_2
 				}
@@ -1624,6 +1686,7 @@ characters = {
 				logistics_skill = 2
 				legacy_id = -1 
 				visible = {
+					NOT = { has_completed_focus = IRQ_kurdish_revolt}
 				}
 			}
 		}
@@ -1672,6 +1735,12 @@ characters = {
 				slot = high_command
 				idea_token = IRQ_kamil_shabib
 				ledger = army
+				available = {
+					NOT = { has_completed_focus = IRQ_kurdish_revolt}
+				}
+				visible = {
+					NOT = { has_completed_focus = IRQ_kurdish_revolt}
+				}
 				traits = {
 					army_infantry_2
 				}
@@ -1690,6 +1759,7 @@ characters = {
 				logistics_skill = 2
 				legacy_id = -1 
 				visible = {
+					NOT = { has_completed_focus = IRQ_kurdish_revolt}
 				}
 			}
 		}

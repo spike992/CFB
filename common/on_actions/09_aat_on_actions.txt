@@ -3,7 +3,16 @@ on_actions = {
 
 	#### MIO on actions
 	# ROOT is MIO
-	on_mio_size_increased = {}
+	on_mio_size_increased = {
+		effect = {
+				if = {
+					limit = {
+						ROOT = { has_mio_size < 5 }
+					}
+					add_mio_task_capacity = 1
+				}
+		}
+	}
 	# NB : all the following also exist at MIO level
 	# use on-action here if the purpose is to execute for any MIO
 	# use on-action at MIO level to execute just for one precise MIO

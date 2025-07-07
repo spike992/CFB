@@ -60,7 +60,23 @@
 #		}
 #	}
 #}
+missing_garrison_scaled_effect = {
+	icon = 1
+	missing_garrison_law = yes # missing garrison will now be scaling to law set as missing_garrison_law if it is set, otherwise it will use default_law as it used to
+	sound_effect = "Martial_Law_Interface_No_Garrison"
+	visible = {
+		always = no
+	}
 
+	state_modifier = {
+		resistance_target = 0.1
+		compliance_gain = -0.045
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
 
 no_garrison = {
 	icon = 1
@@ -423,6 +439,7 @@ harsh_quotas_occupation = {
 			OR = {
 				original_tag = JAP
 				original_tag = MAN
+				has_government = democratic
 			}
 		}
 	}
@@ -739,7 +756,7 @@ secretaries_general = {
 }
 
 independent_rule = {
-	icon = 13
+	icon = 15
 	sound_effect = "Martial_Law_Interface_Autonomous_Occupation_Unique_DEM"
 
 	fallback_law = foreign_civilian_oversight
@@ -797,9 +814,9 @@ independent_rule = {
 	}
 }
 
-
+# The idea for this law is that we exploit the people to get us extra resources fast, but builds up resistance much quicker
 princely_subjugation= {
-	icon = 13
+	icon = 14
 	sound_effect = "Martial_Law_Interface_Autonomous_Occupation_Unique_DEM"
 
 	fallback_law = military_governor_occupation
@@ -832,12 +849,12 @@ princely_subjugation= {
 	}
 
 	state_modifier = {
-		resistance_target 				= -0.40
-		compliance_gain 				= -0.05
+		resistance_target 				= 0.20
+		compliance_gain 				= -0.10
 		required_garrison_factor 		= 0.15
 		resistance_damage_to_garrison 	= 0.50
-		local_factories 				= 1
-		local_resources 				= 1
+		local_factories 				= 0.60
+		local_resources 				= 0.60
 
 	}
 

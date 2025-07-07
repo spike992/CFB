@@ -1289,186 +1289,186 @@ country_event = {
 
 ### PROTECTOR OF THE SOMALIS EVENT CHAIN
 # Event to the UK asking for Control of all Somali states 
-country_event = {
-	id = BBA_ethiopia_exile_events.10
-	title = BBA_ethiopia_exile_events.10.t
-	desc = BBA_ethiopia_exile_events.10.desc
-	is_triggered_only = yes
-	picture = GFX_report_event_generic_sign_treaty2
+# country_event = {
+# 	id = BBA_ethiopia_exile_events.10
+# 	title = BBA_ethiopia_exile_events.10.t
+# 	desc = BBA_ethiopia_exile_events.10.desc
+# 	is_triggered_only = yes
+# 	picture = GFX_report_event_generic_sign_treaty2
 
-	# Brilliant Idea
-	option = {
-		name = BBA_ethiopia_exile_events.10.a
-		# Do we own any Somali state? 
-		trigger = {
-			any_state = {
-				is_core_of = SOM 
-				is_owned_by = ROOT 
-			}
-		}
-		ai_chance = {
-			base = 4
-		}
-		FROM = {
-			country_event = {
-				id = BBA_ethiopia_exile_events.11
-				days = 3
-				random_days = 5
-			}
-		}
-		effect_tooltip = {
-			every_owned_state = {
-				limit = {
-					is_core_of = SOM 
-				}
-				set_state_owner_to = FROM 
-			}
-			every_state = {
-				limit = {
-					is_core_of = SOM
-					OWNER = { has_war_with = ROOT }
-				}
-				add_dynamic_modifier = {
-					modifier = ETH_arranged_expansion_modifier
-				}
-				FROM = { add_state_claim = PREV }
-			}
-		}
+# 	# Brilliant Idea
+# 	option = {
+# 		name = BBA_ethiopia_exile_events.10.a
+# 		# Do we own any Somali state? 
+# 		trigger = {
+# 			any_state = {
+# 				is_core_of = SOM 
+# 				is_owned_by = ROOT 
+# 			}
+# 		}
+# 		ai_chance = {
+# 			base = 4
+# 		}
+# 		FROM = {
+# 			country_event = {
+# 				id = BBA_ethiopia_exile_events.11
+# 				days = 3
+# 				random_days = 5
+# 			}
+# 		}
+# 		effect_tooltip = {
+# 			every_owned_state = {
+# 				limit = {
+# 					is_core_of = SOM 
+# 				}
+# 				set_state_owner_to = FROM 
+# 			}
+# 			every_state = {
+# 				limit = {
+# 					is_core_of = SOM
+# 					OWNER = { has_war_with = ROOT }
+# 				}
+# 				add_dynamic_modifier = {
+# 					modifier = ETH_arranged_expansion_modifier
+# 				}
+# 				FROM = { add_state_claim = PREV }
+# 			}
+# 		}
 		
-	}
-	# yes, they can have the enemy's states
-	option = {
-		name = BBA_ethiopia_exile_events.10.b
-		trigger = {
-			# Is Ethiopia at war with anyone owning Somali states 
-			any_state = {
-				is_core_of = SOM 
-				any_country = {
-					has_war_with = ETH 
-					PREV = { is_owned_by = PREV }
-				}
-			}
-		}
-		ai_chance = {
-			base = 10
-		}
-		FROM = {
-			country_event = {
-				id = BBA_ethiopia_exile_events.12
-				days = 3
-				random_days = 5
-			}
-		}
-		effect_tooltip = {
-			every_state = {
-				limit = {
-					is_core_of = SOM
-					OWNER = { has_war_with = ROOT }
-				}
-				add_dynamic_modifier = {
-					modifier = ETH_arranged_expansion_modifier
-				}
-				FROM = { add_state_claim = PREV }
-			}
-		}
+# 	}
+# 	# yes, they can have the enemy's states
+# 	option = {
+# 		name = BBA_ethiopia_exile_events.10.b
+# 		trigger = {
+# 			# Is Ethiopia at war with anyone owning Somali states 
+# 			any_state = {
+# 				is_core_of = SOM 
+# 				any_country = {
+# 					has_war_with = ETH 
+# 					PREV = { is_owned_by = PREV }
+# 				}
+# 			}
+# 		}
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 		FROM = {
+# 			country_event = {
+# 				id = BBA_ethiopia_exile_events.12
+# 				days = 3
+# 				random_days = 5
+# 			}
+# 		}
+# 		effect_tooltip = {
+# 			every_state = {
+# 				limit = {
+# 					is_core_of = SOM
+# 					OWNER = { has_war_with = ROOT }
+# 				}
+# 				add_dynamic_modifier = {
+# 					modifier = ETH_arranged_expansion_modifier
+# 				}
+# 				FROM = { add_state_claim = PREV }
+# 			}
+# 		}
 
-	}
-	# No
-	option = {
-		name = BBA_ethiopia_exile_events.10.c
-		ai_chance = {
-			base = 2
-		}
-		FROM = {
-			country_event = {
-				id = BBA_ethiopia_exile_events.13
-				days = 3
-				random_days = 5
-			}
-		}
-	}
-}
+# 	}
+# 	# No
+# 	option = {
+# 		name = BBA_ethiopia_exile_events.10.c
+# 		ai_chance = {
+# 			base = 2
+# 		}
+# 		FROM = {
+# 			country_event = {
+# 				id = BBA_ethiopia_exile_events.13
+# 				days = 3
+# 				random_days = 5
+# 			}
+# 		}
+# 	}
+# }
 
-# Ethiopia: Uk say yes to Somali overlordship
-country_event = {
-	id = BBA_ethiopia_exile_events.11
-	title = BBA_ethiopia_exile_events.11.t
-	desc = BBA_ethiopia_exile_events.11.desc
-	is_triggered_only = yes
-	picture = GFX_report_event_generic_sign_treaty2
+# # Ethiopia: Uk say yes to Somali overlordship
+# country_event = {
+# 	id = BBA_ethiopia_exile_events.11
+# 	title = BBA_ethiopia_exile_events.11.t
+# 	desc = BBA_ethiopia_exile_events.11.desc
+# 	is_triggered_only = yes
+# 	picture = GFX_report_event_generic_sign_treaty2
 
-	option = {
-		name = BBA_ethiopia_exile_events.11.a
-		ai_chance = {
-			base = 10
-		}
-		every_state = {
-			limit = {
-				is_owned_by = FROM 
-				is_core_of = SOM 
-			}
-			# set_state_owner_to = ROOT 
-			IF = {
-				limit = {
-					is_fully_controlled_by = FROM
-					ROOT = { is_government_in_exile = no }
-				}
-				ROOT = { transfer_state = PREV }
-			}
-			ELSE = {
-				add_dynamic_modifier = {
-					modifier = ETH_arranged_expansion_modifier
-				}
-				ROOT = { 
-					add_state_claim = PREV 
-					add_to_array = { ETH_promised_states_array = PREV }
-				}
-			}
-		}
-		every_state = {
-			limit = {
-				is_core_of = SOM
-				OWNER = { has_war_with = ROOT }
-			}
-			add_dynamic_modifier = {
-				modifier = ETH_arranged_expansion_modifier
-			}
-			ROOT = { 
-				add_state_claim = PREV 
-				add_to_array = { ETH_promised_states_array = PREV }
-			}
-		}
-	}
-}  
+# 	option = {
+# 		name = BBA_ethiopia_exile_events.11.a
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 		every_state = {
+# 			limit = {
+# 				is_owned_by = FROM 
+# 				is_core_of = SOM 
+# 			}
+# 			# set_state_owner_to = ROOT 
+# 			IF = {
+# 				limit = {
+# 					is_fully_controlled_by = FROM
+# 					ROOT = { is_government_in_exile = no }
+# 				}
+# 				ROOT = { transfer_state = PREV }
+# 			}
+# 			ELSE = {
+# 				add_dynamic_modifier = {
+# 					modifier = ETH_arranged_expansion_modifier
+# 				}
+# 				ROOT = { 
+# 					add_state_claim = PREV 
+# 					add_to_array = { ETH_promised_states_array = PREV }
+# 				}
+# 			}
+# 		}
+# 		every_state = {
+# 			limit = {
+# 				is_core_of = SOM
+# 				OWNER = { has_war_with = ROOT }
+# 			}
+# 			add_dynamic_modifier = {
+# 				modifier = ETH_arranged_expansion_modifier
+# 			}
+# 			ROOT = { 
+# 				add_state_claim = PREV 
+# 				add_to_array = { ETH_promised_states_array = PREV }
+# 			}
+# 		}
+# 	}
+# }  
 
-# Ethiopia: Uk say yes to handing over enemy Somali states
-country_event = {
-	id = BBA_ethiopia_exile_events.12
-	title = BBA_ethiopia_exile_events.12.t
-	desc = BBA_ethiopia_exile_events.12.desc
-	is_triggered_only = yes
-	picture = GFX_report_event_generic_sign_treaty2
+# # Ethiopia: Uk say yes to handing over enemy Somali states
+# country_event = {
+# 	id = BBA_ethiopia_exile_events.12
+# 	title = BBA_ethiopia_exile_events.12.t
+# 	desc = BBA_ethiopia_exile_events.12.desc
+# 	is_triggered_only = yes
+# 	picture = GFX_report_event_generic_sign_treaty2
 
-	option = {
-		name = BBA_ethiopia_exile_events.12.a
-		ai_chance = {
-			base = 10
-		}
-		every_state = {
-			limit = {
-				is_core_of = SOM
-				OWNER = { has_war_with = ROOT }
-			}
-			add_dynamic_modifier = {
-				modifier = ETH_arranged_expansion_modifier
-			}
-			ROOT = { 
-				add_state_claim = PREV 
-				add_to_array = { ETH_promised_states_array = PREV }
-			}
-		}
-	}
-}
+# 	option = {
+# 		name = BBA_ethiopia_exile_events.12.a
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 		every_state = {
+# 			limit = {
+# 				is_core_of = SOM
+# 				OWNER = { has_war_with = ROOT }
+# 			}
+# 			add_dynamic_modifier = {
+# 				modifier = ETH_arranged_expansion_modifier
+# 			}
+# 			ROOT = { 
+# 				add_state_claim = PREV 
+# 				add_to_array = { ETH_promised_states_array = PREV }
+# 			}
+# 		}
+# 	}
+# }
 
 # Ethiopia: Uk say no to handing over enemy Somali states
 country_event = {
@@ -6825,21 +6825,21 @@ country_event = {
 		ai_chance = {
 			base = 10
 		}
-		release = ERI
-		hidden_effect = {
-			ERI = {
-				set_popularities = {
-					democratic = 20
-					fascism = 5
-					neutrality = 15
-					communism = 60
-				}
-				set_politics = {
-					ruling_party = communism
-					elections_allowed = no
-				}
-			}
-		}		
+		# release = ERI
+		# hidden_effect = {
+		# 	ERI = {
+		# 		set_popularities = {
+		# 			democratic = 20
+		# 			fascism = 5
+		# 			neutrality = 15
+		# 			communism = 60
+		# 		}
+		# 		set_politics = {
+		# 			ruling_party = communism
+		# 			elections_allowed = no
+		# 		}
+		# 	}
+		# }		
 	}
 	#Refuse to release
 	option = {
@@ -6853,94 +6853,94 @@ country_event = {
 
 #Release Somalia
 
-country_event = {
-	id = BBA_ethiopia_communist_events.34
-	title = BBA_ethiopia_communist_events.34.t
-	desc = BBA_ethiopia_communist_events.34.desc
-	is_triggered_only = yes
-	picture = GFX_report_event_generic_sign_treaty2
+# country_event = {
+# 	id = BBA_ethiopia_communist_events.34
+# 	title = BBA_ethiopia_communist_events.34.t
+# 	desc = BBA_ethiopia_communist_events.34.desc
+# 	is_triggered_only = yes
+# 	picture = GFX_report_event_generic_sign_treaty2
 
-	#Agree to release
-	option = {
-		name = BBA_ethiopia_communist_events.34.a
-		ai_chance = {
-			base = 10
-		}
-		#release = SOM
-		hidden_effect = {
-			IF = {
-				limit = {
-					SOM = {
-						exists = yes
-					}
-				}
-				create_dynamic_country = {
-					original_tag = SOM
-					set_variable = { ETH.new_somalia = THIS }
-					log = "Dynamic tag: [THIS.GetName]"
-					PREV = {
-						log = "Prev tag: [THIS.GetName]"
-						every_owned_state = {
-							log = "State: [THIS.GetName]"
-							limit = {
-								is_core_of = SOM
-								NOT = {state = 835}
-								NOT = {state = 836}
-							}
-							#event_target:released_nation_target = {
-							var:ETH.new_somalia = {
-								log = "Prev Prev tag: [THIS.GetName]"
-								transfer_state = PREV
-							}
-						}
-					}
-					set_popularities = {
-						democratic = ETH.party_popularity_100@democratic
-						neutrality = ETH.party_popularity_100@neutrality
-						fascism = ETH.party_popularity_100@fascism
-						communism = ETH.party_popularity_100@communism
-					}
-					set_politics = {
-						ruling_party = ROOT
-					}
-				}
-				clear_variable = ETH.new_somalia
-			}
-			ELSE = {
-				release = SOM
-				SOM = {
-					835 = {
-						ETH = {	transfer_state = PREV }
-						add_core_of = ETH
-						clr_state_flag = eth_core_flag_som
-					}
-					836 = {
-						ETH = {	transfer_state = PREV }
-						add_core_of = ETH
-						clr_state_flag = eth_core_flag_som
-					}
-					set_popularities = {
-						democratic = ETH.party_popularity_100@democratic
-						neutrality = ETH.party_popularity_100@neutrality
-						fascism = ETH.party_popularity_100@fascism
-						communism = ETH.party_popularity_100@communism
-					}
-					set_politics = {
-						ruling_party = ROOT
-					}
-				}
-			}
-		}		
-	}
-	#Refuse to release
-	option = {
-		name = BBA_ethiopia_communist_events.34.b
-		ai_chance = {
-			base = 10
-		}
-		add_stability = -0.03
-	}
-}
+# 	#Agree to release
+# 	option = {
+# 		name = BBA_ethiopia_communist_events.34.a
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 		#release = SOM
+# 		hidden_effect = {
+# 			IF = {
+# 				limit = {
+# 					SOM = {
+# 						exists = yes
+# 					}
+# 				}
+# 				create_dynamic_country = {
+# 					original_tag = SOM
+# 					set_variable = { ETH.new_somalia = THIS }
+# 					log = "Dynamic tag: [THIS.GetName]"
+# 					PREV = {
+# 						log = "Prev tag: [THIS.GetName]"
+# 						every_owned_state = {
+# 							log = "State: [THIS.GetName]"
+# 							limit = {
+# 								is_core_of = SOM
+# 								NOT = {state = 835}
+# 								NOT = {state = 836}
+# 							}
+# 							#event_target:released_nation_target = {
+# 							var:ETH.new_somalia = {
+# 								log = "Prev Prev tag: [THIS.GetName]"
+# 								transfer_state = PREV
+# 							}
+# 						}
+# 					}
+# 					set_popularities = {
+# 						democratic = ETH.party_popularity_100@democratic
+# 						neutrality = ETH.party_popularity_100@neutrality
+# 						fascism = ETH.party_popularity_100@fascism
+# 						communism = ETH.party_popularity_100@communism
+# 					}
+# 					set_politics = {
+# 						ruling_party = ROOT
+# 					}
+# 				}
+# 				clear_variable = ETH.new_somalia
+# 			}
+# 			ELSE = {
+# 				release = SOM
+# 				SOM = {
+# 					835 = {
+# 						ETH = {	transfer_state = PREV }
+# 						add_core_of = ETH
+# 						clr_state_flag = eth_core_flag_som
+# 					}
+# 					836 = {
+# 						ETH = {	transfer_state = PREV }
+# 						add_core_of = ETH
+# 						clr_state_flag = eth_core_flag_som
+# 					}
+# 					set_popularities = {
+# 						democratic = ETH.party_popularity_100@democratic
+# 						neutrality = ETH.party_popularity_100@neutrality
+# 						fascism = ETH.party_popularity_100@fascism
+# 						communism = ETH.party_popularity_100@communism
+# 					}
+# 					set_politics = {
+# 						ruling_party = ROOT
+# 					}
+# 				}
+# 			}
+# 		}		
+# 	}
+# 	#Refuse to release
+# 	option = {
+# 		name = BBA_ethiopia_communist_events.34.b
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 		add_stability = -0.03
+# 	}
+# }
 
 #Spanish event for ETH requesting Rif be released
 country_event = {
@@ -7363,7 +7363,7 @@ country_event = {
 			modifier = {
 				add = 30
 				any_owned_state = {
-					is_core_of = ERI
+					#is_core_of = ERI
 					is_owned_by = ETH
 				}
 			}
@@ -7374,9 +7374,9 @@ country_event = {
 				}
 			}
 		}
-		ETH = {
-			release_puppet_on_controlled = ERI
-		}
+		# ETH = {
+		# 	release_puppet_on_controlled = ERI
+		# }
 		white_peace = ETH
 	}
 }
@@ -7417,7 +7417,7 @@ country_event = {
 			modifier = {
 				add = 30
 				any_owned_state = {
-					is_core_of = KEN
+					#is_core_of = KEN
 					is_owned_by = ETH
 				}
 			}
@@ -7428,9 +7428,9 @@ country_event = {
 				}
 			}
 		}
-		ETH = {
-			release_puppet_on_controlled = KEN
-		}
+		# ETH = {
+		# 	release_puppet_on_controlled = KEN
+		# }
 		white_peace = ETH
 	}
 }
@@ -7463,29 +7463,29 @@ country_event = {
 			}
 		}
 	}
-	option = {
-		name = BBA_ethiopia_communist_events.50.b
-		ai_chance = {
-			base = 0
-			modifier = {
-				add = 30
-				any_owned_state = {
-					is_core_of = SOM
-					is_owned_by = ETH
-				}
-			}
-			modifier = {
-				add = -15
-				any_controlled_state = {
-					is_core_of = ETH
-				}
-			}
-		}
-		ETH = {
-			release_puppet_on_controlled = SOM
-		}
-		white_peace = ETH
-	}
+	# option = {
+	# 	name = BBA_ethiopia_communist_events.50.b
+	# 	ai_chance = {
+	# 		base = 0
+	# 		modifier = {
+	# 			add = 30
+	# 			any_owned_state = {
+	# 				is_core_of = SOM
+	# 				is_owned_by = ETH
+	# 			}
+	# 		}
+	# 		modifier = {
+	# 			add = -15
+	# 			any_controlled_state = {
+	# 				is_core_of = ETH
+	# 			}
+	# 		}
+	# 	}
+	# 	ETH = {
+	# 		release_puppet_on_controlled = SOM
+	# 	}
+	# 	white_peace = ETH
+	# }
 }
 #UGA
 country_event = {

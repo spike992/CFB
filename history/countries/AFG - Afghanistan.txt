@@ -60,6 +60,18 @@ IF = {
 	recruit_character = AFG_soraya_tarzi
 	recruit_character = AFG_provisional_government
 	recruit_character = AFG_muhammad_ibrahim_khan
+	recruit_character = AFG_faqir_of_ipi
+	recruit_character = AFG_mazrak_zadran
+	recruit_character = AFG_nisar_muhammad_yousafzai
+	recruit_character = GER_oskar_von_nidermayer
+	recruit_character = AFG_abdurauf_fitrat
+	recruit_character = AFG_fayzulla_xojayev
+	recruit_character = AFG_korsirmat
+	recruit_character = AFG_junaid_khan
+	recruit_character = AFG_sher_khan_nashir
+	recruit_character = AFG_nur_muhammad_taraki
+	recruit_character = AFG_inyatullah_khan
+	recruit_character = AFG_sheikh_omar_mojadidi
 
 	# Generics
 	recruit_character = AFG_generic_army_1
@@ -112,6 +124,8 @@ IF = {
 	set_variable = { AFG_training_time_factor = 0 }
 	set_variable = { AFG_max_planning_factor = 0 }
 	set_variable = { AFG_planning_speed = 0 }
+	set_variable = { AFG_army_supply_factor = 0 }
+	set_variable = { AFG_army_supply_combat_penalties_on_core_factor = 0 }
 
 
 	add_dynamic_modifier = {
@@ -141,6 +155,7 @@ IF = {
 	set_variable = { AFG_command_power_gain_mult = 0 }
 	set_variable = { AFG_acclimatization_cold_climate_gain_factor = 0 }
 	set_variable = { AFG_acclimatization_hot_climate_gain_factor = 0 }
+	set_variable = { AFG_army_experience_gain_army_factor = 0 }
 
 	# Varaibles for Amanullah modifier
 
@@ -159,6 +174,15 @@ IF = {
 	set_variable = { AFG_1923_const_modifier_production_factory_efficiency_gain_factor = 0 }
 	set_variable = { AFG_1923_const_modifier_production_factory_max_efficiency_factor = 0 }
 
+	# Variables for Return to Tradition modifier
+
+	set_variable = { AFG_look_to_the_past_modifier_stability_factor = -0.05 }
+	set_variable = { AFG_look_to_the_past_modifier_war_support_factor = 0.03 }
+	set_variable = { AFG_look_to_the_past_modifier_core_defense_factor = 0}
+	set_variable = { AFG_look_to_the_past_modifier_core_attack_factor = 0 }
+	set_variable = { AFG_look_to_the_past_modifier_research_speed_factor = -0.01 }
+
+	# State Modifier 
 	every_owned_state = {
 		limit = {
 			is_owned_by = AFG
@@ -287,8 +311,11 @@ IF = {
 		#1936
 		complete_national_focus = AFG_support_king_zahir
 		complete_national_focus = AFG_expand_telegraph_network
+		complete_national_focus = AFG_biding_our_time
+		complete_national_focus = AFG_visit_foreign_capitals
 		complete_national_focus = AFG_placeholder_1
 		complete_national_focus = AFG_fruit_packing
+		complete_national_focus = AFG_ministry_of_supply
 		complete_national_focus = AFG_implement_currency_controls
 		complete_national_focus = AFG_sugar_processing
 		complete_national_focus = AFG_clear_malarial_swamps
@@ -307,6 +334,26 @@ IF = {
 		complete_national_focus = AFG_adopt_nufus
 		complete_national_focus = AFG_introduce_national_service
 		complete_national_focus = AFG_new_army
+
+		diplomatic_relation = {
+			country = TUR
+			relation = non_aggression_pact
+			active = yes
+		}
+
+		diplomatic_relation = {
+			country = PER
+			relation = non_aggression_pact
+			active = yes
+		}
+
+		diplomatic_relation = {
+			country = IRQ
+			relation = non_aggression_pact
+			active = yes
+		}
+
+		add_dynamic_modifier = { modifier = SSB_saadabad_pact }
 	}
 	IF = {
 		limit = {

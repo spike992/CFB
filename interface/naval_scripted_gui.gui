@@ -1,8 +1,37 @@
-guiTypes = { 
+guiTypes = {
+
+	containerWindowType = {
+		name = "hide_admirals_container"
+		position = { x=130 y=-150 }
+		Orientation = center_down
+
+		buttonType = {
+			name = "tool_open3"
+			#quadTextureSprite = "GFX_generic_bg"
+			quadTextureSprite = "GFX_generic_box_96"
+			position = { x = 0 y = 0 }
+			pdx_tooltip = "Toggle Naval Admiral Gui"
+			clicksound = click_ok
+			oversound = ui_menu_over
+		}
+		
+		instantTextboxType = {
+			name = "title2"
+			#position = {x=22 y=5}
+			position = {x=3 y=4}
+			font = "hoi_18mbs"
+			text = "Admiral List"
+			maxWidth = 90
+			maxHeight = 23
+			format = center
+		}
+
+	}
+
 	containerWindowType = {    
 		name = "horst_admiral_current_command_limit_used_window"
-		size = { width = 450 height = 1100 } 
-		position = { x=55 y =-400 }  	 
+		size = { width = 455 height = 200 } 
+		position = { x=-260 y =-420 }  	 
 		fade_time = 300
 		fade_type = linear
 		show_sound = menu_open_window
@@ -12,25 +41,28 @@ guiTypes = {
 			name = "Background"
 			spriteType = "GFX_tiled_window_transparent"
 		}
-			
-			containerWindowType = {
+		
+
+		containerWindowType = {
 			name = "admirals_leading_battlefleets_list_container"
 			position = { x=12 y =-2 }
-			size = { width = 444 height=400 }
+			size = { width = 450 height=200 }
 			margin = { top = 10 bottom = 10 }
 			Orientation = upper_left
 			verticalScrollbar = "right_vertical_slider"
+			vertical_scroll_step = 1
 			
 			background = {
 				name = "Background"
 				quadTextureSprite ="GFX_tiled_window_transparent"
 			}
 			
+			
 			gridboxType = {
 				name ="admirals_leading_battlefleets_list"
 				position = { x = 0 y = 0 }
 				size = { width = 442 height = 100%% }
-				slotsize = { width = 442 height = 1 } #if width or height is 1, it will use slot element's dimension
+				slotsize = { width = 440 height = 1 } #if width or height is 1, it will use slot element's dimension
 				max_slots_horizontal = 1
 				add_horizontal = no
 			}
@@ -40,8 +72,8 @@ guiTypes = {
 
 	containerWindowType = {
 		name = "admirals_with_fleets_list"
-		position = { x = 0 y = 0}	
-		size = { width = 470 height = 90 }
+		position = { x = 0 y = 0}
+		size = { width = 440 height = 90 }
 		background = {
 			name = "Background"		
 			quadTextureSprite = "GFX_tiled_plain_bg"

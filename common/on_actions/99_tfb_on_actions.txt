@@ -186,7 +186,13 @@ on_actions = {
 			# Axis / East Asia Co Prosperity Sphere
 			if = {
 				limit = {
-					has_global_flag = japan_is_at_war_with_allies
+					OR = {
+						has_game_rule = {
+							rule = intel_share_time
+							option = DISABLED
+						}
+						has_global_flag = japan_is_at_war_with_allies
+					}
 				}
 				for_each_scope_loop = {
 					array = JAP.faction_intel_shared
@@ -237,7 +243,13 @@ on_actions = {
 			# Allies / Comintern
 			if = {
 				limit = {
-					has_global_flag = japan_is_at_war_with_allies
+					OR = {
+						has_game_rule = {
+							rule = intel_share_time
+							option = DISABLED
+						}
+						has_global_flag = soviets_are_at_war_with_germany
+					}
 				}
 				for_each_scope_loop = {
 					array = ENG.faction_intel_shared
@@ -507,6 +519,108 @@ on_actions = {
 			JAP = {  add_to_array = { JAP.faction_intel_shared = JAP } }
 			JAP = {  add_to_array = { JAP.faction_intel_shared = MAN } }
 			JAP = {  add_to_array = { JAP.faction_intel_shared = SIA } }
+		}
+
+
+		effect = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = intel_share_time
+						option = DISABLED
+					}
+				}
+
+				# Setup Shared Faction Intelligence
+				for_each_scope_loop = {
+					array = ENG.faction_intel_shared
+					for_each_scope_loop = {
+						array = SOV.faction_intel_shared
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_airforce_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_army_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_navy_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_civilian_friendly } }
+						}
+					}
+				}
+				for_each_scope_loop = {
+					array = SOV.faction_intel_shared
+					for_each_scope_loop = {
+						array = ENG.faction_intel_shared
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_airforce_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_army_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_navy_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_civilian_friendly } }
+						}
+					}
+				}
+				for_each_scope_loop = {
+					array = JAP.faction_intel_shared
+					for_each_scope_loop = {
+						array = GER.faction_intel_shared
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_airforce_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_army_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_navy_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_civilian_friendly } }
+						}
+					}
+				}
+				for_each_scope_loop = {
+					array = JAP.faction_intel_shared
+					for_each_scope_loop = {
+						array = GER.faction_intel_shared
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_airforce_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_army_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_navy_friendly } }
+						}
+						if = {
+							limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian_friendly } } } }
+							PREV = { add_operation_token = { tag = PREV token = token_civilian_friendly } }
+						}
+					}
+				}
+			}
 		}
 
 	   	# Mediteranian Raiders
@@ -1367,8 +1481,15 @@ on_actions = {
 				}
 				ITA = {
 					every_core_state = {
-						remove_dynamic_modifier = {
-							modifier = no_father_italy
+						if = {
+							limit = {
+								has_dynamic_modifier = {
+									modifier = no_father_italy
+								}
+							}
+							remove_dynamic_modifier = {
+								modifier = no_father_italy
+							}
 						}
 					}
 					set_global_flag = remove_italy_father
@@ -1408,8 +1529,15 @@ on_actions = {
 				}
 				ITA = {
 					every_core_state = {
-						remove_dynamic_modifier = {
-							modifier = no_father_italy
+						if = {
+							limit = {
+								has_dynamic_modifier = {
+									modifier = no_father_italy
+								}
+							}
+							remove_dynamic_modifier = {
+								modifier = no_father_italy
+							}
 						}
 					}
 					set_global_flag = remove_italy_father
@@ -1456,6 +1584,7 @@ on_actions = {
 						NOT = { CONTROLLER = { tag = ROOT } }
 						NOT = { CONTROLLER = { has_country_flag = notif_disable_inv_warning } }
 					}
+					save_global_event_target_as = invaded_state
 					# If the one getting dropped on, Give the alert
 					CONTROLLER = {
 						set_country_flag = ui_show_invasion_warning
@@ -1507,6 +1636,7 @@ on_actions = {
 						set_variable = { ui_invaded_country = PREV.owner }
 						set_variable = { ui_invader_country = ROOT }
 					}
+					save_global_event_target_as = paradropped_state
 					# If its a puppet, alert the overlord
 					if = {
 						limit = { CONTROLLER = { is_puppet = yes } }

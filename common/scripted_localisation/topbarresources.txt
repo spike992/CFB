@@ -90,3 +90,55 @@ defined_text = { # global
 
 
 }
+
+defined_text = { # global
+	name = vp_text
+
+	text = {
+		trigger = {
+			check_variable = {global.allies_score = 0}
+		}
+		localization_key = not_started_tt
+	}
+	text = {
+		trigger = {
+			check_variable = {global.axis_score > 10}
+		}
+		localization_key = axis_winning_tt
+	}
+	text = {
+		trigger = {
+			check_variable = {global.allies_score > 10}
+		}
+		localization_key = allies_winning_tt
+	}
+	text = {
+		trigger = {
+			check_variable = {global.axis_score > 7}
+		}
+		localization_key = axis_leading_tt
+	}
+	text = {
+		trigger = {
+			check_variable = {global.allies_score > 7}
+		}
+		localization_key = allies_leading_tt
+	}
+}
+
+defined_text = { # global
+	name = vp_ticking_text
+
+	text = {
+		trigger = {
+			has_active_mission = MOD_countdown_to_axis_victory_mission
+		}
+		localization_key = axis_victory_tt
+	}
+	text = {
+		trigger = {
+			has_active_mission = MOD_countdown_to_allied_victory_mission
+		}
+		localization_key = allied_victory_tt
+	}
+}

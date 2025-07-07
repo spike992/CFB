@@ -1,0 +1,74 @@
+﻿add_namespace = tfb_kill_heydrich
+
+# kill heydrich - raid succeeds
+country_event = {
+	id = tfb_kill_heydrich.1
+	title = tfb_kill_heydrich.1.t
+	desc = tfb_kill_heydrich.1.desc
+	picture = GFX_report_event_german_troops
+
+	is_triggered_only = yes
+		
+	# acknowledge
+	option = {
+		name = tfb_kill_heydrich.1.a
+		set_global_flag = heydrich_killed
+		every_state = {
+			limit = {
+				is_core_of = CZE
+			}
+			add_resistance_target = {
+				amount = 25
+				tooltip = tfb_heydrich_killed_tt
+			}
+		}
+	}
+
+}
+
+# kill heydrich - heydrich wounded
+country_event = {
+	id = tfb_kill_heydrich.2
+	title = tfb_kill_heydrich.2.t
+	desc = tfb_kill_heydrich.2.desc
+	picture = GFX_report_event_german_troops
+
+	is_triggered_only = yes
+	
+	# acknowledge
+	option = {
+		name = tfb_kill_heydrich.2.a
+		set_global_flag = heydrich_killed
+		every_state = {
+			limit = {
+				is_core_of = CZE
+			}
+			add_resistance_target = {
+				amount = 15
+				tooltip = tfb_heydrich_wounded_tt
+			}
+		}
+		hidden_effect = {
+			GER = {
+				country_event = { id = tfb_kill_heydrich.4 }
+			}
+		}
+	}
+
+}
+
+# kill heydrich - raid fails
+country_event = {
+	id = tfb_kill_heydrich.3
+	title = tfb_kill_heydrich.3.t
+	desc = tfb_kill_heydrich.3.desc
+	picture = GFX_report_event_german_troops
+
+	is_triggered_only = yes
+	
+	# acknowledge
+	option = {
+		name = tfb_kill_heydrich.3.a
+	}
+
+}

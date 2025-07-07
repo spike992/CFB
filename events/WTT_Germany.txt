@@ -1115,6 +1115,32 @@ country_event = {
 		762 = { set_state_name = "Kattowitz" }
 		add_ideas = anti_soviet_pact
 		give_guarantee = POL
+
+		ROOT = {
+			if = {
+				limit = {
+					has_dynamic_modifier = { modifier = GER_mefo_bills_modifier }
+				}
+				custom_effect_tooltip = GER_modify_mefo_bills_modifier_tt
+				add_to_variable = {
+					GER_industrial_consumer_goods_factor = -0.05
+					tooltip = consumer_goods_factor_tt
+				}
+			}
+			else_if = {
+				limit = {
+					has_dynamic_modifier = { modifier = GER_economy_of_conquest_modifier }
+				}
+				custom_effect_tooltip = GER_modify_economy_of_conquest_modifier_tt
+				add_to_variable = {
+					GER_industrial_consumer_goods_factor = -0.05
+					tooltip = consumer_goods_factor_tt
+				}
+			}
+		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
 		POL = { 
 			add_ideas = anti_soviet_pact
 			add_opinion_modifier = { target = GER modifier = danzig_for_guarantees }

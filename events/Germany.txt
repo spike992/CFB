@@ -1108,7 +1108,7 @@ country_event = {
 				factor = 0
 				fighting_army_strength_ratio = {
 					tag = FROM
-					ratio < 1
+					ratio > 1
 				}
 			}
 
@@ -1160,6 +1160,12 @@ country_event = {
 
 	option = { # Refuse
 		name = germany.28.b
+		trigger = {
+			has_game_rule = {
+				rule = deny_anschluss
+				option = ENABLED
+			}
+		}
 		ai_chance = {
 			base = 10
 			modifier = {
@@ -1485,6 +1491,12 @@ country_event = {
 
 	option = { # Support the Czechs
 		name = germany.40.b
+		trigger = {
+			has_game_rule = {
+				rule = deny_sudetenland
+				option = ENABLED
+			}
+		}
 		
 		ai_chance = {
 			base = 10
@@ -1496,6 +1508,10 @@ country_event = {
 			modifier = {
 				factor = 0
 				OR = {
+					has_game_rule = {
+						rule = deny_sudetenland
+						option = DISABLED
+					}
 					is_in_faction_with = GER
 					AND = {
 						tag = ENG
@@ -1824,6 +1840,10 @@ country_event = {
 
 		trigger = {
 			is_subject = no
+			has_game_rule = {
+				rule = deny_sudetenland
+				option = ENABLED
+			}
 		}
 
 		ai_chance = {
@@ -2302,6 +2322,12 @@ country_event = {
 
 	option = { # Refuse anyway
 		name = germany.46.b
+		trigger = {
+			has_game_rule = {
+				rule = deny_sudetenland
+				option = ENABLED
+			}
+		}
 		ai_chance = {
 			base = 10
 			modifier = {
@@ -2760,6 +2786,12 @@ country_event = {
 	}
 	option = { # Refuse
 		name = germany.53.b
+		trigger = {
+			has_game_rule = {
+				rule = deny_sudetenland
+				option = ENABLED
+			}
+		}
 		ai_chance = {
 			base = 50
 			modifier = {
@@ -2938,7 +2970,7 @@ country_event = {
 		ai_chance = {
 			base = 50
 			modifier = {
-				factor = 2
+				factor = 0
 				is_historical_focus_on = yes
 			}
 		}
@@ -3190,7 +3222,7 @@ country_event = {
 		ai_chance = {
 			base = 10
 			modifier = {
-				factor = 0
+				factor = 100
 				is_historical_focus_on = yes
 			}
 		}
@@ -6359,13 +6391,13 @@ country_event = {
 				}
 			}
 		}
-		else = {
-			create_wargoal = {
-				type = take_state_focus
-				target = SLV
-				generator = { 102 853 }
-			}
-		}
+		# else = {
+		# 	create_wargoal = {
+		# 		type = take_state_focus
+		# 		target = SLV
+		# 		generator = { 102 853 }
+		# 	}
+		# }
 
 		# Claiming German Slovenia
 		102 = {
@@ -7432,28 +7464,28 @@ country_event = {
 			}
 		}
 		effect_tooltip = {
-			WGR = {
-				add_state_core = 42
-				add_state_core = 50
-				add_state_core = 51
-				add_state_core = 52
-				add_state_core = 53
-				add_state_core = 54
-				add_state_core = 55
-				add_state_core = 56
-				add_state_core = 57
-				add_state_core = 58
-				add_state_core = 59
-			}
-			DDR = {
-				add_state_core = 60
-				add_state_core = 61
-				add_state_core = 62
-				add_state_core = 64
-				add_state_core = 65
-				add_state_core = 66
-				add_state_core = 67
-			}
+			# WGR = {
+			# 	add_state_core = 42
+			# 	add_state_core = 50
+			# 	add_state_core = 51
+			# 	add_state_core = 52
+			# 	add_state_core = 53
+			# 	add_state_core = 54
+			# 	add_state_core = 55
+			# 	add_state_core = 56
+			# 	add_state_core = 57
+			# 	add_state_core = 58
+			# 	add_state_core = 59
+			# }
+			# DDR = {
+			# 	add_state_core = 60
+			# 	add_state_core = 61
+			# 	add_state_core = 62
+			# 	add_state_core = 64
+			# 	add_state_core = 65
+			# 	add_state_core = 66
+			# 	add_state_core = 67
+			# }
 			POL = {
 				add_state_core = 66
 				add_state_core = 67
@@ -7589,29 +7621,29 @@ country_event = {
 		set_global_flag = yalta_agreed_flag 
 	}
 
-	option = {
-		name = germany.119.b
-		ai_chance = {
-			base = 0
-		}
-		hidden_effect = {
-			create_wargoal = {
-				type = liberate_wargoal
-				target = DDR
-			}
-		}
-		event_target:yalta_origin = {
-			country_event = {
-				id = germany.120
-			}
-			hidden_effect = {
-				create_wargoal = {
-					type = liberate_wargoal
-					target = WGR
-				}
-			}
-		}
-	}
+	# option = {
+	# 	name = germany.119.b
+	# 	ai_chance = {
+	# 		base = 0
+	# 	}
+	# 	hidden_effect = {
+	# 		create_wargoal = {
+	# 			type = liberate_wargoal
+	# 			target = DDR
+	# 		}
+	# 	}
+	# 	event_target:yalta_origin = {
+	# 		country_event = {
+	# 			id = germany.120
+	# 		}
+	# 		hidden_effect = {
+	# 			create_wargoal = {
+	# 				type = liberate_wargoal
+	# 				target = WGR
+	# 			}
+	# 		}
+	# 	}
+	# }
 }
 
 #Yalta Conference Follow-up - Morgenthau
@@ -8682,79 +8714,79 @@ country_event = {
 			
 	}
 
-	option = { #Let's do it
-		name = germany.200.a
-		ai_chance = {
-			base = 100
-		}
-		add_stability = 0.1
-		add_political_power = 100
-		add_ideas = GER_western_trade_cooperation
+	# option = { #Let's do it
+	# 	name = germany.200.a
+	# 	ai_chance = {
+	# 		base = 100
+	# 	}
+	# 	add_stability = 0.1
+	# 	add_political_power = 100
+	# 	add_ideas = GER_western_trade_cooperation
 
-		random_subject_country = {
-			limit = {
-				original_tag = GER
-				has_government = democratic 
-			}
-			ROOT = {
-				set_autonomy = {
-					target = PREV
-					autonomy_state = autonomy_free
-				}
-			}
-			add_ideas = GER_western_trade_cooperation
-			IF = {
-				limit = {
-					ROOT = { is_faction_leader = yes }
-				}
-				ROOT = { add_to_faction = PREV }
-			}
-			set_cosmetic_tag = WGR
-			every_other_country = {
-				limit = {
-					any_subject_country = {
-						original_tag = GER
-						has_government = democratic 
-					}
-					NOT = { tag = ROOT }
-				}
-				country_event = {
-					id = germany.201
-					hours = 4
-					random_hours = 12
-				}
+	# 	random_subject_country = {
+	# 		limit = {
+	# 			original_tag = GER
+	# 			has_government = democratic 
+	# 		}
+	# 		ROOT = {
+	# 			set_autonomy = {
+	# 				target = PREV
+	# 				autonomy_state = autonomy_free
+	# 			}
+	# 		}
+	# 		add_ideas = GER_western_trade_cooperation
+	# 		IF = {
+	# 			limit = {
+	# 				ROOT = { is_faction_leader = yes }
+	# 			}
+	# 			ROOT = { add_to_faction = PREV }
+	# 		}
+	# 		set_cosmetic_tag = WGR
+	# 		every_other_country = {
+	# 			limit = {
+	# 				any_subject_country = {
+	# 					original_tag = GER
+	# 					has_government = democratic 
+	# 				}
+	# 				NOT = { tag = ROOT }
+	# 			}
+	# 			country_event = {
+	# 				id = germany.201
+	# 				hours = 4
+	# 				random_hours = 12
+	# 			}
 
-			}
+	# 		}
 			
-		}
-		# Check if last german democratic puppet
-		IF = {
-			limit = {
-				NOT = {
-					any_country = {
-						original_tag = GER 
-						has_government = democratic
-						is_subject = yes 
-						exists = yes 
-					}
-				}
-				SOV = {
-					any_subject_country = {
-						original_tag = GER 
-					}
-				}
-			}
-			SOV = {
-				country_event = {
-					id = germany.202
-					days = 14 # Yeah, I know it was way longer in real life, but it makes more sense this way from a game p.o.v
-					random_days = 20
-				}
-			}
-		}
+	# 	}
+	# 	# Check if last german democratic puppet
+	# 	IF = {
+	# 		limit = {
+	# 			NOT = {
+	# 				any_country = {
+	# 					original_tag = GER 
+	# 					has_government = democratic
+	# 					is_subject = yes 
+	# 					exists = yes 
+	# 				}
+	# 			}
+	# 			SOV = {
+	# 				any_subject_country = {
+	# 					original_tag = GER 
+	# 				}
+	# 			}
+	# 		}
+	# 		SOV = {
+	# 			country_event = {
+	# 				id = germany.202
+	# 				days = 14 # Yeah, I know it was way longer in real life, but it makes more sense this way from a game p.o.v
+	# 				random_days = 20
+	# 			}
+	# 		}
+	# 	}
 			
 		
-	}
+	# }
 
 	option = { #Nah, let's not 
 		name = germany.200.b
@@ -8783,59 +8815,59 @@ country_event = {
 		}
 	}
 
-	option = { #Let's do it
-		name = germany.201.a
-		ai_chance = {
-			base = 100
-		}
-		add_stability = 0.1
-		add_political_power = 100
-		add_ideas = GER_western_trade_cooperation
-		random_subject_country= {
-			limit = {
-				original_tag = GER
-				has_government = democratic 
-			}
-			random_country = {
-				limit = {
-					original_tag = GER
-					has_government = democratic
-					is_subject = no 
-					has_cosmetic_tag = WGR
-				}
-				annex_country = {
-					target = PREV
-					transfer_troops = yes
-				}
-			}
-		}
-		IF = {
-			limit = {
-				NOT = {
-					any_country = {
-						original_tag = GER 
-						has_government = democratic
-						is_subject = yes 
-						exists = yes 
-					}
-				}
-				SOV = {
-					any_subject_country = {
-						original_tag = GER 
-					}
-				}
-			}
-			SOV = {
-				country_event = {
-					id = germany.202
-					days = 14 # Yeah, I know it was way longer in real life, but it makes more sense this way from a game p.o.v
-					random_days = 20
-				}
-			}
-			log = "triggered event to SOV"
-		}
+	# option = { #Let's do it
+	# 	name = germany.201.a
+	# 	ai_chance = {
+	# 		base = 100
+	# 	}
+	# 	add_stability = 0.1
+	# 	add_political_power = 100
+	# 	add_ideas = GER_western_trade_cooperation
+	# 	random_subject_country= {
+	# 		limit = {
+	# 			original_tag = GER
+	# 			has_government = democratic 
+	# 		}
+	# 		random_country = {
+	# 			limit = {
+	# 				original_tag = GER
+	# 				has_government = democratic
+	# 				is_subject = no 
+	# 				has_cosmetic_tag = WGR
+	# 			}
+	# 			annex_country = {
+	# 				target = PREV
+	# 				transfer_troops = yes
+	# 			}
+	# 		}
+	# 	}
+	# 	IF = {
+	# 		limit = {
+	# 			NOT = {
+	# 				any_country = {
+	# 					original_tag = GER 
+	# 					has_government = democratic
+	# 					is_subject = yes 
+	# 					exists = yes 
+	# 				}
+	# 			}
+	# 			SOV = {
+	# 				any_subject_country = {
+	# 					original_tag = GER 
+	# 				}
+	# 			}
+	# 		}
+	# 		SOV = {
+	# 			country_event = {
+	# 				id = germany.202
+	# 				days = 14 # Yeah, I know it was way longer in real life, but it makes more sense this way from a game p.o.v
+	# 				random_days = 20
+	# 			}
+	# 		}
+	# 		log = "triggered event to SOV"
+	# 	}
 		
-	}
+	# }
 
 	option = { #Nah, let's not 
 		name = germany.201.b
@@ -8886,30 +8918,30 @@ country_event = {
 		
 	}
 
-	option = { #We don't care 
-		name = germany.202.b
-		ai_chance = {
-			base = 10
-		}
-		random_subject_country= {
-			limit = {
-				original_tag = GER
-			}
-			random_country = {
-				limit = {
-					original_tag = GER
-					has_government = democratic
-					is_subject = no 
-					has_cosmetic_tag = WGR
-				}
-				annex_country = {
-					target = PREV
-					transfer_troops = yes
-				}
-			}
-		}
+	# option = { #We don't care 
+	# 	name = germany.202.b
+	# 	ai_chance = {
+	# 		base = 10
+	# 	}
+	# 	random_subject_country= {
+	# 		limit = {
+	# 			original_tag = GER
+	# 		}
+	# 		random_country = {
+	# 			limit = {
+	# 				original_tag = GER
+	# 				has_government = democratic
+	# 				is_subject = no 
+	# 				has_cosmetic_tag = WGR
+	# 			}
+	# 			annex_country = {
+	# 				target = PREV
+	# 				transfer_troops = yes
+	# 			}
+	# 		}
+	# 	}
 		
-	}
+	# }
 
 }
 

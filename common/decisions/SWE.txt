@@ -2492,13 +2492,18 @@ SWE_ball_bearings_cat = {
 		cost = 30 #REMEMBER TO UPDATE AAT_Sweden_ball_bearing.1 to match!!!
 		available = {
 			NOT = { has_country_flag = SWE_waiting_for_ball_bearing_response }
+			NOT = {
+				FROM = {
+					is_embargoed_by = ROOT
+				}
+			}
 		}
 		days_re_enable = 50
 	   target_trigger = {
 	    	FROM = {
 	    		is_major = yes
 	    		NOT = { 
-	    			has_war_with = ROOT 
+	    			has_war_with = ROOT
 	    			OR = {
 	    				has_idea = SWE_ball_bearing_idea
 	    				has_idea = SWE_ball_bearing_idea_food_partner

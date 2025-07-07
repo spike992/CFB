@@ -2389,7 +2389,15 @@ country_event = {
 				country_event = { id = lar_spain.78 days = 7 random_days = 7 } # Sanjurjo dies
 				#country_event = { id = spain.2 days = 7 }
 				ITA = {
-					add_timed_idea = { idea = SPA_spanish_civil_war_commitments days = 730 }
+					if = {
+						limit = {
+							has_game_rule = {
+								rule = capped_volunteers
+								option = ENABLED
+							}
+						}
+						add_timed_idea = { idea = SPA_spanish_civil_war_commitments days = 730 }
+					}
 					add_opinion_modifier = { target = ROOT modifier = SPA_spanish_civil_war_commitments }
 				}
 				if = {
@@ -2820,6 +2828,12 @@ country_event = {
 	
 	option = { # Protest
 		name = lar_spain.36.a
+		trigger = {
+			has_game_rule = {
+				rule = deny_tangiers
+				option = ENABLED
+			}
+		}
 		ai_chance = {
 			base = 34
 			modifier = {

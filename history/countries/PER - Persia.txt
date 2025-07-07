@@ -120,6 +120,14 @@ set_variable = { PER_army_attack_factor = -0.05 }
 set_variable = { PER_special_units_special_forces = 0.15 }
 set_variable = { PER_spec_force_training = -0.15 }
 
+### VARIABLES FOR TECHNOLOGICAL MODIFIER ###
+set_variable = { PER_technological_modifier_research_speed_factor = 0 }
+set_variable = { PER_technological_modifier_special_project_speed_factor = 0 }
+set_variable = { PER_technological_modifier_production_cost_air_facility_factor = 0 }
+set_variable = { PER_technological_modifier_production_cost_land_facility_factor = 0 }
+set_variable = { PER_technological_modifier_production_cost_naval_facility_factor = 0 }
+set_variable = { PER_technological_modifier_production_cost_nuclear_facility_factor = 0 }
+
 IF = {
 	limit = {
 		has_dlc = "Graveyard of Empires"
@@ -132,6 +140,7 @@ IF = {
 
 	recruit_character = PER_reza_shah_pahlavi
 	recruit_character = PER_mohammed_reza_pahlavi
+	recruit_character = PER_mohammad_hassan_mirza
 	recruit_character = PER_mohammad_ali_foroughi
 	recruit_character = PER_ali_dashti
 	recruit_character = PER_zia_ol_din_tabatabee
@@ -169,6 +178,13 @@ IF = {
 	recruit_character = PER_generic_non_aligned
 	recruit_character = PER_sky_guy
 	recruit_character = PER_land_guy
+	recruit_character = PER_karim_buzarjamehri 
+	recruit_character = PER_abdolsamad_kambakhsh
+	recruit_character = PER_assadollah_hosseinpoor
+	recruit_character = PER_haj_ali_razmara
+	recruit_character = PER_rokneddin_mokhtari
+	recruit_character = PER_kazem_hasibi
+	recruit_character = PER_ahmad_zirakzadeh
 
 	ELSE_IF = {
 		limit = {
@@ -229,6 +245,26 @@ IF = {
 		complete_national_focus = PER_trial_fifty_three
 		complete_national_focus = PER_open_abadan
 		complete_national_focus = PER_military_high_schools
+
+		diplomatic_relation = {
+			country = TUR
+			relation = non_aggression_pact
+			active = yes
+		}
+
+		diplomatic_relation = {
+			country = IRQ
+			relation = non_aggression_pact
+			active = yes
+		}
+
+		diplomatic_relation = {
+			country = AFG
+			relation = non_aggression_pact
+			active = yes
+		}
+
+		add_dynamic_modifier = { modifier = SSB_saadabad_pact }
 
 		ELSE = {
 			#generic focuses

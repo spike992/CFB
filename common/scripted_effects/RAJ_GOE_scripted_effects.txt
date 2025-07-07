@@ -1210,3 +1210,23 @@ raj_was_a_subject_reset_party_ideology_after_independence = {
         }
     }
 }
+
+
+### LOYALIST BRANCH
+
+RAJ_congress_demands_increase_decision_cost = { #Max value is 200
+	if = {
+		limit = {
+			check_variable = { RAJ_congress_decision_cost < 191 }
+		}
+		add_to_variable = { RAJ_congress_decision_cost = RAJ_congress_decision_cost_increment }
+		custom_effect_tooltip = RAJ_congress_demands_increase_decision_cost_tt
+	}
+	else = {
+		custom_effect_tooltip = RAJ_congress_demands_increase_decision_cost_reached_max_tt
+	}
+}
+
+RAJ_congress_demands_decrease_decision_cost = { #Min value is 20
+    
+}

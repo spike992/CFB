@@ -72,15 +72,10 @@ sabotage_arms_factory = {
 
 sabotage_infrastructure = {
 	available = {
-		OR = {
-			non_damaged_building_level = {
-				building = infrastructure
-				level > 0
-			}
-			rail_way > 0
-			supply_node > 0
+		non_damaged_building_level = {
+			building = infrastructure
+			level > 0
 		}
-
 	}
 
 	weight = {
@@ -99,58 +94,16 @@ sabotage_infrastructure = {
 				has_variable = targeted_sabotage_infrastructure
 				check_variable = { targeted_sabotage_infrastructure > 0 }
 			}
-			if = {
-				limit = {
-					supply_node > 0
-				}
-				damage_building = {
-					type = supply_node
-					damage = 0.75
-				}
-			}
-			else_if = {
-				limit = {
-					rail_way > 0
-				}
-				damage_building = {
-					type = rail_way
-					damage = 1
-				}
-			} 
-			else = {
-				limit = {
-					non_damaged_building_level = {
-						building = infrastructure
-						level > 0
-					}
-				}
-				damage_building = {
-					type = infrastructure
-					damage = 1
-				}
+			damage_building = {
+				type = infrastructure
+				damage = 1.0
 			}
 			subtract_from_variable = { var = targeted_sabotage_infrastructure value = 1 }
 		}
 		else = {
-			random_list = {
-				33 = {
-					damage_building = {
-						type = supply_node
-						damage = 0.1
-					}
-				}
-				33 = {
-					damage_building = {
-						type = rail_way
-						damage = 0.1
-					}
-				}
-				34 = {
-					damage_building = {
-						type = infrastructure
-						damage = 0.5
-					}
-				}
+			damage_building = {
+				type = infrastructure
+				damage = 0.5
 			}
 		}		
 	}
@@ -272,19 +225,9 @@ sabotage_anti_air_building = {
 
 sabotage_synthetic_refinery = {
 	available = {
-		OR = {
-			non_damaged_building_level = {
-				building = synthetic_refinery
-				level > 0
-			}
-			non_damaged_building_level = {
-				building = synthetic_rubber_refinery
-				level > 0
-			}
-			non_damaged_building_level = {
-				building = steel_refinery
-				level > 0
-			}
+		non_damaged_building_level = {
+			building = synthetic_refinery
+			level > 0
 		}
 	}
 
@@ -293,43 +236,10 @@ sabotage_synthetic_refinery = {
 	}
 
 	effect = {
-		# if = {
-		# 	limit = {
-		# 		non_damaged_building_level = {
-		# 			building = synthetic_rubber_refinery
-		# 			level > 0
-		# 		}
-		# 	}
-		# 	damage_building = {
-		# 		type = synthetic_rubber_refinery
-		# 		damage = 1
-		# 	}
-		# }
-		# else_if = {
-		# 	limit = {
-		# 		non_damaged_building_level = {
-		# 			building = synthetic_refinery
-		# 			level > 0
-		# 		}
-		# 	}
-		# 	damage_building = {
-		# 		type = synthetic_refinery
-		# 		damage = 1
-		# 	}
-		# } 
-		# else = {
-		# 	limit = {
-		# 		non_damaged_building_level = {
-		# 			building = steel_refinery
-		# 			level > 0
-		# 		}
-		# 	}
-		# 	damage_building = {
-		# 		type = steel_refinery
-		# 		damage = 1
-		# 	}
-		# }
-
+		damage_building = {
+			type = synthetic_refinery
+			damage = 0.25
+		}
 	}
 
 	alert_text = building_is_sabotaged

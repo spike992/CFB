@@ -182,38 +182,38 @@ DIPLOMACY_RELEASE_NATION_ENABLE_TRIGGER = {
 		}
 		custom_trigger_tooltip = {
 			tooltip = RULE_ALLOW_RELEASE_NATIONS_NOT_BRITAIN_TOOLTIP
-			NOT = { FROM = { tag = MLT } }
-			NOT = { FROM = { tag = CYP } }
-			NOT = { FROM = { tag = PAL } }
-			NOT = { FROM = { tag = ISR } }
-			NOT = { FROM = { tag = JOR } }
+			# NOT = { FROM = { tag = MLT } }
+			# NOT = { FROM = { tag = CYP } }
+			# NOT = { FROM = { tag = PAL } }
+			# NOT = { FROM = { tag = ISR } }
+			# NOT = { FROM = { tag = JOR } }
 			NOT = { FROM = { tag = EGY } }
-			NOT = { FROM = { tag = KUW } }
-			NOT = { FROM = { tag = QAT } }
-			NOT = { FROM = { tag = UAE } }
-			NOT = { FROM = { tag = BLZ } }
-			NOT = { FROM = { tag = BAH } }
-			NOT = { FROM = { tag = JAM } }
-			NOT = { FROM = { tag = TRI } }
+			#NOT = { FROM = { tag = KUW } }
+			# NOT = { FROM = { tag = QAT } }
+			# NOT = { FROM = { tag = UAE } }
+			# NOT = { FROM = { tag = BLZ } }
+			# NOT = { FROM = { tag = BAH } }
+			# NOT = { FROM = { tag = JAM } }
+			# NOT = { FROM = { tag = TRI } }
 			NOT = { FROM = { tag = BAS } }
-			NOT = { FROM = { tag = GYA } }
+			#NOT = { FROM = { tag = GYA } }
 			NOT = { FROM = { tag = SRL } }
-			NOT = { FROM = { tag = MLD } }
-			NOT = { FROM = { tag = FIJ } }
+			# NOT = { FROM = { tag = MLD } }
+			# NOT = { FROM = { tag = FIJ } }
 			NOT = { FROM = { tag = BRM } }
-			NOT = { FROM = { tag = SUD } }
-			NOT = { FROM = { tag = SOM } }
-			NOT = { FROM = { tag = UGA } }
-			NOT = { FROM = { tag = KEN } }
-			NOT = { FROM = { tag = TZN } }
-			NOT = { FROM = { tag = ZAM } }
-			NOT = { FROM = { tag = MLW } }
+			# NOT = { FROM = { tag = SUD } }
+			#NOT = { FROM = { tag = SOM } }
+			#NOT = { FROM = { tag = UGA } }
+			#NOT = { FROM = { tag = KEN } }
+			#NOT = { FROM = { tag = TZN } }
+			#NOT = { FROM = { tag = ZAM } }
+			#NOT = { FROM = { tag = MLW } }
 			NOT = { FROM = { tag = ZIM } }
-			NOT = { FROM = { tag = BOT } }
-			NOT = { FROM = { tag = NGA } }
+			#NOT = { FROM = { tag = BOT } }
+			#NOT = { FROM = { tag = NGA } }
 			NOT = { FROM = { tag = GHA } }
-			NOT = { FROM = { tag = SIE } }
-			NOT = { FROM = { tag = GAM } }
+			#NOT = { FROM = { tag = SIE } }
+			#NOT = { FROM = { tag = GAM } }
 		}
 		NOT = { original_tag = SPR }
 		NOT = { original_tag = FRA }
@@ -848,7 +848,18 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 			limit = {
 				tag = SOV
 				FROM = {tag = CHI}
-				NOT = { SOV = { has_completed_focus = SOV_the_military_conspiracy } }
+				if = {
+					limit = {
+						has_game_rule = {
+							rule = soviet_volunteer
+							option = DISABLED
+						}
+					}
+					NOT = { SOV = { has_completed_focus = SOV_father_of_nations } }
+				} else = {
+					NOT = { SOV = { has_completed_focus = SOV_the_military_conspiracy } }
+				}
+				
 			}
 			custom_trigger_tooltip = {
 				tooltip = SOV_VOLUNTEERS_BLOCKED_TT

@@ -8,18 +8,18 @@ mio_policy_land_armor_welding_specialists = {
 			has_mio_equipment_type = anti_tank
 			has_mio_equipment_type = flame
 			has_mio_equipment_type = rocket
-			has_mio_equipment_type = mio_cat_eq_all_light_tank
 			has_mio_equipment_type = mio_cat_eq_all_medium_tank
 			has_mio_equipment_type = mio_cat_eq_all_heavy_tank
-			has_mio_equipment_type = light_tank_artillery_chassis 
-			has_mio_equipment_type = medium_tank_artillery_chassis 
-			has_mio_equipment_type = heavy_tank_artillery_chassis
 		} 	
 	}
 	available = { has_mio_size > 5}
 	equipment_bonus = {
 		same_as_mio = {
 			armor_value = 0.05
+		}
+		heavy_tank_chassis = {
+			armor_value = 0.05
+			reliability = -0.05
 		}
 	}
 }
@@ -38,15 +38,20 @@ mio_policy_land_casting_specialists = {
 			has_mio_equipment_type = infantry
 			has_mio_equipment_type = mio_cat_eq_all_medium_tank
 			has_mio_equipment_type = mio_cat_eq_all_heavy_tank
-			has_mio_equipment_type = light_tank_artillery_chassis 
-			has_mio_equipment_type = medium_tank_artillery_chassis 
-			has_mio_equipment_type = heavy_tank_artillery_chassis
 		} 
 	}
 	available = { has_mio_size > 5}
 	equipment_bonus = {
+		#would like to buff this to 5 or 10% hardness and make available for trucks. possibly reduce defense so they don't get too tanky. 
+		#Mech 1 is already 70% hard. Getting another 10% off of 2 MIO traits isn't difficult. Therefore mech 2/3 likely do not actually get a bonus off this, as they already hit the cap, so the defense penalty would make this a noob trap at high tech.  
 		same_as_mio = {
-			hardness = 0.025
+			hardness = 0.03
+		}
+		motorized_equipment = {
+			hardness = 0.07
+		}
+		mechanized_equipment = {
+			hardness = 0.07
 		}
 	}
 }
@@ -55,13 +60,12 @@ mio_policy_land_heavy_gantry_cranes = {
 	icon = GFX_mio_policy_heavy_gantry_cranes_land
 	allowed = { 
 		OR = {
-			has_mio_equipment_type = armor
-			has_mio_equipment_type = mechanized
-			has_mio_equipment_type = anti_tank
-			has_mio_equipment_type = flame
-			has_mio_equipment_type = railway_gun
-			has_mio_equipment_type = train
-			has_mio_equipment_type = mio_cat_eq_all_medium_tank
+			# has_mio_equipment_type = armor
+			# has_mio_equipment_type = anti_tank
+			# has_mio_equipment_type = flame
+			# has_mio_equipment_type = railway_gun
+			#has_mio_equipment_type = train
+			#has_mio_equipment_type = mio_cat_eq_all_medium_tank
 			has_mio_equipment_type = mio_cat_eq_all_heavy_tank
 		} 
 	 }
@@ -71,13 +75,13 @@ mio_policy_land_heavy_gantry_cranes = {
 			production_efficiency_cap_factor = 0.05
 		}
 
-		train_equipment = {
-			production_efficiency_cap_factor = 0.05
-		}
+		# train_equipment = {
+		# 	production_efficiency_cap_factor = 0.05
+		# }
 
-		railway_gun_equipment = {
-			production_efficiency_cap_factor = 0.05
-		}
+		# railway_gun_equipment = {
+		# 	production_efficiency_cap_factor = 0.05
+		# }
 	}
 }
 
@@ -86,8 +90,8 @@ mio_policy_land_factory_applied_camouflage  = {
 	allowed = { 
 		OR = {
 			has_mio_equipment_type = armor
-			has_mio_equipment_type = motorized
-			has_mio_equipment_type = mechanized
+			has_mio_equipment_type = motorized_equipment
+			has_mio_equipment_type = mechanized_equipment
 			has_mio_equipment_type = anti_tank
 			has_mio_equipment_type = flame
 			has_mio_equipment_type = anti_air
@@ -96,16 +100,13 @@ mio_policy_land_factory_applied_camouflage  = {
 			has_mio_equipment_type = infantry
 			has_mio_equipment_type = mio_cat_eq_all_medium_tank
 			has_mio_equipment_type = mio_cat_eq_all_heavy_tank
-			has_mio_equipment_type = light_tank_artillery_chassis 
-			has_mio_equipment_type = medium_tank_artillery_chassis 
-			has_mio_equipment_type = heavy_tank_artillery_chassis
 		} 
 	 }
-	available = { has_mio_size > 5}
+	available = { has_mio_size > 4}
 	equipment_bonus = {
 		same_as_mio = {
-			defense = 0.02
-			breakthrough = 0.02
+			defense = 0.05
+			breakthrough = 0.05
 		}
 	}
 }
@@ -115,8 +116,8 @@ mio_policy_land_cutting_corners  = {
 	allowed = { 
 		OR = {
 			has_mio_equipment_type = armor
-			has_mio_equipment_type = motorized
-			has_mio_equipment_type = mechanized
+			has_mio_equipment_type = motorized_equipment
+			has_mio_equipment_type = mechanized_equipment
 			has_mio_equipment_type = anti_tank
 			has_mio_equipment_type = flame
 			has_mio_equipment_type = anti_air
@@ -125,16 +126,13 @@ mio_policy_land_cutting_corners  = {
 			has_mio_equipment_type = infantry
 			has_mio_equipment_type = mio_cat_eq_all_medium_tank
 			has_mio_equipment_type = mio_cat_eq_all_heavy_tank
-			has_mio_equipment_type = light_tank_artillery_chassis 
-			has_mio_equipment_type = medium_tank_artillery_chassis 
-			has_mio_equipment_type = heavy_tank_artillery_chassis
 		} 
 	 }
 	available = { has_mio_size > 5}
 	equipment_bonus = {
 		same_as_mio = {
 			build_cost_ic = -0.05
-			reliability = -0.05
+			reliability = -0.025
 			#soft_attack = -0.05
 			#hard_attack = -0.05
 			armor_value = -0.05

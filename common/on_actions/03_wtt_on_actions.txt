@@ -197,25 +197,25 @@ on_actions = {
 		#     ##  ### ###  #  ###  ##  #  # ###     ##   #  #  #  ##   ##   ##  ### ### 
 					
 			#ROOT is new controller #FROM is old controller #FROM.FROM is state ID
-			if = {
-				limit = {
-					ROOT = {
-						has_country_flag = wtt_political_struggle
-						NOT = { has_country_flag = wtt_political_struggle_paused }
-					}
-				}
-				FROM.FROM = {
-					WTT_make_ROOT_majority_1_point_over_next = yes
-				}
-			}
-			if = {
-				limit = {
-					FROM.FROM = {
-						WTT_is_potential_political_struggle_state = yes
-					}
-				}
-				WTT_political_struggle_recalculate_support = yes
-			}
+			# if = {
+			# 	limit = {
+			# 		ROOT = {
+			# 			has_country_flag = wtt_political_struggle
+			# 			NOT = { has_country_flag = wtt_political_struggle_paused }
+			# 		}
+			# 	}
+			# 	FROM.FROM = {
+			# 		WTT_make_ROOT_majority_1_point_over_next = yes
+			# 	}
+			# }
+			# if = {
+			# 	limit = {
+			# 		FROM.FROM = {
+			# 			WTT_is_potential_political_struggle_state = yes
+			# 		}
+			# 	}
+			# 	WTT_political_struggle_recalculate_support = yes
+			# }
 
 			# Fall of Tokyo
 			if = {
@@ -309,20 +309,20 @@ on_actions = {
 	}
 
 	#ROOT is subject FROM is overlord
-	on_subject_annexed = {
-		effect = {
-			if = {
-				limit = {
-					FROM = { tag = CHI }
-					OR = {
-						tag = YUN
-						tag = GXC
-					}
-				}
-				FROM = { set_country_flag = achievement_romance_of_the_three_kingdoms_@ROOT }
-			}
-		}
-	}
+	# on_subject_annexed = {
+	# 	effect = {
+	# 		if = {
+	# 			limit = {
+	# 				FROM = { tag = CHI }
+	# 				OR = {
+	# 					tag = YUN
+	# 					tag = GXC
+	# 				}
+	# 			}
+	# 			FROM = { set_country_flag = achievement_romance_of_the_three_kingdoms_@ROOT }
+	# 		}
+	# 	}
+	# }
 
 	on_nuke_drop = {
 		effect = {			
@@ -340,38 +340,38 @@ on_actions = {
 	}
 
 	#ROOT is winner #FROM gets annexed - For civil wars on_civil_war_end is also fired
-	on_annex = {
-		effect = {
-			if = {
-				limit = {
-					tag = JAP
-					FROM = { tag = MEX }
-					NOT = {
-						any_controlled_state = {
-							is_on_continent = europe
-						}
-					}
-				}
-				set_country_flag = achievement_sunrise_invasion_conquered_mexico_first
-			}
+	# on_annex = {
+	# 	effect = {
+	# 		if = {
+	# 			limit = {
+	# 				tag = JAP
+	# 				FROM = { tag = MEX }
+	# 				NOT = {
+	# 					any_controlled_state = {
+	# 						is_on_continent = europe
+	# 					}
+	# 				}
+	# 			}
+	# 			set_country_flag = achievement_sunrise_invasion_conquered_mexico_first
+	# 		}
 
-			if = {
-				limit = {
-					tag = MAN
-					is_in_faction = no
-					FROM = { tag = JAP }
-				}
-				set_country_flag = achievement_the_dragon_swallowed_the_sun		
-			}
+	# 		if = {
+	# 			limit = {
+	# 				tag = MAN
+	# 				is_in_faction = no
+	# 				FROM = { tag = JAP }
+	# 			}
+	# 			set_country_flag = achievement_the_dragon_swallowed_the_sun		
+	# 		}
 
-			if = {
-				limit = { FROM = { has_country_flag = wtt_refused_giving_leadership } }
-				FROM = { clr_country_flag = wtt_refused_giving_leadership }
-				clr_global_flag = wtt_war_over_national_leadership
-				WTT_restart_political_struggle = yes
-			}
-		}
-	}
+	# 		if = {
+	# 			limit = { FROM = { has_country_flag = wtt_refused_giving_leadership } }
+	# 			FROM = { clr_country_flag = wtt_refused_giving_leadership }
+	# 			clr_global_flag = wtt_war_over_national_leadership
+	# 			WTT_restart_political_struggle = yes
+	# 		}
+	# 	}
+	# }
 
 	#ROOT is winner #FROM gets annexed - This will also fire on_annex
 	on_civil_war_end = {
@@ -470,33 +470,33 @@ on_actions = {
 	#ROOT is winner #FROM is loser
 	on_peaceconference_ended = {
 		effect = {
-			if = { limit = { has_dlc = "Waking the Tiger" }
-				if = {
-					limit = {
-						event_target:WTT_current_china_leader = { tag = ROOT }
-						FROM = { has_country_flag = wtt_refused_giving_leadership }
-					}
-					FROM = {
-						clr_country_flag = wtt_refused_giving_leadership
-						remove_ideas = CHI_illegal_regime
-					}
-					clr_global_flag = wtt_war_over_national_leadership
-					WTT_restart_political_struggle = yes
-				}
-				else_if = {
-					limit = {
-						has_country_flag = wtt_refused_giving_leadership
-						event_target:WTT_current_china_leader = { tag = FROM }
-					}
-					FROM = {
-						WTT_political_struggle_remove_current_country = yes
-						clear_global_event_target = WTT_current_china_leader
-					}
-					save_global_event_target_as = WTT_current_china_leader
-					remove_ideas = CHI_illegal_regime
-					WTT_restart_political_struggle = yes
-				}
-			}
+			# if = { limit = { has_dlc = "Waking the Tiger" }
+			# 	if = {
+			# 		limit = {
+			# 			event_target:WTT_current_china_leader = { tag = ROOT }
+			# 			FROM = { has_country_flag = wtt_refused_giving_leadership }
+			# 		}
+			# 		FROM = {
+			# 			clr_country_flag = wtt_refused_giving_leadership
+			# 			remove_ideas = CHI_illegal_regime
+			# 		}
+			# 		clr_global_flag = wtt_war_over_national_leadership
+			# 		WTT_restart_political_struggle = yes
+			# 	}
+			# 	else_if = {
+			# 		limit = {
+			# 			has_country_flag = wtt_refused_giving_leadership
+			# 			event_target:WTT_current_china_leader = { tag = FROM }
+			# 		}
+			# 		FROM = {
+			# 			WTT_political_struggle_remove_current_country = yes
+			# 			clear_global_event_target = WTT_current_china_leader
+			# 		}
+			# 		save_global_event_target_as = WTT_current_china_leader
+			# 		remove_ideas = CHI_illegal_regime
+			# 		WTT_restart_political_struggle = yes
+			# 	}
+			# }
 			if = {
 				limit = {
 					original_tag = FRA

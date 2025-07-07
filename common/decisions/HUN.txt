@@ -3897,9 +3897,9 @@ HUN_the_empire_category = {
 			is_subject = no
 			OR = {
 				AND = {
-					LBV = {
-						exists = no
-					}
+					# LBV = {
+					# 	exists = no
+					# }
 					AND = {
 						OR = {
 							160 = {
@@ -3921,9 +3921,9 @@ HUN_the_empire_category = {
 						}
 					}
 				}
-				LBV = {
-					is_subject_of = ROOT
-				}
+				# LBV = {
+				# 	is_subject_of = ROOT
+				# }
 			}	
 		}
 	
@@ -3931,44 +3931,44 @@ HUN_the_empire_category = {
 
 		complete_effect = {
 
-			LBV = {
-				every_core_state = {
-					limit = {
-						OR = {
-							is_controlled_by = ROOT
-							any_country = {
-								is_subject_of = ROOT
-								controls_state = PREV
-							}
-						}
-						NOT = {
-							is_core_of = ROOT
-						}
-						NOT = {
-							is_owned_and_controlled_by = LBV
-						}
-						NOT = {
-							state = 163
-						}
-					}
-					transfer_state_to = LBV
-				}
-			}
+			# LBV = {
+			# 	every_core_state = {
+			# 		limit = {
+			# 			OR = {
+			# 				is_controlled_by = ROOT
+			# 				any_country = {
+			# 					is_subject_of = ROOT
+			# 					controls_state = PREV
+			# 				}
+			# 			}
+			# 			NOT = {
+			# 				is_core_of = ROOT
+			# 			}
+			# 			NOT = {
+			# 				is_owned_and_controlled_by = LBV
+			# 			}
+			# 			NOT = {
+			# 				state = 163
+			# 			}
+			# 		}
+			# 		transfer_state_to = LBV
+			# 	}
+			# }
 
-			LBV = {
-				drop_cosmetic_tag = yes	
-			}
+			# LBV = {
+			# 	drop_cosmetic_tag = yes	
+			# }
 
-			IF = {
-				limit = {
-					LBV = {
-						NOT = {
-							is_subject_of = ROOT
-						}
-					}
-				}
-				puppet = LBV 
-			}
+			# IF = {
+			# 	limit = {
+			# 		LBV = {
+			# 			NOT = {
+			# 				is_subject_of = ROOT
+			# 			}
+			# 		}
+			# 	}
+			# 	puppet = LBV 
+			# }
 
 			hidden_effect = {
 				set_country_flag = HUN_created_lombardo_venetian_habsburg_monarchy 
@@ -3987,7 +3987,7 @@ HUN_the_empire_category = {
 
 		fire_only_once = yes
 
-		targets = { AUS CZE SLO TRA CRO LBV SIL MNT BOS HRZ SLV SWI }
+		targets = { AUS CZE SLO CRO SWI }
 
 		target_trigger = {
 			country_exists = FROM
@@ -4350,7 +4350,7 @@ HUN_balkan_pact_category = {
 		
 		fire_only_once = yes
 
-		targets = { CZE SLO TRA CRO MNT BOS SLV YUG ROM MOL GRE ALB MAC SER HRZ BUL AUS }
+		targets = { CZE SLO CRO YUG ROM GRE ALB BUL AUS }
 
 		target_trigger = {
 			country_exists = FROM
@@ -5212,7 +5212,7 @@ HUN_the_danubian_federation_category = {
 		
 		fire_only_once = yes
 
-		targets = { AUS CZE SLO TRA CRO LBV SIL MNT BOS SLV YUG ROM BUL UKR MOL SER HRZ }
+		targets = { AUS CZE SLO CRO YUG ROM BUL UKR }
 
 		target_trigger = {
 			country_exists = FROM

@@ -11,6 +11,12 @@ if = {
 	}
 }
 
+set_variable = { AST_investments = 0 } #Used for Left side Eco
+set_variable = { CAN_investments = 0 } #Used for Left side Eco
+set_variable = { NZL_investments = 0 } #Used for Left side Eco
+set_variable = { SAF_investments = 0 } #Used for Left side Eco
+set_variable = { RAJ_investments = 0 } #Used for Left side Eco
+
 load_oob = "ENG_Motorized"
 if = {
 	limit = {
@@ -80,6 +86,7 @@ set_technology = {
 	fuel_refining = 1
 	basic_train = 1
 	early_transport_plane = 1
+	camelry = 1
 }
 
 if = {
@@ -202,6 +209,7 @@ IF = {
 # }
 
 set_variable = { var = eng_gateway_to_europe_influence value = 0 }
+set_variable = { ENG_industrial_consumer_goods_expected_value = 0 }
 
 add_ideas = {
 	stiff_upper_lip
@@ -268,6 +276,15 @@ if = {
 	}
 }
 
+1936.1.2 = {
+	remove_from_faction = NZL
+	remove_from_faction = IRQ
+	remove_from_faction = MAL
+	set_autonomy = { target = NZL autonomy_state = autonomy_free }
+	set_autonomy = { target = IRQ autonomy_state = autonomy_free }
+	set_autonomy = { target = MAL autonomy_state = autonomy_free }
+}
+
 
 if = {
 	limit = { has_dlc = "Together for Victory" }
@@ -307,7 +324,7 @@ give_guarantee = GRE
 recruit_character = ENG_oswald_mosley
 recruit_character = ENG_stanley_baldwin
 recruit_character = ENG_winston_churchill
-recruit_character = ENG_harry_pollitt
+#recruit_character = ENG_harry_pollitt
 recruit_character = ENG_alan_brooke
 recruit_character = ENG_bernard_montgomery
 recruit_character = ENG_claude_auchinleck
@@ -343,7 +360,8 @@ recruit_character = ENG_arthur_power
 recruit_character = ENG_john_vereker_lord_gort
 recruit_character = ENG_max_grant
 recruit_character = ENG_clement_attlee
-recruit_character = ENG_john_beckett
+#recruit_character = ENG_john_beckett This was removed with the UK Rework, previously their fascist guy
+recruit_character = ENG_Malcom_MacDonald
 recruit_character = ENG_philip_kerr
 recruit_character = ENG_nevile_henderson
 recruit_character = ENG_maxwell_aitken

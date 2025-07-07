@@ -27,7 +27,7 @@ political_actions = {
 			factor = 0
 		}
 
-		complete_effect = { #TODO_ASD notification event for England
+		complete_effect = {
 
 			add_war_support = 0.1
 
@@ -148,11 +148,12 @@ greater_iraq_decision_cat = {
 	        	NOT = { is_core_of = ROOT }
 	        	is_fully_controlled_by = ROOT
 	        	OR = {
-	        		is_core_of = KUW
+	        		# is_core_of = KUW
 	        		is_core_of = SYR
-	        		is_core_of = LEB
-	        		is_core_of = PAL
-	        		is_core_of = JOR
+	        		# is_core_of = LEB
+	        		# is_core_of = PAL
+	        		# is_core_of = JOR
+	        		state = 413
 	        	}
 	        }
 	    }
@@ -425,5 +426,147 @@ hashemite_federation_cat = {
 				clr_country_flag = IRQ_inviting_to_federation_in_progress
 			}
 		}
+	}
+}
+
+IRQ_flood_the_plains_cat = {
+	
+	IRQ_flood_the_plains = {
+
+		icon = hol_inundate_water_lines
+
+		allowed = {
+			original_tag = IRQ
+		}
+
+		available = {
+			has_war = yes
+			ROOT = {
+				controls_province = 2097 #Just Baghdad
+			}
+		}
+
+		cost = 50
+
+		fire_only_once = yes
+
+		days_remove = 120
+
+		highlight_states = {
+			highlight_state_targets = { state = 291 state = 1011 }
+			highlight_provinces = {
+				12839
+				3795
+				12046
+				7994
+				10876
+				2097
+				###
+				2089
+				8001
+				2004
+				12726
+				7977
+			}
+			highlight_only_provinces = yes
+		}
+
+		modifier = {
+		}
+
+		visible = {
+			IRQ = { has_completed_focus = IRQ_construct_the_kut_barrage }
+		}
+		
+		complete_effect = {
+			291 = {
+				add_province_modifier = {
+					static_modifiers = { flooded }
+					province = {
+						id = 12839
+						id = 3795
+						id = 12046
+						id = 7994
+						id = 10876
+						id = 2097
+					}
+				}
+				damage_building = {
+					type = infrastructure
+					damage = 2
+				}
+				damage_building = {
+					type = industrial_complex
+					damage = 0.5
+				}
+				damage_building = {
+					type = arms_factory
+					damage = 0.5
+				}
+			}
+			1011 = {
+				add_province_modifier = {
+					static_modifiers = { flooded }
+					province = {
+						id = 2089
+						id = 8001
+						id = 2004
+						id = 12726
+						id = 7977
+					}
+				}
+				damage_building = {
+					type = infrastructure
+					damage = 2
+				}
+				damage_building = {
+					type = industrial_complex
+					damage = 0.5
+				}
+				damage_building = {
+					type = arms_factory
+					damage = 0.5
+				}
+			}
+		}
+		
+		remove_effect = {
+			custom_effect_tooltip = remove_flooding_tt
+			hidden_effect = {
+				291 = {
+					remove_province_modifier = {
+						static_modifiers = { flooded }
+						province = {
+							id = 12839
+							id = 3795
+							id = 12046
+							id = 7994
+							id = 10876
+							id = 2097
+						}
+					}
+				}
+				1011 = {
+					remove_province_modifier = {
+						static_modifiers = { flooded }
+						province = {
+							id = 2089
+							id = 8001
+							id = 2004
+							id = 12726
+							id = 7977
+						}
+					}
+				}
+			}
+		}
+		
+		ai_will_do = {
+			modifier = {
+				add = 50
+				surrender_progress > 0.15 #Should kick in if Basrah/Najaf are occupied
+			}
+		}
+
 	}
 }

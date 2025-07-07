@@ -4447,15 +4447,15 @@ focus_tree = {
 		search_filters = {FOCUS_FILTER_POLITICAL}
 
 		completion_reward = {
-			IF = {
-				limit = { AFA = { exists = yes } }
-				AFA = {
-					country_event = {
-						id = BBA_ethiopia_imperial_events.10
-						hours = 1
-					}
-				}
-			}
+			# IF = {
+			# 	limit = { AFA = { exists = yes } }
+			# 	AFA = {
+			# 		country_event = {
+			# 			id = BBA_ethiopia_imperial_events.10
+			# 			hours = 1
+			# 		}
+			# 	}
+			# }
 		}
 	}
 	focus = {
@@ -4629,69 +4629,69 @@ focus_tree = {
 			}
 
 			custom_effect_tooltip = ETH_a_federal_empire_tt
-			effect_tooltip = {
-				IF = {
-					limit  = {
-						any_owned_state = { is_core_of = HAR HAR = {exists = no } }
-					}
-					release_puppet = HAR  
-				}
-				IF = {
-					limit  = {
-						any_owned_state = { is_core_of = TIG TIG = {exists = no } }
-					}
-					release_puppet = TIG  
-				}
-				IF = {
-					limit  = {
-						any_owned_state = { is_core_of = AFA AFA = {exists = no } }
-					}
-					release_puppet = AFA  
-				}
-				IF = {
-					limit  = {
-						any_owned_state = { is_core_of = BEG BEG = {exists = no } }
-					}
-					release_puppet = BEG  
-				}
-				IF = {
-					limit  = {
-						any_owned_state = { is_core_of = GBA GBA = {exists = no } }
-					}
-					release_puppet = GBA  
-				}
-				IF = {
-					limit  = {
-						any_owned_state = { is_core_of = SID SID = {exists = no } }
-					}
-					release_puppet = SID  
-				}
-				IF = {
-					limit  = {
-						any_owned_state = { is_core_of = ORO ORO = {exists = no } NOT = { state = 271 } }
-					}
-					release_puppet = ORO  
-				}
-				IF = {
-					limit  = {
-						any_owned_state = { is_core_of = QEM QEM = {exists = no } NOT = { state = 271 } }
-					}
-					release_puppet = QEM  
-				}
-				IF = {
-					limit  = {
-						any_owned_state = { is_core_of = SOM SOM = {exists = no } NOT = { state = 271 } }
-					}
-					release_puppet = SOM  
-				}
-				IF = {
-					limit  = {
-						any_owned_state = { is_core_of = ERI ERI = {exists = no } NOT = { state = 271 } }
-					}
-					release_puppet = ERI  
-				}
-				custom_effect_tooltip = ETH_federal_factories_tt 
-			}
+			# effect_tooltip = {
+			# 	# IF = {
+			# 	# 	limit  = {
+			# 	# 		any_owned_state = { is_core_of = HAR HAR = {exists = no } }
+			# 	# 	}
+			# 	# 	release_puppet = HAR  
+			# 	# }
+			# 	# IF = {
+			# 	# 	limit  = {
+			# 	# 		any_owned_state = { is_core_of = TIG TIG = {exists = no } }
+			# 	# 	}
+			# 	# 	release_puppet = TIG  
+			# 	# }
+			# 	# IF = {
+			# 	# 	limit  = {
+			# 	# 		any_owned_state = { is_core_of = AFA AFA = {exists = no } }
+			# 	# 	}
+			# 	# 	release_puppet = AFA  
+			# 	# }
+			# 	# IF = {
+			# 	# 	limit  = {
+			# 	# 		any_owned_state = { is_core_of = BEG BEG = {exists = no } }
+			# 	# 	}
+			# 	# 	release_puppet = BEG  
+			# 	# }
+			# 	# IF = {
+			# 	# 	limit  = {
+			# 	# 		any_owned_state = { is_core_of = GBA GBA = {exists = no } }
+			# 	# 	}
+			# 	# 	release_puppet = GBA  
+			# 	# }
+			# 	# IF = {
+			# 	# 	limit  = {
+			# 	# 		any_owned_state = { is_core_of = SID SID = {exists = no } }
+			# 	# 	}
+			# 	# 	release_puppet = SID  
+			# 	# }
+			# 	# IF = {
+			# 	# 	limit  = {
+			# 	# 		any_owned_state = { is_core_of = ORO ORO = {exists = no } NOT = { state = 271 } }
+			# 	# 	}
+			# 	# 	release_puppet = ORO  
+			# 	# }
+			# 	# IF = {
+			# 	# 	limit  = {
+			# 	# 		any_owned_state = { is_core_of = QEM QEM = {exists = no } NOT = { state = 271 } }
+			# 	# 	}
+			# 	# 	release_puppet = QEM  
+			# 	# }
+			# 	# IF = {
+			# 	# 	limit  = {
+			# 	# 		any_owned_state = { is_core_of = SOM SOM = {exists = no } NOT = { state = 271 } }
+			# 	# 	}
+			# 	# 	release_puppet = SOM  
+			# 	# }
+			# 	# IF = {
+			# 	# 	limit  = {
+			# 	# 		any_owned_state = { is_core_of = ERI ERI = {exists = no } NOT = { state = 271 } }
+			# 	# 	}
+			# 	# 	release_puppet = ERI  
+			# 	# }
+			# 	custom_effect_tooltip = ETH_federal_factories_tt 
+			# }
 			ETH_create_federation = yes 	
 		}
 	}
@@ -6317,18 +6317,19 @@ focus_tree = {
 			
 		cost = 10
 		available = {
-			AFA = {exists = yes}
+			always = no
+			# AFA = {exists = yes}
 		}
 		bypass = {
-			AND = {
-				AFA = {exists = no}
-				908 = {
-					is_owned_by = ETH
-				}
-			}
+			# AND = {
+			# 	AFA = {exists = no}
+			# 	908 = {
+			# 		is_owned_by = ETH
+			# 	}
+			# }
 		}
 		search_filters = {FOCUS_FILTER_ANNEXATION}
-		will_lead_to_war_with = AFA
+		#will_lead_to_war_with = AFA
 		completion_reward = {
 			908 = {
 				OWNER = {
@@ -7122,11 +7123,11 @@ focus_tree = {
 
 		completion_reward = {
 
-			create_wargoal = {
-				type = puppet_wargoal_focus
-				target = SAU
-				expire = 0
-			} 
+			# create_wargoal = {
+			# 	type = puppet_wargoal_focus
+			# 	target = SAU
+			# 	expire = 0
+			# } 
 
 			create_wargoal = {
 				type = puppet_wargoal_focus
@@ -8345,40 +8346,40 @@ focus_tree = {
 			ETH_BOP_decentralization_small_effect = yes 
 			set_country_flag = ETH_freedom_fighters_flag
 
-			IF = {
-				limit = {
-					is_or_will_be_jimma = yes
-				}
-				ITA = {
-					every_owned_state = {
-						limit = {
-							OR = {
-								is_core_of = SOM 
-								is_core_of = ORO
+			# IF = {
+			# 	limit = {
+			# 		is_or_will_be_jimma = yes
+			# 	}
+			# 	ITA = {
+			# 		every_owned_state = {
+			# 			limit = {
+			# 				OR = {
+			# 					is_core_of = SOM 
+			# 					#is_core_of = ORO
 
-							}
-						}
-						set_state_flag = ETH_freedom_fighters_flag
-						custom_effect_tooltip = ETH_together_for_victory_tt
-					}
-				}
-			}
-			ELSE  = {
-				ITA = {
-					every_owned_state = {
-						limit = {
-							OR = {
-								is_core_of = ERI 
-								is_core_of = TIG
-								is_core_of = AFA
-							}
-						}
-						set_state_flag = ETH_freedom_fighters_flag
-						custom_effect_tooltip = ETH_together_for_victory_tt
-					}
+			# 				}
+			# 			}
+			# 			set_state_flag = ETH_freedom_fighters_flag
+			# 			custom_effect_tooltip = ETH_together_for_victory_tt
+			# 		}
+			# 	}
+			# }
+			# ELSE  = {
+			# 	ITA = {
+			# 		every_owned_state = {
+			# 			limit = {
+			# 				OR = {
+			# 					is_core_of = ERI 
+			# 					# is_core_of = TIG
+			# 					# is_core_of = AFA
+			# 				}
+			# 			}
+			# 			set_state_flag = ETH_freedom_fighters_flag
+			# 			custom_effect_tooltip = ETH_together_for_victory_tt
+			# 		}
 					
-				}
-			}
+			# 	}
+			# }
 		}
 	}
 	focus = {

@@ -489,8 +489,21 @@ war_measures = {
 		available = {
 			tag = CHI
 			has_war_with = JAP
-			casualties > 500000
-			surrender_progress > 0.15
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = china_waves_style
+						option = ENABLED
+					}
+				}
+				OR = {
+					casualties > 500000
+					surrender_progress > 0.15
+				}
+			} else = {
+				casualties > 500000
+				surrender_progress > 0.15			
+			}
 			is_ai = yes
 			NOT = { JAP = { is_ai = yes } }
 			OR = {
@@ -547,7 +560,7 @@ war_measures = {
 						}
 					}
 					AND = {
-						any_neighbor_state = { OR = { is_controlled_by = JAP is_controlled_by = MAN is_controlled_by = MEN } NOT = { state = 616 } }
+						any_neighbor_state = { OR = { is_controlled_by = JAP is_controlled_by = MAN } NOT = { state = 616 } }
 						is_controlled_by = CHI
 					}
 									
@@ -605,9 +618,22 @@ war_measures = {
 
 		available = {
 			tag = CHI
-			has_war_with = JAP		
-			casualties > 1250000
-			surrender_progress > 0.3
+			has_war_with = JAP
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = china_waves_style
+						option = ENABLED
+					}
+				}
+				OR = {
+					casualties > 1250000
+					surrender_progress > 0.3
+				}
+			} else = {
+				casualties > 1250000
+				surrender_progress > 0.3			
+			}
 			is_ai = yes
 			NOT = { JAP = { is_ai = yes } }
 			OR = {
@@ -661,7 +687,7 @@ war_measures = {
 						}
 					}
 					AND = {
-						any_neighbor_state = { OR = { is_controlled_by = JAP is_controlled_by = MAN is_controlled_by = MEN } NOT = { state = 616 } }
+						any_neighbor_state = { OR = { is_controlled_by = JAP is_controlled_by = MAN } NOT = { state = 616 } }
 						is_controlled_by = CHI
 					}
 					
@@ -770,7 +796,7 @@ war_measures = {
 						}
 					}	
 					AND = {
-						any_neighbor_state = { OR = { is_controlled_by = JAP is_controlled_by = MAN is_controlled_by = MEN } NOT = { state = 616 }}
+						any_neighbor_state = { OR = { is_controlled_by = JAP is_controlled_by = MAN } NOT = { state = 616 }}
 						is_controlled_by = CHI
 					}
 					

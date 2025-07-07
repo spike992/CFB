@@ -1809,23 +1809,23 @@ country_event = {
 			base = 25
 		} 
 
-		IF = {
-			limit = {
-				947 = {
-					is_owned_by = PRU
-				}
-			}
-			947 = {
-				add_claim_by = ROOT
-			}
-		}
+		#IF = {
+		# 	limit = {
+		# 		947 = {
+		# 			is_owned_by = PRU
+		# 		}
+		# 	}
+		# 	947 = {
+		# 		add_claim_by = ROOT
+		# 	}
+		# }
 
-		PRU = {
-			add_opinion_modifier = {
-				target = ROOT
-				modifier = large_decrease
-			}
-		}
+		# PRU = {
+		# 	add_opinion_modifier = {
+		# 		target = ROOT
+		# 		modifier = large_decrease
+		# 	}
+		# }
 
 		add_war_support = 0.05
 		
@@ -2546,39 +2546,39 @@ country_event = {
 }
 
 # Uruguay Submits to Germany
-country_event = {
-	id = CHL_political_events.42
-	title = CHL_political_events.42.t
-	desc = CHL_political_events.42.desc 
-	picture = GFX_report_event_generic_read_write
-	is_triggered_only = yes
-	fire_only_once = yes
+# country_event = {
+# 	id = CHL_political_events.42
+# 	title = CHL_political_events.42.t
+# 	desc = CHL_political_events.42.desc 
+# 	picture = GFX_report_event_generic_read_write
+# 	is_triggered_only = yes
+# 	fire_only_once = yes
 
-	# Nice
-	option = {
-		name = CHL_political_events.42.a 
-		ai_chance = {  
-			base = 100
-		} 
+# 	# Nice
+# 	option = {
+# 		name = CHL_political_events.42.a 
+# 		ai_chance = {  
+# 			base = 100
+# 		} 
 
-		GER = {
-			puppet = URG
-		} 	
+# 		GER = {
+# 			puppet = URG
+# 		} 	
 
-		URG = {
-			add_popularity = {
-				ideology = fascism
-				popularity = 0.2
-			}	
-			add_war_support = 0.1
-			add_stability = -0.2
-			set_cosmetic_tag = URG_german
-		}
+# 		URG = {
+# 			add_popularity = {
+# 				ideology = fascism
+# 				popularity = 0.2
+# 			}	
+# 			add_war_support = 0.1
+# 			add_stability = -0.2
+# 			set_cosmetic_tag = URG_german
+# 		}
 
-		add_political_power = 120
+# 		add_political_power = 120
 		
-	}      
-}
+# 	}      
+# }
 
 # Uruguay Submits to us
 country_event = {
@@ -2617,10 +2617,10 @@ country_event = {
 			base = 100
 		} 
 
-		create_wargoal = {
-			type = puppet_wargoal_focus
-			target = URG
-		}	
+		# create_wargoal = {
+		# 	type = puppet_wargoal_focus
+		# 	target = URG
+		# }	
 
 		add_war_support = 0.05
 		
@@ -4106,10 +4106,10 @@ country_event = {
 			days = 720
 		}	
 
-		951 = {
-			transfer_state_to = PRU
-			add_core_of = PRU
-		}
+		# 951 = {
+		# 	transfer_state_to = PRU
+		# 	add_core_of = PRU
+		# }
 		
 	}      
 }
@@ -4991,288 +4991,288 @@ country_event = {
 	}  
 }
 
-# The Easter Island Declares Independence
-country_event = {
-	id = CHL_political_events.85
-	title = CHL_political_events.85.t
-	desc = CHL_political_events.85.desc 
-	picture = GFX_report_event_spr_nationalist_soldiers
-	is_triggered_only = yes
-	fire_only_once = yes
+# # The Easter Island Declares Independence
+# country_event = {
+# 	id = CHL_political_events.85
+# 	title = CHL_political_events.85.t
+# 	desc = CHL_political_events.85.desc 
+# 	picture = GFX_report_event_spr_nationalist_soldiers
+# 	is_triggered_only = yes
+# 	fire_only_once = yes
 
-	# We do not have the power to deal with them
-	option = {
-		name = CHL_political_events.85.a 
-		ai_chance = {  
-			base = 80
-		} 
+# 	# We do not have the power to deal with them
+# 	option = {
+# 		name = CHL_political_events.85.a 
+# 		ai_chance = {  
+# 			base = 80
+# 		} 
 		
-		IF = {
-			limit = {
-				RAP = {
-					exists = no
-				}
-			}
-			948 = {
-				transfer_state_to = RAP
-			}
-		}
-		ELSE_IF = {
-			limit = {
-				RAP = {
-					exists = yes
-					is_subject_of = ROOT
-				}
-			}
-			ROOT = {
-				set_autonomy = {
-				    target = RAP
-				    autonomy_state = autonomy_free
-				    end_wars = no
-				    end_civil_wars = no
-				}
-			}
-		}
+# 		IF = {
+# 			limit = {
+# 				RAP = {
+# 					exists = no
+# 				}
+# 			}
+# 			948 = {
+# 				transfer_state_to = RAP
+# 			}
+# 		}
+# 		ELSE_IF = {
+# 			limit = {
+# 				RAP = {
+# 					exists = yes
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			ROOT = {
+# 				set_autonomy = {
+# 				    target = RAP
+# 				    autonomy_state = autonomy_free
+# 				    end_wars = no
+# 				    end_civil_wars = no
+# 				}
+# 			}
+# 		}
 
-		RAP = {
-			division_template = {
-			    name = "Guerreros de Rapa Nui de Valentino Riroroko Tuki"
-			    is_locked = no
-			    division_names_group = SPR_INF_01
-			    override_model = CHL_infantry_alt_0_entity
-			    template_counter = 87
-			    priority = 1
-			    regiments = {
-			        infantry = { x = 0 y = 0 } 
-			        infantry = { x = 0 y = 1 } 
-			        infantry = { x = 1 y = 0 }  
-			        infantry = { x = 1 y = 1 } 
-			    }
-		    	support = {
-		           	recon = { x = 0 y = 0 }
-		    	}
-			} 
+# 		RAP = {
+# 			division_template = {
+# 			    name = "Guerreros de Rapa Nui de Valentino Riroroko Tuki"
+# 			    is_locked = no
+# 			    division_names_group = SPR_INF_01
+# 			    override_model = CHL_infantry_alt_0_entity
+# 			    template_counter = 87
+# 			    priority = 1
+# 			    regiments = {
+# 			        infantry = { x = 0 y = 0 } 
+# 			        infantry = { x = 0 y = 1 } 
+# 			        infantry = { x = 1 y = 0 }  
+# 			        infantry = { x = 1 y = 1 } 
+# 			    }
+# 		    	support = {
+# 		           	recon = { x = 0 y = 0 }
+# 		    	}
+# 			} 
 
-			add_manpower = 5000
+# 			add_manpower = 5000
 
-			add_equipment_to_stockpile = { 
-				type = infantry_equipment
-				amount = 1500
-				producer = CHL
-			}	
-		}
-		random_state = {
-			limit = {
-				state = 948
-				is_controlled_by = RAP
-			}
-			create_unit = {
-			    division = "name = \"Guerreros de Rapa Nui de Valentino Riroroko Tuki\" division_template = \"Guerreros de Rapa Nui de Valentino Riroroko Tuki\" start_experience_factor = 0.5 start_equipment_factor = 1"
-			    owner = RAP 
-			}
-		}
+# 			add_equipment_to_stockpile = { 
+# 				type = infantry_equipment
+# 				amount = 1500
+# 				producer = CHL
+# 			}	
+# 		}
+# 		random_state = {
+# 			limit = {
+# 				state = 948
+# 				is_controlled_by = RAP
+# 			}
+# 			create_unit = {
+# 			    division = "name = \"Guerreros de Rapa Nui de Valentino Riroroko Tuki\" division_template = \"Guerreros de Rapa Nui de Valentino Riroroko Tuki\" start_experience_factor = 0.5 start_equipment_factor = 1"
+# 			    owner = RAP 
+# 			}
+# 		}
 		
 		
-	}  
+# 	}  
 
-	# This means war!
-	option = {
-		name = CHL_political_events.85.b 
-		ai_chance = {  
-			base = 20
-		} 
+# 	# This means war!
+# 	option = {
+# 		name = CHL_political_events.85.b 
+# 		ai_chance = {  
+# 			base = 20
+# 		} 
 		
-		IF = {
-			limit = {
-				RAP = {
-					exists = no
-				}
-				948 = {
-					is_controlled_by = ROOT
-				}
-			}
-			948 = {
-				transfer_state_to = RAP
-			}
-		}
-		ELSE_IF = {
-			limit = {
-				RAP = {
-					exists = yes
-					is_subject_of = ROOT
-				}
-			}
-			ROOT = {
-				set_autonomy = {
-				    target = RAP
-				    autonomy_state = autonomy_free
-				    end_wars = no
-				    end_civil_wars = no
-				}
-			}
-		}
+# 		IF = {
+# 			limit = {
+# 				RAP = {
+# 					exists = no
+# 				}
+# 				948 = {
+# 					is_controlled_by = ROOT
+# 				}
+# 			}
+# 			948 = {
+# 				transfer_state_to = RAP
+# 			}
+# 		}
+# 		ELSE_IF = {
+# 			limit = {
+# 				RAP = {
+# 					exists = yes
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			ROOT = {
+# 				set_autonomy = {
+# 				    target = RAP
+# 				    autonomy_state = autonomy_free
+# 				    end_wars = no
+# 				    end_civil_wars = no
+# 				}
+# 			}
+# 		}
 
-		RAP = {
-			division_template = {
-			    name = "Guerreros de Rapa Nui de Valentino Riroroko Tuki"
-			    is_locked = no
-			    division_names_group = SPR_INF_01
-			    override_model = CHL_infantry_alt_0_entity
-			    template_counter = 87
-			    priority = 1
-			    regiments = {
-			        infantry = { x = 0 y = 0 } 
-			        infantry = { x = 0 y = 1 } 
-			        infantry = { x = 1 y = 0 }  
-			        infantry = { x = 1 y = 1 } 
-			    }
-		    	support = {
-		           	recon = { x = 0 y = 0 }
-		    	}
-			} 
+# 		RAP = {
+# 			division_template = {
+# 			    name = "Guerreros de Rapa Nui de Valentino Riroroko Tuki"
+# 			    is_locked = no
+# 			    division_names_group = SPR_INF_01
+# 			    override_model = CHL_infantry_alt_0_entity
+# 			    template_counter = 87
+# 			    priority = 1
+# 			    regiments = {
+# 			        infantry = { x = 0 y = 0 } 
+# 			        infantry = { x = 0 y = 1 } 
+# 			        infantry = { x = 1 y = 0 }  
+# 			        infantry = { x = 1 y = 1 } 
+# 			    }
+# 		    	support = {
+# 		           	recon = { x = 0 y = 0 }
+# 		    	}
+# 			} 
 
-			add_manpower = 5000
+# 			add_manpower = 5000
 
-			add_equipment_to_stockpile = { 
-				type = infantry_equipment
-				amount = 1500
-				producer = CHL
-			}	
-		}
-		random_state = {
-			limit = {
-				state = 948
-				is_controlled_by = RAP
-			}
-			create_unit = {
-			    division = "name = \"Guerreros de Rapa Nui de Valentino Riroroko Tuki\" division_template = \"Guerreros de Rapa Nui de Valentino Riroroko Tuki\" start_experience_factor = 0.5 start_equipment_factor = 1"
-			    owner = RAP 
-			}
-		}
+# 			add_equipment_to_stockpile = { 
+# 				type = infantry_equipment
+# 				amount = 1500
+# 				producer = CHL
+# 			}	
+# 		}
+# 		random_state = {
+# 			limit = {
+# 				state = 948
+# 				is_controlled_by = RAP
+# 			}
+# 			create_unit = {
+# 			    division = "name = \"Guerreros de Rapa Nui de Valentino Riroroko Tuki\" division_template = \"Guerreros de Rapa Nui de Valentino Riroroko Tuki\" start_experience_factor = 0.5 start_equipment_factor = 1"
+# 			    owner = RAP 
+# 			}
+# 		}
 
-		ROOT = {
-			add_stability = -0.1
-			add_war_support = -0.05
-			declare_war_on = {
-				target = RAP
-				type = annex_everything
-			}	
-		}
+# 		ROOT = {
+# 			add_stability = -0.1
+# 			add_war_support = -0.05
+# 			declare_war_on = {
+# 				target = RAP
+# 				type = annex_everything
+# 			}	
+# 		}
 
-	}
+# 	}
 
-	# It is time for Polynesia to rise!
-	option = {
-		name = CHL_political_events.85.c 
-		ai_chance = {  
-			base = 0
-		} 
+# 	# It is time for Polynesia to rise!
+# 	option = {
+# 		name = CHL_political_events.85.c 
+# 		ai_chance = {  
+# 			base = 0
+# 		} 
 
-		IF = {
-			limit = {
-				RAP = {
-					exists = no
-				}
-			}
-			948 = {
-				transfer_state_to = RAP
-			}
-		}
-		ELSE_IF = {
-			limit = {
-				RAP = {
-					exists = yes
-					is_subject_of = ROOT
-				}
-			}
-			ROOT = {
-				set_autonomy = {
-				    target = RAP
-				    autonomy_state = autonomy_free
-				    end_wars = no
-				    end_civil_wars = no
-				}
-			}
-		}
+# 		IF = {
+# 			limit = {
+# 				RAP = {
+# 					exists = no
+# 				}
+# 			}
+# 			948 = {
+# 				transfer_state_to = RAP
+# 			}
+# 		}
+# 		ELSE_IF = {
+# 			limit = {
+# 				RAP = {
+# 					exists = yes
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			ROOT = {
+# 				set_autonomy = {
+# 				    target = RAP
+# 				    autonomy_state = autonomy_free
+# 				    end_wars = no
+# 				    end_civil_wars = no
+# 				}
+# 			}
+# 		}
 
-		RAP = {
-			division_template = {
-			    name = "Guerreros de Rapa Nui de Valentino Riroroko Tuki"
-			    is_locked = no
-			    division_names_group = SPR_INF_01
-			    override_model = CHL_infantry_alt_0_entity
-			    template_counter = 87
-			    priority = 1
-			    regiments = {
-			        infantry = { x = 0 y = 0 } 
-			        infantry = { x = 0 y = 1 } 
-			        infantry = { x = 1 y = 0 }  
-			        infantry = { x = 1 y = 1 } 
-			    }
-		    	support = {
-		           	recon = { x = 0 y = 0 }
-		    	}
-			} 
+# 		RAP = {
+# 			division_template = {
+# 			    name = "Guerreros de Rapa Nui de Valentino Riroroko Tuki"
+# 			    is_locked = no
+# 			    division_names_group = SPR_INF_01
+# 			    override_model = CHL_infantry_alt_0_entity
+# 			    template_counter = 87
+# 			    priority = 1
+# 			    regiments = {
+# 			        infantry = { x = 0 y = 0 } 
+# 			        infantry = { x = 0 y = 1 } 
+# 			        infantry = { x = 1 y = 0 }  
+# 			        infantry = { x = 1 y = 1 } 
+# 			    }
+# 		    	support = {
+# 		           	recon = { x = 0 y = 0 }
+# 		    	}
+# 			} 
 
-			add_manpower = 10000
+# 			add_manpower = 10000
 
-			add_equipment_to_stockpile = { 
-				type = infantry_equipment
-				amount = 1500
-				producer = CHL
-			}
+# 			add_equipment_to_stockpile = { 
+# 				type = infantry_equipment
+# 				amount = 1500
+# 				producer = CHL
+# 			}
 
-			add_equipment_to_stockpile = { 
-				type = convoy_1
-				amount = 25
-				producer = CHL
-			}	
-		}
-		random_state = {
-			limit = {
-				state = 948
-				is_controlled_by = RAP
-			}
-			create_unit = {
-			    division = "name = \"Guerreros de Rapa Nui de Valentino Riroroko Tuki\" division_template = \"Guerreros de Rapa Nui de Valentino Riroroko Tuki\" start_experience_factor = 0.5 start_equipment_factor = 1"
-			    owner = RAP 
-			}
-		}
+# 			add_equipment_to_stockpile = { 
+# 				type = convoy_1
+# 				amount = 25
+# 				producer = CHL
+# 			}	
+# 		}
+# 		random_state = {
+# 			limit = {
+# 				state = 948
+# 				is_controlled_by = RAP
+# 			}
+# 			create_unit = {
+# 			    division = "name = \"Guerreros de Rapa Nui de Valentino Riroroko Tuki\" division_template = \"Guerreros de Rapa Nui de Valentino Riroroko Tuki\" start_experience_factor = 0.5 start_equipment_factor = 1"
+# 			    owner = RAP 
+# 			}
+# 		}
 
-		ROOT = {
-			declare_war_on = {
-				target = RAP
-				type = annex_everything
-			}	
-		}
+# 		ROOT = {
+# 			declare_war_on = {
+# 				target = RAP
+# 				type = annex_everything
+# 			}	
+# 		}
 		
-		RAP = {
-			change_tag_from = ROOT
-		}
+# 		RAP = {
+# 			change_tag_from = ROOT
+# 		}
 
-		hidden_effect = {
-			948 = {
-				add_extra_state_shared_building_slots = 8
-				add_building_construction = {
-					type = dockyard
-					level = 2
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}	
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
-				}
-			}
-		}
+# 		hidden_effect = {
+# 			948 = {
+# 				add_extra_state_shared_building_slots = 8
+# 				add_building_construction = {
+# 					type = dockyard
+# 					level = 2
+# 					instant_build = yes
+# 				}
+# 				add_building_construction = {
+# 					type = industrial_complex
+# 					level = 1
+# 					instant_build = yes
+# 				}	
+# 				add_building_construction = {
+# 					type = arms_factory
+# 					level = 1
+# 					instant_build = yes
+# 				}
+# 			}
+# 		}
 		
-	}
-}
+# 	}
+# }
 
 # The Kingdom fo Araucania requests an alliance
 country_event = {
@@ -5609,9 +5609,9 @@ country_event = {
 
 		add_command_power = 25
 
-		ROOT = {
-			CHL_bartolome_blanche = { set_nationality = SUR }
-		}
+		# ROOT = {
+		# 	CHL_bartolome_blanche = { set_nationality = SUR }
+		# }
 		add_country_leader_role  = {
 			character = CHL_bartolome_blanche
 		    promote_leader = yes
@@ -5633,9 +5633,9 @@ country_event = {
 
 		add_command_power = 25
 
-		ROOT = {
-			CHL_gregorio_tascon = { set_nationality = SUR }
-		}
+		# ROOT = {
+		# 	CHL_gregorio_tascon = { set_nationality = SUR }
+		# }
 		add_country_leader_role  = {
 			character = CHL_gregorio_tascon
 		    promote_leader = yes
@@ -5657,9 +5657,9 @@ country_event = {
 
 		add_command_power = 25
 
-		ROOT = {
-			CHL_quintin_lame = { set_nationality = SUR }
-		}
+		# ROOT = {
+		# 	CHL_quintin_lame = { set_nationality = SUR }
+		# }
 		add_country_leader_role  = {
 			character = CHL_quintin_lame
 		    promote_leader = yes
@@ -5692,9 +5692,9 @@ country_event = {
 
 		add_command_power = 25
 
-		ROOT = {
-			CHL_escudero_oscar_otárola = { set_nationality = HAI }
-		}
+		# ROOT = {
+		# 	CHL_escudero_oscar_otárola = { set_nationality = HAI }
+		# }
 		add_country_leader_role  = {
 			character = CHL_escudero_oscar_otárola
 		    promote_leader = yes
@@ -5716,9 +5716,9 @@ country_event = {
 
 		add_command_power = 25
 
-		ROOT = {
-			CHL_pedro_dartnell = { set_nationality = HAI }
-		}
+		# ROOT = {
+		# 	CHL_pedro_dartnell = { set_nationality = HAI }
+		# }
 		add_country_leader_role  = {
 			character = CHL_pedro_dartnell
 		    promote_leader = yes
@@ -5740,9 +5740,9 @@ country_event = {
 
 		add_command_power = 25
 
-		ROOT = {
-			CHL_esteban_romero_sandoval = { set_nationality = HAI }
-		}
+		# ROOT = {
+		# 	CHL_esteban_romero_sandoval = { set_nationality = HAI }
+		# }
 		add_country_leader_role  = {
 			character = CHL_esteban_romero_sandoval
 		    promote_leader = yes
@@ -5775,7 +5775,7 @@ country_event = {
 
 		add_political_power = 25
 
-		activate_mission = CHL_nacistas_gathering_support_mission
+		#activate_mission = CHL_nacistas_gathering_support_mission
 		
 	}       
 }

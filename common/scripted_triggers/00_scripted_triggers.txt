@@ -134,34 +134,34 @@ check_has_focus_tree_to_switch_to_democratic = {
 			has_dlc = "Waking the Tiger"
 		}
 	}
-	NOT = {
-		AND = {
-			tag = YUN
-			has_dlc = "Waking the Tiger"
-			NOT = { has_focus_tree = china_nationalist_focus }
-		}
-	}
-	NOT = {
-		AND = {
-			tag = GXC
-			has_dlc = "Waking the Tiger"
-			NOT = { has_focus_tree = china_nationalist_focus }
-		}
-	}
-	NOT = {
-		AND = {
-			tag = XSM
-			has_dlc = "Waking the Tiger"
-			NOT = { has_focus_tree = china_nationalist_focus }
-		}
-	}
-	NOT = {
-		AND = {
-			tag = SHX
-			has_dlc = "Waking the Tiger"
-			NOT = { has_focus_tree = china_nationalist_focus }
-		}
-	}
+	# NOT = {
+	# 	AND = {
+	# 		tag = YUN
+	# 		has_dlc = "Waking the Tiger"
+	# 		NOT = { has_focus_tree = china_nationalist_focus }
+	# 	}
+	# }
+	# NOT = {
+	# 	AND = {
+	# 		tag = GXC
+	# 		has_dlc = "Waking the Tiger"
+	# 		NOT = { has_focus_tree = china_nationalist_focus }
+	# 	}
+	# }
+	# NOT = {
+	# 	AND = {
+	# 		tag = XSM
+	# 		has_dlc = "Waking the Tiger"
+	# 		NOT = { has_focus_tree = china_nationalist_focus }
+	# 	}
+	# }
+	# NOT = {
+	# 	AND = {
+	# 		tag = SHX
+	# 		has_dlc = "Waking the Tiger"
+	# 		NOT = { has_focus_tree = china_nationalist_focus }
+	# 	}
+	# }
 	NOT = {
 		AND = {
 			tag = SIK
@@ -188,30 +188,30 @@ check_has_focus_tree_to_switch_to_communism = {
 			has_dlc = "Waking the Tiger"
 		}
 	}
-	NOT = {
-		AND = {
-			tag = YUN
-			has_dlc = "Waking the Tiger"
-		}
-	}
-	NOT = {
-		AND = {
-			tag = GXC
-			has_dlc = "Waking the Tiger"
-		}
-	}
-	NOT = {
-		AND = {
-			tag = XSM
-			has_dlc = "Waking the Tiger"
-		}
-	}
-	NOT = {
-		AND = {
-			tag = SHX
-			has_dlc = "Waking the Tiger"
-		}
-	}
+	# NOT = {
+	# 	AND = {
+	# 		tag = YUN
+	# 		has_dlc = "Waking the Tiger"
+	# 	}
+	# }
+	# NOT = {
+	# 	AND = {
+	# 		tag = GXC
+	# 		has_dlc = "Waking the Tiger"
+	# 	}
+	# }
+	# NOT = {
+	# 	AND = {
+	# 		tag = XSM
+	# 		has_dlc = "Waking the Tiger"
+	# 	}
+	# }
+	# NOT = {
+	# 	AND = {
+	# 		tag = SHX
+	# 		has_dlc = "Waking the Tiger"
+	# 	}
+	# }
 	NOT = {
 		AND = {
 			tag = USA
@@ -664,6 +664,26 @@ enemy_has_equal_or_better_radar_tech_trigger = {
 }
 
 is_available_to_collaboration_government = { # occupied_countries.1 should be updated along with this
+	is_subject = no
+	if = {
+		limit = {
+			original_tag = ITA
+		}
+		NOT = { FROM = { original_tag = YUG } }
+	}
+
+	# if = {
+	# 	limit = {
+	# 		original_tag = POL
+	# 	}
+	# 	NOT = { FROM = { original_tag = DNZ } }
+	# }
+	if = {
+		limit = {
+			original_tag = TUR
+		}
+		NOT = { FROM = { original_tag = KUR } }
+	}
 	NOT = {
 		any_country_with_original_tag = {
 			original_tag_to_check = FROM
@@ -754,26 +774,26 @@ has_same_ideology = {
 
 is_latin_american_country = {
 	OR = {
-		original_tag = CUB
+		#original_tag = CUB
 		original_tag = ARG
 		original_tag = BRA
-		original_tag = URG
-		original_tag = PAR
+		#original_tag = URG
+		#original_tag = PAR
 		original_tag = CHL
-		original_tag = BOL
-		original_tag = PRU
-		original_tag = ECU
-		original_tag = COL
+		#original_tag = BOL
+		#original_tag = PRU
+		#original_tag = ECU
+		#original_tag = COL
 		original_tag = VEN
-		original_tag = PAN
-		original_tag = COS
-		original_tag = NIC
-		original_tag = HON
-		original_tag = ELS
-		original_tag = GUA
+		#original_tag = PAN
+		#original_tag = COS
+		#original_tag = NIC
+		#original_tag = HON
+		#original_tag = ELS
+		#original_tag = GUA
 		original_tag = MEX
-		original_tag = HAI
-		original_tag = DOM
+		#original_tag = HAI
+		#original_tag = DOM
 	}
 }
 
@@ -1083,71 +1103,71 @@ country_can_be_reasonable_target_of_wargoal = { #Expected scopes: Target country
 
 is_unlikely_country_tag = {
 	OR = {
-	    tag = BRI
-	    tag = CAT
-	    tag = NAV
-	    tag = GLC
-	    tag = ADU
-	    tag = BRI
-	    tag = OCC
-	    tag = COR
-	    tag = DNZ
-	    tag = KSH
-	    tag = CKK
-	    tag = FER
-	    tag = YAK
-	    tag = VLA
-	    tag = KKP
-	    tag = YAM
-	    tag = TAY
-	    tag = OVO
-	    tag = NEN
-	    tag = KOM
-	    tag = CHU
-	    tag = MEL
-	    tag = RIF
-	    tag = HAR
-	    tag = TIG
-	    tag = AFA
-	    tag = BEG
-	    tag = GBA
-	    tag = SID
-	    tag = ORO
-	    tag = QEM
-	    tag = LBV
-	    tag = PAP
-	    tag = TOS
-	    tag = SPM
-	    tag = TTS
-		tag = BSK
-		tag = TAT
-		tag = UDM
-		tag = KHA
-		tag = VGE
-		tag = KAL
+	    # tag = BRI
+	    # tag = CAT
+	    # tag = NAV
+	    # tag = GLC
+	    # tag = ADU
+	    # tag = BRI
+	    # tag = OCC
+	    # tag = COR
+	    # tag = DNZ
+	    # tag = KSH
+	    # tag = CKK
+	    # tag = FER
+	    # tag = YAK
+	    # tag = VLA
+	    # tag = KKP
+	    # tag = YAM
+	    # tag = TAY
+	    # tag = OVO
+	    # tag = NEN
+	    # tag = KOM
+	    # tag = CHU
+	    # tag = MEL
+	    # tag = RIF
+	    # tag = HAR
+	    # tag = TIG
+	    # tag = AFA
+	    # tag = BEG
+	    # tag = GBA
+	    # tag = SID
+	    # tag = ORO
+	    # tag = QEM
+	    # tag = LBV
+	    # tag = PAP
+	    # tag = TOS
+	    # tag = SPM
+	    # tag = TTS
+		# tag = BSK
+		# tag = TAT
+		# tag = UDM
+		# tag = KHA
+		# tag = VGE
+		#tag = KAL
 		tag = KAR
-		tag = SIL
-		tag = KSH
-		tag = ALT
-		tag = BUK
-		tag = KHI
+		#tag = SIL
+		# tag = KSH
+		#tag = ALT
+		# tag = BUK
+		# tag = KHI
 		tag = SMI
-		tag = QUE
-		tag = YUC
-		tag = RIG
-		tag = WLA
+		# tag = QUE
+		# tag = YUC
+		# tag = RIG
+		# tag = WLA
 		tag = GRN
-		tag = EVE
-		tag = SHL
-		tag = MEK
-		tag = HAN
-		tag = SAX
-		tag = PRE
-		tag = BAY
-		tag = WUR
-		tag = THU
+		# tag = EVE
+		# tag = SHL
+		# tag = MEK
+		# tag = HAN
+		# tag = SAX
+		# tag = PRE
+		# tag = BAY
+		# tag = WUR
+		# tag = THU
 		tag = HES
-		tag = RHI
+		# tag = RHI
 	}
 }
 

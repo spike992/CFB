@@ -1,0 +1,1138 @@
+scripted_gui = {
+
+
+	hide_vps= {
+		context_type = player_context
+		window_name = "hide_vps_container"
+		visible = { 			
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		parent_window_token = top_bar
+		effects = {
+			tool_open2_click = {  
+				if = {
+					limit = { ROOT = { NOT = { has_country_flag = vps_enabled } } }
+					ROOT = { set_country_flag = vps_enabled }
+				}
+				else = {
+					ROOT = { clr_country_flag = vps_enabled }
+				}
+			}
+		}
+		triggers = {
+			tool_open2_click_enabled = { always = yes }
+		}
+	}
+
+	vp_topbar= {
+		context_type = player_context
+		window_name = "topbar_vp_container"
+		visible = { 			
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		effects = {
+			tool_vp2_click = {  
+				if = {
+					limit = { ROOT = { NOT = { has_country_flag = vps_ticking_disabled } } }
+					ROOT = { set_country_flag = vps_ticking_disabled }
+				}
+				else = {
+					ROOT = { clr_country_flag = vps_ticking_disabled }
+				}
+			}
+		}
+	}
+
+	topbar_vp_ticking= {
+		context_type = player_context
+		window_name = "topbar_vp_ticking"
+		#visible = { always = yes }
+		visible = { 
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+			NOT = { has_country_flag = vps_ticking_disabled } 
+			OR = {
+				has_active_mission = MOD_countdown_to_allied_victory_mission
+				has_active_mission = MOD_countdown_to_axis_victory_mission
+			}
+		}
+	}
+
+	VP_UI = {
+		context_type = decision_category
+		window_name = "vp_explainer_window"
+		
+		visible = { 			
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		
+		triggers = {
+		}
+
+	}
+
+
+	london_controlled= {
+		context_type = player_context
+		window_name = "london_container"
+		visible = { 
+			always = yes 
+			has_country_flag = vps_enabled 
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		effects = {
+			london_click = {
+				goto_state = 126
+			}
+		}
+		triggers = {
+			london_click_enabled = { always = yes }
+		}
+	}
+	paris_controlled= {
+		context_type = player_context
+		window_name = "paris_container"
+		visible = { 
+			always = yes 
+			has_country_flag = vps_enabled 
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		effects = {
+			paris_click = {
+				goto_state = 16
+			}
+		}
+		triggers = {
+			paris_click_enabled = { always = yes }
+		}
+	}
+	amsterdam_controlled= {
+		context_type = player_context
+		window_name = "amsterdam_container"
+		visible = { 
+			always = yes 
+			has_country_flag = vps_enabled 
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		effects = {
+			amsterdam_click = {
+				goto_state = 7
+			}
+		}
+		triggers = {
+			amsterdam_click_enabled = { always = yes }
+		}
+	}
+	oslo_controlled= {
+		context_type = player_context
+		window_name = "oslo_container"
+		visible = { 
+			always = yes 
+			has_country_flag = vps_enabled 
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		effects = {
+			oslo_click = {
+				goto_state = 110
+			}
+		}
+		triggers = {
+			oslo_click_enabled = { always = yes }
+		}
+	}
+	gomel_controlled= {
+		context_type = player_context
+		window_name = "gomel_container"
+		visible = { 
+			always = yes 
+			has_country_flag = vps_enabled 
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		effects = {
+			gomel_click = {
+				goto_state = 241
+			}
+		}
+		triggers = {
+			gomel_click_enabled = { always = yes }
+		}
+	}
+	lenningrad_controlled= {
+		context_type = player_context
+		window_name = "lenningrad_container"
+		visible = { 
+			always = yes 
+			has_country_flag = vps_enabled 
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		effects = {
+			lenningrad_click = {
+				goto_state = 195
+			}
+		}
+		triggers = {
+			lenningrad_click_enabled = { always = yes }
+		}
+	}
+	moscow_controlled= {
+		context_type = player_context
+		window_name = "moscow_container"
+		visible = { 
+			always = yes 
+			has_country_flag = vps_enabled 
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		effects = {
+			moscow_click = {
+				goto_state = 219
+			}
+		}
+		triggers = {
+			moscow_click_enabled = { always = yes }
+		}
+	}
+	stalingrad_controlled= {
+		context_type = player_context
+		window_name = "stalingrad_container"
+		visible = { 
+			always = yes 
+			has_country_flag = vps_enabled 
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		effects = {
+			stalingrad_click = {
+				goto_state = 217
+			}
+		}
+		triggers = {
+			stalingrad_click_enabled = { always = yes }
+		}
+	}
+	Libya_controlled= {
+		context_type = player_context
+		window_name = "Libya_container"
+		visible = { 
+			always = yes 
+			has_country_flag = vps_enabled 
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		effects = {
+			Libya_click = {
+				goto_state = 450
+			}
+		}
+		triggers = {
+			Libya_click_enabled = { always = yes }
+		}
+	}
+	cairo_controlled= {
+		context_type = player_context
+		window_name = "cairo_container"
+		visible = { 
+			always = yes 
+			has_country_flag = vps_enabled 
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		effects = {
+			cairo_click = {
+				goto_state = 907
+			}
+		}
+		triggers = {
+			cairo_click_enabled = { always = yes }
+		}
+	}
+	iwojima_controlled= {
+		context_type = player_context
+		window_name = "iwojima_container"
+		visible = { 
+			always = yes 
+			has_country_flag = vps_enabled 
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		effects = {
+			iwojima_click = {
+				goto_state = 645
+			}
+		}
+		triggers = {
+			iwojima_click_enabled = { always = yes }
+		}
+	}
+	Delhi_controlled= {
+		context_type = player_context
+		window_name = "Delhi_container"
+		visible = { 
+			always = yes 
+			has_country_flag = vps_enabled 
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		effects = {
+			Delhi_click = {
+				goto_state = 439
+			}
+		}
+		triggers = {
+			Delhi_click_enabled = { always = yes }
+		}
+	}
+	mandalay_controlled= {
+		context_type = player_context
+		window_name = "mandalay_container"
+		visible = { 
+			always = yes 
+			has_country_flag = vps_enabled 
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		effects = {
+			mandalay_click = {
+				goto_state = 640
+			}
+		}
+		triggers = {
+			mandalay_click_enabled = { always = yes }
+		}
+	}
+	batavia_controlled= {
+		context_type = player_context
+		window_name = "batavia_container"
+		visible = { 
+			always = yes 
+			has_country_flag = vps_enabled 
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		effects = {
+			batavia_click = {
+				goto_state = 335
+			}
+		}
+		triggers = {
+			batavia_click_enabled = { always = yes }
+		}
+	}
+	canberra_controlled= {
+		context_type = player_context
+		window_name = "canberra_container"
+		visible = { 
+			always = yes 
+			has_country_flag = vps_enabled 
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+		effects = {
+			canberra_click = {
+				goto_state = 285
+			}
+		}
+		triggers = {
+			canberra_click_enabled = { always = yes }
+		}
+	}
+
+	london_allied_controlled= {
+		context_type = player_context
+
+		window_name = "london_container_allied"
+		visible = {
+			has_global_flag = allies_owns_london		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			london_allied_click = {
+				# Change to Other Map Mode
+				goto_state = 126
+			}
+		}
+		triggers = {
+			london_allied_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	paris_allied_controlled= {
+		context_type = player_context
+
+		window_name = "paris_container_allied"
+		visible = {
+			has_global_flag = allies_owns_paris		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			paris_allied_click = {
+				# Change to Other Map Mode
+				goto_state = 16
+			}
+		}
+		triggers = {
+			paris_allied_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	amsterdam_allied_controlled= {
+		context_type = player_context
+
+		window_name = "amsterdam_container_allied"
+		visible = {
+			has_global_flag = allies_owns_amsterdam		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			amsterdam_allied_click = {
+				# Change to Other Map Mode
+				goto_state = 7
+			}
+		}
+		triggers = {
+			amsterdam_allied_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	oslo_allied_controlled= {
+		context_type = player_context
+
+		window_name = "oslo_container_allied"
+		visible = {
+			has_global_flag = allies_owns_oslo		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			oslo_allied_click = {
+				# Change to Other Map Mode
+				goto_state = 110
+			}
+		}
+		triggers = {
+			oslo_allied_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	gomel_allied_controlled= {
+		context_type = player_context
+
+		window_name = "gomel_container_allied"
+		visible = {
+			has_global_flag = allies_owns_gomel		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			gomel_allied_click = {
+				# Change to Other Map Mode
+				goto_state = 241
+			}
+		}
+		triggers = {
+			gomel_allied_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	lenningrad_allied_controlled= {
+		context_type = player_context
+
+		window_name = "lenningrad_container_allied"
+		visible = {
+			has_global_flag = allies_owns_leningrad		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			lenningrad_allied_click = {
+				# Change to Other Map Mode
+				goto_state = 195
+			}
+		}
+		triggers = {
+			lenningrad_allied_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	moscow_allied_controlled= {
+		context_type = player_context
+
+		window_name = "moscow_container_allied"
+		visible = {
+			has_global_flag = allies_owns_moscow		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			moscow_allied_click = {
+				# Change to Other Map Mode
+				goto_state = 219
+			}
+		}
+		triggers = {
+			moscow_allied_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	stalingrad_allied_controlled= {
+		context_type = player_context
+
+		window_name = "stalingrad_container_allied"
+		visible = {
+			has_global_flag = allies_owns_stalingrad		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			stalingrad_allied_click = {
+				# Change to Other Map Mode
+				goto_state = 217
+			}
+		}
+		triggers = {
+			stalingrad_allied_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	Libya_allied_controlled= {
+		context_type = player_context
+
+		window_name = "Libya_container_allied"
+		visible = {
+			has_global_flag = allies_owns_benghasi		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			Libya_allied_click = {
+				# Change to Other Map Mode
+				goto_state = 450
+			}
+		}
+		triggers = {
+			Libya_allied_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	cairo_allied_controlled= {
+		context_type = player_context
+
+		window_name = "cairo_container_allied"
+		visible = {
+			has_global_flag = allies_owns_cairo		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			cairo_allied_click = {
+				# Change to Other Map Mode
+				goto_state = 907
+			}
+		}
+		triggers = {
+			cairo_allied_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	iwojima_allied_controlled= {
+		context_type = player_context
+
+		window_name = "iwojima_container_allied"
+		visible = {
+			has_global_flag = allies_owns_iwo_jima		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			iwojima_allied_click = {
+				# Change to Other Map Mode
+				goto_state = 645
+			}
+		}
+		triggers = {
+			iwojima_allied_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	Delhi_allied_controlled= {
+		context_type = player_context
+
+		window_name = "Delhi_container_allied"
+		visible = {
+			has_global_flag = allies_owns_Delhi		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			Delhi_allied_click = {
+				# Change to Other Map Mode
+				goto_state = 439
+			}
+		}
+		triggers = {
+			Delhi_allied_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	mandalay_allied_controlled= {
+		context_type = player_context
+
+		window_name = "mandalay_container_allied"
+		visible = {
+			has_global_flag = allies_owns_mandalay		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			mandalay_allied_click = {
+				# Change to Other Map Mode
+				goto_state = 640
+			}
+		}
+		triggers = {
+			mandalay_allied_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	batavia_allied_controlled= {
+		context_type = player_context
+
+		window_name = "batavia_container_allied"
+		visible = {
+			has_global_flag = allies_owns_batavia		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			batavia_allied_click = {
+				# Change to Other Map Mode
+				goto_state = 335
+			}
+		}
+		triggers = {
+			batavia_allied_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	canberra_allied_controlled= {
+		context_type = player_context
+
+		window_name = "canberra_container_allied"
+		visible = {
+			has_global_flag = allies_owns_canberra		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			canberra_allied_click = {
+				# Change to Other Map Mode
+				goto_state = 285
+			}
+		}
+		triggers = {
+			canberra_allied_click_enabled = {
+				always = yes
+			}
+		}
+	}
+
+	london_axis_controlled= {
+		context_type = player_context
+
+		window_name = "london_container_axis"
+		visible = {
+			has_global_flag = axis_owns_london		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			london_axis_click = {
+				# Change to Other Map Mode
+				goto_state = 126
+			}
+		}
+		triggers = {
+			london_axis_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	paris_axis_controlled= {
+		context_type = player_context
+
+		window_name = "paris_container_axis"
+		visible = {
+			has_global_flag = axis_owns_paris		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			paris_axis_click = {
+				# Change to Other Map Mode
+				goto_state = 16
+			}
+		}
+		triggers = {
+			paris_axis_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	amsterdam_axis_controlled= {
+		context_type = player_context
+
+		window_name = "amsterdam_container_axis"
+		visible = {
+			has_global_flag = axis_owns_amsterdam		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			amsterdam_axis_click = {
+				# Change to Other Map Mode
+				goto_state = 7
+			}
+		}
+		triggers = {
+			amsterdam_axis_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	oslo_axis_controlled= {
+		context_type = player_context
+
+		window_name = "oslo_container_axis"
+		visible = {
+			has_global_flag = axis_owns_oslo		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			oslo_axis_click = {
+				# Change to Other Map Mode
+				goto_state = 110
+			}
+		}
+		triggers = {
+			oslo_axis_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	gomel_axis_controlled= {
+		context_type = player_context
+
+		window_name = "gomel_container_axis"
+		visible = {
+			has_global_flag = axis_owns_gomel		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			gomel_axis_click = {
+				# Change to Other Map Mode
+				goto_state = 241
+			}
+		}
+		triggers = {
+			gomel_axis_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	lenningrad_axis_controlled= {
+		context_type = player_context
+
+		window_name = "lenningrad_container_axis"
+		visible = {
+			has_global_flag = axis_owns_leningrad		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			lenningrad_axis_click = {
+				# Change to Other Map Mode
+				goto_state = 195
+			}
+		}
+		triggers = {
+			lenningrad_axis_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	moscow_axis_controlled= {
+		context_type = player_context
+
+		window_name = "moscow_container_axis"
+		visible = {
+			has_global_flag = axis_owns_moscow		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			moscow_axis_click = {
+				# Change to Other Map Mode
+				goto_state = 219
+			}
+		}
+		triggers = {
+			moscow_axis_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	stalingrad_axis_controlled= {
+		context_type = player_context
+
+		window_name = "stalingrad_container_axis"
+		visible = {
+			has_global_flag = axis_owns_stalingrad		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			stalingrad_axis_click = {
+				# Change to Other Map Mode
+				goto_state = 217
+			}
+		}
+		triggers = {
+			stalingrad_axis_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	Libya_axis_controlled= {
+		context_type = player_context
+
+		window_name = "Libya_container_axis"
+		visible = {
+			has_global_flag = axis_owns_benghasi		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			Libya_axis_click = {
+				# Change to Other Map Mode
+				goto_state = 450
+			}
+		}
+		triggers = {
+			Libya_axis_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	cairo_axis_controlled= {
+		context_type = player_context
+
+		window_name = "cairo_container_axis"
+		visible = {
+			has_global_flag = axis_owns_cairo		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			cairo_axis_click = {
+				# Change to Other Map Mode
+				goto_state = 907
+			}
+		}
+		triggers = {
+			cairo_axis_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	iwojima_axis_controlled= {
+		context_type = player_context
+
+		window_name = "iwojima_container_axis"
+		visible = {
+			has_global_flag = axis_owns_iwo_jima		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			iwojima_axis_click = {
+				# Change to Other Map Mode
+				goto_state = 645
+			}
+		}
+		triggers = {
+			iwojima_axis_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	Delhi_axis_controlled= {
+		context_type = player_context
+
+		window_name = "Delhi_container_axis"
+		visible = {
+			has_global_flag = axis_owns_Delhi		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			Delhi_axis_click = {
+				# Change to Other Map Mode
+				goto_state = 439
+			}
+		}
+		triggers = {
+			Delhi_axis_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	mandalay_axis_controlled= {
+		context_type = player_context
+
+		window_name = "mandalay_container_axis"
+		visible = {
+			has_global_flag = axis_owns_mandalay		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			mandalay_axis_click = {
+				# Change to Other Map Mode
+				goto_state = 640
+			}
+		}
+		triggers = {
+			mandalay_axis_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	batavia_axis_controlled= {
+		context_type = player_context
+
+		window_name = "batavia_container_axis"
+		visible = {
+			has_global_flag = axis_owns_batavia		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			batavia_axis_click = {
+				# Change to Other Map Mode
+				goto_state = 335
+			}
+		}
+		triggers = {
+			batavia_axis_click_enabled = {
+				always = yes
+			}
+		}
+	}
+	canberra_axis_controlled= {
+		context_type = player_context
+
+		window_name = "canberra_container_axis"
+		visible = {
+			has_global_flag = axis_owns_canberra		
+			has_country_flag = vps_enabled
+			has_game_rule = {
+				rule = vp_system
+				option = ENABLED
+			}
+		}
+
+		effects = {
+			canberra_axis_click = {
+				# Change to Other Map Mode
+				goto_state = 285
+			}
+		}
+		triggers = {
+			canberra_axis_click_enabled = {
+				always = yes
+			}
+		}
+	}
+}

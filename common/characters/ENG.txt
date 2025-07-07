@@ -13,20 +13,50 @@ characters={
 		# 	slot = political_advisor
 		# 	idea_token = ENG_winston_churchill
 		# 	available  = {
-		# 		has_government  = neutrality 
-		# 		has_completed_focus  = ENG_the_kings_party 
-		# 		if  = {
-		# 			limit  = {
-		# 				has_dlc = "Man the Guns"
+		# 		if = {
+		# 			limit = {
+		# 				original_tag = ENG
 		# 			}
-		# 			NOT = {
-		# 				has_autonomy_state  = autonomy_supervised_state
+		# 			has_government  = neutrality 
+		# 			has_completed_focus  = ENG_the_kings_party 
+		# 			if  = {
+		# 				limit  = {
+		# 					has_dlc = "Man the Guns"
+		# 				}
+		# 				NOT = {
+		# 					has_autonomy_state  = autonomy_supervised_state
+		# 				}
+		# 			}
+		# 		}
+		# 		else_if = {
+		# 			limit = {
+		# 				original_tag = RAJ
+		# 			}
+		# 			OR = {
+		# 				has_government = neutrality
+		# 				has_government = democratic
 		# 			}
 		# 		}
 		# 	}
 		# 	allowed  = {
-		# 		original_tag  = ENG
-		# 		has_dlc = "Man the Guns"
+		# 		OR = {
+		# 			AND = {
+		# 				has_dlc = "Man the Guns"
+		# 				original_tag = ENG
+		# 			}
+		# 			AND = {
+		# 				has_dlc = "Graveyard of Empires"
+		# 				original_tag = RAJ
+		# 			}
+		# 		}
+		# 	}
+		# 	visible = {
+		# 		if = {
+		# 			limit = {
+		# 				original_tag = RAJ
+		# 			}
+		# 			NOT = { has_character_flag = RAJ_churchill_as_country_leader_flag }
+		# 		}
 		# 	}
 		# 	traits  = {
 		# 		royalist_bulldog 
@@ -36,7 +66,7 @@ characters={
 		# 	}
 		# }
 
-		country_leader={
+		country_leader={ #This country leader role is copied as Non-Aligned if Churchill is sent to RAJ - Changes here should be applied in event GOE_RAJ_loyalist.11
 			ideology=conservatism
 			traits = {
 				british_bulldog
@@ -995,37 +1025,25 @@ characters={
 			}
 		}
 	}
-	ENG_john_beckett={
-		name="ENG_john_beckett"
+	ENG_Malcom_MacDonald = {
+		name="ENG_Malcom_MacDonald"
 		portraits={
 			army={
-				small="GFX_idea_john_beckett"
+				small="GFX_idea_john_beckett" # I am too lazy to change the gfx name
 			}
 		}
 		advisor={
 			slot = political_advisor
-			idea_token = ENG_john_beckett
+			idea_token = ENG_Malcom_MacDonald
 			allowed  = {
 				original_tag = ENG
 			}
 			traits  = {
-				fascist_demagogue 
+				secretary_colonies 
 			}
 			available = {
 				if = {
-					limit = {
-						has_dlc = "Man the Guns"
-					}
-					has_government = fascism
-				}
-				if = {
-					limit = { has_dlc = "Man the Guns" }	
-					NOT = { has_autonomy_state = autonomy_supervised_state }
-				}
-			}
-			do_effect = {
-				NOT = {
-					has_government = fascism
+					has_completed_focus = ENG_focus_empire
 				}
 			}
 			ai_will_do = {
@@ -1033,6 +1051,7 @@ characters={
 			}
 		}
 	}
+	
 	ENG_philip_kerr={
 		name=ENG_philip_kerr
 		portraits={
@@ -1119,11 +1138,19 @@ characters={
 		advisor={
 			slot = political_advisor
 			idea_token = ENG_leslie_hore_belisha
+			
 			allowed  = {
 				original_tag  = ENG
 			}
+			
 			traits  = {
-				armaments_organizer 
+				rearming_proponent 
+			}
+			
+			available = {
+				if = {
+					has_completed_focus = ENG_focus_home
+				}
 			}
 		}
 	}
@@ -1189,9 +1216,11 @@ characters={
 				has_intelligence_agency = yes
 				has_done_agency_upgrade = upgrade_form_department
 			}
+			
 			traits  = {
-				mastermind_code_cracker 
+				mastermind_code_cracker
 			}
+					
 			ai_will_do = {
 				factor = 1
 				modifier = {
@@ -1322,9 +1351,17 @@ characters={
 			allowed = {
 				original_tag = ENG
 			}
+			
+			available = {
+				if = {
+					has_completed_focus = ENG_tactical_bombing
+				}
+			}
+			
 			traits = {
 				air_chief_night_operations_2
 			}
+			
 			cost = 100
 			ai_will_do = {
 				factor = 1.000
@@ -1519,7 +1556,7 @@ characters={
 			idea_token = ENG_david_stirling
 			ledger = army
 			available = {
-				has_completed_focus = ENG_special_air_service
+				has_completed_focus = ENG_improved_training
 			}
 			allowed = {
 				original_tag = ENG
@@ -1533,6 +1570,7 @@ characters={
 			}
 		}
 	}
+	
 	# Theorist
 	ENG_james_somerville={
 		name=ENG_james_somerville

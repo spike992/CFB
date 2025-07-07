@@ -484,8 +484,8 @@ lar_local_recruitment = {
 				tag = RAJ
 				tag = PAK
 				tag = BAN
-				tag = NEP
-				tag = BHU
+				# tag = NEP
+				# tag = BHU
 				tag = SRL
 			}
 		}
@@ -515,8 +515,8 @@ lar_local_recruitment = {
 				tag = RAJ
 				tag = PAK
 				tag = BAN
-				tag = NEP
-				tag = BHU
+				# tag = NEP
+				# tag = BHU
 				tag = SRL
 			}
 		}
@@ -587,15 +587,15 @@ generic_purchase_old_ships_category = {
 				has_dlc = "Trial of Allegiance"
 			}
 
-			AND = {
-				original_tag = URG
-				has_dlc = "Trial of Allegiance"
-			}
+			# AND = {
+			# 	original_tag = URG
+			# 	has_dlc = "Trial of Allegiance"
+			# }
 
-			AND = {
-				original_tag = PAR
-				has_dlc = "Trial of Allegiance"
-			}
+			# AND = {
+			# 	original_tag = PAR
+			# 	has_dlc = "Trial of Allegiance"
+			# }
 
 			AND = {
 				original_tag = PER
@@ -639,11 +639,19 @@ generic_refit_civilian_ships_category = {
 	
 	allowed = { #Add tags here with first an OR then an AND
 		OR = {
-			original_tag = DEN
-			original_tag = FIN
-			original_tag = ICE
+			AND = {
+				OR = {
+					original_tag = DEN
+					original_tag = FIN
+					original_tag = ICE
+				}
+				has_dlc = "Arms Against Tyranny"
+			}
+			AND = {
+				original_tag = RAJ
+				has_dlc = "Graveyard of Empires"
+			}
 		}
-		has_dlc = "Arms Against Tyranny"
 	}
 	visible = {
 		has_country_flag = refit_convoy_ships_flag
