@@ -1217,21 +1217,31 @@ ENG_homeland_defense_decision_cat = {
 				}
 
 				division_template = {
-					name = "Home Guard Defense Brigades"
-					division_names_group = ENG_INF_01
-					template_counter = 99
-					role = garrison
-					is_locked = yes
-					regiments = {
-						infantry = { x = 0 y = 0 }
-						infantry = { x = 0 y = 1 }
-						infantry = { x = 0 y = 2 }
-						infantry = { x = 1 y = 0 }
-						infantry = { x = 1 y = 1 }
+						name = "Home Guard Defense Brigades"
+						is_locked = yes
+						regiments = {
+							militia = { x = 0 y = 0 }
+							militia = { x = 0 y = 1 }
+							militia = { x = 0 y = 2 }
+					
+							militia = { x = 1 y = 0 }
+							militia = { x = 1 y = 1 }
+							militia = { x = 1 y = 2 }
+					
+							militia = { x = 2 y = 0 }
+							militia = { x = 2 y = 1 }
+							militia = { x = 2 y = 2 }
+
+							militia = { x = 3 y = 0 }
+							#artillery_brigade = { x = 3 y = 0}
+							#anti_tank_brigade = { x = 3 y = 1}
+					
+						}
+						support = {
+							engineer = { x = 0 y = 0 }   
+							anti_air = { x = 0 y = 1 }
+						}
 					}
-					support = {
-					}
-				}
 			}
 		}
 		
@@ -1317,12 +1327,23 @@ ENG_homeland_defense_decision_cat = {
 
 		available = {
 			has_war = yes
-			any_owned_state = {
-				is_core_of = ROOT
-				#is_in_home_area = yes 	
-				NOT = {
-					is_controlled_by = ROOT
+			
+			OR = {
+				any_owned_state = {
+					is_core_of = ROOT
+					#is_in_home_area = yes 	
+					NOT = {
+						is_controlled_by = ROOT
+					}
 				}
+				FRA = {
+					has_capitulated = yes
+				}
+				naval_strength_ratio = {
+					tag = GER
+					ratio < 2
+				}
+				has_war_with = ITA
 			}
 			NOT = {
 				has_country_flag = ENG_raising_militia_flag
@@ -1395,11 +1416,35 @@ ENG_homeland_defense_decision_cat = {
 			FROM = {
 				set_state_flag = ENG_raised_home_guard_here_already_flag
 				create_unit = {
-				    division = "name = \"Home Guard Defense Brigade\" division_template = \"Home Guard Defense Brigades\" start_experience_factor = 0.1 start_equipment_factor = 0.6"
+				    division = "name = \"Home Guard Defense Brigade\" division_template = \"Home Guard Defense Brigades\" start_experience_factor = 0.1 start_equipment_factor = 1"
 				    owner = ROOT
 				}
 				create_unit = {
-				    division = "name = \"Home Guard Defense Brigade\" division_template = \"Home Guard Defense Brigades\" start_experience_factor = 0.1 start_equipment_factor = 0.6"
+				    division = "name = \"Home Guard Defense Brigade\" division_template = \"Home Guard Defense Brigades\" start_experience_factor = 0.1 start_equipment_factor = 1"
+				    owner = ROOT
+				}
+				create_unit = {
+				    division = "name = \"Home Guard Defense Brigade\" division_template = \"Home Guard Defense Brigades\" start_experience_factor = 0.1 start_equipment_factor = 1"
+				    owner = ROOT
+				}
+				create_unit = {
+				    division = "name = \"Home Guard Defense Brigade\" division_template = \"Home Guard Defense Brigades\" start_experience_factor = 0.1 start_equipment_factor = 1"
+				    owner = ROOT
+				}
+				create_unit = {
+				    division = "name = \"Home Guard Defense Brigade\" division_template = \"Home Guard Defense Brigades\" start_experience_factor = 0.1 start_equipment_factor = 1"
+				    owner = ROOT
+				}
+				create_unit = {
+				    division = "name = \"Home Guard Defense Brigade\" division_template = \"Home Guard Defense Brigades\" start_experience_factor = 0.1 start_equipment_factor = 1"
+				    owner = ROOT
+				}
+				create_unit = {
+				    division = "name = \"Home Guard Defense Brigade\" division_template = \"Home Guard Defense Brigades\" start_experience_factor = 0.1 start_equipment_factor = 1"
+				    owner = ROOT
+				}
+				create_unit = {
+				    division = "name = \"Home Guard Defense Brigade\" division_template = \"Home Guard Defense Brigades\" start_experience_factor = 0.1 start_equipment_factor = 1"
 				    owner = ROOT
 				}
 			}
@@ -2530,7 +2575,7 @@ ENG_develop_the_empire = {
 
 		selectable_mission = no
 
-		days_mission_timeout = 90
+		days_mission_timeout = 70
 
 		modifier = {
 		}
@@ -2543,6 +2588,7 @@ ENG_develop_the_empire = {
 				random_core_state = {
 					limit = {
 						NOT = { has_state_flag = ENG_development_marker }
+						is_fully_controlled_by = AST
 						
 						free_building_slots = {
 							building = arms_factory
@@ -2565,10 +2611,10 @@ ENG_develop_the_empire = {
 				add_to_variable = { AST_investments = 1 }
 				if = {
 					limit = {
-						AST = {
-							all_core_state = {
-								has_state_flag = ENG_development_marker 
-							}
+						check_variable = {
+							var = AST_investments
+							value = AST.num_core_states
+							compare = greater_than_or_equals
 						}
 					}
 					add_to_variable = { ENG_industrial_consumer_goods_expected_value = -0.03 tooltip = consumer_goods_expected_value_tt }
@@ -2613,7 +2659,7 @@ ENG_develop_the_empire = {
 
 		selectable_mission = no
 
-		days_mission_timeout = 90
+		days_mission_timeout = 70
 
 		modifier = {
 		}
@@ -2626,6 +2672,7 @@ ENG_develop_the_empire = {
 				random_core_state = {
 					limit = {
 						NOT = { has_state_flag = ENG_development_marker }
+						is_fully_controlled_by = NZL
 						
 						free_building_slots = {
 							building = arms_factory
@@ -2648,10 +2695,10 @@ ENG_develop_the_empire = {
 				add_to_variable = { NZL_investments = 1 }
 				if = {
 					limit = {
-						NZL = {
-							all_core_state = {
-								has_state_flag = ENG_development_marker 
-							}
+						check_variable = {
+							var = NZL_investments
+							value = NZL.num_core_states
+							compare = greater_than_or_equals
 						}
 					}
 					add_to_variable = { ENG_industrial_consumer_goods_expected_value = -0.03 tooltip = consumer_goods_expected_value_tt }
@@ -2696,7 +2743,7 @@ ENG_develop_the_empire = {
 
 		selectable_mission = no
 
-		days_mission_timeout = 90
+		days_mission_timeout = 70
 
 		modifier = {
 		}
@@ -2709,6 +2756,7 @@ ENG_develop_the_empire = {
 				random_core_state = {
 					limit = {
 						NOT = { has_state_flag = ENG_development_marker }
+						is_fully_controlled_by = CAN
 						
 						free_building_slots = {
 							building = arms_factory
@@ -2730,10 +2778,10 @@ ENG_develop_the_empire = {
 				add_to_variable = { CAN_investments = 1 }
 				if = {
 					limit = {
-						CAN = {
-							all_core_state = {
-								has_state_flag = ENG_development_marker 
-							}
+						check_variable = {
+							var = CAN_investments
+							value = CAN.num_core_states
+							compare = greater_than_or_equals
 						}
 					}
 					add_to_variable = { ENG_industrial_consumer_goods_expected_value = -0.03 tooltip = consumer_goods_expected_value_tt }
@@ -2778,7 +2826,7 @@ ENG_develop_the_empire = {
 
 		selectable_mission = no
 
-		days_mission_timeout = 90
+		days_mission_timeout = 70
 
 		modifier = {
 		}
@@ -2791,6 +2839,7 @@ ENG_develop_the_empire = {
 				random_core_state = {
 					limit = {
 						NOT = { has_state_flag = ENG_development_marker }
+						is_fully_controlled_by = SAF
 						
 						free_building_slots = {
 							building = arms_factory
@@ -2812,10 +2861,10 @@ ENG_develop_the_empire = {
 				add_to_variable = { SAF_investments = 1 }
 				if = {
 					limit = {
-						SAF = {
-							all_core_state = {
-								has_state_flag = ENG_development_marker 
-							}
+						check_variable = {
+							var = SAF_investments
+							value = SAF.num_core_states
+							compare = greater_than_or_equals
 						}
 					}
 					add_to_variable = { ENG_industrial_consumer_goods_expected_value = -0.03 tooltip = consumer_goods_expected_value_tt }
@@ -2860,7 +2909,7 @@ ENG_develop_the_empire = {
 
 		selectable_mission = no
 
-		days_mission_timeout = 90
+		days_mission_timeout = 70
 
 		modifier = {
 		}
@@ -2873,6 +2922,7 @@ ENG_develop_the_empire = {
 				random_core_state = {
 					limit = {
 						NOT = { has_state_flag = ENG_development_marker }
+						is_fully_controlled_by = RAJ
 						
 						free_building_slots = {
 							building = arms_factory
@@ -2894,10 +2944,10 @@ ENG_develop_the_empire = {
 				add_to_variable = { RAJ_investments = 1 }
 				if = {
 					limit = {
-						RAJ = {
-							all_core_state = {
-								has_state_flag = ENG_development_marker 
-							}
+						check_variable = {
+							var = RAJ_investments
+							value = RAJ.num_core_states
+							compare = greater_than_or_equals
 						}
 					}
 					add_to_variable = { ENG_industrial_consumer_goods_expected_value = -0.03 tooltip = consumer_goods_expected_value_tt }
