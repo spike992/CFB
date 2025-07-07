@@ -3078,7 +3078,7 @@ focus_tree = {
 		prerequisite = { focus = ENG_keep_old_guard }
 		prerequisite = { focus = ENG_expand_dockyards }
 		
-		x = 1
+		x = 0
 		y = 1
 		relative_position_id = ENG_keep_old_guard
 		
@@ -3159,10 +3159,10 @@ focus_tree = {
 				}
 			}
 			132 = {
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = dockyard
-					level = 2
+					level = 1
 					instant_build = yes
 				}
 			}
@@ -3612,18 +3612,18 @@ focus_tree = {
 		}	
 		completion_reward = {
 			132 = {
-				add_extra_state_shared_building_slots = 3
+				add_extra_state_shared_building_slots = 5
 				add_building_construction = {
 					type = dockyard
-					level = 3
+					level = 5
 					instant_build = yes
 				}
 			}
 			133 = {
-				add_extra_state_shared_building_slots = 3
+				add_extra_state_shared_building_slots = 5
 				add_building_construction = {
 					type = dockyard
-					level = 3
+					level = 5
 					instant_build = yes
 				}
 			}
@@ -3635,7 +3635,7 @@ focus_tree = {
 		icon = GFX_goal_generic_occupy_states_coastal
 		prerequisite = { focus = ENG_expand_dockyards }
 		
-		x = 0
+		x = 1
 		y = 1
 		relative_position_id = ENG_expand_dockyards
 		
@@ -3649,6 +3649,72 @@ focus_tree = {
 		}
 	}
 	
+	focus = {
+		id = ENG_wartime_docks1
+		icon = GFX_goal_generic_production2
+		x = -1
+		y = 1
+		cost = 5
+		prerequisite = {
+			focus = ENG_expand_dockyards
+		}
+		relative_position_id =  ENG_expand_dockyards
+        available = {
+			GER = { has_completed_focus = GER_danzig_or_war }
+        }
+		completion_reward = {
+			ENG_economy_dynamic_modifier_tt = yes # tooltip
+            add_to_variable = { ENG_british_economy_industrial_capacity_dockyard = 0.1 tooltip = industrial_capacity_dockyard_tt }
+            932 = {
+                add_extra_state_shared_building_slots = 8
+                add_building_construction = {
+                    type = dockyard
+                    level = 8
+                    instant_build = yes
+                }
+            }
+            120 = {
+                add_extra_state_shared_building_slots = 7
+                add_building_construction = {
+                    type = dockyard
+                    level = 7
+                    instant_build = yes
+                }
+            }
+		}
+	}
+	focus = {
+		id = ENG_wartime_docks2
+		icon = GFX_goal_ENG_grand_british_fleet
+		x = 0
+		y = 1
+		cost = 5
+		prerequisite = {
+			focus = ENG_wartime_docks1
+		}
+		relative_position_id =  ENG_wartime_docks1 
+		available = {
+			
+		}
+		completion_reward = {
+            125 = {
+                add_extra_state_shared_building_slots = 8
+                add_building_construction = {
+                    type = dockyard
+                    level = 8
+                    instant_build = yes
+                }
+            }
+            123 = {
+                add_extra_state_shared_building_slots = 7
+                add_building_construction = {
+                    type = dockyard
+                    level = 7
+                    instant_build = yes
+                }
+            }
+		}
+	}
 	### Fortification Branch ###
 	
 	focus = {
