@@ -257,7 +257,8 @@ GER_porsche_organization = {
 }
 
 GER_henschel_organization = {
-	include = generic_pmfu_light_tank_organization
+	#include = generic_pmfu_light_tank_organization
+	include = generic_infantry_tank_organization
 	icon = GFX_idea_henschel
 	
 	allowed = {	
@@ -486,9 +487,9 @@ GER_man_organization = {
 		}
 
 		equipment_bonus = {
-			soft_attack = 0.05
-			hard_attack = 0.05
-			ap_attack = 0.05
+			soft_attack = 0.03
+			hard_attack = 0.03
+			ap_attack = 0.03
 		}
 
 		ai_will_do = {
@@ -3347,7 +3348,19 @@ GER_carl_walther_organization = {
 	icon = GFX_idea_GER_carl_walther
 	
 	allowed = {	
-		original_tag = GER 
+		OR = {
+			original_tag = GER
+			original_tag = YUG
+		}
+	}
+
+	available = {
+		IF = {
+			limit = {
+				FROM = { original_tag = YUG }
+			}
+			YUG = { has_completed_focus = YUG_modernisation_of_small_arms }
+		}
 	}
 
 	add_trait = {

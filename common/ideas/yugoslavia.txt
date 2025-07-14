@@ -546,7 +546,7 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				conscription = 0.03
+				conscription = 0.02
 			}
 		}
 		
@@ -900,9 +900,6 @@ ideas = {
 				}
 			}
 			
-			modifier = {
-				special_forces_cap = 0.05
-			}
 		}
 		
 		YUG_italian_investments = {			
@@ -920,32 +917,32 @@ ideas = {
 				trade_cost_for_target_factor = -0.25
 			}
 			modifier = {
-				production_speed_industrial_complex_factor = 0.05
+				production_speed_buildings_factor = 0.05
 			}
 		}
 		
 		YUG_yugoslavian_reforms = {
-				picture = generic_pp_unity_bonus
-				allowed = {
-					always = no # Added via focus
-				}
+			picture = generic_pp_unity_bonus
+			allowed = {
+				always = no # Added via focus
+			}
 
-				modifier = {
-					stability_weekly = 0.01
-				}
+			modifier = {
+				stability_weekly = 0.01
+			}
 		}	
 		
 		YUG_bulgarian_integration = {
-				picture = bul_third_bulgarian_state
-				allowed = {
-					always = no # Added via focus
-				}
+			picture = bul_third_bulgarian_state
+			allowed = {
+				always = no # Added via focus
+			}
 
-				modifier = {
-					consumer_goods_factor = 0.15
-					industrial_capacity_factory = -0.15
-					production_speed_buildings_factor = -0.1
-				}
+			modifier = {
+				consumer_goods_factor = 0.15
+				industrial_capacity_factory = -0.15
+				production_speed_buildings_factor = -0.1
+			}
 		}
 		
 		YUG_idea_bosnian_artillery = {
@@ -988,7 +985,7 @@ ideas = {
 		}
 
 		YUG_follow_by_example = {
-			picture = research_bonus
+			picture = jap_duplicate_research
 
 			allowed = {
 				original_tag = YUG
@@ -1006,7 +1003,7 @@ ideas = {
 		}
 
 		YUG_inward_perfection = {
-			picture = production_bonus
+			picture = SOV_third_five_year_plan 
 
 			allowed = {
 				original_tag = YUG
@@ -1024,7 +1021,7 @@ ideas = {
 		}
 
 		YUG_outward_perfection = {
-			picture = production_bonus
+			picture = generic_exploit_mines
 
 			allowed = {
 				original_tag = YUG
@@ -1037,7 +1034,7 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				production_speed_buildings_factor = 0.1
+				production_speed_buildings_factor = 0.075
 			}
 		}
 
@@ -1060,7 +1057,7 @@ ideas = {
 		}
 
 		YUG_pan_slavic_union_idea = {
-			picture = stability
+			picture = generic_exploit_mines
 
 			allowed = {
 				original_tag = YUG
@@ -1073,7 +1070,7 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				industrial_capacity_factory = 0.15
+				industrial_capacity_factory = 0.10
 			}
 		}
 
@@ -1096,22 +1093,160 @@ ideas = {
 			}
 		}
 
-		YUG_ITA_trade = {
-			
+		YUG_defunct_infantry = { 			
+			picture = generic_neglected_military 
+
+			allowed = { original_tag = YUG }
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+
+			modifier = { modifier_army_sub_unit_infantry_attack_factor = -0.8
+				         modifier_army_sub_unit_infantry_defence_factor = -0.8
+			}
+		}
+
+		YUG_interpreters = {
+			picture = YUG_serbian_general_staff
+
+			allowed = { original_tag = YUG }
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				special_forces_cap = 0.05
+				mountaineers_special_forces_contribution_factor = -0.20
+				marines_special_forces_contribution_factor = -0.15
+			}
+		}
+
+		YUG_armored_cavalry = {
 			allowed = {
 				always = no
 			}
 
-			removal_cost = -1
-			
-			picture = ger_ita_trade
+			allowed_civil_war = {
+				always = yes
+			}
 
-			targeted_modifier = {
-				tag = ITA
-				license_production_speed = 0.15
+			picture = generic_infantry_bonus
+			removal_cost = -1
+
+			modifier = {
+				mechanized_attack_factor = 0.05
+				mechanized_defence_factor = 0.05
+			}
+		}
+
+		YUG_fuel_efficiency = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = SOV_the_road_of_life
+			removal_cost = -1
+
+			modifier = {
+				army_fuel_consumption_factor = -0.1
+			}
+		}
+
+		YUG_equipment_discount = {
+
+            allowed = {
+                always = no
+            }
+
+            allowed_civil_war = {
+                always = yes
+            }
+
+			picture = generic_infantry_bonus
+			
+			removal_cost = -1
+
+			equipment_bonus = {
+				infantry_equipment = { build_cost_ic = -0.075 instant = yes }
+				squad_equipment = { build_cost_ic = -0.075 instant = yes }
+				sf_equipment = { build_cost_ic = -0.075 instant = yes }
+			}
+		}
+
+		YUG_mech_discount = {
+
+            allowed = {
+                always = no
+            }
+
+            allowed_civil_war = {
+                always = yes
+            }
+
+			picture = generic_infantry_bonus
+			
+			removal_cost = -1
+
+			equipment_bonus = {
+				mechanized = {
+					build_cost_ic = -0.1 instant = yes
+				}
+			}
+		}
+
+		YUG_truck_discount = {
+
+            allowed = {
+                always = no
+            }
+
+            allowed_civil_war = {
+                always = yes
+            }
+
+			picture = generic_infantry_bonus
+			
+			removal_cost = -1
+
+			equipment_bonus = {
+				motorized = {
+					build_cost_ic = -0.1 instant = yes
+				}
 			}
 		}
 		
+		
+		YUG_tank_inefficiencies = {
+
+            allowed = {
+                always = no
+            }
+
+            allowed_civil_war = {
+                always = yes
+            }
+
+			picture = generic_local_self_management
+			
+			removal_cost = -1
+
+			equipment_bonus = {
+				armor = {
+					build_cost_ic = 1 instant = yes
+				}
+			}
+		}
+
 		ITA_YUG_trade = {
 			
 			allowed = {
@@ -1136,7 +1271,7 @@ ideas = {
 
 			removal_cost = -1
 			
-			picture = ger_ita_trade
+			picture = man_five_year_plan_industry
 
 			modifier = {
 				consumer_goods_expected_value = -0.05
@@ -1151,10 +1286,10 @@ ideas = {
 
 			removal_cost = -1
 			
-			picture = stability
+			picture = MEX_politicised_army
 
 			modifier = {
-				conscription = 0.04
+				conscription = 0.02
 			}
 		}
 
@@ -1166,13 +1301,14 @@ ideas = {
 
 			removal_cost = -1
 			
-			picture = stability
+			picture = tur_sectarian_troubles_fundamentalism
 
 			modifier = {
+				special_forces_cap = 0.05
 				special_forces_attack_factor = 0.05 
 				special_forces_defence_factor = 0.05
 				special_forces_out_of_supply_factor = -0.05
-				special_forces_training_time_factor = -0.05
+				special_forces_training_time_factor = -0.2
 				special_forces_no_supply_grace = 24
 			}
 		}
@@ -1198,6 +1334,7 @@ ideas = {
 		}
 
 	}
+
 
 	# TECHNOLOGY
 	

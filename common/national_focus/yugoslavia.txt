@@ -14,6 +14,7 @@
 	default = no
 
 	continuous_focus_position = { x = 1000 y = 900 }
+	
 
 #	focus = {
 #		id = YUG_
@@ -87,6 +88,98 @@
 		}
 	}
 
+	focus = {
+		id = YUG_support_the_spanish_coup
+
+		prerequisite = { focus = YUG_dictator_without_dictatorship }
+		icon = GFX_focus_intervention_spain_nationalists
+		relative_position_id = YUG_dictator_without_dictatorship
+		x = 4
+		y = 1
+		cost = 7
+
+		available = {
+			has_civil_war = no
+			if = {
+				limit = {
+					has_dlc = "La Resistance"
+				}
+				SPR_scw_in_progress = yes
+				country_exists = SPA
+				NOT = { has_war_with = SPA }
+			}
+			else = {
+				any_country = {
+					original_tag = SPR
+					has_civil_war = yes
+					NOT = { has_war_with = ROOT }
+					OR = {
+						has_government = fascism
+						has_government = neutrality
+					}
+				}
+			}
+			OR = {
+				has_government = fascism
+				has_government = neutrality
+			}
+			is_subject = no
+		}
+		
+		completion_reward = {
+			if = {
+				limit = {
+					has_dlc = "La Resistance"
+				}
+				add_ai_strategy = {
+					type = befriend
+					id = SPA
+					value = 100
+				}
+				add_ai_strategy = {
+					type = send_volunteers_desire
+					id = SPA
+					value = 100
+				}
+			}
+			else = {
+				random_country = {
+					limit = {
+						original_tag = SPR
+						has_civil_war = yes
+						OR = {
+							has_government = neutrality
+							has_government = fascism
+						}
+					}
+					add_opinion_modifier = {
+					    target = BUL
+					    modifier = BUL_helped_in_civil_war
+					}
+					add_manpower = 3000
+					ROOT = {
+						set_variable = { BUL_spanish_tag_aided = PREV }
+						add_ai_strategy = {
+							type = befriend
+							id = PREV
+							value = 100
+						}
+						add_ai_strategy = {
+							type = send_volunteers_desire
+							id = PREV
+							value = 100
+						}
+					}
+				}
+			}
+			add_manpower = -3000
+			add_ideas = BUL_volunteers_in_spain_nationalist
+			set_rule = { can_send_volunteers = yes }
+			custom_effect_tooltip = BUL_support_the_spanish_coup_tt
+		}
+	}
+
+
 
 	# focus = {
 	# 	id = YUG_western_focus
@@ -128,7 +221,7 @@
 	# 	y = 1
 	# 	relative_position_id = YUG_western_focus
 
-	# 	cost = 5
+	# 	cost = 6
 
 	# 	ai_will_do = {
 	# 		factor = 100
@@ -172,7 +265,7 @@
 	# 	y = 1
 	# 	relative_position_id = YUG_western_focus
 
-	# 	cost = 5
+	# 	cost = 6
 
 	# 	ai_will_do = {
 	# 		factor = 100
@@ -613,134 +706,12 @@
 	}
 
 	focus = {
-		id = YUG_join_axis
-		icon = GFX_goal_support_fascism
+		id = YUG_an_italian_friend
+		icon = GFX_focus_ITA_italian_irredentism
 		prerequisite = { focus = YUG_inward_perfection }
 		x = -1
 		y = 1
 		relative_position_id = YUG_inward_perfection
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 0
-		}
-
-		available = {
-			OR = {
-				GER = {
-					NOT = { has_war_with = ROOT }
-					has_government = fascism
-					has_capitulated = no
-					is_faction_leader = yes
-				}
-				ITA = {
-					NOT = { has_war_with = ROOT }
-					has_capitulated = no
-					has_government = fascism
-				}
-			}
-			NOT = {
-				any_other_country = {
-					is_in_faction_with = GER
-					has_war_with = YUG
-				}
-			}
-		}
-
-		bypass = {
-			# OR = {
-			# 	is_in_faction_with = GER
-			# 	is_in_faction_with = ITA
-			# }
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_POLITICAL }
-
-		completion_reward = {
-			hidden_effect = {
-				if = {
-					limit = {
-						GER = {
-							exists = yes
-							has_capitulated = no
-							has_government = fascism
-							is_faction_leader = yes
-						}
-					}
-					GER = { 
-						country_event = {
-							id = DOD_yugoslavia.70 
-							hours = 6
-						}	
-					}
-				}
-				else_if = {
-					limit = {
-						ITA = {
-							exists = yes
-							has_capitulated = no
-							has_government = fascism
-						}
-					}
-					ITA = {
-						country_event = {
-							id = DOD_yugoslavia.70 
-							hours = 6
-						}	
-					}	
-				}
-				#else = {
-				#	get_best_alliance_match_fascism_effect = yes
-				#	var:best_leader = {
-				#		country_event = DOD_yugoslavia.70
-				#	}
-				#}
-			}
-			effect_tooltip = {
-				if = {
-					limit = {
-						GER = {
-							exists = yes
-							has_capitulated = no
-							has_government = fascism
-							is_faction_leader = yes
-						}
-					}
-					GER = {
-						add_opinion_modifier = { target = YUG modifier = tripartite_pact_opinion }
-						reverse_add_opinion_modifier = { target = YUG modifier = tripartite_pact_opinion }
-					}
-				}
-				else = {
-					ITA = {
-						add_opinion_modifier = { target = YUG modifier = tripartite_pact_opinion }
-						reverse_add_opinion_modifier = { target = YUG modifier = tripartite_pact_opinion }
-					}
-				}
-			}
-			# create_country_leader = {
-			# 	name = "Prince Paul"
-			# 	desc = "POLITICS_PRINCE_PAUL_DESC"
-			# 	picture = "Portrait_Yugoslavia_Prince_Paul.dds"
-			# 	expire = "1965.1.1"
-			# 	ideology = fascism_ideology
-			# 	traits = {
-			# 		#
-			# 	}
-			# }
-		}
-	}
-	focus = {
-		id = YUG_an_italian_friend
-		icon = GFX_focus_ITA_italian_irredentism
-		prerequisite = { focus = YUG_join_axis }
-		x = 0
-		y = 1
-		relative_position_id = YUG_join_axis
 
 		cost = 5
 
@@ -758,9 +729,20 @@
 		continue_if_invalid = no
 		available_if_capitulated = no
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
-			add_ideas = YUG_ITA_trade
-			ITA= { add_ideas = ITA_YUG_trade }
+			random_owned_controlled_state = {
+				prioritize = { 802 }
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+			}
 		}
 	}
 
@@ -800,7 +782,7 @@
 		}
 
 		completion_reward = {
-			IF = {
+			if = {
 				limit = {
 					has_idea = anti_german_military
 				}
@@ -840,16 +822,17 @@
 		}
 
 		completion_reward = {
+			add_to_tech_sharing_group = axis_research
 			add_ideas = YUG_follow_by_example
+
 		}
 	}
 
 	focus = {
 		id = YUG_surrender_italian_claims
 		icon = GFX_focus_befriend_italy
-		prerequisite = { focus = YUG_follow_by_example }
 		prerequisite = { focus = YUG_an_italian_friend }
-		x = 1
+		x = 0
 		y = 1
 		relative_position_id = YUG_an_italian_friend
 
@@ -917,144 +900,12 @@
 	}
 
 	focus = {
-		id = YUG_axis_research
-		icon = GFX_goal_tfv_generic_tech_sharing
-		prerequisite = { focus = YUG_surrender_italian_claims }
-		x = 0
-		y = 1
-		relative_position_id = YUG_surrender_italian_claims
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 0
-		}
-
-		# available = {
-		# 	OR = {
-		# 		GER = {
-		# 			NOT = { has_war_with = ROOT }
-		# 			has_government = fascism
-		# 			has_capitulated = no
-		# 			is_faction_leader = yes
-		# 		}
-		# 		ITA = {
-		# 			NOT = { has_war_with = ROOT }
-		# 			has_capitulated = no
-		# 			has_government = fascism
-		# 		}
-		# 	}
-		# 	NOT = {
-		# 		any_other_country = {
-		# 			is_in_faction_with = GER
-		# 			has_war_with = YUG
-		# 		}
-		# 	}
-		# }
-
-		# bypass = {
-		# 	OR = {
-		# 		is_in_faction_with = GER
-		# 		is_in_faction_with = ITA
-		# 	}
-		# }
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_POLITICAL }
-
-		completion_reward = {
-			add_to_tech_sharing_group = axis_research
-		}
-	}
-
-	focus = {
-		id = YUG_albaninian_agreement
-		icon = GFX_focus_generic_befriend_albania
-		prerequisite = { focus = YUG_axis_research }
-		x = 0
-		y = 1
-		relative_position_id = YUG_axis_research
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 40
-		}
-
-		available = {
-			ITA = { owns_state = 44 }
-		}
-
-		bypass = {
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			ITA = {
-				country_event = { 
-					id = DOD_yugoslavia.104
-					hours = 1 
-				}
-			}
-			custom_effect_tooltip = if_they_accept_tt
-			effect_tooltip = {
-				ITA = {
-					44 = { transfer_state_to = YUG }
-					934 = { transfer_state_to = YUG }
-					805 = { transfer_state_to = YUG }
-				}
-			}
-		}
-	}
-
-	focus = {
-		id = YUG_albaninian_nationalism
-		icon = GFX_focus_ITA_albanian_fascist_militia
-		prerequisite = { focus = YUG_albaninian_agreement }
-		x = 0
-		y = 1
-		relative_position_id = YUG_albaninian_agreement
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 40
-		}
-
-		available = {
-			has_full_control_of_state = 44
-			has_full_control_of_state = 934
-			has_full_control_of_state = 805
-		}
-
-		bypass = {
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			YUG = {
-				44 = { add_core_of = ROOT }
-				934 = { add_core_of = ROOT }
-				805 = { add_core_of = ROOT }
-			}
-		}
-	}
-
-	focus = {
 		id = YUG_resources_for_investment_montenegro
 		icon = GFX_focus_generic_aluminum
-		prerequisite = { focus = YUG_axis_research focus = YUG_claim_bulgaria}
-		x = 2
-		y = 1
-		relative_position_id = YUG_axis_research
+		prerequisite = { focus = YUG_follow_by_example focus = YUG_surrender_italian_claims  }
+		x = -2
+		y = 2
+		relative_position_id = YUG_follow_by_example
 
 		cost = 5
 
@@ -1084,9 +935,9 @@
 	focus = {
 		id = YUG_resources_for_investment_macedonia
 		icon = GFX_focus_generic_chromium
-		prerequisite = { focus = YUG_resources_for_investment_montenegro }
-		x = 0
-		y = 1
+		prerequisite = { focus = YUG_follow_by_example focus = YUG_surrender_italian_claims }
+		x = 2
+		y = 0
 		relative_position_id = YUG_resources_for_investment_montenegro
 
 		cost = 5
@@ -1114,6 +965,36 @@
 		}
 	}
 
+	
+	focus = {
+		id = YUG_prepare_for_the_communist_threat
+		icon = GFX_focus_attack_soviet
+		prerequisite = { focus = YUG_follow_by_example }
+		prerequisite = { focus = YUG_surrender_italian_claims }
+		x = 0
+		y = 3
+		relative_position_id = YUG_inward_perfection
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		available = {
+		}
+
+		bypass = {
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = TUR_sub_zero_survival_training
+		}
+	}
 
 
 	focus = {
@@ -1183,7 +1064,7 @@
 		}
 
 		completion_reward = {
-			IF = {
+			if = {
 				limit = {
 					has_idea = anti_german_military
 				}
@@ -1223,7 +1104,7 @@
 		}
 
 		completion_reward = {
-			add_war_support = 0.2
+			add_war_support = 0.1
 		}
 	}
 
@@ -1269,10 +1150,10 @@
 	focus = {
 		id = YUG_all_yugoslavian_regiments
 		icon = GFX_goal_rhineland
-		prerequisite = { focus = YUG_set_aside_differences }
+		prerequisite = { focus = YUG_invite_german_military_mission focus = YUG_invite_german_military_mission2 }
 		x = 0
-		y = 1
-		relative_position_id = YUG_set_aside_differences
+		y = 4
+		relative_position_id = YUG_stojadinovic_stays
 
 		cost = 5
 
@@ -1307,10 +1188,10 @@
 	focus = {
 		id = YUG_claim_bulgaria
 		icon = GFX_focus_generic_attack_bulgaria
-		prerequisite = { focus = YUG_all_yugoslavian_regiments }
+		prerequisite = { focus = YUG_set_aside_differences }
 		x = 0
 		y = 1
-		relative_position_id = YUG_all_yugoslavian_regiments
+		relative_position_id = YUG_set_aside_differences
 
 		cost = 5
 
@@ -1344,6 +1225,20 @@
 
 		completion_reward = {
 			48 = { add_claim_by = YUG }
+						48 = { 
+				OWNER = { 
+					ROOT = { 
+						create_wargoal = { 
+							type = take_state
+							target = PREV
+							expire = 0
+							generator = {
+								48
+							}
+						}
+					} 
+				} 
+			}
 		}
 	}
 
@@ -2123,9 +2018,9 @@
 	focus = {
 		id = YUG_industrialization_program
 		icon = GFX_goal_generic_construction
-		prerequisite = { focus = YUG_recover_from_the_great_depression }
-		x = 0
-		y = 1
+		prerequisite = { focus = YUG_local_self_management }
+		x = -2
+		y = 2
 
 		relative_position_id = YUG_recover_from_the_great_depression
 
@@ -2161,12 +2056,87 @@
 	}
 
 	focus = {
+		id = YUG_synthetic_program
+		icon = GFX_goal_generic_oil_refinery
+		prerequisite = { focus = YUG_industrialization_program }
+		x = -2
+		y = 3
+
+		relative_position_id = YUG_recover_from_the_great_depression
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 80
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 2
+				category = industry
+			}
+		}
+	}
+
+	focus = {
+		id = YUG_expand_the_university_of_belgrad
+		icon = GFX_focus_research
+		prerequisite = { focus = YUG_industrialization_program focus = YUG_develop_civilian_industry }
+		x = 0
+		y = 3
+		relative_position_id = YUG_recover_from_the_great_depression
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+
+	focus = {
 		id = YUG_expand_the_mining_industry
 		icon = GFX_goal_generic_construct_civilian
-		prerequisite = { focus = YUG_industrialization_program }
-		x = -1
+		prerequisite = { focus = YUG_expand_the_university_of_belgrad }
+		x = -2
 		y = 1
-		relative_position_id = YUG_industrialization_program
+		relative_position_id = YUG_expand_the_university_of_belgrad
 
 		cost = 5
 
@@ -2209,10 +2179,10 @@
 	focus = {
 		id = YUG_rare_minerals_exploitation
 		icon = GFX_goal_generic_construction2
-		prerequisite = { focus = YUG_industrialization_program }
-		x = 1
-		y = 1
-		relative_position_id = YUG_industrialization_program
+		prerequisite = { focus = YUG_expand_the_mining_industry }
+		x = -2
+		y = 2
+		relative_position_id = YUG_expand_the_university_of_belgrad
 
 		cost = 5
 
@@ -2285,10 +2255,10 @@
 	focus = {
 		id = YUG_expand_the_university_of_zagreb
 		icon = GFX_focus_research
-		prerequisite = { focus = YUG_expand_the_mining_industry focus = YUG_rare_minerals_exploitation }
-		x = 1
+		prerequisite = { focus = YUG_expand_the_university_of_belgrad }
+		x = 0
 		y = 1
-		relative_position_id = YUG_expand_the_mining_industry
+		relative_position_id = YUG_expand_the_university_of_belgrad
 
 		cost = 5
 
@@ -2300,6 +2270,7 @@
 			# NOT = {
 			# 	has_idea = YUG_idea_croatian_opposition
 			# }
+			num_of_factories > 125
 		}
 
 		bypass = {
@@ -2367,10 +2338,10 @@
 	focus = {
 		id = YUG_develop_civilian_industry
 		icon = GFX_goal_generic_construct_civ_factory
-		prerequisite = { focus = YUG_expand_the_university_of_zagreb }
-		x = -2
-		y = 1
-		relative_position_id = YUG_expand_the_university_of_zagreb
+		prerequisite = { focus = YUG_local_self_management }
+		x = 2
+		y = 2
+		relative_position_id = YUG_recover_from_the_great_depression
 
 		cost = 5
 
@@ -2400,10 +2371,10 @@
 				limit = {
 					ROOT = { has_full_control_of_state = PREV }
 				}
-				add_extra_state_shared_building_slots = 3
+				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
-					level = 3
+					level = 1
 					instant_build = yes
 				}
 			}
@@ -2413,10 +2384,10 @@
 				limit = {
 					ROOT = { has_full_control_of_state = PREV }
 				}
-				add_extra_state_shared_building_slots = 3
+				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
-					level = 3
+					level = 1
 					instant_build = yes
 				}
 			}
@@ -2426,10 +2397,10 @@
 				limit = {
 					ROOT = { has_full_control_of_state = PREV }
 				}
-				add_extra_state_shared_building_slots = 3
+				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
-					level = 3
+					level = 1
 					instant_build = yes
 				}
 			}
@@ -2439,10 +2410,10 @@
 	focus = {
 		id = YUG_improve_serbian_rail_network
 		icon = GFX_goal_generic_construct_infrastructure
-		prerequisite = { focus = YUG_expand_the_university_of_zagreb }
-		x = 0
+		prerequisite = { focus = YUG_expand_the_university_of_belgrad }
+		x = 2
 		y = 1
-		relative_position_id = YUG_expand_the_university_of_zagreb
+		relative_position_id = YUG_expand_the_university_of_belgrad
 
 		cost = 5
 
@@ -2581,6 +2552,18 @@
 					9809 6913 6940 6953 6998 9602
 				}
 			}
+			random_owned_controlled_state = {
+				prioritize = { 45 }
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 	}
 
@@ -2654,6 +2637,18 @@
 			build_railway = {
 				path = {
 					11581 9611
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 104 }
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
 				}
 			}
 		}
@@ -2811,10 +2806,10 @@
 	focus = {
 		id = YUG_local_self_management
 		icon = GFX_focus_generic_self_management
-		prerequisite = { focus = YUG_expand_the_university_of_zagreb }
-		x = 2
+		prerequisite = { focus = YUG_recover_from_the_great_depression }
+		x = 0
 		y = 1
-		relative_position_id = YUG_expand_the_university_of_zagreb
+		relative_position_id = YUG_recover_from_the_great_depression
 
 		cost = 5
 
@@ -2844,8 +2839,8 @@
 	}
 
 	focus = {
-		id = YUG_develop_military_industry
-		icon = GFX_goal_generic_construct_mil_factory
+		id = YUG_develop_rural_industry
+		icon = GFX_goal_generic_construct_civilian
 		prerequisite = { focus = YUG_develop_civilian_industry }
 		x = 0
 		y = 1
@@ -2879,19 +2874,47 @@
 
 		completion_reward = {
 			random_owned_controlled_state = {
+				prioritize = { 102 }
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			random_owned_controlled_state = {
 				prioritize = { 107 }
 				limit = {
 					ROOT = { has_full_control_of_state = PREV }
 				}
-				add_extra_state_shared_building_slots = 3
+				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
-					type = arms_factory
-					level = 3
+					type = industrial_complex
+					level = 1
 					instant_build = yes
 				}
 			}
+
+			random_owned_controlled_state = {
+				prioritize = { 109 }
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			
 		}
 	}
+			
 
 	# focus = {
 	# 	id = YUG_serbian_steel
@@ -2938,41 +2961,6 @@
 	# 		}			
 	# 	}
 	# }
-
-	focus = {
-		id = YUG_expand_the_university_of_belgrad
-		icon = GFX_focus_research
-		prerequisite = { focus = YUG_local_self_management }
-		x = 0
-		y = 1
-		relative_position_id = YUG_local_self_management
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_research_slot = 1
-		}
-	}
 
 	# focus = {
 	# 	id = YUG_central_management
@@ -3052,7 +3040,1055 @@
 	# 	}
 	# }
 
+	############################
+	######## LAND FORCE ########
+	############################
+
+	focus = {
+		id = YUG_lessons_from_the_great_war
+		icon = GFX_goal_generic_army_doctrines
+		x = 19
+		y = 0
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 70
+			modifier = {
+				factor = 1.2
+				is_in_faction_with = GER
+			}
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			army_experience = 20
+
+			random_owned_controlled_state = {
+				prioritize = { 108 }
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = YUG_army_modernization
+		icon = GFX_goal_generic_army_doctrines
+		relative_position_id = YUG_lessons_from_the_great_war 
+		x = 0
+		y = 1
+     	prerequisite = { focus = YUG_lessons_from_the_great_war }
+		cost = 5
+
+		ai_will_do = {
+			factor = 70
+			modifier = {
+				factor = 1.2
+				is_in_faction_with = GER
+			}
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			army_experience = 20
+			random_owned_controlled_state = {
+				prioritize = { 104 }
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = YUG_a_mechanised_army
+		icon = GFX_focus_generic_mechanized
+		prerequisite = { focus = YUG_army_modernization }
+		mutually_exclusive = {focus = YUG_an_elite_army }
+		x = -3
+		y = 1
+		relative_position_id =  YUG_army_modernization
+		cost = 5
+
+		ai_will_do = {
+			factor = 70
+			modifier = {
+				factor = 1.2
+				is_in_faction_with = GER
+			}
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			army_experience = 25
+			add_doctrine_cost_reduction = {
+				name = YUG_the_army
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			random_owned_controlled_state = {
+				prioritize = { 107 }
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = YUG_motorize_the_cavalry
+		icon = GFX_goal_generic_cavalry
+		prerequisite = { focus = YUG_motorized_logistics }
+		x = -1
+		y = 3
+		relative_position_id =  YUG_army_modernization
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 50
+			modifier = {
+				factor = 1.2
+				is_in_faction_with = GER
+			}
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			add_ideas = YUG_mech_discount
+			add_tech_bonus = {
+				name = YUG_armored_cavalry
+				bonus = 0.50
+				uses = 1
+				category = cat_mechanized_equipment
+			}
+
+		}
+		
+	}
+		
+
+	focus = {
+		id = YUG_motorized_logistics
+		icon = GFX_focus_generic_truck
+		prerequisite = { focus = YUG_a_mechanised_army }
+		x = -1
+		y = 2
+		relative_position_id = YUG_army_modernization
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				factor = 1.2
+				is_in_faction_with = GER
+			}
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			add_ideas = YUG_truck_discount
+			add_tech_bonus = {
+				name = YUG_motorized_logistics
+				bonus = 0.50
+				uses = 2
+				category = hospital_tech
+				category = logistics_tech
+			}
+		}
+	}
+
+	focus = {
+		id = YUG_armored_cavalry
+		icon = GFX_goal_generic_build_tank
+		prerequisite = { focus = YUG_motorize_the_cavalry }
+		prerequisite = { focus = YUG_mechanised_doctrine }
+		x = -3
+		y = 4
+		relative_position_id = YUG_army_modernization
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				factor = 1.5
+				is_in_faction_with = GER
+			}
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+        add_ideas = YUG_armored_cavalry
+		}
+	}
+
+	focus = {
+		id = YUG_modernised_doctrine
+		icon = GFX_focus_FIN_motti_tactics
+		prerequisite = { focus = YUG_a_mechanised_army }
+		x = -5
+		y = 2
+		relative_position_id = YUG_army_modernization
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 25
+			modifier = {
+				factor = 3
+				is_in_faction_with = GER
+			}
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+
+			add_doctrine_cost_reduction = {
+				name = YUG_army_maneuvers
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+		}
+			}
+		
+
+	focus = {
+		id = YUG_mechanised_doctrine
+		icon = GFX_focus_generic_mechanized
+		prerequisite = { focus = YUG_modernised_doctrine }
+		x = 0
+		y = 1
+		relative_position_id = YUG_modernised_doctrine
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 60
+			modifier = {
+				factor = 1.2
+				is_in_faction_with = GER
+			}
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		
+		complete_tooltip = {
+
+		}
+
+
+			completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = YUG_army_maneuvers
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+		}
+		}
 	
+
+	# focus = {
+	# 	id = YUG_anti_tank_defenses
+	# 	icon = GFX_goal_generic_army_artillery2
+	# 	prerequisite = { focus = YUG_domestic_artillery_production }
+	# 	x = 0
+	# 	y = 2
+	# 	relative_position_id = YUG_small_arms
+
+	# 	cost = 5
+
+	# 	ai_will_do = {
+	# 		factor = 60
+	# 	}
+
+	# 	available = {
+
+	# 	}
+
+	# 	bypass = {
+
+	# 	}
+
+	# 	cancel_if_invalid = yes
+	# 	continue_if_invalid = no
+	# 	available_if_capitulated = no
+	# 	search_filters = { FOCUS_FILTER_RESEARCH }
+	# 	complete_tooltip = {
+
+	# 	}
+
+	# 	completion_reward = {
+	# 		add_tech_bonus = {
+	# 			name = YUG_anti_tank_defenses
+	# 			bonus = 0.75
+	# 			uses = 1
+	# 			category = cat_anti_tank
+	# 		}
+	# 	}
+	# }
+
+	focus = {
+		id = YUG_an_elite_army
+		icon = GFX_focus_eng_special_air_service
+		prerequisite = { focus = YUG_army_modernization }
+		mutually_exclusive = { focus = YUG_a_mechanised_army }
+		x = 3
+		y = 1
+		relative_position_id = YUG_army_modernization
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 70
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			add_ideas = YUG_defunct_infantry
+			custom_effect_tooltip = just_hurts_inf_tt
+			add_doctrine_cost_reduction = {
+				name = YUG_army_maneuvers
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+			random_owned_controlled_state = {
+				prioritize = { 107 }
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = YUG_modernisation_of_small_arms
+		icon = GFX_focus_focus_fra_maquis
+		prerequisite = { focus = YUG_an_elite_army }
+		x = 5
+		y = 2
+		relative_position_id = YUG_army_modernization
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+            custom_effect_tooltip = available_mio_tt
+			show_mio_tooltip = GER_carl_walther_organization
+		}
+	}
+
+	focus = {	
+		id = YUG_cheaper_production_methods
+		icon = GFX_focus_generic_reorient_production
+		prerequisite = { focus = YUG_modernisation_of_small_arms }
+
+		x = 5
+		y = 3
+		relative_position_id = YUG_army_modernization
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {}
+
+	
+
+		completion_reward = {
+        add_ideas = YUG_equipment_discount
+		}
+	}
+	
+
+	focus = {
+		id = YUG_special_forces_doctrine
+		icon = GFX_focus_CHL_departemento_de_las_tropas_nacistas_de_asalto
+		prerequisite = { focus = YUG_an_elite_army }
+		x = 1
+		y = 2
+		relative_position_id = YUG_army_modernization
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 60
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = YUG_army_maneuvers
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+		}
+	}
+
+	focus = {
+		id = YUG_all_kinds_of_special_forces
+		icon = GFX_focus_GER_gebirgsjager
+		prerequisite = { focus = YUG_special_forces_doctrine }
+		x = 1
+		y = 3
+		relative_position_id = YUG_army_modernization
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 60
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = YUG_army_maneuvers
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+		}
+	}
+
+	focus = {
+		id = YUG_military_interpreters
+		icon = GFX_focus_generic_the_council_of_europe
+		prerequisite = { focus = YUG_all_kinds_of_special_forces }
+		prerequisite = { focus = YUG_cheaper_production_methods }
+		x = 3
+		y = 4
+		relative_position_id = YUG_army_modernization
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 60
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			add_ideas = YUG_interpreters
+			add_doctrine_cost_reduction = {
+				name = YUG_supremacy_of_defense
+				cost_reduction = 0.5
+				uses = 2
+            category = special_forces_doctrine
+			}
+		}
+	}
+
+	
+
+	focus = {
+		id = YUG_reform_high_command
+		icon = GFX_focus_YUG_dissolve_serbia
+		prerequisite = { focus = YUG_armored_cavalry focus = YUG_military_interpreters }
+		x = 0
+		y = 5
+		relative_position_id = YUG_army_modernization
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 70
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+		
+			swap_ideas = {
+				remove_idea = YUG_idea_serbian_general_staff
+				add_idea = YUG_idea_yugoslavian_general_staff
+			}
+		}
+	}
+
+	focus = {
+		id = YUG_artillery_focus
+		icon = GFX_goal_generic_army_artillery
+		prerequisite = { focus = YUG_infantry_focus }
+		x = 0
+		y = 4
+		relative_position_id = YUG_reform_high_command
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 70
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			add_ideas = YUG_idea_artillery_focus
+		}
+	}
+	
+	focus = {
+		id = YUG_infantry_focus
+		icon = GFX_goal_generic_allies_build_infantry
+		prerequisite = { focus = YUG_legacy_of_serbia focus = YUG_learn_from_germans }
+
+		x = 0
+		y = 3
+		relative_position_id = YUG_reform_high_command
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 80
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = YUG_idea_infantry_focus
+		}
+	}
+
+
+
+	focus = {
+		id = YUG_unified_army
+		icon = GFX_focus_generic_little_entente
+		prerequisite = { focus = YUG_reform_high_command }
+		x = -1
+		y = 1
+		relative_position_id = YUG_reform_high_command
+
+		mutually_exclusive = { focus = YUG_serbian_army }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				factor = 1.2
+				is_in_faction_with = GER
+			}
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			add_ideas = YUG_unified_army
+		}
+	}
+
+	focus = {
+		id = YUG_learn_from_germans
+		icon = GFX_focus_generic_military_academy
+		prerequisite = { focus = YUG_unified_army }
+		x = 0
+		y = 1
+		relative_position_id = YUG_unified_army
+
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				factor = 1.2
+				is_in_faction_with = GER
+			}
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			add_ideas = CZE_war_college_idea
+		}
+	}
+
+	focus = {
+		id = YUG_fuel_efficiency
+		icon = GFX_focus_generic_stockpile_fuel
+		prerequisite = { focus = YUG_learn_from_germans }
+		x = -3
+		y = 3
+		relative_position_id = YUG_reform_high_command
+
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				factor = 1.2
+				is_in_faction_with = GER
+			}
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+            add_ideas = YUG_fuel_efficiency
+		}
+	}
+
+	focus = {
+		id = YUG_serbian_army
+		icon = GFX_focus_generic_manpower
+		prerequisite = { focus = YUG_reform_high_command }
+	
+		x = 1
+		y = 1
+		relative_position_id = YUG_reform_high_command
+
+		mutually_exclusive = { focus = YUG_unified_army }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				factor = 1.2
+				is_in_faction_with = GER
+			}
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			add_ideas = YUG_serbian_army
+		}
+	}
+
+	focus = {
+		id = YUG_legacy_of_serbia
+		icon = GFX_focus_generic_strike_at_democracy1
+		prerequisite = { focus = YUG_serbian_army }
+		x = 0
+		y = 1
+		relative_position_id = YUG_serbian_army
+
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				factor = 1.2
+				is_in_faction_with = GER
+			}
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			hidden_effect = {
+				set_technology = {
+					arditi_tech = 1
+				}
+			}
+			custom_effect_tooltip = YUG_arditi_tt
+		}
+	}
+
+	focus = {
+		id = YUG_branch_out
+		icon = GFX_focus_generic_manpower
+		prerequisite = { focus = YUG_legacy_of_serbia }
+	
+		x = 3
+		y = 3
+		relative_position_id = YUG_reform_high_command
+
+
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				factor = 1.2
+				is_in_faction_with = GER
+			}
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				add_potential_special_forces_tree = yes
+				add_doctrine_cost_reduction = {
+					cost_reduction = 0.5
+					uses = 4
+					category = special_forces_doctrine
+				}
+			}
+		}
+	}
+
+
+
 	############################
 	######## AIR FORCE #########
 	############################
@@ -3081,7 +4117,6 @@
 
 		}
 
-		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
 		search_filters = { FOCUS_FILTER_RESEARCH }
@@ -3166,7 +4201,7 @@
 		}
 
 		completion_reward = {
-			IF = {
+			if = {
 				limit = {
 					has_dlc = "Arms Against Tyranny"
 				}
@@ -3228,7 +4263,7 @@
 		}
 
 		completion_reward = {
-			IF = {
+			if = {
 				limit = {
 					has_dlc = "Arms Against Tyranny"
 				}
@@ -3289,7 +4324,7 @@
 		}
 
 		completion_reward = {
-			IF = {
+			if = {
 				limit = {
 					has_dlc = "Arms Against Tyranny"
 				}
@@ -3713,1001 +4748,6 @@
 
 		completion_reward = {
 			country_event = DOD_yugoslavia.160
-		}
-	}
-
-	############################
-	######## LAND FORCE ########
-	############################
-
-	focus = {
-		id = YUG_army_modernization
-		icon = GFX_goal_generic_army_doctrines
-		x = 19
-		y = 0
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 70
-			modifier = {
-				factor = 1.2
-				is_in_faction_with = GER
-			}
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			army_experience = 50
-		}
-	}
-
-	focus = {
-		id = YUG_the_army
-		icon = GFX_goal_generic_army_doctrines
-		prerequisite = { focus = YUG_army_modernization }
-		x = -3
-		y = 1
-		relative_position_id =  YUG_army_modernization
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 70
-			modifier = {
-				factor = 1.2
-				is_in_faction_with = GER
-			}
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			army_experience = 25
-			add_doctrine_cost_reduction = {
-				name = YUG_the_army
-				cost_reduction = 0.5
-				uses = 1
-				category = land_doctrine
-			}
-		}
-	}
-
-	focus = {
-		id = YUG_motorize_the_cavalry
-		icon = GFX_goal_generic_cavalry
-		prerequisite = { focus = YUG_the_army }
-		x = 2
-		y = 1
-		relative_position_id =  YUG_the_army
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 50
-			modifier = {
-				factor = 1.2
-				is_in_faction_with = GER
-			}
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = YUG_motorize_the_cavalry
-				bonus = 0.75
-				technology = motorised_infantry
-			}
-		}
-	}
-
-	focus = {
-		id = YUG_motorized_logistics
-		icon = GFX_goal_generic_army_motorized
-		prerequisite = { focus = YUG_motorize_the_cavalry }
-		x = -1
-		y = 1
-		relative_position_id = YUG_motorize_the_cavalry
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 40
-			modifier = {
-				factor = 1.2
-				is_in_faction_with = GER
-			}
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = YUG_motorized_logistics
-				bonus = 0.50
-				uses = 2
-				category = hospital_tech
-				category = logistics_tech
-			}
-		}
-	}
-
-	focus = {
-		id = YUG_armored_cavalry
-		icon = GFX_goal_generic_build_tank
-		prerequisite = { focus = YUG_motorize_the_cavalry }
-		x = 0
-		y = 2
-		relative_position_id = YUG_motorize_the_cavalry
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 40
-			modifier = {
-				factor = 1.5
-				is_in_faction_with = GER
-			}
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = YUG_armored_cavalry
-				bonus = 0.50
-				uses = 1
-				category = cat_mechanized_equipment
-			}
-		}
-	}
-
-	focus = {
-		id = YUG_modern_tanks
-		icon = GFX_goal_generic_army_tanks
-		prerequisite = { focus = YUG_the_army }
-		x = 0
-		y = 1
-		relative_position_id = YUG_the_army
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 25
-			modifier = {
-				factor = 3
-				is_in_faction_with = GER
-			}
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = YUG_modern_tanks
-				bonus = 0.50
-				uses = 1
-				category = armor
-			}
-		}
-	}
-
-	focus = {
-		id = YUG_tank_licenses
-		icon = GFX_focus_generic_license_production
-		prerequisite = { focus = YUG_modern_tanks }
-		x = 0
-		y = 2
-		relative_position_id = YUG_modern_tanks
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 60
-			modifier = {
-				factor = 1.2
-				is_in_faction_with = GER
-			}
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_ideas = YUG_tank_licenses
-		}
-	}
-
-	focus = {
-		id = YUG_small_arms
-		icon = GFX_goal_generic_small_arms
-		prerequisite = { focus = YUG_the_army }
-		x = -2
-		y = 1
-		relative_position_id = YUG_the_army
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 70
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			random_owned_controlled_state = {
-				prioritize = { 107 }
-				limit = {
-					ROOT = { has_full_control_of_state = PREV }
-				}
-				add_extra_state_shared_building_slots = 3
-				add_building_construction = {
-					type = arms_factory
-					level = 3
-					instant_build = yes
-				}
-			}
-			# add_tech_bonus = {
-			# 	name = YUG_small_arms
-			# 	bonus = 0.5
-			# 	uses = 1
-			# 	category = infantry_weapons
-			# }
-		}
-	}
-
-	focus = {
-		id = YUG_domestic_artillery_production
-		icon = GFX_goal_generic_army_artillery2
-		prerequisite = { focus = YUG_small_arms }
-		x = 0
-		y = 2
-		relative_position_id = YUG_small_arms
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 70
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = YUG_domestic_artillery_production
-				bonus = 0.5
-				uses = 2
-				category = artillery
-			}
-		}
-	}
-
-	# focus = {
-	# 	id = YUG_anti_tank_defenses
-	# 	icon = GFX_goal_generic_army_artillery2
-	# 	prerequisite = { focus = YUG_domestic_artillery_production }
-	# 	x = 0
-	# 	y = 2
-	# 	relative_position_id = YUG_small_arms
-
-	# 	cost = 5
-
-	# 	ai_will_do = {
-	# 		factor = 60
-	# 	}
-
-	# 	available = {
-
-	# 	}
-
-	# 	bypass = {
-
-	# 	}
-
-	# 	cancel_if_invalid = yes
-	# 	continue_if_invalid = no
-	# 	available_if_capitulated = no
-	# 	search_filters = { FOCUS_FILTER_RESEARCH }
-	# 	complete_tooltip = {
-
-	# 	}
-
-	# 	completion_reward = {
-	# 		add_tech_bonus = {
-	# 			name = YUG_anti_tank_defenses
-	# 			bonus = 0.75
-	# 			uses = 1
-	# 			category = cat_anti_tank
-	# 		}
-	# 	}
-	# }
-
-	focus = {
-		id = YUG_mountain_brigades
-		icon = GFX_goal_generic_special_forces
-		prerequisite = { focus = YUG_army_modernization }
-		x = 5
-		y = 1
-		relative_position_id = YUG_army_modernization
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 70
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = YUG_mountain_brigades
-				bonus = 0.75
-				uses = 1
-				category = mountaineers_tech
-			}
-		}
-	}
-
-	focus = {
-		id = YUG_independent_engineer_regiments
-		icon = GFX_goal_generic_production
-		prerequisite = { focus = YUG_mountain_brigades }
-		x = 0
-		y = 1
-		relative_position_id = YUG_mountain_brigades
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 50
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = YUG_independent_engineer_regiments
-				bonus = 0.75
-				uses = 1
-				category = engineers_tech
-			}
-		}
-	}
-
-	focus = {
-		id = YUG_motorized_recon_companies
-		icon = GFX_goal_generic_military_sphere
-		prerequisite = { focus = YUG_independent_engineer_regiments }
-		x = 0
-		y = 2
-		relative_position_id = YUG_mountain_brigades
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 40
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = YUG_motorized_recon_companies
-				bonus = 0.75
-				uses = 1
-				category = recon_tech
-			}
-		}
-	}
-
-	focus = {
-		id = YUG_form_parachute_battalions
-		icon = GFX_focus_generic_paratrooper
-		prerequisite = { focus = YUG_motorized_recon_companies }
-		x = 0
-		y = 3
-		relative_position_id = YUG_mountain_brigades
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 10
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_tech_bonus = {
-				name = YUG_form_parachute_battalions
-				bonus = 0.75
-				uses = 1
-				category = para_tech
-			}
-		}
-	}
-
-	focus = {
-		id = YUG_army_maneuvers
-		icon = GFX_goal_generic_army_doctrines
-		prerequisite = { focus = YUG_army_modernization }
-		x = 2
-		y = 1
-		relative_position_id = YUG_army_modernization
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 70
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_doctrine_cost_reduction = {
-				name = YUG_army_maneuvers
-				cost_reduction = 0.5
-				uses = 1
-				category = land_doctrine
-			}
-		}
-	}
-
-	focus = {
-		id = YUG_supremacy_of_offense
-		icon = GFX_goal_generic_major_war
-		prerequisite = { focus = YUG_army_maneuvers }
-		mutually_exclusive = { focus = YUG_supremacy_of_defense }
-		x = -1
-		y = 1
-		relative_position_id = YUG_army_maneuvers
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 30
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_doctrine_cost_reduction = {
-				name = YUG_supremacy_of_offense
-				cost_reduction = 0.5
-				uses = 2
-				category = cat_mobile_warfare
-				category = cat_superior_firepower
-			}
-		}
-	}
-
-	focus = {
-		id = YUG_supremacy_of_defense
-		icon = GFX_goal_generic_position_armies
-		prerequisite = { focus = YUG_army_maneuvers }
-		mutually_exclusive = { focus = YUG_supremacy_of_offense }
-		x = 1
-		y = 1
-		relative_position_id = YUG_army_maneuvers
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 60
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_doctrine_cost_reduction = {
-				name = YUG_supremacy_of_defense
-				cost_reduction = 0.5
-				uses = 2
-				category = cat_grand_battle_plan
-				category = cat_mass_assault
-			}
-		}
-	}
-
-	focus = {
-		id = YUG_reform_high_command
-		icon = GFX_focus_YUG_dissolve_serbia
-		prerequisite = { focus = YUG_supremacy_of_offense focus = YUG_supremacy_of_defense }
-		x = 0
-		y = 2
-		relative_position_id = YUG_army_maneuvers
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 70
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-		
-			swap_ideas = {
-				remove_idea = YUG_idea_serbian_general_staff
-				add_idea = YUG_idea_yugoslavian_general_staff
-			}
-		}
-	}
-
-	focus = {
-		id = YUG_artillery_focus
-		icon = GFX_goal_generic_army_artillery
-		prerequisite = { focus = YUG_reform_high_command }
-		mutually_exclusive = { focus = YUG_infantry_focus }
-		x = 1
-		y = 1
-		relative_position_id = YUG_reform_high_command
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 70
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_ideas = YUG_idea_artillery_focus
-		}
-	}
-	
-	focus = {
-		id = YUG_infantry_focus
-		icon = GFX_goal_generic_allies_build_infantry
-		prerequisite = { focus = YUG_reform_high_command }
-		mutually_exclusive = { focus = YUG_artillery_focus }
-		x = -1
-		y = 1
-		relative_position_id = YUG_reform_high_command
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 80
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_ideas = YUG_idea_infantry_focus
-		}
-	}
-
-
-
-	focus = {
-		id = YUG_unified_army
-		icon = GFX_focus_generic_little_entente
-		prerequisite = { focus = YUG_domestic_artillery_production focus = YUG_armored_cavalry focus = YUG_tank_licenses }
-		prerequisite = { focus = YUG_infantry_focus focus = YUG_artillery_focus }
-		x = -1
-		y = 2
-		relative_position_id = YUG_armored_cavalry
-
-		mutually_exclusive = { focus = YUG_serbian_army }
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 40
-			modifier = {
-				factor = 1.2
-				is_in_faction_with = GER
-			}
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_ideas = YUG_unified_army
-		}
-	}
-
-	focus = {
-		id = YUG_learn_from_germans
-		icon = GFX_focus_generic_military_academy
-		prerequisite = { focus = YUG_unified_army }
-		x = 0
-		y = 1
-		relative_position_id = YUG_unified_army
-
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 40
-			modifier = {
-				factor = 1.2
-				is_in_faction_with = GER
-			}
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_ideas = CZE_war_college_idea
-		}
-	}
-
-	focus = {
-		id = YUG_serbian_army
-		icon = GFX_focus_generic_manpower
-		prerequisite = { focus = YUG_domestic_artillery_production focus = YUG_armored_cavalry focus = YUG_tank_licenses }
-		prerequisite = { focus = YUG_infantry_focus focus = YUG_artillery_focus }
-		x = 1
-		y = 2
-		relative_position_id = YUG_armored_cavalry
-
-		mutually_exclusive = { focus = YUG_unified_army }
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 40
-			modifier = {
-				factor = 1.2
-				is_in_faction_with = GER
-			}
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			add_ideas = YUG_serbian_army
-		}
-	}
-
-	focus = {
-		id = YUG_legacy_of_serbia
-		icon = GFX_focus_generic_strike_at_democracy1
-		prerequisite = { focus = YUG_serbian_army }
-		x = 0
-		y = 1
-		relative_position_id = YUG_serbian_army
-
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 40
-			modifier = {
-				factor = 1.2
-				is_in_faction_with = GER
-			}
-		}
-
-		available = {
-
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		complete_tooltip = {
-
-		}
-
-		completion_reward = {
-			hidden_effect = {
-				set_technology = {
-					arditi_tech = 1
-				}
-			}
-			custom_effect_tooltip = YUG_arditi_tt
 		}
 	}
 
@@ -5142,5 +5182,4 @@
 			}
 		}
 	}
-
 }
