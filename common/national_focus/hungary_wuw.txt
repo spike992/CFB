@@ -2851,7 +2851,7 @@ focus_tree = {
 		relative_position_id = wuw_HUN_protect_czechoslovakia
 
 		will_lead_to_war_with = ROM
-		will_lead_to_war_with = TRA
+		#will_lead_to_war_with = TRA
 
 		cost = 5
 
@@ -2862,8 +2862,15 @@ focus_tree = {
 		available = {
 
 			is_puppet = no
-			has_army_manpower = { size > 200000 }
-
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = axis_manpower
+						option = ENABLED
+					}
+				}
+				has_army_manpower = { size > 200000 }	
+			}
 			NOT = {
 				OR = {
 					76 = {
@@ -2889,14 +2896,14 @@ focus_tree = {
 				}
 			}
 
-			IF = {
-				limit = {
-					ROM = {
-						owns_state = 76
-					}
-				}
-				strength_ratio = { tag = ROM ratio > 0.66 }
-			}
+			# IF = {
+			# 	limit = {
+			# 		ROM = {
+			# 			owns_state = 76
+			# 		}
+			# 	}
+			# 	strength_ratio = { tag = ROM ratio > 0.66 }
+			# }
 
 
 		}
@@ -3097,7 +3104,7 @@ focus_tree = {
 
 		will_lead_to_war_with = GER
 		will_lead_to_war_with = POL
-		will_lead_to_war_with = SIL
+		#will_lead_to_war_with = SIL
 
 		cost = 5
 
@@ -3120,8 +3127,15 @@ focus_tree = {
 					has_war_with = ROOT
 				}
 			}
-
-			has_army_manpower = { size > 250000 }
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = axis_manpower
+						option = ENABLED
+					}
+				}
+				has_army_manpower = { size > 250000 }	
+			}
 
 		}
 
@@ -3137,41 +3151,41 @@ focus_tree = {
 
 		completion_reward = {
 
-			IF = {
-				limit = {
-					CZE = {
-						is_subject_of = ROOT
-					}
-				}
-				every_state = {
-					limit = {
-						is_core_of = SIL
-						NOT = {
-							OR = {
-								is_claimed_by = CZE
-								is_core_of = CZE
-								is_owned_by = CZE
-							}
-						}
-					}
-					add_core_of = CZE
-				}
-				ELSE = {
-					every_state = {
-						limit = {
-							is_core_of = SIL
-							NOT = {
-								OR = {
-									is_claimed_by = ROOT
-									is_core_of = ROOT
-									is_owned_by = ROOT
-								}
-							}
-						}
-						add_claim_by = ROOT
-					}
-				}
-			}
+			# IF = {
+			# 	limit = {
+			# 		CZE = {
+			# 			is_subject_of = ROOT
+			# 		}
+			# 	}
+			# 	every_state = {
+			# 		limit = {
+			# 			is_core_of = SIL
+			# 			NOT = {
+			# 				OR = {
+			# 					is_claimed_by = CZE
+			# 					is_core_of = CZE
+			# 					is_owned_by = CZE
+			# 				}
+			# 			}
+			# 		}
+			# 		add_core_of = CZE
+			# 	}
+			# 	ELSE = {
+			# 		every_state = {
+			# 			limit = {
+			# 				is_core_of = SIL
+			# 				NOT = {
+			# 					OR = {
+			# 						is_claimed_by = ROOT
+			# 						is_core_of = ROOT
+			# 						is_owned_by = ROOT
+			# 					}
+			# 				}
+			# 			}
+			# 			add_claim_by = ROOT
+			# 		}
+			# 	}
+			# }
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -3682,229 +3696,229 @@ focus_tree = {
 
 		completion_reward = {
 
-				IF = {
-					limit = {
-						LBV = {
-							exists = yes
-							is_subject = no
-						}
-					}
-					LBV = {
-						country_event = {
-							id = WW_hungary.69
-							days = 1
-							random_days = 2
-						}
-					}
-				}
-				ELSE_IF = {
-					limit = {
-						LBV = {
-							is_subject = yes
-							NOT = {
-								is_subject_of = ROOT
-							}
-						}
-					}
-					create_wargoal = {
-						type = puppet_wargoal_focus
-						target = LBV
-					}
-					unlock_decision_tooltip = HUN_place_a_habsburg_on_the_lombardo_venetian_throne
-				}
-				ELSE_IF = {
-					limit = {
-						LBV = {
-							is_subject_of = ROOT
-						}
-					}
-					add_political_power = 75
-					add_stability = 0.05
-					add_war_support = 0.025
+				# IF = {
+				# 	limit = {
+				# 		LBV = {
+				# 			exists = yes
+				# 			is_subject = no
+				# 		}
+				# 	}
+				# 	LBV = {
+				# 		country_event = {
+				# 			id = WW_hungary.69
+				# 			days = 1
+				# 			random_days = 2
+				# 		}
+				# 	}
+				# }
+				# ELSE_IF = {
+				# 	limit = {
+				# 		LBV = {
+				# 			is_subject = yes
+				# 			NOT = {
+				# 				is_subject_of = ROOT
+				# 			}
+				# 		}
+				# 	}
+				# 	create_wargoal = {
+				# 		type = puppet_wargoal_focus
+				# 		target = LBV
+				# 	}
+				# 	unlock_decision_tooltip = HUN_place_a_habsburg_on_the_lombardo_venetian_throne
+				# }
+				# ELSE_IF = {
+				# 	limit = {
+				# 		LBV = {
+				# 			is_subject_of = ROOT
+				# 		}
+				# 	}
+				# 	add_political_power = 75
+				# 	add_stability = 0.05
+				# 	add_war_support = 0.025
 
-					custom_effect_tooltip = generic_skip_one_line_tt
+				# 	custom_effect_tooltip = generic_skip_one_line_tt
 
-					every_state = {
-						limit = {
-							OR = {
-								is_controlled_by = ROOT
-								any_country = {
-									is_subject_of = ROOT
-									controls_state = PREV
-								}
-							}
-							NOT = {
-								is_core_of = ROOT
-							}
-							is_core_of = LBV
-							NOT = {
-								is_owned_and_controlled_by = LBV
-							}
-						}
-						transfer_state_to = LBV
-					}
+				# 	every_state = {
+				# 		limit = {
+				# 			OR = {
+				# 				is_controlled_by = ROOT
+				# 				any_country = {
+				# 					is_subject_of = ROOT
+				# 					controls_state = PREV
+				# 				}
+				# 			}
+				# 			NOT = {
+				# 				is_core_of = ROOT
+				# 			}
+				# 			is_core_of = LBV
+				# 			NOT = {
+				# 				is_owned_and_controlled_by = LBV
+				# 			}
+				# 		}
+				# 		transfer_state_to = LBV
+				# 	}
 
-					LBV = {
-						drop_cosmetic_tag = yes
-					}
+				# 	LBV = {
+				# 		drop_cosmetic_tag = yes
+				# 	}
 
-					IF = {
-						limit = {
-							LBV = {
-								NOT = {
-									is_subject_of = ROOT
-								}
-							}
-						}
-						puppet = LBV
-					}
+				# 	IF = {
+				# 		limit = {
+				# 			LBV = {
+				# 				NOT = {
+				# 					is_subject_of = ROOT
+				# 				}
+				# 			}
+				# 		}
+				# 		puppet = LBV
+				# 	}
 
-					hidden_effect = {
-						set_country_flag = HUN_created_lombardo_venetian_habsburg_monarchy
-					}
-				}
-				ELSE_IF = {
-					limit = {
-						LBV = {
-							exists = no
-							AND = {
-								OR = {
-									160 = {
-										is_owned_and_controlled_by = ROOT
-									}
-									any_country = {
-										is_subject_of = ROOT
-										controls_state = 160
-									}
-								}
-								OR = {
-									850 = {
-										is_owned_and_controlled_by = ROOT
-									}
-									any_country = {
-										is_subject_of = ROOT
-										controls_state = 850
-									}
-								}
-								OR = {
-									159 = {
-										is_owned_and_controlled_by = ROOT
-									}
-									any_country = {
-										is_subject_of = ROOT
-										controls_state = 159
-									}
-								}
-							}
-						}
-					}
-					add_political_power = 50
+				# 	hidden_effect = {
+				# 		set_country_flag = HUN_created_lombardo_venetian_habsburg_monarchy
+				# 	}
+				# }
+				# ELSE_IF = {
+				# 	limit = {
+				# 		LBV = {
+				# 			exists = no
+				# 			AND = {
+				# 				OR = {
+				# 					160 = {
+				# 						is_owned_and_controlled_by = ROOT
+				# 					}
+				# 					any_country = {
+				# 						is_subject_of = ROOT
+				# 						controls_state = 160
+				# 					}
+				# 				}
+				# 				OR = {
+				# 					850 = {
+				# 						is_owned_and_controlled_by = ROOT
+				# 					}
+				# 					any_country = {
+				# 						is_subject_of = ROOT
+				# 						controls_state = 850
+				# 					}
+				# 				}
+				# 				OR = {
+				# 					159 = {
+				# 						is_owned_and_controlled_by = ROOT
+				# 					}
+				# 					any_country = {
+				# 						is_subject_of = ROOT
+				# 						controls_state = 159
+				# 					}
+				# 				}
+				# 			}
+				# 		}
+				# 	}
+				# 	add_political_power = 50
 
-					LBV = {
-						every_core_state = {
-							limit = {
-								OR = {
-									is_controlled_by = ROOT
-									any_country = {
-										is_subject_of = ROOT
-										controls_state = PREV
-									}
-								}
-								NOT = {
-									is_core_of = ROOT
-								}
-								NOT = {
-									is_owned_and_controlled_by = LBV
-								}
-							}
-							transfer_state_to = LBV
-						}
-					}
+				# 	LBV = {
+				# 		every_core_state = {
+				# 			limit = {
+				# 				OR = {
+				# 					is_controlled_by = ROOT
+				# 					any_country = {
+				# 						is_subject_of = ROOT
+				# 						controls_state = PREV
+				# 					}
+				# 				}
+				# 				NOT = {
+				# 					is_core_of = ROOT
+				# 				}
+				# 				NOT = {
+				# 					is_owned_and_controlled_by = LBV
+				# 				}
+				# 			}
+				# 			transfer_state_to = LBV
+				# 		}
+				# 	}
 
-					LBV = {
-						drop_cosmetic_tag = yes
-					}
+				# 	LBV = {
+				# 		drop_cosmetic_tag = yes
+				# 	}
 
-					IF = {
-						limit = {
-							LBV = {
-								NOT = {
-									is_subject_of = ROOT
-								}
-							}
-						}
-						puppet = LBV
-					}
+				# 	IF = {
+				# 		limit = {
+				# 			LBV = {
+				# 				NOT = {
+				# 					is_subject_of = ROOT
+				# 				}
+				# 			}
+				# 		}
+				# 		puppet = LBV
+				# 	}
 
-					hidden_effect = {
-						set_country_flag = HUN_created_lombardo_venetian_habsburg_monarchy
-					}
-				}
-				ELSE_IF = {
-					limit = {
-						LBV = {
-							exists = no
-							any_other_country = {
-								NOT = {
-									OR = {
-										is_subject_of = ROOT
-										is_in_faction_with = ROOT
-									}
-								}
-								OR = {
-									owns_state = 160
-									owns_state = 850
-									owns_state = 159
-								}
-							}
-						}
-					}
+				# 	hidden_effect = {
+				# 		set_country_flag = HUN_created_lombardo_venetian_habsburg_monarchy
+				# 	}
+				# }
+				# ELSE_IF = {
+				# 	limit = {
+				# 		LBV = {
+				# 			exists = no
+				# 			any_other_country = {
+				# 				NOT = {
+				# 					OR = {
+				# 						is_subject_of = ROOT
+				# 						is_in_faction_with = ROOT
+				# 					}
+				# 				}
+				# 				OR = {
+				# 					owns_state = 160
+				# 					owns_state = 850
+				# 					owns_state = 159
+				# 				}
+				# 			}
+				# 		}
+				# 	}
 
-					LBV = {
-						every_core_state = {
-							limit = {
-								NOT = {
-									OR = {
-										is_core_of = ROOT
-										is_claimed_by = ROOT
-										is_owned_by = ROOT
-									}
-								}
-							}
-							add_claim_by = ROOT
-						}
-					}
+				# 	LBV = {
+				# 		every_core_state = {
+				# 			limit = {
+				# 				NOT = {
+				# 					OR = {
+				# 						is_core_of = ROOT
+				# 						is_claimed_by = ROOT
+				# 						is_owned_by = ROOT
+				# 					}
+				# 				}
+				# 			}
+				# 			add_claim_by = ROOT
+				# 		}
+				# 	}
 
-					custom_effect_tooltip = generic_skip_one_line_tt
+				# 	custom_effect_tooltip = generic_skip_one_line_tt
 
-					every_country = {
-						limit = {
-							NOT = {
-								OR = {
-									is_subject_of = ROOT
-									is_in_faction_with = ROOT
-									original_tag = ROOT
-									original_tag = LBV
-								}
-							}
-							OR = {
-								owns_state = 160
-								owns_state = 850
-								owns_state = 159
-							}
-						}
-						ROOT = {
-							create_wargoal = {
-								type = take_claimed_state
-								target = PREV
-							}
-						}
-					}
+				# 	every_country = {
+				# 		limit = {
+				# 			NOT = {
+				# 				OR = {
+				# 					is_subject_of = ROOT
+				# 					is_in_faction_with = ROOT
+				# 					original_tag = ROOT
+				# 					original_tag = LBV
+				# 				}
+				# 			}
+				# 			OR = {
+				# 				owns_state = 160
+				# 				owns_state = 850
+				# 				owns_state = 159
+				# 			}
+				# 		}
+				# 		ROOT = {
+				# 			create_wargoal = {
+				# 				type = take_claimed_state
+				# 				target = PREV
+				# 			}
+				# 		}
+				# 	}
 
-					custom_effect_tooltip = generic_skip_one_line_tt
+				# 	custom_effect_tooltip = generic_skip_one_line_tt
 
-					unlock_decision_tooltip = HUN_place_a_habsburg_on_the_lombardo_venetian_throne
-				}
+				# 	unlock_decision_tooltip = HUN_place_a_habsburg_on_the_lombardo_venetian_throne
+				# }
 
 				custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -4626,23 +4640,23 @@ focus_tree = {
 					}
 				}
 
-				IF = {
-					limit = {
-						LBV = {
-							has_country_leader = {
-								ruling_only = yes
-								character = LBV_robert_von_habsburg
-							}
-						}
-					}
-					LBV = {
-						add_trait = {
-						    character = LBV_robert_von_habsburg
-						    ideology = despotism
-						    trait = blessed_monarch_trait
-						}
-					}
-				}
+				# IF = {
+				# 	limit = {
+				# 		LBV = {
+				# 			has_country_leader = {
+				# 				ruling_only = yes
+				# 				character = LBV_robert_von_habsburg
+				# 			}
+				# 		}
+				# 	}
+				# 	LBV = {
+				# 		add_trait = {
+				# 		    character = LBV_robert_von_habsburg
+				# 		    ideology = despotism
+				# 		    trait = blessed_monarch_trait
+				# 		}
+				# 	}
+				# }
 
 				IF = {
 					limit = {
@@ -4662,41 +4676,41 @@ focus_tree = {
 					}
 				}
 
-				IF = {
-					limit = {
-						TTS = {
-							has_country_leader = {
-								ruling_only = yes
-								character = TTS_ferdinand_pius
-							}
-						}
-					}
-					TTS = {
-						add_trait = {
-						    character = TTS_ferdinand_pius
-						    ideology = despotism
-						    trait = blessed_monarch_trait
-						}
-					}
-				}
+				# IF = {
+				# 	limit = {
+				# 		TTS = {
+				# 			has_country_leader = {
+				# 				ruling_only = yes
+				# 				character = TTS_ferdinand_pius
+				# 			}
+				# 		}
+				# 	}
+				# 	TTS = {
+				# 		add_trait = {
+				# 		    character = TTS_ferdinand_pius
+				# 		    ideology = despotism
+				# 		    trait = blessed_monarch_trait
+				# 		}
+				# 	}
+				# }
 
-				IF = {
-					limit = {
-						TOS = {
-							has_country_leader = {
-								ruling_only = yes
-								character = TOS_joseph_ferdinand_von_habsburg
-							}
-						}
-					}
-					TOS = {
-						add_trait = {
-						    character = TOS_joseph_ferdinand_von_habsburg
-						    ideology = despotism
-						    trait = blessed_monarch_trait
-						}
-					}
-				}
+				# IF = {
+				# 	limit = {
+				# 		TOS = {
+				# 			has_country_leader = {
+				# 				ruling_only = yes
+				# 				character = TOS_joseph_ferdinand_von_habsburg
+				# 			}
+				# 		}
+				# 	}
+				# 	TOS = {
+				# 		add_trait = {
+				# 		    character = TOS_joseph_ferdinand_von_habsburg
+				# 		    ideology = despotism
+				# 		    trait = blessed_monarch_trait
+				# 		}
+				# 	}
+				# }
 
 
 
@@ -5800,13 +5814,13 @@ focus_tree = {
 					}
 					add_offsite_building = { type = industrial_complex level = 1 }
 				}
-				IF = {
-					limit = {
-						country_exists = TRA
-						TRA = { has_opinion = { target = HUN value > 85 } }
-					}
-					add_offsite_building = { type = industrial_complex level = 1 }
-				}
+				# IF = {
+				# 	limit = {
+				# 		country_exists = TRA
+				# 		TRA = { has_opinion = { target = HUN value > 85 } }
+				# 	}
+				# 	add_offsite_building = { type = industrial_complex level = 1 }
+				# }
 				IF = {
 					limit = {
 						country_exists = SLO
@@ -6862,7 +6876,7 @@ focus_tree = {
 		relative_position_id = wuw_HUN_a_declaration_of_intentions
 
 		will_lead_to_war_with = ROM
-		will_lead_to_war_with = TRA
+		#will_lead_to_war_with = TRA
 
 		cost = 5
 
@@ -7126,18 +7140,18 @@ focus_tree = {
 						original_tag = POL
 						original_tag = SOV
 						original_tag = UKR
-						original_tag = MOL
+						#original_tag = MOL
 						original_tag = CRO
-						original_tag = SER
-						original_tag = ISR
-						original_tag = PAL
+						#original_tag = SER
+						# original_tag = ISR
+						# original_tag = PAL
 						original_tag = EGY
 						original_tag = ENG
 						original_tag = TUR
 						original_tag = FRA
 						original_tag = GRE
-						original_tag = JOR
-						original_tag = SUD
+						# original_tag = JOR
+						# original_tag = SUD
 					}
 				}
 				ROOT = {
@@ -9809,22 +9823,30 @@ focus_tree = {
 				}
 			}
 
-			IF = {
-				limit = {
-					country_exists = CZE
-					664 = { is_owned_by = CZE }
-				}
-				strength_ratio = { tag = CZE ratio > 0.75 }
-			}
-			IF = {
-				limit = {
-					country_exists = SLO
-					664 = { is_owned_by = SLO }
-				}
-				strength_ratio = { tag = SLO ratio > 0.75 }
-			}
+			# IF = {
+			# 	limit = {
+			# 		country_exists = CZE
+			# 		664 = { is_owned_by = CZE }
+			# 	}
+			# 	strength_ratio = { tag = CZE ratio > 0.75 }
+			# }
+			# IF = {
+			# 	limit = {
+			# 		country_exists = SLO
+			# 		664 = { is_owned_by = SLO }
+			# 	}
+			# 	strength_ratio = { tag = SLO ratio > 0.75 }
+			# }
 
-			has_army_manpower = { size > 120000 }
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = axis_manpower
+						option = ENABLED
+					}
+				}
+				has_army_manpower = { size > 120000 }	
+			}
 
 		}
 
@@ -9932,16 +9954,24 @@ focus_tree = {
 				}
 			}
 
-			IF = {
+			# IF = {
+			# 	limit = {
+			# 		73 = {
+			# 			is_owned_by = CZE
+			# 		}
+			# 	}
+			# 	strength_ratio = { tag = CZE ratio > 0.70 }
+			# }
+
+			if = {
 				limit = {
-					73 = {
-						is_owned_by = CZE
+					has_game_rule = {
+						rule = axis_manpower
+						option = ENABLED
 					}
 				}
-				strength_ratio = { tag = CZE ratio > 0.70 }
+				has_army_manpower = { size > 150000 }	
 			}
-
-			has_army_manpower = { size > 150000 }
 
 		}
 
@@ -9997,7 +10027,7 @@ focus_tree = {
 		relative_position_id = wuw_HUN_reaffirm_territorial_claims
 
 		will_lead_to_war_with = ROM
-		will_lead_to_war_with = TRA
+		#will_lead_to_war_with = TRA
 
 		cost = 5
 
@@ -10008,7 +10038,15 @@ focus_tree = {
 		available = {
 
 			is_subject = no
-			has_army_manpower = { size > 200000 }
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = axis_manpower
+						option = ENABLED
+					}
+				}
+				has_army_manpower = { size > 200000 }	
+			}
 
 			NOT = {
 				OR = {
@@ -10035,14 +10073,14 @@ focus_tree = {
 				}
 			}
 
-			IF = {
-				limit = {
-					ROM = {
-						owns_state = 76
-					}
-				}
-				strength_ratio = { tag = ROM ratio > 0.66 }
-			}
+			# IF = {
+			# 	limit = {
+			# 		ROM = {
+			# 			owns_state = 76
+			# 		}
+			# 	}
+			# 	strength_ratio = { tag = ROM ratio > 0.66 }
+			# }
 
 
 		}
@@ -10135,16 +10173,24 @@ focus_tree = {
 				}
 			}
 
-			IF = {
+			# IF = {
+			# 	limit = {
+			# 		45 = {
+			# 			is_owned_by = YUG
+			# 		}
+			# 	}
+			# 	strength_ratio = { tag = YUG ratio > 0.75 }
+			# }
+
+			if = {
 				limit = {
-					45 = {
-						is_owned_by = YUG
+					has_game_rule = {
+						rule = axis_manpower
+						option = ENABLED
 					}
 				}
-				strength_ratio = { tag = YUG ratio > 0.75 }
+				has_army_manpower = { size > 175000 }	
 			}
-
-			has_army_manpower = { size > 175000 }
 
 		}
 
@@ -10257,16 +10303,24 @@ focus_tree = {
 				}
 			}
 
-			IF = {
+			# IF = {
+			# 	limit = {
+			# 		975 = {
+			# 			is_owned_by = AUS
+			# 		}
+			# 	}
+			# 	strength_ratio = { tag = AUS ratio > 0.70 }
+			# }
+
+			if = {
 				limit = {
-					975 = {
-						is_owned_by = AUS
+					has_game_rule = {
+						rule = axis_manpower
+						option = ENABLED
 					}
 				}
-				strength_ratio = { tag = AUS ratio > 0.70 }
+				has_army_manpower = { size > 185000 }	
 			}
-
-			has_army_manpower = { size > 185000 }
 
 		}
 
@@ -10342,12 +10396,12 @@ focus_tree = {
 					}
 				}
 			}
-			IF = {
-				limit = { country_exists = SLO }
-				strength_ratio = { tag = SLO ratio > 0.75 }
-				NOT = { has_war_with = SLO }
-			}
-			has_army_manpower = { size > 175000 }
+			# IF = {
+			# 	limit = { country_exists = SLO }
+			# 	strength_ratio = { tag = SLO ratio > 0.75 }
+			# 	NOT = { has_war_with = SLO }
+			# }
+			#has_army_manpower = { size > 175000 }
 
 		}
 
@@ -10467,7 +10521,15 @@ focus_tree = {
 				}
 			}
 
-			has_army_manpower = { size > 180000 }
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = axis_manpower
+						option = ENABLED
+					}
+				}
+				has_army_manpower = { size > 180000 }	
+			}
 
 		}
 
@@ -10704,7 +10766,7 @@ focus_tree = {
 				}
 				add_offsite_building = {
 					type = arms_factory
-					level = 2
+					level = 1
 				}
 			}
 			ELSE_IF = {
@@ -10722,7 +10784,7 @@ focus_tree = {
 				}
 				add_offsite_building = {
 					type = arms_factory
-					level = 4
+					level = 2
 				}
 			}
 			ELSE_IF = {
@@ -10736,11 +10798,11 @@ focus_tree = {
 				}
 				add_offsite_building = {
 					type = industrial_complex
-					level = 2
+					level = 1
 				}
 				add_offsite_building = {
 					type = arms_factory
-					level = 4
+					level = 2
 				}
 			}
 
@@ -11043,14 +11105,14 @@ focus_tree = {
 					is_core_of = ROOT
 					free_building_slots = {
 						building = arms_factory
-						size > 3
+						size > 1
 						include_locked = yes
 					}
 				}
-				add_extra_state_shared_building_slots = 4
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = arms_factory
-					level = 4
+					level = 2
 					instant_build = yes
 				}
 			}
@@ -12795,9 +12857,9 @@ focus_tree = {
 					controls_state = 76
 				}
 			}
-			TRA = {
-				exists = no
-			}
+			# TRA = {
+			# 	exists = no
+			# }
 		}
 
 		bypass = {
@@ -14398,7 +14460,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = wuw_HUN_promote_revanchist_sentiment
 
-		will_lead_to_war_with = TRA
+		#will_lead_to_war_with = TRA
 		will_lead_to_war_with = ROM
 
 		cost = 5
@@ -14494,8 +14556,8 @@ focus_tree = {
 		relative_position_id = wuw_HUN_the_second_northern_campaign
 
 		will_lead_to_war_with = YUG
-		will_lead_to_war_with = TRA
-		will_lead_to_war_with = SER
+		#will_lead_to_war_with = TRA
+		#will_lead_to_war_with = SER
 
 		cost = 5
 
@@ -15567,7 +15629,7 @@ focus_tree = {
 
 			add_tech_bonus = {
 				name = HUN_industrial_revitalization
-				bonus = 0.75
+				bonus = 0.5
 				uses = 1
 				category = industry
 			}
@@ -16836,7 +16898,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
-		cost = 5
+		cost = 8
 
 		ai_will_do = {
 			factor = 10
@@ -16879,16 +16941,16 @@ focus_tree = {
 					43 = {
 						free_building_slots = {
 							building = arms_factory
-							size > 2
+							size > 1
 							include_locked = yes
 						}
 					}
 				}
 				43 = {
-					add_extra_state_shared_building_slots = 3
+					add_extra_state_shared_building_slots = 2
 					add_building_construction = {
 						type = arms_factory
-						level = 3
+						level = 2
 						instant_build = yes
 					}
 				}
@@ -16899,16 +16961,16 @@ focus_tree = {
 					155 = {
 						free_building_slots = {
 							building = arms_factory
-							size > 2
+							size > 1
 							include_locked = yes
 						}
 					}
 				}
 				155 = {
-					add_extra_state_shared_building_slots = 3
+					add_extra_state_shared_building_slots = 2
 					add_building_construction = {
 						type = arms_factory
-						level = 3
+						level = 2
 						instant_build = yes
 					}
 				}
@@ -16928,7 +16990,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
-		cost = 5
+		cost = 8
 
 		ai_will_do = {
 			factor = 10
@@ -17093,21 +17155,21 @@ focus_tree = {
 					155 = {
 						free_building_slots = {
 							building = industrial_complex
-							size > 3
+							size > 1
 							include_locked = yes
 						}
 					}
 				}
 				155 = {
-					add_extra_state_shared_building_slots = 4
+					add_extra_state_shared_building_slots = 2
 					add_building_construction = {
 						type = industrial_complex
-						level = 4
+						level = 2
 						instant_build = yes
 					}
 					add_resource = {
 						type = steel
-						amount = 40
+						amount = 100
 					}
 				}
 			}
@@ -17160,20 +17222,20 @@ focus_tree = {
 			155 = {
 				add_resource = {
 					type = oil
-					amount = 50
+					amount = 100
 				}
 			}
 			974 = {
 				add_resource = {
 					type = oil
-					amount = 40
+					amount = 90
 				}
 			}
 
 			973 = {
 				add_resource = {
 					type = oil
-					amount = 60
+					amount = 110
 				}
 			}
 
@@ -17282,7 +17344,7 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			add_political_power = 50
+			#add_political_power = 50
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -17439,7 +17501,7 @@ focus_tree = {
 		}
 
 		available = {
-			num_of_factories > 70
+			num_of_factories > 100
 		}
 
 		bypass = {
@@ -17499,14 +17561,14 @@ focus_tree = {
 					is_core_of = ROOT
 					free_building_slots = {
 						building = arms_factory
-						size > 2
+						size > 1
 						include_locked = yes
 					}
 				}
-				add_extra_state_shared_building_slots = 3
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = arms_factory
-					level = 3
+					level = 2
 					instant_build = yes
 				}
 			}
@@ -17522,7 +17584,7 @@ focus_tree = {
 				show_mio_tooltip = HUN_mw_aircraft_organization
 
 				mio:HUN_mw_aircraft_organization = {
-					add_mio_size = 3
+					add_mio_size = 2
 				}
 
 			}
@@ -17708,14 +17770,14 @@ focus_tree = {
 					is_core_of = ROOT
 					free_building_slots = {
 						building = arms_factory
-						size > 2
+						size > 1
 						include_locked = yes
 					}
 				}
-				add_extra_state_shared_building_slots = 3
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = arms_factory
-					level = 3
+					level = 2
 					instant_build = yes
 				}
 			}
@@ -17731,7 +17793,7 @@ focus_tree = {
 				show_mio_tooltip = HUN_mavag_aircraft_organization
 
 				mio:HUN_mavag_aircraft_organization = {
-					add_mio_size = 3
+					add_mio_size = 2
 				}
 
 			}
@@ -18204,22 +18266,6 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = arms_factory
-						size > 1
-						include_locked = yes
-					}
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = arms_factory
-					level = 2
-					instant_build = yes
-				}
-			}
-
 		}
 	}
 
@@ -18511,26 +18557,13 @@ focus_tree = {
 					is_fully_controlled_by = ROOT
 					is_core_of = ROOT
 				}
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 					type = arms_factory
-					level = 2
+					level = 3
 					instant_build = yes
 				}
 			}
-			random_owned_state = {
-				limit = {
-					is_fully_controlled_by = ROOT
-					is_core_of = ROOT
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = arms_factory
-					level = 2
-					instant_build = yes
-				}
-			}
-
 			custom_effect_tooltip = generic_skip_one_line_tt
 
 			IF = {
@@ -18542,7 +18575,7 @@ focus_tree = {
 				show_mio_tooltip = HUN_mavag_assault_guns_organization
 
 				mio:HUN_mavag_assault_guns_organization = {
-					add_mio_size = 3
+					add_mio_size = 2
 				}
 
 			}

@@ -1,0 +1,187 @@
+﻿capital = 586 #Almaty
+
+oob = "KSR_1936"
+
+set_research_slots = 4
+
+#6.) Military High Command Commando (give it to chagatai force ghost)
+add_ideas =  KSR_tank_inefficiencies
+
+#politburo modifier
+
+add_dynamic_modifier = {
+	modifier = KSR_the_politburo
+}
+
+# KSR Politburo
+set_variable = { KSR_promote_cost_factor = 0 }
+set_variable = { KSR_communism_drift = 0 }
+set_variable = { KSR_political_power_factor = 0 }
+set_variable = { KSR_stability_weekly = 0 }
+set_variable = { KSR_war_support_weekly_factor = 0 }
+set_variable = { KSR_command_power_gain_mult = 0 }
+set_variable = { KSR_autonomy_gain_global_factor = 0 }
+set_variable = { KSR_operative_slot = 0 }
+
+#KSR Industrialization
+set_variable = { KSR_production_speed_buildings_factor = 0 }
+set_variable = { KSR_production_speed_infrastructure_factor = 0 }
+set_variable = { KSR_production_speed_rail_way_factor = 0 }
+set_variable = { KSR_production_speed_industrial_complex_factor = 0 }
+set_variable = { KSR_production_speed_arms_factory_factor = 0 }
+set_variable = { KSR_production_speed_synthetic_refinery_factor = 0 }
+set_variable = { KSR_industrial_capacity_factory = 0.025 }
+set_variable = { KSR_production_factory_start_efficiency_factor = 0 }
+set_variable = { KSR_production_factory_max_efficiency_factor = 0 }
+set_variable = { KSR_production_factory_efficiency_gain_factor = 0 }
+set_variable = { KSR_production_lack_of_resource_penalty_factor = -0.025 }
+set_variable = { KSR_line_change_production_efficiency_factor = 0 }
+set_variable = { KSR_local_resources_factor = 0.025 }
+
+# KSR Army
+set_variable = { KSR_army_morale_factor = 0 }
+set_variable = { KSR_dig_in_speed_factor = 0 }
+set_variable = { KSR_max_dig_in_factor = 0 }
+set_variable = { KSR_max_planning_factor = 0 }
+set_variable = { KSR_out_of_supply_factor = 0 }
+set_variable = { KSR_supply_consumption_factor = 0 }
+set_variable = { KSR_winter_attrition_factor = 0 }
+# set_variable = { KSR_terrain_penalty_reduction = 0 }
+set_variable = { KSR_military_leader_cost_factor = 0 }
+set_variable = { KSR_female_random_army_leader_chance = 0 }
+set_variable = { KSR_army_leader_start_level = 0 }
+set_variable = { KSR_army_leader_start_attack_level = 0 }
+set_variable = { KSR_army_leader_start_defense_level = 0 }
+set_variable = { KSR_army_leader_start_logistics_level = 0 }
+set_variable = { KSR_army_leader_start_planning_level = 0 }
+set_variable = { KSR_experience_gain_factor = 0 }
+set_variable = { KSR_experience_gain_army_unit_factor = 0 }
+set_variable = { KSR_experience_gain_army_unit = 0 }
+set_variable = { KSR_special_forces_min = 0 }
+set_variable = { KSR_army_leader_start_level = 0 }
+set_variable = { KSR_experience_gain_army_factor = 0 }
+set_variable = { KSR_experience_gain_army = 0.05 }
+set_variable = { KSR_army_artillery_attack_factor = 0 }
+set_variable = { KSR_army_artillery_defence_factor = 0 }
+
+
+# Starting tech
+set_technology = {
+	infantry_weapons = 1
+	infantry_weapons1 = 1
+	tech_recon = 1
+	tech_support = 1		
+	tech_engineers = 1
+	tech_military_police = 1
+	motorised_infantry = 1
+	gw_artillery = 1
+	mass_assault = 1
+	basic_train = 1	
+	support_weapons = 1
+}
+if = {
+	limit = {
+		NOT = { has_dlc = "By Blood Alone" }
+	}
+	set_technology = {
+		early_fighter = 1
+		fighter1 = 1
+		early_bomber = 1
+		strategic_bomber1 = 1
+		naval_bomber1 = 1
+	}
+}
+# if = {
+# 	limit = {
+# 		NOT = {
+# 			has_dlc = "No Step Back"
+# 		}
+# 	}
+# 	set_technology = {
+# 		gwtank = 1
+# 		basic_light_tank = 1
+# 	}
+# }
+# if = {
+# 	limit = {
+		
+# 		has_dlc = "No Step Back"
+		
+# 	}
+# 	set_technology = {
+# 		gwtank_chassis = 1
+# 		basic_light_tank_chassis = 1
+# 	}
+# }
+if = {
+	limit = {
+		not = { has_dlc = "Man the Guns" }
+	}
+	set_technology = {
+		early_submarine = 1
+		basic_submarine = 1
+		early_destroyer = 1
+		early_light_cruiser = 1
+		early_heavy_cruiser = 1
+		early_battleship = 1
+		early_battlecruiser = 1
+		transport = 1
+	}
+}
+if = {
+	limit = {
+		has_dlc = "Man the Guns"
+	}
+	set_technology = {
+		early_ship_hull_submarine = 1
+		basic_ship_hull_submarine = 1
+		early_ship_hull_light = 1
+		early_ship_hull_cruiser = 1
+		early_ship_hull_heavy = 1
+		mtg_transport = 1
+		basic_battery = 1
+		basic_torpedo = 1
+	}
+}
+set_politics = {
+	ruling_party = communism
+	last_election = "1936.1.1"
+	election_frequency = 0
+	elections_allowed = no
+}
+set_popularities = {
+	democratic = 25
+	communism = 75
+}
+
+create_country_leader = {
+	name = "Nikolay Aleksandrovich Skvortsov"
+	desc = ""
+	picture = GFX_portrait_Nikolay_Aleksandrovich_Skvortsov
+	expire = "1953.3.1"
+	ideology = stalinism
+	traits = {
+		man_of_the_nation
+	}
+}
+
+
+recruit_character = KSR_character_number1
+recruit_character = KSR_character_number2
+recruit_character = KSR_character_number3
+recruit_character = KSR_character_number4
+recruit_character = KSR_character_number5
+recruit_character = KSR_character_number6
+recruit_character = KSR_character_number7
+recruit_character = KSR_character_number8
+recruit_character = KSR_character_number9
+recruit_character = KSR_character_number10
+recruit_character = KSR_mao_zedong
+recruit_character = KSR_zhu_de
+recruit_character = KSR_chen_yi
+recruit_character = KSR_peng_dehuai
+recruit_character = KSR_lin_biao
+recruit_character = KSR_p_krishna_pillai
+recruit_character = KSR_ilyas_zhansugurov
+recruit_character = KSR_lavrenty_beriya
+recruit_character = KSR_Timur

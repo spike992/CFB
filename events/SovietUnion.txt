@@ -2916,3 +2916,99 @@ country_event = {
 		}
 	}
 }
+
+country_event = {
+	id = soviet.505
+	title = soviet.505.t
+	desc = soviet.505.d
+	picture = GFX_report_event_indian_soldiers
+
+	is_triggered_only = yes
+	
+	option = {
+		name = soviet.505.a
+		ai_chance = {
+			base = 0
+		}
+		SOV = { annex_country = { target = KSR transfer_troops = yes}  }
+	}
+	option = {
+		name = soviet.505.b
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = soviet.505.c
+		ai_chance = {
+			base = 0
+		}
+		KSR = {set_country_flag = KSR_keep_around }
+	}
+}
+
+
+# The successor is now selected. Will depend on the choice of policies and current leader.
+# The previous event implies the law on successors is being strictly applied so candidates are not eligible if they have been president before!
+
+country_event = {
+	id = soviet.506
+	title = soviet.506.t
+	desc = soviet.506.d
+	
+	picture = GFX_report_event_election_vote
+	
+	is_triggered_only = yes
+
+	# Communist
+	
+	option = { ##Mao Zedong (Trait:Veteran Communist)
+		name = soviet.506.a
+
+		add_country_leader_role = {
+			character = KSR_mao_zedong
+			country_leader={
+				ideology=marxism
+				traits={ cornered_fox }
+				expire="1965.1.1.1"
+				id=-1
+			}
+			promote_leader = yes
+		}
+	}
+	
+	option = { ##Krishna Pillai (Trait: Great Architect)
+		name = soviet.506.b
+
+		add_country_leader_role = {
+			character = KSR_p_krishna_pillai
+			country_leader={
+				ideology=marxism
+				expire="1965.1.1.1"
+				id=-1
+				traits = {
+					great_architect
+				}
+			}
+			promote_leader = yes
+		}
+	}
+
+	option = { ##Ilyas Zhansugurov (Trait:Man of the Nation)
+		name = soviet.506.c
+		
+		add_country_leader_role = {
+			character = KSR_ilyas_zhansugurov
+			country_leader={
+				ideology=marxism
+				expire="1965.1.1.1"
+				id=-1
+				traits = {
+					face_licker
+					revolutionary_poet
+				}
+			}
+			promote_leader = yes
+		}
+	}
+}

@@ -507,6 +507,38 @@ joint_focus = {
 	completion_reward_joint_originator = {
 		unlock_military_industrial_organization_tooltip = mio:COM_humber_organization
 		if = {
+			limit = {
+				tag = CAN
+			}
+			mio:COM_humber_organization = {
+				add_mio_size = 3
+			}
+		}
+		else_if = {
+			limit = {
+				tag = SAF
+			}
+			mio:COM_humber_organization = {
+				add_mio_size = 3
+			}
+		}
+		else_if = {
+			limit = {
+				tag = AST
+			}
+			mio:COM_humber_organization = {
+				add_mio_size = 3
+			}
+		}
+		else_if = {
+			limit = {
+				tag = NZL
+			}
+			mio:COM_humber_organization = {
+				add_mio_size = 3
+			}
+		}
+		if = {
 			limit = { 
 				check_variable = {
 					number_of_mios = 0 
@@ -527,7 +559,7 @@ joint_focus = {
 	completion_reward_joint_member = {
 		add_tech_bonus = {
 			name = COM_armored_cars
-			bonus = 0.5
+			bonus = 0.75
 			uses = 1
 			category = cat_light_armor
 		}
