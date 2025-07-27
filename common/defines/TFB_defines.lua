@@ -49,7 +49,7 @@ NDefines.NCountry.ATTACHE_XP_SHARE = 0.15							-- Country received xp from atta
 NDefines.NCountry.SPECIAL_FORCES_CAP_MIN = 132					-- You can have a minimum of this many special forces battalions regardless of the number of non-special forces battalions you have this can also be modified by a country modifier
 NDefines.NCountry.BASE_FUEL_GAIN_PER_OIL = 0.2						-- base amount of fuel gained hourly per excess oil
 NDefines.NCountry.STARTING_FUEL_RATIO = 0.5						-- starting fuel ratio compared to max fuel for countries
-NDefines.NCountry.SCORCHED_EARTH_STATE_COST = 10					-- pp cost to scorch a state
+NDefines.NCountry.SCORCHED_EARTH_STATE_COST = 5					-- pp cost to scorch a state
 NDefines.NCountry.COUNTRY_MANPOWER_CAPITULATED_CORE_GAIN_FACTOR = 0.002	-- Factor on amount of normal manpower gained for the exile nation. From owned states that are controlled by an enemy. State manpower reduced by factor 1000 in code.
 NDefines.NCountry.GIE_CAPITULATE_MAX_STOCKPILE_TRANSFER = 0.5 			-- 0-1 Transfers ratio of stockpile. from 0 to this define depending on starting legitimacy on capitulation.
 NDefines.NCountry.GIE_CAPITULATION_WARSCORE_LEGITIMACY_FACTOR = 1.5 	--Multiplies accumulated warscore with this factor for part of starting legitimacy.
@@ -732,7 +732,7 @@ NDefines.NIndustrialOrganisation.FUNDS_FOR_RESEARCH_COMPLETION_PER_RESEARCH_COST
 NDefines.NIndustrialOrganisation.FUNDS_FROM_MANUFACTURER_PER_IC_PER_DAY = 0.08				-- Funds added to MIO when a manufacturer is attached to a production line. Added every day proportional to IC produced. (Vanilla 0.1)
 NDefines.NIndustrialOrganisation.MAX_FUNDS_FROM_MANUFACTURER_PER_DAY = 0  -- Max funds generated per manufacturer per day. Set to 0 for no Maximum. (Vanilla 100)
 NDefines.NIndustrialOrganisation.ENABLE_TASK_CAPACITY = true -- Enable limited task capacity for MIOs
-NDefines.NIndustrialOrganisation.DEFAULT_INITIAL_TASK_CAPACITY = 3			-- Default start task capacity for each MIO (may be overriden in DB)
+NDefines.NIndustrialOrganisation.DEFAULT_INITIAL_TASK_CAPACITY = 5			-- Default start task capacity for each MIO (may be overriden in DB)
 
 
 NDefines.NRaids.RAID_MEDIUM_RISK_SETTING_DISASTER_MODIFIER = 0.15  -- How much the disaster risk is modified when the dial is set to "medium"

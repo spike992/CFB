@@ -22,7 +22,6 @@ ideas = {
 	country = {
 
 		MON_anti_fascism = {
-
 			picture = generic_manpower_bonus
 			
 			allowed = {
@@ -36,9 +35,9 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				offence = 0.05
+				army_attack_factor = 0.05
+				army_defence_factor = 0.05
 				army_core_attack_factor = 0.05
-				defense_bonus_against = 0.05
 				army_core_defence_factor = 0.05
 			}
 
@@ -46,42 +45,41 @@ ideas = {
 			# targeted_modifier = {
 			# 	tag = GER
 			# 	attack_bonus_against = 0.1
-			# 	defense_bonus_against = 0.1
+			# 	defence_bonus_against = 0.1
 			# }
 			# targeted_modifier = {
 			# 	tag = ITA
 			# 	attack_bonus_against = 0.1
-			# 	defense_bonus_against = 0.1
+			# 	defence_bonus_against = 0.1
 			# }
 			# targeted_modifier = {
 			# 	tag = HUN
 			# 	attack_bonus_against = 0.1
-			# 	defense_bonus_against = 0.1
+			# 	defence_bonus_against = 0.1
 			# }
 			# targeted_modifier = {
 			# 	tag = ROM
 			# 	attack_bonus_against = 0.1
-			# 	defense_bonus_against = 0.1
+			# 	defence_bonus_against = 0.1
 			# }
 			# targeted_modifier = {
 			# 	tag = BUL
 			# 	attack_bonus_against = 0.1
-			# 	defense_bonus_against = 0.1
+			# 	defence_bonus_against = 0.1
 			# }
 			# targeted_modifier = {
 			# 	tag = FIN
 			# 	attack_bonus_against = 0.1
-			# 	defense_bonus_against = 0.1
+			# 	defence_bonus_against = 0.1
 			# }
 			# targeted_modifier = {
 			# 	tag = VIC
 			# 	attack_bonus_against = 0.1
-			# 	defense_bonus_against = 0.1
+			# 	defence_bonus_against = 0.1
 			# }
 		}
 
 		MON_nomadic_war_idea = {
-
 			picture = generic_manpower_bonus
 			
 			allowed = {
@@ -117,7 +115,6 @@ ideas = {
 		}
 
 		MON_nomadic_priortize_horses_ideas = {
-
 			picture = chi_army_corruption2
 
 			allowed_civil_war = {
@@ -132,6 +129,7 @@ ideas = {
 		}
 
 		MON_self_sufficient_idea = {
+			picture = generic_exploit_mines
 
 			allowed = {
 				original_tag = GER
@@ -144,15 +142,12 @@ ideas = {
 			
 			removal_cost = -1
 
-			picture = generic_exploit_mines
-
 			modifier = {
-				local_resources_factor = 0.30
+				local_resources_factor = 0.50
 			}
 		}
 
-		MON_volunteers_idea = {
-			
+		MON_volunteers_idea = {			
 			picture = generic_volunteer_expedition_bonus
 
 			allowed = {
@@ -178,7 +173,6 @@ ideas = {
 		}
 
 		MON_mobilise_the_workers_idea = {
-
 			picture = FRA_army_of_aggression_focus
 			
 			allowed = {
@@ -193,8 +187,7 @@ ideas = {
 
 		}
 	
-		MON_spirit_of_genghis_idea = {
-		
+		MON_spirit_of_genghis_idea = {		
 			picture = FRA_army_of_aggression_focus
 			
 			allowed = {
@@ -211,7 +204,6 @@ ideas = {
 		}
 
 		MON_sov_army_advisors = {
-
 			picture = generic_communist_army
 
 			allowed = {
@@ -221,10 +213,11 @@ ideas = {
 			removal_cost = -1
 
 			modifier = {
-				#army_defense_factor = 0.05
+				army_defence_factor = 0.05
 				army_org_factor = 0.025
 				army_morale_factor = 0.05
-				#army_dig_in_speed = 0.1
+				dig_in_speed_factor = 0.1
+				max_dig_in_factor = 0.05
 			}
 		}
 
@@ -250,7 +243,6 @@ ideas = {
 		}
 	
 		MON_sov_advisors = {
-		
 			picture = generic_communist_army
 			
 			allowed = {
@@ -267,8 +259,7 @@ ideas = {
 
 		}
 	
-		MON_nomad_mob = {
-		
+		MON_nomad_mob = {		
 			picture = generic_manpower_bonus
 			
 			allowed = {
@@ -283,8 +274,7 @@ ideas = {
 		
 		}
 	
-		MON_overlord_factories = {
-		
+		MON_overlord_factories = {		
 			picture = generic_manpower_bonus
 			
 			allowed = {
@@ -302,8 +292,8 @@ ideas = {
 			}		
 		
 		}
-		MON_sov_investments = {
 		
+		MON_sov_investments = {		
 			picture = home_of_revolution
 			
 			allowed = {
@@ -321,7 +311,6 @@ ideas = {
 		}
 	
 		MON_purge_1 = {
-		
 			picture = generic_purge
 			
 			allowed = {
@@ -344,7 +333,6 @@ ideas = {
 		}
 	
 		MON_monastries = {
-
 			picture = SPR_seize_the_gold_reserves
 			
 			allowed = {
@@ -364,7 +352,6 @@ ideas = {
 		}
 
 		MON_religious_taxation = {
-
 			picture = SPR_seize_the_gold_reserves
 			
 			allowed = {
@@ -384,7 +371,6 @@ ideas = {
 		}
 	
 		MON_collectivisation_1 = {
-
 			picture = trotskyite_plot_purged
 			
 			allowed = {
@@ -398,17 +384,16 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				MONTHLY_POPULATION = -0.33
-				conscription_factor = -0.33
-				political_power_factor = -0.25
-				# consumer_goods_factor = -0.15
-				global_building_slots_factor = 0.10
+				MONTHLY_POPULATION = -0.50
+				conscription_factor = -0.50
+				political_power_factor = -0.40
+				consumer_goods_factor = 0.15
+				global_building_slots_factor = -0.10
 
 			}
 		}
 		
 		MON_collectivisation_2 = {
-
 			picture = trotskyite_plot
 			
 			allowed = {
@@ -425,13 +410,12 @@ ideas = {
 				MONTHLY_POPULATION = -0.33 #-0.5
 				conscription_factor = -0.33 #-0.50
 				political_power_factor = -0.25 #-0.40
-				# consumer_goods_factor = -0.15
-				global_building_slots_factor = 0.10
+				consumer_goods_factor = 0.10
+				global_building_slots_factor = -0.05
 			}
 		}
 		
 		MON_collectivisation_3 = {
-
 			picture = trotskyite_plot_purged
 			
 			allowed = {
@@ -448,13 +432,12 @@ ideas = {
 				MONTHLY_POPULATION = -0.1
 				conscription_factor = -0.1
 				political_power_factor = -0.1
-				# consumer_goods_factor = -0.15
-				global_building_slots_factor = 0.10
+				consumer_goods_factor = 0.05
+				global_building_slots_factor = 0.075
 			}
 		}
 		
 		MON_collectivisation_4 = {
-
 			picture = trotskyite_plot_purged
 			
 			allowed = {
@@ -468,13 +451,11 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				# consumer_goods_factor = -0.15
-				global_building_slots_factor = 0.10
+				global_building_slots_factor = 0.15
 			}
 		}
 
 		MON_nomad_0 = {
-
 			picture = chi_army_corruption2
 			
 			allowed = {
@@ -501,9 +482,8 @@ ideas = {
 				}
 			}
 		}
-		
+			
 		MON_nomad_1 = {
-
 			picture = chi_army_corruption2
 			
 			allowed = {
@@ -528,7 +508,6 @@ ideas = {
 		}
 		
 		MON_nomad_2 = {
-
 			picture = chi_army_corruption2
 			
 			allowed = {
@@ -559,7 +538,6 @@ ideas = {
 		}	
 
 		MON_nomad_3 = {
-
 			picture = chi_army_corruption2
 			
 			allowed = {
@@ -597,7 +575,6 @@ ideas = {
 		}
 
 		MON_nomad_4 = {
-
 			picture = chi_army_corruption2
 			
 			allowed = {
@@ -622,7 +599,6 @@ ideas = {
 		}
 
 		MON_nomad_5 = {
-
 			picture = chi_army_corruption2
 			
 			allowed = {
@@ -656,6 +632,30 @@ ideas = {
 				sf_equipment = {
 					build_cost_ic = -0.1 instant = yes
 				}
+			}
+		}
+
+
+		MON_nomad_6 = {
+			picture = chi_army_corruption2
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+			
+			modifier = {
+				local_building_slots_factor = 0
+				industrial_capacity_factory = 0.2
+				local_resources_factor = 0.15
+				production_speed_buildings_factor = 0.2
+				supply_consumption_factor = 0.15
+				mobilization_speed = 0.4
 			}
 		}
 		
@@ -701,29 +701,8 @@ ideas = {
 				breakthrough_bonus_against = -0.20
 			}
 		}
-
-
-	
-	MON_Agitrop = {
-		picture = chi_army_corruption
-
-		allowed = {
-			always = yes
-		}
-
 		
-		modifier = { 
-			
-			production_factory_max_efficiency_factor = 0.1
-			industrial_capacity_factory = 0.05
-			production_factory_start_efficiency_factor = 0.1
-
-		}
-
-		
-		}
 		MON_improvement_of_motorization = {
-		
 			picture = FRA_motorized_focus
 		
 			allowed = {
@@ -742,10 +721,8 @@ ideas = {
 					build_cost_ic = -0.1
 					instant = yes
 				}
-			
 			}
-
-}	
+		}
 
 	}
 
@@ -760,7 +737,7 @@ ideas = {
 	#		targeted_modifier = {
 	#			tag = FIN
 	#			attack_bonus_against = 0.075
-	#			defense_bonus_against = 0.075
+	#			defence_bonus_against = 0.075
 	#		}
 	#	}
 	#}
