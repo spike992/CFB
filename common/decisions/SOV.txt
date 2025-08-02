@@ -10353,6 +10353,14 @@ operations = {
 				MON = {
 					remove_ideas = MON_brothers_war
 				}
+				if = {
+					limit = {
+						country_exists = KSR
+					}
+					KSR = {
+						remove_ideas = MON_brothers_war
+					}
+				}
 			}
 		}
 
@@ -10370,15 +10378,18 @@ operations = {
 
 	}
 
+	#made into a mission, disabled with always = no
 	SOV_winter_war_lessons = {
 		icon = generic_operation
 
 		allowed = {
 			original_tag = SOV
+			always = no
 		}
 
 		visible = {
 			has_active_mission = SOV_winter_war
+			always = no
 		}
 
 		available = {
@@ -10398,6 +10409,76 @@ operations = {
 			}
 		}
 
+	}
+
+	SOV_winter_war_lessons_mission = {
+		icon = generic_operation
+
+		visible = {
+			has_active_mission = SOV_winter_war
+		}
+
+		allowed = {
+			always = no
+		}
+
+		available = {
+			has_war_with = FIN
+			casualties > 125000
+		}
+
+		cancel_trigger = {
+        has_war = no
+    	}
+
+		days_mission_timeout = 210
+		fire_only_once = yes
+		is_good = no
+
+		timeout_effect = {
+			
+		}
+
+		complete_effect = {
+			add_timed_idea = {
+				idea = SOV_winter_war_adapt
+				days = 120
+			}
+			set_country_flag = SOV_winter_war_incompetency
+		}
+	}
+
+	SOV_winter_war_catastrophe_mission = {
+		icon = generic_operation
+
+		visible = {
+			has_active_mission = SOV_winter_war
+		}
+
+		allowed = {
+			always = no
+		}
+
+		available = {
+			has_war_with = FIN
+			casualties > 250000
+		}
+
+		cancel_trigger = {
+        has_war = no
+    	}
+
+		days_mission_timeout = 210
+		fire_only_once = yes
+		is_good = no
+
+		timeout_effect = {
+			
+		}
+
+		complete_effect = {
+			set_country_flag = SOV_winter_war_catastrophe
+		}
 	}
 
 	SOV_winter_war_victory = {
@@ -10446,6 +10527,14 @@ operations = {
 			hidden_effect = {
 				MON = {
 					remove_ideas = MON_brothers_war
+				}
+				if = {
+					limit = {
+						country_exists = KSR
+					}
+					KSR = {
+						remove_ideas = MON_brothers_war
+					}
 				}
 			}
 		}

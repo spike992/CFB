@@ -698,6 +698,26 @@ on_actions = {
 						clr_country_flag = BUL_sent_volunteers_to_SPA_flag
 					}
 				}
+				# Can't send to republicans so left out
+				# if = {
+				# 	limit = {
+				# 		YUG = { has_country_flag = BUL_sent_volunteers_to_SPD_flag }
+				# 	}
+				# 	YUG = { 
+				# 		set_country_flag = BUL_back_from_the_scw_flag
+				# 		country_event = { id = bftb_bulgaria_scw_volunteers.1 hours = 12 random_hours = 8 }
+				# 		clr_country_flag = BUL_sent_volunteers_to_SPD_flag
+				# 	}
+				# }
+				if = {
+					limit = {
+						YUG = { has_country_flag = YUG_sent_volunteers_to_SPA_flag }
+					}
+					YUG = {						
+						country_event = { id = bftb_bulgaria_scw_volunteers.3 hours = 12 random_hours = 8 }
+						clr_country_flag = YUG_sent_volunteers_to_SPA_flag
+					}
+				}
 			}
 		}
 	}
@@ -743,6 +763,45 @@ on_actions = {
 				}
 				else = {
 					set_country_flag = BUL_sent_volunteers_to_SPA_flag
+				}
+			}	
+			if = { #Yugoslavia has sent volunteers to Spanish Republicans/Nationalists (LaR)
+				limit = {
+					tag = YUG
+					FROM = { original_tag = SPR }
+					has_dlc = "La Resistance"
+					SPR_scw_in_progress = yes
+				}
+				if = {
+					limit = {
+						FROM = { tag = SPD }
+					}
+					set_country_flag = YUG_sent_volunteers_to_SPD_flag
+				}
+				else = {
+					set_country_flag = YUG_sent_volunteers_to_SPA_flag
+				}
+			}
+			else_if = {
+				limit = {
+					tag = YUG
+					FROM = { original_tag = SPR }
+					NOT = { has_dlc = "La Resistance" }
+					FROM = { has_civil_war = yes }
+				}
+				if = {
+					limit = {
+						FROM = {
+							OR = {
+								has_government = democratic
+								has_government = communism
+							}
+						}
+					}
+					set_country_flag = YUG_sent_volunteers_to_SPD_flag
+				}
+				else = {
+					set_country_flag = YUG_sent_volunteers_to_SPA_flag
 				}
 			}	
 		}
@@ -1747,6 +1806,37 @@ on_actions = {
 							}
 						}
 						set_unit_leader_flag = BUL_scw_promotion_flag 
+					}
+				}
+			}
+		}
+	}
+	on_monthly_YUG = {
+		effect = { #Support the Spanish Coup - Check for a general assigned to volunteers in the SCW fighting for SPA (it cannot be any other side)
+			if = {
+				limit = {
+					has_country_flag = YUG_sent_volunteers_to_SPA_flag
+				}
+				if = {
+					limit = {
+						any_unit_leader = {
+							is_field_marshal = no
+							OR = {
+								is_leading_volunteer_group_with_original_country = SPR
+								is_leading_volunteer_group = SPR
+							}
+							NOT = { has_unit_leader_flag = YUG_scw_promotion_flag }
+						}
+					}
+					random_unit_leader = {
+						limit = {
+							is_field_marshal = no
+							OR = {
+								is_leading_volunteer_group_with_original_country = SPR
+								is_leading_volunteer_group = SPR
+							}
+						}
+						set_unit_leader_flag = YUG_scw_promotion_flag 
 					}
 				}
 			}

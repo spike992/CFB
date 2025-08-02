@@ -80,6 +80,7 @@ CZE_skoda_armor_organization = {
 				has_dlc = "Graveyard of Empires"
 				has_dlc = "Arms Against Tyranny"
 			}
+			original_tag = ROM
 		}
 	}
 	
@@ -96,6 +97,10 @@ CZE_skoda_armor_organization = {
 			limit = { FROM = { original_tag = PER } }
 			FROM = { has_completed_focus = PER_czech_tanks }
 		}
+		# IF = {
+		# 	limit = { FROM = { original_tag = ROM } }
+		# 	FROM = { has_completed_focus = ROM_acquire_czech_tanks }
+		# }
 	}
 
 	available = {
@@ -121,6 +126,41 @@ CZE_skoda_armor_organization = {
 		IF = {
 			limit = { FROM = { original_tag = PER } }
 			FROM = { has_completed_focus = PER_czech_tanks }
+		}
+		IF = {
+			limit = { FROM = { original_tag = ROM } }
+			FROM = { has_completed_focus = ROM_acquire_czech_tanks }
+		}
+	}
+
+	add_trait = {
+		token = CZE_mio_trait_cemented_armor
+		name = CZE_mio_trait_cemented_armor
+		icon = GFX_generic_mio_trait_icon_production_capacity
+		special_trait_background = yes
+
+		position = { x=9 y=0 }  
+		
+		visible = {
+			FROM = { original_tag = ROM }
+		}
+
+		available = {
+			FROM = {
+				has_completed_focus = ROM_invite_technical_experts
+			}
+		}
+
+		limit_to_equipment_type = { mio_cat_eq_all_light_tank }
+
+		equipment_bonus = {
+			hardness = 0.1
+			defense = 0.1
+			maximum_speed = -0.1
+		}
+
+		ai_will_do = {
+			base = 2
 		}
 	}
 }

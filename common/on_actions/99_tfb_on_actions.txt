@@ -35,10 +35,7 @@ on_actions = {
 		effect = {
 			if = {
 				limit = {
-					has_game_rule = {
-						rule = dockyard_cg
-						option = ENABLED
-					}
+					has_global_flag = dockyard_cg_enabled_flag
 				}
 				every_country = {
 					dockyard_cg_calculation = yes
@@ -46,10 +43,7 @@ on_actions = {
 			}
 			else_if = {
 				limit = {
-					has_game_rule = {
-						rule = dockyard_cg
-						option = BUILD_SPEED
-					}
+					has_global_flag = dockyard_cg_build_speed_flag
 				}
 				every_country = {
 					dockyard_build_speed_calculation = yes
@@ -61,10 +55,7 @@ on_actions = {
 		effect = {
 			if = {
 				limit = {
-					has_game_rule = {
-						rule = soviet_air_changes
-						option = FULL_SOV_AIR
-					}
+					has_global_flag = soviet_air_changes_full_flag
 				}
 				SOV = {
 					SOV_stalins_air_needs = yes
@@ -187,10 +178,7 @@ on_actions = {
 			if = {
 				limit = {
 					OR = {
-						has_game_rule = {
-							rule = intel_share_time
-							option = DISABLED
-						}
+						NOT = { has_global_flag = intel_share_time_flag }
 						has_global_flag = japan_is_at_war_with_allies
 					}
 				}
@@ -244,10 +232,7 @@ on_actions = {
 			if = {
 				limit = {
 					OR = {
-						has_game_rule = {
-							rule = intel_share_time
-							option = DISABLED
-						}
+						NOT = { has_global_flag = intel_share_time_flag }
 						has_global_flag = soviets_are_at_war_with_germany
 					}
 				}
@@ -335,10 +320,7 @@ on_actions = {
 		effect = {
 			if = {
 				limit = {
-					has_game_rule = {
-						rule = coastal_raiders
-						option = ENABLED
-					}
+					has_global_flag = coastal_raiders_flag
 				}
 				MED_coastal_raiding_check = yes 
 			}
@@ -365,6 +347,330 @@ on_actions = {
 		}
 	}
     on_startup = {
+		# Set all of the flags from GameRules for easier setup:
+		effect = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = fatherless_spirit
+						option = ENABLED
+					}
+				}
+				set_global_flag = fatherless_spirit_flag
+			}
+			else = {
+				every_country = {
+					if = { limit = {has_idea = fatherless_spirit } }
+					remove_ideas = fatherless_spirit
+				}
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = tension_game
+						option = ENABLED
+					}
+				}
+				set_global_flag = tension_game_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = coastal_raiders
+						option = ENABLED
+					}
+				}
+				set_global_flag = coastal_raiders_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = vp_system
+						option = ENABLED
+					}
+				}
+				set_global_flag = vp_system_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = capped_volunteers
+						option = ENABLED
+					}
+				}
+				set_global_flag = capped_volunteers_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = china_waves_style
+						option = ENABLED
+					}
+				}
+				set_global_flag = china_waves_style_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = raj_version
+						option = ENABLED
+					}
+				}
+				set_global_flag = raj_version_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = assault_gun
+						option = ASSAULT_GUN_LINE
+					}
+				}
+				set_global_flag = assault_gun_line_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = belgium_forts_allowed
+						option = ENABLED
+					}
+				}
+				set_global_flag = belgium_forts_allowed_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = rhineland_first
+						option = ENABLED
+					}
+				}
+				set_global_flag = rhineland_first_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = axis_manpower
+						option = ENABLED
+					}
+				}
+				set_global_flag = axis_manpower_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = deny_sudetenland
+						option = ENABLED
+					}
+				}
+				set_global_flag = deny_sudetenland_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = deny_anschluss
+						option = ENABLED
+					}
+				}
+				set_global_flag = deny_anschluss_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = infiltration_status
+						option = STATIC
+					}
+				}
+				set_global_flag = infiltration_status_static_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = danzig_autodeclare
+						option = ENABLED
+					}
+				}
+				set_global_flag = danzig_autodeclare_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = soviet_volunteer
+						option = ENABLED
+					}
+				}
+				set_global_flag = soviet_volunteer_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = intel_share_time
+						option = ENABLED
+					}
+				}
+				set_global_flag = intel_share_time_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = naval_treaty_status
+						option = ENABLED
+					}
+				}
+				set_global_flag = naval_treaty_status_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = japan_leave_out_USA
+						option = ENABLED
+					}
+				}
+				set_global_flag = japan_leave_out_USA_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = deny_tangiers
+						option = ENABLED
+					}
+				}
+				set_global_flag = deny_tangiers_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = allow_voice_lines
+						option = ENABLED
+					}
+				}
+				set_global_flag = allow_voice_lines_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = navy_cap
+						option = ONEFIFTYCAP
+					}
+				}
+				set_global_flag = navy_cap_150_flag
+			}
+			else_if = {
+				limit = {
+					has_game_rule = {
+						rule = navy_cap
+						option = ONEHUNDREDCAP
+					}
+				}
+				set_global_flag = navy_cap_100_flag
+			}
+			else_if = {
+				limit = {
+					has_game_rule = {
+						rule = navy_cap
+						option = DISABLED
+					}
+				}
+				set_global_flag = navy_cap_disabled_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = dockyard_cg
+						option = ENABLED
+					}
+				}
+				set_global_flag = dockyard_cg_enabled_flag
+			}
+			else_if = {
+				limit = {
+					has_game_rule = {
+						rule = dockyard_cg
+						option = BUILD_SPEED
+					}
+				}
+				set_global_flag = dockyard_cg_build_speed_flag
+			}
+			else_if = {
+				limit = {
+					has_game_rule = {
+						rule = dockyard_cg
+						option = DISABLED
+					}
+				}
+				set_global_flag = dockyard_cg_disabled_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = allow_china_waves
+						option = THREEWAVES
+					}
+				}
+				set_global_flag = allow_china_waves_3_flag
+			}
+			else_if = {
+				limit = {
+					has_game_rule = {
+						rule = allow_china_waves
+						option = TWOWAVES
+					}
+				}
+				set_global_flag =  allow_china_waves_2_flag
+			}
+			else_if = {
+				limit = {
+					has_game_rule = {
+						rule = allow_china_waves
+						option = ONEWAVES
+					}
+				}
+				set_global_flag = allow_china_waves_1_flag
+			}
+			else_if = {
+				limit = {
+					has_game_rule = {
+						rule = allow_china_waves
+						option = DISABLED
+					}
+				}
+				set_global_flag = allow_china_waves_disabled_flag
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = soviet_air_changes
+						option = FULL_SOV_AIR
+					}
+				}
+				set_global_flag = soviet_air_changes_full_flag
+			}
+			else_if = {
+				limit = {
+					has_game_rule = {
+						rule = soviet_air_changes
+						option = START_SOV_AIR
+					}
+				}
+				set_global_flag =  soviet_air_changes_start_flag
+			}
+			else_if = {
+				limit = {
+					has_game_rule = {
+						rule = soviet_air_changes
+						option = FOCUS_SOV_AIR
+					}
+				}
+				set_global_flag = soviet_air_changes_focus_flag
+			}
+			else_if = {
+				limit = {
+					has_game_rule = {
+						rule = soviet_air_changes
+						option = DISABLED
+					}
+				}
+				set_global_flag = soviet_air_changes_disabled_flag
+			}
+		}
 		effect = {
 			if = {
 				limit = {
@@ -1127,8 +1433,141 @@ on_actions = {
 			SPR = { add_to_array = { global.nationalist_spain_states = 789 } }
 			SPR = { add_to_array = { global.nationalist_spain_states = 169 } }
 		}
+		effect = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = mio_size
+						option = MIO_SIZE_NO_NAVY
+					}
+				}
+				every_country = {
+					every_military_industrial_organization = {
+						limit = {
+							OR = {
+								has_mio_equipment_type = mio_cat_eq_all_carrier
+								has_mio_equipment_type = mio_cat_eq_all_cruiser
+								has_mio_equipment_type = mio_cat_eq_all_destroyer
+								has_mio_equipment_type = mio_cat_eq_all_battleship
+								has_mio_equipment_type = ship_hull_submarine
+								has_mio_equipment_type = capital_ship
+								has_mio_equipment_type = screen_ship
+								has_mio_equipment_type = submarine
+
+								has_mio_research_category = mio_cat_tech_all_capital_ship_and_modules
+								has_mio_research_category = mio_cat_tech_all_screen_ship_and_modules
+								has_mio_research_category = mio_cat_tech_all_submarine_and_modules
+								has_mio_research_category = mio_cat_tech_all_carrier_and_modules
+								has_mio_research_category = mio_cat_tech_all_cruiser_and_modules
+								has_mio_research_category = mio_cat_tech_all_destroyer_and_modules
+								has_mio_research_category = naval_equipment
+							}
+						}
+						add_mio_task_capacity = 99
+					}
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = division_cap
+						option = DISABLED
+					}
+				}
+				every_country = {
+					every_army_leader = {
+						add_unit_leader_trait = fun_haters
+					}
+				}
+				GER = {
+					GER_heinz_guderian = { add_unit_leader_trait = fun_haters }
+					GER_erwin_rommel = { add_unit_leader_trait = fun_haters }
+					GER_hasso_von_manteuffel = { add_unit_leader_trait = fun_haters }
+					GER_walther_nehring = { add_unit_leader_trait = fun_haters }
+					GER_kurt_student = { add_unit_leader_trait = fun_haters }
+					GER_walter_model = { add_unit_leader_trait = fun_haters }
+					GER_hermann_hoth = { add_unit_leader_trait = fun_haters }
+					GER_ernsteberhard_hell = { add_unit_leader_trait = fun_haters }
+					GER_walter_kruger = { add_unit_leader_trait = fun_haters }
+					GER_sepp_dietrich = { add_unit_leader_trait = fun_haters }
+					GER_paul_hausser = { add_unit_leader_trait = fun_haters }
+					GER_alexander_von_falkenhausen = { add_unit_leader_trait = fun_haters }
+				}
+				GRE = {
+					GRE_stylianos_gonatas = { add_unit_leader_trait = fun_haters }
+				}
+				POL = {
+					POL_wojtek = { add_unit_leader_trait = fun_haters }
+				}
+				PER = {
+					PER_jafar_kavian = { add_unit_leader_trait = fun_haters }
+					PER_ghulam_yahya_daneshian = { add_unit_leader_trait = fun_haters }
+				}
+				DEN = {
+					DEN_erik_moller = { add_unit_leader_trait = fun_haters }
+					DEN_christian_peder_kryssing = { add_unit_leader_trait = fun_haters }
+					DEN_christian_frederik_von_schalburg = { add_unit_leader_trait = fun_haters }
+				}
+				BEL = {
+					BEL_eddy_blondeel = { add_unit_leader_trait = fun_haters }
+					BEL_jean_baptise_piron = { add_unit_leader_trait = fun_haters }
+				}
+				RAJ = {
+					RAJ_GOE_ishar_singh = { add_unit_leader_trait = fun_haters }
+					RAJ_GOE_parkash_singh = { add_unit_leader_trait = fun_haters }
+				}
+				AUS = {
+					AUS_julius_deutsch = { add_unit_leader_trait = fun_haters }
+					AUS_theodor_korner = { add_unit_leader_trait = fun_haters }
+					AUS_ernst_rudiger_starhemberg = { add_unit_leader_trait = fun_haters }
+					AUS_richard_steidle = { add_unit_leader_trait = fun_haters }
+					AUS_johann_jacob_reverta = { add_unit_leader_trait = fun_haters }
+					AUS_mauritz_von_wiktorin = { add_unit_leader_trait = fun_haters }
+					AUS_wilhelm_gebauer = { add_unit_leader_trait = fun_haters }
+				}
+				FIN = {
+					FIN_aarne_sihvo = { add_unit_leader_trait = fun_haters }
+					FIN_fanni_luukkonen = { add_unit_leader_trait = fun_haters }
+					FIN_paavo_talvela = { add_unit_leader_trait = fun_haters }
+					FIN_kurt_martti_wallenius = { add_unit_leader_trait = fun_haters }
+					FIN_paavo_susitaival = { add_unit_leader_trait = fun_haters }
+					FIN_lauri_torni = { add_unit_leader_trait = fun_haters }
+					FIN_hannu_hannuksela = { add_unit_leader_trait = fun_haters }
+					FIN_hjalmar_siilasvuo = { add_unit_leader_trait = fun_haters }
+					FIN_taavetti_laatikainen = { add_unit_leader_trait = fun_haters }
+					FIN_matti_aarnio = { add_unit_leader_trait = fun_haters }
+					FIN_erkki_raappana = { add_unit_leader_trait = fun_haters }
+					FIN_ruben_lagus = { add_unit_leader_trait = fun_haters }
+					FIN_svante_sundman = { add_unit_leader_trait = fun_haters }
+				}
+			}
+		}
 	}
 
+	on_unit_leader_created = {
+		effect = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = division_cap
+						option = DISABLED
+					}
+				}
+				character = {
+					if = { 
+						limit = {
+							is_army_leader = yes
+						}
+						root = {
+							add_unit_leader_trait = fun_haters
+						}
+					}
+				}
+			}
+		}
+	}
 	on_capitulation = {
 		# Denied Czechs Stuff
 		effect = {
@@ -1679,6 +2118,22 @@ on_actions = {
 						}
 					}
 				}
+			}
+		}
+	}
+	on_daily_ROM = {
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						NOT = {owns_state = 76 }
+						NOT = {owns_state = 77 }
+						NOT = {owns_state = 78 }
+					}
+					NOT = { has_completed_focus = ROM_national_humiliation }
+					NOT = { has_completed_focus = ROM_preserve_greater_romania }
+				}
+				complete_national_focus = ROM_national_humiliation
 			}
 		}
 	}

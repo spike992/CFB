@@ -236,33 +236,35 @@ going_war_with_SOV = {
 
 
 GER_is_historical_ai = {
-	OR = {
-		AND = {
-			is_historical_focus_on = yes
-			OR = {
-				NOT = { has_dlc = "Waking the Tiger" }
-				has_game_rule = {
-					rule = GER_ai_behavior
-					option = DEFAULT
-				}
-			}	
-		}
-		has_country_flag = GER_AI_RANDOM_FASCIST
-		has_game_rule = {
-			rule = GER_ai_behavior
-			option = FASCIST
-		}
-	}
+	always = yes
+	# OR = {
+	# 	AND = {
+	# 		is_historical_focus_on = yes
+	# 		OR = {
+	# 			NOT = { has_dlc = "Waking the Tiger" }
+	# 			has_game_rule = {
+	# 				rule = GER_ai_behavior
+	# 				option = DEFAULT
+	# 			}
+	# 		}	
+	# 	}
+	# 	has_country_flag = GER_AI_RANDOM_FASCIST
+	# 	has_game_rule = {
+	# 		rule = GER_ai_behavior
+	# 		option = FASCIST
+	# 	}
+	# }
 }
 
 GER_is_alt_fascist_ai = {
-	OR = {
-		has_country_flag = GER_AI_RANDOM_ALT_FASCIST
-		has_game_rule = {
-			rule = GER_ai_behavior
-			option = GER_ALT_FASCIST
-		}
-	}
+	always = no
+	# OR = {
+	# 	has_country_flag = GER_AI_RANDOM_ALT_FASCIST
+	# 	has_game_rule = {
+	# 		rule = GER_ai_behavior
+	# 		option = GER_ALT_FASCIST
+	# 	}
+	# }
 }
 
 
@@ -1431,38 +1433,38 @@ GER_inner_circle_is_ascension_cd_over = {
 	}
 }
 
-GER_is_friend_for_norwegian_strait = { #Scripted Trigger for handling the Norwegian Strait
-	hidden_trigger = {
-		OR = {
-			AND = {
-				OR = {
-					ROOT = {
-						tag = GER
-						is_in_faction_with = GER 
-					}
-				}
-				has_global_flag = GER_weserubung_start
-				NOT = { has_global_flag = GER_weserubung_over }
-			}
-			AND = {
-				var:global.province_controllers^9296 = {
-					OR = {
-						tag = ROOT
-						is_in_faction_with = ROOT 
-						ROOT = { has_military_access_to = PREV }
-					}
-				}
-				var:global.province_controllers^316 = {
-					OR = {
-						tag = ROOT
-						is_in_faction_with = ROOT 
-						ROOT = { has_military_access_to = PREV }
-					}
-				}
-			}
-		}
-	}	
-}
+# GER_is_friend_for_norwegian_strait = { #Scripted Trigger for handling the Norwegian Strait
+# 	hidden_trigger = {
+# 		OR = {
+# 			AND = {
+# 				OR = {
+# 					ROOT = {
+# 						tag = GER
+# 						is_in_faction_with = GER 
+# 					}
+# 				}
+# 				has_global_flag = GER_weserubung_start
+# 				NOT = { has_global_flag = GER_weserubung_over }
+# 			}
+# 			AND = {
+# 				var:global.province_controllers^9296 = {
+# 					OR = {
+# 						tag = ROOT
+# 						is_in_faction_with = ROOT 
+# 						ROOT = { has_military_access_to = PREV }
+# 					}
+# 				}
+# 				var:global.province_controllers^316 = {
+# 					OR = {
+# 						tag = ROOT
+# 						is_in_faction_with = ROOT 
+# 						ROOT = { has_military_access_to = PREV }
+# 					}
+# 				}
+# 			}
+# 		}
+# 	}	
+# }
 
 GER_is_friend_for_sweedish_strait = { #Scripted Trigger for handling the Sweedish Strait
 	hidden_trigger = {

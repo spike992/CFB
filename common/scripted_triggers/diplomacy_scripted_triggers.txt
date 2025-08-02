@@ -850,10 +850,7 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 				FROM = {tag = CHI}
 				if = {
 					limit = {
-						has_game_rule = {
-							rule = soviet_volunteer
-							option = DISABLED
-						}
+						NOT = { has_global_flag = soviet_volunteer_flag }
 					}
 					NOT = { SOV = { has_completed_focus = SOV_father_of_nations } }
 				} else = {
@@ -1212,6 +1209,7 @@ DIPLOMACY_JOIN_FACTION_ENABLE_TRIGGER = {
 DIPLOMACY_OFFER_JOIN_FACTION_ENABLE_TRIGGER = {
 	if = { 
 		limit = {
+			is_faction_leader = yes
 			has_dlc = "Arms Against Tyranny"
 			FROM = {
 				original_tag = DEN

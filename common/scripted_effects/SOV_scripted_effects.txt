@@ -6954,44 +6954,44 @@ SOV_promote_to_country_leader_provisional = {
 }
 # japanese_expeditionary_leader_flag
 SOV_set_up_japanese_troops = {
-	division_template = {
-	    name = "Japanese Expeditionary Force"
-	    division_names_group = SOV_JAP_INF
-	    is_locked = yes
-	    priority = 1
-	    template_counter = 3
-	    regiments = {
-	        infantry = { x = 0 y = 0 }
-	        infantry = { x = 0 y = 1 }
-	        infantry = { x = 0 y = 2 }
-	        infantry = { x = 1 y = 0 }
-	        infantry = { x = 1 y = 1 }
-	        infantry = { x = 1 y = 2 }
-	        artillery_brigade = { x= 2 y = 0}
-	        artillery_brigade = { x= 2 y = 1}
-	    }
-	    is_locked = yes
-	}
-	JAP = {
-		var:SOV.SOV_japanese_general = {
-			unit_leader_event = {
-				id = NSB_soviet_civil_war_common.129
-				hours = 1
-			}
-		}
-	}
+	# division_template = {
+	#     name = "Japanese Expeditionary Force"
+	#     division_names_group = SOV_JAP_INF
+	#     is_locked = yes
+	#     priority = 1
+	#     template_counter = 3
+	#     regiments = {
+	#         infantry = { x = 0 y = 0 }
+	#         infantry = { x = 0 y = 1 }
+	#         infantry = { x = 0 y = 2 }
+	#         infantry = { x = 1 y = 0 }
+	#         infantry = { x = 1 y = 1 }
+	#         infantry = { x = 1 y = 2 }
+	#         artillery_brigade = { x= 2 y = 0}
+	#         artillery_brigade = { x= 2 y = 1}
+	#     }
+	#     is_locked = yes
+	# }
+	# JAP = {
+	# 	var:SOV.SOV_japanese_general = {
+	# 		unit_leader_event = {
+	# 			id = NSB_soviet_civil_war_common.129
+	# 			hours = 1
+	# 		}
+	# 	}
+	# }
 
-	var:SOV_civil_war_start_state = {
-		create_unit = {
-			division = "division_template = \"Japanese Expeditionary Force\" start_experience_factor = 0.2 start_equipment_factor = 0.95" owner = ROOT count = 24
-		}
+	# var:SOV_civil_war_start_state = {
+	# 	create_unit = {
+	# 		division = "division_template = \"Japanese Expeditionary Force\" start_experience_factor = 0.2 start_equipment_factor = 0.95" owner = ROOT count = 24
+	# 	}
 		
 
-	}
+	# }
 
-	# Add air support 
-	add_equipment_to_stockpile = { type = fighter_equipment  amount = 100 producer = JAP }
-	add_equipment_to_stockpile = { type = tac_bomber_equipment  amount = 50 producer = JAP }
+	# # Add air support 
+	# add_equipment_to_stockpile = { type = fighter_equipment  amount = 100 producer = JAP }
+	# add_equipment_to_stockpile = { type = tac_bomber_equipment  amount = 50 producer = JAP }
 
 	
 }
@@ -10240,10 +10240,7 @@ SOV_stalins_air_needs = {
 
 	if = {
 		limit = {
-			has_game_rule = {
-				rule = soviet_air_changes
-				option = FULL_SOV_AIR
-			}
+			has_global_flag = soviet_air_changes_full_flag
 		}
 		while_loop_effect = {
 			limit = {
@@ -10266,10 +10263,7 @@ SOV_stalins_air_needs = {
 		}
 	} else_if = {
 		limit = {
-			has_game_rule = {
-				rule = soviet_air_changes
-				option = START_SOV_AIR
-			}
+			has_global_flag = soviet_air_changes_start_flag
 		}
 		if = {
 			limit = {

@@ -1572,6 +1572,17 @@
 			set_technology = {
 				sov_zis30_tech = 1
 			}
+			hidden_effect = {
+				if = {
+					limit = { country_exists = MON }
+					MON = {	set_technology = { sov_zis30_tech = 1 } }
+				}
+				if = {
+					limit = { country_exists = KSR }
+					KSR = {	set_technology = { sov_zis30_tech = 1 } }
+				}
+			}
+
 
 			if = {
 				limit = { has_country_flag = RG_armored_division_medium }
@@ -1893,7 +1904,16 @@
 		cost = 5
 
 		available = {
-			surrender_progress > 0.4
+			if = { 
+				limit = { has_global_flag = meta_game_flag }
+				surrender_progress > 0.39 
+			} else_if = {
+				limit = { KSR = { exists = yes } }
+				surrender_progress > 0.41
+			} else = {
+				# Default TFB
+				surrender_progress > 0.4
+			}
 		}
 
 		ai_will_do = {
@@ -1971,7 +1991,16 @@
 				NOT = { controls_state = 246 }
 				NOT = { controls_state = 247 }
 				NOT = { controls_state = 205 }
-				surrender_progress > 0.3
+				if = { 
+					limit = { has_global_flag = meta_game_flag }
+					surrender_progress > 0.29 
+				} else_if = {
+					limit = { KSR = { exists = yes } }
+					surrender_progress > 0.31
+				} else = {
+					# Default TFB
+					surrender_progress > 0.3
+				}
 			}
 			controls_state = 219
 		}
@@ -2132,7 +2161,16 @@
 				NOT = { controls_state = 234 }
 				NOT = { controls_state = 228 }
 				NOT = { controls_state = 260 }
-				surrender_progress > 0.4
+				if = { 
+					limit = { has_global_flag = meta_game_flag }
+					surrender_progress > 0.39 
+					} else_if = {
+						limit = { KSR = { exists = yes } }
+						surrender_progress > 0.41
+					} else = {
+					# Default TFB
+					surrender_progress > 0.4
+				}
 			}
 			controls_state = 217
 		}
@@ -2319,7 +2357,16 @@
 				NOT = { controls_state = 208 }
 				NOT = { controls_state = 209 }
 				NOT = { controls_state = 263 }
-				surrender_progress > 0.2
+				if = { 
+					limit = { has_global_flag = meta_game_flag }
+					surrender_progress > 0.19 
+				} else_if = {
+					limit = { KSR = { exists = yes } }
+					surrender_progress > 0.21
+				} else = {
+					# Default TFB
+					surrender_progress > 0.2
+				}
 			}
 			controls_state = 195
 		}
@@ -2549,7 +2596,16 @@
 		cost = 1
 		
 		available = {
-			surrender_progress > 0.22
+			if = { 
+				limit = { has_global_flag = meta_game_flag }
+				surrender_progress > 0.21 
+			} else_if = {
+				limit = { KSR = { exists = yes } }
+				surrender_progress > 0.23
+			} else = {
+				# Default TFB
+				surrender_progress > 0.22
+			}
 			casualties > 500000
 		}
 
@@ -2630,6 +2686,9 @@
 
 		completion_reward = {
 			unlock_decision_category_tooltip = SOV_organise_partisans
+			set_technology = {
+				militia_tech = 1
+			}
 		}
 	}
 	
@@ -2643,8 +2702,17 @@
 		cost = 1
 		
 		available = {
-			casualties > 1000000
-			surrender_progress > 0.25
+			casualties > 2000000
+			if = { 
+				limit = { has_global_flag = meta_game_flag }
+				surrender_progress > 0.31 
+			} else_if = {
+				limit = { KSR = { exists = yes } }
+				surrender_progress > 0.33
+			} else = {
+				# Default TFB
+				surrender_progress > 0.32
+			}
 		}
 
 		completion_reward = {
@@ -2774,8 +2842,17 @@
 		cost = 1
 		
 		available = {
-			casualties > 2000000
-			surrender_progress > 0.35
+			casualties > 3000000
+			if = { 
+				limit = { has_global_flag = meta_game_flag }
+				surrender_progress > 0.46
+			} else_if = {
+				limit = { KSR = { exists = yes } }
+				surrender_progress > 0.48
+			} else = {
+				# Default TFB
+				surrender_progress > 0.47
+			}
 		}
 
 		completion_reward = {
@@ -2833,21 +2910,17 @@
 							}
 						}
 						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
 							owner = SOV
 						}
 						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
 							owner = SOV
 						}
 						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
 							owner = SOV
-						}
-						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
-							owner = SOV
-						}
+						}						
 					}
 				}
 				else = {
@@ -2871,14 +2944,10 @@
 						create_unit = {
 							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
 							owner = SOV
-						}
-						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
-							owner = SOV
-						}
+						}						
 					}
 				}
-			}			
+			}
 			custom_effect_tooltip = SOV_frontline_mob_tt2
 		}
 	}
@@ -2890,7 +2959,16 @@
 		icon = GFX_goal_generic_military_sphere
 		prerequisite = { focus = SOV_order_270 }
 		available = {
-			surrender_progress > 0.27
+			if = { 
+				limit = { has_global_flag = meta_game_flag }
+				surrender_progress > 0.26 
+			} else_if = {
+				limit = { KSR = { exists = yes } }
+				surrender_progress > 0.28
+			} else = {
+				# Default TFB
+				surrender_progress > 0.27
+			}
 		}
 		x = 0
 		y = 1
@@ -3018,7 +3096,16 @@
 		cost = 5
 		
 		available = {
-			surrender_progress > 0.25
+			if = { 
+				limit = { has_global_flag = meta_game_flag }
+				surrender_progress > 0.24 
+			} else_if = {
+				limit = { KSR = { exists = yes } }
+				surrender_progress > 0.26
+			} else = {
+				# Default TFB
+				surrender_progress > 0.25
+			}
 			casualties > 1000000
 		}
 
@@ -3044,7 +3131,16 @@
 		available_if_capitulated = yes
 		
 		available = {
-			surrender_progress > 0.3
+			if = { 
+				limit = { has_global_flag = meta_game_flag }
+				surrender_progress > 0.29 
+			} else_if = {
+				limit = { KSR = { exists = yes } }
+				surrender_progress > 0.31
+			} else = {
+				# Default TFB
+				surrender_progress > 0.3
+			}
 		}
 
 		completion_reward = {
@@ -3808,7 +3904,10 @@
 				} 
 				SOV_vasily_blyukher = {
 					add_unit_leader_trait = trait_SOV_cowed_by_stalin_army
-				} 
+				}
+				set_technology = {
+					nkvd_tech_2 = 1
+				}
 			}
 
 			set_country_flag = SOV_stalinist_military_flag #New Generals have more chances of being Stalinists after this
@@ -4595,6 +4694,14 @@
 				MON = {
 					add_ideas = MON_brothers_war
 				}
+				if = {
+					limit = {
+						country_exists = KSR
+					}
+					KSR = {
+						add_ideas = MON_brothers_war
+					}
+				}
 			}
 		}
 	}
@@ -4607,10 +4714,6 @@
 		y = 1
 		relative_position_id = SOV_baltic_security
 		cost = 2
-
-		available = { 
-			has_war = no
-		}
 
 		bypass = {
 			AND = {
@@ -5756,7 +5859,7 @@
 		search_filters = {FOCUS_FILTER_RESEARCH}
 
 		completion_reward = {
-IF = {
+			IF = {
 				limit = {
 					NOT = {
 						has_tech = atomic_research
@@ -5886,6 +5989,10 @@ IF = {
 					remove_idea = SOV_modernisation_cav_2
 					add_idea = SOV_modernisation_bal
 				}
+			}
+
+			set_technology = {
+				nkvd_tech_3 = 1
 			}
 		}
 	}
@@ -6274,6 +6381,7 @@ IF = {
 
 		available = {
 			has_global_flag = SOV_winter_war_loss
+			has_country_flag = SOV_winter_war_catastrophe
 			# NOT = { has_global_flag = SOV_border_war_loss}
 			SOV_vasily_blyukher = {
 				NOT = {has_character_flag = SOV_character_purged_flag }
@@ -7042,6 +7150,7 @@ IF = {
 
 		available = {
 			# has_global_flag = SOV_border_war_win
+			has_country_flag = SOV_winter_war_incompetency
 			SOV_vasily_blyukher = {
 				NOT = {has_character_flag = SOV_character_purged_flag }
 			}
@@ -8032,10 +8141,7 @@ IF = {
 		available = {
 			if = {
 				limit = {
-					has_game_rule = {
-						rule = soviet_air_changes
-						option = FOCUS_SOV_AIR
-					}
+					has_global_flag = soviet_air_changes_focus_flag
 				}
 				OR = {
 					has_air_experience > 1
@@ -8089,10 +8195,7 @@ IF = {
 			}
 			if = {
 				limit = {
-					has_game_rule = {
-						rule = soviet_air_changes
-						option = FOCUS_SOV_AIR
-					}
+					has_global_flag = soviet_air_changes_focus_flag
 				}
 				if = {
 					limit = {
@@ -8282,10 +8385,7 @@ IF = {
 			NOT = { has_country_flag = SOV_paranoia_system_active_flag }
 			if = {
 				limit = {
-					has_game_rule = {
-						rule = soviet_air_changes
-						option = FOCUS_SOV_AIR
-					}
+					has_global_flag = soviet_air_changes_focus_flag
 				}
 				OR = {
 					has_air_experience > 1
@@ -8342,10 +8442,7 @@ IF = {
 
 			if = {
 				limit = {
-					has_game_rule = {
-						rule = soviet_air_changes
-						option = FOCUS_SOV_AIR
-					}
+					has_global_flag = soviet_air_changes_focus_flag
 				}
 				if = {
 					limit = {
@@ -8414,10 +8511,7 @@ IF = {
 			# }
 			if = {
 				limit = {
-					has_game_rule = {
-						rule = soviet_air_changes
-						option = FOCUS_SOV_AIR
-					}
+					has_global_flag = soviet_air_changes_focus_flag
 				}
 				OR = {
 					has_air_experience > 1
@@ -8453,10 +8547,7 @@ IF = {
 			}
 			if = {
 				limit = {
-					has_game_rule = {
-						rule = soviet_air_changes
-						option = FOCUS_SOV_AIR
-					}
+					has_global_flag = soviet_air_changes_focus_flag
 				}
 				if = {
 					limit = {
@@ -8537,10 +8628,7 @@ IF = {
 			NOT = { has_country_flag = SOV_paranoia_system_active_flag }
 			if = {
 				limit = {
-					has_game_rule = {
-						rule = soviet_air_changes
-						option = FOCUS_SOV_AIR
-					}
+					has_global_flag = soviet_air_changes_focus_flag
 				}
 				OR = {
 					has_air_experience > 1
@@ -8576,10 +8664,7 @@ IF = {
 
 			if = {
 				limit = {
-					has_game_rule = {
-						rule = soviet_air_changes
-						option = FOCUS_SOV_AIR
-					}
+					has_global_flag = soviet_air_changes_focus_flag
 				}
 				if = {
 					limit = {
@@ -8617,10 +8702,7 @@ IF = {
 		available = {
 			if = {
 				limit = {
-					has_game_rule = {
-						rule = soviet_air_changes
-						option = FOCUS_SOV_AIR
-					}
+					has_global_flag = soviet_air_changes_focus_flag
 				}
 				OR = {
 					has_air_experience > 1
@@ -8651,10 +8733,7 @@ IF = {
 			custom_effect_tooltip = SOV_expand_aviation_institutes_ns_tt
 			if = {
 				limit = {
-					has_game_rule = {
-						rule = soviet_air_changes
-						option = FOCUS_SOV_AIR
-					}
+					has_global_flag = soviet_air_changes_focus_flag
 				}
 				if = {
 					limit = {
@@ -8731,6 +8810,7 @@ IF = {
 
 		completion_reward = {
 			add_to_variable = { SOV_soviet_airforce_strategic_bomb_visibility = -0.1 }
+			add_to_variable = { SOV_soviet_airforce_air_range_factor = 0.1 }
 			custom_effect_tooltip = SOV_long_range_aircraft_ns_tt
 
 			add_tech_bonus = {
@@ -8757,10 +8837,7 @@ IF = {
 		available = {
 			if = {
 				limit = {
-					has_game_rule = {
-						rule = soviet_air_changes
-						option = FOCUS_SOV_AIR
-					}
+					has_global_flag = soviet_air_changes_focus_flag
 				}
 				OR = {
 					has_air_experience > 1
@@ -8797,10 +8874,7 @@ IF = {
 
 			if = {
 				limit = {
-					has_game_rule = {
-						rule = soviet_air_changes
-						option = FOCUS_SOV_AIR
-					}
+					has_global_flag = soviet_air_changes_focus_flag
 				}
 				if = {
 					limit = {

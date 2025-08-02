@@ -4791,9 +4791,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-	  				archetype = artillery_equipment
-	  				ratio < 0.76
-	  			}
+					archetype = artillery_equipment
+					ratio < 0.76
+				}
 			}
 		}
 
@@ -4809,9 +4809,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-	  				archetype = anti_air_equipment
-	  				ratio < 0.76
-	  			}
+					archetype = anti_air_equipment
+					ratio < 0.76
+				}
 			}
 		}
 
@@ -4831,9 +4831,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-	  				archetype = anti_tank_equipment
-	  				ratio < 0.76
-	  			}
+					archetype = anti_tank_equipment
+					ratio < 0.76
+				}
 			}
 		}
 
@@ -4863,9 +4863,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-	  				archetype = motorized_equipment
-	  				ratio < 0.76
-	  			}
+					archetype = motorized_equipment
+					ratio < 0.76
+				}
 			}
 		}
 
@@ -4882,9 +4882,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-	  				archetype = mechanized_equipment
-	  				ratio < 0.76
-	  			}
+					archetype = mechanized_equipment
+					ratio < 0.76
+				}
 			}
 		}
 
@@ -4907,9 +4907,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-	  				archetype = armored_car_chassis
-	  				ratio < 0.76
-	  			}
+					archetype = armored_car_chassis
+					ratio < 0.76
+				}
 			}
 		}
 
@@ -4942,9 +4942,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-	  				archetype = light_tank_chassis
-	  				ratio < 0.76
-	  			}
+					archetype = light_tank_chassis
+					ratio < 0.76
+				}
 			}
 		}
 
@@ -4961,9 +4961,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-	  				archetype = medium_tank_chassis
-	  				ratio < 0.76
-	  			}
+					archetype = medium_tank_chassis
+					ratio < 0.76
+				}
 			}
 		}
 
@@ -4983,9 +4983,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-	  				archetype = heavy_tank_chassis
-	  				ratio < 0.76
-	  			}
+					archetype = heavy_tank_chassis
+					ratio < 0.76
+				}
 			}
 		}
 
@@ -5015,9 +5015,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-	  				archetype = fighter_equipment
-	  				ratio < 0.76
-	  			}
+					archetype = fighter_equipment
+					ratio < 0.76
+				}
 			}
 		}
 
@@ -5034,9 +5034,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-	  				archetype = nav_bomber_equipment
-	  				ratio < 0.76
-	  			}
+					archetype = nav_bomber_equipment
+					ratio < 0.76
+				}
 			}
 		}
 
@@ -5059,9 +5059,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-	  				archetype = tac_bomber_equipment
-	  				ratio < 0.76
-	  			}
+					archetype = tac_bomber_equipment
+					ratio < 0.76
+				}
 			}
 		}
 
@@ -5937,7 +5937,7 @@ country_event = {
 ##    ## ##    ## ##  ##  ## 
 ##       ##       ##  ##  ## 
  ######  ##       ##  ##  ## 
-      ## ##       ##  ##  ## 
+	  ## ##       ##  ##  ## 
 ##    ## ##    ## ##  ##  ## 
  ######   ######   ###  ###  
 
@@ -6357,6 +6357,372 @@ country_event = {
 		if = {
 			limit = {
 				check_variable = { BUL_spanish_tag_aided = FROM }
+			}
+			army_experience = 50
+		}
+		else = {
+			army_experience = 25
+		}
+	}
+}
+
+#SCW is over - Yugoslavian volunteers aiding the Spanish Nationalists are back - Event for YUG
+country_event = {
+	id = bftb_bulgaria_scw_volunteers.3
+	title = bftb_bulgaria_scw_volunteers.2.t
+	desc = bftb_bulgaria_scw_volunteers.2.desc
+	picture = GFX_report_event_spr_army_of_africa
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			random_list = {
+				13 = {
+					set_variable = { YUG_trait_gained_during_scw = 1 } #Commando
+				}
+				13 = {
+					set_variable = { YUG_trait_gained_during_scw = 2 } #Mountaineer
+				}
+				13 = {
+					set_variable = { YUG_trait_gained_during_scw = 3 } #Hill Fighter
+				}
+				13 = {
+					set_variable = { YUG_trait_gained_during_scw = 4 } #Urban Assault Specialist
+				}
+				13 = {
+					set_variable = { YUG_trait_gained_during_scw = 5 } #Trickster
+				}
+				13 = {
+					set_variable = { YUG_trait_gained_during_scw = 6 } #Organizer
+				}
+			}
+		}
+	}
+
+	option = {
+		name = bftb_bulgaria_scw_volunteers.2.a
+
+		trigger = {
+			country_exists = SPA
+		}
+
+		if = {
+			limit = {
+				any_unit_leader = {
+					has_unit_leader_flag = YUG_scw_promotion_flag
+				}
+			}
+			random_unit_leader = {
+				limit = {
+					has_unit_leader_flag = YUG_scw_promotion_flag
+				}
+				promote_leader = yes
+				add_skill_level = 1
+				add_attack = 1
+				add_defense = 1
+				add_planning = 1
+
+				if = {
+					limit = {
+						YUG = { check_variable = { var = YUG_trait_gained_during_scw value = 1 compare = equals } }
+					}
+					add_unit_leader_trait = commando
+				}
+				else_if = {
+					limit = {
+						YUG = { check_variable = { YUG_trait_gained_during_scw = 2 } }
+					}
+					add_unit_leader_trait = trait_mountaineer
+				}
+				else_if = {
+					limit = {
+						YUG = { check_variable = { YUG_trait_gained_during_scw = 3 } }
+					}
+					add_unit_leader_trait = hill_fighter
+				}
+				else_if = {
+					limit = {
+						YUG = { check_variable = { YUG_trait_gained_during_scw = 4 } }
+					}
+					add_unit_leader_trait = urban_assault_specialist
+				}
+				else_if = {
+					limit = {
+						YUG = { check_variable = { YUG_trait_gained_during_scw = 5 } }
+					}
+					add_unit_leader_trait = trickster
+				}
+				else_if = {
+					limit = {
+						YUG = { check_variable = { YUG_trait_gained_during_scw = 6 } }
+					}
+					add_unit_leader_trait = organizer
+				}
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					YUG = { check_variable = { var = YUG_trait_gained_during_scw value = 1 compare = equals } }
+				}
+				create_corps_commander = {
+					name = "Nikola Nakov"
+					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
+					traits = { commando }
+					skill = 3
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 4
+					logistics_skill = 2
+				}
+			}
+			else_if = {
+				limit = {
+					YUG = { check_variable = { YUG_trait_gained_during_scw = 2 } }
+				}
+				create_corps_commander = {
+					name = "Nikola Nakov"
+					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
+					traits = { trait_mountaineer }
+					skill = 3
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 4
+					logistics_skill = 2
+				}
+			}
+			else_if = {
+				limit = {
+					YUG = { check_variable = { YUG_trait_gained_during_scw = 3 } }
+				}
+				create_corps_commander = {
+					name = "Nikola Nakov"
+					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
+					traits = { hill_fighter }
+					skill = 3
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 4
+					logistics_skill = 2
+				}
+			}
+			else_if = {
+				limit = {
+					YUG = { check_variable = { YUG_trait_gained_during_scw = 4 } }
+				}
+				create_corps_commander = {
+					name = "Nikola Nakov"
+					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
+					traits = { urban_assault_specialist }
+					skill = 3
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 4
+					logistics_skill = 2
+				}
+			}
+			else_if = {
+				limit = {
+					YUG = { check_variable = { YUG_trait_gained_during_scw = 5 } }
+				}
+				create_corps_commander = {
+					name = "Nikola Nakov"
+					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
+					traits = { trickster }
+					skill = 3
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 4
+					logistics_skill = 2
+				}
+			}
+			else_if = {
+				limit = {
+					YUG = { check_variable = { YUG_trait_gained_during_scw = 6 } }
+				}
+				create_corps_commander = {
+					name = "Nikola Nakov"
+					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
+					traits = { organizer }
+					skill = 3
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 4
+					logistics_skill = 2
+				}
+			}
+		}
+		clear_variable = YUG_trait_gained_during_scw
+		if = {
+			limit = {
+				check_variable = { YUG_spanish_tag_aided = FROM }
+			}
+			army_experience = 50
+		}
+		else = {
+			army_experience = 25
+		}
+	}
+
+	option = {
+		name = bftb_bulgaria_scw_volunteers.2.b
+
+		trigger = {
+			NOT = { country_exists = SPA }
+		}
+
+		if = {
+			limit = {
+				any_unit_leader = {
+					is_field_marshal = no
+					is_assigned = no
+				}
+			}
+			random_unit_leader = {
+				limit = {
+					is_field_marshal = no
+					is_assigned = no
+				}
+				promote_leader = yes
+				add_skill_level = 1
+
+				if = {
+					limit = {
+						YUG = { check_variable = { var = YUG_trait_gained_during_scw value = 1 compare = equals } }
+					}
+					add_unit_leader_trait = commando
+				}
+				else_if = {
+					limit = {
+						YUG = { check_variable = { YUG_trait_gained_during_scw = 2 } }
+					}
+					add_unit_leader_trait = trait_mountaineer
+				}
+				else_if = {
+					limit = {
+						YUG = { check_variable = { YUG_trait_gained_during_scw = 3 } }
+					}
+					add_unit_leader_trait = hill_fighter
+				}
+				else_if = {
+					limit = {
+						YUG = { check_variable = { YUG_trait_gained_during_scw = 4 } }
+					}
+					add_unit_leader_trait = urban_assault_specialist
+				}
+				else_if = {
+					limit = {
+						YUG = { check_variable = { YUG_trait_gained_during_scw = 5 } }
+					}
+					add_unit_leader_trait = trickster
+				}
+				else_if = {
+					limit = {
+						YUG = { check_variable = { YUG_trait_gained_during_scw = 6 } }
+					}
+					add_unit_leader_trait = organizer
+				}
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					YUG = { check_variable = { var = YUG_trait_gained_during_scw value = 1 compare = equals } }
+				}
+				create_corps_commander = {
+					name = "Nikola Nakov"
+					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
+					traits = { commando }
+					skill = 3
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 4
+					logistics_skill = 2
+				}
+			}
+			else_if = {
+				limit = {
+					YUG = { check_variable = { YUG_trait_gained_during_scw = 2 } }
+				}
+				create_corps_commander = {
+					name = "Nikola Nakov"
+					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
+					traits = { trait_mountaineer }
+					skill = 3
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 4
+					logistics_skill = 2
+				}
+			}
+			else_if = {
+				limit = {
+					YUG = { check_variable = { YUG_trait_gained_during_scw = 3 } }
+				}
+				create_corps_commander = {
+					name = "Nikola Nakov"
+					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
+					traits = { hill_fighter }
+					skill = 3
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 4
+					logistics_skill = 2
+				}
+			}
+			else_if = {
+				limit = {
+					YUG = { check_variable = { YUG_trait_gained_during_scw = 4 } }
+				}
+				create_corps_commander = {
+					name = "Nikola Nakov"
+					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
+					traits = { urban_assault_specialist }
+					skill = 3
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 4
+					logistics_skill = 2
+				}
+			}
+			else_if = {
+				limit = {
+					YUG = { check_variable = { YUG_trait_gained_during_scw = 5 } }
+				}
+				create_corps_commander = {
+					name = "Nikola Nakov"
+					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
+					traits = { trickster }
+					skill = 3
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 4
+					logistics_skill = 2
+				}
+			}
+			else_if = {
+				limit = {
+					YUG = { check_variable = { YUG_trait_gained_during_scw = 6 } }
+				}
+				create_corps_commander = {
+					name = "Nikola Nakov"
+					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
+					traits = { organizer }
+					skill = 3
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 4
+					logistics_skill = 2
+				}
+			}
+		}
+		clear_variable = YUG_trait_gained_during_scw
+		if = {
+			limit = {
+				check_variable = { YUG_spanish_tag_aided = FROM }
 			}
 			army_experience = 50
 		}
