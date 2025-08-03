@@ -24,6 +24,22 @@ if = {
 # 	}
 # }
 
+set_variable = { ROM_integration_recruitable_pop = -0.8 }
+
+set_variable = { ROM_iron_guard_stability_weekly = -0.002 }
+set_variable = { ROM_iron_guard_stability_factor = -0.1 }
+set_variable = { ROM_iron_guard_war_support_weekly = 0 }
+set_variable = { ROM_iron_guard_fascism_drift = 0.01 }
+set_variable = { ROM_iron_guard_army_core_attack_factor = 0 }
+
+set_variable = { ROM_king_carol_ii_political_power_factor = -0.02 }
+set_variable = { ROM_king_carol_ii_neutrality_drift = 0 }
+set_variable = { ROM_king_carol_ii_democratic_drift = 0 }
+set_variable = { ROM_king_carol_ii_stability_factor = 0 }
+set_variable = { ROM_king_carol_ii_consumer_goods_expected_value = 0.05 }
+set_variable = { ROM_king_carol_ii_consumer_goods_factor = 0 }
+set_variable = { ROM_king_carol_ii_industrial_capacity_factory = 0 }
+
 set_research_slots = 5
 set_stability = 0.6
 set_war_support = 0.4
@@ -72,7 +88,7 @@ if = {
 		has_dlc = "Death or Dishonor"
 	}
 	add_ideas = {
-		ROM_king_carol_ii_hedonist
+		#ROM_king_carol_ii_hedonist
 		ROM_undeveloped_export_industry
 	}
 	#give_guarantee = CZE
@@ -80,20 +96,22 @@ if = {
 	give_guarantee = TUR
 }
 add_ideas = neutrality_idea
+add_dynamic_modifier = { modifier = ROM_iron_guard }
+add_dynamic_modifier = { modifier = ROM_king_carol_ii }
 
 
-#Kick off kings crazy life
-if = {
-	limit = {
-		has_dlc = "Death or Dishonor"
-	}
-	ROM = {
-		#Pick from list of the sane events first
-		random_list = {
-			100 = { country_event = { id = DOD_romania.81 days = 2 random = 20 } }
-		}
-	}
-}
+# #Kick off kings crazy life
+# if = {
+# 	limit = {
+# 		has_dlc = "Death or Dishonor"
+# 	}
+# 	ROM = {
+# 		#Pick from list of the sane events first
+# 		random_list = {
+# 			100 = { country_event = { id = DOD_romania.81 days = 2 random = 20 } }
+# 		}
+# 	}
+# }
 
 
 
@@ -150,6 +168,7 @@ recruit_character = ROM_constantin_sanatescu
 recruit_character = ROM_gheorghe_mihail
 recruit_character = ROM_paul_teodorescu
 recruit_character = ROM_gheorghe_vasiliu
+recruit_character = ROM_corneliu_codreanu
 
 create_equipment_variant = {
 	name = "FT-17"
