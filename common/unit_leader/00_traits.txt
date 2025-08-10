@@ -104,6 +104,27 @@ leader_traits = {
 		}
 		
 	}
+
+	the_fox = {
+		type = land
+		trait_type = personality_trait
+	
+
+		modifier = {
+			army_armor_attack_factor = -0.10
+			army_armor_defence_factor = -0.10
+			supply_consumption_factor = -0.10
+			equipment_capture = 0.05
+			forest = {
+				movement = 0.1
+				attack = 0.05
+				defence = 0.1
+			}
+		}
+		new_commander_weight = {
+			factor = 0
+		}
+	}
 	
 	
 	brilliant_strategist = { 
@@ -195,6 +216,10 @@ leader_traits = {
 			}
 			modifier = {
 				FROM = { has_idea = naval_academy_scholarships_spirit }
+				factor = 0
+			}
+			modifier = {
+				FROM = { has_idea = ROM_army_academy }
 				factor = 0
 			}
 		}
@@ -1229,6 +1254,13 @@ leader_traits = {
 	cavalry_leader = { 
 		type = corps_commander
 		gain_xp = {
+			NOT ={
+				OR = {
+					has_trait = panzer_leader
+					has_trait = commando
+					has_trait = skilled_staffer
+				}
+			}
 			set_temp_variable = { temp = num_units }
 			multiply_temp_variable = { temp = 0.90 }
 			set_temp_variable = { cmm = num_cavalry }
@@ -1240,12 +1272,12 @@ leader_traits = {
 		
 		cost = 1000
 		modifier = {
-			cavalry_attack_factor = 0.075
-			motorized_attack_factor = 0.075
-			mechanized_attack_factor = 0.075
+			cavalry_attack_factor = 0.1
+			motorized_attack_factor = 0.1
+			mechanized_attack_factor = 0.1
 		}
 		corps_commander_modifier = {
-			max_commander_army_size = -16
+			max_commander_army_size = -14
 		}
 		non_shared_modifier = {
 			experience_gain_factor = -0.1
@@ -1294,12 +1326,19 @@ leader_traits = {
 	skilled_staffer = { 
 		type = corps_commander
 		gain_xp_leader = {
+			NOT ={
+				OR = {
+					has_trait = panzer_leader
+					has_trait = cavalry_leader
+					has_trait = commando
+				}
+			}
 			if = {
 				limit = { is_leading_army_group = yes }
-				check_variable = { num_units > 74 }
+				check_variable = { num_units > 70 }
 			}
 			else = {
-				check_variable = { num_units > 24 }
+				check_variable = { num_units > 20 }
 			}
 		}
 		custom_gain_xp_trigger_tooltip = fighting_with_enough_units
@@ -1466,6 +1505,13 @@ leader_traits = {
 	panzer_leader = {
  		type = corps_commander
 		gain_xp = {
+			NOT ={
+				OR = {
+					has_trait = commando
+					has_trait = cavalry_leader
+					has_trait = skilled_staffer
+				}
+			}
 			set_temp_variable = { temp = num_units }
 			multiply_temp_variable = { temp = 0.90 }
 			check_variable = { num_armored > temp }
@@ -1473,14 +1519,14 @@ leader_traits = {
 		custom_gain_xp_trigger_tooltip = armored_ratio_over_40
 		cost = 700
 		modifier = {
-			army_armor_speed_factor = 0.05 
-			army_armor_attack_factor = 0.05
+			army_armor_speed_factor = 0.075
+			army_armor_attack_factor = 0.075
 		}
 		non_shared_modifier = {
 			experience_gain_factor = -0.1
 		}
 		corps_commander_modifier = {
-			max_commander_army_size = -16
+			max_commander_army_size = -14
 		}
 		
 		ai_will_do = {
@@ -1500,6 +1546,13 @@ leader_traits = {
 	commando = { 
  		type = corps_commander
 		gain_xp = {
+			NOT ={
+				OR = {
+					has_trait = panzer_leader
+					has_trait = cavalry_leader
+					has_trait = skilled_staffer
+				}
+			}
 			OR = {
 				temperature < -10
 				temperature > 27
@@ -1513,6 +1566,9 @@ leader_traits = {
 		}
 		non_shared_modifier = {
 			experience_gain_factor = -0.1
+		}
+		corps_commander_modifier = {
+			max_commander_army_size = -12
 		}
 		
 		ai_will_do = {
@@ -1809,6 +1865,7 @@ leader_traits = {
 		}
 		cost = 500
 		modifier = {
+			max_commander_army_size = 14
 			cavalry_attack_factor = 0.05
 			cavalry_defence_factor = 0.05
 		}
