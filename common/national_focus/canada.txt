@@ -625,12 +625,9 @@ focus_tree = {
 				CAN = {
 					if = { 
                         limit = {
-                            has_game_rule = {
-                                rule = allow_voice_lines
-                                option = ENABLED
-                            }
+                            has_global_flag = allow_voice_lines_flag
                         }
-					scoped_sound_effect = "Areweatwar"
+						scoped_sound_effect = "Areweatwar"
 					}
 				}
 			}
@@ -2419,6 +2416,14 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_RESEARCH }
 
 		completion_reward = {
+			CAN_guy_simonds = {
+				add_trait = {
+					trait = commando
+				}
+				add_trait = {
+					trait = naval_invader
+				}
+			}
 			hidden_effect = {
 				set_technology = {
 					commandos = 1
@@ -2613,10 +2618,10 @@ focus_tree = {
 
 		completion_reward = {
 
-			add_breakthrough_progress = {
-				specialization = specialization_land
-				value = 0.5
-			}
+			# add_breakthrough_progress = {
+			# 	specialization = specialization_land
+			# 	value = 0.5
+			# }
 
 			add_tech_bonus = {
 				name = CAN_the_valentine_tank
@@ -4225,7 +4230,9 @@ focus_tree = {
 		}
 
 		completion_reward = {
-				add_ideas = CAN_ford_general_motors
+			add_ideas = CAN_ford_general_motors
+			unlock_military_industrial_organization_tooltip = mio:USA_ford_motor_company_organization
+			CAN_copy_ford_MIO_effects = yes
 		}
 	}
 

@@ -2167,6 +2167,11 @@
 			has_country_flag = JAP_siam1
 		}
 
+		bypass = {
+			NOT = { country_exists = SIA }
+		}
+
+
 		completion_reward = {
 			SIA = { country_event = japan.12 }
 		}
@@ -2461,57 +2466,62 @@
 			}
 			hidden_effect = {
 				# Puppets also declare war
-				MAN = {
-					declare_war_on = {
-						target = ENG
-						type = annex_everything
+				if = {
+					limit = {
+						country_exists = MAN
 					}
-					declare_war_on = {
-						target = AST
-						type = annex_everything
-					}
-					if = {
-						limit = {
-							NZL = { exists = yes }
-						}
+					MAN = {
 						declare_war_on = {
-							target = NZL
+							target = ENG
 							type = annex_everything
 						}
-					}
-					declare_war_on = {
-						target = RAJ
-						type = annex_everything
-					}
-					create_wargoal = {
-						target = CAN
-						type = annex_everything
-					}
-					declare_war_on = {
-						target = SAF
-						type = annex_everything
-					}
-					declare_war_on = {
-						target = MAL
-						type = annex_everything
-					}
-					if = {
-						limit = {
-							INS = { exists = yes }
-						}
 						declare_war_on = {
-							target = INS
+							target = AST
 							type = annex_everything
 						}
-					}
-					random_country = { 
-						limit = { original_tag = HOL  has_government = democratic}
-						MAN = {
+						if = {
+							limit = {
+								NZL = { exists = yes }
+							}
 							declare_war_on = {
-								target = PREV
+								target = NZL
 								type = annex_everything
 							}
-						}	
+						}
+						declare_war_on = {
+							target = RAJ
+							type = annex_everything
+						}
+						create_wargoal = {
+							target = CAN
+							type = annex_everything
+						}
+						declare_war_on = {
+							target = SAF
+							type = annex_everything
+						}
+						declare_war_on = {
+							target = MAL
+							type = annex_everything
+						}
+						if = {
+							limit = {
+								INS = { exists = yes }
+							}
+							declare_war_on = {
+								target = INS
+								type = annex_everything
+							}
+						}
+						random_country = { 
+							limit = { original_tag = HOL  has_government = democratic}
+							MAN = {
+								declare_war_on = {
+									target = PREV
+									type = annex_everything
+								}
+							}	
+						}
 					}
 				}
 				if = {
@@ -2593,16 +2603,22 @@
 						type = annex_everything 
 					}
 					# Puppets also declare war
-					MAN = {
-						declare_war_on = {
-							target = USA
-							type = annex_everything
+					if = {
+						limit = {
+							country_exists = MAN
 						}
-						declare_war_on = {
-							target = PHI
-							type = annex_everything 
+						MAN = {
+							declare_war_on = {
+								target = USA
+								type = annex_everything
+							}
+							declare_war_on = {
+								target = PHI
+								type = annex_everything 
+							}
 						}
 					}
+
 					if = {
 						limit = {
 							country_exists = SIA
@@ -3651,8 +3667,15 @@
 		}
 
 		available = {
-			716 = { is_fully_controlled_by = MAN }
-			MAN = { is_subject_of = ROOT }
+			if = {
+				limit = {
+					country_exists = MAN
+				}
+				716 = { is_fully_controlled_by = MAN }
+				MAN = { is_subject_of = ROOT }
+			} else = {
+				716 = { is_fully_controlled_by = JAP }
+			}
 		}
 
 		bypass = {
@@ -3689,8 +3712,15 @@
 		}
 
 		available = {
-			328 = { is_fully_controlled_by = MAN }
-			MAN = { is_subject_of = ROOT }
+			if = {
+				limit = {
+					country_exists = MAN
+				}
+				328 = { is_fully_controlled_by = MAN }
+				MAN = { is_subject_of = ROOT }
+			} else = {
+				328 = { is_fully_controlled_by = JAP }
+			}
 		}
 
 		bypass = {
@@ -3727,9 +3757,14 @@
 		}
 
 		available = {
-			MAN = {
-				is_subject_of = ROOT
-				has_full_control_of_state = 715
+			if = {
+				limit = {
+					country_exists = MAN
+				}
+				715 = { is_fully_controlled_by = MAN }
+				MAN = { is_subject_of = ROOT }
+			} else = {
+				715 = { is_fully_controlled_by = JAP }
 			}
 		}
 
@@ -3769,9 +3804,14 @@
 		}
 
 		available = {
-			MAN = {
-				is_subject_of = ROOT
-				has_full_control_of_state = 716				
+			if = {
+				limit = {
+					country_exists = MAN
+				}
+				716 = { is_fully_controlled_by = MAN }
+				MAN = { is_subject_of = ROOT }
+			} else = {
+				716 = { is_fully_controlled_by = JAP }
 			}
 		}
 

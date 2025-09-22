@@ -1819,32 +1819,66 @@
 		cost = 5
 
 		completion_reward = {
-			586 = {
-				add_extra_state_shared_building_slots = 6
-				add_building_construction = {
-					type = arms_factory
-					level = 6
-					instant_build = yes
+			if = {
+				limit = {
+					NOT = {country_exists = KSR}
 				}
-				add_building_construction = {
-					type = infrastructure
-					level = 5
-					instant_build = yes
+				586 = {
+					add_extra_state_shared_building_slots = 6
+					add_building_construction = {
+						type = arms_factory
+						level = 6
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = infrastructure
+						level = 5
+						instant_build = yes
+					}
+				}
+				405 = {
+					add_extra_state_shared_building_slots = 6
+					add_building_construction = {
+						type = arms_factory
+						level = 6
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = infrastructure
+						level = 5
+						instant_build = yes
+					}
 				}
 			}
-			405 = {
-				add_extra_state_shared_building_slots = 6
-				add_building_construction = {
-					type = arms_factory
-					level = 6
-					instant_build = yes
+			else = {
+				582 = {
+					add_extra_state_shared_building_slots = 6
+					add_building_construction = {
+						type = arms_factory
+						level = 6
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = infrastructure
+						level = 5
+						instant_build = yes
+					}
 				}
-				add_building_construction = {
-					type = infrastructure
-					level = 5
-					instant_build = yes
+				572 = {
+					add_extra_state_shared_building_slots = 6
+					add_building_construction = {
+						type = arms_factory
+						level = 6
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = infrastructure
+						level = 5
+						instant_build = yes
+					}
 				}
 			}
+
 		}
 	}
 	
@@ -4690,6 +4724,8 @@
 			}
 			add_named_threat = { threat = 3 name = SOV_baltic_security }
 			activate_mission = SOV_winter_war
+			activate_mission = SOV_winter_war_lessons_mission
+			activate_mission = SOV_winter_war_catastrophe_mission
 			hidden_effect = {
 				MON = {
 					add_ideas = MON_brothers_war
@@ -6285,7 +6321,10 @@
 					tank_riders = 1
 				}
 			}
-			
+			hidden_effect = {
+				set_technology = { masterful_blitz = 1 popup = no }
+			}
+			custom_effect_tooltip = SOV_the_glory_of_the_red_army_masterful_blitz_tactic_tt
 		}
 	}
 
