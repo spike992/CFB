@@ -43,44 +43,9 @@ operations = {
 		}
 	}
 
+
 }
 foreign_politics = {
-	SPR_annex_FIN = {
-
-		allowed = {
-			original_tag = SPR
-		}
-
-		available = {
-			FIN = {is_ai = yes}
-			SOV = {
-					has_completed_focus = SOV_claim_bessarabia
-			}
-		}
-
-		ai_will_do = {
-			factor = 0
-		}
-
-		visible = {
-			always = yes
-		}
-		fire_only_once = yes
-		complete_effect = {
-			annex_country = { target = FIN transfer_troops = yes }
-			add_state_core = 145
-			add_state_core = 926
-			add_state_core = 927
-			add_state_core = 928
-			add_state_core = 930
-			add_state_core = 149
-			add_state_core = 929
-			add_state_core = 148
-			add_state_core = 722
-			add_state_core = 111
-			add_state_core = 150
-		}
-	}
 	SPA_civil_war = {
 
 		priority = 10
@@ -89,10 +54,6 @@ foreign_politics = {
 
 		available = {
 			hidden_trigger = { always = no }
-		}
-
-		allowed = {
-			tag = SPR
 		}
 
 		days_mission_timeout = 171
@@ -116,7 +77,181 @@ foreign_politics = {
 			country_event = lar_spain.2
 		}
 	}
+	
+	SPA_annex_finland = {
 
+		icon = eng_propaganda_campaigns
+
+		allowed = {
+			original_tag = SPR
+		}
+
+		available = {	
+			SOV = {
+				has_completed_focus = SOV_baltic_security
+			}
+			FIN = {
+				has_war = no
+				is_ai = yes
+			}
+			has_completed_focus = SPA_maintain_neutrality_2
+		}
+
+		fire_only_once = yes
+
+		activation = {
+			always = no
+		}
+
+		visible = {
+			original_tag = SPR
+		}
+
+		cost = 75
+
+		complete_effect = {
+			annex_country = {
+				target = FIN
+			}
+			custom_effect_tooltip = SPA_annex_finland_tt
+			hidden_effect  = {
+				IF = {
+					limit = {
+						FIN = {
+							owns_state = 929
+						}
+					}
+					929 = {
+						add_core_of = SPA
+					}
+				}
+				IF = {
+					limit = {
+						FIN = {
+							owns_state = 150
+						}
+					}
+					150 = {
+						add_core_of = SPA
+					}
+				}
+				IF = {
+					limit = {
+						FIN = {
+							owns_state = 928
+						}
+					}
+					928 = {
+						add_core_of = SPA
+					}
+				}
+				IF = {
+					limit = {
+						FIN = {
+							owns_state = 930
+						}
+					}
+					930 = {
+						add_core_of = SPA
+					}
+				}
+				IF = {
+					limit = {
+						FIN = {
+							owns_state = 927
+						}
+					}
+					927 = {
+						add_core_of = SPA
+					}
+				}
+				IF = {
+					limit = {
+						FIN = {
+							owns_state = 111
+						}
+					}
+					111 = {
+						add_core_of = SPA
+					}
+				}
+				IF = {
+					limit = {
+						FIN = {
+							owns_state = 149
+						}
+					}
+					149 = {
+						add_core_of = SPA
+					}
+				}
+				IF = {
+					limit = {
+						FIN = {
+							owns_state = 926
+						}
+					}
+					926 = {
+						add_core_of = SPA
+					}
+				}
+				IF = {
+					limit = {
+						FIN = {
+							owns_state = 145
+						}
+					}
+					145 = {
+						add_core_of = SPA
+					}
+				}
+				IF = {
+					limit = {
+						FIN = {
+							owns_state = 148
+						}
+					}
+					148 = {
+						add_core_of = SPA
+					}
+				}
+				IF = {
+					limit = {
+						FIN = {
+							owns_state = 722
+						}
+					}
+					722 = {
+						add_core_of = SPA
+					}
+				}
+				IF = {
+					limit = {
+						FIN = {
+							owns_state = 147
+						}
+					}
+					147 = {
+						add_core_of = SPA
+					}
+				}
+				IF = {
+					limit = {
+						FIN = {
+							owns_state = 146
+						}
+					}
+					146 = {
+						add_core_of = SPA
+					}
+				}
+			}
+		}
+
+		timeout_effect = {
+		}
+	}
+	
 	hold_the_fascist_national_referendum2 = {
 
 		icon = generic_political_discourse
