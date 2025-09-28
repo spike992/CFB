@@ -2898,6 +2898,7 @@
 				ENG = {
 					country_event = {  id = soviet.3100 }
 				}
+
 			}
 			hidden_effect = {
 				division_template = {
@@ -2983,6 +2984,129 @@
 				}
 			}
 			custom_effect_tooltip = SOV_frontline_mob_tt2
+		}
+	}
+
+	focus = {
+		id = SOV_Farther_East_Reservs
+		icon = GFX_focus_GER_end_european_communism
+		prerequisite = { focus = SOV_fareast_reserves }
+		x = 0
+		y = 1
+		relative_position_id = SOV_fareast_reserves
+		cost = 1
+		
+		available = {
+			casualties > 4000000
+			if = { 
+				limit = { has_global_flag = meta_game_flag }
+				surrender_progress > 0.90
+			} else_if = {
+				limit = { KSR = { exists = yes } }
+				surrender_progress > 0.90
+			} else = {
+				# Default TFB
+				surrender_progress > 0.90
+			}
+		}
+
+		completion_reward = {
+			add_ideas =	{
+				SOV_corps_starch
+			} 
+			hidden_effect = {
+				SOV_check_equipment_stockpile = yes
+				USA = {
+					country_event = {  id = soviet.3100 }
+				}
+				ENG = {
+					country_event = {  id = soviet.3100 }
+				}
+			}
+			hidden_effect = {
+				division_template = {
+					name = "Strelki"
+					priority = 0
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }						
+
+						artillery_brigade = { x = 2 y = 0}
+						artillery_brigade = { x = 2 y = 1}
+						artillery_brigade = { x = 2 y = 2}
+
+						anti_tank_brigade = { x = 3 y = 0}
+						anti_tank_brigade = { x = 3 y = 1}
+						anti_tank_brigade = { x = 3 y = 2}
+					}
+					support = {
+						hq_company = { x = 0 y = 0 } 
+						engineer = { x = 0 y = 1 }   
+						recon = { x = 0 y = 2 }
+						logistics_company  = { x = 0 y = 3 }
+						anti_air = { x = 1 y = 0 }
+						#logistics_company_horse = { x = 1 y = 1 }
+					}
+				}
+				if = {
+					limit = {
+						has_war_with = JAP
+					}
+					every_state = {
+						limit = {	
+							AND = {
+								any_neighbor_state = { OR = { is_controlled_by = GER is_controlled_by = ROM is_controlled_by = HUN is_controlled_by = FIN is_controlled_by = ITA is_controlled_by = BUL  is_controlled_by = SPR is_controlled_by = VIC is_controlled_by = YUG is_controlled_by = JAP is_controlled_by = MAN is_controlled_by = SIA} }
+								is_controlled_by = SOV
+								NOT = {	state = 262 }
+								NOT = {	state = 825 }
+							}
+						}
+						create_unit = {
+							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
+							owner = SOV
+						}
+						create_unit = {
+							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
+							owner = SOV
+						}
+						create_unit = {
+							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
+							owner = SOV
+						}						
+					}
+				}
+				else = {
+					every_state = {
+						limit = {	
+							AND = {
+								any_neighbor_state = { OR = { is_controlled_by = GER is_controlled_by = ROM is_controlled_by = HUN is_controlled_by = FIN is_controlled_by = ITA is_controlled_by = BUL  is_controlled_by = SPR is_controlled_by = VIC is_controlled_by = YUG} }
+								is_controlled_by = SOV
+								NOT = {	state = 262 }
+								NOT = {	state = 825 }
+							}
+						}
+						create_unit = {
+							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
+							owner = SOV
+						}
+						create_unit = {
+							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
+							owner = SOV
+						}
+						create_unit = {
+							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
+							owner = SOV
+						}						
+					}
+				}
+			}
+			custom_effect_tooltip = SOV_frontline_mob_tt3
 		}
 	}
 
