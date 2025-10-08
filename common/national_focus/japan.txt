@@ -255,7 +255,7 @@
 		id = JAP_the_imperial_way
 		icon = GFX_focus_jap_pacific_guardian
 		prerequisite = { focus = JAP_revere_the_emperor }
-		x = 3
+		x = 4
 		y = 1
 		relative_position_id = JAP_revere_the_emperor
 
@@ -723,6 +723,14 @@
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_WAR_SUPPORT }
 		completion_reward = {
 			army_experience = 25
+
+			if = {
+				limit = {
+					has_global_flag = capped_volunteers_no_japan_flag
+				}
+				custom_effect_tooltip = SPA_civil_war_no_volunteer_japan_compensation
+				army_experience = 200
+			}
 		}
 	}
 	
@@ -797,7 +805,7 @@
 		prerequisite = { focus = JAP_austerity }
 		prerequisite = { focus = JAP_kokura_arsenal }
 		x = 0
-		y = 2
+		y = 1
 		relative_position_id = JAP_austerity
 
 		cost = 5
@@ -828,139 +836,12 @@
 		}
 	}
 	
-	
-	
-	focus = {
-		id = JAP_intervene_in_china_noob
-		icon = GFX_goal_generic_occupy_states_ongoing_war
-		prerequisite = { focus = JAP_liaison_conference }
-		mutually_exclusive = { focus = JAP_intervene_in_china}
-		will_lead_to_war_with = CHI
-		x = 1
-		y = 1
-		relative_position_id = JAP_liaison_conference
-		dynamic = yes
-
-		cost = 1
-
-		available = { 
-			is_subject = no 
-			NOT = { has_war_with = CHI }
-			date > 1937.6.1
-		}
-		
-	
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-
-		
-		completion_reward = {
-			
-				JAP = {
-					transfer_state = 608
-					transfer_state = 614
-					transfer_state = 597
-					transfer_state = 743
-					transfer_state = 598
-					transfer_state = 613
-					transfer_state = 596
-					transfer_state = 595
-					transfer_state = 593
-					transfer_state = 592
-					transfer_state = 729
-					transfer_state = 594
-					transfer_state = 728
-					transfer_state = 591
-				}
-				every_state = {
-					limit = {
-						OR = {
-							state = 608
-							state = 614
-							state = 597
-							state = 743
-							state = 598
-							state = 613
-							state = 596
-							state = 595
-							state = 593
-							state = 592
-							state = 729
-							state = 594
-							state = 728
-							state = 591
-						}
-					}
-				}
-				
-				#if = {
-					#limit = {
-						#NOT = {
-						#	has_global_flag = china_auto_happend
-						#}		
-					#}
-					JAP = {
-						add_named_threat = { threat = 22.5 name = "Marco Polo Bridge Incident" }
-						#boot_naval_treaty_f = yes
-					}
-					hidden_effect = {
-						JAP = {
-							army_experience = 300
-							air_experience = 125
-						}
-						USA = {
-						 	add_war_support = 0.04
-						 }
-						ENG = {
-							add_war_support = 0.1
-						}
-						SOV = {
-							add_war_support = 0.1
-						}
-						AST = {
-							add_war_support = 0.1
-						}
-						SAF = {
-							add_war_support = 0.1
-						}
-						CAN = {
-							add_war_support = 0.1
-						}
-						NZL = {
-							add_war_support = 0.1
-						}
-						RAJ = {
-							add_war_support = 0.1
-						}
-						IRE = {
-							add_war_support = 0.1
-						}
-						FRA = {
-							add_war_support = 0.1
-						}
-						USA = {
-							country_event = { id = panay_incident.2 days = 150 } #40 days before
-						}
-					}
-				#}
-				add_war_support = 0.05
-				country_event = { days = 5 id = news.1 }
-				# take coast and stuff
-				JAP = {
-					add_timed_idea = { idea = Second_Sino_Jap_War days = 638 }		#timer for china war 1.75 years
-					}
-		}
-	}	
-	
 	focus = {
 		id = JAP_intervene_in_china
 		icon = GFX_goal_generic_occupy_states_ongoing_war
 		prerequisite = { focus = JAP_liaison_conference }
-		mutually_exclusive = { focus = JAP_intervene_in_china_noob}
 		will_lead_to_war_with = CHI
-		x = -1
+		x = 0
 		y = 1
 		relative_position_id = JAP_liaison_conference
 
@@ -1046,20 +927,20 @@
 					country_event = china.1
 				}
 			}
-			#if = {
-			#	limit = {
-					#SHX = { #only fires the event for SHX if they control ALL of the states (to ensure that only one of them gets it, to avoid issues when one selects to turn over the states and the other doesn't)
-					#	AND = {
-					#		controls_state = 608
-					#		controls_state = 597
-					#		controls_state = 614
-					#	}
-					#}
-			#	}
-				#SHX = {
-				#	country_event = china.1
-				#}
-			#}
+			# if = {
+			# 	limit = {
+			# 		SHX = { #only fires the event for SHX if they control ALL of the states (to ensure that only one of them gets it, to avoid issues when one selects to turn over the states and the other doesn't)
+			# 			AND = {
+			# 				controls_state = 608
+			# 				controls_state = 597
+			# 				controls_state = 614
+			# 			}
+			# 		}
+			# 	}
+			# 	SHX = {
+			# 		country_event = china.1
+			# 	}
+			# }
 			add_named_threat = { threat = 5 name = JAP_intervene_in_china }
 			
 			unlock_decision_tooltip = JAP_china_step_up_war_effort
@@ -1080,7 +961,7 @@
 	focus = {
 		id = JAP_lessons_of_war
 		icon = GFX_goal_japanese_imperialism
-		prerequisite = { focus = JAP_intervene_in_china focus =JAP_intervene_in_china_noob}
+		prerequisite = { focus = JAP_intervene_in_china }
 		x = -6
 		y = 1
 		cost = 5
@@ -1330,7 +1211,7 @@
 		icon = GFX_goal_generic_territory_or_war
 		prerequisite = { focus = JAP_intervene_in_china }
 		x = 0
-		y = 1
+		y = 2
 		cost = 5
 		relative_position_id = JAP_intervene_in_china
 
@@ -1359,9 +1240,9 @@
 	focus = {
 		id = JAP_early_war_industry_focus
 		icon = GFX_focus_SOV_merge_plants
-		prerequisite = { focus = JAP_secure_china focus = JAP_secure_china_noob}
+		prerequisite = { focus = JAP_secure_china }
 		mutually_exclusive = { focus = JAP_mid_war_industry_focus focus = JAP_late_war_industry_focus}
-		x = -1
+		x = -2
 		y = 1
 		cost = 2
 		relative_position_id = JAP_secure_china
@@ -1406,9 +1287,9 @@
 	focus = {
 		id = JAP_mid_war_industry_focus
 		icon = GFX_goal_generic_construct_mil_factory
-		prerequisite = { focus = JAP_secure_china focus = JAP_secure_china_noob}
+		prerequisite = { focus = JAP_secure_china }
 		mutually_exclusive = { focus = JAP_early_war_industry_focus focus = JAP_late_war_industry_focus}
-		x = 1
+		x = 0
 		y = 1
 		cost = 3
 		relative_position_id = JAP_secure_china
@@ -1434,9 +1315,9 @@
 	focus = {
 		id = JAP_late_war_industry_focus
 		icon = GFX_focus_generic_tank_production
-		prerequisite = { focus = JAP_secure_china focus = JAP_secure_china_noob}
+		prerequisite = { focus = JAP_secure_china }
 		mutually_exclusive = { focus = JAP_early_war_industry_focus focus = JAP_mid_war_industry_focus}
-		x = 3
+		x = 2
 		y = 1
 		cost = 4
 		relative_position_id = JAP_secure_china
@@ -1539,71 +1420,6 @@
 			}
 		}
 	}
-
-	focus = {
-		id = JAP_secure_china_noob 
-		icon = GFX_goal_generic_territory_or_war
-		prerequisite = { focus = JAP_intervene_in_china_noob }
-		x = 0
-		y = 1
-		cost = 1
-		relative_position_id = JAP_intervene_in_china_noob 
-		dynamic = yes
-
-		available = {
-			NOT = { has_idea = Second_Sino_Jap_War }
-			country_exists = CHI
-		}
-
-		cancel_if_invalid = yes
-
-		completion_reward = {
-			
-				JAP = {
-					add_named_threat = { threat = 50 name = "Republic of China capitulated" }
-				}
-				CHI = {
-					set_equipment_fraction = 0
-				}
-				
-				annex_country = {
-					target = CHI
-					transfer_troops = no
-				}
-				every_owned_state = {
-					limit = {
-						is_controlled_by = ROOT
-						is_core_of = CHI
-						is_on_continent = asia
-					}
-					set_compliance = 80
-				}
-				
-				hidden_effect = {
-					JAP = {
-						army_experience = 550
-						air_experience = 225
-					}
-					USA = {
-						army_experience = 200
-						air_experience = 75
-					}
-					SOV = {
-						army_experience = 300
-						air_experience = 75
-					}
-					GER = {
-						army_experience = 200
-						air_experience = 125
-					}
-					ITA = {
-						army_experience = 200
-						air_experience = 125
-					}
-				}
-			
-		}
-	}	
 
 	focus = {
 		id = JAP_mid_war_intel_focus
@@ -2119,8 +1935,8 @@
 	focus = {
 		id = JAP_strike_south_doctrine
 		icon = GFX_focus_jap_strike_south
-		prerequisite = { focus = JAP_intervene_in_china focus =JAP_intervene_in_china_noob}
-		x = 10
+		prerequisite = { focus = JAP_intervene_in_china }
+		x = 8
 		y = 1
 		cost = 20
 		relative_position_id = JAP_intervene_in_china
@@ -2387,7 +2203,7 @@
 		#prerequisite = { focus = JAP_late_war_destruction_focus focus = JAP_mid_war_intel_focus focus = JAP_early_war_military_focus }
 		will_lead_to_war_with = ENG
 		x = 0
-		y = 3
+		y = 6
 		cost = 2
 		relative_position_id = JAP_strike_south_doctrine
 
@@ -3054,7 +2870,7 @@
 		id = JAP_guide_the_zaibatsus
 		icon = GFX_focus_jap_zaibatsu
 		mutually_exclusive = { focus = JAP_challenge_the_zaibatsus }
-		x = 18
+		x = 19
 		y = 0
 
 		cost = 5
@@ -3657,7 +3473,7 @@
 	focus = {
 		id = JAP_expand_the_showa_steel_works
 		icon = GFX_goal_generic_construct_civilian
-		x = 15
+		x = 38
 		y = 0
 
 		cost = 5

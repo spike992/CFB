@@ -189,27 +189,27 @@ country_event = {
 	}	
 }
 
-#country_event = {
-#	id = JUNO_brazil_events.16
-#	title = JUNO_brazil_events.16.t
-#	desc = JUNO_brazil_events.16.desc
-#	picture = GFX_report_event_generic_read_write
-#	is_triggered_only = yes
-#	option = {
-#		name = JUNO_brazil_events.16.a
-#		ai_chance = {
-#			base = 10
-#		}
-#		add_opinion_modifier = {
-#			modifier = BRA_accepted_washington_accords
-#			target = FROM
-#		}
-#		add_timed_idea = {
-#			idea = BRA_washington_accords_idea
-#			days = 730
-#		}
-#	}	
-#}
+country_event = {
+	id = JUNO_brazil_events.16
+	title = JUNO_brazil_events.16.t
+	desc = JUNO_brazil_events.16.desc
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = JUNO_brazil_events.16.a
+		ai_chance = {
+			base = 10
+		}
+		add_opinion_modifier = {
+			modifier = BRA_accepted_washington_accords
+			target = FROM
+		}
+		add_timed_idea = {
+			idea = BRA_washington_accords_idea
+			days = 730
+		}
+	}	
+}
 
 country_event = {
 	id = JUNO_brazil_events.17
@@ -1445,6 +1445,8 @@ country_event = {
 					NOT = {
 						is_on_continent = europe
 						is_core_of = PREV
+						state = 321
+						state = 729
 					}
 				}
 				ROOT = {
@@ -1820,71 +1822,71 @@ country_event = { #FROM accepts
 	}
 }
 
-#country_event = { #FROM requests SOV aid
-#	id = JUNO_brazil_events.86
-#	title = JUNO_brazil_events.86.t
-#	desc = JUNO_brazil_events.86.desc
-#	picture = GFX_report_event_stalin_02
-#	is_triggered_only = yes
-#
-#	option = { #Sure, we'll help
-#		name = JUNO_brazil_events.86.a 
-#		ai_chance = {
-#			base = 5
-#			modifier = {
-#				factor = 0 
-#				NOT = {
-#					has_government = communism
-#				}
-#			}
-#			modifier = {
-#				factor = 0
-#				OR = {
-#					has_civil_war = yes
-#					has_war_with_major = yes
-#				}
-#			}
-#		}
-#
-#		SOV = {
-#			add_timed_idea = { 
-#				idea = BRA_aid_brazilian_communists 
-#				days = 730 
-#			}
-#			add_ai_strategy = {
-#				type = send_volunteers_desire
-#				id = BRA
-#				value = 200
-#			}
-#		}
-#
-#		BRA = {
-#			country_event = {
-#				id = JUNO_brazil_events.87
-#				hours = 3
-#			}
-#		}
-#	}
-#
-#	option = { #We have better things to do
-#		name = JUNO_brazil_events.86.b 
-#		ai_chance = {
-#			base = 1
-#		}
-#
-#		BRA = {
-#			country_event = {
-#				id = JUNO_brazil_events.88
-#				hours = 3 
-#			}
-#
-#			add_opinion_modifier = {
-#				target = SOV
-#				modifier = medium_decrease
-#			}
-#		}
-#	}
-#}
+country_event = { #FROM requests SOV aid
+	id = JUNO_brazil_events.86
+	title = JUNO_brazil_events.86.t
+	desc = JUNO_brazil_events.86.desc
+	picture = GFX_report_event_stalin_02
+	is_triggered_only = yes
+
+	option = { #Sure, we'll help
+		name = JUNO_brazil_events.86.a 
+		ai_chance = {
+			base = 5
+			modifier = {
+				factor = 0 
+				NOT = {
+					has_government = communism
+				}
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_civil_war = yes
+					has_war_with_major = yes
+				}
+			}
+		}
+
+		SOV = {
+			add_timed_idea = { 
+				idea = BRA_aid_brazilian_communists 
+				days = 730 
+			}
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = BRA
+				value = 200
+			}
+		}
+
+		BRA = {
+			country_event = {
+				id = JUNO_brazil_events.87
+				hours = 3
+			}
+		}
+	}
+
+	option = { #We have better things to do
+		name = JUNO_brazil_events.86.b 
+		ai_chance = {
+			base = 1
+		}
+
+		BRA = {
+			country_event = {
+				id = JUNO_brazil_events.88
+				hours = 3 
+			}
+
+			add_opinion_modifier = {
+				target = SOV
+				modifier = medium_decrease
+			}
+		}
+	}
+}
 
 country_event = { #SOV accepts call for help
 	id = JUNO_brazil_events.87
@@ -3328,20 +3330,21 @@ country_event = {
 		    long_name = BRA_antimonarchist_coalition_long
 		    name = BRA_antimonarchist_coalition
 		}
-		#BRA_getulio_vargas = {
-		#	remove_country_leader_role = {
-		#		ideology = despotism
-		#	}
-		#	add_country_leader_role = {
-		#		country_leader = {
-		#			ideology = fascism_ideology
-		#			traits = {
-		#				BRA_reluctant_integralist
-		#			}
-		#		}
-		#		promote_leader = yes
-		#	}
-		#}
+		BRA_getulio_vargas = {
+			remove_country_leader_role = {
+				ideology = despotism
+			}
+			add_country_leader_role = {
+				country_leader = {
+					expire = "1954.8.24"
+					ideology = fascism_ideology
+					traits = {
+						BRA_reluctant_integralist
+					}
+				}
+				promote_leader = yes
+			}
+		}
 		promote_character = BRA_arlindo_veiga_dos_santos
 
 	}

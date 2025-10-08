@@ -176,7 +176,21 @@ political_actions = {
 		}
 
 		activation = {
-			GER = { has_war_with = FRA }
+			OR = {
+				AND = {
+					has_global_flag = italy_dynamic_join_flag
+					OR = {
+						FRA = { surrender_progress > 0}
+						GER = { has_war_with = BEL }
+						GER = { has_war_with = HOL }
+						GER = { has_war_with = LUX }
+					}
+				}
+				AND = {
+					NOT = { has_global_flag = italy_dynamic_join_flag }
+					GER = { has_war_with = FRA }
+				}
+			}
 		}
 		
 		timeout_effect = {
@@ -250,7 +264,21 @@ political_actions = {
 		}
 
 		activation = {
-			GER = { has_war_with = FRA }
+			OR = {
+				AND = {
+					has_global_flag = italy_dynamic_join_flag
+					OR = {
+						FRA = { surrender_progress > 0}
+						GER = { has_war_with = BEL }
+						GER = { has_war_with = HOL }
+						GER = { has_war_with = LUX }
+					}
+				}
+				AND = {
+					NOT = { has_global_flag = italy_dynamic_join_flag }
+					GER = { has_war_with = FRA }
+				}
+			}
 		}
 		
 		timeout_effect = {
@@ -277,6 +305,18 @@ political_actions = {
 				add_days_mission_timeout = {
 					mission = ITA_go_to_war_with_france
 					days = 90
+				}
+			}
+			else_if = {
+				limit = {
+					has_game_rule = {
+						rule = italian_join_type
+						option = ITALIAN_DYNAMIC_JOIN
+					}
+				}
+				add_days_mission_timeout = {
+					mission = ITA_go_to_war_with_france
+					days = -120
 				}
 			}
 		}
@@ -1252,7 +1292,7 @@ ITA_propaganda_campaigns = {
 		cost = 25
 
 		modifier = {
-			consumer_goods_factor = -0.09
+			consumer_goods_expected_value = -0.04
 			state_production_speed_buildings_factor = 0.05
 		}
 
@@ -1331,7 +1371,7 @@ ITA_propaganda_campaigns = {
 
 		modifier = {
 			recruitable_population = 0.05
-			consumer_goods_factor = 0.15
+			consumer_goods_expected_value = 0.055
 		}
 
 		complete_effect = {

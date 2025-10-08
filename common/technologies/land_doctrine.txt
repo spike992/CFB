@@ -146,6 +146,32 @@ technologies = {
 			name = land_doctrine_folder
 			position = { x = 0 y = 4 }
 		}
+
+		on_research_complete = {
+			hidden_effect = {
+				every_army_leader = {
+					limit = {
+						NOT ={
+							OR = {
+							has_trait = frontline_panzer_general
+							has_trait = panzer_expert
+							has_trait = combined_arms_expert
+							has_trait = mass_motorization
+							has_trait = cavalry_expert
+							has_trait = skirmisher
+							has_trait = camouflage_expert
+							has_trait = paratrooper
+							}
+						}
+					}
+					#remove_unit_leader_trait = superior_firepower_cap_adjuster
+					#remove_unit_leader_trait = grand_battleplan_cap_adjuster
+					#remove_unit_leader_trait = mass_assault_cap_adjuster
+					#add_unit_leader_trait = mobile_warfare_cap_adjuster
+				}	
+			}
+			custom_effect_tooltip = tooltip_mobile_warfare_cap_adjust_tt
+		}
 		
 		ai_will_do = {
 			factor = 20
@@ -988,6 +1014,7 @@ technologies = {
 		}
 		org_loss_when_moving = -0.15
 		air_cas_present_factor = 0.05
+		enable_tactic = tactic_masterful_blitz
 		
 		xp_research_type = army
 		xp_unlock_cost = 125
@@ -1028,6 +1055,7 @@ technologies = {
 		ai_research_weights = {
 			armor = 2.0
 		}
+
 	}
 	
 	volkssturm = {
@@ -1035,8 +1063,9 @@ technologies = {
 		xor={
 			firebrigades
 		}
-		army_core_attack_factor = 0.05
-		army_core_defence_factor = 0.05
+		
+		modifier_army_sub_unit_militia_attack_factor = 0.15
+		modifier_army_sub_unit_militia_defence_factor = 0.15
 
 		path = {
 			leads_to_tech = nd_conscription 
@@ -1053,6 +1082,12 @@ technologies = {
 		categories = {
 			land_doctrine
 			cat_mobile_warfare
+		}
+
+		on_research_complete = {
+			set_technology = {
+				militia_tech = 1
+			}
 		}
 
 		
@@ -1266,7 +1301,7 @@ technologies = {
 			name = land_doctrine_folder
 			position = { x = 0 y = 2 }
 		}
-		
+
 		ai_will_do = {
 			modifier = {
 				not = {
@@ -1318,6 +1353,33 @@ technologies = {
 		folder = {
 			name = land_doctrine_folder
 			position = { x = 0 y = 4 }
+		}
+
+		on_research_complete = {
+			hidden_effect = {
+				every_army_leader = {
+					limit = {
+						NOT ={
+							OR = {
+							has_trait = frontline_panzer_general
+							has_trait = panzer_expert
+							has_trait = combined_arms_expert
+							has_trait = mass_motorization
+							has_trait = cavalry_expert
+							has_trait = skirmisher
+							has_trait = camouflage_expert
+							has_trait = paratrooper
+							}
+						}
+					}
+					#remove_unit_leader_trait = mobile_warfare_cap_adjuster
+					#remove_unit_leader_trait = grand_battleplan_cap_adjuster
+					#remove_unit_leader_trait = mass_assault_cap_adjuster
+					#add_unit_leader_trait = superior_firepower_cap_adjuster
+					}
+				
+			}
+			custom_effect_tooltip = tooltip_superior_firepower_cap_adjust_tt
 		}
 		
 		ai_will_do = {
@@ -2408,6 +2470,32 @@ technologies = {
 			name = land_doctrine_folder
 			position = { x = 0 y = 4 }
 		}
+
+		on_research_complete = {
+			hidden_effect = {
+				every_army_leader = {
+					limit = {
+						NOT ={
+							OR = {
+							has_trait = frontline_panzer_general
+							has_trait = panzer_expert
+							has_trait = combined_arms_expert
+							has_trait = mass_motorization
+							has_trait = cavalry_expert
+							has_trait = skirmisher
+							has_trait = camouflage_expert
+							has_trait = paratrooper
+							}
+						}
+					}
+					#remove_unit_leader_trait = mobile_warfare_cap_adjuster
+					#remove_unit_leader_trait = superior_firepower_cap_adjuster
+					#remove_unit_leader_trait = mass_assault_cap_adjuster
+					#add_unit_leader_trait = grand_battleplan_cap_adjuster
+				}
+			}
+			custom_effect_tooltip = tooltip_grand_battleplan_cap_adjust_tt
+		}
 		
 		ai_will_do = {
 			factor = 20
@@ -3483,6 +3571,32 @@ technologies = {
 			name = land_doctrine_folder
 			position = { x = 0 y = 4 }
 		}
+
+		on_research_complete = {
+			hidden_effect = {
+				every_army_leader = {
+					limit = {
+						NOT ={
+							OR = {
+							has_trait = frontline_panzer_general
+							has_trait = panzer_expert
+							has_trait = combined_arms_expert
+							has_trait = mass_motorization
+							has_trait = cavalry_expert
+							has_trait = skirmisher
+							has_trait = camouflage_expert
+							has_trait = paratrooper
+							}
+						}
+					}
+					#remove_unit_leader_trait = mobile_warfare_cap_adjuster
+					#remove_unit_leader_trait = superior_firepower_cap_adjuster
+					#remove_unit_leader_trait = grand_battleplan_cap_adjuster
+					#add_unit_leader_trait = mass_assault_cap_adjuster
+				}	
+			}
+			custom_effect_tooltip = tooltip_mass_assault_cap_adjust_tt
+		}
 		
 		ai_will_do = {
 			factor = 20
@@ -4210,9 +4324,7 @@ technologies = {
 		pocket_penalty = -0.1
 		cas_damage_reduction = 0.10
 		resistance_growth_on_our_occupied_states = 0.1
-		modifier = {
-			conscription = 0.02
-		}
+		
 		enable_tactic = tactic_guerrilla_tactics
 		
 		xp_research_type = army

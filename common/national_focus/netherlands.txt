@@ -776,7 +776,6 @@ focus_tree = {
 		prerequisite = { focus = HOL_curtail_colonial_autonomy }
 		available = {
 			has_capitulated = yes
-			date > 1941.1.1
 			NOT = { has_completed_focus = HOL_oranje_boven }
 			OR = {
 				INS = {
@@ -4384,9 +4383,9 @@ focus_tree = {
 			has_government = communism
 			OR = {
 				#CRC = { is_subject_of = HOL }
-				#695 = { is_fully_controlled_by = HOL }
+				695 = { is_fully_controlled_by = HOL }
 				#SUR = { is_subject_of = HOL }
-				#309 = { is_fully_controlled_by = HOL }
+				309 = { is_fully_controlled_by = HOL }
 				custom_trigger_tooltip = {
 					tooltip = HOL_decolonization_tt2
 					AND = {
@@ -4501,23 +4500,23 @@ focus_tree = {
 			set_province_name = { id = 7381 name = "Jakarta" }
 			set_province_name = { id = 4608 name = "Surabaya" }
 			custom_effect_tooltip = generic_skip_one_line_tt
-			if = {
-				limit = {
-					OR = {
-						#CRC = { is_subject_of = HOL }
-						#695 = { is_fully_controlled_by = HOL }
-					}
-				}
-				release = CRC
-			}
+			# if = {
+			# 	limit = {
+			# 		OR = {
+			# 			CRC = { is_subject_of = HOL }
+			# 			695 = { is_fully_controlled_by = HOL }
+			# 		}
+			# 	}
+			# 	release = CRC
+			# }
 			if = {
 				limit = {
 					OR = {
 						#SUR = { is_subject_of = HOL }
-						#309 = { is_fully_controlled_by = HOL }
+						309 = { is_fully_controlled_by = HOL }
 					}
 				}
-				release = SUR
+				#release = SUR
 			}
 			custom_effect_tooltip = generic_skip_one_line_tt
 			add_stability = -0.1

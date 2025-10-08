@@ -342,35 +342,12 @@
         }
     }
 
+	
 	focus = {
-		id = MAN_mils_go_brrrrrr
-		icon = GFX_goal_generic_construct_mil_factory
-		prerequisite = { focus = MAN_treaty_with_the_bandits focus = MAN_crush_the_bandits }
-		x = -10
-		y = 1
-		relative_position_id = MAN_treaty_with_the_bandits
-
-		cost = 1
-
-		available = {
-			JAP = {
-				has_completed_focus = JAP_secure_china_noob 
-		}
-		}	
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-		
-		completion_reward = {
-			add_ideas = MAN_assert_mills
-		}
-	}
-	focus = {
-		id  = MAN_5_year_plan
+		id = MAN_5_year_plan
 		icon = GFX_focus_hol_the_foundations_of_defense
-		prerequisite = { focus = MAN_treaty_with_the_bandits focus = MAN_crush_the_bandits}
-		x = 5
+		prerequisite = { focus = MAN_crush_the_bandits }
+		x = -4
 		y = 1
 		relative_position_id = MAN_crush_the_bandits
 
@@ -457,7 +434,7 @@
 			328 = {
 				add_resource = {
 					type = aluminium
-					amount = 500
+					amount = 320
 				}
 			}
 		}
@@ -698,10 +675,10 @@
 					province = 964
 					instant_build = yes
 				}
-				add_extra_state_shared_building_slots = 5
+				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 					type = dockyard
-					level = 5
+					level = 3
 					instant_build = yes
 				}
 			}
@@ -925,31 +902,32 @@
 		}
 	}
 	
-	#focus = {
-	#	id = MAN_expand_opium_plantations
-	#	icon = GFX_goal_opium
-	#	prerequisite = { focus = MAN_increase_soy_production }
-	#	x = 0
-	#	y = 1
-	#	relative_position_id = MAN_increase_soy_production
+	focus = {
+		id = MAN_expand_opium_plantations
+		icon = GFX_goal_opium
+		prerequisite = { focus = MAN_increase_soy_production }
+		x = 0
+		y = 1
+		relative_position_id = MAN_increase_soy_production
 
-	#	cost = 5
+		cost = 5
 
-	#	available = {
+		available = {
 
-	#	}
+		}
 
-	#	cancel_if_invalid = yes
-	#	continue_if_invalid = no
-	#	available_if_capitulated = yes
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
 
-	#	completion_reward = {
-	#		swap_ideas = {
-	#			remove_idea = MAN_opium_plantations
-	#			add_idea = MAN_opium_plantations_2
-	#		}
-	#	}
-	#}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_opium_plantations
+				add_idea = MAN_opium_plantations_2
+			}
+			add_stability = -0.10
+		}
+	}
 	
 	focus = {
 		id = MAN_expand_the_industrial_centres
@@ -1029,7 +1007,6 @@
 		id = MAN_expand_the_civilian_industry
 		icon = GFX_goal_generic_consumer_goods
 		prerequisite = { focus = MAN_forced_urbanisation }
-		prerequisite = { focus = MAN_increase_soy_production}
 		x = -1
 		y = 1
 		relative_position_id = MAN_forced_urbanisation
@@ -1316,7 +1293,7 @@
 		id = MAN_national_defence_state
 		icon = GFX_focus_secret_rearmament
 		prerequisite = { focus = MAN_crush_the_bandits }
-		x = -7
+		x = 4
 		y = 1
 		relative_position_id = MAN_crush_the_bandits
 
@@ -1389,7 +1366,7 @@
 		cost = 5
 
 		available = {
-			date > 1937.9.1
+			has_war = yes
 		}
 
 		cancel_if_invalid = yes
@@ -1506,7 +1483,7 @@
 		available_if_capitulated = yes
 
 		completion_reward = {
-			add_manpower = 400000
+			add_manpower = 250000
 		}
 	}
 	
@@ -1529,24 +1506,9 @@
 		available_if_capitulated = yes
 
 		completion_reward = {
-			715 = { add_extra_state_shared_building_slots = 5 
-			add_building_construction = {
-				type = industrial_complex
-				level = 2
-				instant_build = yes
-			} }
-			610 = { add_extra_state_shared_building_slots = 5 
-			add_building_construction = {
-				type = industrial_complex
-				level = 2
-				instant_build = yes
-			} }
-			328 = { add_extra_state_shared_building_slots = 5 
-			add_building_construction = {
-				type = industrial_complex
-				level = 2
-				instant_build = yes
-			} }
+			715 = { add_extra_state_shared_building_slots = 5 }
+			610 = { add_extra_state_shared_building_slots = 5 }
+			328 = { add_extra_state_shared_building_slots = 5 }
 		}
 	}
 	
@@ -1593,7 +1555,7 @@
 
 		completion_reward = {
 			army_experience = 20
-			add_manpower = 500000
+			add_manpower = 200000
 		}
 	}
 
@@ -1601,7 +1563,7 @@
 		id = MAN_mission_to_germany
 		icon = GFX_focus_chi_mission_to_germany
 		prerequisite = { focus = MAN_treaty_with_the_bandits focus = MAN_crush_the_bandits}
-		x = 4
+		x = 0
 		y = 2
 		relative_position_id = MAN_meeting_of_the_gac
 		cost = 1
@@ -1727,6 +1689,7 @@
 		}
 
 		available = {
+			716 = { is_fully_controlled_by = ROOT }
 		}
 
 		bypass = {
@@ -1741,9 +1704,13 @@
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			add_offsite_building = {
-				type = arms_factory
-				level = 2
+			716 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
 			}
 		}
 	}
@@ -1790,12 +1757,15 @@
 
 
 				mio:MAN_mamc_light_organization = {
+					add_mio_size = 1
 					add_mio_funds = 1000
 				}
 				mio:MAN_mamc_medium_organization = {
+					add_mio_size = 1
 					add_mio_funds = 1000
 				}
 				mio:MAN_mamc_heavy_organization = {
+					add_mio_size = 1
 					add_mio_funds = 1000
 				}
 			}
@@ -2019,9 +1989,16 @@
 		available_if_capitulated = no
 
 		complete_tooltip = {
-			add_offsite_building = {
-				type = arms_factory
-				level = 2
+			random_state = {
+				limit = {
+					has_state_flag = CHI_tank_plant_AF
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
 			}
 		}
 
@@ -2098,7 +2075,7 @@
 						}
 					}
 					add_equipment_subsidy = {
-						cic = 5000
+						cic = 10000
 						equipment_type = motorized_equipment
 						seller_trigger = MAN_tank_seller_for_subsidy
 					}
@@ -2108,7 +2085,7 @@
 						has_completed_focus = MAN_closer_ties_with_germany
 					}
 					add_equipment_subsidy = {
-						cic = 5000
+						cic = 10000
 						equipment_type = motorized_equipment
 						seller_tags = { GER } 
 					}
@@ -2202,7 +2179,14 @@
 		
 		completion_reward = {
 			MAN_low_legitimacy_level_down = yes
-			add_timed_idea = { idea = MAN_restore_order_idea days = 180 }
+			JAP = { 
+				set_autonomy = {
+					target = MAN
+					autonomy_state = autonomy_wtt_imperial_subject
+				}
+				custom_effect_tooltip = unlock_propaganda_campaign_tt
+				unlock_decision_tooltip = JAP_big_china_prop
+			}
 		}
 	}
 	
@@ -2232,95 +2216,95 @@
 		}
 	}
 	
-	#focus = {
-	#	id = MAN_reform_the_civil_service
-	#	icon = GFX_focus_spa_the_spanish_miracle
-	#	prerequisite = { focus = MAN_end_of_the_kwantung_occupation }
-	#	x = -3
-	#	y = 1
-	#	relative_position_id = MAN_end_of_the_kwantung_occupation
+	focus = {
+		id = MAN_reform_the_civil_service
+		icon = GFX_focus_spa_the_spanish_miracle
+		prerequisite = { focus = MAN_end_of_the_kwantung_occupation }
+		x = -3
+		y = 1
+		relative_position_id = MAN_end_of_the_kwantung_occupation
 
-	#	cost = 5
+		cost = 5
 
-	#	available = {
+		available = {
 
-	#	}	
+		}	
 
-	#	cancel_if_invalid = yes
-	#	continue_if_invalid = no
-	#	available_if_capitulated = yes
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
 		
-	#	completion_reward = {
-	#		add_timed_idea = { idea = MAN_reform_bureaucracy days = 365 }
-	#		add_political_power = 200
-	#	}
-	#}
+		completion_reward = {
+			add_timed_idea = { idea = MAN_reform_bureaucracy days = 365 }
+			add_political_power = 200
+		}
+	}
 	
-	#focus = {
-	#	id = MAN_five_equal_peoples
-	#	icon = GFX_goal_generic_national_unity
-	#	prerequisite = { focus = MAN_reform_the_civil_service }
-	#	mutually_exclusive = { focus = MAN_staff_the_court_with_manchus }
-	#	x = -1
-	#	y = 1
-	#	relative_position_id = MAN_reform_the_civil_service
-#
-	#	cost = 5
-#
-	#	available = {
+	focus = {
+		id = MAN_five_equal_peoples
+		icon = GFX_goal_generic_national_unity
+		prerequisite = { focus = MAN_reform_the_civil_service }
+		mutually_exclusive = { focus = MAN_staff_the_court_with_manchus }
+		x = -1
+		y = 1
+		relative_position_id = MAN_reform_the_civil_service
 
-	#	}	
+		cost = 5
 
-	#	cancel_if_invalid = yes
-	#	continue_if_invalid = no
-	#	available_if_capitulated = yes
+		available = {
+
+		}	
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
 		
-	#	completion_reward = {
-	#		add_ideas = MAN_five_equal_peoples_idea
-	#	}
-	#}
+		completion_reward = {
+			add_ideas = MAN_five_equal_peoples_idea
+		}
+	}
 	
-	#focus = {
-	#	id = MAN_staff_the_court_with_manchus
-	#	icon = GFX_focus_jap_manchurian_project
-	#	prerequisite = { focus = MAN_reform_the_civil_service }
-	#	mutually_exclusive = { focus = MAN_five_equal_peoples }
-	#	x = 1
-	#	y = 1
-	#	relative_position_id = MAN_reform_the_civil_service
+	focus = {
+		id = MAN_staff_the_court_with_manchus
+		icon = GFX_focus_jap_manchurian_project
+		prerequisite = { focus = MAN_reform_the_civil_service }
+		mutually_exclusive = { focus = MAN_five_equal_peoples }
+		x = 1
+		y = 1
+		relative_position_id = MAN_reform_the_civil_service
 
-	#	cost = 5
+		cost = 5
 
-	#	available = {
-#
-	#	}	
+		available = {
 
-	#	cancel_if_invalid = yes
-	#	continue_if_invalid = no
-	#	available_if_capitulated = yes
+		}	
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
 		
-	#	completion_reward = {
-	#		add_ideas = MAN_manchu_court
-	#	}
-	#}
+		completion_reward = {
+			add_ideas = MAN_manchu_court
+		}
+	}
 	
 	focus = {
 		id = MAN_national_rebuilding
 		icon = GFX_goal_generic_construct_civilian
-		prerequisite = { focus = MAN_manchurian_passage }
-		x = 0
+		prerequisite = { focus = MAN_staff_the_court_with_manchus focus = MAN_five_equal_peoples }
+		x = -1
 		y = 1
-		relative_position_id = MAN_manchurian_passage
+		relative_position_id = MAN_staff_the_court_with_manchus
 
 		cost = 5
 
 		available = {
 			NOT = { country_exists = PRC }
 			NOT = { country_exists = CHI }
-			NOT = { country_exists = XSM }
-			NOT = { country_exists = GXC }
-			NOT = { country_exists = SHX }
-			NOT = { country_exists = YUN }
+			# NOT = { country_exists = XSM }
+			# NOT = { country_exists = GXC }
+			# NOT = { country_exists = SHX }
+			# NOT = { country_exists = YUN }
 		}	
 
 		cancel_if_invalid = yes
@@ -2332,263 +2316,263 @@
 		}
 	}
 	
-	#focus = {
-	#	id = MAN_imperial_university
-	#	icon = GFX_focus_research
-	#	prerequisite = { focus = MAN_national_rebuilding }
-	#	x = 0
-	#	y = 1
-	#	relative_position_id = MAN_national_rebuilding
+	focus = {
+		id = MAN_imperial_university
+		icon = GFX_focus_research
+		prerequisite = { focus = MAN_national_rebuilding }
+		x = 0
+		y = 1
+		relative_position_id = MAN_national_rebuilding
 
-	#	cost = 5
+		cost = 5
 
-	#	available = {
+		available = {
 
-	#	}	
+		}	
 
-	#	cancel_if_invalid = yes
-	#	continue_if_invalid = no
-	#	available_if_capitulated = yes
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
 		
-	#	completion_reward = {
-	#		add_research_slot = 1
-	#	}
-	#}
-	#
-	#focus = {
-	#	id = MAN_expand_the_imperial_arsenals
-	#	icon = GFX_goal_generic_construct_mil_factory
-	#	prerequisite = { focus = MAN_imperial_university }
-	#	x = -1
-	#	y = 1
-	#	relative_position_id = MAN_imperial_university
-
-	#	cost = 5
-
-	#	available = {
-
-	#	}	
-
-	#	cancel_if_invalid = yes
-	#	continue_if_invalid = no
-	#	available_if_capitulated = yes
-		
-	#	completion_reward = {
-	#		random_owned_controlled_state = {
-	#			limit = {
-	#				free_building_slots = {
-	#					building = arms_factory
-	#					size > 4
-	#					include_locked = yes
-	#				}
-	#			}
-	#			add_extra_state_shared_building_slots = 5
-	#			add_building_construction = {
-	#				type = arms_factory
-	#				level = 5
-	#				instant_build = yes
-	#			}
-	#		}
-	#	}
-	#}
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
 	
-	#focus = {
-	#	id = MAN_expand_the_taiyuan_arsenal
-	#	icon = GFX_goal_generic_build_tank
-	#	prerequisite = { focus = MAN_expand_the_imperial_arsenals }
-	#	x = -1
-	#	y = 1
-	#	relative_position_id = MAN_expand_the_imperial_arsenals
-#
-	#	cost = 5
+	focus = {
+		id = MAN_expand_the_imperial_arsenals
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = MAN_imperial_university }
+		x = -1
+		y = 1
+		relative_position_id = MAN_imperial_university
 
-	#	available = {
-	#		controls_state = 615
-	#	}	
+		cost = 5
 
-	#	cancel_if_invalid = yes
-	#	continue_if_invalid = no
-	#	available_if_capitulated = yes
+		available = {
+
+		}	
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
 		
-	#	completion_reward = {
-	#		615 = {
-	#			add_extra_state_shared_building_slots = 5
-	#			add_building_construction = {
-	#				type = arms_factory
-	#				level = 5
-	#				instant_build = yes
-	#			}
-	#		}
-	#	}
-	#}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 4
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 5
+				add_building_construction = {
+					type = arms_factory
+					level = 5
+					instant_build = yes
+				}
+			}
+		}
+	}
 	
-	#focus = {
-	#	id = MAN_develop_the_hanyan_arsenal
-	#	icon = GFX_goal_generic_production2
-	#	prerequisite = { focus = MAN_expand_the_taiyuan_arsenal }
-	#	x = 0
-	#	y = 1
-	#	relative_position_id = MAN_expand_the_taiyuan_arsenal
+	focus = {
+		id = MAN_expand_the_taiyuan_arsenal
+		icon = GFX_goal_generic_build_tank
+		prerequisite = { focus = MAN_expand_the_imperial_arsenals }
+		x = -1
+		y = 1
+		relative_position_id = MAN_expand_the_imperial_arsenals
 
-	#	cost = 5
+		cost = 5
 
-	#	available = {
-	#		controls_state = 620
-	#	}	
+		available = {
+			controls_state = 615
+		}	
 
-	#	cancel_if_invalid = yes
-	#	continue_if_invalid = no
-	#	available_if_capitulated = yes
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
 		
-	#	completion_reward = {
-	#		620 = {
-	#			add_extra_state_shared_building_slots = 5
-	#			add_building_construction = {
-	#				type = arms_factory
-	#				level = 5
-	#				instant_build = yes
-	#			}
-	#		}
-	#	}
-	#}	
+		completion_reward = {
+			615 = {
+				add_extra_state_shared_building_slots = 5
+				add_building_construction = {
+					type = arms_factory
+					level = 5
+					instant_build = yes
+				}
+			}
+		}
+	}
 	
-	#focus = {
-	#	id = MAN_expand_the_mining_sector
-	#	icon = GFX_goal_generic_construction2
-	#	prerequisite = { focus = MAN_expand_the_imperial_arsenals }
-	#	prerequisite = { focus = MAN_japanese_loans }
-	#	x = 1
-	#	y = 1
-	#	relative_position_id = MAN_expand_the_imperial_arsenals
+	focus = {
+		id = MAN_develop_the_hanyan_arsenal
+		icon = GFX_goal_generic_production2
+		prerequisite = { focus = MAN_expand_the_taiyuan_arsenal }
+		x = 0
+		y = 1
+		relative_position_id = MAN_expand_the_taiyuan_arsenal
 
-	#	cost = 5
+		cost = 5
 
-	#	available = {
+		available = {
+			controls_state = 620
+		}	
 
-	#	}	
-
-	#	cancel_if_invalid = yes
-	#	continue_if_invalid = no
-	#	available_if_capitulated = yes
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
 		
-	#	completion_reward = {
-	#		715 = {
-	#			add_resource = {
-	#				type = steel
-	#				amount = 440
-	#			}
-	#		}
-	#		716 = {
-	#			add_resource = {
-	#				type = steel
-	#				amount = 300
-	#			}
-	#		}
-	#		328 = {
-	#			add_resource = {
-	#				type = aluminium
-	#				amount = 300
-	#			}
-	#		}
-	#	}
-	#}
-
-	#focus = {
-	#	id = MAN_japanese_loans
-	#	icon = GFX_focus_mex_privatisation
-	#	prerequisite = { focus = MAN_imperial_university }
-	#	x = 1
-	#	y = 1
-	#	relative_position_id = MAN_imperial_university
-#
-	#	cost = 5
-
-	#	available = {
-
-	#	}	
-
-	#	cancel_if_invalid = yes
-	#	continue_if_invalid = no
-	#	available_if_capitulated = yes
-		
-	#	completion_reward = {
-	#		add_ideas = MAN_japanese_loans_idea
-	#	}
-	#}
+		completion_reward = {
+			620 = {
+				add_extra_state_shared_building_slots = 5
+				add_building_construction = {
+					type = arms_factory
+					level = 5
+					instant_build = yes
+				}
+			}
+		}
+	}	
 	
-	#focus = {
-	#	id = MAN_expand_the_textile_industry
-	#	icon = GFX_goal_generic_consumer_goods
-	#	prerequisite = { focus = MAN_japanese_loans }
-	#	x = 1
-	#	y = 1
-	#	relative_position_id = MAN_japanese_loans
+	focus = {
+		id = MAN_expand_the_mining_sector
+		icon = GFX_goal_generic_construction2
+		prerequisite = { focus = MAN_expand_the_imperial_arsenals }
+		prerequisite = { focus = MAN_japanese_loans }
+		x = 1
+		y = 1
+		relative_position_id = MAN_expand_the_imperial_arsenals
 
-	#	cost = 5
+		cost = 5
 
-	#	available = {
+		available = {
 
-	#	}	
+		}	
 
-	#	cancel_if_invalid = yes
-	#	continue_if_invalid = no
-	#	available_if_capitulated = yes
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
 		
-	#	completion_reward = {
-	#		random_owned_controlled_state = {
-	#			limit = {
-	#				free_building_slots = {
-	#					building = industrial_complex
-	#					size > 4
-	#					include_locked = yes
-	#				}
-	#			}
-	#			add_extra_state_shared_building_slots = 5
-	#			add_building_construction = {
-	#				type = industrial_complex
-	#				level = 5
-	#				instant_build = yes
-	#			}
-	#		}
-	#	}
-	#}
+		completion_reward = {
+			715 = {
+				add_resource = {
+					type = steel
+					amount = 440
+				}
+			}
+			716 = {
+				add_resource = {
+					type = steel
+					amount = 300
+				}
+			}
+			328 = {
+				add_resource = {
+					type = aluminium
+					amount = 300
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAN_japanese_loans
+		icon = GFX_focus_mex_privatisation
+		prerequisite = { focus = MAN_imperial_university }
+		x = 1
+		y = 1
+		relative_position_id = MAN_imperial_university
+
+		cost = 5
+
+		available = {
+
+		}	
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			add_ideas = MAN_japanese_loans_idea
+		}
+	}
 	
-	#focus = {
-	#	id = MAN_zaibatsu_factories
-	#	icon = GFX_focus_jap_zaibatsu
-	#	prerequisite = { focus = MAN_expand_the_textile_industry }
-	#	x = 0
-	#	y = 1
-	#	relative_position_id = MAN_expand_the_textile_industry
+	focus = {
+		id = MAN_expand_the_textile_industry
+		icon = GFX_goal_generic_consumer_goods
+		prerequisite = { focus = MAN_japanese_loans }
+		x = 1
+		y = 1
+		relative_position_id = MAN_japanese_loans
 
-	#	cost = 5
+		cost = 5
 
-	#	available = {
+		available = {
 
-	#	}	
+		}	
 
-	#	cancel_if_invalid = yes
-	#	continue_if_invalid = no
-	#	available_if_capitulated = yes
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
 		
-	#	completion_reward = {
-	#		random_owned_controlled_state = {
-	#			limit = {
-	#				free_building_slots = {
-	#					building = industrial_complex
-	#					size > 4
-	#					include_locked = yes
-	#				}
-	#			}
-	#			add_extra_state_shared_building_slots = 5
-	#			add_building_construction = {
-	#				type = industrial_complex
-	#				level = 5
-	#				instant_build = yes
-	#			}
-	#		}
-	#	}
-	#}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 4
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 5
+				add_building_construction = {
+					type = industrial_complex
+					level = 5
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_zaibatsu_factories
+		icon = GFX_focus_jap_zaibatsu
+		prerequisite = { focus = MAN_expand_the_textile_industry }
+		x = 0
+		y = 1
+		relative_position_id = MAN_expand_the_textile_industry
+
+		cost = 5
+
+		available = {
+
+		}	
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 4
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 5
+				add_building_construction = {
+					type = industrial_complex
+					level = 5
+					instant_build = yes
+				}
+			}
+		}
+	}
 
 	focus = {
 		id = MAN_reclaim_the_empire
@@ -2603,10 +2587,10 @@
 		available = {
 			NOT = { country_exists = PRC }
 			NOT = { country_exists = CHI }
-			NOT = { country_exists = XSM }
-			NOT = { country_exists = GXC }
-			NOT = { country_exists = SHX }
-			NOT = { country_exists = YUN }
+			# NOT = { country_exists = XSM }
+			# NOT = { country_exists = GXC }
+			# NOT = { country_exists = SHX }
+			# NOT = { country_exists = YUN }
 			any_state = {
 				is_core_of = CHI
 				NOT = { is_core_of = SIK }
@@ -2627,9 +2611,6 @@
 			add_state_core = 322
 			add_state_core = 757
 			add_state_core = 758
-			MAN = {
-				transfer_state = 608
-			}
 			MAN_low_legitimacy_level_down = yes
 		}
 	}
@@ -3064,6 +3045,7 @@ completion_reward = {
 		id = MAN_five_peoples_army
 		icon = GFX_focus_generic_little_entente
 		prerequisite = { focus = MAN_expand_the_army }
+		mutually_exclusive = { focus = MAN_revive_the_banners }
 		x = 2
 		y = 1
 		relative_position_id = MAN_expand_the_army
@@ -3160,10 +3142,11 @@ completion_reward = {
 	focus = {
 		id = MAN_revive_the_banners
 		icon = GFX_goal_manzhou_qing
-		prerequisite = { focus = MAN_restore_order }
-		x = 0
+		prerequisite = { focus = MAN_expand_the_army }
+		mutually_exclusive = { focus = MAN_five_peoples_army }
+		x = 4
 		y = 1
-		relative_position_id = MAN_restore_order
+		relative_position_id = MAN_expand_the_army
 
 		cost = 5
 
@@ -3523,45 +3506,6 @@ completion_reward = {
 		
 		completion_reward = {
 			add_research_slot = 1
-		}
-	}
-	focus = {
-		id = Resource_Hoe
-		icon = GFX_SOV_goals_renovation_of_siberia
-		prerequisite = { focus = MAN_tackle_the_opium_trade
-	}
-		x = 0
-		y = 1
-		relative_position_id = MAN_tackle_the_opium_trade
-		cost = 5
-		ai_will_do = {
-			factor = 5
-		}
-
-		complete_tooltip = {
-		}
-
-		completion_reward = {
-			add_resource = {
-				type = aluminium
-				amount = 240
-				state = 611
-			}
-			add_resource = {
-				type = tungsten
-				amount = 400
-				state = 717
-			}
-        	modify_building_resources = {
-        	   building = steel_refinery
-        	   resource = aluminium
-        	   amount = 20
-        	}
-        	modify_building_resources = {
-        	   building = steel_refinery
-        	   resource = tungsten
-        	   amount = 5
-        	}
 		}
 	}
 }

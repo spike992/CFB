@@ -40,7 +40,7 @@ GER_porsche_organization = {
 			limit = {
 				FROM = { NOT = { original_tag = GER } }
 			}
-			FROM = { NOT = { has_war_with = GER } }
+#			FROM = { NOT = { has_war_with = GER } }
 		}
 
 		IF = {
@@ -277,12 +277,6 @@ GER_henschel_organization = {
 				has_dlc = "Graveyard of Empires"
 				has_dlc = "Arms Against Tyranny"
 			}
-			AND = {
-				tag = SPR
-			}
-			AND = {
-				tag = YUG
-			}
 		}
 	}
 	
@@ -303,7 +297,7 @@ GER_henschel_organization = {
 			limit = {
 				FROM = { NOT = { original_tag = GER } }
 			}
-			FROM = { NOT = { has_war_with = GER } }
+#			FROM = { NOT = { has_war_with = GER } }
 		}
 
 		IF = {
@@ -423,7 +417,7 @@ GER_man_organization = {
 			limit = {
 				FROM = { NOT = { original_tag = GER } }
 			}
-			FROM = { NOT = { has_war_with = GER } }
+#			FROM = { NOT = { has_war_with = GER } }
 		}
 	}
 
@@ -728,20 +722,19 @@ GER_daimler_benz_organization = {
 	include = generic_tank_organization
 	icon = GFX_idea_GER_daimler_benz
 	
-	allowed = {
+	allowed = {	
+		# OR = {
 		OR = {
 			tag = GER
-			AND = {
-				tag = HUN
-				has_dlc = "Battle for the Bosporus"
-			}
-			AND = {
-				tag = SPR
-			}
-			AND = {
-				tag = ROM
-			}
+			tag = ROM
+			tag = HUN
 		}
+			
+		# 	AND = {
+		# 		tag = BRA
+		# 		has_dlc = "Trial of Allegiance"
+		# 	}
+		# }
 	}
 
 	available = {
@@ -749,19 +742,28 @@ GER_daimler_benz_organization = {
 			limit = {
 				FROM = { NOT = { original_tag = GER } }
 			}
-			FROM = { NOT = { has_war_with = GER } }
+#			FROM = { NOT = { has_war_with = GER } }
 		}
 		IF = {
-            limit = { FROM = { original_tag = HUN } }
-
-            FROM = {
-                OR = {
-                    is_subject = no
-                    is_subject_of = GER
-                }
-                has_completed_focus = wuw_HUN_seek_german_contracts
-            }
-        }
+			limit = {
+				FROM = {
+					original_tag = ROM
+				}
+			}
+			FROM = {
+				has_completed_focus = ROM_learn_from_the_germans
+			}
+		}
+		IF = {
+			limit = {
+				FROM = {
+					original_tag = HUN
+				}
+			}
+			FROM = {
+				has_completed_focus = wuw_HUN_seek_german_contracts
+			}
+		}
 		# IF = {
 		# 	limit = {
 		# 		FROM = {
@@ -1740,7 +1742,7 @@ GER_messerschmitt_organization = {
 			limit = {
 				FROM = { NOT = { original_tag = GER } }
 			}
-			FROM = { NOT = { has_war_with = GER } }
+#			FROM = { NOT = { has_war_with = GER } }
 		}
 		
 		if = {
@@ -1920,7 +1922,7 @@ GER_junkers_organization = {
 			limit = {
 				FROM = { NOT = { original_tag = GER } }
 			}
-			FROM = { NOT = { has_war_with = GER } }
+#			FROM = { NOT = { has_war_with = GER } }
 		}
 
 		IF = {
@@ -2284,7 +2286,7 @@ GER_heinkel_organization = {
 			limit = {
 				FROM = { NOT = { original_tag = GER } }
 			}
-			FROM = { NOT = { has_war_with = GER } }
+#			FROM = { NOT = { has_war_with = GER } }
 		}
 
 		IF = {
@@ -2911,12 +2913,6 @@ GER_rheinmetall_organization = {
 				original_tag = HUN
 				has_dlc = "Gotterdammerung"
 			}
-			AND = {
-				tag = BUL
-			}
-			AND = {
-				tag = ROM
-			}
 		}
 	}
 
@@ -2926,7 +2922,7 @@ GER_rheinmetall_organization = {
 			limit = {
 				FROM = { NOT = { original_tag = GER } }
 			}
-			FROM = { NOT = { has_war_with = GER } }
+#			FROM = { NOT = { has_war_with = GER } }
 		}
 	}
 
@@ -3097,7 +3093,7 @@ GER_mauser_organization = {
 			limit = {
 				FROM = { NOT = { original_tag = GER } }
 			}
-			FROM = { NOT = { has_war_with = GER } }
+#			FROM = { NOT = { has_war_with = GER } }
 		}
 
 		IF = {
@@ -3246,7 +3242,7 @@ GER_opel_organization = {
 			limit = {
 				FROM = { NOT = { original_tag = GER } }
 			}
-			FROM = { NOT = { has_war_with = GER } }
+#			FROM = { NOT = { has_war_with = GER } }
 		}
 
 		IF = {

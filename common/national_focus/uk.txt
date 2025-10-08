@@ -110,8 +110,9 @@ focus_tree = {
 
 		cost = 3
 
-		completion_reward = { 
+		completion_reward = {
 			custom_effect_tooltip = ENG_assasinate_heydrich_tt
+			set_country_flag = ENG_heydrich_died_flag
 		}
 	}
 	
@@ -380,6 +381,46 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = ENG_equip_foreign_exiles_tt
 			hidden_effect = {
+				division_template = {
+					name = "Foreign Exiles"
+					division_names_group = ENG_INF_01
+						regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+						infantry = { x = 1 y = 3 }
+						infantry = { x = 2 y = 0 }
+						infantry = { x = 2 y = 1 }
+						infantry = { x = 2 y = 2 }
+						infantry = { x = 2 y = 3 }
+						artillery_brigade = { x = 3 y = 0 }
+						artillery_brigade = { x = 3 y = 1 }
+						artillery_brigade = { x = 3 y = 2 }
+						anti_tank_brigade = { x = 4 y = 0 }
+						anti_tank_brigade = { x = 4 y = 1 }
+						anti_tank_brigade = { x = 4 y = 2 }
+					}
+					support = {
+						hq_company = { x = 0 y = 0 } 
+						engineer = { x = 0 y = 1 }   
+						recon = { x = 0 y = 2 }
+						logistics_company  = { x = 0 y = 3 }
+						anti_air = { x = 1 y = 0 }
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 126 127 123 338 125 122 }
+					create_unit = { division = "division_template = \"Foreign Exiles\" start_experience_factor = 0.3 force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } squad_equipment_0 = { owner = \"ENG\" } artillery_equipment_1 = { owner = \"ENG\" } anti_tank_equipment_1 = { owner = \"ENG\" } }" owner = ENG }
+					create_unit = { division = "division_template = \"Foreign Exiles\" start_experience_factor = 0.3 force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } squad_equipment_0 = { owner = \"ENG\" } artillery_equipment_1 = { owner = \"ENG\" } anti_tank_equipment_1 = { owner = \"ENG\" } }" owner = ENG }
+					create_unit = { division = "division_template = \"Foreign Exiles\" start_experience_factor = 0.3 force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } squad_equipment_0 = { owner = \"ENG\" } artillery_equipment_1 = { owner = \"ENG\" } anti_tank_equipment_1 = { owner = \"ENG\" } }" owner = ENG }
+					create_unit = { division = "division_template = \"Foreign Exiles\" start_experience_factor = 0.3 force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } squad_equipment_0 = { owner = \"ENG\" } artillery_equipment_1 = { owner = \"ENG\" } anti_tank_equipment_1 = { owner = \"ENG\" } }" owner = ENG }
+					create_unit = { division = "division_template = \"Foreign Exiles\" start_experience_factor = 0.3 force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } squad_equipment_0 = { owner = \"ENG\" } artillery_equipment_1 = { owner = \"ENG\" } anti_tank_equipment_1 = { owner = \"ENG\" } }" owner = ENG }
+					create_unit = { division = "division_template = \"Foreign Exiles\" start_experience_factor = 0.3 force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } squad_equipment_0 = { owner = \"ENG\" } artillery_equipment_1 = { owner = \"ENG\" } anti_tank_equipment_1 = { owner = \"ENG\" } }" owner = ENG }
+				}
 			}
 			add_timed_idea = {
 				idea = ENG_equip_exiles
@@ -2398,6 +2439,10 @@ focus_tree = {
 			custom_effect_tooltip = ENG_airbranch_6_tt
 			set_country_flag = ENG_air_cooldown_flag
 			set_country_flag = ENG_airfocus
+			#SOV_mikhail_tukhachevsky = {
+			#	promote_leader = yes 
+			#	clr_character_flag = SOV_exiled_flag
+			#}
 			if = {
 				limit = { 
 					has_country_flag = {
@@ -3030,7 +3075,7 @@ focus_tree = {
 		prerequisite = { focus = ENG_keep_old_guard }
 		prerequisite = { focus = ENG_expand_dockyards }
 		
-		x = 0
+		x = 1
 		y = 1
 		relative_position_id = ENG_keep_old_guard
 		
@@ -3111,10 +3156,10 @@ focus_tree = {
 				}
 			}
 			132 = {
-				add_extra_state_shared_building_slots = 1
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = dockyard
-					level = 1
+					level = 2
 					instant_build = yes
 				}
 			}
@@ -3564,18 +3609,18 @@ focus_tree = {
 		}	
 		completion_reward = {
 			132 = {
-				add_extra_state_shared_building_slots = 5
+				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 					type = dockyard
-					level = 5
+					level = 3
 					instant_build = yes
 				}
 			}
 			133 = {
-				add_extra_state_shared_building_slots = 5
+				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 					type = dockyard
-					level = 5
+					level = 3
 					instant_build = yes
 				}
 			}
@@ -3587,7 +3632,7 @@ focus_tree = {
 		icon = GFX_goal_generic_occupy_states_coastal
 		prerequisite = { focus = ENG_expand_dockyards }
 		
-		x = 1
+		x = 0
 		y = 1
 		relative_position_id = ENG_expand_dockyards
 		
@@ -3601,70 +3646,6 @@ focus_tree = {
 		}
 	}
 	
-	focus = {
-		id = ENG_wartime_docks1
-		icon = GFX_goal_generic_production2
-		x = -1
-		y = 1
-		cost = 5
-		prerequisite = {
-			focus = ENG_expand_dockyards
-		}
-		relative_position_id =  ENG_expand_dockyards
-        available = {
-			GER = { has_completed_focus = GER_danzig_or_war }
-        }
-		completion_reward = {
-            932 = {
-                add_extra_state_shared_building_slots = 5
-                add_building_construction = {
-                    type = dockyard
-                    level = 5
-                    instant_build = yes
-                }
-            }
-            120 = {
-                add_extra_state_shared_building_slots = 5
-                add_building_construction = {
-                    type = dockyard
-                    level = 5
-                    instant_build = yes
-                }
-            }
-		}
-	}
-	focus = {
-		id = ENG_wartime_docks2
-		icon = GFX_goal_ENG_grand_british_fleet
-		x = 0
-		y = 1
-		cost = 5
-		prerequisite = {
-			focus = ENG_wartime_docks1
-		}
-		relative_position_id =  ENG_wartime_docks1 
-		available = {
-			
-		}
-		completion_reward = {
-            125 = {
-                add_extra_state_shared_building_slots = 5
-                add_building_construction = {
-                    type = dockyard
-                    level = 5
-                    instant_build = yes
-                }
-            }
-            123 = {
-                add_extra_state_shared_building_slots = 5
-                add_building_construction = {
-                    type = dockyard
-                    level = 5
-                    instant_build = yes
-                }
-            }
-		}
-	}
 	### Fortification Branch ###
 	
 	focus = {
@@ -4466,8 +4447,8 @@ focus_tree = {
 				}
 			}
 			add_mines = { 
-				#region = 68
-				#amount = 300
+				region = 68
+				amount = 300
 			}
 		}
 	}
@@ -4912,7 +4893,7 @@ focus_tree = {
 				activate_mission = ENG_invest_can
 			}
 			ENG = {
-				add_to_variable = { ENG_industrial_consumer_goods_expected_value = 0.04 tooltip = consumer_goods_expected_value_tt }
+				add_to_variable = { ENG_industrial_consumer_goods_expected_value = 0.03 tooltip = consumer_goods_expected_value_tt }
 			}
 			custom_effect_tooltip = will_remove_consumer_goods_tt
 			
@@ -4949,7 +4930,7 @@ focus_tree = {
 			}
 
 			ENG = {
-				add_to_variable = { ENG_industrial_consumer_goods_expected_value = 0.04 tooltip = consumer_goods_expected_value_tt }
+				add_to_variable = { ENG_industrial_consumer_goods_expected_value = 0.03 tooltip = consumer_goods_expected_value_tt }
 			}
 			custom_effect_tooltip = will_remove_consumer_goods_tt
 			
@@ -4985,7 +4966,7 @@ focus_tree = {
 				activate_mission = ENG_invest_raj
 			}
 			ENG = {
-				add_to_variable = { ENG_industrial_consumer_goods_expected_value = 0.04 tooltip = consumer_goods_expected_value_tt }
+				add_to_variable = { ENG_industrial_consumer_goods_expected_value = 0.03 tooltip = consumer_goods_expected_value_tt }
 			}
 			custom_effect_tooltip = will_remove_consumer_goods_tt
 			
@@ -5021,7 +5002,7 @@ focus_tree = {
 				activate_mission = ENG_invest_ast
 			}
 			ENG = {
-				add_to_variable = { ENG_industrial_consumer_goods_expected_value = 0.04 tooltip = consumer_goods_expected_value_tt }
+				add_to_variable = { ENG_industrial_consumer_goods_expected_value = 0.03 tooltip = consumer_goods_expected_value_tt }
 			}
 			custom_effect_tooltip = will_remove_consumer_goods_tt
 			
@@ -5057,7 +5038,7 @@ focus_tree = {
 				activate_mission = ENG_invest_nzl
 			}
 			ENG = {
-				add_to_variable = { ENG_industrial_consumer_goods_expected_value = 0.04 tooltip = consumer_goods_expected_value_tt }
+				add_to_variable = { ENG_industrial_consumer_goods_expected_value = 0.03 tooltip = consumer_goods_expected_value_tt }
 			}
 			custom_effect_tooltip = will_remove_consumer_goods_tt
 			
@@ -5606,7 +5587,7 @@ focus_tree = {
 		prerequisite = { focus = ENG_tackle_depression }
 		
 		available = {
-			has_war_support > 0.1
+			has_war_support > 0.2
 		}
 		
 		x = 0
@@ -5625,7 +5606,7 @@ focus_tree = {
 		
 		completion_reward = {
 			custom_effect_tooltip = ENG_instant_early_mob_tt
-			add_war_support = 0.10
+			#add_stability = -0.05
 			add_political_power = -100
 		}
 	}
@@ -5815,65 +5796,65 @@ focus_tree = {
 		}
 	}
 	
-	 focus = {
-	 	id = ENG_build_new_factories
-	 	icon = GFX_focus_SOV_merge_plants
-	 	prerequisite = { focus = ENG_full_depression_recovery }
-	 	prerequisite = { focus = ENG_new_manufacturing_methods }
-	 	prerequisite = { focus = ENG_dispersed_factories }
-	 	mutually_exclusive = { focus = ENG_factory_modernisation }
+	# focus = {
+	# 	id = ENG_build_new_factories
+	# 	icon = GFX_focus_SOV_merge_plants
+	# 	prerequisite = { focus = ENG_full_depression_recovery }
+	# 	prerequisite = { focus = ENG_new_manufacturing_methods }
+	# 	prerequisite = { focus = ENG_dispersed_factories }
+	# 	mutually_exclusive = { focus = ENG_factory_modernisation }
 		
-	 	available = {
-	 		OR = {
-	 			has_war_with = GER
-	 			has_war_with = ITA
-	 			has_war_with = JAP
-	 		}
-	 	}
+	# 	available = {
+	# 		OR = {
+	# 			has_war_with = GER
+	# 			has_war_with = ITA
+	# 			has_war_with = JAP
+	# 		}
+	# 	}
 		
-	 	x = -1
-	 	y = 1
-	 	relative_position_id = ENG_new_manufacturing_methods
+	# 	x = -1
+	# 	y = 1
+	# 	relative_position_id = ENG_new_manufacturing_methods
 		
-	 	cost = 5
+	# 	cost = 5
 		
-	 	ai_will_do = {
-	 		factor = 1
-	 	}	
-	 	completion_reward = {
-	 		add_ideas = ENG_build_new_factories
-	 	}
-	 }
+	# 	ai_will_do = {
+	# 		factor = 1
+	# 	}	
+	# 	completion_reward = {
+	# 		add_ideas = ENG_build_new_factories
+	# 	}
+	# }
 	
-	 focus = {
-	 	id = ENG_factory_modernisation
-	 	icon = GFX_focus_generic_reorient_production
-	 	prerequisite = { focus = ENG_full_depression_recovery }
-	 	prerequisite = { focus = ENG_new_manufacturing_methods }
-	 	prerequisite = { focus = ENG_dispersed_factories }
-	 	mutually_exclusive = { focus = ENG_build_new_factories }
+	# focus = {
+	# 	id = ENG_factory_modernisation
+	# 	icon = GFX_focus_generic_reorient_production
+	# 	prerequisite = { focus = ENG_full_depression_recovery }
+	# 	prerequisite = { focus = ENG_new_manufacturing_methods }
+	# 	prerequisite = { focus = ENG_dispersed_factories }
+	# 	mutually_exclusive = { focus = ENG_build_new_factories }
 		
-		available = {
-	 		OR = {
-	 			has_war_with = GER
-	 			has_war_with = ITA
-	 			has_war_with = JAP
-	 		}
-	 	}
+	# 	available = {
+	# 		OR = {
+	# 			has_war_with = GER
+	# 			has_war_with = ITA
+	# 			has_war_with = JAP
+	# 		}
+	# 	}
 		
-		x = 1
-	 	y = 1
-	 	relative_position_id = ENG_new_manufacturing_methods
+	# 	x = 1
+	# 	y = 1
+	# 	relative_position_id = ENG_new_manufacturing_methods
 		
-	 	cost = 5
+	# 	cost = 5
 		
-	 	ai_will_do = {
-	 		factor = 1
-	 	}	
-	 	completion_reward = {
-	 		add_ideas = ENG_expand_existing_factories
-	 	}
-	 }
+	# 	ai_will_do = {
+	# 		factor = 1
+	# 	}	
+	# 	completion_reward = {
+	# 		add_ideas = ENG_expand_existing_factories
+	# 	}
+	# }
 	
 	focus = {
 		id = ENG_develop_the_empire
@@ -6056,6 +6037,7 @@ focus_tree = {
 						limit = {
 							is_subject_of = ROOT
 						}
+						#add_ideas = ENG_air_training_plan
 					}
 				}
 			}
@@ -6381,6 +6363,7 @@ focus_tree = {
 					OR = {
 						tag = SOV
 						is_subject_of = SOV
+						tag = KSR
 					}
 				}
 			}
@@ -6389,17 +6372,19 @@ focus_tree = {
 					OR = {
 						tag = SOV
 						is_subject_of = SOV
+						tag = KSR
 					}
 				}
 			}
-			#584 = {
-			#	CONTROLLER = {
-			#		OR = {
-			#			tag = SOV
-			#			is_subject_of = SOV
-			#		}
-			#	}
-			#}
+			584 = {
+				CONTROLLER = {
+					OR = {
+						tag = SOV
+						is_subject_of = SOV
+						tag = KSR
+					}
+				}
+			}
 		}
 
 		available_if_capitulated = yes
@@ -6680,12 +6665,6 @@ focus_tree = {
 					is_core_of = PER
 				}
 				add_compliance = 100
-			}
-			PER = {
-				add_offsite_building = {
-				type = industrial_complex
-				level = 10
-			}
 			}
 			413 = {
 				add_extra_state_shared_building_slots = 6

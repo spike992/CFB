@@ -952,7 +952,7 @@ GER_operational_planning_category = {
 		days_remove = 365
 
 		custom_cost_trigger = {
-			command_power > 24
+			command_power > 14
 			has_army_experience > 14
 		}
 
@@ -1003,7 +1003,7 @@ GER_operational_planning_category = {
 			hidden_effect = {
 				add_command_power = -15
 				army_experience = -15
-				set_country_flag = GER_operational_planning_flag
+				#set_country_flag = GER_operational_planning_flag
 			}
 			if = {
 				limit = {
@@ -3797,8 +3797,7 @@ GER_reichskommissariats = {
 		fire_only_once = yes
 
 		available = {
-			is_subject = no 
-			DEN = {is_ai = yes}
+			is_subject = no
 			NOR = {
 				NOT = {
 					has_completed_focus = NOR_quislings_coup
@@ -4354,7 +4353,7 @@ GER_reichskommissariats = {
 		}
 
 		available = {
-			is_subject = yes
+			is_subject = no
 			OR = {
 				has_completed_focus = GER_heed_von_neuraths_concerns
 				has_completed_focus = GER_reorganize_the_wehrmacht
@@ -4618,7 +4617,7 @@ GER_reichskommissariats = {
 		}
 
 		available = {
-			is_subject = yes
+			is_subject = no
 			OR = {
 				has_completed_focus = GER_heed_von_neuraths_concerns
 				has_completed_focus = GER_reorganize_the_wehrmacht
@@ -5251,7 +5250,7 @@ GER_reichskommissariats = {
 		}
 
 		available = {
-			is_subject = yes
+			is_subject = no
 			OR = {
 				has_completed_focus = GER_heed_von_neuraths_concerns
 				has_completed_focus = GER_reorganize_the_wehrmacht
@@ -16536,7 +16535,7 @@ GER_invite_to_faction_cat = {
 							# original_tag = MNT
 							#original_tag = BOS
 							#original_tag = HRZ
-							#original_tag = SER
+							original_tag = SER
 							original_tag = ALB
 							original_tag = YUG
 							original_tag = GRE
@@ -23740,7 +23739,7 @@ GER_share_tanks = {
 
 		allowed = {
 			OR = {
-				tag = ROM tag = JAP tag = SPR tag = HUN tag = BUL tag = FIN tag = MAN tag = ITA tag = SIA tag = YUG
+				tag = ROM tag = SPR tag = HUN tag = BUL tag = FIN tag = ITA tag = YUG
 			}
 		}
 
@@ -23781,7 +23780,7 @@ GER_share_tanks = {
 
 		allowed = {
 			OR = {
-				tag = ROM tag = JAP tag = SPR tag = HUN tag = BUL tag = FIN tag = MAN tag = ITA tag = SIA tag = YUG
+				tag = ROM tag = SPR tag = HUN tag = BUL tag = FIN tag = ITA tag = YUG
 			}
 		}
 
@@ -23822,7 +23821,7 @@ GER_share_tanks = {
 
 		allowed = {
 			OR = {
-				tag = ROM tag = JAP tag = SPR tag = HUN tag = BUL tag = FIN tag = MAN tag = ITA tag = SIA tag = YUG
+				tag = ROM tag = SPR tag = HUN tag = BUL tag = FIN tag = ITA tag = YUG
 			}
 		}
 
@@ -23865,7 +23864,7 @@ GER_share_tanks = {
 		
 		allowed = {
 			OR = {
-				tag = ROM tag = JAP tag = SPR tag = HUN tag = BUL tag = FIN tag = MAN tag = ITA tag = SIA tag = YUG
+				tag = ROM tag = SPR tag = HUN tag = BUL tag = FIN tag = ITA tag = YUG
 			}
 		}
 
@@ -23907,7 +23906,7 @@ GER_share_tanks = {
 		
 		allowed = {
 			OR = {
-				tag = ROM tag = JAP tag = SPR tag = HUN tag = BUL tag = FIN tag = MAN tag = ITA tag = SIA tag = YUG
+				tag = ROM tag = SPR tag = HUN tag = BUL tag = FIN  tag = ITA tag = YUG
 			}
 		}
 
@@ -23948,7 +23947,7 @@ GER_share_tanks = {
 		
 		allowed = {
 			OR = {
-				tag = ROM tag = JAP tag = SPR tag = HUN tag = BUL tag = FIN tag = MAN tag = ITA tag = SIA tag = YUG
+				tag = ROM tag = SPR tag = HUN tag = BUL tag = FIN  tag = ITA tag = YUG
 			}
 		}
 
@@ -24415,11 +24414,15 @@ GER_propaganda_campaigns = {
 
 		targeted_modifier = {
 			tag = SOV
-			attack_bonus_against = 0.05
+			attack_bonus_against = 0.15
 		}
 		targeted_modifier = {
 			tag = MON
-			attack_bonus_against = 0.05
+			attack_bonus_against = 0.15
+		}
+		targeted_modifier = {
+			tag = KSR
+			attack_bonus_against = 0.15
 		}
 		targeted_modifier = {
 			tag = USA
@@ -24447,6 +24450,34 @@ GER_propaganda_campaigns = {
 		}
 		targeted_modifier = {
 			tag = MEX
+			attack_bonus_against = -0.10
+		}
+		targeted_modifier = {
+			tag = RAJ
+			attack_bonus_against = -0.10
+		}
+		targeted_modifier = {
+			tag = AST
+			attack_bonus_against = -0.10
+		}
+		targeted_modifier = {
+			tag = FRA
+			attack_bonus_against = -0.10
+		}
+		targeted_modifier = {
+			tag = GRE
+			attack_bonus_against = -0.10
+		}
+		targeted_modifier = {
+			tag = BEL
+			attack_bonus_against = -0.10
+		}
+		targeted_modifier = {
+			tag = HOL
+			attack_bonus_against = -0.10
+		}
+		targeted_modifier = {
+			tag = NZL
 			attack_bonus_against = -0.10
 		}
 
@@ -24530,11 +24561,15 @@ GER_propaganda_campaigns = {
 		cost = 25
 		targeted_modifier = {
 			tag = SOV
-			attack_bonus_against = -0.05
+			attack_bonus_against = -0.15
 		}
 		targeted_modifier = {
 			tag = MON
-			attack_bonus_against = -0.05
+			attack_bonus_against = -0.15
+		}
+		targeted_modifier = {
+			tag = KSR
+			attack_bonus_against = -0.15
 		}
 		targeted_modifier = {
 			tag = USA
@@ -24562,6 +24597,34 @@ GER_propaganda_campaigns = {
 		}
 		targeted_modifier = {
 			tag = MEX
+			attack_bonus_against = 0.10
+		}
+		targeted_modifier = {
+			tag = RAJ
+			attack_bonus_against = 0.10
+		}
+		targeted_modifier = {
+			tag = AST
+			attack_bonus_against = 0.10
+		}
+		targeted_modifier = {
+			tag = FRA
+			attack_bonus_against = 0.10
+		}
+		targeted_modifier = {
+			tag = GRE
+			attack_bonus_against = 0.10
+		}
+		targeted_modifier = {
+			tag = BEL
+			attack_bonus_against = 0.10
+		}
+		targeted_modifier = {
+			tag = HOL
+			attack_bonus_against = 0.10
+		}
+		targeted_modifier = {
+			tag = NZL
 			attack_bonus_against = 0.10
 		}
 

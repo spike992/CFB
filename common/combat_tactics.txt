@@ -1278,12 +1278,14 @@ tactic_partisan_sweeps = {
 tactic_guerrilla_tactics = { #People's army defender tactic. also for German volksturm branch.
 	is_attacker = no
 	trigger = {
+		hardness < .05 #guerrilla tactic tanks OP
 		is_attacker = no
 		phase = no
 		OR = {
 			skill > 2
 			has_trait = trickster
 		}
+		NOT = {	has_combat_modifier = shore_bombard }
 	}
 	
 	active = no
@@ -2669,7 +2671,7 @@ tactic_armored_spearhead = {
         is_attacker = yes
         phase = no
         hardness > .69
-        armor > 70
+        armor > 80
 #        custom_trigger_tooltip = {
 #                tooltip = min_armor_60_cbt
 #            }
@@ -2691,7 +2693,7 @@ tactic_armored_spearhead = {
         }
         modifier = {
             add = 2
-            armor > 85
+            armor > 100
         }
         modifier = {
             date > 1943.01.01

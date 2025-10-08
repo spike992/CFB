@@ -64,7 +64,6 @@ technologies = {
 		categories = {
 			support_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 2
@@ -116,7 +115,6 @@ technologies = {
 			support_tech
 			engineers_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 4
@@ -171,6 +169,9 @@ technologies = {
 			river = {
 				attack = 0.15
 			}
+			amphibious = {
+				attack = 0.1
+			}
 		}
 	
 		assault_engineer = {	
@@ -213,7 +214,6 @@ technologies = {
 			support_tech
 			engineers_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 4
@@ -242,8 +242,39 @@ technologies = {
 	
 	tech_engineers_pontoon = {
 
-		enable_subunits = {
-			assault_engineer_tfb
+		engineer = {
+			need = {
+			   infantry_equipment = 15
+			   support_equipment = 10
+			   squad_equipment = 5
+		    }
+			entrenchment = 1
+			river = {
+				attack = 0.15
+			}
+			amphibious = {
+				attack = 0.1
+			}
+		}
+
+		on_research_complete = {
+
+			set_temp_variable = { total_unit_engineer_inf = num_battalions_with_type@engineer }
+			set_temp_variable = { total_unit_engineer_support = num_battalions_with_type@engineer }
+			set_temp_variable = { total_unit_engineer_squad = num_battalions_with_type@engineer }
+			set_temp_variable = { temp = 15 }
+			multiply_temp_variable = { total_unit_engineer_inf = temp }
+			set_temp_variable = { temp = 10 }
+			multiply_temp_variable = { total_unit_engineer_support = temp }
+			set_temp_variable = { temp = 5 }
+			multiply_temp_variable = { total_unit_engineer_squad = temp }
+
+			set_temp_variable = { inf_equipment_stored = num_equipment@infantry_equipment }
+			set_temp_variable = { support_equipment_stored = num_equipment@support_equipment }
+			set_temp_variable = { squad_equipment_stored = num_equipment@squad_equipment }
+			custom_effect_tooltip = tooltip_pioneer_batallion_inf
+			custom_effect_tooltip = tooltip_pioneer_batallion_support
+			custom_effect_tooltip = tooltip_pioneer_batallion_squad
 		}
 
 		research_cost = 1
@@ -257,7 +288,6 @@ technologies = {
 			support_tech
 			engineers_tech
 		}
-		special_project_specialization = { specialization_land }
 		
 	}
 	
@@ -269,12 +299,12 @@ technologies = {
 				defence = 0.15
 			}
 		}
-		assault_engineer_tfb = {
-			entrenchment  = 2
-			fort = {	
-				defence = 0.15
-			}
-		}
+		# assault_engineer_tfb = {
+		# 	entrenchment  = 2
+		# 	fort = {	
+		# 		defence = 0.15
+		# 	}
+		# }
 		assault_engineer = {	
 			breakthrough = 0.1
 			fort = {
@@ -313,7 +343,6 @@ technologies = {
 			support_tech
 			engineers_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 4
@@ -341,15 +370,11 @@ technologies = {
 	}
 	
 	tech_engineers_urban = {
-	
-		enable_equipment_modules = {
-			lc_obstacle_clearance_gear #Module for Land Cruiser
-		}
 
 		fortification_damage = 0.5
 		fortification_collateral_chance = 0.5
 		
-		assault_engineer_tfb = {
+		engineer = {
 			urban = {
 				attack = 0.05
 				defence = 0.05
@@ -372,7 +397,6 @@ technologies = {
 			support_tech
 			engineers_tech
 		}
-		special_project_specialization = { specialization_land }
 		
 	}
 	
@@ -380,7 +404,7 @@ technologies = {
 
 
 		engineer = {
-			entrenchment  = 2
+			entrenchment = 2
 			urban = {
 				attack = 0.15
 				defence = 0.15
@@ -394,22 +418,22 @@ technologies = {
 				defence = 0.15
 			}
 		}
-		assault_engineer_tfb = {
-			entrenchment  = 2
+		# assault_engineer_tfb = {
+		# 	entrenchment  = 2
 			
-			urban = {
-				attack = 0.15
-				defence = 0.15
-			}
-			dense_urban = {
-				attack = 0.25
-				defence = 0.15
-			}
-			town = {
-				attack = 0.1
-				defence = 0.15
-			}
-		}
+		# 	urban = {
+		# 		attack = 0.15
+		# 		defence = 0.15
+		# 	}
+		# 	dense_urban = {
+		# 		attack = 0.25
+		# 		defence = 0.15
+		# 	}
+		# 	town = {
+		# 		attack = 0.1
+		# 		defence = 0.15
+		# 	}
+		# }
 		assault_engineer = {	
 			breakthrough = 0.1
 			urban = {
@@ -453,7 +477,6 @@ technologies = {
 			support_tech
 			engineers_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 4
@@ -510,7 +533,6 @@ technologies = {
 			support_tech
 			recon_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -648,7 +670,6 @@ technologies = {
 			support_tech
 			recon_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -777,7 +798,6 @@ technologies = {
 			support_tech
 			recon_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -900,7 +920,6 @@ technologies = {
 			support_tech
 			recon_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -949,7 +968,6 @@ technologies = {
 			support_tech
 			military_police_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 0.5
@@ -1025,7 +1043,6 @@ technologies = {
 			support_tech
 			military_police_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 0.5
@@ -1068,7 +1085,6 @@ technologies = {
 			support_tech
 			military_police_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 0.5
@@ -1105,7 +1121,6 @@ technologies = {
 			support_tech
 			military_police_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 0.5
@@ -1158,7 +1173,6 @@ technologies = {
 			support_tech
 			maintenance_company_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -1214,7 +1228,6 @@ technologies = {
 			support_tech
 			maintenance_company_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -1278,7 +1291,6 @@ technologies = {
 			support_tech
 			maintenance_company_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -1323,7 +1335,6 @@ technologies = {
 			support_tech
 			maintenance_company_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -1378,7 +1389,6 @@ technologies = {
 			motorized_equipment
 			mio_cat_tech_all_motorized_mechanized
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -1435,7 +1445,6 @@ technologies = {
 			motorized_equipment
 			mio_cat_tech_all_motorized_mechanized
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -1502,7 +1511,6 @@ technologies = {
 			motorized_equipment
 			mio_cat_tech_all_motorized_mechanized
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -1553,7 +1561,6 @@ technologies = {
 			motorized_equipment
 			mio_cat_tech_all_motorized_mechanized
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -1648,7 +1655,6 @@ technologies = {
 			motorized_equipment
 			mio_cat_tech_all_motorized_mechanized
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -1711,7 +1717,6 @@ technologies = {
 			motorized_equipment
 			mio_cat_tech_all_motorized_mechanized
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -1779,7 +1784,6 @@ technologies = {
 			motorized_equipment
 			mio_cat_tech_all_motorized_mechanized
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -1832,7 +1836,6 @@ technologies = {
 			motorized_equipment
 			mio_cat_tech_all_motorized_mechanized
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -1888,7 +1891,6 @@ technologies = {
 			signal_company_tech
 			electronics
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -1937,7 +1939,6 @@ technologies = {
 			signal_company_tech
 			electronics
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -1995,7 +1996,6 @@ technologies = {
 			signal_company_tech
 			electronics
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -2047,7 +2047,6 @@ technologies = {
 			signal_company_tech
 			electronics
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			base = 1
@@ -2169,7 +2168,6 @@ technologies = {
 			train_tech
 			heavy_artillery
 		}
-		special_project_specialization = { specialization_land }
 
 		ai_will_do = {
 			factor = 1
@@ -2317,7 +2315,6 @@ technologies = {
 			train_tech
 			heavy_artillery
 		}
-		special_project_specialization = { specialization_land }
 	}
 
 
@@ -2343,7 +2340,6 @@ technologies = {
 			support_tech
 			engineers_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		enable_subunits = {
 			armored_engineer
@@ -2398,7 +2394,6 @@ technologies = {
 			support_tech
 			maintenance_company_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		enable_subunits = {
 			armored_maintenance
@@ -2454,7 +2449,6 @@ technologies = {
 			signal_company_tech
 			electronics
 		}
-		special_project_specialization = { specialization_land }
 
 		enable_subunits = {
 			armored_signal
@@ -2518,7 +2512,6 @@ technologies = {
 			logistics_tech
 			helicopter_tech
 		}
-		special_project_specialization = { specialization_air }
 
 		enable_subunits = {
 			helicopter_transport
@@ -2568,7 +2561,6 @@ technologies = {
 			recon_tech
 			helicopter_tech
 		}
-		special_project_specialization = { specialization_air }
 
 		ai_will_do = {
 			base = 1
@@ -2615,7 +2607,6 @@ technologies = {
 			hospital_tech
 			helicopter_tech
 		}
-		special_project_specialization = { specialization_air }
 
 		enable_subunits = {
 			helicopter_field_hospital
@@ -2673,7 +2664,6 @@ technologies = {
 			support_tech
 			military_police_tech
 		}
-		special_project_specialization = { specialization_land }
 
 		enable_subunits = {
 			motorized_military_police

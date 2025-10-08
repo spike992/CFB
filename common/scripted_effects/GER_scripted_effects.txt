@@ -1395,7 +1395,7 @@ GER_lower_CGFF_small = {
 		}
 		GER_modify_industrial_modifier = yes
 		add_to_variable = { 
-			GER_industrial_consumer_goods_factor = -0.025
+			GER_industrial_consumer_goods_expected_value = -0.015
 			tooltip = consumer_goods_factor_tt
 		}
 	}
@@ -1411,7 +1411,7 @@ GER_lower_CGFF_big = {
 		}
 		GER_modify_industrial_modifier = yes
 		add_to_variable = { 
-			GER_industrial_consumer_goods_factor = -0.05
+			GER_industrial_consumer_goods_expected_value = -0.02
 			tooltip = consumer_goods_factor_tt
 		}
 	}
@@ -1610,7 +1610,7 @@ GER_improve_rosenbergs_trait_effect = {
 		}
 		#WARNING! If any of these values are changed - or other variables are added or removed - the same change must be done in the script block below, GER_worsen_rosenbergs_trait_effect, AND the loc string GER_rk_rosenberg_tt must be adjusted to reflect these changes
 		custom_effect_tooltip = GER_modify_GER_alfred_rosenberg_modifier_tt
-		add_to_variable = { GER_alfred_rosenberg_modifier_consumer_goods_factor = -0.02 tooltip = consumer_goods_factor_tt }
+		add_to_variable = { GER_alfred_rosenberg_modifier_consumer_goods_expected_value = -0.01 tooltip = consumer_goods_factor_tt }
 		add_to_variable = { GER_alfred_rosenberg_modifier_production_speed_arms_factory_factor = 0.04 tooltip = production_speed_arms_factory_factor_tt }
 		add_to_variable = { GER_alfred_rosenberg_modifier_industrial_capacity_factory = 0.02 tooltip = industrial_capacity_factory_tt }
 
@@ -2187,7 +2187,7 @@ GER_remove_replaced_advisor_1_effects = {
 			}
 			GER_remove_speer_effects = yes
 		}
-		else_if = { # GÖRING REPLACED
+		else_if = { # Gï¿½RING REPLACED
 			limit = {
 				check_variable = { GER_ascended_advisor_1 = 3 }
 			}
@@ -2242,7 +2242,7 @@ GER_remove_replaced_advisor_2_effects = {
 			}
 			GER_remove_speer_effects = yes
 		}
-		else_if = { # GÖRING REPLACED
+		else_if = { # Gï¿½RING REPLACED
 			limit = {
 				check_variable = { GER_ascended_advisor_2 = 3 }
 			}
@@ -2297,7 +2297,7 @@ GER_remove_replaced_advisor_3_effects = {
 			}
 			GER_remove_speer_effects = yes
 		}
-		else_if = { # GÖRING REPLACED
+		else_if = { # Gï¿½RING REPLACED
 			limit = {
 				check_variable = { GER_ascended_advisor_3 = 3 }
 			}
@@ -2347,7 +2347,7 @@ GER_add_replacing_advisor_effects = {
 		}
 		GER_add_speer_effects = yes
 	}
-	else_if = { # GÖRING ADDED
+	else_if = { # Gï¿½RING ADDED
 		limit = {
 			check_variable = { GER_ascending_advisor = 3 }
 		}
@@ -2547,7 +2547,7 @@ GER_remove_speer_effects = {
 	}
 }
 
-# ADD/REMOVE GÖRING EFFECTS
+# ADD/REMOVE Gï¿½RING EFFECTS
 GER_add_goring_effects = {
 	if = {
 		limit = {
@@ -2606,7 +2606,7 @@ GER_remove_goring_effects = {
 		refund_political_power = no
 	}
 
-	if = { # REMOVE GÖRING FROM ASCENDED ADVISOR
+	if = { # REMOVE Gï¿½RING FROM ASCENDED ADVISOR
 		limit = {
 			check_variable = { GER_ascended_advisor_1 = 3 }
 		}
@@ -3070,7 +3070,7 @@ GER_remove_bormann_effects = {
 	}
 }
 
-# For when Göring can be promoted to country leader via content outside of Inner Circle - make sure that if he was the prevailing industrialist but didn't complete focus, someone else will be enabled
+# For when Gï¿½ring can be promoted to country leader via content outside of Inner Circle - make sure that if he was the prevailing industrialist but didn't complete focus, someone else will be enabled
 GER_replace_goring_as_prevailing_industrialist = {
 	#ASSIGN SOMEONE ELSE AS PREVAILING INDUSTRIALIST if he was chosen to prevail but didn't complete his focus before promoting to country leader. Pick a new Prevailing Advisor (very arbitrarily but better than nothing)
 	if = { #Only applicable if he was Prevailing Industrialist and didnt complete his focus before promoting

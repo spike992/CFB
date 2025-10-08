@@ -1,0 +1,96 @@
+
+update_general_cap_for_doctrine = {
+		if = {
+			limit = {
+				owner = {
+					has_tech = mobile_warfare
+				}
+				
+			}
+			every_army_leader = {
+				limit = {
+					NOT ={
+						OR = {
+						has_trait = panzer_leader
+						has_trait = commando
+						has_trait = cavalry_leader
+						#has_trait = mobile_warfare_cap_adjuster
+						}
+					}
+				}
+				#remove_unit_leader_trait = superior_firepower_cap_adjuster
+				#remove_unit_leader_trait = grand_battleplan_cap_adjuster
+				#remove_unit_leader_trait = mass_assault_cap_adjuster
+				#add_unit_leader_trait = mobile_warfare_cap_adjuster
+			}	
+		}
+		else_if = {
+			limit = {
+				owner = {
+					has_tech = superior_firepower
+				}
+			}
+			every_army_leader = {
+				limit = {
+					NOT ={
+						OR = {
+						has_trait = panzer_leader
+						has_trait = commando
+						has_trait = cavalry_leader
+						#has_trait = superior_firepower_cap_adjuster
+						}
+					}
+				}
+				#remove_unit_leader_trait = mobile_warfare_cap_adjuster
+				#remove_unit_leader_trait = grand_battleplan_cap_adjuster
+				#remove_unit_leader_trait = mass_assault_cap_adjuster
+				#add_unit_leader_trait = superior_firepower_cap_adjuster
+				}
+		}
+		else_if = {
+			limit = {
+				owner = {
+					has_tech = trench_warfare
+				}
+			}
+			every_army_leader = {
+				limit = {
+					NOT ={
+						OR = {
+						has_trait = panzer_leader
+						has_trait = commando
+						has_trait = cavalry_leader
+						#has_trait = grand_battleplan_cap_adjuster
+						}
+					}
+				}
+				#remove_unit_leader_trait = mobile_warfare_cap_adjuster
+				#remove_unit_leader_trait = superior_firepower_cap_adjuster
+				#remove_unit_leader_trait = mass_assault_cap_adjuster
+				#add_unit_leader_trait = grand_battleplan_cap_adjuster
+			}	
+		}
+		else_if = {
+			limit = {
+				owner = {
+					has_tech = mass_assault
+				}
+			}
+			every_army_leader = {
+				limit = {
+					NOT ={
+						OR = {
+						has_trait = panzer_leader
+						has_trait = commando
+						has_trait = cavalry_leader
+						#has_trait = mass_assault_cap_adjuster
+						}
+					}
+				}
+				#remove_unit_leader_trait = mobile_warfare_cap_adjuster
+				#remove_unit_leader_trait = superior_firepower_cap_adjuster
+				#remove_unit_leader_trait = grand_battleplan_cap_adjuster
+				#add_unit_leader_trait = mass_assault_cap_adjuster
+			}	
+		}
+}

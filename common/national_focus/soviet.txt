@@ -52,19 +52,19 @@
 		}
 
 		completion_reward = {
-			654 = {
-				add_extra_state_shared_building_slots = 10
+			651 = {
+				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
 					type = industrial_complex
-					level = 8
+					level = 3
 					instant_build = yes
 				}
 			}
-			40 = {
-				add_extra_state_shared_building_slots = 10
+			206 = {
+				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
 					type = industrial_complex
-					level = 8
+					level = 3
 					instant_build = yes
 				}
 			}
@@ -751,8 +751,7 @@
 		}
 
 		completion_reward = {
-
-			569 = {
+			264 = {
 				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
 					type = industrial_complex
@@ -760,7 +759,7 @@
 					instant_build = yes
 				}
 			}
-			580 = {
+			247 = {
 				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
 					type = industrial_complex
@@ -787,8 +786,7 @@
 		}
 
 		completion_reward = {
-	
-			570 = {
+			202 = {
 				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
 					type = industrial_complex
@@ -796,7 +794,7 @@
 					instant_build = yes
 				}
 			}
-			571 = {
+			221 = {
 				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
 					type = industrial_complex
@@ -804,7 +802,7 @@
 					instant_build = yes
 				}
 			}
-			403 = {
+			226 = {
 				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
 					type = industrial_complex
@@ -831,8 +829,7 @@
 		}
 
 		completion_reward = {
-
-			379 = {
+			217 = {
 				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
 					type = industrial_complex
@@ -840,7 +837,7 @@
 					instant_build = yes
 				}
 			}
-			581 = {
+			219 = {
 				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
 					type = industrial_complex
@@ -848,7 +845,7 @@
 					instant_build = yes
 				}
 			}
-			653 = {
+			195 = {
 				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
 					type = industrial_complex
@@ -1460,7 +1457,13 @@
 							has_tech = railway_gun_2
 						}
 						add_ideas = SOV_soviet_industry_railway_gun_2_counter
-					}	
+					}
+					if = {
+						limit = {
+							is_special_project_completed = sp:sp_land_super_heavy_railway_gun
+						}
+						add_ideas = SOV_soviet_industry_railway_gun_super_counter
+					}
 				}
 			}
 
@@ -1560,8 +1563,19 @@
 		cost = 4
 
 		available = {
-			OR = {
-				surrender_progress > 0.24 
+			OR = {	
+				if = { 
+					limit = { has_global_flag = meta_game_flag }
+					surrender_progress > 0.23 
+				}
+				else_if = {
+					limit = { KSR = { exists = yes } }
+					surrender_progress > 0.25
+				}
+				else = {
+					# Default TFB
+					surrender_progress > 0.24 
+				}
 				AND = {
 					date > 1942.1.1
 					surrender_progress < 0.05
@@ -1609,7 +1623,16 @@
 		relative_position_id = SOV_tankograd
 		available = {
 			casualties > 2000000
-			surrender_progress > 0.32
+			if = { 
+				limit = { has_global_flag = meta_game_flag }
+				surrender_progress > 0.31
+			} else_if = {
+				limit = { KSR = { exists = yes } }
+				surrender_progress > 0.33
+			} else = {
+				# Default TFB
+				surrender_progress > 0.32
+			}
 		}
 		completion_reward = {
 			
@@ -1658,7 +1681,16 @@
 		relative_position_id = SOV_guards
 		available = {
 			casualties > 2000000
-			surrender_progress > 0.32
+			if = { 
+				limit = { has_global_flag = meta_game_flag }
+				surrender_progress > 0.31
+			} else_if = {
+				limit = { KSR = { exists = yes } }
+				surrender_progress > 0.33
+			} else = {
+				# Default TFB
+				surrender_progress > 0.32
+			}
 		}
 		completion_reward = {
 			
@@ -2132,36 +2164,36 @@
 					}
 					219 = {
 						# 30 Spawn ins
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
 					}
 				}
 			}
@@ -2319,46 +2351,46 @@
 					}
 					217 = {
 						# 40 Spawn ins
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+						create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
 					}
 				}
 			}
@@ -2535,26 +2567,26 @@
 				}
 				195 = {
 					# 20 Spawn ins
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
-					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.25 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
+					create_unit = { division = "division_template = \"Mobilized Infantry\" start_experience_factor = 0.20 start_manpower_factor = 0.60 force_equipment_variants = { infantry_equipment_1 = { owner = \"SOV\" } } force_equipment_variants = { squad_equipment_0 = { owner = \"SOV\" } }" owner = SOV }
 				}
 			}
 			custom_effect_tooltip = SOV_defend_leningrad_tt
@@ -2645,7 +2677,8 @@
 
 		completion_reward = {
 			add_timed_idea = { idea = SOV_order_270_idea days = 100 }
-			add_offsite_building = { type = arms_factory level = 30 }
+			add_offsite_building = { type = industrial_complex level = 15 }
+			add_offsite_building = { type = arms_factory level = 15 }
 			custom_effect_tooltip = unlock_propaganda_campaign_tt
 			unlock_decision_tooltip = SOV_propaganda_glory_to_partisans
 			unlock_decision_tooltip = SOV_propaganda_death_to_invaders
@@ -2804,19 +2837,19 @@
 							}
 						}
 						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
 							owner = SOV
 						}
 						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
 							owner = SOV
 						}
 						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
 							owner = SOV
 						}
 						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
 							owner = SOV
 						}
 					}
@@ -2832,19 +2865,19 @@
 							}
 						}
 						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
 							owner = SOV
 						}
 						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
 							owner = SOV
 						}
 						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
 							owner = SOV
 						}
 						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+							division = "division_template = \"Strelki\" start_experience_factor = 0.4 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
 							owner = SOV
 						}
 					}
@@ -2898,7 +2931,6 @@
 				ENG = {
 					country_event = {  id = soviet.3100 }
 				}
-
 			}
 			hidden_effect = {
 				division_template = {
@@ -2984,129 +3016,6 @@
 				}
 			}
 			custom_effect_tooltip = SOV_frontline_mob_tt2
-		}
-	}
-
-	focus = {
-		id = SOV_Farther_East_Reservs
-		icon = GFX_focus_GER_end_european_communism
-		prerequisite = { focus = SOV_fareast_reserves }
-		x = 0
-		y = 1
-		relative_position_id = SOV_fareast_reserves
-		cost = 1
-		
-		available = {
-			casualties > 4000000
-			if = { 
-				limit = { has_global_flag = meta_game_flag }
-				surrender_progress > 0.90
-			} else_if = {
-				limit = { KSR = { exists = yes } }
-				surrender_progress > 0.90
-			} else = {
-				# Default TFB
-				surrender_progress > 0.90
-			}
-		}
-
-		completion_reward = {
-			add_ideas =	{
-				SOV_corps_starch
-			} 
-			hidden_effect = {
-				SOV_check_equipment_stockpile = yes
-				USA = {
-					country_event = {  id = soviet.3100 }
-				}
-				ENG = {
-					country_event = {  id = soviet.3100 }
-				}
-			}
-			hidden_effect = {
-				division_template = {
-					name = "Strelki"
-					priority = 0
-					regiments = {
-						infantry = { x = 0 y = 0 }
-						infantry = { x = 0 y = 1 }
-						infantry = { x = 0 y = 2 }
-						infantry = { x = 0 y = 3 }
-
-						infantry = { x = 1 y = 0 }
-						infantry = { x = 1 y = 1 }
-						infantry = { x = 1 y = 2 }						
-
-						artillery_brigade = { x = 2 y = 0}
-						artillery_brigade = { x = 2 y = 1}
-						artillery_brigade = { x = 2 y = 2}
-
-						anti_tank_brigade = { x = 3 y = 0}
-						anti_tank_brigade = { x = 3 y = 1}
-						anti_tank_brigade = { x = 3 y = 2}
-					}
-					support = {
-						hq_company = { x = 0 y = 0 } 
-						engineer = { x = 0 y = 1 }   
-						recon = { x = 0 y = 2 }
-						logistics_company  = { x = 0 y = 3 }
-						anti_air = { x = 1 y = 0 }
-						#logistics_company_horse = { x = 1 y = 1 }
-					}
-				}
-				if = {
-					limit = {
-						has_war_with = JAP
-					}
-					every_state = {
-						limit = {	
-							AND = {
-								any_neighbor_state = { OR = { is_controlled_by = GER is_controlled_by = ROM is_controlled_by = HUN is_controlled_by = FIN is_controlled_by = ITA is_controlled_by = BUL  is_controlled_by = SPR is_controlled_by = VIC is_controlled_by = YUG is_controlled_by = JAP is_controlled_by = MAN is_controlled_by = SIA} }
-								is_controlled_by = SOV
-								NOT = {	state = 262 }
-								NOT = {	state = 825 }
-							}
-						}
-						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
-							owner = SOV
-						}
-						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
-							owner = SOV
-						}
-						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_manpower_factor = 0.60 start_equipment_factor = 1.0"
-							owner = SOV
-						}						
-					}
-				}
-				else = {
-					every_state = {
-						limit = {	
-							AND = {
-								any_neighbor_state = { OR = { is_controlled_by = GER is_controlled_by = ROM is_controlled_by = HUN is_controlled_by = FIN is_controlled_by = ITA is_controlled_by = BUL  is_controlled_by = SPR is_controlled_by = VIC is_controlled_by = YUG} }
-								is_controlled_by = SOV
-								NOT = {	state = 262 }
-								NOT = {	state = 825 }
-							}
-						}
-						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
-							owner = SOV
-						}
-						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
-							owner = SOV
-						}
-						create_unit = {
-							division = "division_template = \"Strelki\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
-							owner = SOV
-						}						
-					}
-				}
-			}
-			custom_effect_tooltip = SOV_frontline_mob_tt3
 		}
 	}
 
@@ -4538,9 +4447,9 @@
 				remove = stalin_heart_of_steel
 				add = stalin_father_of_nations
 			}
-			#hidden_effect = {
-			#	play_song = "comintern_war_1" #TODO_Manu: Too abrupt (just like speeches) -> Pending feedback for removal
-			#}
+			hidden_effect = {
+				play_song = "comintern_war_1" #TODO_Manu: Too abrupt (just like speeches) -> Pending feedback for removal
+			}
 		}
 	}
 
@@ -4875,34 +4784,108 @@
 		relative_position_id = SOV_baltic_security
 		cost = 2
 
-		available = { 
-			has_war = no
-		}
-		
 		bypass = {
-			AND = {
-				owns_state = 78 
-				owns_state = 80
-				owns_state = 766
+			OR = {
+				AND = {
+					OR = {
+						owns_state = 78 #Bessarabia
+						78 = {
+							owner = { is_in_faction_with = ROOT }
+						}
+					}
+					OR = {
+						owns_state = 80 #Bucovina
+						80 = {
+							owner = { is_in_faction_with = ROOT }
+						}
+					}
+					OR = {
+						owns_state = 766 #Southern Bessarabia
+						766 = {
+							owner = { is_in_faction_with = ROOT }
+						}
+					}
+				}
+				any_country = {
+					owns_state = 78
+					owns_state = 80
+					owns_state = 766
+					has_war_with = ROOT
+				}
 			}
 		}
-		completion_reward = {
-			add_state_claim = 78
-			add_state_claim = 766
-			add_state_claim = 80
-			ROM = { country_event = { id = romania.1 days = 1 } }
 
-			add_offsite_building = {
-				type = industrial_complex
-				level = 50
+		will_lead_to_war_with = ROM
+		
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = { #This is now generic and will target any potential (multiple) controllers for these states.
+			hidden_effect = {
+				CZE = {
+					diplomatic_relation = {
+						country = ROM
+						relation = guarantee
+						active = no
+					}
+				}
 			}
-				add_offsite_building = {
-				type = arms_factory
-				level = 50
+			if = {
+				limit = { 78 = { OWNER = { NOT = { is_in_faction_with = ROOT} } } }
+				add_state_claim = 78
+			}
+			if = {
+				limit = { 766 = { OWNER = { NOT = { is_in_faction_with = ROOT} } } }
+				add_state_claim = 766
+			}
+			if = {
+				limit = { 80 = { OWNER = { NOT = { is_in_faction_with = ROOT} } } }
+				add_state_claim = 80
+			}
+			add_named_threat = { threat = 1 name = SOV_claim_on_bessarabia }
+			random_other_country = {
+				limit = { owns_state = 78 }
+				add_opinion_modifier = { target = SOV modifier = claimed_bessarabia }
+				set_country_flag = SOV_added_claimed_bessarabia
+				country_event = { id = romania.1 hours = 16 random_hours = 8 }
+			}
+			if = { #Done like this to prevent disgusting tooltip issues, but I hate it ok?
+				limit = {
+					any_other_country = {
+						owns_state = 78
+						NOT = {	owns_state = 80 }
+					}
+				}
+				random_other_country = {
+					limit = { 
+						owns_state = 80 
+						NOT = { has_country_flag = SOV_added_claimed_bessarabia }
+					}
+					add_opinion_modifier = { target = SOV modifier = claimed_bucovina }
+					country_event = { id = romania.1 hours = 16 random_hours = 8 }
+				}
+			}
+			if = {
+				limit = {
+					AND = {
+						any_other_country = {
+							owns_state = 78
+							NOT = {	owns_state = 766 }
+						}
+						any_other_country = {
+							owns_state = 80
+							NOT = {	owns_state = 766 }
+						}
+					}
+				}
+				random_other_country = {
+					limit = { 
+						owns_state = 766
+						NOT = { has_country_flag = SOV_added_claimed_bessarabia }
+					}
+					add_opinion_modifier = { target = SOV modifier = claimed_bucovina }
+					country_event = { id = romania.1 hours = 4 }
+				}
 			}
 		}
-		
-		
 	}
 	
 		
@@ -4994,27 +4977,54 @@
 					level = 3
 					province = 3267
 				}
-			}
-			204 = {
 				remove_building = {
 					type = bunker
 					level = 3
 					province = 3759
 				}
 			}
-			207 = {
+			204 = {
 				remove_building = {
 					type = bunker
 					level = 3
-					province = 6326
+					province = 11313
 				}
+			}
+			207 = {
 				remove_building = {
 					type = bunker
 					level = 3
 					province = 6220
 				}
+				remove_building = {
+					type = bunker
+					level = 3
+					province = 6326
+				}
+			}
+			207 = {
+				remove_building = {
+					type = bunker
+					level = 3
+					province = 126
+				}
+				remove_building = {
+					type = bunker
+					level = 3
+					province = 104
+				}
 			}
 			209 = {
+				remove_building = {
+					type = bunker
+					level = 3
+					province = 11392
+				}
+				remove_building = {
+					type = bunker
+					level = 3
+					province = 6324
+				}
 				remove_building = {
 					type = bunker
 					level = 3
@@ -5026,19 +5036,19 @@
 					province = 9120
 				}
 			}
-			208 = {
+			210 = {
 				remove_building = {
 					type = bunker
 					level = 3
-					province = 104
+					province = 11259
 				}
 				remove_building = {
 					type = bunker
 					level = 3
-					province = 126
+					province = 6242
 				}
-			}		### add forts
-			#custom_effect_tooltip = dismantle_surrender_tt
+			}
+			custom_effect_tooltip = dismantle_surrender_tt
 		}
 	}
 	
@@ -5098,42 +5108,7 @@
 				}
 				add_compliance = 80
 			}
-			808 = {
-				add_building_construction = {
-					type = bunker
-					level = 3
-					province = 9340
-				}
-				add_building_construction = {
-					type = bunker
-					level = 1
-					province = 10323
-				}
-			}
-			810 = {
-				add_building_construction = {
-					type = bunker
-					level = 1
-					province = 7482
-				}
-				add_building_construction = {
-					type = bunker
-					level = 1
-					province = 310
-				}
-				add_building_construction = {
-					type = bunker
-					level = 1
-					province = 6459
-				}
-			}
-			813 = {
-				add_building_construction = {
-					type = bunker
-					level = 3
-					province = 4640
-				}
-			}
+			
 		}
 	}
 	
@@ -8209,7 +8184,7 @@
 		icon = GFX_goal_generic_air_fighter2
 		x = 48
 		y = 0
-		cost = 3
+		cost = 4
 
 		ai_will_do = {
 			factor = 1
@@ -8234,7 +8209,7 @@
 		x = -1
 		y = 1
 		relative_position_id = SOV_transpolar_flights
-		cost = 3
+		cost = 4
 
 		available = {
 			any_owned_state = {
@@ -8303,7 +8278,7 @@
 		x = -1
 		y = 1
 		relative_position_id = SOV_expand_the_aircraft_industry
-		cost = 3
+		cost = 4
 
 		available = {
 			if = {
@@ -8311,7 +8286,7 @@
 					has_global_flag = soviet_air_changes_focus_flag
 				}
 				OR = {
-					has_air_experience > 1
+					has_air_experience > 250
 					custom_trigger_tooltip = {
 						tooltip = SOV_air_needed_2_tt
 						#Fighters
@@ -8379,7 +8354,7 @@
 					custom_effect_tooltip = SOV_has_planes_tt
 				} else = {
 					custom_effect_tooltip = SOV_blank_space_tt
-					air_experience = -1
+					air_experience = -250
 				}
 				custom_effect_tooltip = SOV_air_mod_reduction_tt
 				add_to_variable = { soviet_cas_debuff = 0.05 }
@@ -8396,7 +8371,7 @@
 		x = 1
 		y = 1
 		relative_position_id = SOV_stavka
-		cost = 3
+		cost = 4
 
 		available = {
 		
@@ -8477,7 +8452,7 @@
 		x = -1
 		y = 2
 		relative_position_id = SOV_modernize_aircraft_facilities
-		cost = 3
+		cost = 4
 
 		available = {
 			NOT = { has_country_flag = SOV_paranoia_system_active_flag }
@@ -8544,7 +8519,7 @@
 		x = 0
 		y = 2
 		relative_position_id = SOV_expand_the_aircraft_industry
-		cost = 3
+		cost = 4
 
 		mutually_exclusive = { focus = SOV_intensify_pilot_training_program }
 
@@ -8555,7 +8530,7 @@
 					has_global_flag = soviet_air_changes_focus_flag
 				}
 				OR = {
-					has_air_experience > 1
+					has_air_experience > 250
 					custom_trigger_tooltip = {
 						tooltip = SOV_air_needed_3_tt
 						#Fighters
@@ -8626,7 +8601,7 @@
 					custom_effect_tooltip = SOV_has_planes_tt
 				} else = {
 					custom_effect_tooltip = SOV_blank_space_tt
-					air_experience = -1
+					air_experience = -250
 				}
 				custom_effect_tooltip = SOV_air_mod_reduction_tt
 				add_to_variable = { soviet_cas_debuff = 0.05 }
@@ -8642,7 +8617,7 @@
 		x = 1
 		y = 1
 		relative_position_id = SOV_transpolar_flights
-		cost = 3
+		cost = 4
 
 		available = {
 
@@ -8651,7 +8626,7 @@
 		search_filters = {FOCUS_FILTER_AIR_XP}
 
 		completion_reward = {
-			add_to_variable = { SOV_soviet_airforce_air_accidents_factor = -0.55 }
+			add_to_variable = { SOV_soviet_airforce_air_accidents_factor = -0.25 }
 			add_to_variable = { SOV_soviet_airforce_air_ace_generation_chance_factor = 0.25 }
 			add_to_variable = { SOV_soviet_airforce_air_weather_penalty = -0.1 }
 			add_to_variable = { SOV_soviet_airforce_air_training_xp_gain_factor = 0.1 }
@@ -8669,7 +8644,7 @@
 		x = 1
 		y = 1
 		relative_position_id = SOV_foster_flying_clubs
-		cost = 3
+		cost = 4
 
 		available = {
 			# OR = {
@@ -8681,7 +8656,7 @@
 					has_global_flag = soviet_air_changes_focus_flag
 				}
 				OR = {
-					has_air_experience > 1
+					has_air_experience > 250
 					custom_trigger_tooltip = {
 						tooltip = SOV_air_needed_2_tt
 						#Fighters
@@ -8731,7 +8706,7 @@
 					custom_effect_tooltip = SOV_has_planes_tt
 				} else = {
 					custom_effect_tooltip = SOV_blank_space_tt
-					air_experience = -1
+					air_experience = -250
 				}
 				custom_effect_tooltip = SOV_air_mod_reduction_tt
 				add_to_variable = { soviet_cas_debuff = 0.05 }
@@ -8747,7 +8722,7 @@
 		x = 1
 		y = 1
 		relative_position_id = SOV_women_in_aviation
-		cost = 3
+		cost = 4
 
 		available = {
 			any_enemy_country = {
@@ -8787,7 +8762,7 @@
 		x = 0
 		y = 2
 		relative_position_id = SOV_foster_flying_clubs
-		cost = 3
+		cost = 4
 
 		mutually_exclusive = { focus = SOV_increase_aircraft_production }
 
@@ -8798,7 +8773,7 @@
 					has_global_flag = soviet_air_changes_focus_flag
 				}
 				OR = {
-					has_air_experience > 1
+					has_air_experience > 250
 					custom_trigger_tooltip = {
 						tooltip = SOV_air_needed_3_tt
 						#Fighters
@@ -8848,7 +8823,7 @@
 					custom_effect_tooltip = SOV_has_planes_tt
 				} else = {
 					custom_effect_tooltip = SOV_blank_space_tt
-					air_experience = -1
+					air_experience = -250
 				}
 				custom_effect_tooltip = SOV_air_mod_reduction_tt
 				add_to_variable = { soviet_cas_debuff = 0.05 }
@@ -8864,7 +8839,7 @@
 		x = 1
 		y = 1
 		relative_position_id = SOV_expand_the_aircraft_industry
-		cost = 3
+		cost = 4
 
 		available = {
 			if = {
@@ -8872,7 +8847,7 @@
 					has_global_flag = soviet_air_changes_focus_flag
 				}
 				OR = {
-					has_air_experience > 1
+					has_air_experience > 250
 					custom_trigger_tooltip = {
 						tooltip = SOV_air_needed_1_tt
 						#Fighters
@@ -8917,7 +8892,7 @@
 					custom_effect_tooltip = SOV_has_planes_tt
 				} else = {
 					custom_effect_tooltip = SOV_blank_space_tt
-					air_experience = -1
+					air_experience = -250
 				}
 				custom_effect_tooltip = SOV_air_mod_reduction_tt
 				add_to_variable = { soviet_cas_debuff = 0.05 }
@@ -8933,7 +8908,7 @@
 		x = 0
 		y = 1
 		relative_position_id = SOV_increase_aircraft_production
-		cost = 3
+		cost = 4
 
 		mutually_exclusive = { focus = SOV_long_range_aircraft }
 
@@ -8965,7 +8940,7 @@
 		x = 0
 		y = 1
 		relative_position_id = SOV_intensify_pilot_training_program
-		cost = 3
+		cost = 4
 
 		mutually_exclusive = { focus = SOV_ground_support }
 
@@ -8999,7 +8974,7 @@
 		x = 1
 		y = 1
 		relative_position_id = SOV_ground_support
-		cost = 3
+		cost = 4
 
 		available = {
 			if = {
@@ -9007,7 +8982,7 @@
 					has_global_flag = soviet_air_changes_focus_flag
 				}
 				OR = {
-					has_air_experience > 1
+					has_air_experience > 250
 					custom_trigger_tooltip = {
 						tooltip = SOV_air_needed_4_tt
 						#Fighters
@@ -9058,7 +9033,7 @@
 					custom_effect_tooltip = SOV_has_planes_tt
 				} else = {
 					custom_effect_tooltip = SOV_blank_space_tt
-					air_experience = -1
+					air_experience = -250
 				}
 				custom_effect_tooltip = SOV_air_mod_reduction_tt
 				add_to_variable = { soviet_cas_debuff = 0.05 }
@@ -9073,7 +9048,7 @@
 		x = 6
 		y = 0
 		relative_position_id = SOV_transpolar_flights
-		cost = 1
+		cost = 5
 
 		ai_will_do = {
 			factor = 1
@@ -9120,7 +9095,7 @@
 		x = -3
 		y = 1
 		relative_position_id = SOV_expand_the_red_fleet
-		cost = 1
+		cost = 5
 
 		available = {
 			195 = { #LENINGRAD
@@ -9264,7 +9239,7 @@
 		x = -1
 		y = 1
 		relative_position_id = SOV_expand_the_red_fleet
-		cost = 1
+		cost = 5
 
 		available = {
 			OR = {
@@ -9353,7 +9328,7 @@
 		x = 1
 		y = 1
 		relative_position_id = SOV_expand_the_red_fleet
-		cost = 1
+		cost = 5
 
 		available = {
 			OR = {
@@ -9480,7 +9455,7 @@
 		x = 3
 		y = 1
 		relative_position_id = SOV_expand_the_red_fleet
-		cost = 1
+		cost = 5
 
 		available = {
 			OR = {
@@ -9567,7 +9542,7 @@
 		x = 1
 		y = 1
 		relative_position_id = SOV_reinforce_northern_naval_bases
-		cost = 0.2
+		cost = 5
 
 		available = {
 

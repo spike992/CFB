@@ -3438,35 +3438,26 @@ focus_tree = {
 				GER = {
 					if = { 
 						limit = {
-							has_game_rule = {
-								rule = allow_voice_lines
-								option = ENABLED
-							}
+							has_global_flag = allow_voice_lines_flag
 						}
-					scoped_sound_effect = "20000dollars"
+						scoped_sound_effect = "20000dollars"
 					}
 					country_event = {id = germany.2003} 
 				}
 				SPA = {
 					if = { 
 						limit = {
-							has_game_rule = {
-								rule = allow_voice_lines
-								option = ENABLED
-							}
+							has_global_flag = allow_voice_lines_flag
 						}
-					scoped_sound_effect = "20000dollars"
+						scoped_sound_effect = "20000dollars"
 					}
 				}
 				SPR = {
 					if = { 
 						limit = {
-							has_game_rule = {
-								rule = allow_voice_lines
-								option = ENABLED
-							}
+							has_global_flag = allow_voice_lines_flag
 						}
-					scoped_sound_effect = "20000dollars"
+						scoped_sound_effect = "20000dollars"
 					}
 				}
 			}
@@ -13261,8 +13252,8 @@ focus_tree = {
 				fascism > 0.65
 			}
 			OR = {
-				FRA = { has_capitulated = yes }
-				date > 1940.1.1
+				GER = { has_war_with = SOV }
+				date > 1942.1.1
 			}
 		}
 		prerequisite = { focus = SPA_maintain_neutrality }
@@ -13314,41 +13305,26 @@ focus_tree = {
 		}
 		
 		completion_reward = {
-			annex_country = { target = POR transfer_troops = yes }
-			add_offsite_building = { type = industrial_complex level = 10 }
-			add_offsite_building = { type = arms_factory level = 10 }
-			add_state_core = 112
-			add_state_core = 179
-			add_state_core = 180
-			add_state_core = 181
-			add_state_core = 795
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = POR
+			}
 			POR = {
 				remove_ideas = SPA_neutrality_idea
 			}
-			
-			every_owned_state = {
+			every_state = {
 				limit = {
 					OR = {
-						state = 165
-						state = 171
-						state = 792
+						state = 112
+						state = 179
+						state = 180
+						state = 181
+						state = 795
 					}
 				}
-				remove_dynamic_modifier = { modifier = autonomous_state }
+				add_dynamic_modifier = { modifier = autonomous_state }
 			}
-			# every_state = {
-			#	limit = {
-			#		OR = {
-			#			state = 112
-			#			state = 179
-			#			state = 180
-			#			state = 181
-			#			state = 795
-			#		}
-			#	}
-				# add_dynamic_modifier = { modifier = autonomous_state }
-			# }
-			# add_timed_idea = {idea = SPR_subjugate_por days = 720}
+			add_timed_idea = {idea = SPR_subjugate_por days = 720}
 		}
 	}
 	
@@ -13368,8 +13344,8 @@ focus_tree = {
 
 		available = {
 			OR = {
-				FRA = { has_capitulated = yes }
-				date > 1940.1.1
+				GER = { has_war_with = SOV }
+				date > 1942.1.1
 			}
 		}
 		
@@ -13429,9 +13405,22 @@ focus_tree = {
 		
 		completion_reward = {
 			POR = { add_ideas = SPA_expand_the_axis_gold_trade_2 }
-			annex_country = { target = POR transfer_troops = yes }
 			add_ideas = SPA_embargo_spirit
 				ROOT = {
+				add_opinion_modifier = {
+					target = GER
+					modifier = spain_portugese_axis
+				}
+				add_opinion_modifier = {
+					target = ITA
+					modifier = spain_portugese_axis
+				}
+			}
+			POR = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = spain_portugese_axis
+				}
 				add_opinion_modifier = {
 					target = GER
 					modifier = spain_portugese_axis

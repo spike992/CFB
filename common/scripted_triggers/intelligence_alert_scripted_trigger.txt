@@ -1,0 +1,75 @@
+intelligence_agency_alert = {
+	if = {
+		limit = { 
+			OR = {
+				NOT = { has_done_agency_upgrade = upgrade_economy_civilian }
+				NOT = { has_done_agency_upgrade = upgrade_army_department }
+				NOT = { has_done_agency_upgrade = upgrade_airforce_department }
+				NOT = { has_done_agency_upgrade = upgrade_naval_department }
+
+				NOT = { has_done_agency_upgrade = upgrade_passive_defense }
+				NOT = { has_done_agency_upgrade = upgrade_anti_partisan }
+
+				NOT = { has_done_agency_upgrade = upgrade_blueprint_stealing }
+				NOT = { has_done_agency_upgrade = upgrade_invisible_ink }
+				NOT = { has_done_agency_upgrade = upgrade_suicide_pills }
+				NOT = { has_done_agency_upgrade = upgrade_interrogation_techniques }
+				NOT = { has_done_agency_upgrade = upgrade_commando_training }
+				NOT = { has_done_agency_upgrade = upgrade_diplo_training }
+				AND = {
+					has_done_agency_upgrade = upgrade_form_department
+					NOT = { has_done_agency_upgrade = upgrade_decryption_boost }
+					NOT = { has_done_agency_upgrade = upgrade_crypto_strength }
+				}
+			}
+		}
+		num_of_civilian_factories_available_for_projects > 4
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					has_tech = radio
+					NOT = {
+						has_done_agency_upgrade = upgrade_portable_radios
+					}
+				}
+				NOT = {
+					has_done_agency_upgrade = upgrade_plastic_explosives
+					has_done_agency_upgrade = upgrade_psycho_warfare
+					has_done_agency_upgrade = upgrade_form_department
+				}
+			}
+		}
+		num_of_civilian_factories_available_for_projects > 7
+	}
+	else_if = {
+		limit = {
+			AND = {
+				has_done_agency_upgrade = upgrade_decryption_boost
+				has_tech = mechanical_computing
+				NOT = {
+					has_done_agency_upgrade = upgrade_decryption_boost_2
+				}
+			}
+		}
+		num_of_civilian_factories_available_for_projects > 9
+	}
+	else_if = {
+		limit = {
+			OR = {
+				NOT = {
+					has_done_agency_upgrade = upgrade_training_centers
+				}
+				AND = {
+					has_done_agency_upgrade = upgrade_crypto_strength
+					has_tech = mechanical_computing
+					NOT = {
+						has_done_agency_upgrade = upgrade_crypto_strength_2
+					}
+				}
+			}
+		}
+		num_of_civilian_factories_available_for_projects > 14
+	}
+}

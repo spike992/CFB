@@ -42,7 +42,7 @@ focus_tree = {
         x = 0
         y = 0
         mutually_exclusive = { focus = RAJ_keep_british_generals }
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -7409,7 +7409,7 @@ focus_tree = {
         y = 1
         relative_position_id = RAJ_trade_port
 
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -7734,7 +7734,7 @@ focus_tree = {
         y = 1
         relative_position_id = RAJ_purna_swaraj
        
-        cost = 2.5 # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -7774,7 +7774,7 @@ focus_tree = {
         y = 1
         relative_position_id = RAJ_uplifting_the_people_of_india
        
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -7846,7 +7846,7 @@ focus_tree = {
         y = 1
         relative_position_id = RAJ_swadeshi_movement
        
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -7959,7 +7959,7 @@ focus_tree = {
         y = 1
         relative_position_id = RAJ_litteracy_effort
        
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -8045,7 +8045,7 @@ focus_tree = {
         y = 1
         relative_position_id = RAJ_indo_centric_curriculum
        
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -8092,7 +8092,7 @@ focus_tree = {
         y = 1
         relative_position_id = RAJ_enrollment_of_dali_children
        
-        cost = 2.5 # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -8116,32 +8116,17 @@ focus_tree = {
         completion_reward = {
             random_core_state = {
                 limit = { is_controlled_by = ROOT }
-                add_extra_state_shared_building_slots = 2 
-                add_building_construction = {
-					type = industrial_complex
-					level = 2
-					instant_build = yes
-				} 
+                add_extra_state_shared_building_slots = 1  
             }
 
             random_core_state = {
                 limit = { is_controlled_by = ROOT }
-                add_extra_state_shared_building_slots = 2 
-                add_building_construction = {
-					type = industrial_complex
-					level = 2
-					instant_build = yes
-				} 
+                add_extra_state_shared_building_slots = 1  
             }
 
             random_core_state = {
                 limit = { is_controlled_by = ROOT }
-                add_extra_state_shared_building_slots = 2  
-                add_building_construction = {
-					type = industrial_complex
-					level = 2
-					instant_build = yes
-				} 
+                add_extra_state_shared_building_slots = 1  
             }
 
             add_tech_bonus = {
@@ -8297,7 +8282,7 @@ focus_tree = {
         y = 1
         relative_position_id = RAJ_indo_centric_curriculum
        
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -8335,7 +8320,7 @@ focus_tree = {
         y = 1
         relative_position_id = RAJ_form_a_federal_court
         
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -8705,7 +8690,7 @@ focus_tree = {
         y = 1
         relative_position_id = RAJ_cottage_industries
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -8752,7 +8737,7 @@ focus_tree = {
         y = 1
         relative_position_id = RAJ_temple_entry_movements
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -9740,7 +9725,7 @@ focus_tree = {
         y = 1
         relative_position_id = RAJ_orchestrate_train_robberies
 
-        cost = 5 # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -14266,7 +14251,7 @@ focus_tree = {
         search_filters = {FOCUS_FILTER_POLITICAL}
 
         completion_reward = {
-            add_stability = -0.01
+            add_stability = -0.15
             add_political_power = 150
             set_country_flag = RAJ_allow_release_states
         }
@@ -14646,12 +14631,9 @@ focus_tree = {
         }
 
         completion_reward = {
-
-            custom_effect_tooltip = RAJ_famine_impact_reduction
-            
-            add_to_variable = { RAJ_famine_shield = 20 tooltip = RAJ_famine_shield_tt  }
-            calculate_famine_shield_and_risk = yes
-
+            set_rule = {
+                can_join_factions = yes
+            }
             if = {
                 limit = {
                     ENG = {
@@ -14918,12 +14900,6 @@ focus_tree = {
 
         completion_reward = {
             add_ideas = idea_RAJ_rolling_nuke_barrages
-
-            custom_effect_tooltip = RAJ_famine_impact_reduction
-            
-            add_to_variable = { RAJ_famine_shield = 20 tooltip = RAJ_famine_shield_tt  }
-            calculate_famine_shield_and_risk = yes
-
         }
     }
 
@@ -15138,12 +15114,6 @@ focus_tree = {
         }
 
         completion_reward = {
-
-            custom_effect_tooltip = RAJ_famine_impact_reduction
-            
-            add_to_variable = { RAJ_famine_shield = 20 tooltip = RAJ_famine_shield_tt  }
-            calculate_famine_shield_and_risk = yes
-
             add_timed_idea = {
                  idea = idea_RAJ_an_economy_unbound
                  days = 260
@@ -19879,7 +19849,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_indianize_the_army
        
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -19928,7 +19898,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_keep_british_generals
 
-        cost = 2.5 
+        cost = 5
 
         available = {
             is_in_faction_with = ENG
@@ -19963,7 +19933,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_learn_from_the_crown
 
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         available = {
             ENG = {
@@ -19997,7 +19967,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_learn_from_the_crown
 
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         available = {
             has_manpower > 100000
@@ -20108,7 +20078,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_colonial_cadet_exchange
 
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         available = {
             is_in_faction_with = ENG
@@ -20160,7 +20130,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_indianize_the_army
 
-        cost = 2.5 
+        cost = 5
 
         available = {
 
@@ -20191,7 +20161,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_indianize_the_army
 
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -20320,7 +20290,7 @@ focus = {
         mutually_exclusive = { focus = RAJ_model_after_germany }
         mutually_exclusive = { focus = RAJ_model_after_soviet }
 
-        cost = 2.5 # This was 70 Days???
+        cost = 5
 
         available = {
             NOT = { has_war_with = USA }
@@ -20358,7 +20328,7 @@ focus = {
         mutually_exclusive = { focus = RAJ_model_after_usa }
         mutually_exclusive = { focus = RAJ_model_after_germany }
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         available = {
             NOT = { has_war_with = SOV }
@@ -20396,7 +20366,7 @@ focus = {
 
         mutually_exclusive = { focus = RAJ_for_the_people_by_the_people }
 
-        cost = 2.5 # This was 70 Days???
+        cost = 5
 
         available = {
 
@@ -20487,7 +20457,7 @@ focus = {
         y = 0
         relative_position_id = RAJ_indianize_the_army
         
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -20558,7 +20528,7 @@ focus = {
         relative_position_id = RAJ_east_india_railways_dlc
         
         prerequisite = { focus =  RAJ_east_india_railways_dlc }
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -20734,7 +20704,7 @@ focus = {
         y = 0
         relative_position_id = RAJ_east_india_railways_dlc
         
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -20837,7 +20807,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_east_india_railways_dlc 
         
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -20913,7 +20883,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_great_indian_peninsula_railway_dlc 
         
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -20963,7 +20933,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_great_indian_peninsula_railway_dlc 
         
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21003,7 +20973,7 @@ focus = {
         relative_position_id = RAJ_supply_center_fortifications
         mutually_exclusive = { focus = RAJ_prioritize_civilian_cargo }
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21067,7 +21037,7 @@ focus = {
         relative_position_id = RAJ_prioritize_army_cargo
         mutually_exclusive = { focus = RAJ_prioritize_army_cargo }
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21170,7 +21140,7 @@ focus = {
         y = 5
         relative_position_id = RAJ_keep_british_generals
         icon = GFX_focus_SWE_let_fly_all_guns
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21209,7 +21179,7 @@ focus = {
         y = 0
         relative_position_id = RAJ_royal_indian_artillery_dlc
         
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21242,7 +21212,7 @@ focus = {
         y = 0
         relative_position_id = RAJ_military_pensions
         
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21277,7 +21247,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_royal_indian_artillery_dlc 
         mutually_exclusive = { focus = RAJ_standardized_rations }
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21311,7 +21281,7 @@ focus = {
         y = 0
         relative_position_id = RAJ_specialized_dietary_requirement
         mutually_exclusive = { focus = RAJ_specialized_dietary_requirement }
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21343,7 +21313,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_specialized_dietary_requirement
        
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21381,7 +21351,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_royal_indian_artillery_dlc
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21429,7 +21399,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_local_recruitment_offices
         icon = GFX_focus_generic_commonwealth_build_infantry
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21468,7 +21438,7 @@ focus = {
         y = 2
         relative_position_id = RAJ_military_pensions
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21519,7 +21489,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_military_pensions
         
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21601,7 +21571,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_legacy_of_military_service 
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21640,7 +21610,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_armoured_corps_center_and_school 
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21681,7 +21651,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_mechanization_of_the_cavalry
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21718,11 +21688,11 @@ focus = {
         id = RAJ_siege_batteries
         icon = GFX_focus_generic_railway_gun
         prerequisite = { focus = RAJ_indian_army_corps_of_engineers }
-        x = -1
+        x = 0
         y = 1
         relative_position_id = RAJ_indian_army_corps_of_engineers
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21790,7 +21760,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_royal_indian_artillery_dlc
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21834,7 +21804,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_military_pensions
         
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21887,7 +21857,7 @@ focus = {
         y = 0
         relative_position_id = RAJ_relax_agrarian_society_criteria
         
-        cost = 2.5 # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21924,7 +21894,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_frontier_corps
         
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -21970,7 +21940,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_the_burma_rifles
         
-        cost = 2.5 # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -22024,8 +21994,8 @@ focus = {
                 }
                 support = {
                     #artillery = { x = 0 y = 0 }
-                    engineer = { x = 0 y = 1 }
-                    anti_air = { x = 0 y = 2 }
+                    engineer = { x = 0 y = 0 }
+                    anti_air = { x = 0 y = 1 }
                 }
             }
 
@@ -22085,7 +22055,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_gurkhas
 
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 25
@@ -22150,7 +22120,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_regimental_loyalty
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -22235,8 +22205,12 @@ focus = {
         x = 1
         y = 1
         relative_position_id = RAJ_indian_army_corps_of_engineers
+
+        allow_branch = {
+            always = no
+        }
         
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -22274,7 +22248,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_indian_territorial_force
         
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -22321,7 +22295,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_indian_territorial_force
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -22374,7 +22348,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_abolish_agrarian_society_criteria
         
-        cost = 2.5 # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -22414,7 +22388,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_east_india_railways_dlc
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -22462,7 +22436,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_bombay_baroda_and_central_india_railway
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -22500,7 +22474,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_re_establish_the_khyber_rifles 
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -22579,7 +22553,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_indian_states_force
         
-        cost = 2.5 
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -23082,7 +23056,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_east_india_railways_dlc
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -23355,7 +23329,7 @@ focus = {
                     name = RAJ_douglas_dakota
                     uses = 1
                     ahead_reduction = 2
-                    technology  = bba_strategic_airlifter # optional
+                    technology  = strategic_airlifter # optional
                 }
             }
 
@@ -23526,7 +23500,7 @@ focus = {
         y = 1
         relative_position_id = RAJ_the_burma_road
         
-        cost = 2.5  # This was 70 Days???
+        cost = 5
 
         ai_will_do = {
             factor = 1
@@ -23568,7 +23542,7 @@ focus = {
                 limit = {
                    434 = { 
                         is_owned_and_controlled_by = ROOT
-                        infrastructure < 5 
+                        infrastructure < 9 
                     }
                 }
                 434 = {
@@ -23582,7 +23556,7 @@ focus = {
             else = {
                 random_controlled_state = {
                     limit = { 
-                        infrastructure < 5 
+                        infrastructure < 9 
                     }
                     add_building_construction = {
                         type = infrastructure
@@ -23594,10 +23568,10 @@ focus = {
             
             if = {
                 limit = {
-                   990 = { 
+                    990 = { 
                         is_owned_and_controlled_by = ROOT
-                        infrastructure < 5 
-                   }
+                        infrastructure < 9 
+                    }
                 }
                 990 = {
                     add_building_construction = {
@@ -23610,7 +23584,7 @@ focus = {
             else = {
                 random_controlled_state = {
                     limit = { 
-                        infrastructure < 5 
+                        infrastructure < 9 
                     }
                     add_building_construction = {
                         type = infrastructure
@@ -23623,10 +23597,10 @@ focus = {
             
             if = {
                 limit = {
-                   432 = { 
+                    432 = { 
                         is_owned_and_controlled_by = ROOT
-                        infrastructure < 5 
-                   }
+                        infrastructure < 9 
+                    }
                 }
                 432 = {
                     add_building_construction = {
@@ -23639,7 +23613,7 @@ focus = {
             else = {
                 random_controlled_state = {
                     limit = { 
-                        infrastructure < 5 
+                        infrastructure < 9 
                     }
                     add_building_construction = {
                         type = infrastructure
@@ -23997,14 +23971,6 @@ focus = {
                 value = 0.2
                 tooltip = experience_gain_navy_tt  #Optional. localized text with LEFT and RIGHT tokens in it, tokens will replaced by values
             }
-            982 = {
-                add_extra_state_shared_building_slots = 5
-                add_building_construction = {
-                    type = dockyard
-                    level = 5
-                    instant_build = yes
-                }
-            }
         }
     }
 
@@ -24040,10 +24006,10 @@ focus = {
                 limit = {
                     has_state_flag = RAJ_expand_mazagon_dock_dlc
                 }
-                add_extra_state_shared_building_slots = 5
+                add_extra_state_shared_building_slots = 2
                 add_building_construction = {
                     type = dockyard
-                    level = 5
+                    level = 2
                     instant_build = yes
                 }
                 if = {
@@ -24070,10 +24036,10 @@ focus = {
                         include_locked = yes
                     }
                 }
-                add_extra_state_shared_building_slots = 5
+                add_extra_state_shared_building_slots = 2
                 add_building_construction = {
                     type = dockyard
-                    level = 5
+                    level = 2
                     instant_build = yes
                 }
                 set_state_flag = RAJ_expand_mazagon_dock_dlc

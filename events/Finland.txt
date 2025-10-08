@@ -115,7 +115,7 @@ country_event = {
 		name = finland.500.a
 		custom_effect_tooltip = finland.500.a_desc
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 0
 				FIN = { is_ai = yes }
@@ -125,17 +125,27 @@ country_event = {
 	option = {
 		set_country_flag = FINLAND_JOIN_FACTION
 		name = finland.500.b
-		custom_effect_tooltip = finland.500.b_desc
-		effect_tooltip = {
-			remove_ideas = FIN_the_lone_wolf
+		if = {
+			limit = {
+				has_war_with = SOV
+			}
+			remove_ideas = {
+				FIN_the_lone_wolf
+			}
+		}else = {
+			custom_effect_tooltip = finland.500.b_desc
+			effect_tooltip = {
+				remove_ideas = FIN_the_lone_wolf
+			}
 		}
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 0
 				FIN = { is_ai = no }
 			}
 		}
+
 	}
 }
 

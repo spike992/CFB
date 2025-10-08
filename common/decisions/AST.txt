@@ -22,6 +22,32 @@ political_actions = {
 		}
 		fire_only_once = yes
 		complete_effect = {
+			if = {
+				limit = {
+					523 = {is_core_of = AST}
+				}
+				523 = {
+					remove_core_of = AST
+				}
+			}
+			if = {
+				limit = {
+					has_idea = AST_no_nzl_annex
+				}
+				remove_ideas = AST_no_nzl_annex
+			}
+			set_global_flag = AST_NZL_ANNEXED
+			AST = {
+				set_cosmetic_tag = AST_autonomy_dominion_NZLA
+			}
+			AST = {
+				NZL = {
+					pow_before_annex = yes
+				}
+			}
+			ENG = {
+				add_ideas = ENG_AST_annex_operative
+			}
 			annex_country = { target = NZL transfer_troops = yes }
 			add_state_core = 723 
 			add_state_core = 284
@@ -30,20 +56,19 @@ political_actions = {
 		}
 	}
 
-	AST_annex_INS = {
+	AST_core_papua = {
 
 		allowed = {
 			original_tag = AST
 		}
 
 		available = {
-			date > 1940.1.1
-			INS = {is_ai = yes}
-			NOT = { 523 = {is_core_of = AST} }
+			date > 1939.1.1
+			country_exists = NZL
 		}
 
 		ai_will_do = {
-			factor = 200
+			factor = 0
 		}
 
 		visible = {
@@ -51,14 +76,9 @@ political_actions = {
 		}
 		fire_only_once = yes
 		complete_effect = {
-			annex_country = { target = INS transfer_troops = yes }
-			every_owned_state = {
-				limit = {
-					is_core_of = INS
-				}
-				set_compliance = 60
-			set_global_flag = AST_INS_ANNEXED
+			523 = { add_core_of = AST }
+			979 = { add_core_of = AST }
+			add_ideas = AST_no_nzl_annex
 		}
 	}
-}
 }

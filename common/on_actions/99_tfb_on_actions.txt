@@ -32,6 +32,37 @@ on_actions = {
 			}
 		}
 		
+		effect = {
+			# First remove the traits
+			every_country = {
+				every_army_leader = {
+					limit = {
+						#has_trait = volunteer_xp_debuff
+						NOT = {
+							OR = {
+								is_leading_volunteer_group_with_original_country = THIS
+								is_leading_volunteer_group = THIS
+							}
+						}
+					}
+					#remove_unit_leader_trait = volunteer_xp_debuff 
+				}
+			}
+			# Then Re-Add Them
+			every_country = {
+				every_army_leader = {
+					limit = {
+						#NOT = { has_trait = volunteer_xp_debuff }
+						OR = {
+							is_leading_volunteer_group_with_original_country = THIS
+							is_leading_volunteer_group = THIS
+						}
+					}
+
+					#add_unit_leader_trait = volunteer_xp_debuff 
+				}
+			}
+		}
 		# Update Dockyard Consumer Goods or Build Speed
 		effect = {
 			if = {
@@ -1513,6 +1544,10 @@ on_actions = {
 					GER_sepp_dietrich = { add_unit_leader_trait = fun_haters }
 					GER_paul_hausser = { add_unit_leader_trait = fun_haters }
 					GER_alexander_von_falkenhausen = { add_unit_leader_trait = fun_haters }
+				}
+				BRA = {
+					BRA_lampiao = { add_unit_leader_trait = fun_haters }
+					BRA_olga_benario_prestes = { add_unit_leader_trait = fun_haters }
 				}
 				GRE = {
 					GRE_stylianos_gonatas = { add_unit_leader_trait = fun_haters }

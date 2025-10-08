@@ -1602,147 +1602,147 @@ news_event = {
 #######################################################################################
 #######################################################################################
 
-#country_event = { # We need a tank 
-#	id = AAT_norway_rikstanken.1
-#	title = AAT_norway_rikstanken.1.t
-#	desc = AAT_norway_rikstanken.1.desc
-#	picture = GFX_report_event_military_planning 
-#
-#	is_triggered_only = yes
-#
-#	immediate = {
-#		hidden_effect = {
-#			clear_variable = NOR_nordic_tank_seller
-#			clear_variable = NOR_communist_tank_seller
-#			clear_variable = NOR_fascist_tank_seller 
-#			if = { # Finding the most appropriate Tank Seller
-#				limit = {
-#					SWE = {
-#						exists = yes 
-#						NOT = { has_war_with = ROOT }
-#						#has_any_tanks = yes 
-#						has_any_tank_tech = yes				
-#					}
-#				}
-#				set_variable = { NOR_nordic_tank_seller = SWE }
-#			}
-#			else_if = {
-#				limit = {
-#					FIN = {
-#						exists = yes 
-#						NOT = { has_war_with = ROOT }
-#						#has_any_tanks = yes
-#						has_any_tank_tech = yes				
-#					}
-#				}
-#				set_variable = { NOR_nordic_tank_seller = FIN }
-#			}
-#			else_if = {
-#				limit = {
-#					DEN = {
-#						exists = yes
-#						NOT = { has_war_with = ROOT }
-#						#has_any_tanks = yes
-#						has_any_tank_tech = yes				
-#					}
-#				}
-#				set_variable = { NOR_nordic_tank_seller = DEN }
-#			}
-#			else_if = { # Extremely unlikely it will get to this but technically possible 
-#				limit = {
-#					ICE = {
-#						exists = yes
-#						NOT = { has_war_with = ROOT }
-#						#has_any_tanks = yes
-#						has_any_tank_tech = yes				
-#					}
-#				}
-#				set_variable = { NOR_nordic_tank_seller = ICE }
-#			}
-#			find_biggest_communist = yes 
-#			find_biggest_fascist = yes 
-#			if = {
-#				limit = {
-#					var:GLOBAL.platonic_big_communist = {
-#						NOT = { has_war_with = ROOT }
-#						#has_any_tanks = yes
-#						has_any_tank_tech = yes		
-#					}
-#				}
-#				set_variable = { NOR_communist_tank_seller = var:GLOBAL.platonic_big_communist }
-#			}
-#			if = {
-#				limit = {
-#					var:GLOBAL.platonic_big_fascist = {
-#						NOT = { has_war_with = ROOT }
-#						#has_any_tanks = yes
-#						has_any_tank_tech = yes	
-#					}
-#				}
-#				set_variable = { NOR_fascist_tank_seller = var:GLOBAL.platonic_big_fascist }
-#			}
-#		}
-#	}
-#
-#	option = { # Buy Swedish Tacks (Or from any other Nordic that has tanks)
-#		name = AAT_norway_rikstanken.1.a
-#		ai_chance = {
-#			base = 10
-#		}
-#		trigger = {
-#			has_variable = NOR_nordic_tank_seller
-#		}
-#		clear_variable = NOR_fascist_tank_seller
-#		clear_variable = NOR_communist_tank_seller
-#		country_event = {
-#			id = AAT_norway_rikstanken.2
-#			days = 3
-#			random_days = 5 
-#		}
-#	}
-#
-#	option = { # Buy Soviet Tanks
-#		name = AAT_norway_rikstanken.1.b
-#		ai_chance = {
-#			base = 10
-#			modifier = {
-#				factor = 0
-#				NOR_is_historical_ai = yes 
-#			}
-#		}
-#		trigger = {
-#			has_variable = NOR_communist_tank_seller
-#		}
-#		clear_variable = NOR_fascist_tank_seller
-#		clear_variable = NOR_nordic_tank_seller
-#		country_event = {
-#			id = AAT_norway_rikstanken.2
-#			days = 3
-#			random_days = 5 
-#		} 
-#	}
-#
-#	option = { # Buy German Panzers 
-#		name = AAT_norway_rikstanken.1.c
-#		ai_chance = {
-#			base = 10
-#			modifier = {
-#				factor = 0
-#				NOR_is_historical_ai = yes 
-#			}
-#		}
-#		trigger = {
-#			has_variable = NOR_fascist_tank_seller
-#		} 
-#		clear_variable = NOR_communist_tank_seller
-#		clear_variable = NOR_nordic_tank_seller
-#		country_event = {
-#			id = AAT_norway_rikstanken.2
-#			days = 3
-#			random_days = 5 
-#		} 
-#	}
-#}
+country_event = { # We need a tank 
+	id = AAT_norway_rikstanken.1
+	title = AAT_norway_rikstanken.1.t
+	desc = AAT_norway_rikstanken.1.desc
+	picture = GFX_report_event_military_planning 
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			clear_variable = NOR_nordic_tank_seller
+			clear_variable = NOR_communist_tank_seller
+			clear_variable = NOR_fascist_tank_seller 
+			if = { # Finding the most appropriate Tank Seller
+				limit = {
+					SWE = {
+						exists = yes 
+						NOT = { has_war_with = ROOT }
+						#has_any_tanks = yes 
+						has_any_tank_tech = yes				
+					}
+				}
+				set_variable = { NOR_nordic_tank_seller = SWE }
+			}
+			else_if = {
+				limit = {
+					FIN = {
+						exists = yes 
+						NOT = { has_war_with = ROOT }
+						#has_any_tanks = yes
+						has_any_tank_tech = yes				
+					}
+				}
+				set_variable = { NOR_nordic_tank_seller = FIN }
+			}
+			else_if = {
+				limit = {
+					DEN = {
+						exists = yes
+						NOT = { has_war_with = ROOT }
+						#has_any_tanks = yes
+						has_any_tank_tech = yes				
+					}
+				}
+				set_variable = { NOR_nordic_tank_seller = DEN }
+			}
+			else_if = { # Extremely unlikely it will get to this but technically possible 
+				limit = {
+					ICE = {
+						exists = yes
+						NOT = { has_war_with = ROOT }
+						#has_any_tanks = yes
+						has_any_tank_tech = yes				
+					}
+				}
+				set_variable = { NOR_nordic_tank_seller = ICE }
+			}
+			find_biggest_communist = yes 
+			find_biggest_fascist = yes 
+			if = {
+				limit = {
+					var:GLOBAL.platonic_big_communist = {
+						NOT = { has_war_with = ROOT }
+						#has_any_tanks = yes
+						has_any_tank_tech = yes		
+					}
+				}
+				set_variable = { NOR_communist_tank_seller = var:GLOBAL.platonic_big_communist }
+			}
+			if = {
+				limit = {
+					var:GLOBAL.platonic_big_fascist = {
+						NOT = { has_war_with = ROOT }
+						#has_any_tanks = yes
+						has_any_tank_tech = yes	
+					}
+				}
+				set_variable = { NOR_fascist_tank_seller = var:GLOBAL.platonic_big_fascist }
+			}
+		}
+	}
+
+	option = { # Buy Swedish Tacks (Or from any other Nordic that has tanks)
+		name = AAT_norway_rikstanken.1.a
+		ai_chance = {
+			base = 10
+		}
+		trigger = {
+			has_variable = NOR_nordic_tank_seller
+		}
+		clear_variable = NOR_fascist_tank_seller
+		clear_variable = NOR_communist_tank_seller
+		country_event = {
+			id = AAT_norway_rikstanken.2
+			days = 3
+			random_days = 5 
+		}
+	}
+
+	option = { # Buy Soviet Tanks
+		name = AAT_norway_rikstanken.1.b
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = 0
+				NOR_is_historical_ai = yes 
+			}
+		}
+		trigger = {
+			has_variable = NOR_communist_tank_seller
+		}
+		clear_variable = NOR_fascist_tank_seller
+		clear_variable = NOR_nordic_tank_seller
+		country_event = {
+			id = AAT_norway_rikstanken.2
+			days = 3
+			random_days = 5 
+		} 
+	}
+
+	option = { # Buy German Panzers 
+		name = AAT_norway_rikstanken.1.c
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = 0
+				NOR_is_historical_ai = yes 
+			}
+		}
+		trigger = {
+			has_variable = NOR_fascist_tank_seller
+		} 
+		clear_variable = NOR_communist_tank_seller
+		clear_variable = NOR_nordic_tank_seller
+		country_event = {
+			id = AAT_norway_rikstanken.2
+			days = 3
+			random_days = 5 
+		} 
+	}
+}
 
 country_event = { # How many? 
 	id = AAT_norway_rikstanken.2
