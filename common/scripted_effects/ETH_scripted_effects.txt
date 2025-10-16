@@ -28,15 +28,6 @@ ETH_escalate_the_war_effect = {
 	#}
 }
 
-ETH_set_up_lon_arms_resolution_effect = {
-	add_relation_rule_override = {
-		can_access_market = no
-		trigger = has_lon_arms_embargo
-		usage_desc = lon_arms_resolution_tt
-	}
-	
-}
-
 ETH_deescalate_the_war_effect = {
 	custom_effect_tooltip = ITA_war_deescalation_inc_tt #Change or use scripted loc if ETH ever has effects to de-escalate
 	subtract_from_variable = { ETH.ETH_war_escalation_level = 1 }
@@ -480,20 +471,9 @@ ETH_upgrade_state_category = {
 ETH_no_longer_alone = {
 	IF = {
 		limit = { 
-			OR = {
-				has_idea = ETH_on_our_own_idea_aat
-				has_idea = ETH_on_our_own_idea
-			}
+			has_idea = ETH_on_our_own_idea
 		}
-		if = {
-			limit = {
-				has_dlc = "Arms Against Tyranny"
-			}
-			remove_ideas = ETH_on_our_own_idea_aat
-		}
-		else = {
-			remove_ideas = ETH_on_our_own_idea
-		}
+		remove_ideas = ETH_on_our_own_idea
 	}
 }
 
@@ -526,13 +506,13 @@ ETH_upgrade_main_city = {
 			value = 2
 		}
 	}
-	ELSE_IF = {
-		limit = { state = 840 }
-		add_victory_points = {
-			province = 13242
-			value = 2
-		}
-	}
+	# ELSE_IF = {
+	# 	limit = { state = 840 }
+	# 	add_victory_points = {
+	# 		province = 13242
+	# 		value = 2
+	# 	}
+	# }
 	ELSE_IF = {
 		limit = { state = 839 }
 		add_victory_points = {
@@ -540,20 +520,20 @@ ETH_upgrade_main_city = {
 			value = 2
 		}
 	}
-	ELSE_IF = {
-		limit = { state = 838 }
-		add_victory_points = {
-			province = 13244
-			value = 2
-		}
-	}
-	ELSE_IF = {
-		limit = { state = 837 }
-		add_victory_points = {
-			province = 13246
-			value = 2
-		}
-	}
+	# ELSE_IF = {
+	# 	limit = { state = 838 }
+	# 	add_victory_points = {
+	# 		province = 13244
+	# 		value = 2
+	# 	}
+	# }
+	# ELSE_IF = {
+	# 	limit = { state = 837 }
+	# 	add_victory_points = {
+	# 		province = 13246
+	# 		value = 2
+	# 	}
+	# }
 	ELSE_IF = {
 		limit = { state = 836 }
 		add_victory_points = {
@@ -568,13 +548,13 @@ ETH_upgrade_main_city = {
 			value = 2
 		}
 	}
-	ELSE_IF = {
-		limit = { state = 908 }
-		add_victory_points = {
-			province = 13240
-			value = 2
-		}
-	}
+	# ELSE_IF = {
+	# 	limit = { state = 908 }
+	# 	add_victory_points = {
+	# 		province = 13240
+	# 		value = 2
+	# 	}
+	# }
 }
 
 # Local resistance fighters rising up (historically some 50000 or so rose up in the North )
@@ -638,7 +618,7 @@ ETH_set_up_african_resistance_states = {
 					limit = {  
 						OR = {
 							is_on_continent = africa 
-							is_core_of = EGY
+							# is_core_of = EGY
 						}	
 						has_resistance = yes
 						NOT = { # no point adding if already in there
@@ -730,292 +710,292 @@ ETH_set_up_middle_east_resistance_states = {
 	}
 }
 
-ETH_create_federation = {
-	hidden_effect = {
-		every_owned_state = {
-			limit = {
-				has_dynamic_modifier = {
-					modifier = ETH_state_decentralization_dynamic_modifier
-					scope = ROOT 
-				}
-			}
-			remove_dynamic_modifier = { modifier = ETH_state_decentralization_dynamic_modifier } 
-		}
-		# Doing this one by one rather than "every_country" to manage state core overlaps in the "right" way
-		# IF = {
-		# 	limit = { HAR = { exists = no } any_owned_state = {is_core_of = HAR }}
-		# 	every_owned_state = {
-		# 		limit = {
-		# 			is_core_of = HAR 
-		# 		}
-		# 		HAR = {
-		# 			transfer_state = PREV 
-		# 		}
+# ETH_create_federation = {
+# 	hidden_effect = {
+# 		every_owned_state = {
+# 			limit = {
+# 				has_dynamic_modifier = {
+# 					modifier = ETH_state_decentralization_dynamic_modifier
+# 					scope = ROOT 
+# 				}
+# 			}
+# 			remove_dynamic_modifier = { modifier = ETH_state_decentralization_dynamic_modifier } 
+# 		}
+# 		# Doing this one by one rather than "every_country" to manage state core overlaps in the "right" way
+# 		IF = {
+# 			limit = { HAR = { exists = no } any_owned_state = {is_core_of = HAR }}
+# 			every_owned_state = {
+# 				limit = {
+# 					is_core_of = HAR 
+# 				}
+# 				HAR = {
+# 					transfer_state = PREV 
+# 				}
 			
-		# 	}
-		# 	IF = {
-		# 		limit = { has_dlc = "Together for Victory" }
-		# 		set_autonomy = {
-		# 			target = HAR
-		# 			autonomy_state = autonomy_integrated_puppet
-		# 			freedom_level = 0.2
-		# 			end_wars = no
-		# 			end_civil_wars = no
-		# 		}
-		# 	}
-		# 	ELSE = {
-		# 		puppet = HAR
-		# 	}
-		# 	HAR = { set_cosmetic_tag = ETH_ethiopian_federation }
-		# }
-		# IF = {
-		# 	limit = { TIG = { exists = no } any_owned_state = {is_core_of = TIG }}
-		# 	every_owned_state = {
-		# 		limit = {
-		# 			is_core_of = TIG 
-		# 		}
-		# 		TIG = {
-		# 			transfer_state = PREV 
-		# 		}
-		# 	}
-		# 	IF = {
-		# 		limit = { has_dlc = "Together for Victory" }
-		# 		set_autonomy = {
-		# 			target = TIG
-		# 			autonomy_state = autonomy_integrated_puppet
-		# 			freedom_level = 0.2
-		# 			end_wars = no
-		# 			end_civil_wars = no
-		# 		}
-		# 	}
-		# 	ELSE = {
-		# 		puppet = TIG
-		# 	}
-		# 	TIG = { set_cosmetic_tag = ETH_ethiopian_federation }
-		# }
-		# IF = {
-		# 	limit = { AFA = { exists = no }any_owned_state = {is_core_of = AFA }}
-		# 	every_owned_state = {
-		# 		limit = {
-		# 			is_core_of = AFA 
-		# 		}
-		# 		AFA = {
-		# 			transfer_state = PREV 
-		# 		}
-		# 	}
-		# 	IF = {
-		# 		limit = { has_dlc = "Together for Victory" }
-		# 		set_autonomy = {
-		# 			target = AFA
-		# 			autonomy_state = autonomy_integrated_puppet
-		# 			freedom_level = 0.2
-		# 			end_wars = no
-		# 			end_civil_wars = no
-		# 		}
-		# 	}
-		# 	ELSE = {
-		# 		puppet = AFA
-		# 	}
-		# 	AFA = { set_cosmetic_tag = ETH_ethiopian_federation }
-		# }
-		# IF = {
-		# 	limit = { BEG = { exists = no }any_owned_state = {is_core_of = BEG }}
-		# 	every_owned_state = {
-		# 		limit = {
-		# 			is_core_of = BEG 
-		# 		}
-		# 		BEG = {
-		# 			transfer_state = PREV 
-		# 		}
-		# 	}
-		# 	IF = {
-		# 		limit = { has_dlc = "Together for Victory" }
-		# 		set_autonomy = {
-		# 			target = BEG
-		# 			autonomy_state = autonomy_integrated_puppet
-		# 			freedom_level = 0.2
-		# 			end_wars = no
-		# 			end_civil_wars = no
-		# 		}
-		# 	}
-		# 	ELSE = {
-		# 		puppet = BEG
-		# 	}
-		# 	BEG = { set_cosmetic_tag = ETH_ethiopian_federation }
-		# }
-		# IF = {
-		# 	limit = { GBA = { exists = no } any_owned_state = {is_core_of = GBA }}
-		# 	every_owned_state = {
-		# 		limit = {
-		# 			is_core_of = GBA 
-		# 		}
-		# 		GBA = {
-		# 			transfer_state = PREV 
-		# 		}
-		# 	}
-		# 	IF = {
-		# 		limit = { has_dlc = "Together for Victory" }
-		# 		set_autonomy = {
-		# 			target = GBA
-		# 			autonomy_state = autonomy_integrated_puppet
-		# 			freedom_level = 0.2
-		# 			end_wars = no
-		# 			end_civil_wars = no
-		# 		}
-		# 	}
-		# 	ELSE = {
-		# 		puppet = GBA
-		# 	}
-		# 	GBA = { set_cosmetic_tag = ETH_ethiopian_federation }
-		# }
-		# IF = {
-		# 	limit = { SID = { exists = no } any_owned_state = {is_core_of = SID }}
-		# 	every_owned_state = {
-		# 		limit = {
-		# 			is_core_of = SID 
-		# 		}
-		# 		SID = {
-		# 			transfer_state = PREV 
-		# 		}
-		# 	}
-		# 	IF = {
-		# 		limit = { has_dlc = "Together for Victory" }
-		# 		set_autonomy = {
-		# 			target = SID
-		# 			autonomy_state = autonomy_integrated_puppet
-		# 			freedom_level = 0.2
-		# 			end_wars = no
-		# 			end_civil_wars = no
-		# 		}
-		# 	}
-		# 	ELSE = {
-		# 		puppet = SID
-		# 	}
-		# 	SID = { set_cosmetic_tag = ETH_ethiopian_federation }
-		# }
-		# IF = {
-		# 	limit = { QEM = { exists = no }any_owned_state = {is_core_of = QEM }}	
-		# 	every_owned_state = {
-		# 		limit = {
-		# 			is_core_of = QEM 
-		# 		}
-		# 		QEM = {
-		# 			transfer_state = PREV 
-		# 		}
-		# 	}
-		# 	IF = {
-		# 		limit = { has_dlc = "Together for Victory" }
-		# 		set_autonomy = {
-		# 			target = QEM
-		# 			autonomy_state = autonomy_integrated_puppet
-		# 			freedom_level = 0.2
-		# 			end_wars = no
-		# 			end_civil_wars = no
-		# 		}
-		# 	}
-		# 	ELSE = {
-		# 		puppet = QEM
-		# 	}
-		# 	QEM = { set_cosmetic_tag = ETH_ethiopian_federation }
-		# }
-		# IF = {
-		# 	limit = { ORO = { exists = no } any_owned_state = {is_core_of = ORO }}
-		# 	every_owned_state = {
-		# 		limit = {
-		# 			is_core_of = ORO 
-		# 			NOT = { state = 271 } # Avoid transferring Addis
-		# 		}
-		# 		ORO = {
-		# 			transfer_state = PREV 
-		# 		}
-		# 	}
-		# 	IF = {
-		# 		limit = { has_dlc = "Together for Victory" }
-		# 		set_autonomy = {
-		# 			target = ORO
-		# 			autonomy_state = autonomy_integrated_puppet
-		# 			freedom_level = 0.2
-		# 			end_wars = no
-		# 			end_civil_wars = no
-		# 		}
-		# 	}
-		# 	ELSE = {
-		# 		puppet = ORO
-		# 	}
-		# 	ORO = { set_cosmetic_tag = ETH_ethiopian_federation }
-		# }
-		# IF = {
-		# 	limit = { SOM = { exists = no }any_owned_state = {is_core_of = SOM }}
-		# 	every_owned_state = {
-		# 		limit = {
-		# 			is_core_of = SOM 
-		# 		}
-		# 		SOM = {
-		# 			transfer_state = PREV 
-		# 		}
-		# 	}
-		# 	IF = {
-		# 		limit = { has_dlc = "Together for Victory" }
-		# 		set_autonomy = {
-		# 			target = SOM
-		# 			autonomy_state = autonomy_integrated_puppet
-		# 			freedom_level = 0.2
-		# 			end_wars = no
-		# 			end_civil_wars = no
-		# 		}
-		# 	}
-		# 	ELSE = {
-		# 		puppet = SOM
-		# 	}
-		# 	SOM = { set_cosmetic_tag = ETH_ethiopian_federation }
-		# }
-		# IF = {
-		# 	limit = { ERI = { exists = no } any_owned_state = {is_core_of = ERI }}
-		# 	every_owned_state = {
-		# 		limit = {
-		# 			is_core_of = ERI 
-		# 		}
-		# 		ERI = {
-		# 			transfer_state = PREV 
-		# 		}
-		# 	}
-		# 	IF = {
-		# 		limit = { has_dlc = "Together for Victory" }
-		# 		set_autonomy = {
-		# 			target = ERI
-		# 			autonomy_state = autonomy_integrated_puppet
-		# 			freedom_level = 0.2
-		# 			end_wars = no
-		# 			end_civil_wars = no
-		# 		}
-		# 	}
-		# 	ELSE = {
-		# 		puppet = ERI
-		# 	}
-		# 	ERI = { set_cosmetic_tag = ETH_ethiopian_federation }
-		# }
-		every_other_country = {
-			limit = {
-				has_cosmetic_tag = ETH_ethiopian_federation
-			}
-			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}
-		}
-	}
-}
+# 			}
+# 			IF = {
+# 				limit = { has_dlc = "Together for Victory" }
+# 				set_autonomy = {
+# 					target = HAR
+# 					autonomy_state = autonomy_integrated_puppet
+# 					freedom_level = 0.2
+# 					end_wars = no
+# 					end_civil_wars = no
+# 				}
+# 			}
+# 			ELSE = {
+# 				puppet = HAR
+# 			}
+# 			HAR = { set_cosmetic_tag = ETH_Ethiopian_Federation }
+# 		}
+# 		IF = {
+# 			limit = { TIG = { exists = no } any_owned_state = {is_core_of = TIG }}
+# 			every_owned_state = {
+# 				limit = {
+# 					is_core_of = TIG 
+# 				}
+# 				TIG = {
+# 					transfer_state = PREV 
+# 				}
+# 			}
+# 			IF = {
+# 				limit = { has_dlc = "Together for Victory" }
+# 				set_autonomy = {
+# 					target = TIG
+# 					autonomy_state = autonomy_integrated_puppet
+# 					freedom_level = 0.2
+# 					end_wars = no
+# 					end_civil_wars = no
+# 				}
+# 			}
+# 			ELSE = {
+# 				puppet = TIG
+# 			}
+# 			TIG = { set_cosmetic_tag = ETH_Ethiopian_Federation }
+# 		}
+# 		IF = {
+# 			limit = { AFA = { exists = no }any_owned_state = {is_core_of = AFA }}
+# 			every_owned_state = {
+# 				limit = {
+# 					is_core_of = AFA 
+# 				}
+# 				AFA = {
+# 					transfer_state = PREV 
+# 				}
+# 			}
+# 			IF = {
+# 				limit = { has_dlc = "Together for Victory" }
+# 				set_autonomy = {
+# 					target = AFA
+# 					autonomy_state = autonomy_integrated_puppet
+# 					freedom_level = 0.2
+# 					end_wars = no
+# 					end_civil_wars = no
+# 				}
+# 			}
+# 			ELSE = {
+# 				puppet = AFA
+# 			}
+# 			AFA = { set_cosmetic_tag = ETH_Ethiopian_Federation }
+# 		}
+# 		IF = {
+# 			limit = { BEG = { exists = no }any_owned_state = {is_core_of = BEG }}
+# 			every_owned_state = {
+# 				limit = {
+# 					is_core_of = BEG 
+# 				}
+# 				BEG = {
+# 					transfer_state = PREV 
+# 				}
+# 			}
+# 			IF = {
+# 				limit = { has_dlc = "Together for Victory" }
+# 				set_autonomy = {
+# 					target = BEG
+# 					autonomy_state = autonomy_integrated_puppet
+# 					freedom_level = 0.2
+# 					end_wars = no
+# 					end_civil_wars = no
+# 				}
+# 			}
+# 			ELSE = {
+# 				puppet = BEG
+# 			}
+# 			BEG = { set_cosmetic_tag = ETH_Ethiopian_Federation }
+# 		}
+# 		IF = {
+# 			limit = { GBA = { exists = no } any_owned_state = {is_core_of = GBA }}
+# 			every_owned_state = {
+# 				limit = {
+# 					is_core_of = GBA 
+# 				}
+# 				GBA = {
+# 					transfer_state = PREV 
+# 				}
+# 			}
+# 			IF = {
+# 				limit = { has_dlc = "Together for Victory" }
+# 				set_autonomy = {
+# 					target = GBA
+# 					autonomy_state = autonomy_integrated_puppet
+# 					freedom_level = 0.2
+# 					end_wars = no
+# 					end_civil_wars = no
+# 				}
+# 			}
+# 			ELSE = {
+# 				puppet = GBA
+# 			}
+# 			GBA = { set_cosmetic_tag = ETH_Ethiopian_Federation }
+# 		}
+# 		IF = {
+# 			limit = { SID = { exists = no } any_owned_state = {is_core_of = SID }}
+# 			every_owned_state = {
+# 				limit = {
+# 					is_core_of = SID 
+# 				}
+# 				SID = {
+# 					transfer_state = PREV 
+# 				}
+# 			}
+# 			IF = {
+# 				limit = { has_dlc = "Together for Victory" }
+# 				set_autonomy = {
+# 					target = SID
+# 					autonomy_state = autonomy_integrated_puppet
+# 					freedom_level = 0.2
+# 					end_wars = no
+# 					end_civil_wars = no
+# 				}
+# 			}
+# 			ELSE = {
+# 				puppet = SID
+# 			}
+# 			SID = { set_cosmetic_tag = ETH_Ethiopian_Federation }
+# 		}
+# 		IF = {
+# 			limit = { QEM = { exists = no }any_owned_state = {is_core_of = QEM }}	
+# 			every_owned_state = {
+# 				limit = {
+# 					is_core_of = QEM 
+# 				}
+# 				QEM = {
+# 					transfer_state = PREV 
+# 				}
+# 			}
+# 			IF = {
+# 				limit = { has_dlc = "Together for Victory" }
+# 				set_autonomy = {
+# 					target = QEM
+# 					autonomy_state = autonomy_integrated_puppet
+# 					freedom_level = 0.2
+# 					end_wars = no
+# 					end_civil_wars = no
+# 				}
+# 			}
+# 			ELSE = {
+# 				puppet = QEM
+# 			}
+# 			QEM = { set_cosmetic_tag = ETH_Ethiopian_Federation }
+# 		}
+# 		IF = {
+# 			limit = { ORO = { exists = no } any_owned_state = {is_core_of = ORO }}
+# 			every_owned_state = {
+# 				limit = {
+# 					is_core_of = ORO 
+# 					NOT = { state = 271 } # Avoid transferring Addis
+# 				}
+# 				ORO = {
+# 					transfer_state = PREV 
+# 				}
+# 			}
+# 			IF = {
+# 				limit = { has_dlc = "Together for Victory" }
+# 				set_autonomy = {
+# 					target = ORO
+# 					autonomy_state = autonomy_integrated_puppet
+# 					freedom_level = 0.2
+# 					end_wars = no
+# 					end_civil_wars = no
+# 				}
+# 			}
+# 			ELSE = {
+# 				puppet = ORO
+# 			}
+# 			ORO = { set_cosmetic_tag = ETH_Ethiopian_Federation }
+# 		}
+# 		IF = {
+# 			limit = { SOM = { exists = no }any_owned_state = {is_core_of = SOM }}
+# 			every_owned_state = {
+# 				limit = {
+# 					is_core_of = SOM 
+# 				}
+# 				SOM = {
+# 					transfer_state = PREV 
+# 				}
+# 			}
+# 			IF = {
+# 				limit = { has_dlc = "Together for Victory" }
+# 				set_autonomy = {
+# 					target = SOM
+# 					autonomy_state = autonomy_integrated_puppet
+# 					freedom_level = 0.2
+# 					end_wars = no
+# 					end_civil_wars = no
+# 				}
+# 			}
+# 			ELSE = {
+# 				puppet = SOM
+# 			}
+# 			SOM = { set_cosmetic_tag = ETH_Ethiopian_Federation }
+# 		}
+# 		IF = {
+# 			limit = { ERI = { exists = no } any_owned_state = {is_core_of = ERI }}
+# 			every_owned_state = {
+# 				limit = {
+# 					is_core_of = ERI 
+# 				}
+# 				ERI = {
+# 					transfer_state = PREV 
+# 				}
+# 			}
+# 			IF = {
+# 				limit = { has_dlc = "Together for Victory" }
+# 				set_autonomy = {
+# 					target = ERI
+# 					autonomy_state = autonomy_integrated_puppet
+# 					freedom_level = 0.2
+# 					end_wars = no
+# 					end_civil_wars = no
+# 				}
+# 			}
+# 			ELSE = {
+# 				puppet = ERI
+# 			}
+# 			ERI = { set_cosmetic_tag = ETH_Ethiopian_Federation }
+# 		}
+# 		every_other_country = {
+# 			limit = {
+# 				has_cosmetic_tag = ETH_Ethiopian_Federation
+# 			}
+# 			random_owned_controlled_state = {
+# 				limit = {
+# 					free_building_slots = {
+# 						building = industrial_complex
+# 						size > 0
+# 						include_locked = yes
+# 					}
+# 				}
+# 				add_extra_state_shared_building_slots = 1
+# 				add_building_construction = {
+# 					type = industrial_complex
+# 					level = 1
+# 					instant_build = yes
+# 				}
+# 			}
+# 		}
+# 	}
+# }
 
 # make Hailu Tekle hayamot Party Leader
 ETH_promote_ETH_hailu_tekle_haymanot = {
@@ -1090,7 +1070,7 @@ ETH_provisional_government_effect = {
 			name = ETH_provisonal_government
 		}
 		set_rule = {
-			can_generate_female_unit_leaders = yes
+			can_generate_female_unit_leaders  = yes
 		}
 		set_rule = {
 			can_generate_female_country_leaders = yes
@@ -1190,16 +1170,6 @@ ETH_add_random_civ_factory_effect = {
 									}
 									is_in_home_area = yes
 								}
-							}
-							OR = {
-								state = 961
-								state = 962
-								state = 963
-								state = 964
-								state = 965
-								state = 966
-								state = 967
-								state = 968
 							}
 						}
 					}

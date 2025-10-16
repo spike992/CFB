@@ -9,7 +9,14 @@ if = {
 	}
 }
 
-set_research_slots = 4
+# MP_garrison_division_standard = yes
+
+set_research_slots = 3
+
+set_variable = {
+	var = min_fuel
+	value = 0.800
+}
 
 if = {
 	limit = {
@@ -20,14 +27,19 @@ if = {
 		YUG_idea_macedonian_opposition
 		YUG_idea_slovene_nationalism
 		YUG_idea_serbian_general_staff
-		YUG_tank_inefficiencies
 	}
 }
 add_ideas = {
 	anti_german_military
+	# PACIFIC_COMMONWEALTH_controls_axis_original
+	peace_training
+	no_grinding
+	no_brothers_war
+	father_check
 }
 set_variable = { axis_poster_center_icon_frame = 1 }
 set_technology = {
+	hq_1 = 1
 	tech_support = 1		
 	tech_engineers = 1
 	tech_recon = 1
@@ -37,11 +49,12 @@ set_technology = {
 	
 	light_tank_1 = 1
 	gw_artillery = 1
-    early_transport_plane = 1
+	
 	superior_firepower = 1
 	support_weapons = 1
 	basic_train = 1
 	fra_light_tank_export = 1
+	motorised_infantry = 1
 }
 if = {
 	limit = { not = { has_dlc = "Man the Guns" } }
@@ -68,133 +81,122 @@ if = {
 	}
 }
 
-1939.1.1 = {
+# 1939.1.1 = {
 
-	add_ideas = {
-		limited_conscription
-	}
+# 	add_ideas = {
+# 		limited_conscription
+# 	}
+# 	if = {
+# 	limit = {
+# 		has_dlc = "Death or Dishonor"
+# 	}
+# 	add_ideas = {
+# 		YUG_idea_foreign_capital
+# 		YUG_idea_expanded_mining_industry
+# 		YUG_license_production
+# 		YUG_idea_orthodox_church_support
+# 	}
+# }
 
-	if = {
-		limit = {
-			has_dlc = "Death or Dishonor"
-		}
-		add_ideas = {
-			YUG_idea_foreign_capital
-			YUG_idea_expanded_mining_industry
-			YUG_license_production
-			YUG_idea_orthodox_church_support
-		}
-	}	
-
-	add_political_power = 1198
-	add_command_power = 100
+# 	add_political_power = 1198
 	
-	if = {
-		limit = {
-			has_dlc = "Death or Dishonor"
-		}
-		#complete_national_focus = YUG_western_focus
-		#complete_national_focus = YUG_friendship_treaty_with_italy
-		#complete_national_focus = YUG_attract_foreign_capital
-		complete_national_focus = YUG_industrialization_program
-		#complete_national_focus = YUG_limited_self_government
-		complete_national_focus = YUG_army_modernization
-		complete_national_focus = YUG_mountain_brigades
-		complete_national_focus = YUG_expand_the_mining_industry
-		complete_national_focus = YUG_modernize_the_air_force
-		complete_national_focus = YUG_develop_civilian_industry
-		complete_national_focus = YUG_purchase_foreign
-		complete_national_focus = YUG_license_production
-		complete_national_focus = YUG_fighter_license
-		complete_national_focus = YUG_rare_minerals_exploitation
-		#complete_national_focus = YUG_traditional_values
-		complete_national_focus = YUG_greater_yugoslavia
-		complete_national_focus = YUG_small_arms 
-		complete_national_focus = YUG_domestic_artillery_production
-		complete_national_focus = YUG_expand_the_serbian_shipyards
-		complete_national_focus = YUG_coastal_defense
-	}
+# 	if = {
+# 	limit = {
+# 		has_dlc = "Death or Dishonor"
+# 	}
+# 		complete_national_focus = YUG_western_focus
+# 		complete_national_focus = YUG_friendship_treaty_with_italy
+# 		complete_national_focus = YUG_attract_foreign_capital
+# 		complete_national_focus = YUG_industrialization_program
+# 		complete_national_focus = YUG_limited_self_government
+# 		complete_national_focus = YUG_army_modernization
+# 		complete_national_focus = YUG_mountain_brigades
+# 		complete_national_focus = YUG_expand_the_mining_industry
+# 		complete_national_focus = YUG_modernize_the_air_force
+# 		complete_national_focus = YUG_develop_civilian_industry
+# 		complete_national_focus = YUG_purchase_foreign
+# 		complete_national_focus = YUG_license_production
+# 		complete_national_focus = YUG_fighter_license
+# 		complete_national_focus = YUG_rare_minerals_exploitation
+# 		complete_national_focus = YUG_traditional_values
+# 		complete_national_focus = YUG_greater_yugoslavia
+# 		complete_national_focus = YUG_small_arms 
+# 		complete_national_focus = YUG_domestic_artillery_production
+# 		complete_national_focus = YUG_expand_the_serbian_shipyards
+# 		complete_national_focus = YUG_coastal_defense
+# 	}
 	
-	if = {
-		limit = {
-			NOT = { has_dlc = "Death or Dishonor" }
-		}
-		#generic focuses
-		complete_national_focus = army_effort
-		complete_national_focus = equipment_effort
-		complete_national_focus = motorization_effort
-		complete_national_focus = aviation_effort
-		complete_national_focus = naval_effort
-		complete_national_focus = flexible_navy
-		complete_national_focus = industrial_effort
-		complete_national_focus = construction_effort
-		complete_national_focus = production_effort
-	}
-	if = {
-		limit = { NOT = { has_dlc = "No Step Back" } }
-		set_oob = "YUG_1939"
-	}
-	if = {
-		limit = { has_dlc = "No Step Back" } 
-		set_oob = "YUG_1939_nsb"
-	}
-	if = {
-		limit = { has_dlc = "Man the Guns" }
-			set_naval_oob = "YUG_1939_naval_mtg"
-		else = {
-			set_naval_oob = "YUG_1939_naval_legacy"
-		}
-	}
+# 	if = {
+# 	limit = {
+# 		NOT = { has_dlc = "Death or Dishonor" }
+# 	}
+# 	#generic focuses
+# 	complete_national_focus = army_effort
+# 	complete_national_focus = equipment_effort
+# 	complete_national_focus = motorization_effort
+# 	complete_national_focus = aviation_effort
+# 	complete_national_focus = naval_effort
+# 	complete_national_focus = flexible_navy
+# 	complete_national_focus = industrial_effort
+# 	complete_national_focus = construction_effort
+# 	complete_national_focus = production_effort
+# 	}
+	
+# 	oob = "YUG_1939"
+# 	if = {
+# 		limit = { has_dlc = "Man the Guns" }
+# 			set_naval_oob = "YUG_1939_naval_mtg"
+# 		else = {
+# 			set_naval_oob = "YUG_1939_naval_legacy"
+# 		}
+# 	}
 
-	set_technology = {
-		fighter1 = 1
-		early_bomber = 1
-		tactical_bomber1 = 1
-		CAS1 = 1
-		infantry_weapons2 = 1
-		support_weapons = 1
+# 	set_technology = {
+# 		fighter1 = 1
+# 		early_bomber = 1
+# 		tactical_bomber1 = 1
+# 		CAS1 = 1
+# 		infantry_weapons2 = 1
+# 		support_weapons = 1
 
-		#doctrines
-		air_superiority = 1
-		fleet_in_being = 1
-		battlefleet_concentration = 1
-		convoy_sailing = 1
-		sup_delay = 1
+# 		#doctrines
+# 		air_superiority = 1
+# 		fleet_in_being = 1
+# 		battlefleet_concentration = 1
+# 		convoy_sailing = 1
+# 		sup_delay = 1
 
-		#electronics
-		electronic_mechanical_engineering = 1
-		radio = 1
-		mechanical_computing = 1
-		computing_machine = 1
+# 		#electronics
+# 		electronic_mechanical_engineering = 1
+# 		radio = 1
+# 		radio_detection = 1
+# 		mechanical_computing = 1
+# 		computing_machine = 1
 
-		#industry
-		basic_machine_tools = 1
-		improved_machine_tools = 1
-		synth_oil_experiments = 1
-		fuel_silos = 1
-		oil_processing = 1
-		construction1 = 1
-		concentrated_industry = 1
-	}
-	complete_special_project = {
-		project = sp:sp_air_radar
-	}
-	if = {
-		limit = { not = { has_dlc = "Man the Guns" } }
-		set_technology = {
-			basic_destroyer = 1
-		}
-	}
-	if = {
-		limit = { has_dlc = "Man the Guns" }
-		set_technology = {
-			basic_light_battery = 1
-		}
-	}
-}
+# 		#industry
+# 		basic_machine_tools = 1
+# 		improved_machine_tools = 1
+# 		synth_oil_experiments = 1
+# 		fuel_silos = 1
+# 		oil_processing = 1
+# 		construction1 = 1
+# 		concentrated_industry = 1
+# 	}
+# 	if = {
+# 		limit = { not = { has_dlc = "Man the Guns" } }
+# 		set_technology = {
+# 			basic_destroyer = 1
+# 		}
+# 	}
+# 	if = {
+# 		limit = { has_dlc = "Man the Guns" }
+# 		set_technology = {
+# 			basic_light_battery = 1
+# 		}
+# 	}
+# }
 
 set_convoys = 10
-
 set_politics = {
 	ruling_party = neutrality
 	last_election = "1935.5.3"
@@ -208,109 +210,18 @@ set_popularities = {
 	neutrality = 60
 }
 
-1939.1.1 = {
-	set_politics = {
-		ruling_party = neutrality
-		last_election = "1938.12.1"
-		election_frequency = 36
-		elections_allowed = yes
-	}
-	set_popularities = { # Will get +7 from Italian focus: Potential Allies in the Balkans
-		democratic = 10
-		fascism = 20
-		communism = 10
-		neutrality = 60
-	}
-}
-
 set_stability = 0.6
-##Croatiandominance
-set_variable = {YUG_economy_modifier_industrial_capacity_factory = 0.0} 
-set_variable = {YUG_economy_modifier_production_factory_max_efficiency_factor = 0.0} 
-set_variable = {YUG_economy_modifier_production_speed_infrastructure_factor = 0.0}
-set_variable = {YUG_economy_modifier_production_factory_efficiency_gain_factor = 0.0}
-set_variable = {YUG_economy_modifier_production_factory_start_efficiency_factor = 0.0} 
-set_variable = {YUG_economy_modifier_research_speed_factor = 0.00}
-set_variable = {YUG_recruitable_population_factor = -0.20}
-set_variable = {YUG_economy_modifier_local_resources_factor = 0}
-set_variable = {YUG_economy_modifier_economy_cost_factor = 0}
-set_variable = {YUG_economy_modifier_production_speed_synthetic_refinery_factor = 0} 
-set_variable = {YUG_economy_modifier_research_speed_factor = -0.05}
-set_variable = {YUG_economy_modifier_production_speed_buildings_factor = 0}
-set_variable = {YUG_economy_modifier_production_speed_buildings_factor = 0}
-set_variable = {YUG_economy_modifier_production_speed_arms_factory_factor = 0}
-##ustase military
-set_variable = {
-	CRO_experience_gain_factor = -0.1
-}
-set_variable = {
-    CRO_experience_gain_army_unit_factor = -0.1
-}
-set_variable = {
-	 CRO_army_artillery_attack_factor = 0
-}
-set_variable = {
-	CRO_army_artillery_defence_factor = 0
-}
-set_variable = {
-	CRO_special_forces_attack_factor = 0
-}
-set_variable = {
-	CRO_special_forces_defence_factor = 0
-}
-set_variable = {
-	CRO_military_leader_cost_factor = 0
-}
-set_variable = {
-	CRO_army_org_factor = -0.1
-}
-set_variable = {
-	CRO_army_org_regain = -0.1
-}
-set_variable = {
-	CRO_army_morale_factor = 0
-}
-set_variable = {
-	CRO_max_planning_factor = 0
-}
-set_variable = {
-	CRO_special_forces_cap = 0
-}
-set_variable = {
-	CRO_special_forces_no_supply_grace = 0
-}
-set_variable = {
-	CRO_special_forces_out_of_supply_factor = 0
-}
-set_variable = {
-	CRO_army_armor_attack_factor = 0
-}
-set_variable = {
-	CRO_army_armor_speed_factor = 0
-}
-set_variable = {
-	CRO_special_forces_min = 14
-}
-set_variable = {
-	CRO_minimum_training_level = 0
-}
-set_variable = {
-	CRO_training_time_factor = 0
-}
-set_variable = {
-	CRO_mountaineers_special_forces_contribution_factor = 0
-}
 
 recruit_character = YUG_prince_paul
 recruit_character = YUG_milan_grol
 recruit_character = YUG_josip_broz_tito
-recruit_character = YUG_milan_stojadinovic
-recruit_character = YUG_vladimir_Cukavac
+recruit_character = YUG_milan_stojadinović
+# recruit_character = YUG_vladimir_Cukavac
 recruit_character = YUG_ivan_gosnjak
-recruit_character = YUG_danilo_kalafatovic
-recruit_character = YUG_milutin_nedic
-recruit_character = YUG_petar_kosic
-recruit_character = YUG_marijan_polic
+# recruit_character = YUG_danilo_kalafatovic
+# recruit_character = YUG_milutin_nedic
+# recruit_character = YUG_petar_kosic # cav officer - gone for now
+recruit_character = YUG_marijan_polić
 recruit_character = YUG_borivoje_mirkovic
 recruit_character = YUG_dusan_simovic
 recruit_character = YUG_draza_mihailovic
@@ -323,94 +234,8 @@ recruit_character = YUG_slobodan_jovanovic
 recruit_character = YUG_milovan_djilas
 recruit_character = YUG_milan_nedic
 recruit_character = YUG_ivan_ribar
-recruit_character = YUG_dimitrije_ljotic
-recruit_character = YUG_ivo_lola_ribar
-recruit_character = YUG_peter_ii
-recruit_character = YUG_robert_e_lee
-# recruit_character = YUG_state_planner_advisor
-# recruit_character = YUG_fascist_militant_advisor
-recruit_character = YUG_ante_pavelic
-recruit_character = YUG_nikola_mandic
-recruit_character = YUG_duro_jakcin
-recruit_character = YUG_slavko_kvaternik
-recruit_character = YUG_miroslav_navratil
-recruit_character = YUG_character_number1
-recruit_character = YUG_king_peter_mil
-recruit_character = YUG_prince_paul_mil
-recruit_character = YUG_king_zog
-recruit_character = YUG_wilhelm_wied
-recruit_character = YUG_amedeo_di_savoia
-recruit_character = YUG_johannes
-recruit_character = YUG_christian_louis
-recruit_character = YUG_george_sax
-recruit_character = YUG_eitel_friedrich
-recruit_character = YUG_rupprecht
-recruit_character = YUG_philipp_albrecht
-recruit_character = YUG_ernest_august
-recruit_character = YUG_alois
-recruit_character = YUG_edward_viii
-recruit_character = YUG_george_vi
-recruit_character = YUG_ferdinand_i
-recruit_character = YUG_boris_iii
-recruit_character = YUG_joseph_ferdinand_habsburg
-recruit_character = YUG_robert_habsburg
-recruit_character = YUG_karl_habsburg
-recruit_character = YUG_maria_habsburg
-recruit_character = YUG_otto_habsburg
-recruit_character = YUG_joseph_august_habsburg
-recruit_character = YUG_vasyl_habsburg
-recruit_character = YUG_joseph_francis_habsburg
-recruit_character = YUG_albrecht_habsburg
-recruit_character = YUG_frederik
-recruit_character = YUG_elizabeth_ii
-recruit_character = YUG_wallis_simpson
-recruit_character = YUG_victoria_louise
-recruit_character = YUG_willhelm_ii
-recruit_character = YUG_willhelm_iii
-recruit_character = YUG_willhelm_iV
-recruit_character = YUG_pope
-recruit_character = YUG_emmanuel_iii
-recruit_character = YUG_ferdinand_pius
-recruit_character = YUG_karl_urach
-recruit_character = YUG_karl_urach_dad
-recruit_character = YUG_anastasia
-recruit_character = YUG_carol
-recruit_character = YUG_alfonso_xiii
-recruit_character = YUG_xavier
-recruit_character = YUG_infante_alfonso
-recruit_character = YUG_punished_gustaf
-recruit_character = YUG_mathilde_i
-recruit_character = YUG_abdulmejid_ii
-recruit_character = YUG_durusehvar_i
-recruit_character = YUG_napoleon_vi
-recruit_character = YUG_wojtek
-recruit_character = YUG_mbop_mabiinc
-recruit_character = YUG_pedro_alfonso
-recruit_character = YUG_haile_selassie
-recruit_character = YUG_hailu_tekle
-recruit_character = YUG_puyi
-recruit_character = YUG_the_shah
-recruit_character = YUG_leopold_iii
-recruit_character = YUG_charles_flanders
-recruit_character = YUG_wilhelmina_new
-recruit_character = YUG_charlotte_willhelmine
-recruit_character = YUG_george_ii
-recruit_character = YUG_duke_of_guise
-recruit_character = YUG_count_of_paris
-recruit_character = YUG_wolfgang_hesse
-recruit_character = YUG_polish_cuck_chair
-recruit_character = YUG_michael_i
-recruit_character = YUG_twink_iii
-recruit_character = YUG_ibiza_i
-recruit_character = YUG_christian
-recruit_character = YUG_infante_jaime
-recruit_character = YUG_adalberto
-recruit_character = YUG_aimone
-recruit_character = YUG_filiberto
-recruit_character = YUG_umberto
-recruit_character = YUG_felix_bourbon
-recruit_character = YUG_haakon_vii
-
+# recruit_character = YUG_dimitrije_ljotic
+# recruit_character = YUG_ivo_lola_ribar
 
 create_equipment_variant = {
 	name = "FT-17"
@@ -504,3 +329,229 @@ if = {
 		}
 	}
 }
+
+# AXIS
+
+			# GER
+			add_operation_token = {
+				tag = GER
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = GER
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = GER
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = GER
+				token = token_navy_friendly
+			}
+			# ITA
+			add_operation_token = {
+				tag = ITA
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = ITA
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = ITA
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = ITA
+				token = token_navy_friendly
+			}
+			# HUN
+			add_operation_token = {
+				tag = HUN
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = HUN
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = HUN
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = HUN
+				token = token_navy_friendly
+			}
+			# ROM
+			add_operation_token = {
+				tag = ROM
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = ROM
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = ROM
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = ROM
+				token = token_navy_friendly
+			}
+			# BUL
+			add_operation_token = {
+				tag = BUL
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = BUL
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = BUL
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = BUL
+				token = token_navy_friendly
+			}
+			# SPR
+			add_operation_token = {
+				tag = SPR
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = SPR
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = SPR
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = SPR
+				token = token_navy_friendly
+			}
+			# FIN
+			add_operation_token = {
+				tag = FIN
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = FIN
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = FIN
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = FIN
+				token = token_navy_friendly
+			}
+			#AOI
+			add_operation_token = {
+				tag = AOI
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = AOI
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = AOI
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = AOI
+				token = token_navy_friendly
+			}
+			# ALB
+			add_operation_token = {
+				tag = ALB
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = ALB
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = ALB
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = ALB
+				token = token_navy_friendly
+			}
+			# AUS
+			add_operation_token = {
+				tag = AUS
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = AUS
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = AUS
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = AUS
+				token = token_navy_friendly
+			}
+
+			# COPRO
+			# JAP
+			add_operation_token = {
+				tag = JAP
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = JAP
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = JAP
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = JAP
+				token = token_navy_friendly
+			}
+			# MAN
+			add_operation_token = {
+				tag = MAN
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = MAN
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = MAN
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = MAN
+				token = token_navy_friendly
+			}
+			# SIA
+			add_operation_token = {
+				tag = SIA
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = SIA
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = SIA
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = SIA
+				token = token_navy_friendly
+			}

@@ -778,7 +778,6 @@ SOV_paranoia_daunt_generals_effect = {
 		}
 		random_army_leader = {
 			limit = {
-				is_field_marshal = no
 				NOT = { has_character_flag = SOV_targeted_for_purge_flag }
 				NOT = { has_trait = trait_SOV_cowed_by_stalin_army }
 			}
@@ -1009,35 +1008,35 @@ SOV_check_for_a_new_purge_effect = { #Useless now. Leaving it just in case
 SOV_manage_a_regular_purge_effect = { # Phase 2: Set the Area to be purged (admin, army, navy, airforce), then set the actual targets (people), then trigger event (Phase 3)
 	# Randomly choose an area to purge
 	random_list = {
-		25 = { # ADMINISTRATION
-			modifier = { #Don't repeat last purge please
-				factor = 0.1
-				check_variable = { SOV_last_regular_purge_area = 1 }
-			}
-			modifier = { #Someone is a potential target
-				factor = 2
-				any_character = {
-					is_character_slot = political_advisor
-					has_character_flag = SOV_potential_target_flag
-				}
-			}
-			modifier = { #Yagoda is in the NKVD -> He shall be purged
-				factor = 1.5
-				has_idea = SOV_genrikh_yagoda
-			}
-			modifier = { #There are no purges available
-				factor = 0
-				NOT = {
-					any_character = {
-						is_character_slot = political_advisor
-						SOV_character_can_be_purged = yes
-					}
-				}
-				has_idea = SOV_understaffed_bureaucracy
-				has_idea = SOV_lavrenty_beriya
-			}
-			SOV_pick_regular_purge_administration_type_effect = yes
-		}
+		# 25 = { # ADMINISTRATION
+		# 	modifier = { #Don't repeat last purge please
+		# 		factor = 0.1
+		# 		check_variable = { SOV_last_regular_purge_area = 1 }
+		# 	}
+		# 	modifier = { #Someone is a potential target
+		# 		factor = 2
+		# 		any_character = {
+		# 			is_character_slot = political_advisor
+		# 			has_character_flag = SOV_potential_target_flag
+		# 		}
+		# 	}
+		# 	modifier = { #Yagoda is in the NKVD -> He shall be purged
+		# 		factor = 1.5
+		# 		has_idea = SOV_genrikh_yagoda
+		# 	}
+		# 	modifier = { #There are no purges available
+		# 		factor = 0
+		# 		NOT = {
+		# 			any_character = {
+		# 				is_character_slot = political_advisor
+		# 				SOV_character_can_be_purged = yes
+		# 			}
+		# 		}
+		# 		has_idea = SOV_understaffed_bureaucracy
+		# 		has_idea = SOV_lavrenty_beriya
+		# 	}
+		# 	SOV_pick_regular_purge_administration_type_effect = yes
+		# }
 		25 = { # ARMY
 			modifier = { #Don't repeat last purge please
 				factor = 0.1
@@ -1655,7 +1654,7 @@ SOV_trigger_regular_purge_advisor_accused_effect = {
 				#ROOT = { log = "This is [THIS.GetName] // PREV is [PREV.GetName] // ROOT is [ROOT.GetName] // VAR is [?ROOT.SOV_purged_character_for_loc.GetName]" } #Debug
 			}
 		}
-		#log = "Person is [?SOV_purged_character_for_loc.GetName]" #Debug
+		#log = "Person is [?SOV_purged_character_for_loc.GetName]" #Debug 
 	}
 
 	country_event = NSB_soviet_paranoia_system_events.11 # TRIGGER EVENT
@@ -2009,7 +2008,6 @@ SOV_great_purge_army_trial_of_the_generals_effect = {
 						}
 						has_character_flag = SOV_targeted_for_purge_flag
 						SOV_character_can_be_purged = yes
-						NOT = { has_trait = trait_SOV_cowed_by_stalin_army }
 					}
 					PREV = { add_to_temp_variable = { temp_targets_index = 1 } }
 				}
@@ -2042,88 +2040,88 @@ SOV_great_purge_army_trial_of_the_generals_effect = {
 
 			# PICK 1 FIELD MARSHAL
 			hidden_effect = {
-				# if = { # Pick an already-targeted Marshal, if any
-				# 	limit = {
-				# 		any_army_leader = {
-				# 			is_field_marshal = yes
-				# 			has_character_flag = SOV_potential_target_flag
-				# 			SOV_character_can_be_purged = yes
-				# 			NOT = { has_trait = trait_SOV_stalinist }
-				# 		}
-				# 	}
-				# 	random_army_leader = {
-				# 		limit = {
-				# 			is_field_marshal = yes
-				# 			has_character_flag = SOV_potential_target_flag
-				# 			SOV_character_can_be_purged = yes
-				# 			NOT = { has_trait = trait_SOV_stalinist }
-				# 		}
-				# 		set_character_flag = SOV_targeted_for_purge_flag
-				# 		clr_character_flag = SOV_potential_target_flag
-				# 		#ROOT = { log = "Chosen Marshal - Prioritized - [PREV.GetName]" } #Debug
-				# 	}
-				# 	add_to_temp_variable = { temp_targets_index = 1 }
-				# }
-				# else_if = { # Pick an already-targeted Army advisor, if any
-				# 	limit = {
-				# 		any_character = {
-				# 			has_army_ledger = yes
-				# 			has_character_flag = SOV_potential_target_flag
-				# 			SOV_character_can_be_purged = yes
-				# 			NOT = { has_trait = trait_SOV_stalinist }
-				# 		}
-				# 	}
-				# 	random_character = {
-				# 		limit = {
-				# 			has_army_ledger = yes
-				# 			has_character_flag = SOV_potential_target_flag
-				# 			SOV_character_can_be_purged = yes
-				# 			NOT = { has_trait = trait_SOV_stalinist }
-				# 		}
-				# 		set_character_flag = SOV_targeted_for_purge_flag
-				# 		clr_character_flag = SOV_potential_target_flag
-				# 		#ROOT = { log = "Chosen Advisor - Prioritized - [PREV.GetName]" } Debug
-				# 	}
-				# 	add_to_temp_variable = { temp_targets_index = 1 }
-				# }
-				# else_if = { # Pick a random marshal
-				# 	limit = {
-				# 		any_army_leader = {
-				# 			is_field_marshal = yes
-				# 			SOV_character_can_be_purged = yes
-				# 			NOT = { has_trait = trait_SOV_stalinist }
-				# 		}
-				# 	}
-				# 	random_army_leader = {
-				# 		limit = {
-				# 			is_field_marshal = yes
-				# 			SOV_character_can_be_purged = yes
-				# 			NOT = { has_trait = trait_SOV_stalinist }
-				# 		}
-				# 		set_character_flag = SOV_targeted_for_purge_flag
-				# 		#ROOT = { log = "Chosen Marshal - Random - [PREV.GetName]" } #Debug
-				# 	}
-				# 	add_to_temp_variable = { temp_targets_index = 1 }
-				# }
-				# else_if = { # Pick a random army advisor
-				# 	limit = {
-				# 		any_character = {
-				# 			has_army_ledger = yes
-				# 			SOV_character_can_be_purged = yes
-				# 			NOT = { has_trait = trait_SOV_stalinist }
-				# 		}
-				# 	}
-				# 	random_character = {
-				# 		limit = {
-				# 			has_army_ledger = yes
-				# 			SOV_character_can_be_purged = yes
-				# 			NOT = { has_trait = trait_SOV_stalinist }
-				# 		}
-				# 		set_character_flag = SOV_targeted_for_purge_flag
-				# 		#ROOT = { log = "Chosen Advisor - Random - [PREV.GetName]" } #Debug
-				# 	}
-				# 	add_to_temp_variable = { temp_targets_index = 1 }
-				# }
+				if = { # Pick an already-targeted Marshal, if any
+					limit = {
+						any_army_leader = {
+							is_field_marshal = yes
+							has_character_flag = SOV_potential_target_flag
+							SOV_character_can_be_purged = yes
+							NOT = { has_trait = trait_SOV_stalinist }
+						}
+					}
+					random_army_leader = {
+						limit = {
+							is_field_marshal = yes
+							has_character_flag = SOV_potential_target_flag
+							SOV_character_can_be_purged = yes
+							NOT = { has_trait = trait_SOV_stalinist }
+						}
+						set_character_flag = SOV_targeted_for_purge_flag
+						clr_character_flag = SOV_potential_target_flag
+						#ROOT = { log = "Chosen Marshal - Prioritized - [PREV.GetName]" } #Debug
+					}
+					add_to_temp_variable = { temp_targets_index = 1 }
+				}
+				else_if = { # Pick an already-targeted Army advisor, if any
+					limit = {
+						any_character = {
+							has_army_ledger = yes
+							has_character_flag = SOV_potential_target_flag
+							SOV_character_can_be_purged = yes
+							NOT = { has_trait = trait_SOV_stalinist }
+						}
+					}
+					random_character = {
+						limit = {
+							has_army_ledger = yes
+							has_character_flag = SOV_potential_target_flag
+							SOV_character_can_be_purged = yes
+							NOT = { has_trait = trait_SOV_stalinist }
+						}
+						set_character_flag = SOV_targeted_for_purge_flag
+						clr_character_flag = SOV_potential_target_flag
+						#ROOT = { log = "Chosen Advisor - Prioritized - [PREV.GetName]" } Debug
+					}
+					add_to_temp_variable = { temp_targets_index = 1 }
+				}
+				else_if = { # Pick a random marshal
+					limit = {
+						any_army_leader = {
+							is_field_marshal = yes
+							SOV_character_can_be_purged = yes
+							NOT = { has_trait = trait_SOV_stalinist }
+						}
+					}
+					random_army_leader = {
+						limit = {
+							is_field_marshal = yes
+							SOV_character_can_be_purged = yes
+							NOT = { has_trait = trait_SOV_stalinist }
+						}
+						set_character_flag = SOV_targeted_for_purge_flag
+						#ROOT = { log = "Chosen Marshal - Random - [PREV.GetName]" } #Debug
+					}
+					add_to_temp_variable = { temp_targets_index = 1 }
+				}
+				else_if = { # Pick a random army advisor
+					limit = {
+						any_character = {
+							has_army_ledger = yes
+							SOV_character_can_be_purged = yes
+							NOT = { has_trait = trait_SOV_stalinist }
+						}
+					}
+					random_character = {
+						limit = {
+							has_army_ledger = yes
+							SOV_character_can_be_purged = yes
+							NOT = { has_trait = trait_SOV_stalinist }
+						}
+						set_character_flag = SOV_targeted_for_purge_flag
+						#ROOT = { log = "Chosen Advisor - Random - [PREV.GetName]" } #Debug
+					}
+					add_to_temp_variable = { temp_targets_index = 1 }
+				}
 
 				while_loop_effect = {
 					limit = {
@@ -2136,7 +2134,6 @@ SOV_great_purge_army_trial_of_the_generals_effect = {
 								has_character_flag = SOV_potential_target_flag
 								SOV_character_can_be_purged = yes
 								NOT = { has_trait = trait_SOV_stalinist }
-								NOT = { has_trait = trait_SOV_cowed_by_stalin_army }
 							}
 						}
 						#log = "Prioritized General" #Debug
@@ -2146,7 +2143,6 @@ SOV_great_purge_army_trial_of_the_generals_effect = {
 								has_character_flag = SOV_potential_target_flag
 								SOV_character_can_be_purged = yes
 								NOT = { has_trait = trait_SOV_stalinist }
-								NOT = { has_trait = trait_SOV_cowed_by_stalin_army }
 							}
 							set_character_flag = SOV_targeted_for_purge_flag
 							clr_character_flag = SOV_potential_target_flag
@@ -2165,7 +2161,6 @@ SOV_great_purge_army_trial_of_the_generals_effect = {
 								has_character_flag = SOV_potential_target_flag
 								SOV_character_can_be_purged = yes
 								NOT = { has_trait = trait_SOV_stalinist }
-								NOT = { has_trait = trait_SOV_cowed_by_stalin_army }
 							}
 						}
 						random_character = {
@@ -2177,7 +2172,6 @@ SOV_great_purge_army_trial_of_the_generals_effect = {
 								has_character_flag = SOV_potential_target_flag
 								SOV_character_can_be_purged = yes
 								NOT = { has_trait = trait_SOV_stalinist }
-								NOT = { has_trait = trait_SOV_cowed_by_stalin_army }
 							}
 							set_character_flag = SOV_targeted_for_purge_flag
 							clr_character_flag = SOV_potential_target_flag
@@ -2193,7 +2187,6 @@ SOV_great_purge_army_trial_of_the_generals_effect = {
 								NOT = { has_character_flag = SOV_targeted_for_purge_flag }
 								SOV_character_can_be_purged = yes
 								NOT = { has_trait = trait_SOV_stalinist }
-								NOT = { has_trait = trait_SOV_cowed_by_stalin_army }
 							}
 						}
 						random_army_leader = {
@@ -2202,7 +2195,6 @@ SOV_great_purge_army_trial_of_the_generals_effect = {
 								NOT = { has_character_flag = SOV_targeted_for_purge_flag }
 								SOV_character_can_be_purged = yes
 								NOT = { has_trait = trait_SOV_stalinist }
-								NOT = { has_trait = trait_SOV_cowed_by_stalin_army }
 							}
 							set_character_flag = SOV_targeted_for_purge_flag
 
@@ -2220,7 +2212,6 @@ SOV_great_purge_army_trial_of_the_generals_effect = {
 								NOT = { has_character_flag = SOV_targeted_for_purge_flag }
 								SOV_character_can_be_purged = yes
 								NOT = { has_trait = trait_SOV_stalinist }
-								NOT = { has_trait = trait_SOV_cowed_by_stalin_army }
 							}
 						}
 						random_army_leader = {
@@ -2232,7 +2223,6 @@ SOV_great_purge_army_trial_of_the_generals_effect = {
 								NOT = { has_character_flag = SOV_targeted_for_purge_flag }
 								SOV_character_can_be_purged = yes
 								NOT = { has_trait = trait_SOV_stalinist }
-								NOT = { has_trait = trait_SOV_cowed_by_stalin_army }
 							}
 							set_character_flag = SOV_targeted_for_purge_flag
 
@@ -3028,93 +3018,93 @@ SOV_foreign_politics_decision_cost_reduction_effect = { #Add more diplomacy vars
 	round_variable = SOV_sinkiang_proposal_cost
 }
 
-SOV_approach_sinkiang_diplomacy_effect = {
-	add_ai_strategy = {
-		type = befriend
-		id = SIK			
-		value = 15
-	}
-	add_ai_strategy = {
-		type = alliance
-		id = SIK		
-		value = 15
-	}
-	SIK = {
-		add_ai_strategy = {
-			type = befriend
-			id = SOV			
-			value = 10
-		}
-		add_ai_strategy = {
-			type = alliance
-			id = CHI		
-			value = -5
-		}
-		add_ai_strategy = {
-			type = alliance
-			id = PRC		
-			value = -5
-		}
-		# add_ai_strategy = {
-		# 	type = alliance
-		# 	id = XSM		
-		# 	value = -5
-		# }
-		# add_ai_strategy = {
-		# 	type = alliance
-		# 	id = SHX		
-		# 	value = -5
-		# }
-		# add_ai_strategy = {
-		# 	type = alliance
-		# 	id = YUN		
-		# 	value = -5
-		# }
-		# add_ai_strategy = {
-		# 	type = alliance
-		# 	id = GXC		
-		# 	value = -5
-		# }
-		# add_ai_strategy = {
-		# 	type = alliance
-		# 	id = MEN		
-		# 	value = -5
-		# }
-		add_ai_strategy = {
-			type = alliance
-			id = MAN		
-			value = -5
-		}
-	}
-}
+# SOV_approach_sinkiang_diplomacy_effect = {
+# 	# add_ai_strategy = {
+# 	# 	type = befriend
+# 	# 	id = SIK			
+# 	# 	value = 15
+# 	# }
+# 	# add_ai_strategy = {
+# 	# 	type = alliance
+# 	# 	id = SIK		
+# 	# 	value = 15
+# 	# }
+# 	# SIK = {
+# 	# 	add_ai_strategy = {
+# 	# 		type = befriend
+# 	# 		id = SOV			
+# 	# 		value = 10
+# 	# 	}
+# 	# 	add_ai_strategy = {
+# 	# 		type = alliance
+# 	# 		id = CHI		
+# 	# 		value = -5
+# 	# 	}
+# 		# add_ai_strategy = {
+# 		# 	type = alliance
+# 		# 	id = PRC		
+# 		# 	value = -5
+# 		# }
+# 		# add_ai_strategy = {
+# 		# 	type = alliance
+# 		# 	id = XSM		
+# 		# 	value = -5
+# 		# }
+# 		# add_ai_strategy = {
+# 		# 	type = alliance
+# 		# 	id = SHX		
+# 		# 	value = -5
+# 		# }
+# 		# add_ai_strategy = {
+# 		# 	type = alliance
+# 		# 	id = YUN		
+# 		# 	value = -5
+# 		# }
+# 		# add_ai_strategy = {
+# 		# 	type = alliance
+# 		# 	id = GXC		
+# 		# 	value = -5
+# 		# }
+# 		add_ai_strategy = {
+# 			type = alliance
+# 			id = MEN		
+# 			value = -5
+# 		}
+# 		add_ai_strategy = {
+# 			type = alliance
+# 			id = MAN		
+# 			value = -5
+# 		}
+# 	}
+# }
 
 SOV_set_appropriate_national_academy_of_sciences_flag_effect = {
 	#log = "ROOT is [ROOT.GetName]"
 	#log = "FROM is [FROM.GetName]"
-	if = {
-		limit = {
-			FROM = { tag = BLR }
-		}
-		ROOT = { set_country_flag = SOV_national_academy_of_sciences_built_BLR_flag }
-	}
-	else_if = {
-		limit = {
-			FROM = { tag = UKR }
-		}
-		ROOT = { set_country_flag = SOV_national_academy_of_sciences_built_UKR_flag }
-	}
+	# if = {
+	# 	limit = {
+	# 		FROM = { tag = BLR }
+	# 	}
+	# 	ROOT = { set_country_flag = SOV_national_academy_of_sciences_built_BLR_flag }
+	# }
+	# else_if = {
+	# 	limit = {
+	# 		FROM = { tag = UKR }
+	# 	}
+	# 	ROOT = { set_country_flag = SOV_national_academy_of_sciences_built_UKR_flag }
+	# }
 	# else_if = {
 	# 	limit = {
 	# 		FROM = { tag = KAZ }
 	# 	}
 	# 	ROOT = { set_country_flag = SOV_national_academy_of_sciences_built_KAZ_flag }
 	# }
-	else_if = {
-		limit = {
-			FROM = { tag = GEO }
-		}
-		ROOT = { set_country_flag = SOV_national_academy_of_sciences_built_GEO_flag }
-	}
+	# else_if = {
+	# 	limit = {
+	# 		FROM = { tag = GEO }
+	# 	}
+	# 	ROOT = { set_country_flag = SOV_national_academy_of_sciences_built_GEO_flag }
+	# }
 	# else_if = {
 	# 	limit = {
 	# 		FROM = { tag = ARM }
@@ -3169,7 +3159,7 @@ SOV_set_appropriate_national_academy_of_sciences_flag_effect = {
 	# 	}
 	# 	ROOT = { set_country_flag = SOV_national_academy_of_sciences_built_KUB_flag }
 	# }
-	else_if = {
+	if = {
 		limit = {
 			FROM = { tag = EST }
 		}
@@ -4057,10 +4047,10 @@ SOV_damage_relocated_military_factories_effect = {
 				NOT = { is_fully_controlled_by = ROOT }
 			}
 		}
-		damage_building = { type = arms_factory damage = 0.8 }
+		damage_building = { type = arms_factory damage = 0.9 }
 	}
 	else = {
-		damage_building = { type = arms_factory damage = 0.4 }
+		damage_building = { type = arms_factory damage = 0.5 }
 	}
 }
 
@@ -4071,10 +4061,10 @@ SOV_damage_relocated_civilian_factories_effect = {
 				NOT = { is_fully_controlled_by = ROOT }
 			}
 		}
-		damage_building = { type = industrial_complex damage = 0.8 }
+		damage_building = { type = industrial_complex damage = 0.9 }
 	}
 	else = {
-		damage_building = { type = industrial_complex damage = 0.4 }
+		damage_building = { type = industrial_complex damage = 0.5 }
 	}
 }
 
@@ -4327,15 +4317,6 @@ SOV_relocate_industry_in_appropriate_state_effect = {
 SOV_kill_trotsky_effect = { # Poor bwoy D: -> ROOT = SOV (or it doesn't work! :D)
 	#log = "ROOT is [ROOT.GetName] // THIS is [THIS.GetName] // FROM is [FROM.GetName]" -> Everything is SOV but retire_character tooltip keeps saying "Retire char from [nothing]"
 	set_global_flag = flag_trotsky_dead
-	if = {
-		limit = {
-			has_idea = trotskyite_plot_nsb
-		}
-		swap_ideas = {
-			remove_idea = trotskyite_plot_nsb
-			add_idea = trotskyite_plot_purged
-		}
-	}
 	SOV_lev_trotsky = {
 		set_character_flag = SOV_character_purged_flag
 		retire = yes
@@ -4370,6 +4351,8 @@ SOV_kill_trotsky_effect = { # Poor bwoy D: -> ROOT = SOV (or it doesn't work! :D
 		#	}
 		#}
 	}
+	ROOT = { set_country_flag = SOV_raided_trotskys_villa_flag }
+	news_event = nsb_news.100
 }
 
 
@@ -6746,7 +6729,7 @@ SOV_set_up_extras_from_concessions = {
 		IF = {
 			limit = { check_variable = { SOV.SOV_japanese_fighters > 0 } }
 			add_equipment_to_stockpile = {
-			    type = fighter_equipment
+			    type = small_plane_airframe
 				amount = SOV.SOV_japanese_fighters
 				producer = JAP
 			}
@@ -6810,7 +6793,7 @@ SOV_set_up_extras_from_concessions = {
 		}
 	}
 	for_each_loop = {
-		array = SOV.some_weapons_array
+		array = SOV.few_weapons_array
 		value = weapons_country
 		add_equipment_to_stockpile = {
 			type = infantry_equipment
@@ -6954,44 +6937,44 @@ SOV_promote_to_country_leader_provisional = {
 }
 # japanese_expeditionary_leader_flag
 SOV_set_up_japanese_troops = {
-	# division_template = {
-	#     name = "Japanese Expeditionary Force"
-	#     division_names_group = SOV_JAP_INF
-	#     is_locked = yes
-	#     priority = 1
-	#     template_counter = 3
-	#     regiments = {
-	#         infantry = { x = 0 y = 0 }
-	#         infantry = { x = 0 y = 1 }
-	#         infantry = { x = 0 y = 2 }
-	#         infantry = { x = 1 y = 0 }
-	#         infantry = { x = 1 y = 1 }
-	#         infantry = { x = 1 y = 2 }
-	#         artillery_brigade = { x= 2 y = 0}
-	#         artillery_brigade = { x= 2 y = 1}
-	#     }
-	#     is_locked = yes
-	# }
-	# JAP = {
-	# 	var:SOV.SOV_japanese_general = {
-	# 		unit_leader_event = {
-	# 			id = NSB_soviet_civil_war_common.129
-	# 			hours = 1
-	# 		}
-	# 	}
-	# }
+	division_template = {
+	    name = "Japanese Expeditionary Force"
+	    division_names_group = SOV_JAP_INF
+	    is_locked = yes
+	    priority = 1
+	    template_counter = 3
+	    regiments = {
+	        infantry = { x = 0 y = 0 }
+	        infantry = { x = 0 y = 1 }
+	        infantry = { x = 0 y = 2 }
+	        infantry = { x = 1 y = 0 }
+	        infantry = { x = 1 y = 1 }
+	        infantry = { x = 1 y = 2 }
+	        artillery_brigade = { x= 2 y = 0}
+	        artillery_brigade = { x= 2 y = 1}
+	    }
+	    is_locked = yes
+	}
+	JAP = {
+		var:SOV.SOV_japanese_general = {
+			unit_leader_event = {
+				id = NSB_soviet_civil_war_common.129
+				hours = 1
+			}
+		}
+	}
 
-	# var:SOV_civil_war_start_state = {
-	# 	create_unit = {
-	# 		division = "division_template = \"Japanese Expeditionary Force\" start_experience_factor = 0.2 start_equipment_factor = 0.95" owner = ROOT count = 24
-	# 	}
+	var:SOV_civil_war_start_state = {
+		create_unit = {
+			division = "division_template = \"Japanese Expeditionary Force\" start_experience_factor = 0.2 start_equipment_factor = 0.95" owner = ROOT count = 24
+		}
 		
 
-	# }
+	}
 
-	# # Add air support 
-	# add_equipment_to_stockpile = { type = fighter_equipment  amount = 100 producer = JAP }
-	# add_equipment_to_stockpile = { type = tac_bomber_equipment  amount = 50 producer = JAP }
+	# Add air support 
+	add_equipment_to_stockpile = { type = small_plane_airframe  amount = 100 producer = JAP }
+	add_equipment_to_stockpile = { type = medium_plane_airframe  amount = 50 producer = JAP }
 
 	
 }
@@ -7229,7 +7212,7 @@ SOV_set_up_civil_war_army_fractions = {
 		}
 		IF = { 
 			limit = { 
-				SOV = { is_ai = yes }
+				SOV = { is_ai = yes } 
 				check_variable = { ROOT.SOV_exiles_army_support < 0.55 }
 			}
 			add_to_variable = { ROOT.SOV_exiles_army_support = 0.15 }
@@ -8224,14 +8207,7 @@ SOV_the_eyes_fear_units = {
 				}
 				OR  = {
 					region = 149 # Eastern Siberia
-					region = 256
-					region = 257
-					region = 258
-					region = 259
-					region = 260
 					region = 151 # Western Siberia
-					region = 261 
-					region = 262 
 				}
 				NOT = { has_state_flag = SOV_ruki_flag } # Only one per state
 			}
@@ -8879,7 +8855,7 @@ SOV_decrease_all_opposition_air = {
 	SOV_get_centre_military_support = yes 
 }
 
-SOV_set_up_dynamic_modifiers_civil_war = { #Used for Stalinist side in the CW
+SOV_set_up_dynamic_modifiers_civil_war = {
 	### Set up modifiers based on which ones have been added
 
 	# opposition Support modifier. New, appearing at the start of the Civil War
@@ -8934,30 +8910,26 @@ SOV_set_up_dynamic_modifiers_civil_war = { #Used for Stalinist side in the CW
 
 	### Set variables
 	# Copy Red Army Dynamic Modifier
-	set_variable = { SOS.SOV_the_red_army_mobilization_laws_cost_factor = SOV.SOV_the_red_army_mobilization_laws_cost_factor }
-	set_variable = { SOS.SOV_the_red_army_army_org_factor = SOV.SOV_the_red_army_army_org_factor }
-	set_variable = { SOS.SOV_the_red_army_experience_gain_army_factor = SOV.SOV_the_red_army_experience_gain_army_factor }
-	set_variable = { SOS.SOV_the_red_army_experience_loss_factor = SOV.SOV_the_red_army_experience_loss_factor }
-	set_variable = { SOS.SOV_the_red_army_mobilization_speed = SOV.SOV_the_red_army_mobilization_speed }
-	set_variable = { SOS.SOV_the_red_army_conscription_factor = SOV.SOV_the_red_army_conscription_factor }
-	set_variable = { SOS.SOV_the_red_army_modifier_army_sub_unit_cavalry_speed_factor = SOV.SOV_the_red_army_modifier_army_sub_unit_cavalry_speed_factor }
-	set_variable = { SOS.SOV_the_red_army_cavalry_attack_factor = SOV.SOV_the_red_army_cavalry_attack_factor }
-	set_variable = { SOS.SOV_the_red_army_training_time_factor = SOV.SOV_the_red_army_training_time_factor }
-	set_variable = { SOS.SOV_the_red_army_winter_attrition_factor = SOV.SOV_the_red_army_winter_attrition_factor }
-	set_variable = { SOS.SOV_the_red_army_heat_attrition_factor = SOV.SOV_the_red_army_heat_attrition_factor }
-	set_variable = { SOS.SOV_the_red_army_acclimatization_cold_climate_gain_factor = SOV.SOV_the_red_army_acclimatization_cold_climate_gain_factor }
-	set_variable = { SOS.SOV_the_red_army_acclimatization_hot_climate_gain_factor = SOV.SOV_the_red_army_acclimatization_hot_climate_gain_factor }
-	set_variable = { SOS.SOV_the_red_army_terrain_trait_xp_gain_factor = SOV.SOV_the_red_army_terrain_trait_xp_gain_factor }
-	set_variable = { SOS.SOV_the_red_army_unit_infantry_design_cost_factor = SOV.SOV_the_red_army_unit_infantry_design_cost_factor }
-	set_variable = { SOS.SOV_the_red_army_unit_artillery_brigade_design_cost_factor = SOV.SOV_the_red_army_unit_artillery_brigade_design_cost_factor }
-	set_variable = { SOS.SOV_the_red_army_army_org_regain = SOV.SOV_the_red_army_army_org_regain }
-	set_variable = { SOS.SOV_the_red_army_special_forces_cap = SOV.SOV_the_red_army_special_forces_cap }
-	set_variable = { SOS.SOV_the_red_army_land_doctrine_cost_factor = SOV.SOV_the_red_army_land_doctrine_cost_factor }
-	set_variable = { SOS.SOV_the_red_army_cas_damage_reduction = SOV.SOV_the_red_army_cas_damage_reduction }
-	set_variable = { SOS.SOV_the_red_army_max_dig_in = SOV.SOV_the_red_army_max_dig_in }
-	set_variable = { SOS.SOV_the_red_army_dig_in_speed_factor = SOV.SOV_the_red_army_dig_in_speed_factor }
-	set_variable = { SOS.SOV_the_red_army_operative_slot = SOV.SOV_the_red_army_operative_slot }
-	set_variable = { SOS.SOV_the_red_army_max_command_power_mult = SOV.SOV_the_red_army_max_command_power_mult }
+	set_variable = { SOS.SOV_the_red_army_army_org_factor = SOV.SOV_the_red_army_army_org_factor}
+	set_variable = { SOS.SOV_the_red_army_experience_gain_army_factor = SOV.SOV_the_red_army_experience_gain_army_factor}
+	set_variable = { SOS.SOV_the_red_army_experience_loss_factor = SOV.SOV_the_red_army_experience_loss_factor}
+	set_variable = { SOS.SOV_the_red_army_mobilization_speed = SOV.SOV_the_red_army_mobilization_speed}
+	set_variable = { SOS.SOV_the_red_army_conscription_factor = SOV.SOV_the_red_army_conscription_factor}
+	set_variable = { SOS.SOV_the_red_army_modifier_army_sub_unit_cavalry_speed_factor = SOV.SOV_the_red_army_modifier_army_sub_unit_cavalry_speed_factor}
+	set_variable = { SOS.SOV_the_red_army_cavalry_attack_factor = SOV.SOV_the_red_army_cavalry_attack_factor}
+	set_variable = { SOS.SOV_the_red_army_training_time_factor = SOV.SOV_the_red_army_training_time_factor}
+	set_variable = { SOS.SOV_the_red_army_winter_attrition_factor = SOV.SOV_the_red_army_heat_attrition_factor}
+	set_variable = { SOS.SOV_the_red_army_winter_attrition_factor = SOV.SOV_the_red_army_heat_attrition_factor}
+	set_variable = { SOS.SOV_the_red_army_acclimatization_cold_climate_gain_factor = SOV.SOV_the_red_army_acclimatization_cold_climate_gain_factor}
+	set_variable = { SOS.SOV_the_red_army_acclimatization_hot_climate_gain_factor = SOV.SOV_the_red_army_acclimatization_hot_climate_gain_factor}
+	set_variable = { SOS.SOV_the_red_army_unit_infantry_design_cost_factor = SOV.SOV_the_red_army_unit_infantry_design_cost_factor}
+	set_variable = { SOS.SOV_the_red_army_unit_artillery_brigade_design_cost_factor = SOV.SOV_the_red_army_unit_artillery_brigade_design_cost_factor}
+	set_variable = { SOS.SOV_the_red_army_land_doctrine_cost_factor = SOV.SOV_the_red_army_land_doctrine_cost_factor}
+	set_variable = { SOS.SOV_the_red_army_cas_damage_reduction = SOV.SOV_the_red_army_cas_damage_reduction}
+	set_variable = { SOS.SOV_the_red_army_max_dig_in = SOV.SOV_the_red_army_max_dig_in}
+	set_variable = { SOS.SOV_the_red_army_dig_in_speed_factor = SOV.SOV_the_red_army_dig_in_speed_factor}
+	set_variable = { SOS.SOV_the_red_army_operative_slot = SOV.SOV_the_red_army_operative_slot}
+	set_variable = { SOS.SOV_the_red_army_max_command_power_mult = SOV.SOV_the_red_army_max_command_power_mult}
 
 	# Copy Air Force Dynamic Modifiers
 	set_variable = { SOS.SOV_soviet_airforce_air_accidents_factor = SOV.SOV_soviet_airforce_air_accidents_factor }
@@ -8965,8 +8937,7 @@ SOV_set_up_dynamic_modifiers_civil_war = { #Used for Stalinist side in the CW
 	set_variable = { SOS.SOV_soviet_airforce_air_weather_penalty = SOV.SOV_yyy }
 	set_variable = { SOS.SOV_soviet_airforce_air_wing_xp_loss_when_killed_factor = SOV.SOV_soviet_airforce_air_wing_xp_loss_when_killed_factor }
 	set_variable = { SOS.SOV_soviet_airforce_air_mission_xp_gain_factor = SOV.SOV_soviet_airforce_air_mission_xp_gain_factor }
-	set_variable = { SOS.SOV_soviet_airforce_air_ace_generation_chance_factor = SOV.SOV_soviet_airforce_air_ace_generation_chance_factor }
-	set_variable = { SOS.SOV_soviet_airforce_air_training_xp_gain_factor = SOV.SOV_soviet_airforce_air_training_xp_gain_factor }
+	set_variable = { SOS.SOV_soviet_airforce_aircraft_production_focus_tt = SOV.SOV_soviet_airforce_aircraft_production_focus_tt }
 	set_variable = { SOS.SOV_soviet_airforce_aircraft_manufacturer_cost_factor = SOV.SOV_soviet_airforce_aircraft_manufacturer_cost_factor }
 	set_variable = { SOS.SOV_soviet_airforce_air_range_factor = SOV.SOV_soviet_airforce_air_range_factor }
 	set_variable = { SOS.SOV_soviet_airforce_air_fuel_consumption_factor = SOV.SOV_soviet_airforce_air_fuel_consumption_factor }
@@ -8993,151 +8964,6 @@ SOV_set_up_dynamic_modifiers_civil_war = { #Used for Stalinist side in the CW
 	set_variable = { SOS.SOV_fyp_production_speed_arms_factory_factor = SOV.SOV_fyp_production_speed_arms_factory_factor }
 	set_variable = { SOS.SOV_fyp_production_speed_industrial_complex_factor = SOV.SOV_fyp_production_speed_industrial_complex_factor }
 
-	### PROPAGANDA ###
-	set_variable = { SOS.SOV_new_propaganda_campaign = SOV.SOV_new_propaganda_campaign } #Used to pick a poster slot
-	set_variable = { SOS.SOV_propaganda_campaign_to_remove = SOV.SOV_propaganda_campaign_to_remove } #Used to reset a poster slot
-	set_variable = { SOS.SOV_propaganda_locked_slot_index = SOV.SOV_propaganda_locked_slot_index } #### === INSERT LOCKED SLOT INDEX IN STRIPE HERE === ####
-	set_variable = { SOS.SOV_propaganda_empty_slot_index = SOV.SOV_propaganda_empty_slot_index } #### === INSERT EMPTY SLOT INDEX IN STRIPE HERE === ####
-	set_variable = { SOS.SOV_poster_left_icon_frame = SOV_propaganda_locked_slot_index } #Set up the appropriate empty slot GFX
-	set_variable = { SOS.SOV_poster_center_icon_frame = SOV_propaganda_locked_slot_index } #Set up the appropriate locked slot GFX
-	set_variable = { SOS.SOV_poster_right_icon_frame = SOV_propaganda_locked_slot_index } #Set up the appropriate locked slot GFX
-
-	set_variable = { SOS.SOV_default_propaganda_campaign_duration = SOV.SOV_default_propaganda_campaign_duration } #Duration days for propaganda campaigns
-	set_variable = { SOS.SOV_default_propaganda_campaign_cooldown = SOV.SOV_default_propaganda_campaign_cooldown } #Days of cooldown after a Propaganda Campaign has been finished.
-	set_variable = { SOS.SOV_default_propaganda_campaign_old_days = SOV.SOV_default_propaganda_campaign_old_days } #A propaganda poster will age (change GFX) after this amount of days have passed since the campaign was activated
-	set_variable = { SOS.SOV_propaganda_cost = SOV.SOV_propaganda_cost } #Used not only to set the rest of propaganda campaign costs here, but also used to increase each campaign cost after being activated
-	set_variable = { SOS.SOV_propaganda_cost_increase = SOV.SOV_propaganda_cost_increase } #This will multiply the regular propaganda_cost each time a propaganda campaign is activated, so that it's cost is increased
-	set_variable = { SOS.SOV_propaganda_motherland_calls_cost = SOV_propaganda_cost } # ID = 2
-	set_variable = { SOS.SOV_propaganda_victory_at_hand_cost = SOV_propaganda_cost } # ID = 3
-	set_variable = { SOS.SOV_propaganda_defend_moscow_cost = SOV_propaganda_cost } # ID = 4
-	set_variable = { SOS.SOV_propaganda_fight_to_the_last_cost = SOV_propaganda_cost } # ID = 5
-	set_variable = { SOS.SOV_propaganda_hit_of_hammer_cost = SOV_propaganda_cost } # ID = 6
-	set_variable = { SOS.SOV_propaganda_transport_cost = SOV_propaganda_cost } # ID = 7
-	set_variable = { SOS.SOV_propaganda_oil_for_the_motherland_cost = SOV_propaganda_cost } # ID = 8
-	set_variable = { SOS.SOV_propaganda_more_metal_cost = SOV_propaganda_cost } # ID = 9
-	set_variable = { SOS.SOV_propaganda_high_yield_cost = SOV_propaganda_cost } # ID = 10
-	set_variable = { SOS.SOV_propaganda_for_the_motherland_cost = SOV_propaganda_cost } # ID = 11
-	set_variable = { SOS.SOV_propaganda_heroes_forward_cost = SOV_propaganda_cost } # ID = 12
-	set_variable = { SOS.SOV_propaganda_anti_capitalism_cost = SOV_propaganda_cost } # ID = 13
-	set_variable = { SOS.SOV_propaganda_anti_fascism_cost = SOV_propaganda_cost } # ID = 14
-	set_variable = { SOS.SOV_propaganda_treacherous_enemy_cost = SOV_propaganda_cost } # ID = 15
-	set_variable = { SOS.SOV_propaganda_do_not_blab_cost = SOV_propaganda_cost } # ID = 16
-	set_variable = { SOS.SOV_propaganda_sweep_scum_out_cost = SOV_propaganda_cost } # ID = 17
-	set_variable = { SOS.SOV_propaganda_knowledge_cost = SOV_propaganda_cost } # ID = 18
-	set_variable = { SOS.SOV_propaganda_builders_of_communism_cost = SOV_propaganda_cost } # ID = 19
-	set_variable = { SOS.SOV_propaganda_glory_to_partisans_cost = SOV_propaganda_cost } # ID = 20
-	set_variable = { SOS.SOV_propaganda_death_to_invaders_cost = SOV_propaganda_cost } # ID = 21
-	set_variable = { SOS.SOV_propaganda_stalin_cost = SOV_propaganda_cost } # ID = 22
-	set_variable = { SOS.SOV_propaganda_rebuild_to_glory_cost = SOV_propaganda_cost } # ID = 23
-	set_variable = { SOS.SOV_propaganda_peace_cost = SOV_propaganda_cost } # ID = 24
-	set_variable = { SOS.SOV_propaganda_happy_life_cost = SOV_propaganda_cost } # ID = 25
-
-	set_variable = { SOS.SOV_propaganda_campaigns_taken = SOV.SOV_propaganda_campaigns_taken } #Used as a requirement for certain focuses
-
-	#GOSPROYEKTSTROY
-	set_variable = { SOS.SOV_gosproyektstroy_decision_cost = SOV.SOV_gosproyektstroy_decision_cost }
-	set_variable = { SOS.SOV_gosproyektstroy_decision_time = SOV.SOV_gosproyektstroy_decision_time }
-
-	#USSR ACADEMY OF SCIENCES
-	set_variable = { SOS.SOV_national_academy_of_sciences_research_increase = SOV.SOV_national_academy_of_sciences_research_increase } #Research speed increment for each Academy of Sciences built
-	set_variable = { SOS.SOV_academy_of_sciences_research_speed_factor = SOV.SOV_academy_of_sciences_research_speed_factor } #Var used by the dynamic modifier to apply the research bonus
-	set_variable = { SOS.SOV_national_academy_of_sciences_construction_cost = SOV.SOV_national_academy_of_sciences_construction_cost } #The cost for activating the decision to build an academy.
-	set_variable = { SOS.SOV_national_academy_of_sciences_construction_time = SOV.SOV_national_academy_of_sciences_construction_time } #The time it takes for the decision to finish and build an academy.
-	set_variable = { SOS.SOV_academies_required_for_atomic_bomb_project = SOV.SOV_academies_required_for_atomic_bomb_project } #Number of academies of sciences required to pick focus Soviet Atomic Bomb Project
-
-	#THIRD FIVE YEAR PLAN FACTORY REQUIREMENTS
-	set_variable = { SOS.SOV_fyp_factory_requirement_tier_1 = SOV.SOV_fyp_factory_requirement_tier_1 }
-	set_variable = { SOS.SOV_fyp_factory_requirement_tier_2 = SOV.SOV_fyp_factory_requirement_tier_2 }
-	set_variable = { SOS.SOV_fyp_factory_requirement_tier_3 = SOV.SOV_fyp_factory_requirement_tier_3 }
-	set_variable = { SOS.SOV_fyp_factory_requirement_tier_4 = SOV.SOV_fyp_factory_requirement_tier_4 }
-	set_variable = { SOS.SOV_fyp_factory_requirement_tier_5 = SOV.SOV_fyp_factory_requirement_tier_5 }
-
-	#THE RED FLEET NATIONAL SPIRIT VARS
-	set_variable = { SOS.SOV_red_fleet_navy_refit_ic_cost = SOV.SOV_red_fleet_navy_refit_ic_cost }
-	set_variable = { SOS.SOV_red_fleet_repair_speed_factor = SOV.SOV_red_fleet_repair_speed_factor }
-
-	set_variable = { SOS.SOV_red_fleet_naval_coordination = SOV.SOV_red_fleet_naval_coordination } #-> Advanced Maneuvers
-	set_variable = { SOS.SOV_red_fleet_navy_visibility = SOV.SOV_red_fleet_navy_visibility } #-> Advanced Maneuvers
-	set_variable = { SOS.SOV_red_fleet_positioning = SOV.SOV_red_fleet_positioning } #-> Advanced Maneuvers
-	set_variable = { SOS.SOV_red_fleet_screening_efficiency = SOV.SOV_red_fleet_screening_efficiency } #-> Advanced Maneuvers
-	set_variable = { SOS.SOV_red_fleet_naval_invasion_capacity = SOV.SOV_red_fleet_naval_invasion_capacity } #-> Marines
-	set_variable = { SOS.SOV_red_fleet_invasion_preparation = SOV.SOV_red_fleet_invasion_preparation } #-> Marines
-	set_variable = { SOS.SOV_red_fleet_special_forces_cap = SOV.SOV_red_fleet_special_forces_cap } #-> Marines
-
-	#DEFENSE INDUSTRY NATIONAL SPIRIT VARS
-	set_variable = { SOS.SOV_defense_industry_conversion_cost_civ_to_mil_factor = SOV.SOV_defense_industry_conversion_cost_civ_to_mil_factor }
-	set_variable = { SOS.SOV_defense_industry_production_factory_max_efficiency_factor = SOV.SOV_defense_industry_production_factory_max_efficiency_factor }
-	set_variable = { SOS.SOV_defense_industry_production_factory_efficiency_gain_factor = SOV.SOV_defense_industry_production_factory_efficiency_gain_factor }
-	set_variable = { SOS.SOV_defense_industry_line_change_production_efficiency_factor = SOV.SOV_defense_industry_line_change_production_efficiency_factor }
-
-	set_variable = { SOS.SOV_defense_industry_tank_manufacturer_cost_factor = SOV.SOV_defense_industry_tank_manufacturer_cost_factor } #-> Tank Designer focus
-	set_variable = { SOS.SOV_defense_industry_land_equipment_upgrade_xp_cost = SOV.SOV_defense_industry_land_equipment_upgrade_xp_cost } #-> Tankograd
-	set_variable = { SOS.SOV_defense_industry_materiel_manufacturer_cost_factor = SOV.SOV_defense_industry_materiel_manufacturer_cost_factor } #-> Equipment Designers focus
-	set_variable = { SOS.SOV_defense_industry_breakthrough_factor = SOV.SOV_defense_industry_breakthrough_factor } #-> PC of Mortar Armament
-	set_variable = { SOS.SOV_defense_industry_production_speed_coastal_bunker_factor = SOV.SOV_defense_industry_production_speed_coastal_bunker_factor } #-> Military Engineering University
-	set_variable = { SOS.SOV_defense_industry_production_speed_bunker_factor = SOV.SOV_defense_industry_production_speed_bunker_factor } #-> Military Engineering University
-	set_variable = { SOS.SOV_defense_industry_max_dig_in_factor = SOV.SOV_defense_industry_max_dig_in_factor } #-> Military Engineering University
-	set_variable = { SOS.SOV_defense_industry_army_artillery_defence_factor = SOV.SOV_defense_industry_army_artillery_defence_factor } #-> Military Engineering University
-
-	#THE POLITBURO SPIRIT VARS
-	set_variable = { SOS.SOV_the_politburo_communism_drift = SOV.SOV_the_politburo_communism_drift }
-
-	set_variable = { SOS.SOV_the_politburo_defensive_war_stability_factor = SOV.SOV_the_politburo_defensive_war_stability_factor } # -> Socialism in One Country
-	set_variable = { SOS.SOV_the_politburo_drift_defence_factor = SOV.SOV_the_politburo_drift_defence_factor } # -> Socialism in One Country
-	set_variable = { SOS.SOV_the_politburo_political_power_factor = SOV.SOV_the_politburo_political_power_factor } #0.05 -> The Stalin Constitution
-	set_variable = { SOS.SOV_the_politburo_economy_cost_factor = SOV.SOV_the_politburo_economy_cost_factor } # -> Secure the Administration
-	set_variable = { SOS.SOV_the_politburo_trade_laws_cost_factor = SOV.SOV_the_politburo_trade_laws_cost_factor } # -> Secure the Administration
-	set_variable = { SOS.SOV_the_politburo_mobilization_laws_cost_factor = SOV.SOV_the_politburo_mobilization_laws_cost_factor } # -> Secure the Administration
-	set_variable = { SOS.SOV_the_politburo_good_consumer_goods_factor = SOV.SOV_the_politburo_good_consumer_goods_factor } # -> Collectivization Process
-	set_variable = { SOS.SOV_the_politburo_production_speed_buildings_factor = SOV.SOV_the_politburo_production_speed_buildings_factor } # -> Collectivization Process
-	set_variable = { SOS.SOV_the_politburo_global_building_slots_factor = SOV.SOV_the_politburo_global_building_slots_factor } # -> Collectivization Process
-	set_variable = { SOS.SOV_the_politburo_max_surrender_limit_offset = SOV.SOV_the_politburo_max_surrender_limit_offset } # -> The Workers Dictatorship
-	set_variable = { SOS.SOV_the_politburo_max_command_power = SOV.SOV_the_politburo_max_command_power } # -> Organization, Centralization, Discipline
-	set_variable = { SOS.SOV_the_politburo_mobilization_speed = SOV.SOV_the_politburo_mobilization_speed } # -> Organization, Centralization, Discipline
-	set_variable = { SOS.SOV_the_politburo_operative_slot = SOV.SOV_the_politburo_operative_slot } # -> Behead the Snake
-	set_variable = { SOS.SOV_the_politburo_political_advisor_cost_factor = SOV.SOV_the_politburo_political_advisor_cost_factor } # -> Freedom of Debate, Unity of Action
-	set_variable = { SOS.SOV_the_politburo_opinion_gain_monthly_same_ideology_factor = SOV.SOV_the_politburo_opinion_gain_monthly_same_ideology_factor } # -> The Construction of Communism
-
-	#MERGE DESIGNERS VARS
-	set_variable = { SOS.SOV_merge_designers_cost = SOV.SOV_merge_designers_cost } #Default cost for merge designer decisions
-	set_variable = { SOS.SOV_merge_designers_time = SOV.SOV_merge_designers_time } #The time to complete merge designer decisions
-
-	#INDUSTRIAL RELOCATION
-	set_variable = { SOS.SOV_industrial_relocation_max_factories = SOV.SOV_industrial_relocation_max_factories } #Max amount of factories that will be relocated by a decision
-	set_variable = { SOS.SOV_industrial_relocation_days = SOV.SOV_industrial_relocation_days } #Decision duration (can be halved by focus)
-	set_variable = { SOS.SOV_industrial_relocation_trains_focus = SOV.SOV_industrial_relocation_trains_focus } #Trains to be used by the focus (20 trains / factory)
-	set_variable = { SOS.SOV_industrial_relocation_trains_focus_negative = SOV.SOV_industrial_relocation_trains_focus_negative } #Trains to be used by the focus (20 trains / factory)
-	set_variable = { SOS.SOV_industrial_relocation_trains_decision = SOV.SOV_industrial_relocation_trains_decision } #Trains to be used by the generic decision (20 trains / factory)
-	set_variable = { SOS.SOV_industrial_relocation_trains_decision_negative = SOV.SOV_industrial_relocation_trains_decision_negative } #Trains to be used by the generic decision (20 trains / factory)
-	set_variable = { SOS.SOV_industrial_relocation_trains_decision_aluminium = SOV.SOV_industrial_relocation_trains_decision_aluminium } #Trains to be used by the aluminium decision (20 trains / factory)
-	set_variable = { SOS.SOV_industrial_relocation_trains_decision_aluminium_negative = SOV.SOV_industrial_relocation_trains_decision_aluminium_negative } #Trains to be used by the aluminium decision (20 trains / factory)
-
-	#DECISIONS COST - For cost reductions
-	set_variable = { SOS.SOV_pressure_country_government_cost = SOV.SOV_pressure_country_government_cost }
-	set_variable = { SOS.SOV_promote_ideology_rallies_cost = SOV.SOV_promote_ideology_rallies_cost }
-	set_variable = { SOS.SOV_send_ultimatum_to_country_cost = SOV.SOV_send_ultimatum_to_country_cost }
-	set_variable = { SOS.SOV_send_infantry_equipment_cost = SOV.SOV_send_infantry_equipment_cost }
-	set_variable = { SOS.SOV_peace_deal_cost = SOV.SOV_peace_deal_cost }
-	set_variable = { SOS.SOV_sinkiang_proposal_cost = SOV.SOV_sinkiang_proposal_cost }
-	set_variable = { SOS.SOV_sinkiang_puppeting_cost = SOV.SOV_sinkiang_puppeting_cost } #This will increase for each state controlled by SIK excluding the ones owned at game start.
-	set_variable = { SOS.SOV_sinkiang_puppeting_cost_increase_per_state = SOV.SOV_sinkiang_puppeting_cost_increase_per_state }
-
-	#DECISIONS DAYS
-	set_variable = { SOS.SOV_sinkiang_mineral_prospection_days = SOV.SOV_sinkiang_mineral_prospection_days }
-	set_variable = { SOS.SOV_sinkiang_oil_prospection_days = SOV.SOV_sinkiang_oil_prospection_days }
-	set_variable = { SOS.SOV_sinkiang_military_aid_days = SOV.SOV_sinkiang_military_aid_days }
-	set_variable = { SOS.SOV_sinkiang_support_expansion_days = SOV.SOV_sinkiang_support_expansion_days }
-
-	#DECISIONS DAYS
-	set_variable = { SOS.SOV_pressure_government_days = SOV.SOV_pressure_government_days }
-	set_variable = { SOS.SOV_pressure_government_cd = SOV.SOV_pressure_government_cd }
-	set_variable = { SOS.SOV_ideological_rallies_days = SOV.SOV_ideological_rallies_days }
-	set_variable = { SOS.SOV_ultimatum_days = SOV.SOV_ultimatum_days }
-	set_variable = { SOS.SOV_send_infantry_equipment_cd = SOV.SOV_send_infantry_equipment_cd }
-	set_variable = { SOS.SOV_operation_countenance_preparation_days = SOV.SOV_operation_countenance_preparation_days }
-	set_variable = { SOS.SOV_operation_countenance_mission_days = SOV.SOV_operation_countenance_mission_days }
-
-	set_variable = { SOS.SOV_permanent_revolution_uprising_days = SOV.SOV_permanent_revolution_uprising_days }
 
 	# set_variable = { SOS.xxx = SOV.yyy }
 
@@ -10204,376 +10030,4 @@ SOV_replace_stuff_based_on_ideology_effect = {
 			add_dynamic_modifier = { modifier = SOV_the_red_army_dynamic_modifier }
 		}
 	}
-}
-
-SOV_stalins_air_needs = {
-	#enemy_army_bonus_air_superiority_factor = -0.20
-	set_variable = { sovietPlanes = 0 }
-	set_variable = { soviet_cas_debuff = 0 }
-	# Fighters
-	set_variable = { inArmyFighters2 = SOV.num_deployed_planes_with_type@fighter_equipment}
-	set_variable = { inStockpileFighters2 = SOV.num_equipment@fighter_equipment}
-	add_to_variable = { inArmyFighters2 = inStockpileFighters2 }
-
-	# Heavy Fighters
-	set_variable = { inArmyHeavyFighters2 = SOV.num_deployed_planes_with_type@heavy_fighter_equipment}
-	set_variable = { inStockpileHeavyFighters2 = SOV.num_equipment@heavy_fighter_equipment}
-	add_to_variable = { inArmyHeavyFighters2 = inStockpileHeavyFighters2 }
-
-	# CAS
-	set_variable = { inArmyCAS2 = SOV.num_deployed_planes_with_type@cas_equipment}
-	set_variable = { inStockpileCAS2 = SOV.num_equipment@cas_equipment}
-	add_to_variable = { inArmyCAS2 = inStockpileCAS2 }
-
-	# Tactical Bombers
-	set_variable = { inArmyTACS2 = SOV.num_deployed_planes_with_type@tac_bomber_equipment}
-	set_variable = { inStockpileTACS2 = SOV.num_equipment@tac_bomber_equipment}
-	add_to_variable = { inArmyTACS2 = inStockpileTACS2 }
-
-	add_to_variable = { sovietPlanes = inArmyFighters2 }
-	add_to_variable = { sovietPlanes = inArmyHeavyFighters2 }
-	add_to_variable = { sovietPlanes = inArmyCAS2 }
-	add_to_variable = { sovietPlanes = inArmyTACS2 }
-
-	set_variable = { maxSteps = 5 }
-	set_variable = { sovietPlanes2 = sovietPlanes }
-
-	if = {
-		limit = {
-			has_global_flag = soviet_air_changes_full_flag
-		}
-		while_loop_effect = {
-			limit = {
-				check_variable = { sovietPlanes2 < 3500 } # while at less than 3k, add 500, increasing the debuff each time you do so. Capping at -25%
-				check_variable = { 0 < maxSteps }
-			}
-			add_to_variable = { sovietPlanes2 = 500 }
-			subtract_from_variable = { maxSteps = 1 }
-			add_to_variable = { soviet_cas_debuff = -0.05 } # This is the variable determining how much we tick the consumer goods
-		}
-		if = {
-			limit = {
-				check_variable = {
-					var = sovietPlanes 
-					value = 3500
-					compare = greater_than_or_equals
-				}
-			}
-			set_variable = { soviet_cas_debuff = 0 }
-		}
-	} else_if = {
-		limit = {
-			has_global_flag = soviet_air_changes_start_flag
-		}
-		if = {
-			limit = {
-				check_variable = {
-					var = sovietPlanes 
-					value = 3500
-					compare = greater_than_or_equals
-				}
-			}
-			set_variable = { soviet_cas_debuff = 0 }
-		} else = {
-			while_loop_effect = {
-				limit = {
-					check_variable = { sovietPlanes2 < 3500 } # while at less than 3k, add 500, increasing the debuff each time you do so. Capping at -25%
-					check_variable = { 0 < maxSteps }
-				}
-				add_to_variable = { sovietPlanes2 = 500 }
-				subtract_from_variable = { maxSteps = 1 }
-				add_to_variable = { soviet_cas_debuff = -0.05 } # This is the variable determining how much we tick the consumer goods
-			}
-		}
-	}
-
-}
-
-SOV_check_equipment_stockpile = {
-  # Regular Equipment
-	# Radios
-	set_temp_variable = { requestedRadios = SOV.num_target_equipment_in_armies@radio_equipment}
-	set_temp_variable = { inArmyRadios = SOV.num_equipment_in_armies@radio_equipment}
-	set_temp_variable = { inStockpileRadios = SOV.num_equipment@radio_equipment}
-	subtract_from_temp_variable = { inArmyRadios = requestedRadios }
-	add_to_temp_variable = { inArmyRadios = inStockpileRadios }
-	#log = "Radio Surplus/Deficet: [?inArmyRadios]"
-
-	# Infantry Equipment
-	set_temp_variable = { requestedInfEquipment = SOV.num_target_equipment_in_armies@infantry_equipment}
-	set_temp_variable = { inArmyInfEquipment = SOV.num_equipment_in_armies@infantry_equipment}
-	set_temp_variable = { inStockpileInfEquipment = SOV.num_equipment@infantry_equipment}
-	subtract_from_temp_variable = { inArmyInfEquipment = requestedInfEquipment }
-	add_to_temp_variable = { inArmyInfEquipment = inStockpileInfEquipment }
-
-	# Squad Equipment
-	set_temp_variable = { requestedSquadEquipment = SOV.num_target_equipment_in_armies@squad_equipment}
-	set_temp_variable = { inArmySquadEquipment = SOV.num_equipment_in_armies@squad_equipment}
-	set_temp_variable = { inStockpileSquadEquipment = SOV.num_equipment@squad_equipment}
-	subtract_from_temp_variable = { inArmySquadEquipment = requestedSquadEquipment }
-	add_to_temp_variable = { inArmySquadEquipment = inStockpileSquadEquipment }
-
-	# Support Equipment
-	set_temp_variable = { requestedSupportEquipment = SOV.num_target_equipment_in_armies@support_equipment}
-	set_temp_variable = { inArmySupportEquipment = SOV.num_equipment_in_armies@support_equipment}
-	set_temp_variable = { inStockpileSupportEquipment = SOV.num_equipment@support_equipment}
-	subtract_from_temp_variable = { inArmySupportEquipment = requestedSupportEquipment }
-	add_to_temp_variable = { inArmySupportEquipment = inStockpileSupportEquipment }
-
-	# Special Forces Equipment
-	set_temp_variable = { requestedSFEquipment = SOV.num_target_equipment_in_armies@sf_equipment}
-	set_temp_variable = { inArmySFEquipment = SOV.num_equipment_in_armies@sf_equipment}
-	set_temp_variable = { inStockpileSFEquipment = SOV.num_equipment@sf_equipment}
-	subtract_from_temp_variable = { inArmySFEquipment = requestedSFEquipment }
-	add_to_temp_variable = { inArmySFEquipment = inStockpileSFEquipment }
-
-  # Artillery
-
-	# Artillery
-	set_temp_variable = { requestedArtilleryEquipment = SOV.num_target_equipment_in_armies@artillery_equipment}
-	set_temp_variable = { inArmyArtilleryEquipment = SOV.num_equipment_in_armies@artillery_equipment}
-	set_temp_variable = { inStockpileArtilleryEquipment = SOV.num_equipment@artillery_equipment}
-	subtract_from_temp_variable = { inArmyArtilleryEquipment = requestedArtilleryEquipment }
-	add_to_temp_variable = { inArmyArtilleryEquipment = inStockpileArtilleryEquipment }
-
-	# Pack Artillery
-	set_temp_variable = { requestedPackArtilleryEquipment = SOV.num_target_equipment_in_armies@pack_artillery_equipment}
-	set_temp_variable = { inArmyPackArtilleryEquipment = SOV.num_equipment_in_armies@pack_artillery_equipment}
-	set_temp_variable = { inStockpilePackArtilleryEquipment = SOV.num_equipment@pack_artillery_equipment}
-	subtract_from_temp_variable = { inArmyPackArtilleryEquipment = requestedPackArtilleryEquipment }
-	add_to_temp_variable = { inArmyPackArtilleryEquipment = inStockpilePackArtilleryEquipment }
-
-	# Heavy Artillery
-	set_temp_variable = { requestedHeavyArtilleryEquipment = SOV.num_target_equipment_in_armies@heavy_artillery_equipment}
-	set_temp_variable = { inArmyHeavyArtilleryEquipment = SOV.num_equipment_in_armies@heavy_artillery_equipment}
-	set_temp_variable = { inStockpileHeavyArtilleryEquipment = SOV.num_equipment@heavy_artillery_equipment}
-	subtract_from_temp_variable = { inArmyHeavyArtilleryEquipment = requestedHeavyArtilleryEquipment }
-	add_to_temp_variable = { inArmyHeavyArtilleryEquipment = inStockpileHeavyArtilleryEquipment }
-
-	# Rocket Artillery
-	set_temp_variable = { requestedRocketArtillery = SOV.num_target_equipment_in_armies@rocket_artillery_equipment}
-	set_temp_variable = { inArmyRocketArtillery = SOV.num_equipment_in_armies@rocket_artillery_equipment}
-	set_temp_variable = { inStockpileRocketArtillery = SOV.num_equipment@rocket_artillery_equipment}
-	subtract_from_temp_variable = { inArmyRocketArtillery = requestedRocketArtillery }
-	add_to_temp_variable = { inArmyRocketArtillery = inStockpileRocketArtillery }
-
-	# Motorized Rocket Artillery
-	set_temp_variable = { requestedMotorizedRocketArtillery = SOV.num_target_equipment_in_armies@motorized_rocket_equipment}
-	set_temp_variable = { inArmyMotorizedRocketArtillery = SOV.num_equipment_in_armies@motorized_rocket_equipment}
-	set_temp_variable = { inStockpileMotorizedRocketArtillery = SOV.num_equipment@motorized_rocket_equipment}
-	subtract_from_temp_variable = { inArmyMotorizedRocketArtillery = requestedMotorizedRocketArtillery }
-	add_to_temp_variable = { inArmyMotorizedRocketArtillery = inStockpileMotorizedRocketArtillery }
-
-	# Anti Tank
-	set_temp_variable = { requestedAntiTankEquipment = SOV.num_target_equipment_in_armies@anti_tank_equipment}
-	set_temp_variable = { inArmyAntiTankEquipment = SOV.num_equipment_in_armies@anti_tank_equipment}
-	set_temp_variable = { inStockpileAntiTankEquipment = SOV.num_equipment@anti_tank_equipment}
-	subtract_from_temp_variable = { inArmyAntiTankEquipment = requestedAntiTankEquipment }
-	add_to_temp_variable = { inArmyAntiTankEquipment = inStockpileAntiTankEquipment }
-
-	# Pack Anti Tank
-	set_temp_variable = { requestedPackAntiTankEquipment = SOV.num_target_equipment_in_armies@anti_tank_equipment_squeeze}
-	set_temp_variable = { inArmyPackAntiTankEquipment = SOV.num_equipment_in_armies@anti_tank_equipment_squeeze}
-	set_temp_variable = { inStockpilePackAntiTankEquipment = SOV.num_equipment@anti_tank_equipment_squeeze}
-	subtract_from_temp_variable = { inArmyPackAntiTankEquipment = requestedPackAntiTankEquipment }
-	add_to_temp_variable = { inArmyPackAntiTankEquipment = inStockpilePackAntiTankEquipment }
-
-	# Heavy Anti Tank
-	set_temp_variable = { requestedHeavyAntiTankEquipment = SOV.num_target_equipment_in_armies@heavy_anti_tank_equipment}
-	set_temp_variable = { inArmyHeavyAntiTankEquipment = SOV.num_equipment_in_armies@heavy_anti_tank_equipment}
-	set_temp_variable = { inStockpileHeavyAntiTankEquipment = SOV.num_equipment@heavy_anti_tank_equipment}
-	subtract_from_temp_variable = { inArmyHeavyAntiTankEquipment = requestedHeavyAntiTankEquipment }
-	add_to_temp_variable = { inArmyHeavyAntiTankEquipment = inStockpileHeavyAntiTankEquipment }
-
-	# Anti Air
-	set_temp_variable = { requestedAntiAir = SOV.num_target_equipment_in_armies@anti_air_equipment}
-	set_temp_variable = { inArmyAntiAir = SOV.num_equipment_in_armies@anti_air_equipment}
-	set_temp_variable = { inStockpileAntiAir = SOV.num_equipment@anti_air_equipment}
-	subtract_from_temp_variable = { inArmyAntiAir = requestedAntiAir }
-	add_to_temp_variable = { inArmyAntiAir = inStockpileAntiAir }
-
-	# Heavy Anti Air
-	set_temp_variable = { requestedHeavyAntiAir = SOV.num_target_equipment_in_armies@heavy_anti_air_equipment}
-	set_temp_variable = { inArmyHeavyAntiAir = SOV.num_equipment_in_armies@heavy_anti_air_equipment}
-	set_temp_variable = { inStockpileHeavyAntiAir = SOV.num_equipment@heavy_anti_air_equipment}
-	subtract_from_temp_variable = { inArmyHeavyAntiAir = requestedHeavyAntiAir }
-	add_to_temp_variable = { inArmyHeavyAntiAir = inStockpileHeavyAntiAir }
-
-	# Motorized/Mechanized Anti Air
-	set_temp_variable = { requestedMotorizedAntiAir = SOV.num_target_equipment_in_armies@mot_anti_air_equipment}
-	set_temp_variable = { inArmyMotorizedAntiAir = SOV.num_equipment_in_armies@mot_anti_air_equipment}
-	set_temp_variable = { inStockpileMotorizedAntiAir = SOV.num_equipment@mot_anti_air_equipment}
-	subtract_from_temp_variable = { inArmyMotorizedAntiAir = requestedMotorizedAntiAir }
-	add_to_temp_variable = { inArmyMotorizedAntiAir = inStockpileMotorizedAntiAir }
-
-  # Vehicles
-
-	# Mechanized
-	set_temp_variable = { requestedMechanized = SOV.num_target_equipment_in_armies@mechanized_equipment}
-	set_temp_variable = { inArmyMechanized = SOV.num_equipment_in_armies@mechanized_equipment}
-	set_temp_variable = { inStockpileMechanized = SOV.num_equipment@mechanized_equipment}
-	subtract_from_temp_variable = { inArmyMechanized = requestedMechanized }
-	add_to_temp_variable = { inArmyMechanized = inStockpileMechanized }
-
-	# Trucks
-	SOV = { get_supply_vehicles_temp = { var = trucks_needed_for_supply type = truck need = yes } }
-	set_temp_variable = { requestedTrucks = SOV.num_target_equipment_in_armies@motorized_equipment}
-	set_temp_variable = { inArmyTrucks = SOV.num_equipment_in_armies@motorized_equipment}
-	set_temp_variable = { inStockpileTrucks = SOV.num_equipment@motorized_equipment}
-	subtract_from_temp_variable = { inArmyTrucks = requestedTrucks }
-	subtract_from_temp_variable = { inArmyTrains = trucks_needed_for_supply }
-	add_to_temp_variable = { inArmyTrucks = inStockpileTrucks }
-
-	# Trains
-	SOV = { get_supply_vehicles_temp = { var = trains_needed_for_supply type = train need = yes } }
-	set_temp_variable = { requestedTrains = SOV.num_target_equipment_in_armies@train_equipment}
-	set_temp_variable = { inArmyTrains = SOV.num_equipment_in_armies@train_equipment}
-	set_temp_variable = { inStockpileTrains = SOV.num_equipment@train_equipment}
-	subtract_from_temp_variable = { inArmyTrains = requestedTrains }
-	subtract_from_temp_variable = { inArmyTrains = trains_needed_for_supply }
-	add_to_temp_variable = { inArmyTrains = inStockpileTrains }
-
-  # Air
-
-	# Fighters
-	set_temp_variable = { requestedFighters = SOV.num_target_equipment_in_armies@fighter_equipment}
-	set_temp_variable = { inArmyFighters = SOV.num_equipment_in_armies@fighter_equipment}
-	set_temp_variable = { inStockpileFighters = SOV.num_equipment@fighter_equipment}
-	subtract_from_temp_variable = { inArmyFighters = requestedFighters }
-	add_to_temp_variable = { inArmyFighters = inStockpileFighters }
-
-	# Heavy Fighters
-	set_temp_variable = { requestedHeavyFighters = SOV.num_target_equipment_in_armies@heavy_fighter_equipment}
-	set_temp_variable = { inArmyHeavyFighters = SOV.num_equipment_in_armies@heavy_fighter_equipment}
-	set_temp_variable = { inStockpileHeavyFighters = SOV.num_equipment@heavy_fighter_equipment}
-	subtract_from_temp_variable = { inArmyHeavyFighters = requestedHeavyFighters }
-	add_to_temp_variable = { inArmyHeavyFighters = inStockpileHeavyFighters }
-
-	# CAS
-	set_temp_variable = { requestedCAS = SOV.num_target_equipment_in_armies@cas_equipment}
-	set_temp_variable = { inArmyCAS = SOV.num_equipment_in_armies@cas_equipment}
-	set_temp_variable = { inStockpileCAS = SOV.num_equipment@cas_equipment}
-	subtract_from_temp_variable = { inArmyCAS = requestedCAS }
-	add_to_temp_variable = { inArmyCAS = inStockpileCAS }
-
-	# Tactical Bombers
-	set_temp_variable = { requestedTACS = SOV.num_target_equipment_in_armies@tac_bomber_equipment}
-	set_temp_variable = { inArmyTACS = SOV.num_equipment_in_armies@tac_bomber_equipment}
-	set_temp_variable = { inStockpileTACS = SOV.num_equipment@tac_bomber_equipment}
-	subtract_from_temp_variable = { inArmyTACS = requestedTACS }
-	add_to_temp_variable = { inArmyTACS = inStockpileTACS }
-
-  # Armor
-
-	# Armored Cars
-	set_temp_variable = { requestedArmoredCars = SOV.num_target_equipment_in_armies@armored_car_chassis}
-	set_temp_variable = { inArmyArmoredCars = SOV.num_equipment_in_armies@armored_car_chassis}
-	set_temp_variable = { inStockpileArmoredCars = SOV.num_equipment@armored_car_chassis}
-	subtract_from_temp_variable = { inArmyArmoredCars = requestedArmoredCars }
-	add_to_temp_variable = { inArmyArmoredCars = inStockpileArmoredCars }
-
-	# Light Tanks
-	set_temp_variable = { requestedLightTanks = SOV.num_target_equipment_in_armies@light_tank_chassis}
-	set_temp_variable = { inArmyLightTanks = SOV.num_equipment_in_armies@light_tank_chassis}
-	set_temp_variable = { inStockpileLightTanks = SOV.num_equipment@light_tank_chassis}
-	subtract_from_temp_variable = { inArmyLightTanks = requestedLightTanks }
-	add_to_temp_variable = { inArmyLightTanks = inStockpileLightTanks }
-
-	# Light Assault Guns
-	set_temp_variable = { requestedLightAGs = SOV.num_target_equipment_in_armies@light_assault_gun_chassis}
-	set_temp_variable = { inArmyLightAGs = SOV.num_equipment_in_armies@light_assault_gun_chassis}
-	set_temp_variable = { inStockpileLightAGs = SOV.num_equipment@light_assault_gun_chassis}
-	subtract_from_temp_variable = { inArmyLightAGs = requestedLightAGs }
-	add_to_temp_variable = { inArmyLightAGs = inStockpileLightAGs }
-
-	# Light SPG's
-	set_temp_variable = { requestedLightSPGs = SOV.num_target_equipment_in_armies@light_tank_artillery_chassis}
-	set_temp_variable = { inArmyLightSPGs = SOV.num_equipment_in_armies@light_tank_artillery_chassis}
-	set_temp_variable = { inStockpileLightSPGs = SOV.num_equipment@light_tank_artillery_chassis}
-	subtract_from_temp_variable = { inArmyLightSPGs = requestedLightSPGs }
-	add_to_temp_variable = { inArmyLightSPGs = inStockpileLightSPGs }
-
-	# Light Tank Destroyers
-	set_temp_variable = { requestedLightTDs = SOV.num_target_equipment_in_armies@light_tank_destroyer_chassis}
-	set_temp_variable = { inArmyLightTDs = SOV.num_equipment_in_armies@light_tank_destroyer_chassis}
-	set_temp_variable = { inStockpileLightTDs = SOV.num_equipment@light_tank_destroyer_chassis}
-	subtract_from_temp_variable = { inArmyLightTDs = requestedLightTDs }
-	add_to_temp_variable = { inArmyLightTDs = inStockpileLightTDs }
-
-	# Light SPAA
-	set_temp_variable = { requestedLightSPAA = SOV.num_target_equipment_in_armies@light_tank_aa_chassis}
-	set_temp_variable = { inArmyLightSPAA = SOV.num_equipment_in_armies@light_tank_aa_chassis}
-	set_temp_variable = { inStockpileLightSPAA = SOV.num_equipment@light_tank_aa_chassis}
-	subtract_from_temp_variable = { inArmyLightSPAA = requestedLightSPAA }
-	add_to_temp_variable = { inArmyLightSPAA = inStockpileLightSPAA }
-
-	# Medium Tanks
-	set_temp_variable = { requestedMediumTanks = SOV.num_target_equipment_in_armies@medium_tank_chassis}
-	set_temp_variable = { inArmyMediumTanks = SOV.num_equipment_in_armies@medium_tank_chassis}
-	set_temp_variable = { inStockpileMediumTanks = SOV.num_equipment@medium_tank_chassis}
-	subtract_from_temp_variable = { inArmyMediumTanks = requestedMediumTanks }
-	add_to_temp_variable = { inArmyMediumTanks = inStockpileMediumTanks }
-
-	# Medium Assault Guns
-	set_temp_variable = { requestedMediumAGs = SOV.num_target_equipment_in_armies@medium_assault_gun_chassis}
-	set_temp_variable = { inArmyMediumAGs = SOV.num_equipment_in_armies@medium_assault_gun_chassis}
-	set_temp_variable = { inStockpileMediumAGs = SOV.num_equipment@medium_assault_gun_chassis}
-	subtract_from_temp_variable = { inArmyMediumAGs = requestedMediumAGs }
-	add_to_temp_variable = { inArmyMediumAGs = inStockpileMediumAGs }
-
-	# Medium SPG's
-	set_temp_variable = { requestedMediumSPGs = SOV.num_target_equipment_in_armies@medium_tank_artillery_chassis}
-	set_temp_variable = { inArmyMediumSPGs = SOV.num_equipment_in_armies@medium_tank_artillery_chassis}
-	set_temp_variable = { inStockpileMediumSPGs = SOV.num_equipment@medium_tank_artillery_chassis}
-	subtract_from_temp_variable = { inArmyMediumSPGs = requestedMediumSPGs }
-	add_to_temp_variable = { inArmyMediumSPGs = inStockpileMediumSPGs }
-
-	# Medium Tank Destroyers
-	set_temp_variable = { requestedMediumTDs = SOV.num_target_equipment_in_armies@medium_tank_destroyer_chassis}
-	set_temp_variable = { inArmyMediumTDs = SOV.num_equipment_in_armies@medium_tank_destroyer_chassis}
-	set_temp_variable = { inStockpileMediumTDs = SOV.num_equipment@medium_tank_destroyer_chassis}
-	subtract_from_temp_variable = { inArmyMediumTDs = requestedMediumTDs }
-	add_to_temp_variable = { inArmyMediumTDs = inStockpileMediumTDs }
-
-	# Medium SPAA
-	set_temp_variable = { requestedMediumSPAA = SOV.num_target_equipment_in_armies@medium_tank_aa_chassis}
-	set_temp_variable = { inArmyMediumSPAA = SOV.num_equipment_in_armies@medium_tank_aa_chassis}
-	set_temp_variable = { inStockpileMediumSPAA = SOV.num_equipment@medium_tank_aa_chassis}
-	subtract_from_temp_variable = { inArmyMediumSPAA = requestedMediumSPAA }
-	add_to_temp_variable = { inArmyMediumSPAA = inStockpileMediumSPAA }
-
-	# Heavy Tanks
-	set_temp_variable = { requestedHeavyTanks = SOV.num_target_equipment_in_armies@heavy_tank_chassis}
-	set_temp_variable = { inArmyHeavyTanks = SOV.num_equipment_in_armies@heavy_tank_chassis}
-	set_temp_variable = { inStockpileHeavyTanks = SOV.num_equipment@heavy_tank_chassis}
-	subtract_from_temp_variable = { inArmyHeavyTanks = requestedHeavyTanks }
-	add_to_temp_variable = { inArmyHeavyTanks = inStockpileHeavyTanks }
-
-	# Heavy Assault Guns
-	set_temp_variable = { requestedHeavyAGs = SOV.num_target_equipment_in_armies@heavy_assault_gun_chassis}
-	set_temp_variable = { inArmyHeavyAGs = SOV.num_equipment_in_armies@heavy_assault_gun_chassis}
-	set_temp_variable = { inStockpileHeavyAGs = SOV.num_equipment@heavy_assault_gun_chassis}
-	subtract_from_temp_variable = { inArmyHeavyAGs = requestedHeavyAGs }
-	add_to_temp_variable = { inArmyHeavyAGs = inStockpileHeavyAGs }
-
-	# Heavy SPG's
-	set_temp_variable = { requestedHeavySPGs = SOV.num_target_equipment_in_armies@heavy_tank_artillery_chassis}
-	set_temp_variable = { inArmyHeavySPGs = SOV.num_equipment_in_armies@heavy_tank_artillery_chassis}
-	set_temp_variable = { inStockpileHeavySPGs = SOV.num_equipment@heavy_tank_artillery_chassis}
-	subtract_from_temp_variable = { inArmyHeavySPGs = requestedHeavySPGs }
-	add_to_temp_variable = { inArmyHeavySPGs = inStockpileHeavySPGs }
-
-	# Heavy Tank Destroyers
-	set_temp_variable = { requestedHeavyTDs = SOV.num_target_equipment_in_armies@heavy_tank_destroyer_chassis}
-	set_temp_variable = { inArmyHeavyTDs = SOV.num_equipment_in_armies@heavy_tank_destroyer_chassis}
-	set_temp_variable = { inStockpileHeavyTDs = SOV.num_equipment@heavy_tank_destroyer_chassis}
-	subtract_from_temp_variable = { inArmyHeavyTDs = requestedHeavyTDs }
-	add_to_temp_variable = { inArmyHeavyTDs = inStockpileHeavyTDs }
-
-	# Heavy SPAA
-	set_temp_variable = { requestedHeavySPAA = SOV.num_target_equipment_in_armies@heavy_tank_aa_chassis}
-	set_temp_variable = { inArmyHeavySPAA = SOV.num_equipment_in_armies@heavy_tank_aa_chassis}
-	set_temp_variable = { inStockpileHeavySPAA = SOV.num_equipment@heavy_tank_aa_chassis}
-	subtract_from_temp_variable = { inArmyHeavySPAA = requestedHeavySPAA }
-	add_to_temp_variable = { inArmyHeavySPAA = inStockpileHeavySPAA }
 }

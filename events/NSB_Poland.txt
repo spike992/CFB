@@ -90,7 +90,7 @@ country_event = {
 		}
 		if = {
 			limit = {
-				original_tag = SLO
+				# original_tag = SLO
 			}
 			custom_effect_tooltip = GAME_OVER_TT
 		}
@@ -162,7 +162,7 @@ country_event = {
 		if = {
 			limit = {
 				FROM = {
-					original_tag = SLO
+					# original_tag = SLO
 				}
 			}
 			annex_country = {
@@ -849,64 +849,7 @@ country_event = {
 	option = { #Liberia agrees
 		name = NSB_poland_events.6.a
 		ai_chance = {
-			base = 10
-			modifier = { 
-				add = 25
-				strength_ratio = {
-					tag = FROM 
-					ratio < 0.3	
-				}
-			}
-			modifier = { 
-				add = 15 
-				has_opinion = {
-					target = FROM 
-					value > 40 
-				}
-			}
-			modifier = {
-				add = 25 
-				any_country = {
-					is_major = yes 
-					is_in_faction_with = FROM 
-				}
-			}
-			modifier = {
-				factor = 0.1
-				any_country = {
-					is_major = yes 
-					OR = { 
-						has_guaranteed = ROOT 
-						is_in_faction_with = ROOT
-					}
-					NOT = { is_in_faction_with = FROM }
-				}
-			}
-		}
-		# if = {
-		# 	limit = {
-		# 		has_dlc = "Together for Victory"
-		# 	}
-		# 	POL = {
-		# 		set_autonomy = {
-		# 			target = LIB
-		# 			autonomy_state = autonomy_colony
-		# 		}
-		# 	}
-		# }
-		# else = {
-		# 	POL = {
-		# 		set_autonomy = {
-		# 			target = LIB
-		# 			autonomy_state = autonomy_puppet
-		# 		}
-		# 	}
-		# }
-		hidden_effect = {
-			news_event = {
-				id = nsb_news.2
-				days = 1
-			}
+			base = 0
 		}
 	}
 
@@ -915,14 +858,14 @@ country_event = {
 		ai_chance = {
 			base = 5
 		}
-		# effect_tooltip = {
-		# 	POL = {
-		# 		create_wargoal = {
-		# 			target = LIB
-		# 			type = puppet_wargoal_focus
-		# 		}
-		# 	}
-		# }
+		effect_tooltip = {
+			POL = {
+				create_wargoal = {
+					target = LIB
+					type = puppet_wargoal_focus
+				}
+			}
+		}
 		hidden_effect = {
 			POL = {
 				country_event = { id = NSB_poland_events.601 }
@@ -947,10 +890,10 @@ country_event = {
 		ai_chance = {
 			base = 10
 		}
-		# create_wargoal = {
-		# 	target = LIB
-		# 	type = puppet_wargoal_focus
-		# }
+		create_wargoal = {
+			target = LIB
+			type = puppet_wargoal_focus
+		}
 	}
 
 	option = { #Just let it slide, gain nothing.
@@ -1098,22 +1041,6 @@ country_event = {
 		name = NSB_poland_royal_election.1.a
 		ai_chance = {
 			base = 10
-			modifier = {
-				factor = 0
-				NOT = {
-					OR = {
-						has_country_flag = POL_AI_RANDOM_COMMONWEALTH
-						has_game_rule = {
-							rule = POL_ai_behavior
-							option = COMMONWEALTH
-						}
-						has_game_rule = {
-							rule = POL_ai_behavior
-							option = DEFAULT
-						}
-					}
-				}
-			}
 		}
 		set_party_name = { 
 			ideology = neutrality 
@@ -1139,16 +1066,6 @@ country_event = {
 		name = NSB_poland_royal_election.1.b
 		ai_chance = {
 			base = 10
-			modifier = {
-				factor = 0
-				OR = {
-					has_country_flag = POL_AI_RANDOM_COMMONWEALTH
-					has_game_rule = {
-						rule = POL_ai_behavior
-						option = COMMONWEALTH
-					}
-				}
-			}
 		}
 		custom_effect_tooltip = POL_keep_looking_tt
 		hidden_effect = {
@@ -1172,27 +1089,11 @@ country_event = {
 		name = NSB_poland_royal_election.2.a
 		ai_chance = {
 			base = 10
-			modifier = {
-				factor = 0
-				NOT = {
-					OR = {
-						has_country_flag = POL_AI_RANDOM_ROMANIA
-						has_game_rule = {
-							rule = POL_ai_behavior
-							option = ROMANIA
-						}
-						has_game_rule = {
-							rule = POL_ai_behavior
-							option = DEFAULT
-						}
-					}
-				}
-			}
 		}
 
 		set_party_name = { 
 			ideology = neutrality 
-			long_name = POL_hohenzollern_sigmaringen
+			long_name = POL_hohenzollern_sigmaringen_long
 			name = POL_hohenzollern_sigmaringen
 		}
 		hidden_effect = {
@@ -1214,16 +1115,6 @@ country_event = {
 		name = NSB_poland_royal_election.2.b
 		ai_chance = {
 			base = 10
-			modifier = {
-				factor = 0
-				OR = {
-					has_country_flag = POL_AI_RANDOM_ROMANIA
-					has_game_rule = {
-						rule = POL_ai_behavior
-						option = ROMANIA
-					}
-				}
-			}
 		}
 		custom_effect_tooltip = POL_keep_looking_tt
 		hidden_effect = {
@@ -1247,22 +1138,6 @@ country_event = {
 		name = NSB_poland_royal_election.3.a
 		ai_chance = {
 			base = 10
-			modifier = {
-				factor = 0
-				NOT = {
-					OR = {
-						has_country_flag = POL_AI_RANDOM_BERMONDT
-						has_game_rule = {
-							rule = POL_ai_behavior
-							option = BERMONDT
-						}
-						has_game_rule = {
-							rule = POL_ai_behavior
-							option = DEFAULT
-						}
-					}
-				}
-			}
 		}
 		add_ruling_to_fas = yes
 		set_politics = {
@@ -1291,16 +1166,6 @@ country_event = {
 		name = NSB_poland_royal_election.3.b
 		ai_chance = {
 			base = 10
-			modifier = {
-				factor = 0
-				OR = {
-					has_country_flag = POL_AI_RANDOM_BERMONDT
-					has_game_rule = {
-						rule = POL_ai_behavior
-						option = BERMONDT
-					}
-				}
-			}
 		}
 		custom_effect_tooltip = POL_keep_looking_tt
 		hidden_effect = {
@@ -1403,22 +1268,6 @@ country_event = {
 		name = NSB_poland_royal_election.5.a
 		ai_chance = {
 			base = 10
-			modifier = {
-				factor = 0
-				NOT = {
-					OR = {
-						has_country_flag = POL_AI_RANDOM_HABSBURG
-						has_game_rule = {
-							rule = POL_ai_behavior
-							option = HABSBURG
-						}
-						has_game_rule = {
-							rule = POL_ai_behavior
-							option = DEFAULT
-						}
-					}
-				}
-			}
 		}
 		promote_character = POL_karl_albrecht
 		set_party_name = { 
@@ -1440,16 +1289,6 @@ country_event = {
 		name = NSB_poland_royal_election.5.b
 		ai_chance = {
 			base = 10
-			modifier = {
-				factor = 0
-				OR = {
-					has_country_flag = POL_AI_RANDOM_HABSBURG
-					has_game_rule = {
-						rule = POL_ai_behavior
-						option = HABSBURG
-					}
-				}
-			}
 		}
 		custom_effect_tooltip = POL_keep_looking_tt
 		hidden_effect = {
@@ -1813,251 +1652,230 @@ country_event = {
 add_namespace = pavel_events
 
 #Release Don Republic
-# country_event = {
-# 	id = pavel_events.1
-# 	title = pavel_events.1.t
-# 	desc = pavel_events.1.desc
-# 	picture = GFX_report_event_generic_military_parade
+country_event = {
+	id = pavel_events.1
+	title = pavel_events.1.t
+	desc = pavel_events.1.desc
+	picture = GFX_report_event_generic_military_parade
 	
-# 	fire_only_once = yes
-# 	is_triggered_only = yes
+	fire_only_once = yes
+	is_triggered_only = yes
 	
-# 	immediate = {
-# 		hidden_effect = {
-# 			218 = { add_core_of = DON }
-# 			245 = { add_core_of = DON }
-# 			238 = { add_core_of = DON }
-# 			217 = { add_core_of = DON }
-# 			265 = { add_core_of = DON }
-# 			237 = { add_core_of = DON }
-# 			236 = { add_core_of = DON }
-# 		}
-# 	}
+	immediate = {
+		# hidden_effect = {
+		# 	218 = { add_core_of = DON }
+		# 	245 = { add_core_of = DON }
+		# 	238 = { add_core_of = DON }
+		# 	217 = { add_core_of = DON }
+		# 	265 = { add_core_of = DON }
+		# 	237 = { add_core_of = DON }
+		# 	236 = { add_core_of = DON }
+		# }
+	}
 
-# 	option = {
-# 		name = pavel_events.1.a
-# 		ai_chance = {
-# 			base = 10
-# 		}
+	option = {
+		name = pavel_events.1.a
+		ai_chance = {
+			base = 10
+		}
 		
-# 		DON = {
-# 			transfer_state = 218
-# 			transfer_state = 245
-# 			transfer_state = 238
-# 			transfer_state = 217
-# 			transfer_state = 265
-# 			if = {
-# 				limit = {
-# 					PREV = { controls_state = 236 }
-# 				}
-# 				transfer_state = 236
-# 			}
-# 			if = {
-# 				limit = {
-# 					PREV = { controls_state = 237 }
-# 				}
-# 				transfer_state = 237
-# 			}
-# 			custom_effect_tooltip = spawn_cossacks_tt
-# 			hidden_effect = {
-# 				load_oob = "DON_cossack_host"
-# 				set_politics = {
-# 					ruling_party = fascism
-# 				}
-# 				add_popularity = {
-# 					ideology = fascism
-# 					popularity = 0.5
-# 				}
-# 			}
-# 		}
-# 		add_to_faction = DON
-# 		# Make sure Don Republic is added to the Soviet war.
-# 		if = {
-# 			limit = {
-# 				has_war_with = SOV
-# 			}
-# 			DON = {
-# 				add_to_war = {
-# 					targeted_alliance = PREV 
-# 					enemy = SOV
-# 					hostility_reason = asked_to_join
-# 				}
-# 			}
-# 		}
-# 	}
+		# DON = {
+		# 	transfer_state = 218
+		# 	transfer_state = 245
+		# 	transfer_state = 238
+		# 	transfer_state = 217
+		# 	transfer_state = 265
+		# 	if = {
+		# 		limit = {
+		# 			PREV = { controls_state = 236 }
+		# 		}
+		# 		transfer_state = 236
+		# 	}
+		# 	if = {
+		# 		limit = {
+		# 			PREV = { controls_state = 237 }
+		# 		}
+		# 		transfer_state = 237
+		# 	}
+		# 	custom_effect_tooltip = spawn_cossacks_tt
+		# 	hidden_effect = {
+		# 		load_oob = "DON_cossack_host"
+		# 		set_politics = {
+		# 			ruling_party = fascism
+		# 		}
+		# 		add_popularity = {
+		# 			ideology = fascism
+		# 			popularity = 0.5
+		# 		}
+		# 	}
+		# }
+		# add_to_faction = DON
+		# Make sure Don Republic is added to the Soviet war.
+		# if = {
+		# 	limit = {
+		# 		has_war_with = SOV
+		# 	}
+		# 	DON = {
+		# 		add_to_war = {
+		# 			targeted_alliance = PREV 
+		# 			enemy = SOV
+		# 			hostility_reason = asked_to_join
+		# 		}
+		# 	}
+		# }
+	}
 	
-# 	option = {
-# 		name = pavel_events.1.b
-# 		ai_chance = {
-# 			base = 10
-# 		}
+	option = {
+		name = pavel_events.1.b
+		ai_chance = {
+			base = 10
+		}
 		
-# 		DON = {
-# 			transfer_state = 218
-# 			transfer_state = 245
-# 			transfer_state = 238
-# 			transfer_state = 217
-# 			transfer_state = 265
-# 			if = {
-# 				limit = {
-# 					PREV = { controls_state = 236 }
-# 				}
-# 				transfer_state = 236
-# 			}
-# 			if = {
-# 				limit = {
-# 					PREV = { controls_state = 237 }
-# 				}
-# 				transfer_state = 237
-# 			}
-# 			custom_effect_tooltip = spawn_cossacks_tt
-# 			hidden_effect = {
-# 				load_oob = "DON_cossack_host"
-# 			}
-# 		}
-# 		add_to_faction = DON
-# 		puppet = DON
-# 		# Make sure Don Republic is added to the Soviet war.
-# 		if = {
-# 			limit = {
-# 				has_war_with = SOV
-# 			}
-# 			DON = {
-# 				add_to_war = {
-# 					targeted_alliance = PREV 
-# 					enemy = SOV
-# 					hostility_reason = asked_to_join
-# 				}
-# 			}
-# 		}
-# 	}
-# }
+		# DON = {
+		# 	transfer_state = 218
+		# 	transfer_state = 245
+		# 	transfer_state = 238
+		# 	transfer_state = 217
+		# 	transfer_state = 265
+		# 	if = {
+		# 		limit = {
+		# 			PREV = { controls_state = 236 }
+		# 		}
+		# 		transfer_state = 236
+		# 	}
+		# 	if = {
+		# 		limit = {
+		# 			PREV = { controls_state = 237 }
+		# 		}
+		# 		transfer_state = 237
+		# 	}
+		# 	custom_effect_tooltip = spawn_cossacks_tt
+		# 	hidden_effect = {
+		# 		load_oob = "DON_cossack_host"
+		# 	}
+		# }
+		# add_to_faction = DON
+		# puppet = DON
+		# Make sure Don Republic is added to the Soviet war.
+		# if = {
+		# 	limit = {
+		# 		has_war_with = SOV
+		# 	}
+		# 	DON = {
+		# 		add_to_war = {
+		# 			targeted_alliance = PREV 
+		# 			enemy = SOV
+		# 			hostility_reason = asked_to_join
+		# 		}
+		# 	}
+		# }
+	}
+}
 
-# #Release Kuban Republic
-# country_event = {
-# 	id = pavel_events.2
-# 	title = pavel_events.2.t
-# 	desc = pavel_events.2.desc
-# 	picture = GFX_report_event_generic_military_parade
+#Release Kuban Republic
+country_event = {
+	id = pavel_events.2
+	title = pavel_events.2.t
+	desc = pavel_events.2.desc
+	picture = GFX_report_event_generic_military_parade
 	
-# 	fire_only_once = yes
-# 	is_triggered_only = yes
+	fire_only_once = yes
+	is_triggered_only = yes
 	
-# 	immediate = {
-# 		hidden_effect = {
-# 			234 = { add_core_of = KUB }
-# 			235 = { add_core_of = KUB }
-# 			233 = { add_core_of = KUB }
-# 			232 = { add_core_of = KUB }
-# 			137 = { add_core_of = KUB }
-# 			827 = { add_core_of = KUB }
-# 			828 = { add_core_of = KUB }
-# 			821 = { add_core_of = KUB }
-# 		}
-# 	}
+	immediate = {
+		# hidden_effect = {
+		# 	234 = { add_core_of = KUB }
+		# 	235 = { add_core_of = KUB }
+		# 	233 = { add_core_of = KUB }
+		# 	232 = { add_core_of = KUB }
+		# 	137 = { add_core_of = KUB }
+		# }
+	}
 
-# 	option = {
-# 		name = pavel_events.2.a
-# 		ai_chance = {
-# 			base = 10
-# 		}
+	option = {
+		name = pavel_events.2.a
+		ai_chance = {
+			base = 10
+		}
 		
-# 		KUB = {
-# 			transfer_state = 234
-# 			transfer_state = 235
-# 			transfer_state = 233
-# 			transfer_state = 232
-# 			if = {
-# 				limit = {
-# 					PREV = { controls_state = 137 }
-# 				}
-# 				transfer_state = 137
-# 			}
-# 			if = {
-# 				limit = {
-# 					PREV = { controls_state = 827 }
-# 				}
-# 				transfer_state = 827
-# 			}
-# 			if = {
-# 				limit = {
-# 					PREV = { controls_state = 828 }
-# 				}
-# 				transfer_state = 828
-# 			}
-# 			if = {
-# 				limit = {
-# 					PREV = { controls_state = 821 }
-# 				}
-# 				transfer_state = 821
-# 			}
-# 			custom_effect_tooltip = spawn_cossacks_tt
-# 			hidden_effect = {
-# 				load_oob = "KUB_cossack_host"
-# 				set_politics = {
-# 					ruling_party = fascism
-# 				}
-# 				add_popularity = {
-# 					ideology = fascism
-# 					popularity = 0.5
-# 				}
-# 			}
-# 		}
-# 		add_to_faction = KUB
-# 		# Make sure Kuban Republic is added to the Soviet war.
-# 		if = {
-# 			limit = {
-# 				has_war_with = SOV
-# 			}
-# 			KUB = {
-# 				add_to_war = {
-# 					targeted_alliance = PREV 
-# 					enemy = SOV
-# 					hostility_reason = asked_to_join
-# 				}
-# 			}
-# 		}
-# 	}
+		# KUB = {
+		# 	transfer_state = 234
+		# 	transfer_state = 235
+		# 	transfer_state = 233
+		# 	transfer_state = 232
+		# 	if = {
+		# 		limit = {
+		# 			PREV = { controls_state = 137 }
+		# 		}
+		# 		transfer_state = 137
+		# 	}
+		# 	custom_effect_tooltip = spawn_cossacks_tt
+		# 	hidden_effect = {
+		# 		load_oob = "KUB_cossack_host"
+		# 		set_politics = {
+		# 			ruling_party = fascism
+		# 		}
+		# 		add_popularity = {
+		# 			ideology = fascism
+		# 			popularity = 0.5
+		# 		}
+		# 	}
+		# }
+		# add_to_faction = KUB
+		# # Make sure Kuban Republic is added to the Soviet war.
+		# if = {
+		# 	limit = {
+		# 		has_war_with = SOV
+		# 	}
+		# 	KUB = {
+		# 		add_to_war = {
+		# 			targeted_alliance = PREV 
+		# 			enemy = SOV
+		# 			hostility_reason = asked_to_join
+		# 		}
+		# 	}
+		# }
+	}
 	
-# 	option = {
-# 		name = pavel_events.2.b
-# 		ai_chance = {
-# 			base = 10
-# 		}
+	option = {
+		name = pavel_events.2.b
+		ai_chance = {
+			base = 10
+		}
 		
-# 		KUB = {
-# 			transfer_state = 234
-# 			transfer_state = 235
-# 			transfer_state = 233
-# 			transfer_state = 232
-# 			if = {
-# 				limit = {
-# 					PREV = { controls_state = 137 }
-# 				}
-# 				transfer_state = 137
-# 			}
-# 			custom_effect_tooltip = spawn_cossacks_tt
-# 			hidden_effect = {
-# 				load_oob = "KUB_cossack_host"
-# 			}
-# 		}
-# 		add_to_faction = KUB
-# 		puppet = KUB
-# 		# Make sure Kuban Republic is added to the Soviet war.
-# 		if = {
-# 			limit = {
-# 				has_war_with = SOV
-# 			}
-# 			KUB = {
-# 				add_to_war = {
-# 					targeted_alliance = PREV 
-# 					enemy = SOV
-# 					hostility_reason = asked_to_join
-# 				}
-# 			}
-# 		}
-# 	}
-# }
+		# KUB = {
+		# 	transfer_state = 234
+		# 	transfer_state = 235
+		# 	transfer_state = 233
+		# 	transfer_state = 232
+		# 	if = {
+		# 		limit = {
+		# 			PREV = { controls_state = 137 }
+		# 		}
+		# 		transfer_state = 137
+		# 	}
+		# 	custom_effect_tooltip = spawn_cossacks_tt
+		# 	hidden_effect = {
+		# 		load_oob = "KUB_cossack_host"
+		# 	}
+		# }
+		# add_to_faction = KUB
+		# puppet = KUB
+		# # Make sure Kuban Republic is added to the Soviet war.
+		# if = {
+		# 	limit = {
+		# 		has_war_with = SOV
+		# 	}
+		# 	KUB = {
+		# 		add_to_war = {
+		# 			targeted_alliance = PREV 
+		# 			enemy = SOV
+		# 			hostility_reason = asked_to_join
+		# 		}
+		# 	}
+		# }
+	}
+}
 
 #Demand Pomerania and Silesia, event for Germany
 country_event = {
@@ -2354,7 +2172,7 @@ country_event = {
 	desc = NSB_poland_communist_events.2.desc
 	picture = GFX_report_event_lithuanian_ultimatum
 
-	fire_only_once = no
+	fire_only_once = yes
 	is_triggered_only = yes
 
 	option = { #Yes, become puppet
@@ -2438,7 +2256,7 @@ country_event = {
 	desc = NSB_poland_communist_events.201.desc
 	picture = GFX_report_event_generic_peaceful_annexation
 
-	fire_only_once = no
+	fire_only_once = yes
 	is_triggered_only = yes
 
 	option = { #Yes, become puppet
@@ -2454,14 +2272,14 @@ country_event = {
 	desc = NSB_poland_communist_events.202.desc
 	picture = GFX_report_event_polish_tanks_01
 
-	fire_only_once = no
+	fire_only_once = yes
 	is_triggered_only = yes
 
 	option = { #Gain wargoal
 		name = NSB_poland_communist_events.202.a
 		create_wargoal = {
 			type = puppet_wargoal_focus
-			target = FROM
+			target = ROOT
 		}
 	}
 }
@@ -2473,7 +2291,7 @@ country_event = {
 	desc = NSB_poland_communist_events.3.desc
 	picture = GFX_report_event_generic_peaceful_annexation
 
-	fire_only_once = no
+	fire_only_once = yes
 	is_triggered_only = yes
 
 	option = { #Yes, become annexed
@@ -2562,7 +2380,7 @@ country_event = {
 	desc = NSB_poland_communist_events.301.desc
 	picture = GFX_report_event_poland_rejects
 
-	fire_only_once = no
+	fire_only_once = yes
 	is_triggered_only = yes
 
 	option = { #Yes, become annexed
@@ -2581,7 +2399,7 @@ country_event = {
 	desc = NSB_poland_communist_events.302.desc
 	picture = GFX_report_event_generic_peaceful_annexation
 
-	fire_only_once = no
+	fire_only_once = yes
 	is_triggered_only = yes
 
 	option = { #Yes, become annexed
@@ -3838,7 +3656,7 @@ country_event = {
 		}
 		else_if = {
 			limit = {
-				has_country_flag = asking_for_belarus_and_ukraine_flag
+				has_country_flag = asking_for_baltics_flag
 			}
 			custom_effect_tooltip = form_country_ukraine_coring_states_tt
 			custom_effect_tooltip = form_country_belarus_coring_states_tt
@@ -3846,8 +3664,8 @@ country_event = {
 				every_state = {
 					limit = {
 						OR = {
-							is_core_of = BLR
-							is_core_of = UKR
+							# is_core_of = BLR
+							# is_core_of = UKR
 						}
 					}
 					add_core_of = POL
@@ -3863,7 +3681,7 @@ country_event = {
 			hidden_effect = {
 				every_state = {
 					limit = {
-						is_core_of = UKR
+						# is_core_of = UKR
 					}
 					add_core_of = POL
 				}
@@ -3877,11 +3695,6 @@ country_event = {
 				232 = { add_core_of = POL }
 				230 = { add_core_of = POL }
 				229 = { add_core_of = POL }
-				821 = { add_core_of = POL }
-				826 = { add_core_of = POL }
-				827 = { add_core_of = POL }
-				828 = { add_core_of = POL }
-
 			}
 		}
 	}
@@ -4177,39 +3990,6 @@ country_event = {
 		if = { #Switch to the Habsburg branch
 			limit = {
 				has_focus_tree = hungarian_focus
-			}
-			if = {
-				limit = {
-					has_completed_focus = HUN_economic_intervention
-				}
-				uncomplete_national_focus = {
-					focus = HUN_economic_intervention
-					uncomplete_children = yes
-				}
-			}
-			if = {
-				limit = {
-					has_completed_focus = HUN_elect_a_democratic_king
-				}
-				uncomplete_national_focus = {
-					focus = HUN_elect_a_democratic_king
-					uncomplete_children = yes
-				}
-			}
-			if = {
-				limit = {
-					has_completed_focus = HUN_elect_a_fascist_king
-				}
-				uncomplete_national_focus = {
-					focus = HUN_elect_a_fascist_king
-					uncomplete_children = yes
-				}
-			}
-			if = {
-				limit = {
-					NOT = { has_completed_focus = HUN_balanced_budget }
-				}
-				complete_national_focus = HUN_balanced_budget
 			}
 			if = {
 				limit = {

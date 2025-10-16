@@ -16,6 +16,33 @@ ideas = {
 			}
 		}
 		
+		Industrial_Development = {
+
+			picture = generic_production_bonus
+
+			allowed = {
+				always = yes
+			}
+
+			modifier = {
+				production_speed_buildings_factor = 0.1
+			}
+
+		}
+
+		More_Rescources = {
+
+			picture = ast_all_in
+
+			allowed = {
+				always = yes
+			}
+
+			modifier = {
+				local_resources_factor = 0.1
+			}
+		}
+
 		synarchist_support_surge = {
 			
 			allowed = {
@@ -153,7 +180,7 @@ ideas = {
 			}
 			
 			modifier = {
-				consumer_goods_expected_value = -0.02
+				consumer_goods_factor = -0.02
 			}
 		}
 		
@@ -312,27 +339,82 @@ ideas = {
 
 			equipment_bonus = {
 				artillery_equipment = {
-					soft_attack = 0.05
+					soft_attack = 0.1
 					instant = yes
 				}
-				rocket_artillery_equipment = {
+				dp_artillery_equipment = {
 					soft_attack = 0.05
-					instant = yes
-				}
-				anti_tank_equipment = {
 					hard_attack = 0.05
 					instant = yes
 				}
-				anti_air_equipment = {
-					air_attack = 0.05
+				rocket_artillery_equipment = {
+					soft_attack = 0.1
 					instant = yes
-				}				
+				}
+				anti_tank_equipment = {
+					hard_attack = 0.1
+					instant = yes
+				}
+				anti_air_equipment = {
+					air_attack = 0.1
+					instant = yes
+				}
+				squad_equipment = {
+					soft_attack = 0.25
+					instant = yes
+				}
 				pack_artillery_equipment = {
-					soft_attack = 0.05
+					soft_attack = 0.2
 					instant = yes
 				}
 				heavy_artillery_equipment = {
-					soft_attack = 0.05
+					soft_attack = 0.1
+					instant = yes
+				}
+			}
+		}
+
+		mex_combined_bomber_offensive = {
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+
+			picture = generic_air_bonus
+			
+			equipment_bonus = {
+				strat_bomber_equipment = {
+					air_bombing = 0.2
+					instant = yes
+					naval_strike_attack = 0.1
+					instant = yes
+				}
+				large_plane_airframe = {
+					build_cost_ic = -0.1
+					instant = yes
+				}	
+			}
+		}
+
+		MEX_cas_artillery = {
+		
+			picture = strategic_bombing_focus
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			equipment_bonus = {
+				small_plane_cas_airframe = {
+					air_ground_attack = 0.15
 					instant = yes
 				}
 			}
@@ -349,12 +431,389 @@ ideas = {
 			removal_cost = -1
 
 			equipment_bonus = {
-				CAS_equipment = { # Doesn't include carrier aircraft, but nevermind
+				medium_plane_airframe = {
 					air_ground_attack = 0.15
 					instant = yes
+					naval_strike_attack = 0.2
+					instant = yes
 				}
-				tac_bomber_equipment = {
-					air_ground_attack = 0.15
+			}
+		}
+
+		MEX_naval_aviation = {
+		
+			picture = generic_navy_carrier_bonus
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+			
+			modifier = {
+				sortie_efficiency = 0.1
+			}
+		}
+
+		MEX_naval_aviation_cooperation = {
+		
+			picture = generic_air_bonus
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+			
+			modifier = {
+				sortie_efficiency = 0.2
+			}
+
+			equipment_bonus = {
+				carrier = {
+					# carrier_size = 2
+					instant = yes
+				}
+			}
+
+		}
+
+		MEX_fighter_training = {
+		
+			picture = generic_air_payment
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+			
+			equipment_bonus = {
+				small_plane_airframe = {
+					build_cost_ic = -0.2
+					instant = yes
+				}
+			}
+		}
+
+		# ENG_british_commonwealth_air_training_plan = {
+
+		# 	picture = generic_air_bonus
+		
+		# 	allowed = {
+		# 		always = no
+		# 	}
+
+		# 	available = {
+		# 		OR = {
+		# 			tag = ENG
+		# 			is_subject_of = ENG
+		# 		}
+		# 	}
+
+		# 	allowed_civil_war = {
+		# 		always = yes
+		# 	}
+			
+		# 	removal_cost = -1
+
+		# 	modifier = {
+		# 		experience_gain_air = 0.1
+		# 		experience_gain_air_factor = 0.2
+		# 		air_mission_xp_gain_factor = 0.2
+		# 		air_training_xp_gain_factor = 0.25
+		# 	}
+		# }
+		
+		MEX_Invest_in_submarine_warfare = {
+		
+			picture = the_long_lance
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+			
+			equipment_bonus = {
+				submarine = {
+					build_cost_ic = -0.1
+					instant = yes
+					naval_range = 0.25
+					instant = yes
+					torpedo_attack = 0.2
+					instant = yes
+				}
+			}
+		}
+
+		MEX_proper_destroyers = {
+		
+			picture = generic_sea_focused_navy
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+			
+			equipment_bonus = {
+				ship_hull_light = {
+					build_cost_ic = -0.1
+					lg_attack = 0.1
+					instant = yes
+				}
+			}
+		}
+
+		MEX_Battleship_focus = {
+		
+			picture = generic_sea_focused_navy
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+			
+			equipment_bonus = {
+				ship_hull_heavy = {
+					build_cost_ic = -0.1
+					instant = yes
+					hg_attack = 0.05
+					instant = yes
+					armor_value = 0.05
+					instant = yes
+				}
+			}
+		}
+		
+		MEX_faster_planning = {
+		
+			picture = escort_effort_focus
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+			
+			modifier = {
+				naval_invasion_prep_speed = 0.1
+			}
+		}
+
+		MEX_better_naval_prep_invasion = {
+		
+			picture = escort_effort_focus
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+			
+			modifier = {
+				invasion_preparation = -0.15
+			}
+		}
+
+		MEX_support_offshore = {
+		
+			picture = generic_navy_bonus
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+			
+			modifier = {
+				shore_bombardment_bonus = 0.20
+			}
+		}
+
+		MEX_bigger_landings = {
+		
+			picture = escort_effort_focus
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+			
+			modifier = {
+				naval_invasion_capacity = 5
+			}
+		}
+
+		MEX_cheap_sfeq = {
+		
+			picture = eng_special_air_service
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+			
+			equipment_bonus = {
+				sf_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+			}
+		}
+
+		MEX_conscription_campaign = {
+		
+			picture = chi_army_corruption3
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+			
+			modifier = {
+				conscription = 0.02
+			}
+		}
+
+		MEX_defence_effort = {
+		
+			picture = ast_abandon_the_westminster_system
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			equipment_bonus = {
+				infantry_equipment = {
+					build_cost_ic = -0.05
+					instant = yes
+				}
+			}
+
+			modifier = {
+				max_dig_in = 2
+			}
+		}
+
+		MEX_reinforce_the_army = {
+		
+			picture = MEX_politicised_army
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			equipment_bonus = {
+				infantry_equipment = {
+					build_cost_ic = -0.05
+					instant = yes
+					soft_attack = 0.2
+					instant = yes
+				}
+			}
+		}
+
+		MEX_improvement_of_motorization = {
+		
+			picture = FRA_motorized_focus
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			equipment_bonus = {
+				motorized_equipment = {
+					build_cost_ic = -0.1
+					# hardness = 0.1 
+					instant = yes
+				}
+				mechanized_equipment = { 
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				mechanized_td_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				mechanized_spg_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				mechanized_aa_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				mechanized_amphibious_chassis = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				mechanized_utility_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+			}
+		}
+
+		MEX_better_pack_arty = {
+		
+			picture = generic_production_bonus
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			equipment_bonus = {
+				pack_artillery_equipment = {
+					build_cost_ic = -0.05
+					soft_attack = 0.1
+					instant = yes
+				}
+			}
+		}
+
+		MEX_preperation_for_the_new_year = {
+		
+			picture = eng_special_air_service
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			modifier = {
+				special_forces_cap = 0.05
+			}
+		}
+
+		MEX_improvement_of_armor = {
+		
+			picture = generic_acquire_tanks
+		
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			equipment_bonus = {
+				armor = {
+					hard_attack = 0.1
+					soft_attack = 0.1
 					instant = yes
 				}
 			}
@@ -393,8 +852,8 @@ ideas = {
 			}
 			
 			modifier = {
-				military_leader_cost_factor = 0.5
-				planning_speed = -0.1
+				military_leader_cost_factor = -0.2
+				planning_speed = 0.2
 			}
 		}
 		
@@ -566,8 +1025,8 @@ ideas = {
 			}
 			
 			modifier = {
-				license_purchase_cost = -0.5
-				license_production_speed = 0.25
+				# license_purchase_cost = -0.5
+				license_production_speed = 0.20
 			}
 		}
 		
@@ -608,8 +1067,8 @@ ideas = {
 			
 			modifier = {
 				democratic_drift = 0.2
-				production_speed_industrial_complex_factor = 0.2
-				production_speed_infrastructure_factor = 0.3
+				production_speed_industrial_complex_factor = 0.4
+				production_speed_infrastructure_factor = 0.4
 			}
 		}
 		
@@ -669,7 +1128,7 @@ ideas = {
 			
 			modifier = {
 				democratic_drift = 0.1
-				research_speed_factor = 0.05
+				research_speed_factor = 0.10
 			}
 		}
 		
@@ -867,100 +1326,55 @@ ideas = {
 		
 		designer = yes
 		
-		MEX_tga = {
+		# MEX_tga = {
 		
-			cost = 75
+		# 	cost = 75
 			
-			allowed = {
-				original_tag = MEX
-				has_dlc = "Man the Guns"
-			}
+		# 	allowed = {
+		# 		original_tag = MEX
+		# 		has_dlc = "Man the Guns"
+		# 	}
 			
-			available = {
-				has_completed_focus = MEX_focus_tank_workshops
-			}
+		# 	available = {
+		# 		has_completed_focus = MEX_focus_tank_workshops
+		# 	}
 			
-			research_bonus = {
-				armor = 0.15
-			}
+		# 	research_bonus = {
+		# 		armor = 0.15
+		# 	}
 			
-			traits = { tank_manufacturer }
+		# 	traits = { tank_manufacturer }
 
-		}
-		
-		germano_mexican_tanks = {
-		
-			picture = porsche
-			
-			allowed = {
-				original_tag = MEX
-				has_dlc = "Man the Guns"
-			}
-			
-			available = {
-				is_in_faction_with = GER
-			}
-			
-			research_bonus = {
-				armor = 0.15
-			}
-			
-			traits = { heavy_tank_manufacturer }
-
-		}
-		
-		russo_mexican_tanks = {
-
-			picture = morozov_design_bureau
-			
-			allowed = {
-				original_tag = MEX
-				has_dlc = "Man the Guns"
-			}
-			
-			available = {
-				is_in_faction_with = SOV
-			}
-			
-			research_bonus = {
-				armor = 0.15
-			}
-			
-			traits = { fast_tank_manufacturer }
-			
-			ai_will_do = {
-				factor = 1
-			}
-		}
-		
-		american_mexican_tanks = {
-
-			picture = chrysler
-			
-			allowed = {
-				original_tag = MEX
-				has_dlc = "Man the Guns"
-			}
-			
-			available = {
-				is_in_faction_with = USA
-			}
-			
-			research_bonus = {
-				armor = 0.15
-			}
-			
-			traits = { medium_tank_manufacturer }
-
-			ai_will_do = {
-				factor = 1
-			}
-		}
+		# 	modifier = { tank_manufacturer_cost_factor = -1 }
+		# }
 	}
 	
 	naval_manufacturer = { 
 	
 		designer = yes
+
+		MEX_escort_fleet = {
+			picture = generic_naval_manufacturer_3
+
+			
+			allowed = {
+				original_tag = MEX
+			}
+			
+			research_bonus = {
+				naval_equipment = 0.15
+			}
+			
+			equipment_bonus = {
+
+			}
+
+			cost = 150
+			
+			traits = { convoy_escort_naval_manufacturer }
+
+			modifier = { naval_manufacturer_cost_factor = -1 }
+		}
 		
 		MEX_astimar_gulf = {
 			
@@ -970,17 +1384,18 @@ ideas = {
 			}
 			
 			available = {
-				has_completed_focus = MEX_focus_gulf_coast_naval_yards
+				# has_completed_focus = MEX_focus_gulf_coast_naval_yards
 			}
 			
 			research_bonus = {
 				naval_equipment = 0.15
 			}
+
+			cost = 150
 			
 			traits = { atlantic_fleet_naval_manufacturer }
 			
-			modifier = {
-			}
+			modifier = { naval_manufacturer_cost_factor = -1 }
 		}
 		
 		MEX_astimar_pacific = {
@@ -991,8 +1406,10 @@ ideas = {
 			}
 			
 			available = {
-				has_completed_focus = MEX_focus_pacific_coast_naval_yards
+				# has_completed_focus = MEX_focus_pacific_coast_naval_yards
 			}
+
+			cost = 150
 			
 			research_bonus = {
 				naval_equipment = 0.15
@@ -1000,8 +1417,7 @@ ideas = {
 			
 			traits = { pacific_fleet_naval_manufacturer }
 			
-			modifier = {
-			}
+			modifier = { naval_manufacturer_cost_factor = -1 }
 		}
 	}
 	
@@ -1017,7 +1433,7 @@ ideas = {
 			}
 			
 			available = {
-				has_completed_focus = MEX_focus_aviation_workshops
+				# has_completed_focus = MEX_focus_aviation_workshops
 			}
 			
 			research_bonus = {
@@ -1033,8 +1449,36 @@ ideas = {
 			ai_will_do = {
 				factor = 1
 			}
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 		
+		mex_heavy_aircraft_manufacturer = {
+
+			name = mex_heavy_aircraft_manufacturer
+			
+			allowed = {
+				original_tag = MEX
+			}
+
+			available = {
+				# has_completed_focus = MEX_focus_School_for_Bombing
+				always = no
+			}
+
+			picture = generic_air_manufacturer_2
+			
+			cost = 150
+			
+			research_bonus = {
+				air_equipment = 0.15
+			}
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
+			
+			traits = { heavy_aircraft_manufacturer }
+		}
+
 		MEX_douglas_aircraft_company = {
 		
 			name = douglas_aircraft_company
@@ -1044,7 +1488,7 @@ ideas = {
 			}
 			
 			available = {
-				has_completed_focus = MEX_focus_aztec_eagles
+				has_completed_focus = MEX_focus_oil_drilling
 			}
 
 			picture = douglas_aircraft_company
@@ -1054,7 +1498,10 @@ ideas = {
 			}
 
 			traits = { CAS_manufacturer }
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
+
 	}
 
 	industrial_concern = {
@@ -1071,7 +1518,7 @@ ideas = {
 			}
 			
 			available = {
-				has_completed_focus = MEX_focus_royal_dutch_shell
+				# has_completed_focus = MEX_focus_royal_dutch_shell
 			}
 			
 			research_bonus = {
@@ -1163,7 +1610,7 @@ ideas = {
 
 			modifier = {
 				tank_manufacturer_cost_factor = -0.25
-				naval_manufacturer_cost_factor = -0.25
+				# naval_manufacturer_cost_factor = -0.25
 				aircraft_manufacturer_cost_factor = -0.25
 				materiel_manufacturer_cost_factor = -0.25
 			}
@@ -1210,7 +1657,6 @@ ideas = {
 			
 			research_bonus = {
 				artillery = 0.15
-				heavy_artillery = 0.15
 			}
 			
 			equipment_bonus = {

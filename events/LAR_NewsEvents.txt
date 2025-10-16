@@ -67,24 +67,7 @@ news_event = {
 
 	immediate = {
 		hidden_effect = {
-			if = {
-				limit = {
-					has_completed_focus = SPA_the_phalanx_ascendant
-				}
-				set_global_flag = SPR_falange_won
-			}
-			if = {
-				limit = {
-					has_completed_focus = SPA_unify_the_nationalist_front
-				}
-				set_global_flag = SPR_franco_won
-			}
-			if = {
-				limit = {
-					has_completed_focus = SPA_supremacy_of_the_communion
-				}
-				set_global_flag = SPR_carlists_won
-			}
+			set_global_flag = SPR_franco_won
 			if = {
 				limit = {
 					OR = {
@@ -107,16 +90,6 @@ news_event = {
 				delete_unit_template_and_units = {
 					division_template = "Brigada Legionario"
 					disband = yes
-				}
-				if = {
-					limit = {
-						tag = SPA
-						has_completed_focus = SPA_the_fifth_column
-					}
-					delete_unit_template_and_units = {
-						division_template = "Fifth Columnist Brigade"
-						disband = yes
-					}
 				}
 				if = {
 					limit = {
@@ -214,13 +187,14 @@ news_event = {
 					}
 				}
 				remove_ideas = SPA_death_before_surrender
+				# remove_ideas = disable_scorched_earth_spain
 				add_timed_idea = { idea = SPA_recovering_from_civil_war days = 2190 }
-				if = {
-					limit = {
-						has_idea = SPA_foreign_training_staff
-					}
-					remove_ideas = SPA_foreign_training_staff
-				}
+				# if = {
+				# 	limit = {
+				# 		has_idea = SPA_foreign_training_staff
+				# 	}
+				# 	remove_ideas = SPA_foreign_training_staff
+				# }
 				if = {
 					limit = {
 						has_idea = SPA_a_methodical_approach
@@ -252,17 +226,13 @@ news_event = {
 							state = 794
 						}
 					}
-					if = {
-						limit = {
-							has_dynamic_modifier = {
-								modifier = unplanned_offensive
-							}
-						}
-						remove_dynamic_modifier = {
-							modifier = unplanned_offensive
-						}
+					remove_dynamic_modifier = {
+						modifier = unplanned_offensive
 					}
 				}
+			}
+			ITA = {
+				boot_naval_treaty_f = yes
 			}
 		}
 	}
@@ -363,16 +333,6 @@ news_event = {
 			}
 			if = {
 				limit = {
-					tag = SPA
-					has_completed_focus = SPA_the_fifth_column
-				}
-				delete_unit_template_and_units = {
-					division_template = "Fifth Columnist Brigade"
-					disband = yes
-				}
-			}
-			if = {
-				limit = {
 					NOT = {
 						tag = SPB
 					}
@@ -390,12 +350,12 @@ news_event = {
 				remove_ideas = SPA_a_methodical_approach
 			}
 			add_timed_idea = { idea = SPA_recovering_from_civil_war days = 2190 }
-			if = {
-				limit = {
-					has_idea = SPA_foreign_training_staff
-				}
-				remove_ideas = SPA_foreign_training_staff
-			}
+			# if = {
+			# 	limit = {
+			# 		has_idea = SPA_foreign_training_staff
+			# 	}
+			# 	remove_ideas = SPA_foreign_training_staff
+			# }
 			if = {
 				limit = {
 					tag = SPA
@@ -444,6 +404,9 @@ news_event = {
 					}
 				}
 			}
+			ITA = {
+				boot_naval_treaty_f = yes
+			}
 		}
 	}
 }
@@ -456,56 +419,7 @@ news_event = {
 			has_global_flag = SPR_democrats_won
 		}
 	}
-	title = {
-		text = lar_news.1.t_stalinist
-		trigger = {
-			has_global_flag = SPR_stalinists_won
-		}
-	}
-	title = {
-		text = lar_news.1.t_independent_communist
-		trigger = {
-			has_global_flag = SPR_poum_won
-		}
-	}
-	title = {
-		text = lar_news.1.t_anarchists
-		trigger = {
-			has_global_flag = SPR_anarchists_won
-		}
-	}
-	desc = {
-		text = lar_news.2.desc_republic_no_help
-		trigger = {
-			has_global_flag = SPR_democrats_won
-			NOT = { SPD = {  has_completed_focus = SPR_expand_soviet_aid } }
-		}
-	}
-	desc = {
-		text = lar_news.2.desc_republic_soviet_help
-		trigger = {
-			has_global_flag = SPR_democrats_won
-			SPD = { has_completed_focus = SPR_expand_soviet_aid }
-		}
-	}
-	desc = {
-		text = lar_news.2.desc_stalinist
-		trigger = {
-			has_global_flag = SPR_stalinists_won
-		}
-	}
-	desc = {
-		text = lar_news.2.desc_independent_communist
-		trigger = {
-			has_global_flag = SPR_poum_won
-		}
-	}
-	desc = {
-		text = lar_news.2.desc_anarchists
-		trigger = {
-			has_global_flag = SPR_anarchists_won
-		}
-	}
+	desc = "this didnt happen"
 	picture = GFX_news_event_034
 	
 	major = yes
@@ -516,41 +430,10 @@ news_event = {
 		hidden_effect = {
 			if = {
 				limit = {
-					has_completed_focus = SPR_regional_defense_council_of_aragon
-				}
-				set_global_flag = SPR_anarchists_won
-			}
-			if = {
-				limit = {
-					has_completed_focus = SPR_hinder_nkvd_interference
-				}
-				set_global_flag = SPR_poum_won
-			}
-			if = {
-				limit = {
-					has_completed_focus = SPR_the_stalinist_doctrine
-				}
-				set_global_flag = SPR_stalinists_won
-			}
-			if = {
-				limit = {
-					has_completed_focus = SPR_maintain_the_second_republic
-				}
-				set_global_flag = SPR_democrats_won
-			}
-			if = {
-				limit = {
 					OR = {
 						tag = SPC
 						tag = SPD
 					}
-				}
-				if = {
-					limit = {
-						tag = SPC
-						SPC = { has_completed_focus = SPR_regional_defense_council_of_aragon }
-					}
-					set_global_flag = { flag = SPR_anarchist_victory_timer_flag value = 1 days = 365 }
 				}
 				delete_unit_template_and_units = {
 					division_template = "Guarnición Republicana"
@@ -581,69 +464,6 @@ news_event = {
 					disband = yes
 				}
 
-				if = {
-					limit = {
-						tag = SPC
-					}
-
-					# If POUM wins and Right Oppo Soviets aided them
-					if = {
-						limit = {
-							has_template = "International Marxist Brigades"
-						}
-						delete_unit_template_and_units = {
-							division_template = "International Marxist Brigades"
-							disband = yes
-						}
-					}
-					if = {
-						limit = {
-							has_template = "Soviet Special Brigades"
-						}
-						delete_unit_template_and_units = {
-							division_template = "Soviet Special Brigades"
-							disband = yes
-						}
-					}
-
-					every_state = {
-						limit = {
-							has_state_flag = SPR_core_of_spain_flag
-							has_state_flag = SPR_sided_with_republicans_flag
-						}
-						remove_core_of = SPA
-						remove_core_of = SPB
-						remove_core_of = SPD
-					}
-					every_state = {
-						limit = {
-							has_state_flag = SPR_core_of_spain_flag
-							has_state_flag = SPR_sided_with_nationalists_flag
-						}
-						remove_core_of = SPC
-						remove_core_of = SPB
-						remove_core_of = SPD
-						remove_core_of = SPA
-						start_resistance = yes
-					}
-					118 = {
-						if = {
-							limit = {
-								is_controlled_by = ROOT
-							}
-							remove_core_of = SPA
-							remove_core_of = SPB
-							remove_core_of = SPD
-							add_core_of = ROOT
-						}
-						else = {
-							remove_claim_by = SPB
-							remove_claim_by = SPA
-							remove_claim_by = SPD
-							add_claim_by = SPC
-						}
-					}
-				}
 				if = {
 					limit = {
 						tag = SPD
@@ -737,26 +557,9 @@ news_event = {
 							state = 794
 						}
 					}
-					if = {
-						limit = {
-							has_dynamic_modifier = {
-								modifier = unplanned_offensive
-							}
-						}
-
-						remove_dynamic_modifier = {
-							modifier = unplanned_offensive
-						}
+					remove_dynamic_modifier = {
+						modifier = unplanned_offensive
 					}
-				}
-				if = {
-					limit = {
-						has_completed_focus = SPR_expand_soviet_aid
-					}
-					SOV = {
-						country_event = { id = lar_spain.81 hours = 6 }
-					}
-					country_event = { id = lar_spain.82 hours = 6 }
 				}
 			}
 
@@ -778,116 +581,6 @@ news_event = {
 	}
 	
 	option = {
-		name = lar_news.2.a
-		trigger = {
-			country_exists = SPC
-			SPC = { has_capitulated = no }
-			NOT = { tag = SPC }
-			NOT = { original_tag = SPR }
-			SPC = { has_completed_focus = SPR_regional_defense_council_of_aragon }
-		}
-	}
-	option = {
-		name = lar_news.2.b
-		trigger = {
-			NOT = { tag = SOV }
-			NOT = { original_tag = SPR }
-			NOT = {
-				AND = {
-					tag = MEX
-					has_country_leader = {
- 						character = MEX_leon_trotsky
- 					}
-				}
-			}
-			NOT = {
-				is_in_faction_with = SOV
-				AND = {
-					is_in_faction_with = MEX
-					MEX = {
-						has_country_leader = {
- 							character = MEX_leon_trotsky
- 						}
-					}
-				}
-			}
-			has_government = communism
-			country_exists = SPC
-			SPC = { has_capitulated = no }
-			NOT = { tag = SPC }
-			SPC = { has_completed_focus = SPR_hinder_nkvd_interference }
-		}
-	}
-	option = {
-		name = lar_news.2.c
-		trigger = {
-			NOT = { tag = SOV }
-			NOT = { original_tag = SPR }
-			NOT = {
-				AND = {
-					tag = MEX
-					has_country_leader = {
- 						character = MEX_leon_trotsky
- 					}
-				}
-			}
-			NOT = {
-				is_in_faction_with = SOV
-				AND = {
-					is_in_faction_with = MEX
-					MEX = {
-						has_country_leader = {
- 							character = MEX_leon_trotsky
- 						}
-					}
-				}
-			}
-			NOT = {
-				AND = {
-					tag = GER
-					has_government = fascism
-				}
-				AND = {
-					tag = ITA
-					has_government = fascism
-				}
-			}
-			NOT = { has_government = communism }
-			country_exists = SPC
-			SPC = { has_capitulated = no }
-			NOT = { tag = SPC }
-			SPC = { has_completed_focus = SPR_hinder_nkvd_interference }
-		}
-	}
-	option = {
-		name = lar_news.2.d
-		trigger = {
-			NOT = { original_tag = SPR }
-			OR = {
-				tag = SOV
-				is_in_faction_with = SOV
-				AND = {
-					tag = MEX
-					has_country_leader = {
- 						character = MEX_leon_trotsky
- 					}
-				}
-				AND = {
-					is_in_faction_with = MEX
-					MEX = {
-						has_country_leader = {
- 							character = MEX_leon_trotsky
- 						}
-					}
-				}
-			}
-			country_exists = SPC
-			SPC = { has_capitulated = no }
-			NOT = { tag = SPC }
-			SPC = { has_completed_focus = SPR_hinder_nkvd_interference }
-		}
-	}
-	option = {
 		name = lar_news.2.e
 		trigger = {
 			NOT = { original_tag = SPR }
@@ -905,10 +598,6 @@ news_event = {
 			NOT = {
 				has_government = communism
 			}
-			NOT = {
-				SPD = { has_completed_focus = SPR_the_stalinist_doctrine }
-				SPD = { has_completed_focus = SPR_expand_soviet_aid }
-			}
 			country_exists = SPD
 			SPD = { has_capitulated = no }
 			NOT = { tag = SPD }
@@ -919,10 +608,6 @@ news_event = {
 		trigger = {
 			NOT = { original_tag = SPR }
 			tag = SOV
-			NOT = {
-				SPD = { has_completed_focus = SPR_the_stalinist_doctrine }
-				SPD = { has_completed_focus = SPR_expand_soviet_aid }
-			}
 			country_exists = SPD
 			SPD = { has_capitulated = no }
 			NOT = { tag = SPD }
@@ -933,10 +618,7 @@ news_event = {
 		trigger = {
 			NOT = { original_tag = SPR }
 			tag = SOV
-			OR = {
-				SPD = { has_completed_focus = SPR_the_stalinist_doctrine }
-				SPD = { has_completed_focus = SPR_expand_soviet_aid }
-			}
+			always = no
 			country_exists = SPD
 			SPD = { has_capitulated = no }
 			NOT = { tag = SPD }
@@ -957,10 +639,7 @@ news_event = {
 					has_government = fascism
 				}
 			}
-			OR = {
-				SPD = { has_completed_focus = SPR_the_stalinist_doctrine }
-				SPD = { has_completed_focus = SPR_expand_soviet_aid }
-			}
+			always = no
 			country_exists = SPD
 			SPD = { has_capitulated = no }
 			NOT = { tag = SPD }
@@ -994,13 +673,6 @@ news_event = {
 			}
 		}
 		effect_tooltip = {
-			if = {
-				limit = {
-					tag = SPC
-					SPC = { has_completed_focus = SPR_regional_defense_council_of_aragon }
-				}
-				set_global_flag = { flag = SPR_anarchist_victory_timer_flag value = 1 days = 365 }
-			}
 			delete_unit_template_and_units = {
 				division_template = "Guarnición Republicana"
 				disband = yes

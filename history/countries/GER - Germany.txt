@@ -1,7 +1,15 @@
-﻿capital = 64 # Berlin/Brandeburg
+﻿capital = 64
 
 oob = "GER_1936"
 
+starting_train_buffer = 2
+set_fuel_ratio = 0.8
+
+# create_intelligence_agency = {
+#     name = "Abwehr"
+# }
+
+set_country_flag=fuel_system_enabled
 add_breakthrough_progress = {
 	specialization = specialization_land
 	value = 1.0
@@ -16,11 +24,12 @@ add_breakthrough_progress = {
 	specialization = specialization_air
 	value = 0.3
 }
+set_variable = {
+	var = min_fuel
+	value = 0.800
+}
 
-starting_train_buffer = 2
-set_fuel_ratio = 0.8
-
-add_timed_idea = { idea = GER_mefo_air days = 1340 }
+# add_dynamic_modifier = { modifier = GER_tank_purhcases }
 
 # Starting tech
 set_technology = {
@@ -39,10 +48,12 @@ set_technology = {
 	tech_mountaineers = 1
 	marines = 1
 	paratroopers = 1
+	
 	motorised_infantry = 1
 	gw_artillery = 1
-	
 	armored_car1 = 1
+	
+	
 	ger_light_tank_1 = 1
 	ger_light_tank_2 = 1
 	ger_p3_tank_1 = 1
@@ -147,159 +158,11 @@ if = {
 		}
 # 	}
 # }
-#CONSUMER GOODS INCREASE AND PENALTIES VARIABLES
-set_variable = { GER_monthly_consumer_goods_start = 0.02 } #Starting amount of monthly increasing CG for MEFO Bills 
-set_variable = { GER_change_monthly_CG_vichy_france = 0.005 } #Changing monthly CG when capitulating FRance
-set_variable = { GER_change_monthly_CG_price_controls = 0.005 } #Changing monthly CG when taking Price Controls focus
-set_variable = { GER_change_monthly_CG_occupied_states = 0.005 } #Changing monthly CG based on none-core states
-set_variable = { GER_expected_consumer_goods_penalty = 0.2} #Consumer Goods penalty when hitting 100% CGFF
-set_variable = { GER_factory_output_penalty = 0.25 } #Factory output penalty when hitting 100% CGFF
-set_variable = { GER_dockyard_output_penalty = 0.25 } #Dockyard output penalty when hitting 100% CGFF
-set_variable = { GER_reduce_russian_CG_bonus = 0 } #Used to reduce Soviet Gold Reserves if Germany has taken gold from various Soviet cities before capping them
 
-#INDUSTRAY: MEFO Bills/Economy of Conquest/Recovering Economy/Wirtschaftswunder
-#REMINDER to always update the fake NS if these numbers are altered!
-set_variable = { GER_monthly_consumer_goods_increase = GER_monthly_consumer_goods_start } #Amount of increasing CG each month
-set_variable = { GER_industrial_consumer_goods_factor = 0.01 } #Used for MEFO Bills, Economy of Conquest and Recovering Economy and Wirtschaftswunder - must correspond with the Fake MEFO Bills NS for the 1936 Bookmark
-set_variable = { GER_industrial_civilian_intel_to_others = -25 }
-set_variable = { GER_industrial_army_intel_to_others = -25 }
-set_variable = { GER_industrial_navy_intel_to_others = -25 }
-set_variable = { GER_industrial_airforce_intel_to_others = -25 }
-set_variable = { GER_industrial_production_speed_arms_factory_factor = 0.2 }
-set_variable = { GER_industrial_production_speed_dockyard_factor = 0.1 }
-set_variable = { GER_industrial_industrial_capacity_factory = 0 }
-set_variable = { GER_industrial_industrial_capacity_dockyard = 0 }
-set_variable = { GER_industrial_production_lack_of_resource_penalty_factor = 0 }
-set_variable = { GER_industrial_conversion_cost_civ_to_mil_factor = 0 }
-set_variable = { GER_industrial_industry_air_damage_factor = 0 }
-set_variable = { GER_industrial_resource_trade_cost_bonus_per_factory = 0 }
-set_variable = { GER_industrial_production_speed_buildings_factor = 0 }
-set_variable = { GER_industrial_research_speed_factor = 0 }
-set_variable = { GER_industrial_economy_cost_factor = 0 }
-set_variable = { GER_industrial_trade_laws_cost_factor = 0 }
-set_variable = { GER_recovering_economy_modifier_local_resources_factor = 0 }
-set_variable = { GER_industrial_production_factory_max_efficiency_factor = 0 }
-set_variable = { GER_industrial_production_factory_efficiency_gain_factor = 0 }
-set_variable = { GER_industrial_production_factory_start_efficiency_factor = 0 }
-set_variable = { GER_industrial_line_change_production_efficiency_factor = 0 }
-set_variable = { GER_industrial_equipment_conversion_speed = 0 }
-set_variable = { GER_industrial_consumer_goods_expected_value = 0 }
-set_variable = { GER_economic_crash_consumer_goods = 0.75 } #Amount of CGFF if the MEFO Bills gets canceled one way or another
-add_dynamic_modifier = { modifier = GER_mefo_bills_modifier }
-
-#WUNDERWAFFEN
-set_variable = { GER_wunderwaffen_special_project_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_tag_tank_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_air_helicopter_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_tag_jet_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_tag_rocket_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_commercial_nuclear_reactor_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_nuclear_bomb_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_nuclear_reactor_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_nuclear_warheads_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_tag_artillery_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_naval_modern_battleship_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_naval_modern_carrier_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_production_speed_nuclear_reactor_factor = 0 }
-set_variable = { GER_wunderwaffen_production_speed_nuclear_facility_factor = 0 }
-set_variable = { GER_wunderwaffen_production_speed_facility_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_tag_submarine_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_air_intercontinental_bomber_speed_factor = 0 }
-set_variable = { GER_wunderwaffen_sp_air_mothership_aircraft_speed_factor = 0 }
-
-#WEHRWIRTSCHAFT
-#REMINDER to always update the fake NS if these numbers are altered!
-set_variable = { GER_wehrwirtschaft_local_resources_factor = 0 }
-set_variable = { GER_wehrwirtschaft_production_speed_buildings_factor = 0 }
-set_variable = { GER_wehrwirtschaft_production_oil_factor = 0 }
-set_variable = { GER_wehrwirtschaft_production_speed_synthetic_refinery_factor = 0 }
-set_variable = { GER_wehrwirtschaft_production_speed_fuel_silo_factor = 0 }
-
-set_variable = { GER_autarky_steel = 30000 }
-set_variable = { GER_autarky_aluminium = 15000 }
-set_variable = { GER_autarky_rubber = 4000 }
-set_variable = { GER_autarky_tungsten = 3000 }
-set_variable = { GER_autarky_chromium = 5500 }
-set_variable = { GER_autarky_oil = 6000 }
-
-#ARMY
-#REMINDER to always update the fake NS if these numbers are altered!
-set_variable = { GER_military_army_armor_attack_factor = 0 }
-set_variable = { GER_military_army_armor_speed_factor = 0 }
-set_variable = { GER_military_org_loss_when_moving = 0 }
-set_variable = { GER_military_motorized_attack_factor = 0 }
-set_variable = { GER_military_mechanized_attack_factor = 0 }
-set_variable = { GER_military_army_infantry_attack_factor = 0 }
-set_variable = { GER_military_army_artillery_attack_factor = 0 }
-set_variable = { GER_military_army_org_factor = 0.05 }
-set_variable = { GER_military_planning_speed = 0.25 }
-set_variable = { GER_military_supply_factor = -0.15 }
-set_variable = { GER_military_equipment_capture = 0 }
-set_variable = { GER_military_initiative_factor = 0 }
-set_variable = { GER_military_army_fuel_consumption_factor = 0 }
-set_variable = { GER_military_coordination_bonus = 0 }
-set_variable = { GER_military_air_superiority_bonus_in_combat = 0 }
-set_variable = { GER_military_max_dig_in_factor = 0 }
-set_variable = { GER_military_army_artillery_defence_factor = 0 }
-set_variable = { GER_military_special_forces_cap = 0 }
-set_variable = { GER_military_para_cap = 0 }
-set_variable = { GER_military_marines_cap = 0 }
-set_variable = { GER_military_acclimatization_hot_climate_gain_factor = 0 }
-set_variable = { GER_military_acclimatization_cold_climate_gain_factor = 0 }
-set_variable = { GER_military_land_doctrine_cost_factor = 0 }
-set_variable = { GER_military_modifier_army_sub_unit_militia_attack_factor = 0 }
-set_variable = { GER_military_modifier_army_sub_unit_militia_defence_factor = 0 }
-set_variable = { GER_military_modifier_army_sub_unit_militia_max_org_factor = 0 }
-set_variable = { GER_military_experience_gain_army_factor = 0 }
-set_variable = { GER_military_army_morale_factor = 0 }
-set_variable = { GER_military_mobilization_speed = 0 }
-set_variable = { GER_military_minimum_training_level = 0 }
-set_variable = { GER_military_unit_leader_as_advisor_cp_cost_factor = 0 }
-set_variable = { GER_military_command_power_gain_mult = 0 }
-add_dynamic_modifier = { modifier = GER_army_modifier }
-
-#NAVY
-#REMINDER to always update the fake NS if these numbers are altered!
-set_variable = { GER_military_naval_heavy_gun_hit_chance_factor = 0 }
-set_variable = { GER_military_screening_efficiency = 0 }
-set_variable = { GER_military_screening_without_screens = 0 }
-set_variable = { GER_military_navy_max_range_factor = 0 }
-set_variable = { GER_military_convoy_raiding_efficiency_factor = 0 }
-set_variable = { GER_military_naval_light_gun_hit_chance_factor = 0 }
-set_variable = { GER_military_naval_hit_chance = 0 }
-set_variable = { GER_military_naval_defense_factor = -0.1}
-add_dynamic_modifier = { modifier = GER_navy_fascist_modifier }
-
-#AIRFORCE
-#REMINDER to always update the fake NS if these numbers are altered!
-set_variable = { GER_military_air_accidents_factor = 0.10 }
-set_variable = { GER_military_air_manpower_requirement_factor = 0.10 }
-set_variable = { GER_military_air_agility_factor = 0 }
-set_variable = { GER_military_air_ace_generation_chance_factor = 0 }
-set_variable = { GER_military_air_nav_efficiency = 0 }
-set_variable = { GER_military_air_cas_efficiency = 0 }
-set_variable = { GER_military_air_strategic_bomber_bombing_factor = 0 }
-set_variable = { GER_military_air_range_factor = 0 }
-set_variable = { GER_military_air_fuel_consumption_factor = 0 }
-add_dynamic_modifier = { modifier = GER_airforce_modifier }
-
-#CROSSING THE ATLANTIC
-set_variable = { number_of_states_getting_dockyards = 0 }
-set_variable = { crossing_the_atlantic_max_states_for_dockyards = 10 }
-
-#FORT CONSTRUCTION COST
-set_variable = { GER_fort_construction_cp_cost = 25 }
-set_variable = { GER_fort_construction_pp_cost = 15 }
-set_variable = { GER_fort_construction_cp_payment = -25 }
-set_variable = { GER_fort_construction_pp_payment = -15 }
-
-set_variable = { dockyard_major = 1 }
 set_variable = { var = ger_gateway_to_europe_influence value = 0 }
-
+add_timed_idea = { idea = GER_mefo_air days = 1340 }
 set_variable = { var = wehrmacht_anger value = 0 }
 set_variable = { var = ss_anger value = 0 }
-set_variable = { GER_narvik_shipments = 0 }
-set_variable = { GER_narvik_civs = 0 }
 #set_variable = { GER_poster_center_icon_frame = 1 }
 set_variable = { GER_new_propaganda_campaign = 0 } #Used to pick a poster slot
 set_variable = { GER_propaganda_campaign_to_remove = 0 } #Used to reset a poster slot
@@ -308,125 +171,20 @@ set_variable = { GER_propaganda_empty_slot_index = 1 } #### === INSERT EMPTY SLO
 set_variable = { GER_poster_left_icon_frame = GER_propaganda_empty_slot_index } #Set up the appropriate empty slot GFX
 set_variable = { GER_poster_center_icon_frame = GER_propaganda_empty_slot_index } #Set up the appropriate locked slot GFX
 #set_variable = { SOV_poster_right_icon_frame = SOV_propaganda_locked_slot_index } #Set up the appropriate locked slot GFX
-set_variable = { GER_tank_manufacturer_cost_factor = -0.34 }
-
-
-#COMMUNIST INTEL MODIFIER
-set_variable = { GER_communist_intel_drift_defence_factor = 0.2 }
-set_variable = { GER_communist_intel_communism_drift = 0.05 }
-set_variable = { GER_communist_intel_operative_slot = 0 }
-set_variable = { GER_communist_intel_stability_factor = 0 }
-set_variable = { GER_communist_intel_operation_cost = 0 }
-set_variable = { GER_communist_intel_subversive_activities_upkeep = 0 }
-set_variable = { GER_communist_intel_intel_network_gain = 0 }
-set_variable = { GER_communist_intel_decryption_factor = 0 }
-set_variable = { GER_communist_intel_encryption_factor = 0 }
-
-#POLITBÜRO MODIFIER
-set_variable = { GER_politburo_defensive_war_stability_factor = 0}
-set_variable = { GER_politburo_offensive_war_stability_factor = 0}
-set_variable = { GER_politburo_party_popularity_stability_factor = 0}
-set_variable = { GER_politburo_weekly_manpower = 0}
-set_variable = { GER_politburo_stability_factor = 0}
-set_variable = { GER_politburo_conscription = 0 }
-set_variable = { GER_politburo_democratic_drift = 0 }
-set_variable = { GER_politburo_political_power_factor = 0}
-set_variable = { GER_politburo_resistance_growth = 0 }
-set_variable = { GER_politburo_compliance_growth = 0 }
-set_variable = { GER_politburo_subjects_autonomy_gain = 0 }
-set_variable = { GER_politburo_conscription_factor = 0}
-
-#ALFRED ROSENBERG
-set_variable = { GER_alfred_rosenberg_modifier_subjects_autonomy_gain = -0.2 }
-set_variable = { GER_alfred_rosenberg_modifier_consumer_goods_factor = 0 }
-set_variable = { GER_alfred_rosenberg_modifier_production_speed_arms_factory_factor = 0 }
-set_variable = { GER_alfred_rosenberg_modifier_industrial_capacity_factory = 0 }
-set_variable = { GER_max_alfred_rosenberg_upgrades = 10 }
-set_variable = { GER_count_down_alfred_rosenberg_upgrades = GER_max_alfred_rosenberg_upgrades } #Count down variable
-set_variable = { GER_total_reichskommissariats = 0 }
-
-# SHARED R&D PROGRAMS
-set_variable = { GER_rnd_programs_modifier_research_speed_factor = 0.01 }
-set_variable = { GER_rnd_programs_modifier_allies_count = 1 }
-
-#INDUSTRIAL RELOCATTION
-set_variable = { GER_industrial_relocation_resources_country_resource_oil = 0 }
-set_variable = { GER_industrial_relocation_resources_country_resource_tungsten = 0 }
-set_variable = { GER_industrial_relocation_resources_country_resource_chromium = 0 }
-
-
-#INTEGRATE PUPPET ECONOMIES (Fascist)
-set_variable = { GER_puppet_economies_integration_cap = 3 } #Max number of decisions active
-set_variable = { GER_puppet_economies_integration_days = 365 } #Days remove for the decisions
-
-
-#MILITARY-INTELLIGENCE SERVICE
-set_variable = { GER_military_intelligence_service_operative_slot = 0 }
-set_variable = { GER_military_intelligence_service_intelligence_agency_defense = 0 }
-set_variable = { GER_military_intelligence_service_agency_upgrade_time = 0 }
-set_variable = { GER_military_intelligence_service_boost_ideology_mission_factor = 0 }
-set_variable = { GER_military_intelligence_service_master_ideology_drift = 0 }
-set_variable = { GER_military_intelligence_service_encryption_factor = 0 }
-set_variable = { GER_military_intelligence_service_decryption_factor = 0 }
-set_variable = { GER_military_intelligence_service_subversive_activites_upkeep = 0 }
-set_variable = { GER_military_intelligence_service_consumer_goods_factor = 0 }
-set_variable = { GER_military_intelligence_service_decryption_power = 0 }
-set_variable = { GER_military_intelligence_service_intel_network_gain_factor = 0 }
-set_variable = { GER_military_intelligence_root_out_resistance_effectiveness_factor = 0 }
-
-#OCCUPIED STATES VARIABLES
-set_variable = { GER_occupied_states_europe = 0 }
-set_variable = { GER_capitulated_major_countries = 0 }
-set_variable = { GER_num_of_occupied_states = 0 }
-
-#STANDARD WUNDERWAFFE BONUS
-set_variable = { GER_wunderwaffe_research_speed_bonus = 0.1 }
-
-#HITLERS BLUNDERS - COUNTER FOR OSTER CONSPIRACY
-set_variable = { GER_hitlers_blunders_variable = 0 }
-
-
-####################
-### INNER CIRCLE ###
-####################
-set_variable = { GER_inner_circle_days_to_start_focus = 75 }
-set_variable = { GER_inner_circle_random_days = 45 }
-
-
-### UI ###
-set_variable = { GER_ascended_advisor_1 = 0 } #Ascended Advisor Portrait
-set_variable = { GER_ascended_advisor_2 = 0 } #Ascended Advisor Portrait
-set_variable = { GER_ascended_advisor_3 = 0 } #Ascended Advisor Portrait
-
-### SHARED FOCUS CONTROL ###
-set_variable = { GER_wonder_weapons_focus_advisor = 0 } # To know who is completing this focus. Value = Advisor ID in the Inner Circle
-set_variable = { GER_optimize_reich_service_focus_advisor = 0 } # To know who is completing this focus. Value = Advisor ID in the Inner Circle
-set_variable = { GER_total_control_over_domestic_affairs_focus_advisor = 0 } # To know who is completing this focus. Value = Advisor ID in the Inner Circle
-
-set_variable = { GER_industrialist_prevailed = 0 } #For allowing only one Industrialist advisor to work on the ME focus
-
-
-# Starting Stats of various kinds
 set_research_slots = 6
 set_convoys = 200
-IF = {
-	limit = {
-		has_dlc = "Gotterdammerung"
-	}
-	set_stability = 0.7 # Was 0.75, but get 5% from the Reichstag
-	ELSE = {
-		set_stability = 0.75
-	}
-}
+set_stability = 0.75 
 set_war_support = 0.3
 set_variable = { GER_SS_division_cap = 0 }
-set_variable = { GER_SS_cap_increase = 1 }
-set_variable = { GER_SS_cap_increase_double = 2 }
+set_variable = { GER_SS_cap_increase = 2 }
+set_variable = { GER_SS_cap_decrease = -2 }
+set_variable = { GER_SS_cap_increase_medium_double = 4 }
+set_variable = { GER_SS_cap_increase_light_double = 6 }
+set_variable = { GER_SS_cap_increase_heavy_double = 2 }
 
 #SS_armored_division_standard = yes
-set_country_flag = SS_armored_division_standard
+set_country_flag = SS_armored_division_medium
 
-# Setup German Politics
 set_politics = {
 	ruling_party = fascism
 	last_election = "1933.3.5"
@@ -434,23 +192,21 @@ set_politics = {
 	elections_allowed = no
 }
 set_popularities = {
-	democratic = 35
-	fascism = 40
-	communism = 10
-	neutrality = 15
+	democratic = 20
+	fascism = 60
+	communism = 20
 }
 
-# Wowow nice faction
 create_faction = Axis
 add_to_faction = GER
 
 add_to_tech_sharing_group = axis_research
 
-# Setup of National Spirits
-#add_ideas = {GER_mefo_bills_1 GER_good_weather_army}
+
+add_ideas = {GER_mefo_bills_1 GER_good_weather_army}
 add_ideas = {
-	GER_good_weather_army
 	sour_loser
+	general_staff
 	limited_exports
 	limited_conscription
 	partial_economic_mobilisation
@@ -462,187 +218,100 @@ add_ideas = {
 	AFRICA_COMMONWEALTH_controls_axis_idea_6
 }
 
-# Activates the MEFO Bills Mission
-activate_mission = GER_mefo_bills_mission
+# MP_garrison_division_standard = yes
 
-# Character Recruitment
-recruit_character = GER_wilhelm_pieck
-recruit_character = GER_konrad_adenauer
+#create_country_leader = {
+#	name = "Otto Wels"
+#	desc = "POLITICS_OTTO_WELS_DESC"
+#	picture = "Portrait_Germany_Adolf_Hitler.dds"
+#	expire = "1939.1.16"
+#	ideology = socialism
+#	traits = {
+#		exiled
+#		union_man
+#	}
+#}
+#
+#create_country_leader = {
+#	name = "Ernst Thälmann"
+#	desc = "POLITICS_ERNST_THALMANN_DESC"
+#	picture = "Portrait_Germany_Adolf_Hitler.dds"
+#	expire = "1956.1.1"
+#	ideology = stalinism
+#	traits = {
+#		assassination_survivor
+#		stalins_puppet
+#		political_prisoner
+#	}
+#}
+
 recruit_character = GER_adolf_hitler
-recruit_character = GER_albert_kesselring
+recruit_character = GER_konrad_adenauer
+recruit_character = GER_wilhelm_pieck
+recruit_character = GER_gerd_von_rundstedt
+recruit_character = GER_friedrich_paulus
+recruit_character = GER_erwin_rommel
+recruit_character = GER_erich_von_manstein
+recruit_character = GER_heinz_guderian
+recruit_character = GER_wilhelm_list
+# recruit_character = GER_ewald_von_kleist
+recruit_character = GER_fedor_von_bock
+recruit_character = GER_walter_model
+recruit_character = GER_maximilian_von_weichs
+recruit_character = GER_wilhelm_ritter_von_leeb
+# recruit_character = GER_georghans_reinhardt
+recruit_character = GER_kurt_student
+# recruit_character = GER_erwin_von_witzleben
+# recruit_character = GER_hermann_hoth
+recruit_character = GER_johannes_blaskowitz
+# recruit_character = GER_paul_hausser
+# recruit_character = GER_friedrich_schulz
 recruit_character = GER_alfred_jodl
-recruit_character = GER_alfred_saalwachter
+recruit_character = GER_sepp_dietrich
+# recruit_character = GER_hasso_von_manteuffel
+recruit_character = GER_albert_kesselring
+recruit_character = GER_gotthard_heinrici
+recruit_character = GER_ernsteberhard_hell
+recruit_character = GER_felix_steiner
+recruit_character = GER_erich_raeder
+recruit_character = GER_hermann_boehm
+recruit_character = GER_wilhelm_marschall
+# recruit_character = GER_günther_von_kluge
+# recruit_character = GER_walter_krüger
+recruit_character = GER_georg_von_küchler
+recruit_character = GER_karl_dönitz
+recruit_character = GER_alfred_saalwächter
+recruit_character = GER_günther_lütjens
+recruit_character = GER_anton_wilbs
+recruit_character = GER_fritz_todt
+recruit_character = GER_albert_speer
+recruit_character = GER_hjalmar_schacht
+recruit_character = GER_herman_goring
+recruit_character = GER_joseph_goebbels
+recruit_character = GER_rudolf_hess
+recruit_character = GER_heinrich_himmler
+recruit_character = GER_martin_bormann
+recruit_character = GER_joachim_von_ribbentrop
+recruit_character = GER_konstantin_von_neurath
+recruit_character = GER_von_braun
+recruit_character = GER_heisenberg
+recruit_character = GER_wolfram_von_richthofen
+recruit_character = GER_walther_wever
+recruit_character = GER_ernst_udet
+recruit_character = GER_otto_ciliax
+recruit_character = GER_ludwig_beck
+recruit_character = GER_wilhelm_keitel
+recruit_character = GER_franz_halder
+recruit_character = GER_walther_von_brauchitsch
+recruit_character = GER_ritter_von_greim
+recruit_character = GER_ferdinand_schorner
+recruit_character = GER_werner_von_fritsch
+recruit_character = GER_erich_hartmann
+recruit_character = GER_hugo_sperrle
 recruit_character = GER_erhard_milch
 recruit_character = GER_erich_bey
-recruit_character = GER_erich_raeder
-recruit_character = GER_erich_von_manstein
-recruit_character = GER_ernst_udet
-recruit_character = GER_ernsteberhard_hell
-recruit_character = GER_erwin_rommel
-recruit_character = GER_erwin_von_witzleben
-recruit_character = GER_ewald_von_kleist
-recruit_character = GER_fedor_von_bock
-recruit_character = GER_felix_steiner
-recruit_character = GER_ferdinand_schorner
-recruit_character = GER_franz_halder
-recruit_character = GER_friedrich_paulus
-recruit_character = GER_friedrich_schulz
-recruit_character = GER_georg_von_kuchler
-recruit_character = GER_georghans_reinhardt
-recruit_character = GER_gerd_von_rundstedt
-recruit_character = GER_hermann_goring
-recruit_character = GER_gotthard_heinrici
-recruit_character = GER_gunther_lutjens
-recruit_character = GER_gunther_von_kluge
-recruit_character = GER_hasso_von_manteuffel
-recruit_character = GER_heinz_guderian
-recruit_character = GER_heisenberg
-recruit_character = GER_hermann_boehm
-recruit_character = GER_hermann_hoth
-recruit_character = GER_hugo_sperrle
-recruit_character = GER_johannes_blaskowitz
-recruit_character = GER_karl_donitz
-recruit_character = GER_kurt_student
-recruit_character = GER_ludwig_beck
-recruit_character = GER_maximilian_von_weichs
-recruit_character = GER_otto_ciliax
-recruit_character = GER_paul_hausser
-recruit_character = GER_ritter_von_greim
-recruit_character = GER_sepp_dietrich
 recruit_character = GER_viktor_schutze
-recruit_character = GER_von_braun
-recruit_character = GER_walter_kruger
-recruit_character = GER_walter_model
-recruit_character = GER_walther_von_brauchitsch
-recruit_character = GER_walther_wever
-recruit_character = GER_werner_von_fritsch
-recruit_character = GER_wilhelm_keitel
-recruit_character = GER_wilhelm_list
-recruit_character = GER_wilhelm_marschall
-
-recruit_character = GER_wilhelm_ritter_von_leeb
-recruit_character = GER_wolfram_von_richthofen
-
-recruit_character = GER_heinrich_himmler
-recruit_character = GER_walther_funk
-recruit_character = GER_hjalmar_schacht
-recruit_character = GER_julius_leber
-recruit_character = GER_albert_speer
-recruit_character = GER_hans_oster
-recruit_character = GER_theodor_heuss
-recruit_character = GER_fritz_todt
-recruit_character = GER_joachim_von_ribbentrop
-recruit_character = GER_ernst_thalmann
-recruit_character = GER_rudolf_hess
-recruit_character = GER_martin_bormann
-recruit_character = GER_wilhelm_canaris
-activate_advisor = GER_wilhelm_canaris # Canaris as an advisor at start
-recruit_character = GER_joseph_goebbels
-recruit_character = GER_konstantin_von_neurath
-recruit_character = GER_alfred_hugenberg
-recruit_character = GER_kurt_schumacher
-recruit_character = GER_wilhelm_ii
-recruit_character = GER_wilhelm_iii
-recruit_character = GER_victoria
-recruit_character = GER_august_von_mackensen
-
-recruit_character = GER_alexander_von_falkenhausen #Not visible unless recalled from China
-
-#NEW PEOPLE WW
-recruit_character = GER_werner_von_blomberg
-recruit_character = GER_oswald_lutz
-recruit_character = GER_walther_nehring
-recruit_character = GER_hans_krebs
-recruit_character = GER_rolf_carls
-recruit_character = GER_helmuth_wilberg
-recruit_character = GER_josef_kammhuber
-recruit_character = GER_robert_knauss
-recruit_character = GER_alfred_becker
-recruit_character = GER_walter_dornberger
-recruit_character = GER_alfred_rosenberg
-recruit_character = GER_reinhard_heydrich
-recruit_character = GER_leni_riefenstahl
-recruit_character = GER_franz_seldte
-recruit_character = GER_hanns_kerrl
-recruit_character = GER_ludwig_erhard
-recruit_character = GER_paul_von_lettow_vorbeck # He is "new"
-recruit_character = GER_carl_friedrich_goerdeler
-recruit_character = GER_wilhelm_iv
-recruit_character = GER_eva_braun
-
-#SCIENTISTS
-recruit_character = GER_peter_adolf_thiessen
-recruit_character = GER_gustav_ludwig_hertz
-recruit_character = GER_eduard_grote
-#recruit_character = GER_karl_heinrich_emil_becker
-recruit_character = GER_ferdinand_porsche 
-recruit_character = GER_erwin_aders
-recruit_character = GER_hermann_burkhardt
-recruit_character = GER_ulrich_gabler
-recruit_character = GER_hans_von_ohain
-recruit_character = GER_max_kramer
-recruit_character = GER_kurt_tank
-#recruit_character = GER_henrich_focke
-recruit_character = GER_hellmuth_walter
-recruit_character = GER_manfred_von_ardenne
-recruit_character = GER_konrad_zuse
-
-if = {
-	limit = {
-		has_dlc = "Gotterdammerung"
-	}
-	recruit_character = GER_jurgen_von_blumenthal
-	recruit_character = GER_hans_vogel
-	recruit_character = GER_adolf_friedrich_von_mecklenburg
-	recruit_character = GER_wilhelm_von_gayl
-	recruit_character = GER_andreas_hermes
-	recruit_character = GER_hans_luther
-	recruit_character = GER_hermann_erhardt
-	recruit_character = GER_dietrich_bonhoeffer
-	recruit_character = GER_oberste_heeresleitung_character
-	recruit_character = GER_franz_ritter_von_epp
-	recruit_character = GER_walter_ulbricht
-	if = {
-		limit = {
-			has_dlc = "La Resistance"
-		}
-		recruit_character = GER_wilhelm_zaisser
-	}
-	recruit_character = GER_otto_ruhle
-	recruit_character = GER_hermann_duncker
-	recruit_character = GER_august_thalheimer
-	recruit_character = GER_heinrich_brandler
-	recruit_character = GER_bernhard_bastlein
-	recruit_character = GER_vincenz_muller
-	recruit_character = GER_hans_kahle
-	recruit_character = GER_hans_marchwitza
-	recruit_character = GER_arno_von_lenski
-	recruit_character = GER_otto_strasser
-	recruit_character = GER_otto_grotewohl
-
-	recruit_character = GER_henrich_focke #Heli Scientist
-}
-
-if = {
-	limit = {
-		OR = {
-			has_dlc = "Gotterdammerung"
-			has_dlc = "No Step Back"
-		}
-	}
-	recruit_character = GER_karl_heinrich_emil_becker #Artillery Scientist
-}
-
-# Recruiting Starting Operatives
-if = {
-	limit = {
-		has_dlc = "La Resistance"
-	}
-	# Recruit operatives
-	GER_create_operative_nikolaus_ritter = yes
-	GER_create_operative_erich_gimpel = yes
-	GER_create_operative_fritz_duquesne = yes
-}
+recruit_character = GER_marco_winkler
 
 create_equipment_variant = {
 	name = "PzKpfw I A"
@@ -671,32 +340,58 @@ create_equipment_variant = {
 	}
 	icon = "gfx/interface/technologies/tanks/ger/ger_light_tank_2.dds"
 }
-create_equipment_variant = {
-	name = "PzKpfw III A"
-	type = ger_medium_tank_chassis_p3
-	parent_version = 0
-	modules = {
-		main_armament_slot = tank_small_gun_1
-		turret_type_slot = tank_light_turret_1
-		suspension_type_slot = tank_bogie_suspension
-		armor_type_slot = tank_welded_armor
-		engine_type_slot = tank_gasoline_engine
-	}
-	icon = "gfx/interface/technologies/tanks/ger/ger_p3_tank_1.dds"
-}
-create_equipment_variant = {
-	name = "PzKpfw IV A"
-	type = medium_assault_gun_chassisger_medium_tank_chassis_p4
-	parent_version = 0
-	modules = {
-		main_armament_slot = tank_small_cs_gun
-		turret_type_slot = tank_medium_turret_1
-		suspension_type_slot = tank_bogie_suspension
-		armor_type_slot = tank_welded_armor
-		engine_type_slot = tank_gasoline_engine
-	}
-	icon = "gfx/interface/technologies/tanks/ger/ger_p4_tank_1.dds"
-}
+# create_equipment_variant = {
+# 	name = "PzKpfw III A"
+# 	type = ger_medium_tank_chassis_p3
+# 	parent_version = 0
+# 	modules = {
+# 		main_armament_slot = tank_small_gun_1
+# 		turret_type_slot = tank_medium_turret_1
+# 		suspension_type_slot = tank_bogie_suspension
+# 		armor_type_slot = tank_welded_armor
+# 		engine_type_slot = tank_gasoline_engine
+# 	}
+# 	icon = "gfx/interface/technologies/tanks/ger/ger_p3_tank_1.dds"
+# }
+# create_equipment_variant = {
+# 	name = "PzKpfw IV A"
+# 	type = medium_assault_gun_chassisger_medium_tank_chassis_p4
+# 	parent_version = 0
+# 	modules = {
+# 		main_armament_slot = tank_med_cs_gun_1
+# 		turret_type_slot = tank_medium_turret_1
+# 		suspension_type_slot = tank_bogie_suspension
+# 		armor_type_slot = tank_welded_armor
+# 		engine_type_slot = tank_gasoline_engine
+# 	}
+# 	icon = "gfx/interface/technologies/tanks/ger/ger_p4_tank_1.dds"
+# }
+# create_equipment_variant = {
+# 	name = "Placeholder TD to fix bug with special templates"
+# 	type = medium_tank_destroyer_chassisger_medium_tank_chassis_p4
+# 	parent_version = 0
+# 	modules = {
+# 		main_armament_slot = tank_medium_td_placeholder
+# 		turret_type_slot = tank_medium_superstructure
+# 		suspension_type_slot = tank_bogie_suspension
+# 		armor_type_slot = tank_welded_armor
+# 		engine_type_slot = tank_gasoline_engine
+# 	}
+# 	obsolete = yes
+# }
+# create_equipment_variant = {
+# 	name = "Placeholder SPAA to fix bug with special templates"
+# 	type = light_tank_aa_chassisger_light_tank_chassis_p1
+# 	parent_version = 0
+# 	modules = {
+# 		main_armament_slot = tank_anti_air_gun_placeholder
+# 		turret_type_slot = tank_light_turret_open
+# 		suspension_type_slot = tank_bogie_suspension
+# 		armor_type_slot = tank_welded_armor
+# 		engine_type_slot = tank_gasoline_engine
+# 	}
+# 	obsolete = yes
+# }
 
 if = {
 	limit = {
@@ -706,7 +401,7 @@ if = {
 	## 1936 Start ##
 	# Light Cruisers #
 	create_equipment_variant = {
-		name = "Königsberg"
+		name = "Königsberg Class"
 		type = light_cruiser_1
 		parent_version = 0
 		upgrades = {
@@ -717,8 +412,9 @@ if = {
 		}
 		obsolete = yes
 	}
+	# Heavy Cruisers #
 	create_equipment_variant = {
-		name = "Deutschland"
+		name = "Deutschland Class"
 		type = heavy_cruiser_1
 		parent_version = 0
 		upgrades = {
@@ -732,9 +428,9 @@ if = {
 if = {
 	limit = { has_dlc = "Man the Guns" }
 	create_equipment_variant = {
-		name = "Deutschland"
+		name = "Deutschland Class"
 		type = ship_hull_cruiser_panzerschiff
-		name_group = GER_PZ_HISTORICAL
+		name_group = GER_CA_HISTORICAL
 		parent_version = 0
 		modules = {
         	fixed_ship_anti_air_slot = ship_anti_air_2
@@ -750,7 +446,7 @@ if = {
     	}
 	}
 	create_equipment_variant = {
-		name = "Type 24"
+		name = "Type 24 Class"
 		type = ship_hull_light_1
 		name_group = GER_TB_HISTORICAL
 		parent_version = 0
@@ -767,7 +463,7 @@ if = {
 		obsolete = yes
 	}
 	create_equipment_variant = {
-		name = "Zerstörer 1934"
+		name = "Zerstörer 1934 Class"
 		type = ship_hull_light_2
 		name_group = GER_DD_HISTORICAL
 		parent_version = 0
@@ -785,7 +481,7 @@ if = {
 		obsolete = yes
 	}
 	create_equipment_variant = {
-		name = "Zerstörer 1934A"
+		name = "Zerstörer 1934A Class"
 		type = ship_hull_light_2
 		name_group = GER_DD_HISTORICAL
 		parent_version = 0
@@ -801,7 +497,7 @@ if = {
 		}
 	}
 	create_equipment_variant = {
-		name = "Type II"
+		name = "Type II Class"
 		type = ship_hull_submarine_1
 		name_group = GER_SS_HISTORICAL
 		parent_version = 0
@@ -813,7 +509,7 @@ if = {
 		obsolete = yes
 	}
 	create_equipment_variant = {
-		name = "Type VII"
+		name = "Type VII Class"
 		type = ship_hull_submarine_2
 		name_group = GER_SS_HISTORICAL
 		parent_version = 0
@@ -824,8 +520,8 @@ if = {
 		}
 	}
 	create_equipment_variant = {
-		name = "Königsberg"
-		type = ship_hull_cruiser_1
+		name = "Königsberg Class"
+		type = ship_hull_cruiser_2
 		name_group = GER_CL_HISTORICAL
 		parent_version = 0
 		modules = {
@@ -843,7 +539,7 @@ if = {
 		obsolete = yes
 	}
 	create_equipment_variant = {
-		name = "Emden"
+		name = "Emden Class"
 		type = ship_hull_cruiser_1
 		name_group = GER_CL_HISTORICAL
 		parent_version = 0
@@ -861,7 +557,7 @@ if = {
 		obsolete = yes
 	}
 	create_equipment_variant = {
-		name = "Bremse"
+		name = "Bremse Class"
 		type = ship_hull_cruiser_1
 		name_group = GER_CL_HISTORICAL
 		parent_version = 0
@@ -881,7 +577,7 @@ if = {
 		obsolete = yes
 	}
 	create_equipment_variant = {
-		name = "Leipzig"
+		name = "Leipzig Class"
 		type = ship_hull_cruiser_2
 		name_group = GER_CL_HISTORICAL
 		parent_version = 0
@@ -900,7 +596,7 @@ if = {
 		}
 	}
 	create_equipment_variant = {
-		name = "Admiral Hipper"
+		name = "Admiral Hipper Class"
 		type = ship_hull_cruiser_2
 		name_group = GER_CA_HISTORICAL
 		parent_version = 0
@@ -918,7 +614,7 @@ if = {
 		}
 	}
 	create_equipment_variant = {
-		name = "Scharnhorst"
+		name = "Scharnhorst Class"
 		type = ship_hull_heavy_2
 		name_group = GER_BB_HISTORICAL
 		parent_version = 0
@@ -937,9 +633,9 @@ if = {
 		}
 	}
 	create_equipment_variant = {
-		name = "Deutschland"
+		name = "Deutschland Class"
 		type = ship_hull_pre_dreadnought
-		name_group = GER_PZ_HISTORICAL
+		name_group = GER_BB_HISTORICAL
 		parent_version = 0
 		modules = {
 			fixed_ship_battery_slot = ship_heavy_battery_1
@@ -957,164 +653,327 @@ if = {
 	}
 }
 
-#create_variants_for_tank_chassi_p1 = yes
-#create_variants_for_tank_chassi_p2 = yes
-#create_variants_for_tank_chassi_p3 = yes
-#create_variants_for_tank_chassi_p4 = yes
-#create_variants_for_tank_chassi_neubaufahrzeug = yes
-
-
-# if = {
-# 	limit = {
-# 		has_dlc = "By Blood Alone"
-# 	}
-
-# 	create_equipment_variant = {
-# 		name = "Do 23"
-# 		type = medium_plane_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = medium_bomb_bay
-# 			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay_extra
-# 			fixed_auxiliary_weapon_slot_2 = empty
+if = {
+	limit = {
+		has_dlc = "By Blood Alone"
+	}
+	create_equipment_variant = {
+		name = "Bf 109 D"
+		type = small_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = light_mg_4x
+			fixed_auxiliary_weapon_slot_1 = light_mg_2x
+			engine_type_slot = engine_2_1x
+			special_type_slot_1 = radio_navigation_1
+		}
+		icon = "GFX_GER_fighter1_medium"
+	}
+	create_equipment_variant = {
+		name = "Ju 87"
+		type = small_plane_cas_airframe_1
+		modules = {
+			fixed_main_weapon_slot = bomb_locks
+			fixed_auxiliary_weapon_slot_1 = lmg_defense_turret
+			engine_type_slot = engine_2_1x				
+			special_type_slot_1 = radio_navigation_1
+			special_type_slot_2 = dive_brakes_small
 			
-# 			engine_type_slot = engine_1_2x
-# 			special_type_slot_1 = empty
-# 			special_type_slot_2 = empty
-# 			special_type_slot_3 = empty
-# 			special_type_slot_4 = empty
-# 		}
-# 		obsolete = yes
-# 	}
-# 	create_equipment_variant = {
-# 		name = "Ju 86"
-# 		type = medium_plane_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = medium_bomb_bay
-# 			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay_extra
-# 			fixed_auxiliary_weapon_slot_2 = empty
+		}
+		icon = "GFX_GER_CAS1_medium"
+	}
+	create_equipment_variant = {
+		name = "Do 22"
+		type = small_plane_naval_bomber_airframe_1
+		modules = {
+			fixed_main_weapon_slot = torpedo_mounting_small
+			fixed_auxiliary_weapon_slot_1 = lmg_defense_turret
+			engine_type_slot = engine_2_1x
+			special_type_slot_1 = radio_navigation_1
+			special_type_slot_2 = dive_brakes_small
 			
-# 			engine_type_slot = engine_1_2x
-# 			special_type_slot_1 = lmg_defense_turret_2x
-# 			special_type_slot_2 = fuel_tanks_medium
-# 			special_type_slot_3 = empty
-# 			special_type_slot_4 = empty
-# 		}
-# 		obsolete = yes
-# 	}
+		}
+		icon = "GFX_GER_naval_bomber1_medium"
+	}
+	create_equipment_variant = {
+		name = "He 111"
+		type = medium_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = Medium_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = Medium_bomb_bay
+			fixed_auxiliary_weapon_slot_2 = lmg_defense_turret
+			fixed_auxiliary_weapon_slot_3 = empty
+			engine_type_slot = engine_2_2x
+			special_type_slot_1 = radio_navigation_1
+			special_type_slot_2 = dive_brakes_medium
+		}
+		icon = "GFX_GER_tactical_bomber1_medium"
+	}
+	create_equipment_variant = {
+		name = "Hs. 126"
+		type = medium_plane_scout_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = recon_camera
+			engine_type_slot = engine_1_2x
+		}
+	}
+}
 
-# 	create_equipment_variant = {
-# 		name = "He 111"
-# 		type = medium_plane_airframe_1
-# 		modules = {
-# 			fixed_main_weapon_slot = medium_bomb_bay
-# 			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay_extra
-# 			fixed_auxiliary_weapon_slot_2 = medium_bomb_bay_extra
-			
-# 			engine_type_slot = engine_1_2x
-# 			special_type_slot_1 = lmg_defense_turret_2x
-# 			special_type_slot_2 = lmg_defense_turret_2x
-# 			special_type_slot_3 = empty
-# 			special_type_slot_4 = empty
-# 		}
-# 		icon = "GFX_GER_tactical_bomber1_medium"
-# 	}
+#create_equipment_variant = {
+#	name = "Ju 86"
+#	type = tac_bomber_equipment_0
+#	upgrades = {
+#		plane_tac_bomb_upgrade = 2
+#		plane_range_upgrade = 2
+#		plane_engine_upgrade = 2
+#		plane_reliability_upgrade = 2
+#	}
+#	obsolete = yes
+#}
+
+#create_equipment_variant = {
+#	name = "Do 17"
+#	type = tac_bomber_equipment_0
+#	upgrades = {
+#		plane_tac_bomb_upgrade = 1
+#		plane_range_upgrade = 1
+#		plane_engine_upgrade = 1
+#		plane_reliability_upgrade = 1
+#	}
+#	obsolete = yes
+#}
+
+#create_equipment_variant = {
+#		name = "Bf 109 E"
+#		type = fighter_equipment_1
+#		upgrades = {
+#			plane_gun_upgrade = 2
+#			plane_range_upgrade = 2
+#			plane_engine_upgrade = 2
+#			plane_reliability_upgrade = 2
+#		}
+#}
 	
-# 	create_equipment_variant = {
-# 		name = "Do 17"
-# 		type = small_plane_cas_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = small_bomb_bay
-# 			engine_type_slot = engine_iw_2x
-# 			special_type_slot_1 = lmg_defense_turret_2x
-# 		}
-# 		icon = "GFX_GER_medium_plane_1_medium"
-# 	}
+# AXIS
+			# ITA
+			add_operation_token = {
+				tag = ITA
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = ITA
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = ITA
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = ITA
+				token = token_navy_friendly
+			}
+			# HUN
+			add_operation_token = {
+				tag = HUN
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = HUN
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = HUN
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = HUN
+				token = token_navy_friendly
+			}
+			# ROM
+			add_operation_token = {
+				tag = ROM
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = ROM
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = ROM
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = ROM
+				token = token_navy_friendly
+			}
+			# BUL
+			add_operation_token = {
+				tag = BUL
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = BUL
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = BUL
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = BUL
+				token = token_navy_friendly
+			}
+			# SPR
+			add_operation_token = {
+				tag = SPR
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = SPR
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = SPR
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = SPR
+				token = token_navy_friendly
+			}
+			# FIN
+			add_operation_token = {
+				tag = FIN
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = FIN
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = FIN
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = FIN
+				token = token_navy_friendly
+			}
+			#AOI
+			add_operation_token = {
+				tag = AOI
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = AOI
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = AOI
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = AOI
+				token = token_navy_friendly
+			}
+			# YUG
+			add_operation_token = {
+				tag = YUG
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = YUG
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = YUG
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = YUG
+				token = token_navy_friendly
+			}
+			# ALB
+			add_operation_token = {
+				tag = ALB
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = ALB
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = ALB
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = ALB
+				token = token_navy_friendly
+			}
+			# AUS
+			add_operation_token = {
+				tag = AUS
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = AUS
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = AUS
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = AUS
+				token = token_navy_friendly
+			}
 
-# 	create_equipment_variant = {
-# 		name = "He 51" #also covers Ar 68
-# 		type = small_plane_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = light_mg_2x
-# 			engine_type_slot = engine_iw_1x
-# 			special_type_slot_1 = empty
-# 		}
-# 		obsolete = yes
-# 	}
-# 	create_equipment_variant = {
-# 		name = "Hs 123"
-# 		type = small_plane_cas_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = small_bomb_bay
-# 			engine_type_slot = engine_iw_1x
-# 			special_type_slot_1 = empty
-# 		}
-# 		obsolete = yes
-# 	}
-# 	create_equipment_variant = {
-# 		name = "Bf 109 D"
-# 		type = small_plane_airframe_1
-# 		modules = {
-# 			fixed_main_weapon_slot = light_mg_4x
-# 			engine_type_slot = engine_1_1x
-# 			special_type_slot_1 = empty
-# 		}
-# 		icon = "GFX_GER_fighter1_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "Ju 87"
-# 		type = small_plane_cas_airframe_1
-# 		modules = {
-# 			fixed_main_weapon_slot = small_bomb_bay
-# 			engine_type_slot = engine_1_1x
-# 			special_type_slot_1 = lmg_defense_turret
-# 			special_type_slot_2 = dive_brakes_small
-# 		}
-# 		icon = "GFX_GER_CAS1_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "Do 22"
-# 		type = small_plane_naval_bomber_airframe_1
-# 		modules = {
-# 			fixed_main_weapon_slot = torpedo_mounting
-# 			engine_type_slot = engine_1_1x
-# 			special_type_slot_1 = lmg_defense_turret
-# 			special_type_slot_2 = floats
-# 		}
-# 		icon = "GFX_GER_naval_bomber1_medium"
-# 	}
-# }
-
-# create_equipment_variant = {
-# 	name = "Ju 86"
-# 	type = tac_bomber_equipment_0
-# 	upgrades = {
-# 		plane_tac_bomb_upgrade = 2
-# 		plane_range_upgrade = 2
-# 		plane_engine_upgrade = 2
-# 		plane_reliability_upgrade = 2
-# 	}
-# 	obsolete = yes
-# }
-
-# create_equipment_variant = {
-# 	name = "Do 17"
-# 	type = tac_bomber_equipment_0
-# 	upgrades = {
-# 		plane_tac_bomb_upgrade = 1
-# 		plane_range_upgrade = 1
-# 		plane_engine_upgrade = 1
-# 		plane_reliability_upgrade = 1
-# 	}
-# 	obsolete = yes
-# }
-
-# create_equipment_variant = {
-# 		name = "Bf 109 E"
-# 		type = fighter_equipment_1
-# 		upgrades = {
-# 			plane_gun_upgrade = 2
-# 			plane_range_upgrade = 2
-# 			plane_engine_upgrade = 2
-# 			plane_reliability_upgrade = 2
-# 		}
-# }
+			# COPRO
+			# JAP
+			add_operation_token = {
+				tag = JAP
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = JAP
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = JAP
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = JAP
+				token = token_navy_friendly
+			}
+			# MAN
+			add_operation_token = {
+				tag = MAN
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = MAN
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = MAN
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = MAN
+				token = token_navy_friendly
+			}
+			# SIA
+			add_operation_token = {
+				tag = SIA
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = SIA
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = SIA
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = SIA
+				token = token_navy_friendly
+			}

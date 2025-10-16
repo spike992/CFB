@@ -67,42 +67,20 @@ country_event = {
 	trigger = {
   		tag = CHI
  		has_war_with = JAP
-		OR = {
-			# This next bit is to make sure that event only fires if JAP has conquered a fair bit of CHI first, so 
-			# Panay incident doesn't fire if it's an arm-wrestle on the JAP/CHI border.
-			OR = {
-				AND = { #JAP has made headway in the north
-					OR = {
-						608 = { is_controlled_by = JAP } #Beijing
-						608 = { is_controlled_by = MAN } #Beijing
-					}
-					OR = {
-						614 = { is_controlled_by = JAP } #Hebei
-						614 = { is_controlled_by = MAN } #Hebei
-					}
-					OR = {
-						597 = { is_controlled_by = JAP } #Shandong
-						597 = { is_controlled_by = MAN } #Shandong
-					}
-					OR = {
-						598 = { is_controlled_by = JAP } #Jiangsu
-						598 = { is_controlled_by = MAN } #Jiangsu
-					}
+ 		# This next bit is to make sure that event only fires if JAP has conquered a fair bit of CHI first, so 
+ 		# Panay incident doesn't fire if it's an arm-wrestle on the JAP/CHI border.
+ 		OR = {
+ 			AND = { #JAP has made headway in the north
+ 				608 = { is_controlled_by = JAP } #Beijing
+				614 = { is_controlled_by = JAP } #Hebei
+				597 = { is_controlled_by = JAP } #Shandong
+				598 = { is_controlled_by = JAP } #Jiangsu
 				}
-				OR = { #JAP has captured key coastal states in the south
-					OR = {
-						613 = { is_controlled_by = JAP } #Shanghai
-						613 = { is_controlled_by = MAN } #Shanghai
-					}
-					OR = {
-						592 = { is_controlled_by = JAP } #Shanghai
-						592 = { is_controlled_by = MAN } #Shanghai
-					}
-				}
-				date > 1938.6.1
+			OR = { #JAP has captured key coastal states in the south
+				597 = { is_controlled_by = JAP } #Shanghai
+				592 = { is_controlled_by = JAP } #Guangzhou
 			}
 		}
-
 		NOT = { #Should only fire if JAP and USA/ENG aren't at war, and CHI and USA/ENG aren't at war.
 			OR = {
 				JAP = { has_war_with = USA }
@@ -114,7 +92,7 @@ country_event = {
 		}
 	}
 
-	mean_time_to_happen = { days = 3 }
+	mean_time_to_happen = { days = 30 }
 
 	fire_only_once = yes
 
@@ -192,7 +170,7 @@ country_event = {
 		name = panay_incident.2.b
 		custom_effect_tooltip = panay_incident.2.b.tt
 		ai_chance = { factor = 85 }
-		add_war_support = 0.05
+		add_war_support = 0.15
 		set_country_flag = { flag = USA_panay_window days = 90 value = 1 }
 		hidden_effect = { JAP = { country_event = { id = panay_incident.3 days = 2 } } } #Delay added so events are spaced out - historically it took months to get JAP to agree to compensation, but that'd be a bit hard to follow in-game, so timelines compressed.
 		add_opinion_modifier = { target = JAP modifier = panay_inc_opinion_modifier }

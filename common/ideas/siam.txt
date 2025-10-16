@@ -1,20 +1,28 @@
 ideas = {
 
 	country = {
-		idea_SIA_army_of_siam = {
-			picture = MEX_politicised_army_2
+
+		SIA_trade_treaty_with_jap = {
+			
+			allowed = {
+				always = no
+			}
+
 			allowed_civil_war = {
 				always = yes
 			}
-
-			allowed = {
-				original_tag = SIA
-			}
+			
 			removal_cost = -1
-			modifier = {
-				production_speed_arms_factory_factor = 0.1
-				supply_consumption_factor = -0.1
-				supply_node_range = 0.15
+
+			picture = generic_pp_unity_bonus
+
+			targeted_modifier = {
+				tag = JAP
+				trade_cost_for_target_factor = -0.5
+			}
+			targeted_modifier = {
+				tag = JAP
+				extra_trade_to_target_factor = 1.0
 			}
 		}
 
@@ -228,49 +236,6 @@ ideas = {
 				no_supply_grace = 10
 				experience_loss_factor = -0.05
 				special_forces_cap = 0.15
-			}
-		}
-
-		SIA_china_volunteers = {
-			allowed = {
-				always = no # Added via focus
-			}
-			cancel = {
-				NOT = {
-					CHI = { has_war_with = JAP}
-				}
-			}
-			
-			removal_cost = -1
-
-			picture = generic_volunteer_expedition_bonus
-			
-			modifier = {
-				send_volunteer_size = 1
-				send_volunteer_divisions_required = -0.90
-				send_volunteers_tension = -0.2
-			}
-		}
-
-		SIA_rubber_extortion = {
-
-			picture = ARG_resource_extration_focus
-
-			allowed = {
-				original_tag = SIA
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				min_export = 0.1
-			}
-			targeted_modifier = {
-				tag = JAP
-				trade_cost_for_target_factor = -0.75
-				extra_trade_to_target_factor = 1
 			}
 		}
     }

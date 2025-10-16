@@ -1,23 +1,11 @@
-﻿capital = 2 # Rome
+﻿capital = 2
 
 oob = "ITA_1936"
 
 set_research_slots = 6
 set_stability = 0.6
 set_war_support = 0.65
-set_major = yes
 
-IF = {
-	limit = {
-		has_dlc = "Gotterdammerung"
-	}
-	set_war_support = 0.65 # Was 0.7, but now get +5% from the Collosseum
-	ELSE = {
-		set_war_support = 0.8
-	}
-}
-
-set_variable = { dockyard_major = 1 }
 #set_variable = { ITA_poster_center_icon_frame = 1 }
 set_variable = { ITA_new_propaganda_campaign = 0 } #Used to pick a poster slot
 set_variable = { ITA_propaganda_campaign_to_remove = 0 } #Used to reset a poster slot
@@ -27,38 +15,42 @@ set_variable = { ITA_poster_left_icon_frame = ITA_propaganda_empty_slot_index } 
 set_variable = { ITA_poster_center_icon_frame = ITA_propaganda_empty_slot_index } #Set up the appropriate locked slot GFX
 #set_variable = { SOV_poster_right_icon_frame = SOV_propaganda_locked_slot_index } #Set up the appropriate locked slot GFX
 set_variable = { ITA_re_unit_camelry_design_cost_factor = 0 }
+set_variable = { AFRICA_COMMONWEALTH_BASES_LEVEL = 6 } #What level variable to use
+
+# create_intelligence_agency = {
+#     name = "Servizio Informazioni Militare"
+# }
+
+set_variable = {
+	var = min_fuel
+	value = 0.800
+}
+
+army_experience = 200
+air_experience = 100
 
 add_ideas = {
 	vittorio_emanuele
 	vittoria_mutilata
 	export_focus
 	limited_conscription
-	partial_economic_mobilisation
+	partial_economic_mobilisation #war_economy
 	ITA_inflexible_economy
 	ITA_neutrality_idea
 	ITA_old_guard_base
 	ITA_incompetent_officers
 	ITA_outdated_industry
-	ITA_the_sun_never_sets_idea_2
 	# PACIFIC_COMMONWEALTH_controls_axis_original
 	MEDITERRANEAN_AXIS_controls_original
 	peace_training
 	no_grinding
 	AFRICA_COMMONWEALTH_controls_axis_idea_6
-	#ITA_incompetent_officers_offset
+	ITA_incompetent_officers_offset
 	volunteer_minimum_major
 	volunteer_minimum_GER_NA
 }
 
-add_breakthrough_progress = {
-	specialization = specialization_land
-	value = 0.3
-}
-
-add_breakthrough_progress = {
-	specialization = specialization_naval
-	value = 0.5
-}
+# MP_garrison_division_standard = yes
 
 # Starting tech
 set_technology = {
@@ -171,13 +163,13 @@ if = {
 # DIPLOMACY / WAR 36
 if = {
 	limit = {
-		has_start_date < 1936.01.05
+		has_start_date < 1936.01.02
 	}
 
-	declare_war_on = {
-		target = ETH
-		type = annex_everything
-	}
+	# declare_war_on = {
+	# 	target = ETH
+	# 	type = annex_everything
+	# }
 	give_guarantee = ALB
 }
 
@@ -213,8 +205,8 @@ recruit_character = ITA_giuseppe_fioravanzo
 recruit_character = ITA_carlo_bergamini
 recruit_character = ITA_angelo_iachino
 recruit_character = ITA_giulio_presbitero
-recruit_character = ITA_amadeo_bordiga
-recruit_character = ITA_ivanoe_bonomi
+# recruit_character = ITA_amadeo_bordiga
+# recruit_character = ITA_ivanoe_bonomi
 recruit_character = ITA_carlo_scorza
 recruit_character = ITA_giovanni_marinelli
 recruit_character = ITA_gian_galeazzo_ciano
@@ -240,12 +232,9 @@ recruit_character = ITA_guiseppe_fioravanzo
 recruit_character = ITA_amedeo_mecozzi
 recruit_character = ITA_renato_sandalli
 recruit_character = ITA_gaetano_crocco
-recruit_character = ITA_enrico_fermi
-recruit_character = ITA_robert_longhi
-recruit_character = ITA_mario_castoldi
-recruit_character = ITA_giovanni_giorgi
-recruit_character = ITA_filippo_bonfiglietti
-recruit_character = ITA_curio_bernardis
+recruit_character = ITA_angelo_di_maria
+recruit_character = ITA_mario_fama
+recruit_character = ITA_mario_federico
 
 create_equipment_variant = {
 	name = "L3/33"
@@ -253,7 +242,7 @@ create_equipment_variant = {
 	parent_version = 0
 	modules = {
 		main_armament_slot = tank_heavy_machine_gun
-		turret_type_slot = tank_light_turret_1
+		turret_type_slot = tank_light_superstructure_cv33
 		suspension_type_slot = tank_bogie_suspension
 		armor_type_slot = tank_riveted_armor
 		engine_type_slot = tank_gasoline_engine
@@ -684,8 +673,8 @@ if = {
 		}
 	}
 }
-# if = {
-# 	limit = { NOT = { has_dlc = "By Blood Alone" } }
+if = {
+	limit = { NOT = { has_dlc = "By Blood Alone" } }
 	create_equipment_variant = {
 		name = "CR.42"
 		type = fighter_equipment_0
@@ -696,85 +685,297 @@ if = {
 			plane_reliability_upgrade = 1
 		}
 	}
-# }
-# if = {
-# 	limit = { has_dlc = "By Blood Alone" }
-# 	create_equipment_variant = {
-# 		name = "CR.32" #
-# 		type = small_plane_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = light_mg_2x
-# 			engine_type_slot = engine_iw_1x
-# 			special_type_slot_1 = empty
-# 		}
-# 	}
-# 	create_equipment_variant = {
-# 		name = "Ca.111" #
-# 		type = small_plane_cas_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = small_bomb_bay
-# 			engine_type_slot = engine_iw_1x
-# 			special_type_slot_1 = empty
-# 		}
-# 		obsolete = yes
-# 		icon = "GFX_ITA_CAS1_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "Ca.101" #
-# 		type = medium_plane_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = medium_bomb_bay
-# 			engine_type_slot = engine_iw_3x
-# 			special_type_slot_1 = lmg_defense_turret
-# 		}
-# 		obsolete = yes
-# 		icon = "GFX_ITA_early_bomber_old_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "Ca.133" #
-# 		type = medium_plane_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = medium_bomb_bay
-# 			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay_extra
-# 			engine_type_slot = engine_iw_3x
-# 			special_type_slot_1 = lmg_defense_turret_2x
-# 		}
-# 		obsolete = yes
-# 		icon = "GFX_ITA_early_bomber_old_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "SM.81" #
-# 		type = medium_plane_airframe_1
-# 		modules = {
-# 			fixed_main_weapon_slot = medium_bomb_bay
-# 			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay_extra
-# 			engine_type_slot = engine_1_3x
-# 			special_type_slot_1 = lmg_defense_turret_2x
-# 		}
-# 		icon = "GFX_ITA_early_bomber_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "SM.79" #
-# 		type = medium_plane_airframe_1
-# 		modules = {
-# 			fixed_main_weapon_slot = medium_bomb_bay
-# 			#fixed_auxiliary_weapon_slot_1 = torpedo_mounting
-# 			fixed_auxiliary_weapon_slot_1 = torpedo_mounting_extra
-# 			engine_type_slot = engine_1_3x
-# 			special_type_slot_1 = lmg_defense_turret_2x
-# 		}
-# 		icon = "GFX_ITA_naval_bomber1_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "Ba.65" #
-# 		type = small_plane_cas_airframe_1
-# 		modules = {
-# 			fixed_main_weapon_slot = small_bomb_bay
-# 			fixed_auxiliary_weapon_slot_1 = light_mg_2x
-# 			engine_type_slot = engine_1_1x
-# 			special_type_slot_1 = empty
-# 		}
-# 		icon = "GFX_ITA_CAS1_medium"
-# 	}
+}
+if = {
+	limit = {
+		has_dlc = "By Blood Alone"
+	}
+	create_equipment_variant = {
+		name = "CR.42"
+		type = small_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = light_mg_4x
+			fixed_auxiliary_weapon_slot_1 = light_mg_2x
+			special_type_slot_1 = radio_navigation_1
+			engine_type_slot = engine_1_1x
+		}
+		icon = "GFX_ITA_fighter1_medium"
+	}
+	create_equipment_variant = {
+		name = "Ba.65"
+		type = small_plane_cas_airframe_1
+		modules = {
+			fixed_main_weapon_slot = bomb_locks
+			fixed_auxiliary_weapon_slot_1 = lmg_defense_turret
+			engine_type_slot = engine_2_1x				
+			special_type_slot_1 = radio_navigation_1
+			special_type_slot_2 = dive_brakes_small
+			
+		}
+		icon = "GFX_ITA_CAS1_medium"
+	}
+	
+	create_equipment_variant = {
+		name = "SM.79"
+		type = small_plane_naval_bomber_airframe_1
+		modules = {
+			fixed_main_weapon_slot = torpedo_mounting_small
+			fixed_auxiliary_weapon_slot_1 = lmg_defense_turret
+			engine_type_slot = engine_2_1x
+			special_type_slot_1 = radio_navigation_1
+			special_type_slot_2 = dive_brakes_small
+			
+		}
+		icon = "GFX_ENG_naval_bomber1_medium"
+	}
 
-# }
+	create_equipment_variant = {
+			name = "Ca.101"
+			type = medium_plane_airframe_1
+			modules = {
+				fixed_main_weapon_slot = Medium_bomb_bay
+				fixed_auxiliary_weapon_slot_1 = Medium_bomb_bay
+				fixed_auxiliary_weapon_slot_2 = lmg_defense_turret
+				fixed_auxiliary_weapon_slot_3 = empty
+				engine_type_slot = engine_2_2x
+				special_type_slot_1 = radio_navigation_1
+				special_type_slot_2 = dive_brakes_medium
+			}
+			#icon = "GFX_ENG_tactical_bomber1_medium"
+	}
+
+	create_equipment_variant = {
+		name = "Ca.130"
+		type = medium_plane_scout_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = recon_camera
+			engine_type_slot = engine_1_2x
+		}
+	}
+}
+
+# AXIS
+
+			# GER
+			add_operation_token = {
+				tag = GER
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = GER
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = GER
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = GER
+				token = token_navy_friendly
+			}
+			# HUN
+			add_operation_token = {
+				tag = HUN
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = HUN
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = HUN
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = HUN
+				token = token_navy_friendly
+			}
+			# ROM
+			add_operation_token = {
+				tag = ROM
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = ROM
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = ROM
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = ROM
+				token = token_navy_friendly
+			}
+			# BUL
+			add_operation_token = {
+				tag = BUL
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = BUL
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = BUL
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = BUL
+				token = token_navy_friendly
+			}
+			# SPR
+			add_operation_token = {
+				tag = SPR
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = SPR
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = SPR
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = SPR
+				token = token_navy_friendly
+			}
+			# FIN
+			add_operation_token = {
+				tag = FIN
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = FIN
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = FIN
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = FIN
+				token = token_navy_friendly
+			}
+			#AOI
+			add_operation_token = {
+				tag = AOI
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = AOI
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = AOI
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = AOI
+				token = token_navy_friendly
+			}
+			# YUG
+			add_operation_token = {
+				tag = YUG
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = YUG
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = YUG
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = YUG
+				token = token_navy_friendly
+			}
+			# ALB
+			add_operation_token = {
+				tag = ALB
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = ALB
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = ALB
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = ALB
+				token = token_navy_friendly
+			}
+			# AUS
+			add_operation_token = {
+				tag = AUS
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = AUS
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = AUS
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = AUS
+				token = token_navy_friendly
+			}
+
+			# COPRO
+			# JAP
+			add_operation_token = {
+				tag = JAP
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = JAP
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = JAP
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = JAP
+				token = token_navy_friendly
+			}
+			# MAN
+			add_operation_token = {
+				tag = MAN
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = MAN
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = MAN
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = MAN
+				token = token_navy_friendly
+			}
+			# SIA
+			add_operation_token = {
+				tag = SIA
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = SIA
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = SIA
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = SIA
+				token = token_navy_friendly
+			}

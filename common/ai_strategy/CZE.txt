@@ -14,11 +14,8 @@
 
 
 CZE_unit_production = {
-	allowed = { 
-		original_tag = CZE
-	}
 	enable = {
-		always = yes
+		original_tag = CZE
 	}
 	abort = {
 		always = no
@@ -30,11 +27,11 @@ CZE_unit_production = {
 		value = 5
 	}
 	
-	ai_strategy = {
-		type = role_ratio
-		id = paratroopers
-		value = 0
-	}
+	# ai_strategy = {
+	# 	type = role_ratio
+	# 	id = paratroopers
+	# 	value = 0
+	# }
 
 	ai_strategy = {
 		type = role_ratio
@@ -138,11 +135,11 @@ CZE_unit_production = {
 		id = armor
 		value = 20
 	}
-	#ai_strategy = {
-		#	type = equipment_production_min_factories
-		#	id = artillery
-		#	value = 5
-	#}
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = artillery
+		value = 5
+	}
 	#ai_strategy = {
 	#	type = equipment_production_min_factories
 	#	id = fighter
@@ -158,10 +155,8 @@ CZE_unit_production = {
 
 
 CZE_armored_production = {
-	allowed = {
-		original_tag = CZE
-	}
 	enable = {
+		original_tag = CZE
 		ai_wants_divisions > 24 #Decreasing the amount of tanks the AI wants
 	}
 	abort = {
@@ -176,10 +171,8 @@ CZE_armored_production = {
 }
 
 CZE_shift_production = {
-	allowed = {
-		original_tag = CZE
-	}
 	enable = {
+		original_tag = CZE
 		has_equipment = { infantry_equipment > 5000 }
 	}
 	abort = {
@@ -194,10 +187,8 @@ CZE_shift_production = {
 }
 
 CZE_halt_light_armor_production_in_transitioning = {
-	allowed = {
-		original_tag = CZE
-	}
 	enable = {
+		original_tag = CZE
 		has_template_majority_unit = medium_armor
 		OR = {
 			has_equipment = { light_tank_chassis > 600 }
@@ -205,7 +196,7 @@ CZE_halt_light_armor_production_in_transitioning = {
 		}		
 	}
 	abort = {
-		always = no  # once we start we never go back to light armor
+		# once we start we never go back to light armor
 	}
 
 	ai_strategy = {
@@ -217,8 +208,8 @@ CZE_halt_light_armor_production_in_transitioning = {
 
 
 CZE_highered_armored_production = {
-	allowed = { original_tag = CZE }
 	enable = {
+		original_tag = CZE
 		num_of_military_factories > 19
 	}
 	abort = {
@@ -233,10 +224,8 @@ CZE_highered_armored_production = {
 }
 
 CZE_dont_waste_xp_until_medium_armor = {
-
-	allowed = { original_tag = CZE	}	
 	enable = {
-		always = yes
+		original_tag = CZE		
 	}
 
 	abort = {	
@@ -257,8 +246,6 @@ CZE_dont_waste_xp_until_medium_armor = {
 }
 
 CZE_super_boost_light_for_med_armor = {
-
-	allowed = { original_tag = CZE }
 	
 	enable = {
 		original_tag = CZE
@@ -300,9 +287,9 @@ CZE_super_boost_light_for_med_armor = {
 
 
 CZE_template_design = {
-	allowed = { original_tag = CZE }
 	enable = {
 	
+		original_tag = CZE
 		date < 1940.1.1				
 	}
 	abort = { 
@@ -339,15 +326,15 @@ CZE_template_design = {
 		value = -50
 	}
 
-	ai_strategy = {
-		type = template_prio
-		id = paratroopers
-		value = -50
-	}
+	# ai_strategy = {
+	# 	type = template_prio
+	# 	id = paratroopers
+	# 	value = -50
+	# }
 }
 CZE_industry = {
-	allowed = { original_tag = CZE }
 	enable = {
+		tag = CZE
 		date < 1940.1.1
 		date > 1936.1.1
 	}

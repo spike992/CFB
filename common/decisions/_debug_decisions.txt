@@ -1,262 +1,27 @@
 debug_decisions = {
 
-	debug_show_decisions = {
-		priority = 100
-		allowed = {
+	add_research_slot = {
+		icon = generic_research
+
+		available = {
+			is_ai = no
+			is_debug = yes
+		}
+
+		visible = {
 			always = yes
 		}
 
-		visible = {
-			is_ai = no
-			is_debug = yes
-			NOT = { has_global_flag = show_debug_decisions_flag }
-		}
+		fire_only_once = no
+		cost = 0
+
 		complete_effect = {
-			set_global_flag = show_debug_decisions_flag
-		}
+			add_research_slot = 1
+		}	
 	}
- 
-	debug_hide_decisions = {
-		priority = -1
-		allowed = {
-			always = yes 
-		}
 
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-		complete_effect = {
-			clr_global_flag = show_debug_decisions_flag
-		}
-	}
-	
-	# research_all_tank_techs_nsb = {
-	# 	icon = generic_tank
-
-	# 	visible = {
-	# 		is_ai = no
-	# 		is_debug = yes
-	# 		has_global_flag = show_debug_decisions_flag
-	# 	}
-
-	# 	complete_effect = {
-	# 		set_technology = {
-	# 			gwtank_chassis = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			basic_light_tank_chassis = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			improved_light_tank_chassis = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			amphibious_tank_chassis = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			amphibious_drive = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			advanced_light_tank_chassis = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			basic_medium_tank_chassis = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			improved_medium_tank_chassis = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			advanced_medium_tank_chassis = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			main_battle_tank_chassis = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			basic_heavy_tank_chassis = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			improved_heavy_tank_chassis = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			advanced_heavy_tank_chassis = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			super_heavy_tank_chassis = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			armor_tech_1 = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			armor_tech_2 = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			armor_tech_3 = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			armor_tech_4 = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			engine_tech_1 = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			engine_tech_2 = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			engine_tech_3 = 1
-	# 			popup = no
-	# 		}			
-	# 		set_technology = {
-	# 			engine_tech_4 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			gw_artillery = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			interwar_artillery = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			artillery1 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			artillery2 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			artillery3 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			artillery4 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			artillery5 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			mountain_gun = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			rocket_artillery = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			rocket_artillery2 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			rocket_artillery3 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			rocket_artillery4 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			interwar_antiair = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			antiair1 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			antiair2 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			antiair3 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			antiair4 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			antiair5 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			interwar_antitank = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			antitank1 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			antitank2 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			antitank3 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			antitank4 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			antitank5 = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			tech_engineers = 1
-	# 			popup = no
-	# 		}
-	# 		set_technology = {
-	# 			tech_engineers2 = 1
-	# 			popup = no
-	# 		}
-
-	# 		if = {
-	# 			limit = {
-	# 				tag = ITA
-	# 			}
-	# 			complete_national_focus = ITA_italian_tankettes
-	# 			complete_national_focus = ITA_self_propelled_guns
-	# 			complete_national_focus = ITA_end_fiat_ansaldo_duopoly
-	# 			complete_national_focus = ITA_ferrea_mole_ferreo_cuore
-	# 		}
-	# 		else_if = {
-	# 			limit = {
-	# 				tag = SOV
-	# 			}
-	# 			complete_national_focus = SOV_superior_war_machines
-	# 			complete_national_focus = SOV_soviet_artillery
-	# 			complete_national_focus = SOV_they_will_know_fear
-	# 		}
-	# 	}
-	# }
-
-	add_1940_research = {
-		icon = SWE_set_navy_budget
+	delete_equipmnt = {
+		icon = generic_research
 
 		available = {
 			is_ai = no
@@ -264,230 +29,19 @@ debug_decisions = {
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		fire_only_once = no
 		cost = 0
 
 		complete_effect = {
-			# Air
-			set_technology = { early_fighter = 1  popup = no }
-			set_technology = { cv_early_fighter = 1 popup = no }
-			set_technology = { CAS1 = 1 popup = no }
-			set_technology = { CAS2 = 1 popup = no }
-			set_technology = { cv_CAS1 = 1 popup = no }
-			set_technology = { cv_CAS2 = 1 popup = no }
-			set_technology = { fighter1 = 1 popup = no }
-			set_technology = { fighter2 = 1 popup = no }
-			set_technology = { scout_plane1 = 1 popup = no }
-			set_technology = { scout_plane2 = 1 popup = no }
-			set_technology = { cv_fighter1 = 1 popup = no }
-			set_technology = { cv_fighter2 = 1 popup = no }
-			set_technology = { naval_bomber1 = 1 popup = no }
-			set_technology = { naval_bomber2 = 1 popup = no }
-			set_technology = { flying_boat1 = 1 popup = no }
-			set_technology = { flying_boat2 = 1 popup = no }
-			set_technology = { early_bomber = 1 popup = no }
-			set_technology = { heavy_fighter1 = 1 popup = no }
-			set_technology = { heavy_fighter2 = 1 popup = no }
-			set_technology = { tactical_bomber1 = 1 popup = no }
-			set_technology = { tactical_bomber2 = 1 popup = no }
-			set_technology = { strategic_bomber1 = 1 popup = no }
-			set_technology = { strategic_bomber2 = 1 popup = no }
-			set_technology = { early_transport_plane = 1 popup = no }
-			set_technology = { improved_transport_plane = 1 popup = no }
-			set_technology = { reinforced_wings_mothership = 1 popup = no }
-
-			# Electronics
-			set_technology = { electronic_mechanical_engineering = 1  popup = no }
-			set_technology = { radio = 1  popup = no }
-			set_technology = { hq_radio1 = 1  popup = no }
-			set_technology = { hq_radio2 = 1  popup = no }
-			set_technology = { mot_radio1 = 1  popup = no }
-			set_technology = { mot_radio2 = 1  popup = no }
-			set_technology = { inf_radio1 = 1  popup = no }
-			set_technology = { inf_radio2 = 1  popup = no }
-			set_technology = { art_radio1 = 1  popup = no }
-			set_technology = { art_radio2 = 1  popup = no }
-			set_technology = { cavity_magnatron = 1  popup = no }
-			set_technology = { centimetric_radar = 1  popup = no }
-			set_technology = { mechanical_computing = 1  popup = no }
-			set_technology = { computing_machine = 1  popup = no }
-			set_technology = { basic_fire_control_system = 1  popup = no }
-			set_technology = { improved_fire_control_system = 1  popup = no }
-			set_technology = { improved_computing_machine = 1  popup = no }
-			set_technology = { basic_fortification_tech = 1  popup = no }
-			set_technology = { land_fort_tech_1 = 1  popup = no }
-			set_technology = { land_fort_tech_2 = 1  popup = no }
-			set_technology = { coastal_fort_tech_1 = 1  popup = no }
-			set_technology = { coastal_fort_tech_2 = 1  popup = no }
-			set_technology = { atomic_research = 1  popup = no }
-
-			# Industry
-			set_technology = { basic_machine_tools = 1  popup = no }
-			set_technology = { improved_machine_tools = 1  popup = no }
-			set_technology = { advanced_machine_tools = 1  popup = no }
-			set_technology = { improved_equipment_conversion = 1  popup = no }
-			set_technology = { concentrated_industry = 1  popup = no }
-			set_technology = { concentrated_industry2 = 1  popup = no }
-			set_technology = { concentrated_industry3 = 1  popup = no }
-			set_technology = { construction1 = 1  popup = no }
-			set_technology = { construction2 = 1  popup = no }
-			set_technology = { construction3 = 1  popup = no }
-			set_technology = { excavation1 = 1  popup = no }
-			set_technology = { excavation2 = 1  popup = no }
-			set_technology = { excavation3 = 1  popup = no }
-			set_technology = { fuel_silos = 1  popup = no }
-			set_technology = { synth_oil_experiments = 1  popup = no }
-			set_technology = { oil_processing = 1  popup = no }
-			set_technology = { improved_oil_processing = 1  popup = no }
-			set_technology = { rubber_processing = 1  popup = no }
-			set_technology = { improved_rubber_processing = 1  popup = no }
-			set_technology = { fuel_refining = 1  popup = no }
-			set_technology = { fuel_refining2 = 1  popup = no }
-			set_technology = { fuel_refining3 = 1  popup = no }
-
-			# Support
-			set_technology = { tech_support = 1  popup = no }
-			set_technology = { tech_engineers = 1  popup = no }
-			set_technology = { sp_armored_engineer_tech = 1  popup = no }
-			set_technology = { tech_engineers2 = 1  popup = no }
-			set_technology = { tech_recon = 1  popup = no }
-			set_technology = { sp_helicopter_artillery_observers_tech = 1  popup = no }
-			set_technology = { tech_recon2 = 1  popup = no }
-			set_technology = { tech_engineers_pontoon = 1  popup = no }
-			set_technology = { tech_military_police = 1  popup = no }
-			set_technology = { sp_armored_motorized_military_police_tech = 1  popup = no }
-			set_technology = { tech_military_police2 = 1  popup = no }
-			set_technology = { tech_maintenance_company = 1  popup = no }
-			set_technology = { sp_armored_maintenance_tech = 1  popup = no }
-			set_technology = { tech_maintenance_company2 = 1  popup = no }
-			set_technology = { tech_field_hospital = 1  popup = no }
-			set_technology = { sp_helicopter_med_evac_tech = 1  popup = no }
-			set_technology = { tech_field_hospital2 = 1  popup = no }
-			set_technology = { tech_logistics_company = 1  popup = no }
-			set_technology = { sp_helicopter_transport_pods_tech = 1  popup = no }
-			set_technology = { tech_logistics_company2 = 1  popup = no }
-			set_technology = { tech_signal_company = 1  popup = no }
-			set_technology = { sp_armored_signal_tech = 1  popup = no }
-			set_technology = { tech_signal_company2 = 1  popup = no }
-			set_technology = { basic_train = 1  popup = no }
-			set_technology = { armored_train = 1  popup = no }
-			set_technology = { railway_gun = 1  popup = no }
-			set_technology = { railway_gun_2 = 1  popup = no }
-			set_technology = { wartime_train = 1  popup = no }
-
-			# Infantry
-			set_technology = { motorised_infantry = 1  popup = no }
-			set_technology = { motorised_anti_air = 1  popup = no }
-			set_technology = { motorized_rocket_unit = 1  popup = no }
-			set_technology = { mechanised_infantry = 1  popup = no }
-			set_technology = { mechanised_anti_air = 1  popup = no }
-			set_technology = { amphibious_mechanized_infantry = 1  popup = no }
-			set_technology = { hq_1 = 1  popup = no }
-			set_technology = { hq_2 = 1  popup = no }
-			set_technology = { infantry_weapons2 = 1  popup = no }
-			set_technology = { improved_infantry_weapons_2 = 1  popup = no }
-			set_technology = { infantry_weapons1 = 1  popup = no }
-			set_technology = { improved_infantry_weapons = 1  popup = no }
-			set_technology = { support_weapons = 1  popup = no }
-			set_technology = { support_weapons2 = 1  popup = no }
-			set_technology = { armored_car1 = 1  popup = no }
-			set_technology = { armored_car2 = 1  popup = no }
-			set_technology = { marines = 1  popup = no }
-			set_technology = { marines2 = 1  popup = no }
-			set_technology = { tech_mountaineers = 1  popup = no }
-			set_technology = { tech_mountaineers2 = 1  popup = no }
-			set_technology = { paratroopers = 1  popup = no }
-			set_technology = { paratroopers2 = 1  popup = no }
-
-			# Artillery
-			set_technology = { gw_artillery = 1  popup = no }
-			set_technology = { antiair_research1 = 1  popup = no }
-			set_technology = { antiair2 = 1  popup = no }
-			set_technology = { antitank_squeeze_1 = 1  popup = no }
-			set_technology = { artillery_research1 = 1  popup = no }
-			set_technology = { artillery2 = 1  popup = no }
-			set_technology = { artillery_research2 = 1  popup = no }
-			set_technology = { antitank2 = 1  popup = no }
-			set_technology = { sp_artillery_purpose_built_gun_motor_carriages_tech = 1  popup = no }
-			set_technology = { pack_artillery_2 = 1  popup = no }
-			set_technology = { artillery_research3 = 1  popup = no }
-			set_technology = { dp_artillery = 1  popup = no }
-			set_technology = { sp_artillery_rocket_assisted_projectiles_tech = 1  popup = no }
-			set_technology = { heavy_artillery_research1 = 1  popup = no }
-			set_technology = { heavy_artillery2 = 1  popup = no }
-			set_technology = { heavy_antiair1 = 1  popup = no }
-			set_technology = { heavy_artillery_research2 = 1  popup = no }
-			set_technology = { rocket_artillery = 1  popup = no }
-
-			# Naval Ships
-			set_technology = { early_ship_hull_light = 1  popup = no }
-			set_technology = { basic_ship_hull_light = 1  popup = no }
-			set_technology = { improved_ship_hull_light = 1  popup = no }
-			set_technology = { sonar = 1  popup = no }
-			set_technology = { improved_sonar = 1  popup = no }
-			set_technology = { smoke_generator = 1  popup = no }
-			set_technology = { basic_depth_charges = 1  popup = no }
-			set_technology = { improved_depth_charges = 1  popup = no }
-			set_technology = { advanced_depth_charges = 1  popup = no }
-			set_technology = { early_ship_hull_cruiser = 1  popup = no }
-			set_technology = { basic_ship_hull_cruiser = 1  popup = no }
-			set_technology = { improved_ship_hull_cruiser = 1  popup = no }
-			set_technology = { improved_airplane_launcher = 1  popup = no }
-			set_technology = { basic_cruiser_armor_scheme = 1  popup = no }
-			set_technology = { basic_heavy_armor_scheme = 1  popup = no }
-			set_technology = { early_ship_hull_heavy = 1  popup = no }
-			set_technology = { basic_ship_hull_heavy = 1  popup = no }
-			set_technology = { improved_ship_hull_heavy = 1  popup = no }
-			set_technology = { early_ship_hull_carrier = 1  popup = no }
-			set_technology = { basic_ship_hull_carrier = 1  popup = no }
-			set_technology = { improved_ship_hull_carrier = 1  popup = no }
-			set_technology = { early_ship_hull_submarine = 1  popup = no }
-			set_technology = { basic_ship_hull_submarine = 1  popup = no }
-			set_technology = { improved_ship_hull_submarine = 1  popup = no }
-			set_technology = { basic_submarine_snorkel = 1  popup = no }
-			set_technology = { sp_aip_engine_improved_tech = 1  popup = no }
-
-			# Naval Support
-			set_technology = { basic_battery = 1  popup = no }
-			set_technology = { basic_light_battery = 1  popup = no }
-			set_technology = { basic_light_shell = 1  popup = no }
-			set_technology = { basic_dp_light_battery = 1  popup = no }
-			set_technology = { improved_light_battery = 1  popup = no }
-			set_technology = { improved_medium_battery = 1  popup = no }
-			set_technology = { improved_dp_light_battery = 1  popup = no }
-			set_technology = { basic_medium_battery = 1  popup = no }
-			set_technology = { basic_medium_shell = 1  popup = no }
-			set_technology = { improved_medium_battery = 1  popup = no }
-			set_technology = { basic_heavy_battery = 1  popup = no }
-			set_technology = { basic_heavy_shell = 1  popup = no }
-			set_technology = { improved_heavy_battery = 1  popup = no }
-			set_technology = { basic_torpedo = 1  popup = no }
-			set_technology = { improved_ship_torpedo_launcher = 1  popup = no }
-			set_technology = { advanced_ship_torpedo_launcher = 1  popup = no }
-			set_technology = { magnetic_detonator = 1  popup = no }
-			set_technology = { damage_control_1 = 1  popup = no }
-			set_technology = { damage_control_2 = 1  popup = no }
-			set_technology = { fire_control_methods_1 = 1  popup = no }
-			set_technology = { fire_control_methods_2 = 1  popup = no }
-			set_technology = { mtg_transport = 1  popup = no }
-			set_technology = { mtg_landing_craft = 1  popup = no }
-			set_technology = { sp_multi_product_supply_ships = 1  popup = no }
-			set_technology = { basic_naval_mines = 1 popup = no }
-			set_technology = { submarine_mine_laying = 1 popup = no }
-			set_technology = { improved_submarine_mine_laying = 1 popup = no }
-			set_technology = { improved_naval_mines = 1 popup = no }
-			set_technology = { degaussing = 1 popup = no }
-		}
+			set_equipment_fraction = 0
+		}	
 	}
 
-	setup_romania_bulgaria_debug = {
-
-		icon = SWE_set_navy_budget
+	offmap_mil_civ_test = {
+		icon = generic_research
 
 		available = {
 			is_ai = no
@@ -495,348 +49,26 @@ debug_decisions = {
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		fire_only_once = no
 		cost = 0
 
 		complete_effect = {
-			BUL = {
-				add_manpower = 10000000
-				set_country_flag = make_admirals_visible
-				add_political_power = 2000
-				add_command_power = 2000
-				army_experience = 1000
-				navy_experience = 1000
-				air_experience = 1000
-				add_stability = 200
-				add_war_support = 200
-				annex_country = { target = YUG }
-				annex_country = { target = GRE }
-				annex_country = { target = ALB }
-				every_controlled_state = {
-					set_building_level = {
-						type = infrastructure
-						level = 10
-					}
-					set_building_level = {
-						type = air_base
-						level = 10
-					}
-				}
-				211 = {
-					set_building_level = {
-						type = bunker
-						level = 10
-						province = 9783
-						instant_build = yes
-					}
-					set_building_level = {
-						type = bunker
-						level = 10
-						province = 9919
-						instant_build = yes
-					}
-					set_building_level = {
-						type = bunker
-						level = 10
-						province = 9902
-						instant_build = yes
-					}
-					set_building_level = {
-						type = coastal_bunker
-						level = 10
-						province = 9783
-						instant_build = yes
-					}
-					set_building_level = {
-						type = coastal_bunker
-						level = 10
-						province = 9919
-						instant_build = yes
-					}
-					set_building_level = {
-						type = coastal_bunker
-						level = 10
-						province = 9902
-						instant_build = yes
-					}
-					set_building_level = {
-						type = naval_base
-						level = 10
-						province = 9783
-						instant_build = yes
-					}
-					set_building_level = {
-						type = naval_base
-						level = 10
-						province = 9902
-						instant_build = yes
-					}
-					build_railway = {
-						level = 5
-						path = { 9783 649 9769 6842 3819 3952 3971 949 }
-					}
-					build_railway = {
-						level = 5
-						path = { 9783 9919 9902 }
-					}
-				}
-				add_offsite_building = {
-					type = dockyard
-					level = 200
-				}
-				add_offsite_building = {
-					type = industrial_complex
-					level = 200
-				}
-				add_offsite_building = {
-					type = arms_factory
-					level = 100
-				}
-				add_offsite_building = {
-					type = synthetic_rubber_refinery
-					level = 100
-				}
-				add_offsite_building = {
-					type = synthetic_refinery
-					level = 100
-				}
-				add_offsite_building = {
-					type = steel_refinery
-					level = 100
-				}
-				add_offsite_building = {
-					type = fuel_silo
-					level = 100
-				}
-				remove_ideas = {
-					BUL_second_national_catastrophe
-					BUL_army_restrictions
-					BUL_imro_01
-				}
-				every_state = {
-					BUL = { 
-						delete_unit = { 
-							state = PREV 
-							disband = no 
-						}
-					}
-				}
-				transfer_units_fraction = {
-					target = AUS
-					size = 1
-					stockpile_ratio = 0
-					army_ratio = 1
-					navy_ratio = 1
-					air_ratio = 1
-				}
-				add_fuel = 15000000
-				add_equipment_to_stockpile = {  type = infantry_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = support_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = squad_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = motorized_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = mechanized_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = radio_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = amphibious_mechanized_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = helicopter_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = train_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = artillery_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = horse_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = anti_tank_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = anti_air_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = cv_fighter_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = fighter_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = CAS_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = scout_plane_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = cv_nav_bomber_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = cv_CAS_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = flying_boat_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = heavy_fighter_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = tac_bomber_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = strat_bomber_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = transport_plane_equipment amount = 10000 producer = BUL }	
-				add_equipment_to_stockpile = {  type = sf_equipment amount = 10000 producer = BUL }	
+			add_offsite_building = {
+				type = industrial_complex
+				level = 1000
 			}
-			ROM = {
-				add_manpower = 10000000
-				set_country_flag = make_admirals_visible
-				add_political_power = 2000
-				add_command_power = 2000
-				army_experience = 1000
-				navy_experience = 1000
-				air_experience = 1000
-				add_stability = 200
-				add_war_support = 200
-				annex_country = { target = HUN }
-				192 = { transfer_state_to = ROM }
-				834 = { transfer_state_to = ROM }
-				197 = { transfer_state_to = ROM }
-				196 = { transfer_state_to = ROM }
-				226 = { transfer_state_to = ROM }
-				137 = { transfer_state_to = ROM }
-				200 = { transfer_state_to = ROM }
-				227 = { transfer_state_to = ROM }
-				218 = { transfer_state_to = ROM }
-				234 = { transfer_state_to = ROM }
-				every_controlled_state = {
-					set_building_level = {
-						type = infrastructure
-						level = 10
-					}
-					set_building_level = {
-						type = air_base
-						level = 10
-					}
-				}
-				971 = {
-					set_building_level = {
-						type = bunker
-						level = 10
-						province = 657
-						instant_build = yes
-					}
-					set_building_level = {
-						type = bunker
-						level = 10
-						province = 9635
-						instant_build = yes
-					}
-					set_building_level = {
-						type = bunker
-						level = 10
-						province = 687
-						instant_build = yes
-					}
-					set_building_level = {
-						type = coastal_bunker
-						level = 10
-						province = 657
-						instant_build = yes
-					}
-					set_building_level = {
-						type = coastal_bunker
-						level = 10
-						province = 9635
-						instant_build = yes
-					}
-					set_building_level = {
-						type = coastal_bunker
-						level = 10
-						province = 687
-						instant_build = yes
-					}
-					set_building_level = {
-						type = naval_base
-						level = 10
-						province = 657
-						instant_build = yes
-					}
-					set_building_level = {
-						type = naval_base
-						level = 10
-						province = 687
-						instant_build = yes
-					}
-					build_railway = {
-						level = 5
-						path = { 9617 11603 6677 657 }
-					}
-					build_railway = {
-						level = 5
-						path = { 657 9635 687 }
-					}
-				}
-				add_offsite_building = {
-					type = dockyard
-					level = 200
-				}
-				add_offsite_building = {
-					type = industrial_complex
-					level = 200
-				}
-				add_offsite_building = {
-					type = arms_factory
-					level = 100
-				}
-				add_offsite_building = {
-					type = synthetic_rubber_refinery
-					level = 100
-				}
-				add_offsite_building = {
-					type = synthetic_refinery
-					level = 100
-				}
-				add_offsite_building = {
-					type = steel_refinery
-					level = 100
-				}
-				add_offsite_building = {
-					type = fuel_silo
-					level = 100
-				}
-				remove_ideas = {
-					ROM_king_carol_ii_hedonist
-					ROM_undeveloped_export_industry
-					neutrality_idea
-				}
-				every_state = {
-					ROM = { 
-						delete_unit = { 
-							state = PREV 
-							disband = no 
-						}
-					}
-				}
-				destroy_ships = {
-					type=destroyer
-					count=all #or number
-				}
-				transfer_units_fraction = {
-					target = AUS
-					size = 1
-					stockpile_ratio = 0
-					army_ratio = 1
-					navy_ratio = 1
-					air_ratio = 1
-				}
-				add_fuel = 15000000
-				add_equipment_to_stockpile = {  type = infantry_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = support_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = squad_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = motorized_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = mechanized_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = radio_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = amphibious_mechanized_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = helicopter_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = train_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = artillery_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = horse_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = anti_tank_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = anti_air_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = cv_fighter_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = fighter_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = CAS_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = scout_plane_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = cv_nav_bomber_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = cv_CAS_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = flying_boat_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = heavy_fighter_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = tac_bomber_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = strat_bomber_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = transport_plane_equipment amount = 10000 producer = ROM }	
-				add_equipment_to_stockpile = {  type = sf_equipment amount = 10000 producer = ROM }	
+			add_offsite_building = {
+				type = arms_factory
+				level = 1000
 			}
-		}
+		}	
 	}
 
-
-	add_ship_designs_debug = {
-
-		icon = SWE_set_navy_budget
+	dday_oob = {
+		icon = generic_research
 
 		available = {
 			is_ai = no
@@ -844,784 +76,19 @@ debug_decisions = {
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		fire_only_once = no
 		cost = 0
 
 		complete_effect = {
-			set_technology = {
-				panzerschiffe = 1
-				coastal_defense_ships = 1
-				pre_dreadnoughts = 1
-			}
-			complete_special_project = { project = sp:sp_naval_cruiser_submarine }
-			complete_special_project = { project = sp:sp_naval_fleet_submarine }
-			complete_special_project = { project = sp:sp_naval_midget_submarine }
-			complete_special_project = { project = sp:sp_naval_aip_engine }
-			complete_special_project = { project = sp:sp_naval_anechoic_tiles }
-			complete_special_project = { project = sp:sp_naval_torpedo_cruiser }
-			complete_special_project = { project = sp:sp_naval_super_heavy_battleship }
-			complete_special_project = { project = sp:sp_naval_modern_battleship }
-			complete_special_project = { project = sp:sp_naval_modern_carrier }
-			complete_special_project = { project = sp:sp_naval_ice_carrier }
-			complete_special_project = { project = sp:sp_naval_underway_replenishment }
-			complete_special_project = { project = sp:sp_naval_modern_carrier }
-			complete_special_project = { project = sp:sp_air_helicopter }
-			complete_special_project = { project = sp:sp_rockets_ballistic_missile }
-			complete_special_project = { project = sp:sp_rockets_medium_range_ballistic_missile }
-			complete_special_project = { project = sp:sp_rockets_ground_to_air_missile }
-			complete_special_project = { project = sp:sp_rocket_interceptor }
-		  # Carriers
-			create_equipment_variant = {
-				name = "CV BB Convert"
-				type = ship_hull_carrier_conversion_bb
-				modules = {
-					fixed_ship_deck_slot_1 = ship_deck_space
-					fixed_ship_deck_slot_2 = ship_deck_space
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = heavy_ship_engine_3
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					mid_1_custom_slot = ship_deck_space
-				}
-			}
-			create_equipment_variant = {
-				name = "CV CA Convert"
-				type = ship_hull_carrier_conversion_ca
-				modules = {
-					fixed_ship_deck_slot_1 = ship_deck_space
-					fixed_ship_deck_slot_2 = ship_deck_space
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_3
-					fixed_ship_secondaries_slot = ship_anti_air_3
-				}
-			}
-			create_equipment_variant = {
-				name = "36CV"
-				type = ship_hull_carrier_1
-				modules = {
-					fixed_ship_deck_slot_1 = ship_deck_space
-					fixed_ship_deck_slot_2 = ship_deck_space
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = carrier_ship_engine_3
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					front_1_custom_slot = ship_deck_space
-				}
-			}
-			create_equipment_variant = {
-				name = "39CV"
-				type = ship_hull_carrier_2
-				modules = {
-					fixed_ship_deck_slot_1 = ship_deck_space
-					fixed_ship_deck_slot_2 = ship_deck_space
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = carrier_ship_engine_3
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					front_1_custom_slot = ship_deck_space
-					mid_1_custom_slot = ship_deck_space
-				}
-			}
-			create_equipment_variant = {
-				name = "CV Modern"
-				type = ship_hull_carrier_modern
-				modules = {
-					fixed_ship_deck_slot_1 = ship_deck_space
-					fixed_ship_deck_slot_2 = ship_deck_space
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = carrier_ship_engine_3
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					front_1_custom_slot = ship_deck_space
-					mid_1_custom_slot = ship_deck_space
-					mid_2_custom_slot = ship_deck_space
-					rear_1_custom_slot = ship_deck_space
-				}
-			}
-			create_equipment_variant = {
-				name = "Ice Carrier"
-				type = ship_hull_mega_carrier
-				modules = {
-					fixed_ship_deck_slot_1 = big_ship_deck_space
-					fixed_ship_deck_slot_2 = big_ship_deck_space
-					fixed_ship_anti_air_slot = ship_anti_air_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = carrier_ship_engine_3
-					fixed_ship_secondaries_slot = ship_secondaries_2
-					front_1_custom_slot = big_ship_deck_space
-					mid_1_custom_slot = big_ship_deck_space
-					mid_2_custom_slot = big_ship_deck_space
-					mid_3_custom_slot = big_ship_deck_space
-					rear_1_custom_slot = big_ship_deck_space
-					rear_2_custom_slot = big_ship_deck_space
-				}
-			}
-
-		  # Battle Cruisers
-			create_equipment_variant = {
-				name = "Pre-Dreadnought BC"
-				type = ship_hull_pre_dreadnought
-				modules = {
-					fixed_ship_battery_slot = ship_heavy_battery_2
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = heavy_ship_engine_2
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					fixed_ship_armor_slot = ship_armor_bc_2
-					front_1_custom_slot = ship_anti_air_3
-					mid_1_custom_slot = ship_torpedo_3
-					rear_1_custom_slot = ship_anti_air_3
-				}
-			}
-			create_equipment_variant = {
-				name = "36BC AA"
-				type = ship_hull_heavy_2
-				modules = {
-					fixed_ship_battery_slot = ship_heavy_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = heavy_ship_engine_2
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					fixed_ship_armor_slot = ship_armor_bc_2
-					front_1_custom_slot = ship_heavy_battery_3
-					mid_1_custom_slot = ship_anti_air_3
-					mid_2_custom_slot = ship_anti_air_3
-					mid_3_custom_slot = ship_anti_air_3
-					rear_1_custom_slot = ship_heavy_battery_3
-				}
-			}
-			create_equipment_variant = {
-				name = "36BC LA"
-				type = ship_hull_heavy_2
-				modules = {
-					fixed_ship_battery_slot = ship_heavy_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = heavy_ship_engine_2
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					fixed_ship_armor_slot = ship_armor_bc_2
-					front_1_custom_slot = ship_heavy_battery_3
-					mid_1_custom_slot = ship_secondaries_2
-					mid_2_custom_slot = ship_secondaries_2
-					mid_3_custom_slot = ship_secondaries_2
-					rear_1_custom_slot = ship_heavy_battery_3
-				}
-			}
-			create_equipment_variant = {
-				name = "39BC AA"
-				type = ship_hull_heavy_3
-				modules = {
-					fixed_ship_battery_slot = ship_heavy_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = heavy_ship_engine_3
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					fixed_ship_armor_slot = ship_armor_bc_3
-					front_1_custom_slot = ship_heavy_battery_3
-					mid_1_custom_slot = ship_anti_air_3
-					mid_2_custom_slot = ship_anti_air_3
-					mid_3_custom_slot = ship_anti_air_3
-					rear_1_custom_slot = ship_heavy_battery_3
-					rear_2_custom_slot = ship_heavy_battery_3
-				}
-			}
-			create_equipment_variant = {
-				name = "39BC LA"
-				type = ship_hull_heavy_3
-				modules = {
-					fixed_ship_battery_slot = ship_heavy_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = heavy_ship_engine_2
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					fixed_ship_armor_slot = ship_armor_bc_3
-					front_1_custom_slot = ship_heavy_battery_3
-					mid_1_custom_slot = ship_secondaries_2
-					mid_2_custom_slot = ship_secondaries_2
-					mid_3_custom_slot = ship_secondaries_2
-					rear_1_custom_slot = ship_heavy_battery_3
-					rear_2_custom_slot = ship_heavy_battery_3
-				}
-			}
-			create_equipment_variant = {
-				name = "Modern BC"
-				type = ship_hull_heavy_modern
-				modules = {
-					fixed_ship_battery_slot = ship_heavy_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = heavy_ship_engine_2
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					fixed_ship_armor_slot = ship_armor_bc_3
-					front_1_custom_slot = ship_heavy_battery_3
-					mid_1_custom_slot = ship_heavy_battery_3
-					mid_2_custom_slot = ship_heavy_battery_3
-					mid_3_custom_slot = ship_heavy_battery_3
-					rear_1_custom_slot = ship_heavy_battery_3
-				}
-			}
-		  # Battleship
-			create_equipment_variant = {
-				name = "Pre-Dreadnought BB"
-				type = ship_hull_pre_dreadnought
-				modules = {
-					fixed_ship_battery_slot = ship_heavy_battery_2
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = heavy_ship_engine_2
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					fixed_ship_armor_slot = ship_armor_bb_2
-					front_1_custom_slot = ship_anti_air_3
-					mid_1_custom_slot = ship_torpedo_3
-					rear_1_custom_slot = ship_anti_air_3
-				}
-			}
-			create_equipment_variant = {
-				name = "36BB AA"
-				type = ship_hull_heavy_2
-				modules = {
-					fixed_ship_battery_slot = ship_heavy_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = heavy_ship_engine_2
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					fixed_ship_armor_slot = ship_armor_bb_2
-					front_1_custom_slot = ship_heavy_battery_3
-					mid_1_custom_slot = ship_anti_air_3
-					mid_2_custom_slot = ship_anti_air_3
-					mid_3_custom_slot = ship_anti_air_3
-					rear_1_custom_slot = ship_heavy_battery_3
-				}
-			}
-			create_equipment_variant = {
-				name = "36BB LA"
-				type = ship_hull_heavy_2
-				modules = {
-					fixed_ship_battery_slot = ship_heavy_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = heavy_ship_engine_2
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					fixed_ship_armor_slot = ship_armor_bb_2
-					front_1_custom_slot = ship_heavy_battery_3
-					mid_1_custom_slot = ship_secondaries_2
-					mid_2_custom_slot = ship_secondaries_2
-					mid_3_custom_slot = ship_secondaries_2
-					rear_1_custom_slot = ship_heavy_battery_3
-				}
-			}
-			create_equipment_variant = {
-				name = "39BB AA"
-				type = ship_hull_heavy_3
-				modules = {
-					fixed_ship_battery_slot = ship_heavy_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = heavy_ship_engine_2
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					fixed_ship_armor_slot = ship_armor_bb_3
-					front_1_custom_slot = ship_heavy_battery_3
-					mid_1_custom_slot = ship_anti_air_3
-					mid_2_custom_slot = ship_anti_air_3
-					mid_3_custom_slot = ship_anti_air_3
-					rear_1_custom_slot = ship_heavy_battery_3
-					rear_2_custom_slot = ship_heavy_battery_3
-				}
-			}
-			create_equipment_variant = {
-				name = "39BB LA"
-				type = ship_hull_heavy_3
-				modules = {
-					fixed_ship_battery_slot = ship_heavy_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = heavy_ship_engine_2
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					fixed_ship_armor_slot = ship_armor_bb_3
-					front_1_custom_slot = ship_heavy_battery_3
-					mid_1_custom_slot = ship_secondaries_2
-					mid_2_custom_slot = ship_secondaries_2
-					mid_3_custom_slot = ship_secondaries_2
-					rear_1_custom_slot = ship_heavy_battery_3
-					rear_2_custom_slot = ship_heavy_battery_3
-				}
-			}
-			create_equipment_variant = {
-				name = "Modern BB"
-				type = ship_hull_heavy_modern
-				modules = {
-					fixed_ship_battery_slot = ship_heavy_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = heavy_ship_engine_2
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					fixed_ship_armor_slot = ship_armor_bb_3
-					front_1_custom_slot = ship_heavy_battery_3
-					mid_1_custom_slot = ship_heavy_battery_3
-					mid_2_custom_slot = ship_heavy_battery_3
-					mid_3_custom_slot = ship_heavy_battery_3
-					rear_1_custom_slot = ship_heavy_battery_3
-				}
-			}
-		  # SH Battleship
-			create_equipment_variant = {
-				name = "SHBB"
-				type = ship_hull_super_heavy_1
-				modules = {
-					fixed_ship_battery_slot = ship_super_heavy_battery_1
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = heavy_ship_engine_2
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					fixed_ship_armor_slot = ship_armor_shbb
-					front_1_custom_slot = ship_super_heavy_battery_1
-					front_2_custom_slot = ship_super_heavy_battery_1
-					mid_1_custom_slot = ship_anti_air_3
-					mid_2_custom_slot = ship_anti_air_3
-					mid_3_custom_slot = ship_anti_air_3
-					rear_1_custom_slot = ship_super_heavy_battery_1
-					rear_2_custom_slot = ship_super_heavy_battery_1
-				}
-			}
-		  # Heavy Cruisers
-			create_equipment_variant = {
-				name = "36HC AA"
-				type = ship_hull_cruiser_2
-				role_icon_index = 7
-				modules = {
-					fixed_ship_battery_slot = ship_medium_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_2
-					fixed_ship_armor_slot = ship_armor_cruiser_2
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					front_1_custom_slot = ship_anti_air_3
-					mid_1_custom_slot = ship_anti_air_3
-					mid_2_custom_slot = ship_anti_air_3
-					rear_2_custom_slot = ship_anti_air_3
-				}
-			}
-			create_equipment_variant = {
-				name = "36HC Torp"
-				type = ship_hull_cruiser_2
-				modules = {
-					fixed_ship_battery_slot = ship_medium_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_2
-					fixed_ship_armor_slot = ship_armor_cruiser_2
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					front_1_custom_slot = ship_torpedo_3
-					mid_1_custom_slot = ship_torpedo_3
-					mid_2_custom_slot = ship_torpedo_3
-					rear_2_custom_slot = ship_anti_air_3
-				}
-			}
-			create_equipment_variant = {
-				name = "39HC AA"
-				type = ship_hull_cruiser_3
-				role_icon_index = 7
-				modules = {
-					fixed_ship_battery_slot = ship_medium_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_3
-					fixed_ship_armor_slot = ship_armor_cruiser_3
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					front_1_custom_slot = ship_anti_air_3
-					mid_1_custom_slot = ship_anti_air_3
-					mid_2_custom_slot = ship_anti_air_3
-					rear_1_custom_slot = ship_anti_air_3
-					rear_2_custom_slot = ship_anti_air_3
-				}
-			}
-			create_equipment_variant = {
-				name = "39HC Torp"
-				type = ship_hull_cruiser_3
-				modules = {
-					fixed_ship_battery_slot = ship_medium_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_3
-					fixed_ship_armor_slot = ship_armor_cruiser_3
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					front_1_custom_slot = ship_torpedo_3
-					mid_1_custom_slot = ship_torpedo_3
-					mid_2_custom_slot = ship_torpedo_3
-					rear_1_custom_slot = ship_anti_air_3
-					rear_2_custom_slot = ship_anti_air_3
-				}
-			}
-			create_equipment_variant = {
-				name = "Panzerschiff"
-				type = ship_hull_cruiser_panzerschiff
-				modules = {
-					fixed_ship_battery_slot = ship_heavy_battery_2
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_2
-					fixed_ship_armor_slot = ship_armor_cruiser_3
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					front_1_custom_slot = ship_heavy_battery_2
-					mid_1_custom_slot = ship_light_medium_battery_2
-					mid_2_custom_slot = ship_light_medium_battery_2
-					rear_1_custom_slot = ship_torpedo_3
-				}
-			}
-			create_equipment_variant = {
-				name = "Torp Cruiser"
-				type = ship_hull_torpedo_cruiser
-				modules = {
-					fixed_ship_battery_slot = ship_medium_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_3
-					fixed_ship_armor_slot = ship_armor_cruiser_3
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					front_1_custom_slot = ship_torpedo_3
-					mid_1_custom_slot = ship_torpedo_3
-					mid_2_custom_slot = ship_torpedo_3
-					rear_1_custom_slot = ship_torpedo_3
-					rear_2_custom_slot = ship_anti_air_3
-				}
-			}
-			create_equipment_variant = {
-				name = "Coastal Defense Ship"
-				type = ship_hull_cruiser_coastal_defense_ship
-				modules = {
-					fixed_ship_battery_slot = ship_heavy_battery_2
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_2
-					fixed_ship_armor_slot = ship_armor_cruiser_2
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					front_1_custom_slot = ship_medium_battery_2
-					mid_1_custom_slot = ship_torpedo_3
-					mid_2_custom_slot = ship_torpedo_3
-					rear_1_custom_slot = ship_torpedo_3
-				}
-			}
-		  # Light Cruisers
-			create_equipment_variant = {
-				name = "36HC AA"
-				type = ship_hull_cruiser_2
-				role_icon_index = 7
-				modules = {
-					fixed_ship_battery_slot = ship_light_medium_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_2
-					fixed_ship_armor_slot = ship_armor_cruiser_2
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					front_1_custom_slot = ship_anti_air_3
-					mid_1_custom_slot = ship_anti_air_3
-					mid_2_custom_slot = ship_anti_air_3
-					rear_2_custom_slot = ship_anti_air_3
-				}
-			}
-			create_equipment_variant = {
-				name = "36HC Torp"
-				type = ship_hull_cruiser_2
-				modules = {
-					fixed_ship_battery_slot = ship_light_medium_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_2
-					fixed_ship_armor_slot = ship_armor_cruiser_2
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					front_1_custom_slot = ship_torpedo_3
-					mid_1_custom_slot = ship_torpedo_3
-					mid_2_custom_slot = ship_torpedo_3
-					rear_2_custom_slot = ship_anti_air_3
-				}
-			}
-			create_equipment_variant = {
-				name = "36LC LA"
-				type = ship_hull_cruiser_2
-				modules = {
-					fixed_ship_battery_slot = ship_light_medium_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_2
-					fixed_ship_armor_slot = ship_armor_cruiser_3
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					front_1_custom_slot = ship_light_battery_3
-					mid_1_custom_slot = ship_light_battery_3
-					mid_2_custom_slot = ship_light_battery_3
-					rear_2_custom_slot = ship_light_battery_3
-				}
-			}
-			create_equipment_variant = {
-				name = "36LC Piercing"
-				type = ship_hull_cruiser_2
-				modules = {
-					fixed_ship_battery_slot = ship_light_medium_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_2
-					fixed_ship_armor_slot = ship_armor_cruiser_3
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					front_1_custom_slot = empty
-					mid_1_custom_slot = ship_torpedo_3
-					mid_2_custom_slot = ship_torpedo_3
-					rear_2_custom_slot = empty
-				}
-			}
-			create_equipment_variant = {
-				name = "36LC Spotting"
-				role_icon_index = 3
-				type = ship_hull_cruiser_2
-				modules = {
-					fixed_ship_battery_slot = ship_light_medium_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_sonar_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_2
-					fixed_ship_armor_slot = ship_armor_cruiser_3
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					front_1_custom_slot = ship_airplane_launcher_2
-					mid_1_custom_slot = ship_airplane_launcher_2
-					mid_2_custom_slot = ship_airplane_launcher_2
-					rear_2_custom_slot = ship_airplane_launcher_2
-				}
-			}
-			create_equipment_variant = {
-				name = "39LC AA"
-				type = ship_hull_cruiser_3
-				role_icon_index = 7
-				modules = {
-					fixed_ship_battery_slot = ship_light_medium_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_3
-					fixed_ship_armor_slot = ship_armor_cruiser_3
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					front_1_custom_slot = ship_anti_air_3
-					mid_1_custom_slot = ship_anti_air_3
-					mid_2_custom_slot = ship_anti_air_3
-					rear_1_custom_slot = ship_anti_air_3
-					rear_2_custom_slot = ship_anti_air_3
-				}
-			}
-			create_equipment_variant = {
-				name = "39LC Torp"
-				type = ship_hull_cruiser_3
-				modules = {
-					fixed_ship_battery_slot = ship_light_medium_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_3
-					fixed_ship_armor_slot = ship_armor_cruiser_3
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					front_1_custom_slot = ship_torpedo_3
-					mid_1_custom_slot = ship_torpedo_3
-					mid_2_custom_slot = ship_torpedo_3
-					rear_1_custom_slot = ship_anti_air_3
-					rear_2_custom_slot = ship_anti_air_3
-				}
-			}
-			create_equipment_variant = {
-				name = "39LC LA"
-				type = ship_hull_cruiser_3
-				modules = {
-					fixed_ship_battery_slot = ship_light_medium_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_3
-					fixed_ship_armor_slot = ship_armor_cruiser_3
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					front_1_custom_slot = ship_light_battery_3
-					mid_1_custom_slot = ship_light_battery_3
-					mid_2_custom_slot = ship_light_battery_3
-					rear_1_custom_slot = ship_light_battery_3
-					rear_2_custom_slot = ship_light_battery_3
-				}
-			}
-			create_equipment_variant = {
-				name = "39LC Piercing"
-				type = ship_hull_cruiser_3
-				modules = {
-					fixed_ship_battery_slot = ship_light_medium_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_3
-					fixed_ship_armor_slot = ship_armor_cruiser_3
-					fixed_ship_secondaries_slot = dp_ship_secondaries_2
-					front_1_custom_slot = empty
-					mid_1_custom_slot = ship_torpedo_3
-					mid_2_custom_slot = ship_torpedo_3
-					rear_1_custom_slot = empty
-					rear_2_custom_slot = empty
-				}
-			}
-			create_equipment_variant = {
-				name = "39LC Spotting"
-				role_icon_index = 3
-				type = ship_hull_cruiser_3
-				modules = {
-					fixed_ship_battery_slot = ship_light_medium_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_sonar_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = cruiser_ship_engine_3
-					fixed_ship_armor_slot = ship_armor_cruiser_3
-					fixed_ship_secondaries_slot = ship_anti_air_3
-					front_1_custom_slot = ship_airplane_launcher_2
-					mid_1_custom_slot = ship_airplane_launcher_2
-					mid_2_custom_slot = ship_airplane_launcher_2
-					rear_1_custom_slot = ship_airplane_launcher_2
-					rear_2_custom_slot = ship_airplane_launcher_2
-				}
-			}
-		  # Destroyers
-			create_equipment_variant = {
-				name = "39DD Torp"
-				type = ship_hull_light_3
-				modules = {
-					fixed_ship_battery_slot = ship_light_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = light_ship_engine_3
-					fixed_ship_torpedo_slot = ship_torpedo_3
-					front_1_custom_slot = ship_light_battery_3
-					mid_1_custom_slot = ship_torpedo_3
-					rear_1_custom_slot = ship_torpedo_3
-				}
-			}
-			create_equipment_variant = {
-				name = "39DD AA"
-				type = ship_hull_light_3
-				role_icon_index = 7
-				modules = {
-					fixed_ship_battery_slot = dp_light_battery_2
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = light_ship_engine_3
-					fixed_ship_torpedo_slot = ship_torpedo_3
-					front_1_custom_slot = ship_anti_air_3
-					mid_1_custom_slot = ship_anti_air_3
-					rear_1_custom_slot = ship_anti_air_3
-				}
-			}
-			create_equipment_variant = {
-				name = "39DD LA"
-				type = ship_hull_light_3
-				modules = {
-					fixed_ship_battery_slot = ship_light_battery_3
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = light_ship_engine_3
-					fixed_ship_torpedo_slot = ship_torpedo_3
-					front_1_custom_slot = ship_light_battery_3
-					mid_1_custom_slot = ship_light_battery_3
-					rear_1_custom_slot = ship_light_battery_3
-				}
-			}
-			create_equipment_variant = {
-				name = "39DD ASW"
-				type = ship_hull_light_3
-				role_icon_index = 6
-				modules = {
-					fixed_ship_battery_slot = ship_light_battery_1
-					fixed_ship_anti_air_slot = ship_anti_air_3
-					fixed_ship_fire_control_system_slot = ship_fire_control_system_2
-					fixed_ship_radar_slot = ship_radar_2
-					fixed_ship_engine_slot = light_ship_engine_3
-					fixed_ship_torpedo_slot = ship_torpedo_3
-					front_1_custom_slot = ship_light_battery_3
-					mid_1_custom_slot = ship_torpedo_3
-					rear_1_custom_slot = ship_torpedo_3
-				}
-			}
-		  # Submarines
-			create_equipment_variant = {
-				name = "40SS"
-				type = ship_hull_submarine_3
-				role_icon_index = 6
-				modules = {
-					fixed_ship_engine_slot = sub_ship_engine_3
-					fixed_ship_torpedo_slot = ship_torpedo_sub_3
-					front_1_custom_slot = ship_torpedo_sub_3
-					mid_1_custom_slot = ship_sub_snorkel_1
-					rear_1_custom_slot = ship_torpedo_sub_3
-				}
-			}
-			create_equipment_variant = {
-				name = "SS Fleet"
-				type = ship_hull_fleet_submarine
-				role_icon_index = 6
-				modules = {
-					fixed_ship_engine_slot = sub_ship_engine_3
-					fixed_ship_torpedo_slot = ship_torpedo_sub_3
-					front_1_custom_slot = ship_torpedo_sub_3
-					mid_1_custom_slot = ship_anechoic_tile
-					rear_1_custom_slot = ship_torpedo_sub_3
-				}
-			}
-			create_equipment_variant = {
-				name = "SS Cruiser"
-				type = ship_hull_cruiser_submarine
-				role_icon_index = 6
-				modules = {
-					fixed_ship_engine_slot = sub_ship_engine_3
-					fixed_ship_torpedo_slot = ship_torpedo_sub_3
-					front_1_custom_slot = ship_torpedo_sub_3
-					mid_1_custom_slot = ship_anechoic_tile
-					rear_1_custom_slot = ship_torpedo_sub_3
-				}
-			}
-			create_equipment_variant = {
-				name = "SS Midget"
-				type = ship_hull_midget_submarine
-				role_icon_index = 6
-				modules = {
-					fixed_ship_engine_slot = sub_ship_engine_3
-					fixed_ship_torpedo_slot = ship_torpedo_sub_3
-				}
-			}
-		}
-	
+			load_oob = "DDAY_WALL_OOB"
+		}	
 	}
 
-	add_spawned_ships_debug = {
-		icon = SWE_set_navy_budget
+	stalin_oob = {
+		icon = generic_research
 
 		available = {
 			is_ai = no
@@ -1629,32 +96,19 @@ debug_decisions = {
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		fire_only_once = no
 		cost = 0
 
 		complete_effect = {
-			custom_effect_tooltip = debug_spawn_ships
-			if = {
-				limit = { tag = BUL }
-				load_oob = debug_navy_bul
-			} else_if = {
-				limit = { tag = ROM }
-				load_oob = debug_navy_rom
-			} else = {
-				load_oob = debug_navy
-			}
-			add_fuel = 15000000
-		}
+			load_oob = "STALIN_LINE_OOB"
+		}	
 	}
 
-
-	add_panzerschiff_debug = {
-		icon = SWE_set_navy_budget
+	finland_and_ports_oob = {
+		icon = generic_research
 
 		available = {
 			is_ai = no
@@ -1662,310 +116,15 @@ debug_decisions = {
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		fire_only_once = no
 		cost = 0
 
 		complete_effect = {
-			set_technology = {
-				panzerschiffe = 1
-				coastal_defense_ships = 1
-				pre_dreadnoughts = 1
-			}
-		}
-	}
-
-	add_tora_tora_tora_debug = {
-		icon = SWE_set_navy_budget
-
-		available = {
-			is_ai = no
-			is_debug = yes
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-
-		fire_only_once = no
-		cost = 0
-
-		complete_effect = {
-			add_ideas = JAP_tora_tora_tora_idea
-		}
-	}
-
-	add_jap_long_lance_debug = {
-		icon = SWE_set_navy_budget
-
-		available = {
-			is_ai = no
-			is_debug = yes
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-
-		fire_only_once = no
-		cost = 0
-
-		complete_effect = {
-			add_ideas = the_long_lance
-		}
-	}
-
-	add_jap_first_air_fleet_debug = {
-		icon = SWE_set_navy_budget
-
-		available = {
-			is_ai = no
-			is_debug = yes
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-
-		fire_only_once = no
-		cost = 0
-
-		complete_effect = {
-			add_ideas = JAP_first_air_fleet
-		}
-	}
-
-	add_jap_kamikaze_debug = {
-		icon = SWE_set_navy_budget
-
-		available = {
-			is_ai = no
-			is_debug = yes
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-
-		fire_only_once = no
-		cost = 0
-
-		complete_effect = {
-			set_rule = {
-				can_use_kamikaze_pilots = yes
-			}
-		}
-	}
-
-	add_usa_unrestricted_debug = {
-		icon = SWE_set_navy_budget
-
-		available = {
-			is_ai = no
-			is_debug = yes
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-
-		fire_only_once = no
-		cost = 0
-
-		complete_effect = {
-			add_ideas = USA_unrestricted_submarine_warfare
-		}
-	}
-
-	add_eng_watu_debug = {
-		icon = SWE_set_navy_budget
-
-		available = {
-			is_ai = no
-			is_debug = yes
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-
-		fire_only_once = no
-		cost = 0
-
-		complete_effect = {
-			add_ideas = ENG_watu_idea
-		}
-	}
-
-	add_eng_repair_yards_debug = {
-		icon = SWE_set_navy_budget
-
-		available = {
-			is_ai = no
-			is_debug = yes
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-
-		fire_only_once = no
-		cost = 0
-
-		complete_effect = {
-			add_ideas = ENG_expand_the_repair_yards
-		}
-	}
-
-	add_eng_refitting_yards_debug = {
-		icon = SWE_set_navy_budget
-
-		available = {
-			is_ai = no
-			is_debug = yes
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-
-		fire_only_once = no
-		cost = 0
-
-		complete_effect = {
-			add_ideas = ENG_refitting_yards
-		}
-	}
-
-	add_ger_kriegsmarine_debug = {
-		icon = SWE_set_navy_budget
-
-		available = {
-			is_ai = no
-			is_debug = yes
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-
-		fire_only_once = no
-		cost = 0
-
-		complete_effect = {
-			add_dynamic_modifier = { modifier = GER_navy_fascist_modifier }
-		}
-	}
-
-	add_ger_luftwaffe_debug = {
-		icon = SWE_set_navy_budget
-
-		available = {
-			is_ai = no
-			is_debug = yes
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-
-		fire_only_once = no
-		cost = 0
-
-		complete_effect = {
-			add_dynamic_modifier = { modifier = GER_airforce_modifier }
-		}
-	}
-
-
-	add_ita_flottiglia_max_debug = {
-		icon = SWE_set_navy_budget
-
-		available = {
-			is_ai = no
-			is_debug = yes
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-
-		fire_only_once = no
-		cost = 0
-
-		complete_effect = {
-			add_ideas = ITA_xmas
-		}
-	}
-
-	add_ita_esploratori_debug = {
-		icon = SWE_set_navy_budget
-
-		available = {
-			is_ai = no
-			is_debug = yes
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-
-		fire_only_once = no
-		cost = 0
-
-		complete_effect = {
-			add_ideas = ITA_idea_esploratori
-		}
-	}
-
-	add_ita_naval_air_debug = {
-		icon = SWE_set_navy_budget
-
-		available = {
-			is_ai = no
-			is_debug = yes
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-
-		fire_only_once = no
-		cost = 0
-
-		complete_effect = {
-			add_ideas = ITA_naval_air
-		}
+			load_oob = "FINLAND_AND_PORTS_OOB"
+		}	
 	}
 
 	add_efficiency_growth_debug = {
@@ -1977,9 +136,7 @@ debug_decisions = {
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		fire_only_once = no
@@ -1989,33 +146,6 @@ debug_decisions = {
 			add_ideas = add_production_efficiency
 		}
 	}
-
-	#nuke_target_debug = {
-	#	icon = generic_research
-#
-	#	available = {
-	#		is_ai = no
-	#		is_debug = yes
-	#	}
-#
-	#	visible = {
-	#		is_ai = no
-	#		is_debug = yes
-	#		has_global_flag = show_debug_decisions_flag
-	#	}
-#
-	#	fire_only_once = no
-	#	cost = 0
-#
-	#	complete_effect = {
-	#		TIB = {
-	#			launch_nuke = {
-	#				province = 9950
-	#				use_nuke = no
-	#			}	
-	#		}
-	#	}
-	#}
 		
 	remove_efficiency_growth_debug = {
 		icon = generic_research
@@ -2026,9 +156,7 @@ debug_decisions = {
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		fire_only_once = no
@@ -2059,9 +187,7 @@ debug_decisions = {
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		fire_only_once = no
@@ -2081,13 +207,11 @@ debug_decisions = {
 		icon = generic_research
 
 		available = {
-			is_ai = no
+			always = yes
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		fire_only_once = no
@@ -2110,19 +234,16 @@ debug_decisions = {
 		}
 	}
 
-
 	create_operative_debug = {
 
 		icon = generic_research
 
 		available = {
-			is_ai = no
+			always = yes
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		fire_only_once = no
@@ -2146,13 +267,11 @@ debug_decisions = {
 		icon = generic_research
 
 		available = {
-			is_ai = no
+			always = yes
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		fire_only_once = no
@@ -2174,13 +293,11 @@ debug_decisions = {
 		icon = generic_research
 
 		available = {
-			is_ai = no
+			always = yes
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		fire_only_once = no
@@ -2205,9 +322,7 @@ debug_decisions = {
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		fire_only_once = no
@@ -2237,9 +352,7 @@ debug_decisions = {
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		fire_only_once = no
@@ -2266,20 +379,24 @@ debug_decisions = {
 
 	harm_operative_debug = {
 		available = {
-			#num_of_operatives > 0
+			num_of_operatives > 0
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		fire_only_once = no
 		cost = 0
 
 		complete_effect = {
-			controlled_civilian_factories_excluding_trade = yes
+			random_operative = {
+				harm_operative_leader = 1
+				operative_leader_event = {
+					id = lar_operative_event.4
+					set_from_from = URG
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -2294,9 +411,7 @@ debug_decisions = {
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		fire_only_once = no
@@ -2321,45 +436,13 @@ debug_decisions = {
 
 	}
 
-	add_1_convoy = {
-
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-
-		fire_only_once = no
-		cost = 0
-
-		complete_effect = {
-			add_equipment_to_stockpile = {
-				type = convoy_1
-				amount = 1
-			}
-			add_equipment_to_stockpile = {
-				type = convoy_1
-				amount = -1
-			}
-
-		}
-
-		ai_will_do = {
-			base = 0
-		}
-
-	}
-
 	slot_machine = { # we pegi 18 now
 		available = {
-			is_ai = no
+			always = yes
 		}
 
 		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
+			always = yes
 		}
 
 		days_remove = 777
@@ -2370,15 +453,6 @@ debug_decisions = {
 	}
 
 	decryption_tech_1 = {
-		available = {
-			is_ai = no
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
 		days_remove = 100
 		modifier = {
 			decryption = 1
@@ -2386,15 +460,6 @@ debug_decisions = {
 	}
 
 	decryption_tech_2 = {
-		available = {
-			is_ai = no
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
 		days_remove = 100
 		modifier = {
 			decryption = 1
@@ -2402,15 +467,6 @@ debug_decisions = {
 	}
 
 	decryption_tech_3 = {
-		available = {
-			is_ai = no
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
 		days_remove = 100
 		modifier = {
 			decryption = 1
@@ -2418,15 +474,6 @@ debug_decisions = {
 	}
 
 	encryption_tech_1 = {
-		available = {
-			is_ai = no
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
 		days_remove = 100
 		modifier = {
 			encryption = 1
@@ -2434,15 +481,6 @@ debug_decisions = {
 	}
 
 	encryption_tech_2 = {
-		available = {
-			is_ai = no
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
 		days_remove = 100
 		modifier = {
 			encryption = 1
@@ -2450,15 +488,6 @@ debug_decisions = {
 	}
 
 	encryption_tech_3 = {
-		available = {
-			is_ai = no
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
 		days_remove = 100
 		modifier = {
 			encryption = 1
@@ -2476,149 +505,4 @@ debug_decisions = {
 	# 	}
 		
 	# }
-	debug_clr_dreadnought_flags = {
-		cost = 0
-		icon = GFX_decision_generic_naval
-		fire_only_once = no
-		visible = {
-			has_country_flag = generic_purchase_dreadnoughts_flag
-		}
-		available = {
-			NOT = {
-				USA = {
-					OR = {
-						has_civil_war = yes
-						has_capitulated = yes
-						has_opinion = {
-							target = FROM
-							value < 50
-						}
-					}					
-				}
-			}
-			
-		}
-		days_remove = 1
-		remove_effect = {
-			every_other_country = {
-				clr_country_flag = negotiating_dreadnought_purchase_flag@ROOT  
-				clr_country_flag = sold_dreadnoughts_to_us@ROOT
-			}
-		}
-	}
-
-#	unlock_mothership = {
-#		available = {
-#			is_ai = no
-#		}
-#
-#		visible = {
-#			is_ai = no
-#			is_debug = yes
-#			has_global_flag = show_debug_decisions_flag
-#		}
-#		complete_effect = {
-#			set_technology = {
-#				mothership = 1
-#				popup = yes
-#			}
-#		}
-#	}
-
-	unlock_supersonic_jet = {
-		available = {
-			is_ai = no
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-		complete_effect = {
-			set_technology = {
-				supersonic_small_airframe = 1
-				popup = yes
-			}
-
-			set_technology = {
-				modern_small_airframe = 1
-				popup = yes
-			}
-		}
-	}
-
-	unlock_all_radars = {
-		available = {
-			is_ai = no
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-		}
-		days_remove = 100
-		complete_effect = {
-			set_technology = {
-				radio_detection = 1
-				popup = no
-			}
-
-
-			set_technology = {
-				radio_detection = 1
-				popup = no
-			}
-
-			set_technology = {
-				cavity_magnatron = 1
-				popup = no
-			}
-
-			set_technology = {
-				centimetric_radar = 1
-				popup = no
-			}
-
-			set_technology = {
-				phased_array = 1
-				popup = no
-			}
-
-			set_technology = {
-				monopulse_radar = 1
-				popup = no
-			}
-		}
-	}
-
-	debug_gain_claimed_states = {
-		priority = -1
-		allowed = {
-			always = yes 
-		}
-
-		visible = {
-			is_ai = no
-			is_debug = yes
-			has_global_flag = show_debug_decisions_flag
-			any_state = {
-				is_claimed_by = ROOT
-				NOT = {
-					is_owned_by = ROOT
-				}
-			}
-		}
-		complete_effect = {
-			every_state = {
-				limit = {
-					is_claimed_by = ROOT
-				}
-				transfer_state_to = ROOT
-			}
-		}
-	}
-
-
 }

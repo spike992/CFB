@@ -43,18 +43,18 @@ POL_increase_danzig_control = {
 }
 
 POL_remove_danzig_effect = {
-	#remove_core_of = DNZ
+	# remove_core_of = DNZ
 	set_demilitarized_zone = no
 	controller = { save_event_target_as = danzig_occupier }
 	if = {
 		limit = {
 			has_resistance = yes
 		}
-		# force_enable_resistance = { 
-		# 	clear = yes
-		# 	occupier = danzig_occupier
-		# 	occupied = DNZ
-		# }
+		force_enable_resistance = { 
+			clear = yes
+			# occupier = danzig_occupier
+			# occupied = DNZ
+		}
 		if = {
 			limit = {
 				NOT = { controller = { PREV = { is_core_of = PREV } } }

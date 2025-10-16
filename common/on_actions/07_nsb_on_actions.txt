@@ -34,26 +34,26 @@ on_actions = {
 		# 	}
 		# }
 		effect = {
-			# IF = {
-			# 	limit = {
-			# 		FROM.FROM = { 
-			# 			state = 742 
-			# 			NOT = { has_state_flag = dushanbe_flag }
-			# 		}
-			# 		OR = {
-			# 			ROOT = { original_tag = TAJ }
-			# 			ROOT = { original_tag = BUK }
-			# 		}
-			# 	}
-			# 	742 = { 
-			# 		set_state_name = SOV_Dushanbe 
-			# 		set_state_flag = dushanbe_flag
-			# 	}
-			# 	set_province_name = {
-			# 		id = 1384
-			# 		name = SOV_Dushanbe
-			# 	}
-			# }
+			IF = {
+				limit = {
+					FROM.FROM = { 
+						state = 742 
+						NOT = { has_state_flag = dushanbe_flag }
+					}
+					OR = {
+						ROOT = { original_tag = TAJ }
+						ROOT = { original_tag = BUK }
+					}
+				}
+				742 = { 
+					set_state_name = SOV_Dushanbe 
+					set_state_flag = dushanbe_flag
+				}
+				set_province_name = {
+					id = 1384
+					name = SOV_Dushanbe
+				}
+			}
 			if = {
 				limit = {
 					FROM.FROM = { state = 85 }
@@ -64,7 +64,7 @@ on_actions = {
 						ROOT = {
 							OR = {
 								original_tag = GER
-								#original_tag = DNZ
+								# original_tag = DNZ
 							}
 						}
 					}
@@ -86,19 +86,11 @@ on_actions = {
 				limit = {
 					divisions_in_state = { state = FROM.FROM size > 0 }
 					FROM.FROM = { 
-						NOT = { 
-							AND = { 
-								has_state_flag = already_sabotaged_flag
-								is_core_of = controller # Should solve most instances of peaceful annexation
-							}
-						}
+						NOT = { has_state_flag = already_sabotaged_flag }
 					}
 					FROM = {
 						original_tag = POL
 						has_completed_focus = POL_sabotage_polish_industry
-						NOT = { 
-							has_country_flag = GER_sent_annex_proposal_flag # To solve GER European Confederation
-						}
 					}
 				}
 				FROM.FROM = { 
@@ -125,30 +117,30 @@ on_actions = {
 					}
 					reset_province_name = 385
 				}
-				# if = {
-				# 	limit = {
-				# 		ROOT = { original_tag = NIR }
-				# 	}
-				# 	random_list = { #Difficult to say if an independent Northern Ireland would call it Derry or Londonderry, let's let the dice gods decide.
-				# 		1 = {
-				# 			set_province_name = {
-				# 				id = 385
-				# 				name = "Derry"
-				# 			}
-				# 			modifier = {
-				# 				factor = 0
-				# 				is_subject_of = ENG
-				# 			}
-				# 		}
-				# 		1 = {
-				# 			reset_province_name = 385
-				# 			modifier = {
-				# 				factor = 0
-				# 				is_subject_of = IRE
-				# 			}
-				# 		}
-				# 	}
-				# }
+				if = {
+					limit = {
+						ROOT = { original_tag = NIR }
+					}
+					random_list = { #Difficult to say if an independent Northern Ireland would call it Derry or Londonderry, let's let the dice gods decide.
+						1 = {
+							set_province_name = {
+								id = 385
+								name = "Derry"
+							}
+							modifier = {
+								factor = 0
+								is_subject_of = ENG
+							}
+						}
+						1 = {
+							reset_province_name = 385
+							modifier = {
+								factor = 0
+								is_subject_of = IRE
+							}
+						}
+					}
+				}
 			}
 		}
 
@@ -508,7 +500,7 @@ on_actions = {
 					}
 				}
 				85 = {
-					#add_core_of = DNZ
+					# add_core_of = DNZ
 					set_demilitarized_zone = yes
 					add_dynamic_modifier = { modifier =  international_city }
 				}
@@ -523,12 +515,12 @@ on_actions = {
 						add_dynamic_modifier = {
 							modifier = international_city_2
 						}
-						# force_enable_resistance = { 
-						# 	clear = no
-						# 	occupier = POL
-						# 	occupied = DNZ
-						# }
-						#start_resistance = DNZ
+						force_enable_resistance = { 
+							clear = no
+							occupier = POL
+							# occupied = DNZ
+						}
+						# start_resistance = DNZ
 						set_resistance = 40
 						set_compliance = 30
 					}
@@ -537,7 +529,7 @@ on_actions = {
 			if = {
 				limit = {
 					has_DLC = "No Step Back"
-					is_baltic_country = yes
+					is_baltic_state = yes
 					NOT = { has_completed_focus = BALTIC_purge_of_our_own }
 				}
 				add_ideas = BALTIC_popular_resistance
@@ -659,7 +651,7 @@ on_actions = {
 					}
 					random_country = {
 						limit = {
-							is_baltic_country = yes
+							is_baltic_state = yes
 							has_country_flag = sponsored_belarus_flag
 						}
 						annex_country = {
@@ -668,7 +660,7 @@ on_actions = {
 						}
 						every_state = {
 							limit = {
-								is_core_of = BLR
+								# is_core_of = BLR
 							}
 							add_core_of = PREV
 						}
@@ -707,7 +699,7 @@ on_actions = {
 					}
 					every_state = {
 						limit = {
-							is_core_of = BLR
+							# is_core_of = BLR
 						}
 						add_core_of = SOV
 					}
@@ -979,17 +971,17 @@ on_actions = {
 					}
 					SOV_remove_paranoia_effect = yes
 				}
-				if = {
-					limit = { #Kerensky comes back from exile if Democratic
-						has_government = democratic
-						SOV_aleksandr_kerensky = {
-							has_character_flag = SOV_exiled_flag
-						}
-					}
-					SOV_aleksandr_kerensky = {
-						clr_character_flag = SOV_exiled_flag
-					}
-				}
+				# if = {
+				# 	limit = { #Kerensky comes back from exile if Democratic
+				# 		has_government = democratic
+				# 		SOV_aleksandr_kerensky = {
+				# 			has_character_flag = SOV_exiled_flag
+				# 		}
+				# 	}
+				# 	SOV_aleksandr_kerensky = {
+				# 		clr_character_flag = SOV_exiled_flag
+				# 	}
+				# }
 			}
 		}
 	}
@@ -999,58 +991,56 @@ on_actions = {
 	#FROMFROM - original owner for exiled leaders
 	on_unit_leader_level_up = {
 		effect = {
-			if = { 
-				limit = { 
-					FROM = { 
-						has_idea = bold_attack_spirit 
-					} 
-				}
-				character = { 
-					IF = { 
-						limit = { is_army_leader = yes }
+			# if = { 
+			# 	limit = { 
+			# 		FROM = { 
+			# 			has_idea = bold_attack_spirit 
+			# 		} 
+			# 	}
+			# 	character = { 
+			# 		IF = { 
+			# 			limit = { is_army_leader = yes }
 					
-						random_list = { 
-							50 = { add_attack = 1 } 
-							50 = {} 
-						} 
-					}
-				}
-			}
-			else_if = { #since these spirits are mutually exclusive, we can use else_if for added performance!
-				limit = {
-					FROM = { has_idea = tenacious_defense_spirit }
-				}
-				character = { 
-					IF = { 
-						limit = { is_army_leader = yes }
+			# 			random_list = { 
+			# 				50 = { add_attack = 1 } 
+			# 				50 = {} 
+			# 			} 
+			# 		}
+			# 	}
+			# }
+			# else_if = { #since these spirits are mutually exclusive, we can use else_if for added performance!
+			# 	limit = {
+			# 		FROM = { has_idea = tenacious_defense_spirit }
+			# 	}
+			# 	character = { 
+			# 		IF = { 
+			# 			limit = { is_army_leader = yes }
 					
-						random_list = {
-							50 = { add_defense = 1 }
-							50 = {}
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					FROM = { has_idea = meticulous_preparation_spirit }
-				}
-				character = { 
-					IF = { 
-						limit = { is_army_leader = yes }
+			# 			random_list = {
+			# 				50 = { add_defense = 1 }
+			# 				50 = {}
+			# 			}
+			# 		}
+			# 	}
+			# }
+			# else_if = {
+			# 	limit = {
+			# 		FROM = { has_idea = meticulous_preparation_spirit }
+			# 	}
+			# 	character = { 
+			# 		IF = { 
+			# 			limit = { is_army_leader = yes }
 					
-						random_list = {
-							50 = { 
-								add_planning = 1 
-								add_logistics = 1
-							}
-							50 = {}
-						}
-					}
-				}
-			}
-
-			
+			# 			random_list = {
+			# 				50 = { 
+			# 					add_planning = 1 
+			# 					add_logistics = 1
+			# 				}
+			# 				50 = {}
+			# 			}
+			# 		}
+			# 	}
+			# }
 			if = {
 				limit = {
 					FROM = { has_idea = instilled_aggression_spirit }
@@ -1060,10 +1050,10 @@ on_actions = {
 						limit = { is_navy_leader = yes }
 		
 						random_list = {
-							50 = { 
+							40 = { 
 								add_attack = 1 
 							}
-							50 = {}
+							60 = {}
 						}
 					}
 				}
@@ -1077,10 +1067,10 @@ on_actions = {
 						limit = { is_navy_leader = yes }
 					
 						random_list = {
-							50 = { 
+							40 = { 
 								add_defense = 1 
 							}
-							50 = {}
+							60 = {}
 						}
 					}
 				}
@@ -1094,11 +1084,11 @@ on_actions = {
 						limit = { is_navy_leader = yes }
 					
 						random_list = {
-							50 = { 
+							40 = { 
 								add_maneuver = 1
 								add_coordination = 1
 							}
-							50 = {}
+							60 = {}
 						}
 					}
 				}
@@ -1109,115 +1099,100 @@ on_actions = {
 	on_unit_leader_created = { # This uses the UNIT LEADER sub scope of a character, FROM == country
 		effect = {
 			character = {
-				if = { 
-					limit = {
-						is_army_leader = yes
-						# To Romania
-						NOT = { has_id = 5 } # Manstein
-						NOT = { has_id = 9 } # Bock
-						NOT = { has_id = 11 } # Weichs
-						NOT = { has_id = 25 } # Manteuffel
-						# To Hungary
-						NOT = { has_id = 6 } # Guderian
-						NOT = { has_id = 13 } # Leeb
-						NOT = { has_id = 17 } # Witzleben
-						NOT = { has_id = 22 } # Küchler
-						# To Italy
-						NOT = { has_id = 4 } # Rommel
-						NOT = { has_id = 11 } # Weichs
-						NOT = { has_id = 17 } # Witzleben
-						NOT = { has_id = 18 } # Hoth
-					}
-					if = {
-						limit = {	
-							FROM = { has_idea = political_loyalty_spirit } #done here instead of the trait file to avoid some oddness with generating assignable traits under certain circumstances, makes it easier to control probabilities
-						}
-						root = {
-							random_list = {
-								50 = { 
-									add_unit_leader_trait = media_personality
-								}
-								50 = { 
-									add_unit_leader_trait = politically_connected
-								}
-							}
-						}
+				# if = { 
+				# 	limit = {
+				# 		is_army_leader = yes
+				# 	}
+				# 	if = {
+				# 		limit = {	
+				# 			FROM = { has_idea = political_loyalty_spirit } #done here instead of the trait file to avoid some oddness with generating assignable traits under certain circumstances, makes it easier to control probabilities
+				# 		}
+				# 		root = {
+				# 			random_list = {
+				# 				50 = { 
+				# 					add_unit_leader_trait = media_personality
+				# 				}
+				# 				50 = { 
+				# 					add_unit_leader_trait = politically_connected
+				# 				}
+				# 			}
+				# 		}
 						
-					}
-					else_if = {
-						limit = {
-							FROM = { has_idea = mobile_warfare_academy_spirit } #done here instead of the trait file to avoid some oddness with generating assignable traits under certain circumstances, makes it easier to control probabilities
-						}
-						root = {
-							random_list = {
-								50 = { 
-									add_unit_leader_trait = panzer_leader
-								}
-								50 = {}
-							}
-						}
-					}
-					else_if = {
-						limit = {
-							FROM = { has_idea = inventive_leadership_spirit } #done here instead of the trait file to avoid some oddness with generating assignable traits under certain circumstances, makes it easier to control probabilities
-						}
-						root = {
-							random_list = {
-								75 = { 
-									random_list = {
-										33 = { add_unit_leader_trait = naval_invader }
-										33 = { add_unit_leader_trait = commando }
-										33 = { add_unit_leader_trait = trickster }
-									}
-								}
-								25 = {}
-							}
-						}
-					}
-					else_if = {
-						limit = {
-							FROM = { has_idea = mass_assault_academy_spirit } #done here instead of the trait file to avoid some oddness with generating assignable traits under certain circumstances, makes it easier to control probabilities
-						}
-						root = {
-							random_list = {
-								50 = { 
-									add_unit_leader_trait = infantry_officer
-								}
-								50 = {}
-							}
-						}
-					}
-					else_if = {
-						limit = {
-							FROM = { has_idea = superior_firepower_academy_spirit } #done here instead of the trait file to avoid some oddness with generating assignable traits under certain circumstances, makes it easier to control probabilities
-						}
-						root = {
-							random_list = {
-								50 = { 
-									add_unit_leader_trait = engineer_officer
-								}
-								50 = {}
-							}
-						}
-					}
-					else_if = {
-						limit = {
-							FROM = { has_idea = theatre_training_spirit } #done here instead of the trait file to avoid some oddness with generating assignable traits under certain circumstances, makes it easier to control probabilities
-						}
-						root = {
-							random_list = {
-								50 = { 
-									random_list = {
-										50 = { add_unit_leader_trait = brilliant_strategist }
-										50 = { add_unit_leader_trait = inflexible_strategist }
-									}
-								}
-								50 = {}
-							}
-						}
-					}
-				}
-				else_if = {
+				# 	}
+				# 	else_if = {
+				# 		limit = {
+				# 			FROM = { has_idea = mobile_warfare_academy_spirit } #done here instead of the trait file to avoid some oddness with generating assignable traits under certain circumstances, makes it easier to control probabilities
+				# 		}
+				# 		root = {
+				# 			random_list = {
+				# 				50 = { 
+				# 					add_unit_leader_trait = panzer_leader
+				# 				}
+				# 				50 = {}
+				# 			}
+				# 		}
+				# 	}
+				# 	else_if = {
+				# 		limit = {
+				# 			FROM = { has_idea = inventive_leadership_spirit } #done here instead of the trait file to avoid some oddness with generating assignable traits under certain circumstances, makes it easier to control probabilities
+				# 		}
+				# 		root = {
+				# 			random_list = {
+				# 				75 = { 
+				# 					random_list = {
+				# 						33 = { add_unit_leader_trait = naval_invader }
+				# 						33 = { add_unit_leader_trait = commando }
+				# 						33 = { add_unit_leader_trait = trickster }
+				# 					}
+				# 				}
+				# 				25 = {}
+				# 			}
+				# 		}
+				# 	}
+				# 	else_if = {
+				# 		limit = {
+				# 			FROM = { has_idea = mass_assault_academy_spirit } #done here instead of the trait file to avoid some oddness with generating assignable traits under certain circumstances, makes it easier to control probabilities
+				# 		}
+				# 		root = {
+				# 			random_list = {
+				# 				50 = { 
+				# 					add_unit_leader_trait = infantry_officer
+				# 				}
+				# 				50 = {}
+				# 			}
+				# 		}
+				# 	}
+				# 	else_if = {
+				# 		limit = {
+				# 			FROM = { has_idea = superior_firepower_academy_spirit } #done here instead of the trait file to avoid some oddness with generating assignable traits under certain circumstances, makes it easier to control probabilities
+				# 		}
+				# 		root = {
+				# 			random_list = {
+				# 				50 = { 
+				# 					add_unit_leader_trait = engineer_officer
+				# 				}
+				# 				50 = {}
+				# 			}
+				# 		}
+				# 	}
+				# 	else_if = {
+				# 		limit = {
+				# 			FROM = { has_idea = theatre_training_spirit } #done here instead of the trait file to avoid some oddness with generating assignable traits under certain circumstances, makes it easier to control probabilities
+				# 		}
+				# 		root = {
+				# 			random_list = {
+				# 				50 = { 
+				# 					random_list = {
+				# 						50 = { add_unit_leader_trait = brilliant_strategist }
+				# 						50 = { add_unit_leader_trait = inflexible_strategist }
+				# 					}
+				# 				}
+				# 				50 = {}
+				# 			}
+				# 		}
+				# 	}
+				# }
+				if = {
 					limit = {
 						FROM = { has_idea = fleet_in_being_academy_spirit } #done here instead of the trait file to avoid some oddness with generating assignable traits under certain circumstances, makes it easier to control probabilities
 					}
@@ -1274,7 +1249,7 @@ on_actions = {
 			}
 		}
 	}
-	on_peace = {
+	on_peace = { 
 		effect = { 
 			IF = {
 				limit = {
@@ -1286,7 +1261,7 @@ on_actions = {
 				THIS = { clr_country_flag = SOV_unrecognized_country_flag }
 				set_rule = { can_join_factions = yes }
 			}
-		}
+		} 
 	}
 	
 	#ROOT - country that just went to peace
@@ -1299,7 +1274,7 @@ on_actions = {
 				}
 				GER = { #Stop democratic Germany from doing Anschluss and awakening their ambition of global domination
 					uncomplete_national_focus = {
-						focus = GER_remilitarize_the_rhineland
+						focus = GER_rhineland
 						uncomplete_children = yes
 					}
 					uncomplete_national_focus = {
@@ -1333,7 +1308,7 @@ on_actions = {
 			}
 			if = {
 				limit = {
-					is_baltic_country = yes
+					is_baltic_state = yes
 					is_subject_of = SOV
 					SOV = { is_ai = yes }
 				}
@@ -1373,7 +1348,7 @@ on_actions = {
 						save_global_event_target_as = BALTIC_country_to_transfer
 						random_country = { 
 							limit = {
-								is_baltic_country = yes
+								is_baltic_state = yes
 								is_subject_of = SOV
 								is_ai = no
 							}
@@ -1382,14 +1357,14 @@ on_actions = {
 					}
 					every_country = { #This gives the player playing a baltic country any other baltic country that is AI as long as they're both SOV puppets
 						limit = {
-							is_baltic_country = yes
+							is_baltic_state = yes
 							is_subject_of = SOV
 							is_ai = yes
 						}
 						save_global_event_target_as = BALTIC_country_to_transfer
 						random_country = {
 							limit = {
-								is_baltic_country = yes
+								is_baltic_state = yes
 								is_ai = yes
 								NOT = { tag = PREV } 	
 							}
@@ -1397,7 +1372,7 @@ on_actions = {
 						}
 						random_country = {
 							limit = {
-								is_baltic_country = yes
+								is_baltic_state = yes
 								is_subject_of = SOV
 								is_ai = no
 							}
@@ -1507,7 +1482,7 @@ on_actions = {
 							#log = "The disruptor is [THIS.GetName]"
 						}
 
-						country_event = NSB_soviet_five_year_plan.01
+						# country_event = NSB_soviet_five_year_plan.01
 					}
 				}
 				if = {
@@ -1519,293 +1494,140 @@ on_actions = {
 		
 			}
 		}
-
-
-		# Japan Goes to War with the UK in ANY scenario
 		effect = {
-			if = {
-				limit = {
-					OR = {
-						AND = {
-							FROM = { original_tag = JAP }
-							ROOT = { original_tag = ENG }
-						}
-						AND = {
-							FROM = { original_tag = ENG }
-							ROOT = { original_tag = JAP }
-						}
-					}
-				}
-
-				set_global_flag = japan_is_at_war_with_allies
-
-				if = {
-					limit = {
-						has_global_flag = intel_share_time_flag
-					}
-					# Setup Shared Faction Intelligence
-					for_each_scope_loop = {
-						array = JAP.faction_intel_shared
-						for_each_scope_loop = {
-							array = GER.faction_intel_shared
-							if = {
-								limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce_friendly } } } }
-								PREV = { add_operation_token = { tag = PREV token = token_airforce_friendly } }
-							}
-							if = {
-								limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army_friendly } } } }
-								PREV = { add_operation_token = { tag = PREV token = token_army_friendly } }
-							}
-							if = {
-								limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy_friendly } } } }
-								PREV = { add_operation_token = { tag = PREV token = token_navy_friendly } }
-							}
-							if = {
-								limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian_friendly } } } }
-								PREV = { add_operation_token = { tag = PREV token = token_civilian_friendly } }
-							}
-						}
-					}
-					for_each_scope_loop = {
-						array = JAP.faction_intel_shared
-						for_each_scope_loop = {
-							array = GER.faction_intel_shared
-							if = {
-								limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce_friendly } } } }
-								PREV = { add_operation_token = { tag = PREV token = token_airforce_friendly } }
-							}
-							if = {
-								limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army_friendly } } } }
-								PREV = { add_operation_token = { tag = PREV token = token_army_friendly } }
-							}
-							if = {
-								limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy_friendly } } } }
-								PREV = { add_operation_token = { tag = PREV token = token_navy_friendly } }
-							}
-							if = {
-								limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian_friendly } } } }
-								PREV = { add_operation_token = { tag = PREV token = token_civilian_friendly } }
-							}
-						}
-					}
-				}
-			}
-		}
-
-		# This is the Fallback Brabrossa Code, that will trigger anytime Germany and the Soviets go to war with eachother.
-		effect = {
-			if = {
-				limit = {
-					AND = {
-						FROM = { original_tag = FIN }
-						ROOT = { original_tag = SOV }
-						SOV = { has_completed_focus = SOV_claim_bessarabia}
-					}
-				}
-				FIN = {
-					hidden_effect = {
-						FIN = { country_event = { id =  finland.500 hours = 1} }
-					}
-				}
-			}
 			if = {
 				limit = {
 					OR = {
 						AND = {
 							FROM = { original_tag = GER }
 							ROOT = { original_tag = SOV }
+							GER = { has_idea = GER_good_weather_army }	
 						}
 						AND = {
 							FROM = { original_tag = SOV }
 							ROOT = { original_tag = GER }
+							GER = { has_idea = GER_good_weather_army }	
 						}
 					}
 				}
-				if = {
+				GER = { remove_ideas = GER_good_weather_army }
+				every_country = {
 					limit = {
-						GER = { has_idea = GER_good_weather_army }	
-					}
-					GER = { remove_ideas = GER_good_weather_army }
-				}
-
-				if = {
-					limit = {
-						has_global_flag = vp_system_flag
-					}
-					initilize_victory_system = yes
-				}
-
-				set_global_flag = soviets_are_at_war_with_germany
-
-
-				if = {
-					limit = {
-						has_global_flag = intel_share_time_flag
-					}
-					# Setup Shared Faction Intelligence
-					for_each_scope_loop = {
-						array = ENG.faction_intel_shared
-						for_each_scope_loop = {
-							array = SOV.faction_intel_shared
-							if = {
-								limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce_friendly } } } }
-								PREV = { add_operation_token = { tag = PREV token = token_airforce_friendly } }
-							}
-							if = {
-								limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army_friendly } } } }
-								PREV = { add_operation_token = { tag = PREV token = token_army_friendly } }
-							}
-							if = {
-								limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy_friendly } } } }
-								PREV = { add_operation_token = { tag = PREV token = token_navy_friendly } }
-							}
-							if = {
-								limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian_friendly } } } }
-								PREV = { add_operation_token = { tag = PREV token = token_civilian_friendly } }
-							}
+						OR = {
+							tag = NZL
+							tag = AST
+							tag = SAF
+							tag = RAJ
+							tag = ENG
+							tag = IRE
+							tag = CAN
+							tag = BRA
+							tag = MEX
+							tag = FRA
 						}
 					}
-					for_each_scope_loop = {
-						array = SOV.faction_intel_shared
-						for_each_scope_loop = {
-							array = ENG.faction_intel_shared
-							if = {
-								limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_airforce_friendly } } } }
-								PREV = { add_operation_token = { tag = PREV token = token_airforce_friendly } }
-							}
-							if = {
-								limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_army_friendly } } } }
-								PREV = { add_operation_token = { tag = PREV token = token_army_friendly } }
-							}
-							if = {
-								limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_navy_friendly } } } }
-								PREV = { add_operation_token = { tag = PREV token = token_navy_friendly } }
-							}
-							if = {
-								limit = {  NOT = { PREV = { has_operation_token = { tag = PREV token = token_civilian_friendly } } } }
-								PREV = { add_operation_token = { tag = PREV token = token_civilian_friendly } }
-							}
-						}
+					remove_ideas = PACIFIC_COMMONWEALTH_controls_original
+					if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 1 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_1 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 0 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 0 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 16 } }
+					else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 2 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_2 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 0 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 1 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 15 } }
+					else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 3 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_3 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 0 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 2 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 14 } }
+					else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 4 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_4 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 0 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 3 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 13 } }
+					else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 5 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_5 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 0 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 4 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 12 }  }
+					else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 6 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_6 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 0.5 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 5 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 11 } }
+					else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 7 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_7 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 1.0 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 6 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 10 } }
+					else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 8 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_8 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 1.5 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 7 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 9 } }
+					else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 9 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_9 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 2.0 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 8 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 8 } }
+					else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 10 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_10 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 2.5 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 9 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 7 } }
+					else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 11 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_11 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 3.0 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 10 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 6 } }
+					else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 12 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_12 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 3.5 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 11 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 5 } }
+					else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 13 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_13 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 4.0 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 12 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 4 } }
+					else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 14 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_14 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 4.5 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 13 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 3 } }
+					else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 15 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_15 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 5.0 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 14 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 2 } }
+					else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 16 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_16 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 5.5 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 15 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 1 } }
+					else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 17 }} add_ideas = PACIFIC_COMMONWEALTH_controls_idea_17 set_variable = { global.DDAY_WALL_ENTRENCHMENT_MOD = 6.0 } set_variable = { global.SOTF_GEACPS_LOCATIONS = 16 } set_variable = { global.SOTF_ALLIES_LOCATIONS = 0 } }
+					else = {log = "Couldn't set the pacific bases - allies"}
+				}
+				# every_country = {
+				# 	limit = {
+				# 		OR = {
+				# 			tag = GER
+				# 			tag = ITA
+				# 			tag = VIC
+				# 			tag = SPR
+				# 			tag = HUN
+				# 			tag = ROM
+				# 			tag = BUL
+				# 			tag = YUG
+				# 			tag = FIN
+				# 		}
+				# 	}
+				# 	remove_ideas = PACIFIC_COMMONWEALTH_controls_axis_original
+				# 	if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 1 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_1}
+				# 	else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 2 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_2}
+				# 	else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 3 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_3}
+				# 	else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 4 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_4}
+				# 	else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 5 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_5}
+				# 	else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 6 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_6}
+				# 	else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 7 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_7}
+				# 	else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 8 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_8}
+				# 	else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 9 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_9}
+				# 	else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 10 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_10}
+				# 	else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 11 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_11}
+				# 	else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 12 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_12}
+				# 	else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 13 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_13}
+				# 	else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 14 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_14}
+				# 	else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 15 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_15}
+				# 	else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 16 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_16}
+				# 	else_if = { limit = {check_variable = {JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL = 17 }} add_ideas = PACIFIC_COMMONWEALTH_controls_axis_idea_17}
+				# 	else = {log = "Couldn't set the pacific bases - axis"}
+				# }
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					ITA = {
+						has_war = yes
+						date > 1936.1.1
+						NOT = { has_idea = MEDITERRANEAN_AXIS_controls_idea_1 }
+						NOT = { has_idea = MEDITERRANEAN_AXIS_controls_idea_2 }
+						NOT = { has_idea = MEDITERRANEAN_AXIS_controls_idea_3 }
+						NOT = { has_idea = MEDITERRANEAN_AXIS_controls_idea_4 }
+						NOT = { has_idea = MEDITERRANEAN_AXIS_controls_idea_5 }
+						NOT = { has_idea = MEDITERRANEAN_AXIS_controls_idea_6 }
+						NOT = { has_idea = MEDITERRANEAN_AXIS_controls_idea_7 }
+						NOT = { has_idea = MEDITERRANEAN_AXIS_controls_idea_8 }
+						NOT = { has_idea = MEDITERRANEAN_AXIS_controls_idea_9 }
+						NOT = { has_idea = MEDITERRANEAN_AXIS_controls_idea_10 }
 					}
 				}
-
-				if = {
-					limit = {
-						has_country_flag = FINLAND_JOIN_FACTION
-						SOV = { has_war_with = FIN }
-					}
-					remove_ideas = {
-						FIN_the_lone_wolf
-					}
-					GER = {
-						add_to_faction = FIN
+				ITA = {
+					remove_ideas = MEDITERRANEAN_AXIS_controls_original
+					add_ideas = MEDITERRANEAN_AXIS_controls_idea_5
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					ENG = {
+						has_war = yes
+						date > 1936.1.1
+						NOT = { has_idea = MEDITERRANEAN_ALLIES_controls_idea_1 }
+						NOT = { has_idea = MEDITERRANEAN_ALLIES_controls_idea_2 }
+						NOT = { has_idea = MEDITERRANEAN_ALLIES_controls_idea_3 }
+						NOT = { has_idea = MEDITERRANEAN_ALLIES_controls_idea_4 }
+						NOT = { has_idea = MEDITERRANEAN_ALLIES_controls_idea_5 }
+						NOT = { has_idea = MEDITERRANEAN_ALLIES_controls_idea_6 }
+						NOT = { has_idea = MEDITERRANEAN_ALLIES_controls_idea_7 }
+						NOT = { has_idea = MEDITERRANEAN_ALLIES_controls_idea_8 }
+						NOT = { has_idea = MEDITERRANEAN_ALLIES_controls_idea_9 }
+						NOT = { has_idea = MEDITERRANEAN_ALLIES_controls_idea_10 }
 					}
 				}
-
-				FIN = {
-					hidden_effect = {
-						FIN = { country_event = { id =  finland.500 } }
-					}
+				ENG = {
+					remove_ideas = MEDITERRANEAN_ALLIES_controls_original
+					add_ideas = MEDITERRANEAN_ALLIES_controls_idea_5
 				}
-				# Swap to the War Air Spirit:
-				if = {
-					limit = {
-						SOV = {
-							has_dynamic_modifier = { modifier = soviet_air_mod_pre_war }
-						}
-					}
-					SOV = {
-					remove_dynamic_modifier = { modifier = soviet_air_mod_pre_war }
-					add_dynamic_modifier = { modifier = soviet_air_mod }
-					}
-				}
-				
-				# Calculate Soviet Air Penalty if choosing Half
-				if = {
-					limit = {
-						has_global_flag = soviet_air_changes_start_flag
-					}
-					SOV_stalins_air_needs = yes
-				}
-				# State of the Pacific
-				set_temp_variable = { num_captures = JAP.PACIFIC_COMMONWEALTH_BASES_LEVEL}
-				subtract_from_temp_variable = {
-					var = num_captures
-					value = 4
-				}
-				if = {
-					limit = {
-						check_variable = { num_captures > 0}
-					}
-					log = "Japan has taken points: [?num_captures]"
-					for_loop_effect = {
-						end = num_captures
-						PACIFIC_state_up = yes
-					}
-				} else_if = {
-					limit = {
-						check_variable = { num_captures < 0}
-					}
-					log = "Japan has lost points: [?num_captures]"
-					for_loop_effect = {
-						end = num_captures
-						PACIFIC_state_down = yes
-					}
-				} else = {
-					# Nothing taken
-					log = "The Pacific is Stable: [?num_captures]"
-				}
-				# Initial Swap to Correct Modifier
-				for_each_scope_loop = {
-					array = global.pacific_modifier_states_europe
-					remove_dynamic_modifier = {
-						modifier = PACIFIC_COMMONWEALTH_controls_original 
-					}
-					if = {
-						limit = {
-							OR = {
-								THIS.controller = { is_in_faction_with = GER }
-								THIS.controller = { is_in_faction_with = JAP }
-								THIS.controller = { is_in_faction_with = ITA }
-								THIS = {
-									OR = {
-										is_controlled_by = GER
-										is_controlled_by = JAP
-										is_controlled_by = ITA
-										is_controlled_by = FRA.SOUTHFRANCEOWNER
-									}
-								}
-							}
-						}
-						add_dynamic_modifier = {
-							modifier = PACIFIC_COMMONWEALTH_axis_controlled 
-						}
-					} else = {
-						add_dynamic_modifier = {
-							modifier = PACIFIC_COMMONWEALTH_allied_controlled 
-						}
-					}
-				}
-
-				if = {
-					limit = {
-						AND = {
-							FROM = { original_tag = SOV }
-							ROOT = { original_tag = GER }
-						}
-					}
-					GER = {
-						activate_mission = GER_barbarossa_mission_moscow
-						activate_mission = GER_barbarossa_mission_kiev
-						activate_mission = GER_barbarossa_mission_lenin
-						activate_mission = GER_barbarossa_mission_smolensk
-						activate_mission = GER_barbarossa_mission_riga
-						activate_mission = GER_barbarossa_mission_minsk
-					}
-
-				}
-
-
 			}
 		}
 
@@ -1821,7 +1643,7 @@ on_actions = {
 				}
 				country_event = { id = NSB_soviet_propaganda_capmaign_events.2 hours = 4 random_hours = 2 }
 			}
-			else_if = { #SOV is defender - SOV gets mild punishment // #MM: This is not triggering when someone declares on SOV
+			else_if = { #SOV is defender - SOV gets mild punishment // #TODO_Manu: This is not triggering when someone declares on SOV
 				limit = {
 					FROM = { original_tag = SOV }
 					SOV = {
@@ -1834,35 +1656,17 @@ on_actions = {
 		}
 
 		#FINLAND - Winter War has started!
-		effect = {
-			if = {
-				limit = {
-					ROOT = { tag = SOV }
-					FROM = { tag = FIN }
-					NOT = { has_global_flag = SOV_winter_war_flag }
-				}
-				clear_variable = FIN_white_death_target_country
-				set_variable = { FIN_white_death_target_country = ROOT }
-				set_global_flag = SOV_winter_war_flag
-				FIN = {
-					country_event = finland.10
-					set_country_flag = FIN_winter_war_ongoing_flag #Used to prevent Finland from demanding territory from Soviets just by occupying Leningrad, when not in the Winter War
-				}
-
-				if = {
-					limit = {
-						FIN = {
-							has_country_leader = {
-								ruling_only = yes # default = yes
-								character = FIN_kyosti_kallio # recommended
-							}
-						}
-					}
-					FIN = { set_country_flag = FIN_winter_war_kallio }
-					#Used to flag if Kallio is Finland's leader during the Winter War
-				}
-			}
-		}
+		# effect = {
+		# 	if = {
+		# 		limit = {
+		# 			ROOT = { tag = SOV }
+		# 			FROM = { tag = FIN }
+		# 			NOT = { has_global_flag = SOV_winter_war_flag }
+		# 		}
+		# 		set_global_flag = SOV_winter_war_flag
+		# 		#FIN = { country_event = finland.10 }
+		# 	}
+		# }
 		effect = {
 			if = {
 				limit = {
@@ -1947,51 +1751,6 @@ on_actions = {
 						}
 						PREV = { remove_resource_rights = PREV }
 						clr_state_flag = SOV_british_resource_rights_iran_flag
-					}
-				}
-			}
-		}
-
-		# Add the USA to the Allies when Germany goes to war
-		effect = {
-			if = {
-				limit = {
-					OR = {
-						AND = {
-							OR = {
-								FROM = { original_tag = GER }
-								FROM = { original_tag = ITA }
-								FROM = { original_tag = JAP }
-							}
-							OR = {
-								ROOT = { original_tag = ENG }
-								ROOT = { original_tag = FRA }
-								ROOT = { original_tag = POL }
-								ROOT = { original_tag = CZE }
-							}
-						}
-						AND = {
-							OR = {
-								FROM = { original_tag = ENG }
-								FROM = { original_tag = FRA }
-								FROM = { original_tag = POL }
-								FROM = { original_tag = CZE }
-							}
-							OR = {
-								ROOT = { original_tag = GER }
-								ROOT = { original_tag = ITA }
-								ROOT = { original_tag = JAP }
-							}
-						}
-					}
-				}
-				hidden_effect = {
-					if = {
-						limit = {
-							NOT = { USA = { is_in_faction_with = ENG } }
-						}
-						ENG = {	add_to_faction = USA }
-						USA = { country_event = usa.1006 }
 					}
 				}
 			}
@@ -2210,29 +1969,29 @@ on_actions = {
 		}
 
 		#SINKIANG counter
-		effect = {
-			if = {
-				limit = {
-					tag = SIK
-					FROM = { original_tag = SOV }
-				}
-				FROM = { set_country_flag = SOV_sinkiang_joined_comintern_counter_flag }
-			}
-		}
+		# effect = {
+		# 	if = {
+		# 		limit = {
+		# 			tag = SIK
+		# 			FROM = { original_tag = SOV }
+		# 		}
+		# 		FROM = { set_country_flag = SOV_sinkiang_joined_comintern_counter_flag }
+		# 	}
+		# }
 	}
 
 	#FROM is country getting invited.
-	on_offer_join_faction = {
-		effect = {
-			if = {
-				limit = {
-					FROM = { tag = SIK }
-					original_tag = SOV
-				}
-				SOV = { set_country_flag = SOV_sinkiang_joined_comintern_counter_flag }
-			}
-		}
-	}
+	# on_offer_join_faction = {
+	# 	effect = {
+	# 		if = {
+	# 			limit = {
+	# 				FROM = { tag = SIK }
+	# 				original_tag = SOV
+	# 			}
+	# 			SOV = { set_country_flag = SOV_sinkiang_joined_comintern_counter_flag }
+	# 		}
+	# 	}
+	# }
 
 	# on_release_as_puppet = { 
 	# 	effect = { 
@@ -2476,13 +2235,29 @@ on_actions = {
 						tag = GER 
 					}
 					FROM = {
-						NOT = { has_country_flag = achievement_stalingrad_taken }
+						has_country_flag = achievement_stalingrad_not_taken
 					}
 				}
 				FROM = { set_country_flag = achievement_not_much_fun_in_stalingrad }
 			}
 		}
 	}
+	#ROOT = attacking side
+	#FROM = defending side
+	#fired when two countries end up at war with each other (on_war is fired when a country goes to war against anyone and is not fired again when it enters war against another country unless it went to peace first)
+	# on_war_relation_added = {
+	# 	effect = {
+	# 		if = {
+	# 			limit = {
+	# 				tag = GER
+	# 				FROM = { tag = SOV }
+	# 			}
+	# 		}
+	# 		GER = {
+	# 			set_country_flag = achievement_stalingrad_not_taken #will be removed in on_state_control_change if Germany takes Stalingrad
+	# 		}
+	# 	}
+	# }
 
 	#ROOT is new controller #FROM is old controller #FROM.FROM is state ID
 	# on_state_control_changed = {

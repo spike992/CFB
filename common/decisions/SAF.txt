@@ -1,36 +1,50 @@
 foreign_politics = {
-        SAF_annex_COG = {
-    
-            allowed = {
-                original_tag = SAF
-            }
-    
-            available = {
-                OR = {
-                    SAF = {
-                        has_completed_focus = SAF_secure_interests_in_africa
-                }
-                }
-                COG = {is_ai = yes}
-            }
-    
-            ai_will_do = {
-                factor = 0
-            }
-    
-            visible = {
-                always = yes
-            }
-            fire_only_once = yes
-            complete_effect = {
-                annex_country = { target = COG transfer_troops = yes }
-                every_owned_state = {
-                    limit = {
-                        is_controlled_by = ROOT
-                        is_core_of = COG
-                    }
-                    set_compliance = 80
-                }
-            }
-        }
-    }
+	SAF_get_ethiopia = {
+		icon = generic_operation
+
+		allowed = {
+			original_tag = SAF
+		}
+
+		available = {
+			550 = {
+				CONTROLLER = {
+					OR = {
+						tag = ENG
+						is_subject_of = ENG
+						is_in_faction_with = ENG
+					}
+				}
+			}
+			271 = {
+				CONTROLLER = {
+					OR = {
+						tag = ENG
+						is_subject_of = ENG
+						is_in_faction_with = ENG
+					}
+				}
+			}
+			559 = {
+				CONTROLLER = {
+					OR = {
+						tag = ENG
+						is_subject_of = ENG
+						is_in_faction_with = ENG
+					}
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			SAF = {
+				transfer_state = 550
+				transfer_state = 271
+				transfer_state = 559
+			}
+		}
+
+	}
+}

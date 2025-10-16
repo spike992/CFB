@@ -1,9 +1,8 @@
 scripted_gui = {
 	horst_admiral_current_command_limit_used = {
 		context_type = player_context 
-		parent_window_name  = "navy_leader_window" 
+		parent_window_name  = "navy_reserve_portrait_window" 
 		window_name = "horst_admiral_current_command_limit_used_window"
-		ai_enabled = { always = no }
 		dynamic_lists = { 
 			admirals_leading_battlefleets_list = {
 				array = battle_admirals
@@ -15,54 +14,8 @@ scripted_gui = {
 		}
 		properties = {
 			admiral_portrait  = {
-				image = "[GetAdmiralPortrait]" 
+				image = "[GetAdmiralPortrait]"
 			}			
-		}
-		visible = {
-			has_country_flag = admirals_enabled
-		}	
-	}
-
-	over_cap= {
-		context_type = player_context
-
-		window_name = "over_cap_open_container"
-		visible = {
-			check_variable = { fleet_overstack_naval_damage_factor < 0 }		
-		}
-		ai_enabled = { always = no }
-
-		effects = {
-			tool_open_click = {
-				# Change to Other Map Mode
-			}
-		}
-		triggers = {
-			tool_open_click_enabled = {
-				always = yes
-			}
-		}
-	}
-
-	hide_admirals= {
-		context_type = player_context
-		window_name = "hide_admirals_container"
-		visible = { always = yes }
-		ai_enabled = { always = no }
-		parent_window_name = navy_leader_window
-		effects = {
-			tool_open3_click = {
-				if = {
-					limit = { ROOT = { NOT = { has_country_flag = admirals_enabled } } }
-					ROOT = { set_country_flag = admirals_enabled }
-				}
-				else = {
-					ROOT = { clr_country_flag = admirals_enabled }
-				}
-			}
-		}
-		triggers = {
-			tool_open3_click_enabled = { always = yes }
-		}
+		}		
 	}
 }

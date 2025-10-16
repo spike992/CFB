@@ -772,10 +772,6 @@ HOL_secret_staff_talks = {
 			}
 		}
 
-		target_root_trigger = {
-			has_completed_focus = HOL_secret_staff_talks
-		}
-
 		complete_effect = {
 			FROM = { country_event = { id = mtg_netherlands.29 hours = 6 } }
 			effect_tooltip = {
@@ -848,10 +844,6 @@ HOL_secret_staff_talks = {
 			}
 		}
 
-		target_root_trigger = {
-			has_completed_focus = HOL_secret_staff_talks
-		}
-
 		complete_effect = {
 			FROM = { country_event = { id = mtg_netherlands.32 hours = 6 } }
 			effect_tooltip = {
@@ -891,6 +883,7 @@ HOL_secret_staff_talks = {
 		fire_only_once = yes
 
 		visible = {
+			tag = HOL
 			has_completed_focus = HOL_secret_staff_talks
 			has_war = no
 			FROM = {
@@ -917,10 +910,6 @@ HOL_secret_staff_talks = {
 					}
 				}
 			}
-		}
-
-		target_root_trigger = {
-			has_completed_focus = HOL_secret_staff_talks
 		}
 
 		complete_effect = {
@@ -1001,10 +990,6 @@ HOL_secret_staff_talks = {
 			}
 		}
 
-		target_root_trigger = {
-			has_completed_focus = HOL_secret_staff_talks
-		}
-
 		complete_effect = {
 			FROM = { country_event = { id = mtg_netherlands.41 hours = 6 } }
 			FROM = { army_experience = -5 }
@@ -1023,711 +1008,657 @@ HOL_secret_staff_talks = {
 
 }
 
-HOL_gateway_to_europe_eng_category = {
+# HOL_gateway_to_europe_eng_category = {
 	
-	HOL_demand_reduced_dutch_trade_with_germany = {
+# 	HOL_demand_reduced_dutch_trade_with_germany = {
 
-		icon = eng_trade_unions_demand
+# 		icon = eng_trade_unions_demand
 
-		allowed = {
-			tag = ENG
-		}
+# 		allowed = {
+# 			tag = ENG
+# 		}
 
-		available = {
-			has_government = democratic
-			GER = { has_government = fascism }
-		}
+# 		available = {
+# 			has_government = democratic
+# 			GER = { has_government = fascism }
+# 		}
 
-		targets = { HOL }
+# 		targets = { HOL }
 
-		target_trigger = {
-			FROM = {
-				tag = HOL
-			}
-		}
+# 		target_trigger = {
+# 			FROM = {
+# 				tag = HOL
+# 			}
+# 		}
 
-		days_remove = 20
+# 		days_remove = 20
 
-		cost = 10
+# 		cost = 10
 
-		fire_only_once = no
+# 		fire_only_once = no
 
-		ai_will_do = {
-			base = 0.03
-			modifier = {
-				factor = 2
-				is_historical_focus_on = yes
-			}
-			modifier = {
-				factor = 10
-				date > 1939.08.01
-			}
-			modifier = {
-				factor = 10
-				date > 1940.01.01
-			}
-			modifier = {
-				factor = 2
-				HOL = {
-					check_variable = { var = ENG.eng_gateway_to_europe_influence value = 20 compare = greater_than_or_equals }
-					check_variable = { var = eng_temp_trade_influence value = 10 compare = greater_than_or_equals }
-				} 
-			}
-			modifier = {
-				factor = 0
-				HOL = {
-					check_variable = { var = eng_temp_trade_influence value = 10 compare = greater_than_or_equals }
-					NOT = { check_variable = { var = ENG.eng_gateway_to_europe_influence value = 20 compare = greater_than_or_equals } }
-				}
-			}
-			modifier = {
-				factor = 0
-				HOL = {
-					focus_progress = {
-						focus = HOL_cave_to_the_germans
-						progress > 0
-					}
-				}
-			}
-			modifier = {
-				factor = 0
-				HOL = {
-					focus_progress = {
-						focus = HOL_cave_to_the_british
-						progress > 0
-					}
-				}
-			}
-			modifier = {
-				factor = 0
-				HOL = {
-					focus_progress = {
-						focus = HOL_maintain_trade_neutrality
-						progress > 0
-					}
-				}
-			}
-			modifier = {
-				factor = 0
-				has_country_flag = HOL_gateway_to_europe_ai_timer_flag
-				NOT = { date > 1940.01.01 }
-			}
-		}
+# 		ai_will_do = {
+# 			factor = 0.03
+# 			modifier = {
+# 				factor = 2
+# 				is_historical_focus_on = yes
+# 			}
+# 			modifier = {
+# 				factor = 10
+# 				date > 1939.08.01
+# 			}
+# 			modifier = {
+# 				factor = 10
+# 				date > 1940.01.01
+# 			}
+# 			modifier = {
+# 				factor = 2
+# 				HOL = {
+# 					check_variable = { var = ENG.eng_gateway_to_europe_influence value = 20 compare = greater_than_or_equals }
+# 					check_variable = { var = eng_temp_trade_influence value = 10 compare = greater_than_or_equals }
+# 				} 
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				HOL = {
+# 					check_variable = { var = eng_temp_trade_influence value = 10 compare = greater_than_or_equals }
+# 					NOT = { check_variable = { var = ENG.eng_gateway_to_europe_influence value = 20 compare = greater_than_or_equals } }
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				HOL = {
+# 					focus_progress = {
+# 						focus = HOL_cave_to_the_germans
+# 						progress > 0
+# 					}
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				HOL = {
+# 					focus_progress = {
+# 						focus = HOL_cave_to_the_british
+# 						progress > 0
+# 					}
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				HOL = {
+# 					focus_progress = {
+# 						focus = HOL_maintain_trade_neutrality
+# 						progress > 0
+# 					}
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				has_country_flag = HOL_gateway_to_europe_ai_timer_flag
+# 				NOT = { date > 1940.01.01 }
+# 			}
+# 		}
 
-		complete_effect = {
-		}
+# 		complete_effect = {
+# 		}
 
-		remove_effect = {
-			HOL = {
-				add_opinion_modifier = {
-					target = ROOT
-					modifier = increased_dutch_trade_opm
-				}	
-			}
-			IF = {
-				limit = {
-					INS = {
-						is_subject_of = HOL
-					}
-				}
-				INS = {
-					add_opinion_modifier = {
-						target = ROOT
-						modifier = increased_dutch_trade_opm
-					}	
-				}
-			}
-			add_to_variable = { var = eng_gateway_to_europe_influence value = 5 }
-			HOL = {
-				set_variable = { var = eng_temp_trade_influence value = ENG.eng_gateway_to_europe_influence }
-				subtract_from_variable = { var = eng_temp_trade_influence value = GER.ger_gateway_to_europe_influence }
-				set_variable = { var = ger_temp_trade_influence value = GER.ger_gateway_to_europe_influence }
-				subtract_from_variable = { var = ger_temp_trade_influence value = ENG.eng_gateway_to_europe_influence }
-				add_to_variable = { var = gateway_to_europe_influence_pp_total value = 10 }
-			}
-			hidden_effect = {
-				if = {
-					limit = {
-						date < 1939.08.01
-					}
-					random_list = {
-						10 = {
-							modifier = {
-								factor = 2
-								is_historical_focus_on = yes
-							}
-							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 50 }
-						}
-						10 = {
-							modifier = {
-								factor = 2
-								is_historical_focus_on = yes
-							}
-							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 55 }
-						}
-						10 = {
-							modifier = {
-								factor = 1.5
-								is_historical_focus_on = yes
-							}
-							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 60 }
-						}
-						10 = {
-							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 65 }
-						}
-						10 = {
-							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 70 }
-						}
-						10 = {
-							modifier = {
-								factor = 0.8
-								is_historical_focus_on = yes
-							}
-							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 75 }
-						}
-						10 = {
-							modifier = {
-								factor = 0.5
-								is_historical_focus_on = yes
-							}
-							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 80 }
-						}
-					}
-				}
-				if = {
-					limit = {
-						HOL = {
-							check_variable = { var = eng_temp_trade_influence value = 0 compare = greater_than }
-							OR = {
-								AND = {
-									NOT = { has_country_flag = HOL_gateway_to_europe_britain_lead_flag }
-									NOT = { has_country_flag = HOL_gateway_to_europe_germany_lead_flag }
-								}
-								has_country_flag = HOL_gateway_to_europe_germany_lead_flag
-							}
-						}
-					}
-					HOL = {
-						clr_country_flag = HOL_gateway_to_europe_germany_lead_flag
-						set_country_flag = HOL_gateway_to_europe_britain_lead_flag
-					}
-					HOL = { country_event = { id = mtg_netherlands.66 } }
-					GER = { country_event = { id = mtg_netherlands.66 } }
-				}
-				if = {
-					limit = {
-						HOL = {
-							check_variable = { var = ger_temp_trade_influence value = 0 compare = greater_than }
-							OR = {
-								AND = {
-									NOT = { has_country_flag = HOL_gateway_to_europe_britain_lead_flag }
-									NOT = { has_country_flag = HOL_gateway_to_europe_germany_lead_flag }
-								}
-								has_country_flag = HOL_gateway_to_europe_britain_lead_flag
-							}
-						}
-					}
-					HOL = {
-						clr_country_flag = HOL_gateway_to_europe_britain_lead_flag
-						set_country_flag = HOL_gateway_to_europe_germany_lead_flag
-					}
-					HOL = { country_event = { id = mtg_netherlands.67 } }
-					ENG = { country_event = { id = mtg_netherlands.67 } }
-				}
-			}
-			custom_effect_tooltip = HOL_gateway_to_europe_decisions_tt
-			effect_tooltip = { add_political_power = HOL.gateway_to_europe_influence_pp_total }
-		}
-	}
-}
+# 		remove_effect = {
+# 			add_to_variable = { var = eng_gateway_to_europe_influence value = 5 }
+# 			HOL = {
+# 				set_variable = { var = eng_temp_trade_influence value = ENG.eng_gateway_to_europe_influence }
+# 				subtract_from_variable = { var = eng_temp_trade_influence value = GER.ger_gateway_to_europe_influence }
+# 				set_variable = { var = ger_temp_trade_influence value = GER.ger_gateway_to_europe_influence }
+# 				subtract_from_variable = { var = ger_temp_trade_influence value = ENG.eng_gateway_to_europe_influence }
+# 				add_to_variable = { var = gateway_to_europe_influence_pp_total value = 10 }
+# 			}
+# 			hidden_effect = {
+# 				if = {
+# 					limit = {
+# 						date < 1939.08.01
+# 					}
+# 					random_list = {
+# 						10 = {
+# 							modifier = {
+# 								factor = 2
+# 								is_historical_focus_on = yes
+# 							}
+# 							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 50 }
+# 						}
+# 						10 = {
+# 							modifier = {
+# 								factor = 2
+# 								is_historical_focus_on = yes
+# 							}
+# 							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 55 }
+# 						}
+# 						10 = {
+# 							modifier = {
+# 								factor = 1.5
+# 								is_historical_focus_on = yes
+# 							}
+# 							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 60 }
+# 						}
+# 						10 = {
+# 							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 65 }
+# 						}
+# 						10 = {
+# 							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 70 }
+# 						}
+# 						10 = {
+# 							modifier = {
+# 								factor = 0.8
+# 								is_historical_focus_on = yes
+# 							}
+# 							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 75 }
+# 						}
+# 						10 = {
+# 							modifier = {
+# 								factor = 0.5
+# 								is_historical_focus_on = yes
+# 							}
+# 							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 80 }
+# 						}
+# 					}
+# 				}
+# 				if = {
+# 					limit = {
+# 						HOL = {
+# 							check_variable = { var = eng_temp_trade_influence value = 0 compare = greater_than }
+# 							OR = {
+# 								AND = {
+# 									NOT = { has_country_flag = HOL_gateway_to_europe_britain_lead_flag }
+# 									NOT = { has_country_flag = HOL_gateway_to_europe_germany_lead_flag }
+# 								}
+# 								has_country_flag = HOL_gateway_to_europe_germany_lead_flag
+# 							}
+# 						}
+# 					}
+# 					HOL = {
+# 						clr_country_flag = HOL_gateway_to_europe_germany_lead_flag
+# 						set_country_flag = HOL_gateway_to_europe_britain_lead_flag
+# 					}
+# 					HOL = { country_event = { id = mtg_netherlands.66 } }
+# 					GER = { country_event = { id = mtg_netherlands.66 } }
+# 				}
+# 				if = {
+# 					limit = {
+# 						HOL = {
+# 							check_variable = { var = ger_temp_trade_influence value = 0 compare = greater_than }
+# 							OR = {
+# 								AND = {
+# 									NOT = { has_country_flag = HOL_gateway_to_europe_britain_lead_flag }
+# 									NOT = { has_country_flag = HOL_gateway_to_europe_germany_lead_flag }
+# 								}
+# 								has_country_flag = HOL_gateway_to_europe_britain_lead_flag
+# 							}
+# 						}
+# 					}
+# 					HOL = {
+# 						clr_country_flag = HOL_gateway_to_europe_britain_lead_flag
+# 						set_country_flag = HOL_gateway_to_europe_germany_lead_flag
+# 					}
+# 					HOL = { country_event = { id = mtg_netherlands.67 } }
+# 					ENG = { country_event = { id = mtg_netherlands.67 } }
+# 				}
+# 			}
+# 			custom_effect_tooltip = HOL_gateway_to_europe_decisions_tt
+# 			effect_tooltip = { add_political_power = HOL.gateway_to_europe_influence_pp_total }
+# 		}
+# 	}
+# }
 
-HOL_gateway_to_europe_ger_category = {
+# HOL_gateway_to_europe_ger_category = {
 
-	HOL_demand_increased_dutch_trade_with_germany = {
+# 	HOL_demand_increased_dutch_trade_with_germany = {
 
-		icon = eng_trade_unions_demand
+# 		icon = eng_trade_unions_demand
 
-		allowed = {
-			tag = GER
-		}
+# 		allowed = {
+# 			tag = GER
+# 		}
 
-		available = {
-			has_government = fascism
-			ENG = { has_government = democratic }
-		}
+# 		available = {
+# 			has_government = fascism
+# 			ENG = { has_government = democratic }
+# 		}
 
-		targets = { HOL }
+# 		targets = { HOL }
 
-		target_trigger = {
-			FROM = {
-				tag = HOL
-			}
-		}
+# 		target_trigger = {
+# 			FROM = {
+# 				tag = HOL
+# 			}
+# 		}
 
-		days_remove = 20
+# 		days_remove = 20
 
-		cost = 10
+# 		cost = 10
 
-		fire_only_once = no
+# 		fire_only_once = no
 
-		ai_will_do = {
-			base = 0.01
-			modifier = {
-				factor = 10
-				date > 1939.08.01
-			}
-			modifier = {
-				factor = 10
-				date > 1940.01.01
-			}
-			modifier = {
-				factor = 2
-				HOL = {
-					check_variable = { var = GER.ger_gateway_to_europe_influence value = 20 compare = greater_than_or_equals }
-					check_variable = { var = ger_temp_trade_influence value = 10 compare = greater_than_or_equals }
-				}
-			}
-			modifier = {
-				factor = 0
-				HOL = {
-					check_variable = { var = ger_temp_trade_influence value = 10 compare = greater_than_or_equals }
-					NOT = { check_variable = { var = GER.ger_gateway_to_europe_influence value = 20 compare = greater_than_or_equals } }
-				}
-			}
-			modifier = {
-				factor = 0
-				HOL = {
-					focus_progress = {
-						focus = HOL_cave_to_the_british
-						progress > 0
-					}
-				}
-			}
-			modifier = {
-				factor = 0
-				HOL = {
-					focus_progress = {
-						focus = HOL_cave_to_the_germans
-						progress > 0
-					}
-				}
-			}
-			modifier = {
-				factor = 0
-				HOL = {
-					focus_progress = {
-						focus = HOL_maintain_trade_neutrality
-						progress > 0
-					}
-				}
-			}
-			modifier = {
-				factor = 0
-				has_country_flag = HOL_gateway_to_europe_ai_timer_flag
-				NOT = { date > 1940.01.01 }
-			}
-			modifier = {
-				factor = 0
-				focus_progress = {
-					focus = GER_around_maginot
-					progress > 0
-				}
-			}
-			modifier = {
-				factor = 0
-				OR = {
-					has_completed_focus = GER_oppose_hitler
-					has_completed_focus = GER_oppose_hitler_ww
-				}
-			}
-		}
+# 		ai_will_do = {
+# 			factor = 0.01
+# 			modifier = {
+# 				factor = 10
+# 				date > 1939.08.01
+# 			}
+# 			modifier = {
+# 				factor = 10
+# 				date > 1940.01.01
+# 			}
+# 			modifier = {
+# 				factor = 2
+# 				HOL = {
+# 					check_variable = { var = GER.ger_gateway_to_europe_influence value = 20 compare = greater_than_or_equals }
+# 					check_variable = { var = ger_temp_trade_influence value = 10 compare = greater_than_or_equals }
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				HOL = {
+# 					check_variable = { var = ger_temp_trade_influence value = 10 compare = greater_than_or_equals }
+# 					NOT = { check_variable = { var = GER.ger_gateway_to_europe_influence value = 20 compare = greater_than_or_equals } }
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				HOL = {
+# 					focus_progress = {
+# 						focus = HOL_cave_to_the_british
+# 						progress > 0
+# 					}
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				HOL = {
+# 					focus_progress = {
+# 						focus = HOL_cave_to_the_germans
+# 						progress > 0
+# 					}
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				HOL = {
+# 					focus_progress = {
+# 						focus = HOL_maintain_trade_neutrality
+# 						progress > 0
+# 					}
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				has_country_flag = HOL_gateway_to_europe_ai_timer_flag
+# 				NOT = { date > 1940.01.01 }
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				focus_progress = {
+# 					focus = GER_around_maginot
+# 					progress > 0
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 			}
+# 		}
 
-		complete_effect = {
-		}
+# 		complete_effect = {
+# 		}
 
-		remove_effect = {
-			HOL = {
-				add_opinion_modifier = {
-					target = ROOT
-					modifier = increased_dutch_trade_opm
-				}	
-			}
-			IF = {
-				limit = {
-					INS = {
-						is_subject_of = HOL
-					}
-				}
-				INS = {
-					add_opinion_modifier = {
-						target = ROOT
-						modifier = increased_dutch_trade_opm
-					}	
-				}
-			}
-			add_to_variable = { var = ger_gateway_to_europe_influence value = 5 }
-			HOL = {
-				set_variable = { var = ger_temp_trade_influence value = GER.ger_gateway_to_europe_influence }
-				subtract_from_variable = { var = ger_temp_trade_influence value = ENG.eng_gateway_to_europe_influence }
-				set_variable = { var = eng_temp_trade_influence value = ENG.eng_gateway_to_europe_influence }
-				subtract_from_variable = { var = eng_temp_trade_influence value = GER.ger_gateway_to_europe_influence }
-				add_to_variable = { var = gateway_to_europe_influence_pp_total value = 10 }
-			}
-			hidden_effect = {
-				if = {
-					limit = {
-						date < 1939.08.01
-					}
-					random_list = {
-						10 = {
-							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 50 }
-						}
-						10 = {
-							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 55 }
-						}
-						10 = {
-							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 60 }
-						}
-						10 = {
-							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 65 }
-						}
-						10 = {
-							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 70 }
-						}
-						10 = {
-							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 75 }
-						}
-						10 = {
-							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 80 }
-						}
-					}
-				}
-				if = {
-					limit = {
-						HOL = {
-							check_variable = { var = eng_temp_trade_influence value = 0 compare = greater_than }
-							OR = {
-								NOT = { has_country_flag = HOL_gateway_to_europe_britain_lead_flag }
-								has_country_flag = HOL_gateway_to_europe_germany_lead_flag
-							}
-						}
-					}
-					HOL = {
-						clr_country_flag = HOL_gateway_to_europe_germany_lead_flag
-						set_country_flag = HOL_gateway_to_europe_britain_lead_flag
-					}
-					HOL = { country_event = { id = mtg_netherlands.66 } }
-					GER = { country_event = { id = mtg_netherlands.66 } }
-				}
-				if = {
-					limit = {
-						HOL = {
-							check_variable = { var = ger_temp_trade_influence value = 0 compare = greater_than }
-							OR = {
-								NOT = { has_country_flag = HOL_gateway_to_europe_germany_lead_flag }
-								has_country_flag = HOL_gateway_to_europe_britain_lead_flag
-							}
-						}
-					}
-					HOL = {
-						clr_country_flag = HOL_gateway_to_europe_britain_lead_flag
-						set_country_flag = HOL_gateway_to_europe_germany_lead_flag
-					}
-					HOL = { country_event = { id = mtg_netherlands.67 } }
-					ENG = { country_event = { id = mtg_netherlands.67 } }
-				}
-			}
-			custom_effect_tooltip = HOL_gateway_to_europe_decisions_tt
-			effect_tooltip = { add_political_power = HOL.gateway_to_europe_influence_pp_total }
-		}
-	}
-}
+# 		remove_effect = {
+# 			add_to_variable = { var = ger_gateway_to_europe_influence value = 5 }
+# 			HOL = {
+# 				set_variable = { var = ger_temp_trade_influence value = GER.ger_gateway_to_europe_influence }
+# 				subtract_from_variable = { var = ger_temp_trade_influence value = ENG.eng_gateway_to_europe_influence }
+# 				set_variable = { var = eng_temp_trade_influence value = ENG.eng_gateway_to_europe_influence }
+# 				subtract_from_variable = { var = eng_temp_trade_influence value = GER.ger_gateway_to_europe_influence }
+# 				add_to_variable = { var = gateway_to_europe_influence_pp_total value = 10 }
+# 			}
+# 			hidden_effect = {
+# 				if = {
+# 					limit = {
+# 						date < 1939.08.01
+# 					}
+# 					random_list = {
+# 						10 = {
+# 							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 50 }
+# 						}
+# 						10 = {
+# 							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 55 }
+# 						}
+# 						10 = {
+# 							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 60 }
+# 						}
+# 						10 = {
+# 							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 65 }
+# 						}
+# 						10 = {
+# 							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 70 }
+# 						}
+# 						10 = {
+# 							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 75 }
+# 						}
+# 						10 = {
+# 							set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 80 }
+# 						}
+# 					}
+# 				}
+# 				if = {
+# 					limit = {
+# 						HOL = {
+# 							check_variable = { var = eng_temp_trade_influence value = 0 compare = greater_than }
+# 							OR = {
+# 								NOT = { has_country_flag = HOL_gateway_to_europe_britain_lead_flag }
+# 								has_country_flag = HOL_gateway_to_europe_germany_lead_flag
+# 							}
+# 						}
+# 					}
+# 					HOL = {
+# 						clr_country_flag = HOL_gateway_to_europe_germany_lead_flag
+# 						set_country_flag = HOL_gateway_to_europe_britain_lead_flag
+# 					}
+# 					HOL = { country_event = { id = mtg_netherlands.66 } }
+# 					GER = { country_event = { id = mtg_netherlands.66 } }
+# 				}
+# 				if = {
+# 					limit = {
+# 						HOL = {
+# 							check_variable = { var = ger_temp_trade_influence value = 0 compare = greater_than }
+# 							OR = {
+# 								NOT = { has_country_flag = HOL_gateway_to_europe_germany_lead_flag }
+# 								has_country_flag = HOL_gateway_to_europe_britain_lead_flag
+# 							}
+# 						}
+# 					}
+# 					HOL = {
+# 						clr_country_flag = HOL_gateway_to_europe_britain_lead_flag
+# 						set_country_flag = HOL_gateway_to_europe_germany_lead_flag
+# 					}
+# 					HOL = { country_event = { id = mtg_netherlands.67 } }
+# 					ENG = { country_event = { id = mtg_netherlands.67 } }
+# 				}
+# 			}
+# 			custom_effect_tooltip = HOL_gateway_to_europe_decisions_tt
+# 			effect_tooltip = { add_political_power = HOL.gateway_to_europe_influence_pp_total }
+# 		}
+# 	}
+# }
 
-HOL_gateway_to_europe_hol_category = {
+# HOL_gateway_to_europe_hol_category = {
 
-	HOL_placate_the_british = {
+# 	HOL_placate_the_british = {
 
-		icon = eng_trade_unions_support
+# 		icon = eng_trade_unions_support
 
-		allowed = {
-			tag = HOL
-		}
+# 		allowed = {
+# 			tag = HOL
+# 		}
 
-		available = {
-			HOL = { has_completed_focus = HOL_gateway_to_europe }
-			ENG = {
-				exists = yes
-				has_government = democratic
-			}
-		}
+# 		available = {
+# 			HOL = { has_completed_focus = HOL_gateway_to_europe }
+# 			ENG = {
+# 				exists = yes
+# 				has_government = democratic
+# 			}
+# 		}
 
-		targets = { ENG }
+# 		targets = { ENG }
 
-		target_trigger = {
-			FROM = {
-				tag = ENG
-			}
-		}
+# 		target_trigger = {
+# 			FROM = {
+# 				tag = ENG
+# 			}
+# 		}
 
-		days_remove = 10
+# 		days_remove = 10
 
-		cost = 10
+# 		cost = 10
 
-		fire_only_once = no
+# 		fire_only_once = no
 
-		ai_will_do = {
-			factor = 0.1
-			modifier = {
-				factor = 10
-				is_historical_focus_on = yes
-				date > 1940.01.01
-			}
-			modifier = {
-				factor = 0
-				focus_progress = {
-					focus = HOL_cave_to_the_british
-					progress > 0
-				}
-			}
-			modifier = {
-				factor = 0
-				focus_progress = {
-					focus = HOL_cave_to_the_germans
-					progress > 0
-				}
-			}
-			modifier = {
-				factor = 0
-				HOL = {
-					focus_progress = {
-						focus = HOL_maintain_trade_neutrality
-						progress > 0
-					}
-				}
-			}
-			modifier = {
-				factor = 0
-				has_country_flag = HOL_gateway_to_europe_ai_timer_flag
-				NOT = { date > 1940.01.01 }
-			}
-		}
+# 		ai_will_do = {
+# 			factor = 0.1
+# 			modifier = {
+# 				factor = 10
+# 				is_historical_focus_on = yes
+# 				date > 1940.01.01
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				focus_progress = {
+# 					focus = HOL_cave_to_the_british
+# 					progress > 0
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				focus_progress = {
+# 					focus = HOL_cave_to_the_germans
+# 					progress > 0
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				HOL = {
+# 					focus_progress = {
+# 						focus = HOL_maintain_trade_neutrality
+# 						progress > 0
+# 					}
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				has_country_flag = HOL_gateway_to_europe_ai_timer_flag
+# 				NOT = { date > 1940.01.01 }
+# 			}
+# 		}
 
-		complete_effect = {
-		}
+# 		complete_effect = {
+# 		}
 
-		remove_effect = {
-			ENG = { 
-				custom_effect_tooltip = gateway_to_europe_hol_tt
-				add_to_variable = { var = eng_gateway_to_europe_influence value = 5 } 
-			}
-			set_variable = { var = eng_temp_trade_influence value = ENG.eng_gateway_to_europe_influence }
-			subtract_from_variable = { var = eng_temp_trade_influence value = GER.ger_gateway_to_europe_influence }
-			set_variable = { var = ger_temp_trade_influence value = GER.ger_gateway_to_europe_influence }
-			subtract_from_variable = { var = ger_temp_trade_influence value = ENG.eng_gateway_to_europe_influence }
-			add_to_variable = { var = gateway_to_europe_influence_pp_total value = 10 }
-			hidden_effect = {
-				random_list = {
-					10 = {
-						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 20 }
-					}
-					10 = {
-						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 25 }
-					}
-					10 = {
-						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 30 }
-					}
-					10 = {
-						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 35 }
-					}
-					10 = {
-						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 40 }
-					}
-					10 = {
-						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 45 }
-					}
-					10 = {
-						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 50 }
-					}
-				}
-				if = {
-					limit = {
-						HOL = {
-							check_variable = { var = eng_temp_trade_influence value = 0 compare = greater_than }
-							OR = {
-								NOT = { has_country_flag = HOL_gateway_to_europe_britain_lead_flag }
-								has_country_flag = HOL_gateway_to_europe_germany_lead_flag
-							}
-						}
-					}
-					clr_country_flag = HOL_gateway_to_europe_germany_lead_flag
-					set_country_flag = HOL_gateway_to_europe_britain_lead_flag
-					country_event = { id = mtg_netherlands.66 }
-					GER = { country_event = { id = mtg_netherlands.66 } }
-				}
-				if = {
-					limit = {
-						HOL = {
-							check_variable = { var = ger_temp_trade_influence value = 0 compare = greater_than }
-							OR = {
-								NOT = { has_country_flag = HOL_gateway_to_europe_germany_lead_flag }
-								has_country_flag = HOL_gateway_to_europe_britain_lead_flag
-							}
-						}
-					}
-					clr_country_flag = HOL_gateway_to_europe_britain_lead_flag
-					set_country_flag = HOL_gateway_to_europe_germany_lead_flag
-					country_event = { id = mtg_netherlands.67 }
-					ENG = { country_event = { id = mtg_netherlands.67 } }
-				}
-			}
-		}
-	}
+# 		remove_effect = {
+# 			ENG = { add_to_variable = { var = eng_gateway_to_europe_influence value = 5 } }
+# 			set_variable = { var = eng_temp_trade_influence value = ENG.eng_gateway_to_europe_influence }
+# 			subtract_from_variable = { var = eng_temp_trade_influence value = GER.ger_gateway_to_europe_influence }
+# 			set_variable = { var = ger_temp_trade_influence value = GER.ger_gateway_to_europe_influence }
+# 			subtract_from_variable = { var = ger_temp_trade_influence value = ENG.eng_gateway_to_europe_influence }
+# 			add_to_variable = { var = gateway_to_europe_influence_pp_total value = 10 }
+# 			hidden_effect = {
+# 				random_list = {
+# 					10 = {
+# 						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 20 }
+# 					}
+# 					10 = {
+# 						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 25 }
+# 					}
+# 					10 = {
+# 						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 30 }
+# 					}
+# 					10 = {
+# 						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 35 }
+# 					}
+# 					10 = {
+# 						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 40 }
+# 					}
+# 					10 = {
+# 						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 45 }
+# 					}
+# 					10 = {
+# 						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 50 }
+# 					}
+# 				}
+# 				if = {
+# 					limit = {
+# 						HOL = {
+# 							check_variable = { var = eng_temp_trade_influence value = 0 compare = greater_than }
+# 							OR = {
+# 								NOT = { has_country_flag = HOL_gateway_to_europe_britain_lead_flag }
+# 								has_country_flag = HOL_gateway_to_europe_germany_lead_flag
+# 							}
+# 						}
+# 					}
+# 					clr_country_flag = HOL_gateway_to_europe_germany_lead_flag
+# 					set_country_flag = HOL_gateway_to_europe_britain_lead_flag
+# 					country_event = { id = mtg_netherlands.66 }
+# 					GER = { country_event = { id = mtg_netherlands.66 } }
+# 				}
+# 				if = {
+# 					limit = {
+# 						HOL = {
+# 							check_variable = { var = ger_temp_trade_influence value = 0 compare = greater_than }
+# 							OR = {
+# 								NOT = { has_country_flag = HOL_gateway_to_europe_germany_lead_flag }
+# 								has_country_flag = HOL_gateway_to_europe_britain_lead_flag
+# 							}
+# 						}
+# 					}
+# 					clr_country_flag = HOL_gateway_to_europe_britain_lead_flag
+# 					set_country_flag = HOL_gateway_to_europe_germany_lead_flag
+# 					country_event = { id = mtg_netherlands.67 }
+# 					ENG = { country_event = { id = mtg_netherlands.67 } }
+# 				}
+# 			}
+# 		}
+# 	}
 
-	HOL_placate_the_germans = {
+# 	HOL_placate_the_germans = {
 
-		icon = eng_trade_unions_support
+# 		icon = eng_trade_unions_support
 
-		allowed = {
-			tag = HOL
-		}
+# 		allowed = {
+# 			tag = HOL
+# 		}
 
-		available = {
-			HOL = { has_completed_focus = HOL_gateway_to_europe }
-			GER = {
-				exists = yes
-				has_government = fascism
-				NOT = { 
-					OR = {
-						has_completed_focus = GER_oppose_hitler
-						has_completed_focus = GER_oppose_hitler_ww
-					}
-				}
-			}
-		}
+# 		available = {
+# 			HOL = { has_completed_focus = HOL_gateway_to_europe }
+# 			GER = {
+# 				exists = yes
+# 				has_government = fascism
+# 			}
+# 		}
 
-		targets = { GER }
+# 		targets = { GER }
 
-		target_trigger = {
-			FROM = {
-				tag = GER
-			}
-		}
+# 		target_trigger = {
+# 			FROM = {
+# 				tag = GER
+# 			}
+# 		}
 
-		days_remove = 10
+# 		days_remove = 10
 
-		cost = 10
+# 		cost = 10
 
-		fire_only_once = no
+# 		fire_only_once = no
 
-		ai_will_do = {
-			factor = 0.1
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes
-				date > 1940.01.01
-			}
-			modifier = {
-				factor = 0
-				focus_progress = {
-					focus = HOL_cave_to_the_british
-					progress > 0
-				}
-			}
-			modifier = {
-				factor = 0
-				focus_progress = {
-					focus = HOL_cave_to_the_germans
-					progress > 0
-				}
-			}
-			modifier = {
-				factor = 0
-				HOL = {
-					focus_progress = {
-						focus = HOL_maintain_trade_neutrality
-						progress > 0
-					}
-				}
-			}
-			modifier = {
-				factor = 0
-				has_country_flag = HOL_gateway_to_europe_ai_timer_flag
-				NOT = { date > 1940.01.01 }
-			}
-		}
+# 		ai_will_do = {
+# 			factor = 0.1
+# 			modifier = {
+# 				factor = 0
+# 				is_historical_focus_on = yes
+# 				date > 1940.01.01
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				focus_progress = {
+# 					focus = HOL_cave_to_the_british
+# 					progress > 0
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				focus_progress = {
+# 					focus = HOL_cave_to_the_germans
+# 					progress > 0
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				HOL = {
+# 					focus_progress = {
+# 						focus = HOL_maintain_trade_neutrality
+# 						progress > 0
+# 					}
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				has_country_flag = HOL_gateway_to_europe_ai_timer_flag
+# 				NOT = { date > 1940.01.01 }
+# 			}
+# 		}
 
-		complete_effect = {
-		}
+# 		complete_effect = {
+# 		}
 
-		remove_effect = {
-			GER = { 
-				custom_effect_tooltip = gateway_to_europe_hol_tt
-				add_to_variable = { var = ger_gateway_to_europe_influence value = 5 } 
-			}
-			set_variable = { var = ger_temp_trade_influence value = GER.ger_gateway_to_europe_influence }
-			subtract_from_variable = { var = ger_temp_trade_influence value = ENG.eng_gateway_to_europe_influence }
-			set_variable = { var = eng_temp_trade_influence value = ENG.eng_gateway_to_europe_influence }
-			subtract_from_variable = { var = eng_temp_trade_influence value = GER.ger_gateway_to_europe_influence }
-			add_to_variable = { var = gateway_to_europe_influence_pp_total value = 10 }
-			hidden_effect = {
-				random_list = {
-					10 = {
-						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 20 }
-					}
-					10 = {
-						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 25 }
-					}
-					10 = {
-						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 30 }
-					}
-					10 = {
-						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 35 }
-					}
-					10 = {
-						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 40 }
-					}
-					10 = {
-						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 45 }
-					}
-					10 = {
-						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 50 }
-					}
-				}
-				if = {
-					limit = {
-						HOL = {
-							check_variable = { var = eng_temp_trade_influence value = 0 compare = greater_than }
-							OR = {
-								NOT = { has_country_flag = HOL_gateway_to_europe_britain_lead_flag }
-								has_country_flag = HOL_gateway_to_europe_germany_lead_flag
-							}
-						}
-					}
-					clr_country_flag = HOL_gateway_to_europe_germany_lead_flag
-					set_country_flag = HOL_gateway_to_europe_britain_lead_flag
-					country_event = { id = mtg_netherlands.66 }
-					GER = { country_event = { id = mtg_netherlands.66 } }
-				}
-				if = {
-					limit = {
-						HOL = {
-							check_variable = { var = ger_temp_trade_influence value = 0 compare = greater_than }
-							OR = {
-								NOT = { has_country_flag = HOL_gateway_to_europe_germany_lead_flag }
-								has_country_flag = HOL_gateway_to_europe_britain_lead_flag
-							}
-						}
-					}
-					clr_country_flag = HOL_gateway_to_europe_britain_lead_flag
-					set_country_flag = HOL_gateway_to_europe_germany_lead_flag
-					country_event = { id = mtg_netherlands.67 }
-					ENG = { country_event = { id = mtg_netherlands.67 } }
-				}
-			}
-		}
-	}
+# 		remove_effect = {
+# 			GER = { add_to_variable = { var = ger_gateway_to_europe_influence value = 5 } }
+# 			set_variable = { var = ger_temp_trade_influence value = GER.ger_gateway_to_europe_influence }
+# 			subtract_from_variable = { var = ger_temp_trade_influence value = ENG.eng_gateway_to_europe_influence }
+# 			set_variable = { var = eng_temp_trade_influence value = ENG.eng_gateway_to_europe_influence }
+# 			subtract_from_variable = { var = eng_temp_trade_influence value = GER.ger_gateway_to_europe_influence }
+# 			add_to_variable = { var = gateway_to_europe_influence_pp_total value = 10 }
+# 			hidden_effect = {
+# 				random_list = {
+# 					10 = {
+# 						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 20 }
+# 					}
+# 					10 = {
+# 						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 25 }
+# 					}
+# 					10 = {
+# 						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 30 }
+# 					}
+# 					10 = {
+# 						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 35 }
+# 					}
+# 					10 = {
+# 						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 40 }
+# 					}
+# 					10 = {
+# 						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 45 }
+# 					}
+# 					10 = {
+# 						set_country_flag = { flag = HOL_gateway_to_europe_ai_timer_flag value = 1 days = 50 }
+# 					}
+# 				}
+# 				if = {
+# 					limit = {
+# 						HOL = {
+# 							check_variable = { var = eng_temp_trade_influence value = 0 compare = greater_than }
+# 							OR = {
+# 								NOT = { has_country_flag = HOL_gateway_to_europe_britain_lead_flag }
+# 								has_country_flag = HOL_gateway_to_europe_germany_lead_flag
+# 							}
+# 						}
+# 					}
+# 					clr_country_flag = HOL_gateway_to_europe_germany_lead_flag
+# 					set_country_flag = HOL_gateway_to_europe_britain_lead_flag
+# 					country_event = { id = mtg_netherlands.66 }
+# 					GER = { country_event = { id = mtg_netherlands.66 } }
+# 				}
+# 				if = {
+# 					limit = {
+# 						HOL = {
+# 							check_variable = { var = ger_temp_trade_influence value = 0 compare = greater_than }
+# 							OR = {
+# 								NOT = { has_country_flag = HOL_gateway_to_europe_germany_lead_flag }
+# 								has_country_flag = HOL_gateway_to_europe_britain_lead_flag
+# 							}
+# 						}
+# 					}
+# 					clr_country_flag = HOL_gateway_to_europe_britain_lead_flag
+# 					set_country_flag = HOL_gateway_to_europe_germany_lead_flag
+# 					country_event = { id = mtg_netherlands.67 }
+# 					ENG = { country_event = { id = mtg_netherlands.67 } }
+# 				}
+# 			}
+# 		}
+# 	}
 
-}
+# }
 
 HOL_request_allied_favors = {
 	
@@ -1851,19 +1782,9 @@ HOL_request_allied_favors = {
 
 		remove_effect = {
 			add_equipment_to_stockpile = {
-			    type = fighter_equipment
+			    type = small_plane_airframe
 			    amount = 50
 			    producer = ENG
-			}
-			if = {
-				limit = {
-					has_dlc = "Arms Against Tyranny"
-				}
-				add_equipment_subsidy = {
-					cic = 10000
-					equipment_type = small_plane_airframe
-					seller_tags = { ENG } 
-				}
 			}
 		}
 
@@ -1916,17 +1837,8 @@ HOL_request_allied_favors = {
 			    amount = 100
 			    producer = ENG
 			}
-			if = {
-				limit = {
-					has_dlc = "Arms Against Tyranny"
-				}
-				add_equipment_subsidy = {
-					cic = 2500
-					equipment_type = artillery_equipment
-					seller_tags = { ENG } 
-				}
-			}
 		}
+
 	}
 
 	HOL_pull_strings_with_british_industrialists = {
@@ -2134,6 +2046,11 @@ political_actions = {
 					set_nationality = HOL
 				}
 			}
+			HOL = {
+				INS = {
+					pow_before_annex = yes
+				}
+			}
 			annex_country = {
 			    target = INS
 			    transfer_troops = yes
@@ -2215,8 +2132,8 @@ political_actions = {
 		available = {
 			is_in_faction_with = BEL
 			BEL = { has_government = ROOT }
-			is_in_faction_with = LUX
-			LUX = { has_government = ROOT }
+			# is_in_faction_with = LUX
+			# LUX = { has_government = ROOT }
 		}
 
 		cost = 300
@@ -2231,55 +2148,34 @@ political_actions = {
 		complete_effect = {
 			effect_tooltip = {
 				set_cosmetic_tag = HOL_benelux_unified
+				HOL = {
+					BEL = {
+						pow_before_annex = yes
+					}
+				}
 				BEL = {
 					every_unit_leader = {
 						set_nationality = ROOT
 					}
 				}
-				LUX = {
-					every_unit_leader = {
-						set_nationality = ROOT
-					}
-				}
-				every_country = {
-					limit = {
-						is_subject_of = BEL
-					}
-					ROOT = {
-						set_autonomy = {
-							target = PREV
-							autonomy_state = autonomy_puppet
-							end_wars  = no
-							end_civil_wars = no
-						}
-					}
-				}
-				every_country = {
-					limit = {
-						is_subject_of = LUX
-					}
-					ROOT = {
-						set_autonomy = {
-							target = PREV
-							autonomy_state = autonomy_puppet
-							end_wars  = no
-							end_civil_wars = no
-						}
-					}
-				}
+				# LUX = {
+				# 	every_unit_leader = {
+				# 		set_nationality = ROOT
+				# 	}
+				# }
 				annex_country = {
 				    target = BEL
 				    transfer_troops = yes
 				}
-				annex_country = {
-				    target = LUX
-				    transfer_troops = yes
-				}
+				# annex_country = {
+				#     target = LUX
+				#     transfer_troops = yes
+				# }
 				every_state = {
 					limit = {
 						OR = {
 							is_core_of = BEL
-							is_core_of = LUX
+							# is_core_of = LUX
 						}
 					}
 					add_core_of = ROOT
@@ -2289,9 +2185,9 @@ political_actions = {
 			BEL = {
 				country_event = { id = mtg_netherlands.77 days = 5 random_days = 3 }
 			}
-			LUX = {
-				country_event = { id = mtg_netherlands.77 days = 1 random_days = 3 }
-			}
+			# LUX = {
+			# 	country_event = { id = mtg_netherlands.77 days = 1 random_days = 3 }
+			# }
 		}
 	}
 

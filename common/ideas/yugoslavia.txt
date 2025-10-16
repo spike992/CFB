@@ -21,11 +21,31 @@ ideas = {
 			
 			modifier = {
 				drift_defence_factor = 0.05
-				experience_gain_army_factor = -0.15
 			}
 		}
 		
-		
+		no_brothers_war = {
+			
+			picture = FRA_scw_intervention_republicans_focus
+
+			allowed = {
+				original_tag = YUG
+				always = no
+			}
+
+			removal_cost = -1
+			
+			targeted_modifier = {
+				tag = SOV
+				attack_bonus_against = -0.25
+				defense_bonus_against = -0.25
+			}
+			targeted_modifier = {
+				tag = MON
+				attack_bonus_against = -0.25
+				defense_bonus_against = -0.25
+			}
+		}
 		
 		king_peter_1 = {
 			
@@ -47,7 +67,6 @@ ideas = {
 			}
 		}
 		
-		#MM: Never used. Unlocalized
 		YUG_idea_princess_alexandrine_britain = {
 			
 			picture = neutrality_idea
@@ -72,7 +91,6 @@ ideas = {
 			}
 		}
 		
-		#MM: Never used. Unlocalized
 		YUG_idea_princess_alexandra_germany = {
 			
 			picture = neutrality_idea
@@ -97,7 +115,6 @@ ideas = {
 			}
 		}
 		
-		#MM: Never used. Unlocalized
 		YUG_idea_princess_marie_italy = {
 			
 			picture = neutrality_idea
@@ -139,7 +156,7 @@ ideas = {
 			
 			modifier = {
 				military_leader_cost_factor = 0.50
-				max_planning = 0.05
+				max_planning = 0.1
 			}
 		}
 
@@ -149,7 +166,7 @@ ideas = {
 
 			allowed = {
 				original_tag = YUG
-				always = yes
+				always = no
 			}
 
 			allowed_civil_war = {
@@ -160,26 +177,6 @@ ideas = {
 			
 			modifier = {
 				max_planning = 0.1
-			}
-		}
-
-			YUG_idea_legitimised_by_pope = {
-			
-			picture = MEX_church_power_5
-
-			allowed = {
-				original_tag = YUG
-				always = yes
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				stability_weekly = 0.001
 			}
 		}
 		
@@ -206,7 +203,7 @@ ideas = {
 		
 		YUG_idea_expanded_mining_industry = {
 			
-			picture = generic_refining_concern_1
+			picture = generic_exploit_mines
 
 			allowed = {
 				original_tag = YUG
@@ -226,7 +223,7 @@ ideas = {
 		
 		YUG_idea_local_self_management = {
 			
-			picture = SOV_rebuild_the_savior_cathedral_ccp_sov_compatibility
+			picture = generic_local_self_management
 
 			allowed = {
 				original_tag = YUG
@@ -240,7 +237,27 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				production_speed_buildings_factor = 0.1
+				production_speed_buildings_factor = 0.15
+			}
+		}
+
+		YUG_idea_local_self_management_long = {
+			
+			picture = generic_local_self_management
+
+			allowed = {
+				original_tag = YUG
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+			
+			modifier = {
+				production_speed_buildings_factor = 0.05
 			}
 		}
 		
@@ -261,7 +278,6 @@ ideas = {
 			
 			modifier = {
 				industrial_capacity_factory = 0.05
-				production_speed_arms_factory_factor = 0.05
 			}
 		}
 		
@@ -426,13 +442,13 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				consumer_goods_expected_value = -0.05
+				consumer_goods_factor = -0.05
 			}
 		}
 
-		YUG_idea_artillery_focus = {
+		YUG_artillery_regiments = {
 			
-			picture = generic_mountain_warfare
+			picture = generic_artillery_regiments
 
 			allowed = {
 				original_tag = YUG
@@ -451,19 +467,11 @@ ideas = {
 
 			equipment_bonus = {
 				artillery_equipment = {
-					soft_attack = 0.1
+					build_cost_ic = -0.05
 					instant = yes
 				}
-				pack_artillery_equipment = {
-					soft_attack = 0.1
-					instant = yes
-				}
-				rocket_artillery_equipment = {
-					soft_attack = 0.05
-					instant = yes
-				}
-				heavy_artillery_equipment = {
-					soft_attack = 0.05
+				dp_artillery_equipment = {
+					build_cost_ic = -0.05
 					instant = yes
 				}
 			}
@@ -505,11 +513,11 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				consumer_goods_expected_value = -0.05
+				consumer_goods_factor = -0.05
 			}
 		}
 		
-		YUG_idea_german_capital = {
+		YUG_idea_axis_capital = {
 			
 			picture = generic_foreign_capital
 
@@ -566,7 +574,7 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				conscription = 0.02
+				conscription = 0.01
 			}
 		}
 		
@@ -587,48 +595,6 @@ ideas = {
 			
 			modifier = {
 				stability_factor = -0.3
-			}
-		}
-
-		YUG_sidelined_serbs = {
-			
-			picture = YUG_serbian_general_staff
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				experience_gain_army_unit_factor = -0.2
-				experience_gain_factor = -0.2
-			}
-		}
-
-		YUG_italian_guided = {
-			
-			picture = ITA_impero_italiano
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-            army_artillery_attack_factor = 0.05
-            army_artillery_defence_factor = 0.05
 			}
 		}
 
@@ -794,7 +760,7 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				consumer_goods_expected_value = -0.05
+				consumer_goods_factor = -0.05
 			}
 		}
 
@@ -890,7 +856,6 @@ ideas = {
 		
 		YUG_neutral_foreign_policy = {
 			
-			picture = tur_coordinated_balkan_armed_forces
 			
 			allowed = {
 				original_tag = YUG
@@ -935,843 +900,248 @@ ideas = {
 			
 		}
 		
-		YUG_idea_infantry_focus = {
-	
-			picture = YUG_local_militias
-
-			allowed = {
-				original_tag = YUG
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-
-			equipment_bonus = {
-				infantry_equipment = {
-					soft_attack = 0.1
-					hard_attack = 0.1
-					instant = yes
-				}
-				squad_equipment = {
-					soft_attack = 0.1
-					hard_attack = 0.1
-					instant = yes
-				}
-			}
-			
-		}
+		YUG_improved_logistics = {
 		
-		YUG_italian_investments = {			
-			
-			allowed = {
-				original_tag = "YUG"
-			}
-			
-			removal_cost = -1
-			
-			picture = generic_economic_increase
-			
-			targeted_modifier = {
-				tag = ITA
-				trade_cost_for_target_factor = -0.25
-			}
-			modifier = {
-				production_speed_buildings_factor = 0.05
-			}
-		}
-		
-		YUG_yugoslavian_reforms = {
-			picture = generic_pp_unity_bonus
-			allowed = {
-				always = no # Added via focus
-			}
-
-			modifier = {
-				stability_weekly = 0.01
-			}
-		}	
-		
-		YUG_bulgarian_integration = {
-			picture = bul_third_bulgarian_state
-			allowed = {
-				always = no # Added via focus
-			}
-
-			modifier = {
-				consumer_goods_expected_value = 0.055
-				industrial_capacity_factory = -0.15
-				production_speed_buildings_factor = -0.1
-			}
-		}
-
-		YUG_volunteers_idea = {
-			
-			picture = generic_volunteer_expedition_bonus
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-
-			rule = {
-				can_send_volunteers = yes
-			}
-
-			modifier = {
-				send_volunteer_divisions_required = -1
-				send_volunteers_tension = -1.0
-				send_volunteer_size = 3
-			}
-
-		}
-
-		
-		YUG_light_tank_research = {
-			
-			picture = generic_artillery_manufacturer_1
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				
-			}
-
-			equipment_bonus = {
-				light_tank_chassis = {
-					build_cost_ic = -0.1
-					instant = yes
-				}
-
-			}
-		}
-
-		YUG_follow_by_example = {
-			picture = jap_duplicate_research
-
-			allowed = {
-				original_tag = YUG
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				research_speed_factor = 0.05
-			}
-		}
-
-		YUG_inward_perfection = {
-			picture = SOV_third_five_year_plan 
-
-			allowed = {
-				original_tag = YUG
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				production_factory_max_efficiency_factor = 0.05
-			}
-		}
-
-		YUG_outward_perfection = {
-			picture = generic_exploit_mines
-
-			allowed = {
-				original_tag = YUG
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				production_speed_buildings_factor = 0.075
-			}
-		}
-
-		YUG_set_aside_differences = {
-			picture = stability
-
-			allowed = {
-				original_tag = YUG
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				stability_weekly = 0.005
-			}
-		}
-
-		YUG_pan_slavic_union_idea = {
-			picture = generic_exploit_mines
-
-			allowed = {
-				original_tag = YUG
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				industrial_capacity_factory = 0.10
-			}
-		}
-
-		YUG_reinforce_the_little_entente = {
-			
-			
-			allowed = {
-				original_tag = YUG
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-			
-			removal_cost = -1
-	
-			modifier = {
-				army_core_attack_factor = 0.1
-				army_core_defence_factor = 0.1
-			}
-		}
-
-		YUG_defunct_infantry = { 			
-			picture = generic_neglected_military 
-
-			allowed = { original_tag = YUG }
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-
-			modifier = { modifier_army_sub_unit_infantry_attack_factor = -0.8
-				         modifier_army_sub_unit_infantry_defence_factor = -0.8
-			}
-		}
-
-		YUG_interpreters = {
-			picture = YUG_serbian_general_staff
-
-			allowed = { original_tag = YUG }
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-
-			modifier = {
-				special_forces_cap = 0.05
-				mountaineers_special_forces_contribution_factor = -0.20
-				marines_special_forces_contribution_factor = -0.15
-			}
-		}
-
-		YUG_armored_cavalry = {
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			picture = generic_infantry_bonus
-			removal_cost = -1
-
-			modifier = {
-				mechanized_attack_factor = 0.05
-				mechanized_defence_factor = 0.05
-			}
-		}
-
-		YUG_fuel_efficiency = {
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
 			picture = SOV_the_road_of_life
+			
+			allowed = {
+				always = no
+			}
+			
 			removal_cost = -1
 
+			allowed_civil_war = {
+				always = yes
+			}
+			
 			modifier = {
-				army_fuel_consumption_factor = -0.1
+				supply_consumption_factor = -0.10
 			}
 		}
 
-		YUG_equipment_discount = {
-
-            allowed = {
-                always = no
-            }
-
-            allowed_civil_war = {
-                always = yes
-            }
-
-			picture = generic_infantry_bonus
-			
-			removal_cost = -1
-
-			equipment_bonus = {
-				infantry_equipment = { build_cost_ic = -0.2 instant = yes }
-				squad_equipment = { build_cost_ic = -0.2 instant = yes }
-				sf_equipment = { build_cost_ic = -0.2 instant = yes }
-			}
-		}
-
-		YUG_mech_discount = {
-
-            allowed = {
-                always = no
-            }
-
-            allowed_civil_war = {
-                always = yes
-            }
-
-			picture = generic_infantry_bonus
-			
-			removal_cost = -1
-
-			equipment_bonus = {
-				mechanized = {
-					build_cost_ic = -0.1 instant = yes
-				}
-			}
-		}
-
-		YUG_truck_discount = {
-
-            allowed = {
-                always = no
-            }
-
-            allowed_civil_war = {
-                always = yes
-            }
-
-			picture = generic_infantry_bonus
-			
-			removal_cost = -1
-
-			equipment_bonus = {
-				motorized = {
-					build_cost_ic = -0.1 instant = yes
-				}
-			}
-		}
+		YUG_terrain_training = {
 		
-		
-		YUG_tank_inefficiencies = {
-
-            allowed = {
-                always = no
-            }
-
-            allowed_civil_war = {
-                always = yes
-            }
-
-			picture = man_five_year_plan_tank
+			picture = eng_special_air_service
+			
+			allowed = {
+				always = no
+			}
 			
 			removal_cost = -1
 
+			allowed_civil_war = {
+				always = yes
+			}
+			
+			modifier = {
+				terrain_penalty_reduction = 0.05
+			}
+		}
+
+		YUG_heat_training = {
+		
+			picture = eng_special_air_service
+			
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			allowed_civil_war = {
+				always = yes
+			}
+			
+			modifier = {
+				heat_attrition_factor = -0.25
+				acclimatization_hot_climate_gain_factor = 0.50
+			}
+		}
+
+		YUG_anti_personel_tank = {
+		
+			picture = generic_acquire_tanks
+			
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			allowed_civil_war = {
+				always = yes
+			}
+			
 			equipment_bonus = {
 				armor = {
-					build_cost_ic = 1 instant = yes
+					soft_attack = 0.10
+					defense = 0.15
+					instant = yes
 				}
 			}
 		}
 
-		ITA_YUG_trade = {
+		YUG_anti_tank_tank = {
+		
+			picture = generic_acquire_tanks
 			
 			allowed = {
 				always = no
 			}
-
+			
 			removal_cost = -1
-			
-			picture = ger_ita_trade
-
-			targeted_modifier = {
-				tag = YUG
-				license_production_speed = 0.15
-			}
-		}
-
-		YUG_recover_from_the_great_depression = {
-			
-			allowed = {
-				always = no
-			}
-
-			removal_cost = -1
-			
-			picture = generic_political_support
-
-			modifier = {
-				consumer_goods_expected_value = -0.05
-			}
-		}
-
-		YUG_seized_monarch_assets = {
-			
-			allowed = {
-				always = no
-			}
-
-			removal_cost = -1
-			
-			picture = RAJ_kingmaker
-
-			modifier = {
-				consumer_goods_expected_value = -0.05
-			}
-		}
-	
-		YUG_unified_army = {
-			
-			allowed = {
-				always = no
-			}
-
-			removal_cost = -1
-			
-			picture = MEX_politicised_army
-
-			modifier = {
-				conscription = 0.02
-			}
-		}
-
-		YUG_serbian_army = {
-
-			allowed = {
-				always = no
-			}
-
-			removal_cost = -1
-			
-			picture = tur_sectarian_troubles_fundamentalism
-
-			modifier = {
-				special_forces_cap = 0.1
-				special_forces_training_time_factor = -0.2
-			}
-		}
-
-		YUG_prepare_for_the_inevitable = {
-			
-			picture = generic_morale_bonus
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
 
 			allowed_civil_war = {
 				always = yes
 			}
-
-			removal_cost = -1
 			
-			modifier = {
-				production_factory_efficiency_gain_factor = 0.1
+			equipment_bonus = {
+				armor = {
+					ap_attack = 0.10
+					hard_attack = 0.10
+					instant = yes
+				}
 			}
 		}
 
-		YUG_a_royal_guard = {
-			
-			picture = chi_army_corruption
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				war_support_weekly = 0.001
-			}
-		}
-
-		YUG_a_royal_guard2 = {
-			
-			picture = chi_army_corruption2
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				war_support_weekly = 0.002
-				experience_gain_army = 0.3
-			}
-		}
-
-		YUG_a_royal_guard3 = {
-			
-			picture = chi_army_corruption3
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				war_support_weekly = 0.002
-				experience_gain_army = 0.5
-				experience_gain_army_factor = 0.1
-
-			}
-		}
-
-		YUG_a_royal_guard4 = {
-			
-			picture = SOV_politicized_military_swap_humanism_ccp_sov_compatibility
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				war_support_weekly = 0.002
-				experience_gain_army = 0.5
-				experience_gain_army_factor = 0.1
-				mountaineers_special_forces_contribution_factor = -0.20
-				marines_special_forces_contribution_factor = -0.10
-				special_forces_min = 24 ##todo idk if this should be 14 instead of 24, it might be TOO excessive but you can decide!
-
-			}
-		}
-
-		YUG_absolutism_crusade = {
-			
-			picture = MEX_church_power_4
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				army_attack_factor = 0.05
-				army_defence_factor = 0.05
-			}
-		}
-
-		YUG_new_royal_court = {
-			
-			picture = BEL_fonderie_royale_de_canons_liege
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				stability_weekly = 0.001
-			}
-		}
-
-		YUG_court_backed_by_divine_right = {
-			
-			picture = BEL_fonderie_royale_de_canons_liege
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				stability_weekly = 0.003
-			}
-		}
-
-
-		YUG_royal_powers = {
-			
-			picture = AUS_habsburg_monarchy_restored
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				political_advisor_cost_factor = -0.25
-				army_chief_cost_factor = -0.25
-				navy_chief_cost_factor = -0.25
-				air_chief_cost_factor = -0.25
-			}
-		}
-		YUG_serb_croat_compromise = {
-			
-			picture = generic_deal_with_the_devil2
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				political_power_factor = 0.15
-			}
-		}
-
-		YUG_monarchist_safehaven = {
-			
-			picture = HUN_hungarian_monarchy_habsburg
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				neutrality_drift = 0.2
-			}
-		}
-
-		YUG_soylent_green = {
-			
-			picture = DEN_danish_produce
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				industrial_capacity_factory = 0.05
-			}
-		}
-
-		YUG_it_party_time = {
-			
-			picture = ROM_king_carol_ii_hedonist
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				production_speed_arms_factory_factor = 0.05
-			}
-		}
-
-		YUG_upper_echelon_of_society = {
-			
-			picture = RAJ_external_investments
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				min_export = -0.1
-			}
-		}
-
-		YUG_led_by_royalty = {
-			
-			picture = RAJ_kingmaker
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				experience_gain_factor = 0.2
-				promote_cost_factor = -1
-				army_leader_cost_factor = 1
-			}
-		}
-
-		YUG_equal_gender_mil = {
-			
-			picture = generic_women_in_the_army
-
-			allowed = {
-				original_tag = YUG
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-			
-			modifier = {
-				conscription = 0.015
-			}
-		}
-
-		YUG_royal_assets = {
-			
+		YUG_Adriatic_Raiders = {
+		
+			picture = the_long_lance
+		
 			allowed = {
 				always = no
 			}
-
+			
 			removal_cost = -1
 			
-			picture = SPR_seize_the_gold_reserves
-
-			modifier = {
-				consumer_goods_expected_value = -0.025
-			}
-		}
-
-		YUG_class_warfare_mil = {
-			
-			allowed = {
-				always = no
-			}
-
-			removal_cost = -1
-			
-			picture = SPR_class_war
-
-			modifier = {
-				army_morale_factor = 0.05
-				army_org_factor = 0.05
+			equipment_bonus = {
+				submarine = {
+					build_cost_ic = -0.1
+					naval_range = 0.25
+					torpedo_attack = 0.2
+					instant = yes
+				}
 			}
 		}
 	}
 
 	# TECHNOLOGY
 	
+	tank_manufacturer = {
+		
+		designer = yes                                                       
+
+		YUG_light_tank_designer = {
+			name = yugos_light_tank_designer
+
+			picture = CZE_skoda_works_2
+
+			allowed = {
+				original_tag = YUG
+			}
+
+			visible = {
+				tag = YUG
+			}
+
+			available = {
+				has_completed_focus = YUG_Train_in_Home_terrain
+			}
+
+			removal_cost = -1
+			
+			research_bonus = {
+				armor = 0.15
+			}
+
+			modifier = { tank_manufacturer_cost_factor = -1 }
+			
+			# traits = { YUG_light_tank_designer }
+			equipment_bonus = {
+				light_tank_chassis = {
+					build_cost_ic = -0.10
+					breakthrough = 0.10
+					soft_attack = 0.10
+				}
+				light_tank_artillery_chassis = {
+					build_cost_ic = -0.10
+				}
+				light_tank_destroyer_chassis = {
+					build_cost_ic = -0.10
+				}
+				light_tank_aa_chassis = {
+					build_cost_ic = -0.10
+				}
+				light_assault_gun_chassis = {
+					build_cost_ic = -0.10
+				}
+				light_tank_amphibious_chassis = {
+					build_cost_ic = -0.10
+				}
+			}
+		}
+
+		YUG_medium_tank_designer = {
+			name = yugos_medium_tank_designer
+
+			picture = vickers_armstrong_eng
+
+			allowed = {
+				original_tag = YUG
+			}
+
+			visible = {
+				tag = YUG
+			}
+
+			available = {
+				has_completed_focus = YUG_Prepare_for_the_Desert
+			}
+
+			removal_cost = -1
+			
+			research_bonus = {
+				armor = 0.15
+			}
+
+			modifier = { tank_manufacturer_cost_factor = -1 }
+			
+			# traits = { YUG_medium_tank_designer }
+			equipment_bonus = {
+				medium_tank_chassis = {
+					armor_value = 0.10
+					build_cost_ic = -0.10
+					maximum_speed = 0.10
+				}
+				medium_tank_artillery_chassis = {
+					armor_value = 0.10
+					build_cost_ic = -0.10
+					maximum_speed = 0.10
+				}
+				medium_tank_destroyer_chassis = {
+					armor_value = 0.10
+					build_cost_ic = -0.10
+					maximum_speed = 0.10
+				}
+				medium_tank_aa_chassis = {
+					armor_value = 0.10
+					build_cost_ic = -0.10
+					maximum_speed = 0.10
+				}
+				medium_assault_gun_chassis = {
+					armor_value = 0.10
+					build_cost_ic = -0.10
+					maximum_speed = 0.10
+				}
+				medium_tank_amphibious_chassis = {
+					armor_value = 0.10
+					build_cost_ic = -0.10
+					maximum_speed = 0.10
+				}
+			}
+		}
+	}
+
 	naval_manufacturer = { 
 		
 		designer = yes
@@ -1780,6 +1150,7 @@ ideas = {
 			
 			picture = generic_naval_manufacturer_2
 
+			cost = 150
 			
 			allowed = {
 				original_tag = YUG
@@ -1795,8 +1166,7 @@ ideas = {
 			
 			traits = { naval_manufacturer }
 			
-			modifier = {
-			}
+			modifier = { naval_manufacturer_cost_factor = -1 }
 		}
 	}
 	
@@ -1826,6 +1196,8 @@ ideas = {
 			ai_will_do = {
 				factor = 1
 			}
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 
 		YUG_ikarus = {
@@ -1833,7 +1205,7 @@ ideas = {
 			picture = generic_air_manufacturer_3
 			
 			available = {
-				has_completed_focus = YUG_ikarus
+				# has_completed_focus = YUG_ikarus
 			}
 
 			allowed = {
@@ -1854,6 +1226,8 @@ ideas = {
 			ai_will_do = {
 				factor = 1
 			}
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 
 		rogozarski = {
@@ -1878,6 +1252,8 @@ ideas = {
 			ai_will_do = {
 				factor = 1
 			}
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 
 		YUG_rogozarski = {
@@ -1885,7 +1261,7 @@ ideas = {
 			picture = generic_air_manufacturer_2
 			
 			available = {
-				has_completed_focus = YUG_rogozarski
+				# has_completed_focus = YUG_rogozarski
 			}
 
 			allowed = {
@@ -1906,6 +1282,8 @@ ideas = {
 			ai_will_do = {
 				factor = 1
 			}
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 
 		zmaj = {
@@ -1930,6 +1308,8 @@ ideas = {
 			ai_will_do = {
 				factor = 1
 			}
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 
 		YUG_zmaj = {
@@ -1937,7 +1317,7 @@ ideas = {
 			picture = generic_air_manufacturer_1
 			
 			available = {
-				has_completed_focus = YUG_zmaj				
+				# has_completed_focus = YUG_zmaj				
 			}			
 
 			allowed = {
@@ -1958,6 +1338,8 @@ ideas = {
 			ai_will_do = {
 				factor = 1
 			}
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 	}
 	materiel_manufacturer = {

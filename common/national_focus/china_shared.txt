@@ -1,4 +1,18 @@
-﻿#	shared_focus = {
+﻿#!gfx:interface\lw_goals.gfx
+#!gfx:interface\KR_goals.gfx
+#!gfx:interface\cic_goals.gfx
+#!gfx:interface\snek_teleport.gfx
+#!gfx:interface\replace\bruh_interface.gfx
+#!gfx:interface\replace\bruh_bra_interface.gfx
+#!gfx:interface\replace\bruh_eng_interface.gfx
+#!gfx:interface\replace\bruh_ger_interface.gfx
+#!gfx:interface\replace\bruh_hol_interface.gfx
+#!gfx:interface\replace\bruh_ita_interface.gfx
+#!gfx:interface\replace\bruh_jap_interface.gfx
+#!gfx:interface\replace\bruh_nsb_interface.gfx
+#!gfx:interface\replace\bruh_sov_interface.gfx
+
+#	shared_focus = {
 #		id = CHI_
 #		icon = GFX_
 #		prerequisite = { focus = }
@@ -40,13 +54,13 @@ shared_focus = {
 	icon = GFX_focus_generic_concessions
 	x = 40
 	y = 0
-	offset = {
-		x = -6
-		y = 0
-		trigger = {
-			tag = PRC
-		}
-	}
+	# offset = {
+	# 	x = -6
+	# 	y = 0
+	# 	trigger = {
+	# 		tag = PRC
+	# 	}
+	# }
 	offset = {
 		x = -16
 		y = 0
@@ -107,15 +121,12 @@ shared_focus = {
 
 	available = {
 		OR = {
-			has_government = neutrality
+			has_government = communism
 			GER = { has_government = ROOT }
 			GER_will_support = yes
 		}
 		NOT = {
 			has_war_with = GER
-		}
-		GER = {
-			has_capitulated = no
 		}
 		NOT = { has_global_flag = falkenhausen_recalled }
 	}
@@ -181,7 +192,9 @@ shared_focus = {
 		custom_trigger_tooltip = { 
 			tooltip = falkenhausen_tt
 			any_other_country = {
-				has_completed_focus = CHI_give_falkenhausen_citizenship
+				any_army_leader = {
+					has_id = 603
+				}
 			}	
 		}
 	}
@@ -192,8 +205,18 @@ shared_focus = {
 
 	completion_reward = {
 		custom_effect_tooltip = available_chief_of_army
-		show_ideas_tooltip = CHI_alexander_von_falkenhausen_army_chief
-		show_unit_leaders_tooltip = CHI_alexander_von_falkenhausen
+		show_ideas_tooltip = CHI_alexander_von_falkenhausen
+		create_corps_commander = {
+			name = "Alexander von Falkenhausen"
+			gfx = GFX_portrait_chi_alexander_von_falkenhausen
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 3
+			id = 603
+			traits = { infantry_officer }
+		}
 	}
 }
 
@@ -297,10 +320,10 @@ shared_focus = {
 
 	ai_will_do = {
 		factor = 1
-		modifier = {
-			factor = 4
-			tag = PRC
-		}
+		# modifier = {
+		# 	factor = 4
+		# 	tag = PRC
+		# }
 		modifier = {
 			factor = 4
 			tag = CHI
@@ -338,10 +361,10 @@ shared_focus = {
 
 	ai_will_do = {
 		factor = 1
-		modifier = {
-			factor = 4
-			tag = PRC
-		}
+		# modifier = {
+		# 	factor = 4
+		# 	tag = PRC
+		# }
 		modifier = {
 			factor = 4
 			tag = CHI
@@ -364,65 +387,20 @@ shared_focus = {
 	available_if_capitulated = no
 
 	completion_reward = {
-		custom_effect_tooltip = CHI_purchase_tanks_tt
-		if = {
-			limit = {
-				has_dlc = "Arms Against Tyranny"
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_completed_focus = CHI_closer_ties_with_germany
-						has_completed_focus = CHI_rapprochement_with_soviet_union
-					}
-				}
-				add_equipment_subsidy = {
-					cic = 5000
-					equipment_type = light_tank_chassis
-					seller_trigger = CHI_tank_seller_for_subsidy
-				}
-			}
-			else_if = {
-				limit = {
-					has_completed_focus = CHI_closer_ties_with_germany
-				}
-				add_equipment_subsidy = {
-					cic = 5000
-					equipment_type = light_tank_chassis
-					seller_tags = { GER } 
-				}
-			}
-			else_if = {
-				limit = {
-					has_completed_focus = CHI_rapprochement_with_soviet_union
-				}
-				add_equipment_subsidy = {
-					cic = 5000
-					equipment_type = light_tank_chassis
-					seller_tags = { SOV } 
-				}
-			}
-		}
-		hidden_effect = { 
-			if = {
-				limit = {
-					not = {
-						has_tech = jap_light_tank_1
-					}
-				}
-				set_technology = { jap_light_tank_1 = 1 }
-			}
+		custom_effect_tooltip = CHI_purchase_tank_tt
+		hidden_effect = {
+			set_technology = { light_tank_1 = 1 }
 			if = {
 				limit = {
 					has_completed_focus = CHI_closer_ties_with_germany
 				}
-				add_equipment_to_stockpile = { type = ger_light_tank_chassis_p1 amount = 100 producer = GER  variant_name = "PzKpfw I A"} 
+				add_equipment_to_stockpile = { type = light_tank_chassis_1 amount = 300 producer = GER }
 			}
 			if = {
 				limit = {
 					has_completed_focus = CHI_rapprochement_with_soviet_union
 				}
-				add_equipment_to_stockpile = { type = sov_light_tank_chassis_t26 amount = 100 producer = SOV variant_name = "T-26 m.33" }
+				add_equipment_to_stockpile = { type = light_tank_chassis_1 amount = 300 producer = SOV variant_name = "BT-5"}
 			}
 		}
 	}
@@ -456,36 +434,14 @@ shared_focus = {
 	available_if_capitulated = no
 
 	completion_reward = {
-
 		add_tech_bonus = {
 			name = CHI_chinese_panzers
 			bonus = 0.50
 			uses = 1
 			category = armor
 		}
-		add_breakthrough_progress = {
-			specialization = specialization_land
-			value = 0.25
-		}
-
-		custom_effect_tooltip = generic_skip_one_line_tt
-
-		IF = {
-			limit = {
-				has_dlc = "Arms Against Tyranny"
-			}
-			custom_effect_tooltip = available_mio_tt
-			show_mio_tooltip = CHI_sino_german_technical_mission_organization
-
-			mio:CHI_sino_german_technical_mission_organization = {
-				add_mio_size = 1
-				add_mio_funds = 500
-			}
-		}
-		ELSE = {
-			custom_effect_tooltip = available_designer
-			show_ideas_tooltip = german_chinese_tank_designer
-		}
+		custom_effect_tooltip = available_designer
+		show_ideas_tooltip = german_chinese_tank_designer
 	}
 }
 
@@ -515,38 +471,19 @@ shared_focus = {
 	continue_if_invalid = no
 	available_if_capitulated = no
 
-	complete_tooltip = {
-		random_state = {
-			limit = {
-				has_state_flag = CHI_tank_plant_AF
-			}
-			add_extra_state_shared_building_slots = 2
-			add_building_construction = {
-				type = arms_factory
-				level = 2
-				instant_build = yes
-			}
-		}
-	}
+	
 
 	completion_reward = {
-		random_owned_controlled_state = {
-			limit = {
-				is_fully_controlled_by = ROOT
-				free_building_slots = {
-					building = arms_factory
-					size > 1
-					include_locked = yes
-				}
-			}
-			add_extra_state_shared_building_slots = 2
-			add_building_construction = {
-				type = arms_factory
-				level = 2
+		603 = {
+		
+		add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+			type = arms_factory
+			level = 2
 				instant_build = yes
-			}
-			set_state_flag = CHI_tank_plant_AF
 		}
+	    }	
+		
 	}
 }
 
@@ -562,10 +499,10 @@ shared_focus = {
 
 	ai_will_do = {
 		factor = 1
-		modifier = {
-			factor = 4
-			tag = PRC
-		}
+		# modifier = {
+		# 	factor = 4
+		# 	tag = PRC
+		# }
 		modifier = {
 			factor = 4
 			tag = CHI
@@ -590,48 +527,7 @@ shared_focus = {
 	available_if_capitulated = no
 
 	completion_reward = {
-
-		custom_effect_tooltip = CHI_experimental_mechanised_unit_effect
-
-		IF = {
-			limit = {
-				has_dlc = "Arms Against Tyranny"
-			}
-			IF = {
-				limit = {
-					NOT = {
-						has_completed_focus = CHI_closer_ties_with_germany
-						has_completed_focus = CHI_rapprochement_with_soviet_union
-					}
-				}
-				add_equipment_subsidy = {
-					cic = 5000
-					equipment_type = motorized_equipment
-					seller_trigger = CHI_tank_seller_for_subsidy
-				}
-			}
-			ELSE_IF = {
-				limit = {
-					has_completed_focus = CHI_closer_ties_with_germany
-				}
-				add_equipment_subsidy = {
-					cic = 5000
-					equipment_type = motorized_equipment
-					seller_tags = { GER } 
-				}
-			}
-			ELSE_IF = {
-				limit = {
-					has_completed_focus = CHI_rapprochement_with_soviet_union
-				}
-				add_equipment_subsidy = {
-					cic = 5000
-					equipment_type = motorized_equipment
-					seller_tags = { SOV } 
-				}
-			}
-		}
-
+		custom_effect_tooltip = CHI_experimental_mechanised_unit_tt
 		hidden_effect = {
 			if = {
 				limit = {
@@ -660,50 +556,51 @@ shared_focus = {
 				}
 			}
 			if = {
-				limit = {
-					tag = MAN
-				}
-				division_template = {
-					name = "Experimental Mechanised Division"
-					division_names_group = MAN_MEC_01
-					priority = 2
-					regiments = {
-						light_armor = { x = 0 y = 0 }
-						light_armor = { x = 0 y = 1 }
-						light_armor = { x = 0 y = 2 }
-						light_armor = { x = 0 y = 3 }
-						light_armor = { x = 1 y = 0 }
-			
-						motorized = { x = 2 y = 0 }
-						motorized = { x = 2 y = 1 }
-						motorized = { x = 2 y = 2 }
-						motorized = { x = 2 y = 3 }
-						motorized = { x = 3 y = 0 }
+				limit = { NOT = { has_dlc = "No Step Back" } }
+				if = {
+					limit = {
+						has_completed_focus = CHI_closer_ties_with_germany 
 					}
-					support = {
-						hq_company = { x = 0 y = 0 }
+					capital_scope = {
+						create_unit = {
+							division = "name = \"200. Mechanised Division\" division_template = \"Experimental Mechanised Division\" start_experience_factor = 1.0 force_equipment_variants = { light_tank_chassis_1 = { creator = \"GER\" } }" 
+							owner = ROOT
+						}
 					}
 				}
-			}
-			if = {
-				limit = {
-					has_completed_focus = CHI_closer_ties_with_germany 
-				}
-				capital_scope = {
-					create_unit = {
-						division = "name = \"200. Mechanised Division\" division_template = \"Experimental Mechanised Division\" start_experience_factor = 1.0" 
-						owner = ROOT
+				if = {
+					limit = {
+						has_completed_focus = CHI_rapprochement_with_soviet_union
+					}
+					capital_scope = {
+						create_unit = {
+							division = "name = \"200. Mechanised Division\" division_template = \"Experimental Mechanised Division\" start_experience_factor = 1.0 force_equipment_variants = { light_tank_chassis_1 = { creator = \"SOV\" } }" 
+							owner = ROOT
+						}
 					}
 				}
 			}
-			if = {
-				limit = {
-					has_completed_focus = CHI_rapprochement_with_soviet_union
+			else = {
+				if = {
+					limit = {
+						has_completed_focus = CHI_closer_ties_with_germany 
+					}
+					capital_scope = {
+						create_unit = {
+							division = "name = \"200. Mechanised Division\" division_template = \"Experimental Mechanised Division\" start_experience_factor = 1.0 force_equipment_variants = { light_tank_chassis_1 = { creator = \"GER\" version_name = \"Panzer I Ausf. A\"} }" 
+							owner = ROOT
+						}
+					}
 				}
-				capital_scope = {
-					create_unit = {
-						division = "name = \"200. Mechanised Division\" division_template = \"Experimental Mechanised Division\" start_experience_factor = 1.0" 
-						owner = ROOT
+				if = {
+					limit = {
+						has_completed_focus = CHI_rapprochement_with_soviet_union
+					}
+					capital_scope = {
+						create_unit = {
+							division = "name = \"200. Mechanised Division\" division_template = \"Experimental Mechanised Division\" start_experience_factor = 1.0 force_equipment_variants = { light_tank_chassis_1 = { creator = \"SOV\" version_name = \"T-26TU mod. 1933\"} }" 
+							owner = ROOT
+						}
 					}
 				}
 			}			
@@ -726,10 +623,10 @@ shared_focus = {
 
 	ai_will_do = {
 		factor = 1
-		modifier = {
-			factor = 4
-			tag = PRC
-		}
+		# modifier = {
+		# 	factor = 4
+		# 	tag = PRC
+		# }
 	}
 
 	available = {
@@ -770,10 +667,10 @@ shared_focus = {
 
 	ai_will_do = {
 		factor = 1
-		modifier = {
-			factor = 4
-			tag = PRC
-		}
+		# modifier = {
+		# 	factor = 4
+		# 	tag = PRC
+		# }
 	}
 
 	available = {
@@ -795,23 +692,8 @@ shared_focus = {
 			uses = 1
 			category = armor
 		}
-		
-		IF = {
-			limit = {
-				has_dlc = "Arms Against Tyranny"
-			}
-			custom_effect_tooltip = available_mio_tt
-			show_mio_tooltip = SOV_morozov_design_bureau_organization
-
-			mio:SOV_morozov_design_bureau_organization = {
-				add_mio_size = 1
-				add_mio_funds = 500
-			}
-		}
-		ELSE = {
-			custom_effect_tooltip = available_designer
-			show_ideas_tooltip = SOV_morozov_design_bureau
-		}
+		custom_effect_tooltip = available_designer
+		show_ideas_tooltip = SOV_morozov_design_bureau
 	}
 }
 
@@ -827,10 +709,10 @@ shared_focus = {
 
 	ai_will_do = {
 		factor = 1
-		modifier = {
-			factor = 4
-			tag = PRC
-		}
+		# modifier = {
+		# 	factor = 4
+		# 	tag = PRC
+		# }
 	}
 
 	available = {
@@ -846,8 +728,7 @@ shared_focus = {
 	available_if_capitulated = no
 
 	completion_reward = {
-		SOV = { add_to_tech_sharing_group = CHI_joint_tank_development }
-		add_to_tech_sharing_group = CHI_joint_tank_development
+		add_equipment_to_stockpile = { type = light_tank_chassis_1 amount = 600 producer = SOV variant_name = "T-26TU mod. 1933"}
 	}
 }
 
@@ -863,10 +744,10 @@ shared_focus = {
 
 	ai_will_do = {
 		factor = 1
-		modifier = {
-			factor = 4
-			tag = PRC
-		}
+		# modifier = {
+		# 	factor = 4
+		# 	tag = PRC
+		# }
 		modifier = {
 			factor = 4
 			tag = CHI
@@ -874,17 +755,13 @@ shared_focus = {
 	}
 
 	available = {
-		SOV = { has_government = communism }
 		OR = {
-			has_government = neutrality
+			has_government = communism 
 			SOV = { has_government = ROOT }
 			SOV_will_support = yes
 		}
 		not = {
 			has_War_with = SOV
-		}
-		SOV = {
-			has_capitulated = no
 		}
 	}
 
@@ -973,10 +850,10 @@ shared_focus = {
 
 	ai_will_do = {
 		factor = 1
-		modifier = {
-			factor = 4
-			tag = PRC
-		}
+		# modifier = {
+		# 	factor = 4
+		# 	tag = PRC
+		# }
 		modifier = {
 			factor = 4
 			tag = CHI
@@ -1028,10 +905,10 @@ shared_focus = {
 
 	ai_will_do = {
 		factor = 1
-		modifier = {
-			factor = 4
-			tag = PRC
-		}
+		# modifier = {
+		# 	factor = 4
+		# 	tag = PRC
+		# }
 		modifier = {
 			factor = 4
 			tag = CHI
@@ -1074,15 +951,12 @@ shared_focus = {
 
 	available = {
 		OR = {
-			has_government = neutrality
+			has_government = communism
 			FRA = { has_government = ROOT }
 			FRA_will_support = yes
 		}
 		not = {
 			has_war_with = FRA
-		}
-		FRA = {
-			has_capitulated = no
 		}
 	}
 
@@ -1178,10 +1052,10 @@ shared_focus = {
 				has_tech = tech_mountaineers # Wait for the full benefit
 			}
 		}
-		modifier = {
-			factor = 4
-			tag = PRC
-		}
+		# modifier = {
+		# 	factor = 4
+		# 	tag = PRC
+		# }
 	}
 
 	available = {
@@ -1245,10 +1119,10 @@ shared_focus = {
 
 	ai_will_do = {
 		factor = 1
-		modifier = {
-			factor = 4
-			tag = PRC
-		}
+		# modifier = {
+		# 	factor = 4
+		# 	tag = PRC
+		# }
 	}
 
 	available = {
@@ -1358,7 +1232,7 @@ shared_focus = {
 	available = {
 		OR = {
 			FRA_will_support = yes
-			ENG_will_support = yes
+			
 		}
 	}
 
@@ -1576,10 +1450,10 @@ shared_focus = {
 
 	ai_will_do = {
 		factor = 1
-		modifier = {
-			factor = 4
-			tag = PRC			
-		}
+		# modifier = {
+		# 	factor = 4
+		# 	tag = PRC			
+		# }
 	}
 
 	available = {
@@ -1631,9 +1505,6 @@ shared_focus = {
 		}
 		not = {
 			has_War_with = ENG
-		}
-		ENG = {
-			has_capitulated = no
 		}
 	}
 
@@ -1890,97 +1761,28 @@ shared_focus = {
 
 	completion_reward = {
 		custom_effect_tooltip = CHI_purchase_fighters_tt
-		if = {
-			limit = {
-				has_dlc = "Arms Against Tyranny"
-			}
+		hidden_effect = {
 			if = {
 				limit = {
-					NOT = {
-						has_completed_focus = CHI_british_cooperation
-						has_completed_focus = CHI_mission_to_the_us
+					not = {
+						has_tech = early_fighter
 					}
 				}
-				add_equipment_subsidy = {
-					cic = 5000
-					equipment_type = small_plane_airframe
-					seller_trigger = CHI_plane_seller_for_subsidy
-				}
+				set_technology = { early_fighter = 1 }
 			}
 			if = {
 				limit = {
 					has_completed_focus = CHI_british_cooperation
+					not = { has_war_with = ENG }
 				}
-				add_equipment_subsidy = {
-					cic = 5000
-					equipment_type = small_plane_airframe
-					seller_tags = { ENG } 
-				}
+				add_equipment_to_stockpile = { type = small_plane_airframe_0 amount = 50 producer = ENG }
 			}
 			if = {
 				limit = {
 					has_completed_focus = CHI_mission_to_the_us
+					not = { has_war_with = USA }
 				}
-				add_equipment_subsidy = {
-					cic = 5000
-					equipment_type = small_plane_airframe
-					seller_tags = { USA } 
-				}
-			}
-		}
-		hidden_effect = {
-			if = {
-				limit = {
-					NOT = {
-						has_dlc = "By Blood Alone"
-					}
-				}
-				if = {
-					limit = {
-						not = {
-							has_tech = early_fighter
-						}
-					}
-					set_technology = { early_fighter = 1 }
-				}
-				if = {
-					limit = {
-						has_completed_focus = CHI_british_cooperation
-						not = { has_war_with = ENG }
-					}
-					add_equipment_to_stockpile = { type = fighter_equipment_0 amount = 50 producer = ENG }
-				}
-				if = {
-					limit = {
-						has_completed_focus = CHI_mission_to_the_us
-						not = { has_war_with = USA }
-					}
-					add_equipment_to_stockpile = { type = fighter_equipment_0 amount = 50 producer = USA }
-				}
-			}
-			else = {
-				if = {
-					limit = {
-						not = {
-							has_tech = iw_small_airframe
-						}
-					}
-					set_technology = { iw_small_airframe = 1 }
-				}
-				if = {
-					limit = {
-						has_completed_focus = CHI_british_cooperation
-						not = { has_war_with = ENG }
-					}
-					add_equipment_to_stockpile = { type = small_plane_airframe_0 amount = 50 producer = ENG variant_name = "Gloster Gladiator"}
-				}
-				if = {
-					limit = {
-						has_completed_focus = CHI_mission_to_the_us
-						not = { has_war_with = USA }
-					}
-					add_equipment_to_stockpile = { type = small_plane_airframe_1 amount = 50 producer = USA variant_name = "P-36A"}
-				}
+				add_equipment_to_stockpile = { type = small_plane_airframe_0 amount = 50 producer = USA }
 			}
 		}
 	}
@@ -2027,23 +1829,8 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-
-		IF = {
-			limit = {
-				has_dlc = "Arms Against Tyranny"
-			}
-			custom_effect_tooltip = available_mio_tt
-			show_mio_tooltip = CHI_camco_medium_organization
-			mio:CHI_camco_medium_organization = {
-				add_mio_size = 1
-				add_mio_funds = 500
-			}
-		}
-
-		ELSE = {
-			custom_effect_tooltip = available_designer
-			show_ideas_tooltip = CHI_camco_1
-		}
+		custom_effect_tooltip = available_designer
+		show_ideas_tooltip = CHI_camco_1
 	}
 }
 
@@ -2063,17 +1850,7 @@ shared_focus = {
 	}
 
 	available = {
-		if = {
-			limit = {
-				has_dlc = "Arms Against Tyranny"
-			}
-			mio:CHI_camco_medium_organization = {
-				has_mio_size > 3
-			}
-		}
-		else = {
-			has_idea = CHI_camco_1
-		}
+		has_idea = CHI_camco_1
 	}
 
 	bypass = {
@@ -2085,23 +1862,8 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
-		IF = {
-			limit = {
-				has_dlc = "Arms Against Tyranny"
-			}
-			custom_effect_tooltip = available_mio_tt
-			show_mio_tooltip = CHI_camco_fighter_organization
-			mio:CHI_camco_fighter_organization = {
-				add_mio_size = 1
-				add_mio_funds = 500
-			}
-		}
-
-		ELSE = {
-			custom_effect_tooltip = available_designer
-			show_ideas_tooltip = CHI_camco_2
-		}
+		custom_effect_tooltip = available_designer
+		show_ideas_tooltip = CHI_camco_2
 	}
 }
 
@@ -2120,17 +1882,7 @@ shared_focus = {
 	}
 
 	available = {
-		if = {
-			limit = {
-				has_dlc = "Arms Against Tyranny"
-			}
-			mio:CHI_camco_fighter_organization = {
-				has_mio_size > 3
-			}
-		}
-		else = {
-			has_idea = CHI_camco_2
-		}
+		has_idea = CHI_camco_2
 	}
 
 	bypass = {
@@ -2142,23 +1894,8 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-
-		IF = {
-			limit = {
-				has_dlc = "Arms Against Tyranny"
-			}
-			custom_effect_tooltip = available_mio_tt
-			show_mio_tooltip = CHI_camco_bomber_organization
-			mio:CHI_camco_bomber_organization = {
-				add_mio_size = 1
-				add_mio_funds = 500
-			}
-		}
-
-		ELSE = {
-			custom_effect_tooltip = available_designer
-			show_ideas_tooltip = CHI_camco_3
-		}
+		custom_effect_tooltip = available_designer
+		show_ideas_tooltip = CHI_camco_3
 	}
 }
 
@@ -2282,10 +2019,7 @@ shared_focus = {
 
 	completion_reward = {
 		USA = {
-			country_event = {
-				id = wtt_china_shared.12
-				hours = 1
-			}	
+			country_event = wtt_china_shared.12
 		}
 	}
 }
@@ -2350,14 +2084,8 @@ shared_focus = {
 	available = {
 		OR = {
 			USA_will_support = yes
-			has_government = neutrality
+			has_government = communism
 			USA = { has_government = ROOT }
-		}
-		USA = {
-			has_capitulated = no
-			NOT = {
-				has_War_with = ROOT
-			}
 		}
 	}
 
@@ -2696,10 +2424,6 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		add_breakthrough_progress = {
-			specialization = specialization_naval
-			value = 0.25
-		}
 		add_tech_bonus = {
 			name = CHI_naval_aviation
 			bonus = 0.50

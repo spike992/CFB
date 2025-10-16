@@ -58,19 +58,6 @@ reduce_occupation_cost_effect = {
 	if = {
 		limit = { has_idea = FRA_occupation_costs_1 }
 		remove_ideas = FRA_occupation_costs_1
-		hidden_effect = {
-			#Remove reduced monthly CGFF increase for Germany
-			GER = {
-				if = {
-					limit = {
-						has_dynamic_modifier = { modifier = GER_economy_of_conquest_modifier }
-					}
-					clr_country_flag = GER_french_war_reparations_flag
-					add_to_variable = {	GER_monthly_consumer_goods_increase = GER_change_monthly_CG_vichy_france }
-					country_event = { id = wuw_GER_diplomacy.100 hours = 1 }
-				}
-			}
-		}
 	}
 	else_if = {
 		limit = {
@@ -139,12 +126,6 @@ increase_occupation_cost_effect = {
 			}
 		}
 		add_ideas = FRA_occupation_costs_1
-		hidden_effect = {
-			#Reduce monthly CGFF increase for Germany
-			GER = {
-				GER_set_consumer_goods_war_reparations = yes
-			}
-		}
 	}
 }
 
@@ -158,29 +139,17 @@ FRA_congress_of_paris_italian_claims_setup_effect = {
 	add_state_claim = 549
 	add_state_claim = 269
 	add_state_claim = 547
-	add_state_claim = 904
-	add_state_claim = 905
-	add_state_claim = 903
 	add_state_claim = 548
 	add_state_claim = 546
-	add_state_claim = 887
-	add_state_claim = 885
-	add_state_claim = 884
-	add_state_claim = 886
-	add_state_claim = 883
 }
 
 FRA_congress_of_paris_portugese_claims_setup_effect = {
 	add_state_claim = 295
 	add_state_claim = 771
-	add_state_claim = 981
 	add_state_claim = 770
 	add_state_claim = 545
 	add_state_claim = 542
 	add_state_claim = 541
-	add_state_claim = 893
-	add_state_claim = 894
-	add_state_claim = 895
 	add_state_claim = 681
 	add_state_claim = 275
 	add_state_claim = 719
@@ -275,6 +244,18 @@ FRA_transfer_syria_effect = {
 		limit = { 553 = { CONTROLLER = { original_tag = VIC } } }
 		transfer_state = 553
 	}
+	# if = {
+	# 	limit = {
+	# 		SYR = {
+	# 			exists = yes
+	# 			is_subject = yes
+	# 			OVERLORD = {
+	# 				original_tag = FRA
+	# 			}
+	# 		}
+	# 	}
+	# 	puppet = SYR
+	# }
 	if = {
 		limit = {
 			680 = { CONTROLLER = { original_tag = VIC } }
@@ -550,12 +531,8 @@ FRA_transfer_western_africa_effect = {
 	if = {
 		limit = {
 			556 = { CONTROLLER = { original_tag = VIC } }	
-			898 = { CONTROLLER = { original_tag = VIC } }	
-			899 = { CONTROLLER = { original_tag = VIC } }	
 		}
 		transfer_state = 556
-		transfer_state = 898
-		transfer_state = 899
 	}
 	# if = {
 	# 	limit = {

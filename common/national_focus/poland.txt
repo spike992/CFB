@@ -1,4 +1,18 @@
-﻿focus_tree = {
+﻿#!gfx:interface\lw_goals.gfx
+#!gfx:interface\KR_goals.gfx
+#!gfx:interface\cic_goals.gfx
+#!gfx:interface\snek_teleport.gfx
+#!gfx:interface\replace\bruh_interface.gfx
+#!gfx:interface\replace\bruh_bra_interface.gfx
+#!gfx:interface\replace\bruh_eng_interface.gfx
+#!gfx:interface\replace\bruh_ger_interface.gfx
+#!gfx:interface\replace\bruh_hol_interface.gfx
+#!gfx:interface\replace\bruh_ita_interface.gfx
+#!gfx:interface\replace\bruh_jap_interface.gfx
+#!gfx:interface\replace\bruh_nsb_interface.gfx
+#!gfx:interface\replace\bruh_sov_interface.gfx
+
+focus_tree = {
 	id = polish_focus
 	
 	country = {
@@ -1176,6 +1190,7 @@
 					free_building_slots = {
 						building = infrastructure
 						size > 0
+						include_locked = yes
 					}
 				}
 				add_extra_state_shared_building_slots = 1
@@ -1542,78 +1557,45 @@
 
 		available = {
 			has_country_flag = invited_motor_co
-			IF = {
-				limit = { NOT = { has_dlc = "Arms Against Tyranny" } }
-				OR = {
-					has_idea = POL_vauxhall
-					has_idea = POL_ford
-					has_idea = POL_somua
-				}
+			OR = {
+				has_idea = POL_vauxhall
+				has_idea = POL_ford
+				has_idea = POL_somua
 			}
 		}
 
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			IF = {
+			if = {
 				limit = {
-					has_dlc = "Arms Against Tyranny"
+					has_idea = POL_vauxhall
 				}
-				IF = { 
-					limit = { has_country_flag = POL_somua_motors }
-					mio:FRA_somua_organization = {
-						add_mio_funds = 500
-						add_mio_funds_gain_factor = 0.1
-					}
-
-				}
-				IF = { 
-					limit = { has_country_flag = POL_vauxhall_motors }
-					mio:ENG_vauxhall_organization = {
-						add_mio_funds = 500
-						add_mio_funds_gain_factor = 0.1
-					}
-				}
-				IF = { 
-					limit = { has_country_flag = POL_ford_motors }
-					mio:USA_ford_motor_company_organization = {
-						add_mio_funds = 500
-						add_mio_funds_gain_factor = 0.1
-					}
+				swap_ideas = {
+					remove_idea = POL_vauxhall
+					add_idea = POL_vauxhall_free
 				}
 			}
-			ELSE = {
-
-				if = {
-					limit = {
-						has_idea = POL_vauxhall
-					}
-					swap_ideas = {
-						remove_idea = POL_vauxhall
-						add_idea = POL_vauxhall_free
-					}
+			else_if = {
+				limit = {
+					has_idea = POL_somua
 				}
-				else_if = {
-					limit = {
-						has_idea = POL_somua
-					}
-					swap_ideas = {
-						remove_idea = POL_somua
-						add_idea = POL_somua_free
-					}
+				swap_ideas = {
+					remove_idea = POL_somua
+					add_idea = POL_somua_free
 				}
-				else_if = {
-					limit = {
-						has_idea = POL_ford
-					}
-					swap_ideas = {
-						remove_idea = POL_ford
-						add_idea = POL_ford_free
-					}
+			}
+			else_if = {
+				limit = {
+					has_idea = POL_ford
 				}
-				else = {
-					custom_effect_tooltip = POL_motors_become_free_tt
+				swap_ideas = {
+					remove_idea = POL_ford
+					add_idea = POL_ford_free
 				}
+			}
+			else = {
+				custom_effect_tooltip = POL_motors_become_free_tt
 			}
 		}
 	}
@@ -1690,29 +1672,13 @@
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-
-			IF = {
-				limit = {
-					NOT = {
-						has_dlc = "By Blood Alone"
-					}
-				}
-				add_tech_bonus = {
-					name = POL_fighter_modernisation
-					bonus = 1.0
-					uses = 1
-					category = light_fighter
-				}
+			add_tech_bonus = {
+				name = POL_fighter_modernisation
+				bonus = 1.0
+				uses = 1
+				category = light_fighter
 			}
-			ELSE = {
-				add_tech_bonus = {
-					name = POL_fighter_modernisation
-					bonus = 1.0
-					uses = 1
-					category = light_air
-				}
-			}
-			
+			#1x50% research bonus to fighter models
 		}
 	}
 
@@ -1741,6 +1707,7 @@
 				uses = 1
 				category = air_doctrine
 			}
+			#1x50% research bonus to Air Doctrine Research
 		}
 	}
 
@@ -1761,29 +1728,13 @@
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-
-			IF = {
-				limit = {
-					NOT = {
-						has_dlc = "By Blood Alone"
-					}
-				}
-				add_tech_bonus = {
-					name = POL_heavy_fighter_concept
-					bonus = 1.0
-					uses = 1				
-					category = cat_heavy_fighter
-				}
+			add_tech_bonus = {
+				name = POL_heavy_fighter_concept
+				bonus = 1.0
+				uses = 1				
+				category = cat_heavy_fighter
 			}
-			ELSE = {
-				add_tech_bonus = {
-					name = POL_heavy_fighter_concept
-					bonus = 1.0
-					uses = 1
-					category = medium_air
-				}
-			}
-
+			#1x 50% research bonus to Heavy Fighters
 		}
 	}
 
@@ -1804,35 +1755,13 @@
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-
-			IF = {
-				limit = {
-					NOT = {
-						has_dlc = "By Blood Alone"
-					}
-				}
-				add_tech_bonus = {
-					name = POL_naval_bomber_experiments
-					bonus = 1.0
-					uses = 1				
-					category = naval_bomber
-				}
+			add_tech_bonus = {
+				name = POL_naval_bomber_experiments
+				bonus = 1.0
+				uses = 1				
+				category = naval_bomber
 			}
-			ELSE = {
-				add_tech_bonus = {
-					name = POL_naval_bomber_experiments
-					bonus = 0.5
-					uses = 1				
-					category = light_air
-				}
-				add_tech_bonus = {
-					name = POL_naval_bomber_experiments
-					bonus = 0.75
-					uses = 1				
-					category = cat_air_bombs
-				}
-			}
-
+			#1x50% research bonus to NAV
 		}
 	}
 
@@ -1854,29 +1783,13 @@
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-
-			IF = {
-				limit = {
-					NOT = {
-						has_dlc = "By Blood Alone"
-					}
-				}
-				add_tech_bonus = {
-					name = POL_medium_bomber_focus
-					bonus = 1.0
-					uses = 1				
-					category = tactical_bomber
-				}
+			add_tech_bonus = {
+				name = POL_medium_bomber_focus
+				bonus = 1.0
+				uses = 1				
+				category = tactical_bomber
 			}
-			ELSE = {
-				add_tech_bonus = {
-					name = POL_medium_bomber_focus
-					bonus = 1.0
-					uses = 1
-					category = medium_air
-				}
-			}
-
+			#1 x 50% research bonus to Tactical Bomber models
 		}
 	}
 
@@ -1898,29 +1811,13 @@
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-
-			IF = {
-				limit = {
-					NOT = {
-						has_dlc = "By Blood Alone"
-					}
-				}
-				add_tech_bonus = {
-					name = POL_light_bomber_focus
-					bonus = 1.0
-					uses = 1				
-					category = cas_bomber
-				}
+			add_tech_bonus = {
+				name = POL_light_bomber_focus
+				bonus = 1.0
+				uses = 1				
+				category = cas_bomber
 			}
-			ELSE = {
-				add_tech_bonus = {
-					name = POL_light_bomber_focus
-					bonus = 1.0
-					uses = 1				
-					category = light_air
-				}
-			}
-
+			#1 x 50% research bonus to CAS
 		}
 	}
 
@@ -1968,20 +1865,14 @@
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-
-			add_breakthrough_progress = {
-				specialization = specialization_air
-				value = 0.5
-			}
-
 			add_tech_bonus = {
 				name = POL_rocket_development
-				bonus = 0.75
+				bonus = 1.0
 				uses = 2
 				category = jet_technology
 				category = rocketry
 			}
-
+			#2x50% research to Rockets and Jet Engine Research
 		}
 	}
 
@@ -3564,7 +3455,7 @@
 		completion_reward = {
 			add_tech_bonus = {
 				name = POL_invest_anti_air
-				bonus = 0.5
+				bonus = 1.0
 				uses = 3
 				category = cat_anti_air
 			}
@@ -4173,26 +4064,6 @@
 
 		available = {
 			NOT = { has_completed_focus = POL_complete_plan_east }
-			OR = {
-				94 = {
-					owns_or_subject_of = yes
-					controller = {
-						tag = PREV.OWNER
-					}
-				}
-				95 = {
-					owns_or_subject_of = yes
-					controller = {
-						tag = PREV.OWNER
-					}
-				}
-				96 = {
-					owns_or_subject_of = yes
-					controller = {
-						tag = PREV.OWNER
-					}
-				}
-			}
 		}
 		
 		bypass = {
@@ -4435,39 +4306,6 @@
 				#level = 2
 				start_province = 560
 				target_province = 6557
-
-			}
-
-			random_core_state = {
-				
-				limit = {
-					is_in_home_area = yes					
-					free_building_slots = {
-						building = infrastructure
-						size > 0
-					}
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}
-			}
-
-			random_core_state = {
-				
-				limit = {
-					is_in_home_area = yes					
-					free_building_slots = {
-						building = infrastructure
-						size > 0
-					}
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}
 			}
 		}
 	}
@@ -5115,8 +4953,8 @@
 					surrender_progress < 0.5
 				}
 			}
-			FRA = {
-				has_capitulated = yes
+			VIC = {
+				has_country_flag = VIC_france_capped
 			}
 
 		}
@@ -5556,7 +5394,7 @@
 			air_experience = 75
 			add_manpower = 10000
 			add_equipment_to_stockpile = {
-				type = fighter_equipment
+				type = small_plane_airframe
 				amount = 300
 				producer = ENG
 			}
@@ -5925,19 +5763,12 @@
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-
-			add_breakthrough_progress = {
-				specialization = specialization_nuclear
-				value = 0.75
-			}
-
 			add_tech_bonus = {
 				name = POL_atomic_physics_institute
-				bonus = 0.5 # was 1
+				bonus = 1.0
 				uses = 1
 				category = nuclear
 			}
-
 		}
 	}
 
@@ -6018,13 +5849,6 @@
 		}
 		
 		bypass = {
-			OR = {
-				NOT = {
-					has_idea = uncontrolled_exports
-				}
-				85 = { is_demilitarized_zone = no }
-			}
-			has_civil_war = no
 		}
 
 		available_if_capitulated = yes
@@ -6041,12 +5865,12 @@
 				add_dynamic_modifier = {
 					modifier = international_city_2
 				}
-				# force_enable_resistance = { 
-				# 	clear = no
-				# 	occupier = POL
-				# 	occupied = DNZ
-				# }
-				#start_resistance = DNZ
+				force_enable_resistance = { 
+					clear = no
+					occupier = POL
+					# occupied = DNZ
+				}
+				# start_resistance = DNZ
 				set_resistance = 40
 				set_compliance = 30
 				add_resistance_target = { 
@@ -6054,12 +5878,12 @@
 					tooltip = clamp_down_on_danzig_tt
 				}
 			}
-			hidden_effect = {
-				news_event = {
-					id = nsb_news.4
-					days = 1
-				}
-			}
+			# hidden_effect = {
+			# 	news_event = {
+			# 		id = nsb_news.4
+			# 		days = 1
+			# 	}
+			# }
 		}
 	}
 
@@ -6139,7 +5963,7 @@
 		completion_reward = {
 			add_tech_bonus = {
 				name = POL_study_foreign_built_ships
-				bonus = 0.75
+				bonus = 1.0
 				uses = 2
 				category = dd_tech
 			}
@@ -6163,38 +5987,19 @@
 		available = {
 			owns_state = 85
 			controls_state = 85
-			85 = {
-				OR = {
-					AND = {
-						compliance > 80
-						resistance < 50
-					}
-					#NOT = { is_core_of = DNZ }
-				}
-			}
 		}
 		
 		bypass = {
-			OR = {
-				NOT = {
-					has_idea = uncontrolled_exports
-				}
-				NOT = {
-					controls_state = 85
-				}
-				85 = { is_demilitarized_zone = no }
-			}
-			has_civil_war = no
 		}
 
 		available_if_capitulated = yes
 		completion_reward = {
 			85 = {
-				# force_enable_resistance = { 
-				# 	clear = yes
-				# 	occupier = POL
-				# 	occupied = DNZ
-				# }
+				force_enable_resistance = { 
+					clear = yes
+					occupier = POL
+					# occupied = DNZ
+				}
 				POL_remove_danzig_effect = yes
 				set_state_name = "Gdańsk"
 			}
@@ -6208,9 +6013,6 @@
 	focus = {
 		id = POL_develop_gdansk_ship_building
 		icon = GFX_goal_generic_construct_naval_dockyard
-		available = {
-			has_full_control_of_state = 85
-		}
 		prerequisite = { focus = POL_ban_the_nazi_party }
 		x = 1
 		y = 1
@@ -6322,12 +6124,6 @@
 	focus = {
 		id = POL_integrate_gdansk_industries
 		icon = GFX_goal_generic_construct_naval_dockyard
-		available = {
-			any_owned_state = {
-				is_coastal = yes 
-				is_controlled_by = ROOT
-			}
-		}	
 		prerequisite = { focus = POL_ban_the_nazi_party }
 		x = -1
 		y = 1
@@ -6409,18 +6205,6 @@
 					path = { 279 3324 389 9263 }
 				}
 			}
-
-			random_owned_controlled_state = {
-				prioritize = { 85 }
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}
-
-			add_political_power = 50
 		}
 	}
 	

@@ -1,15 +1,9 @@
 HMP_startup_on_actions = {
 	if = {
 		limit = {
-			OR = {
-				has_game_rule = {
-					rule = navy_cap
-					option = ONEFIFTYCAP
-				}
-				has_game_rule = {
-					rule = navy_cap
-					option = ONEHUNDREDCAP
-				}
+			has_game_rule = {
+				rule = navy_cap
+				option = ENABLED
 			}
 		}
 		every_country = {
@@ -67,11 +61,6 @@ HMP_check_fleet_size = {
 			var = shbb_count
 			value = num_ships_with_type@sh_battleship
 		}
-		clear_variable = shcv_count 
-		add_to_variable = { 
-			var = shcv_count
-			value = num_ships_with_type@sh_carrier
-		}
 
 		# New stuff I added
 		clear_variable = capital_count 
@@ -94,10 +83,6 @@ HMP_check_fleet_size = {
 		add_to_variable = { 
 			var = capital_count
 			value = num_ships_with_type@sh_battleship
-		}
-		add_to_variable = { 
-			var = capital_count
-			value = num_ships_with_type@sh_carrier
 		}
 
 		clear_variable = screen_count
@@ -193,7 +178,7 @@ HMP_check_fleet_size = {
 			value = carrier_count 
 		}
 		multiply_temp_variable  = { 
-			var = carrier_count_temp value = 8
+			var =  carrier_count_temp value = 6
 		}
 		add_to_temp_variable = {
 			var = command_limit_used_temp
@@ -210,19 +195,8 @@ HMP_check_fleet_size = {
 			var = command_limit_used_temp
 			value = shbb_count_temp
 		}
-		set_temp_variable ={
-			var = shcv_count_temp
-			value = shcv_count
-		}
-		multiply_temp_variable = {
-			var = shcv_count_temp value = 14
-		}
-		add_to_temp_variable = {
-			var = command_limit_used_temp
-			value = shcv_count_temp
-		}
 		set_temp_variable = {
-			var = submarine_count_temp
+			var =submarine_count_temp
 			value = submarine_count 
 		}
 		add_to_temp_variable = {
@@ -236,22 +210,14 @@ HMP_check_fleet_size = {
 			value = command_limit_used_temp
 		}
 		if = {  
-			limit = { check_variable = {  command_limit_used > GLOBAL.cap } }
-			set_temp_variable = { 
-				var = penaltylevel 
-				value = GLOBAL.cap
-			}
-			subtract_from_temp_variable = {
-				var = penaltylevel
-				value = 5
-			}
+			limit = { check_variable = {  command_limit_used > 100 } }
 			add_to_temp_variable = { 
 				var = command_limit_penalty_calc
 				value = command_limit_used
 			}
 			subtract_from_temp_variable = {
 				var = command_limit_penalty_calc
-				value = penaltylevel
+				value = 95
 			}
 			multiply_temp_variable = {
 				var = command_limit_penalty_calc
@@ -270,15 +236,14 @@ HMP_check_fleet_size = {
 			NOT = { is_in_array = { array = ROOT.battle_admirals value = THIS.id } }		
 			custom_trigger_tooltip = {  
 				OR = { 
-					check_variable = { num_ships_with_type@sh_carrier > 0 }
 					check_variable = { num_ships_with_type@carrier > 0 }
 					check_variable = { num_ships_with_type@sh_battleship > 0 } 
 					check_variable = { num_ships_with_type@light_cruiser > 0 } 
-					check_variable = { num_ships_with_type@battleship > 0 } 
+					check_variable = {  num_ships_with_type@battleship > 0 } 
 					check_variable = { num_ships_with_type@battle_cruiser > 0 } 
-					check_variable = { num_ships_with_type@heavy_cruiser > 0  }  
-					check_variable = { num_ships_with_type@destroyer > 1  }  
-					check_variable = { num_ships_with_type@submarine > 1  }  
+					check_variable = {  num_ships_with_type@heavy_cruiser > 0  }  
+					check_variable = {  num_ships_with_type@destroyer > 1  }  
+					check_variable = {  num_ships_with_type@submarine > 1  }  
 				}
 			}	
 		}
@@ -293,12 +258,11 @@ HMP_check_fleet_size = {
 		}
 	}
 			
-	# if = { 
-	# 	limit = { 
-	# 		check_variable = { fleet_overstack_naval_damage_factor < -1 } 
-	# 	}
-	# 	log = "[?fleet_overstack_naval_damage_factor]"
-	# 	#set_variable = { var = fleet_overstack_naval_damage_factor value = -1 }
-	# }
+	if = { 
+		limit = { 
+			check_variable = { fleet_overstack_naval_damage_factor < -1 } 
+		}
+		set_variable = { var = fleet_overstack_naval_damage_factor value = -1 }
+	}
 	
 }

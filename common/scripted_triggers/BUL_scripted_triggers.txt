@@ -40,7 +40,7 @@ BUL_state_is_in_the_black_sea = {
 			state = 797
 			state = 211
 			state = 77
-			state = 971
+			state = 46
 			state = 766
 			state = 192
 			state = 197
@@ -56,7 +56,6 @@ BUL_state_is_in_the_black_sea = {
 			state = 355
 			state = 356
 			state = 347
-			state = 826
 		}
 	}
 }
@@ -68,18 +67,15 @@ BUL_state_is_in_the_adriatic_sea = {
 			state = 185
 			state = 805
 			state = 44
-			state = 934
 			state = 105
 			state = 103
 			state = 163
 			state = 736
-			state = 852
 			state = 160
 			state = 161
 			state = 157
 			state = 117
 			state = 156
-			state = 849
 		}
 	}
 }
@@ -90,7 +86,6 @@ BUL_country_seeks_macedonian_stability = {
 		OR = {
 			controls_state = 803
 			controls_state = 106
-			controls_state = 970
 			controls_state = 731
 			controls_state = 184
 			AND = {
@@ -101,7 +96,6 @@ BUL_country_seeks_macedonian_stability = {
 					is_in_faction_with = YUG
 					803 = { controller = { is_in_faction_with = ENG } }
 					106 = { controller = { is_in_faction_with = ENG } }
-					970 = { controller = { is_in_faction_with = ENG } }
 					731 = { controller = { is_in_faction_with = ENG } }
 					184 = { controller = { is_in_faction_with = ENG } }
 				}
@@ -115,7 +109,6 @@ BUL_country_seeks_macedonian_stability = {
 					is_in_faction_with = YUG
 					803 = { controller = { is_in_faction_with = ENG } }
 					106 = { controller = { is_in_faction_with = ENG } }
-					970 = { controller = { is_in_faction_with = ENG } }
 					731 = { controller = { is_in_faction_with = ENG } }
 					184 = { controller = { is_in_faction_with = ENG } }
 				}
@@ -147,36 +140,22 @@ BUL_has_banned_faction_media = {
 }
 
 BUL_historical_requirements_met = {
-	OR = {
+	any_allied_country = {
 		has_war_with = SOV
-		any_allied_country = {
-			has_war_with = SOV
-		}
-	}
-	SOV = {
-		surrender_progress < 0.05
 	}
 	OR = {
-		SOV = {
-			any_controlled_state = {
-				OR = {
-					has_state_flag = BUL_initial_bulgarian_state_flag
-					has_state_flag = BUL_historical_bulgarian_claim_flag
-				}
-				is_fully_controlled_by = PREV
+		AND = {
+			any_home_area_neighbor_country = {
+				tag = SOV
 			}
 		}
 		SOV = {
-			any_controlled_state = {
+			any_state = {
 				is_core_of = GER
-				NOT = {
-					state = 188
-					state = 763
-					state = 5
-					state = 807
-					state = 85
-				}
 			}
+		}
+		SOV = {
+			surrender_progress < 0.2
 		}
 	}
 }
@@ -191,7 +170,6 @@ BUL_has_restored_greater_bulgaria = {
 	184 = { is_fully_controlled_by = ROOT } #Central Macedonia
 	731 = { is_fully_controlled_by = ROOT } #Thrace
 	77 = { is_fully_controlled_by = ROOT } #Dobrudja
-	#971 = { is_fully_controlled_by = ROOT } #North Dobrudja
 }
 
 BUL_country_can_influence_bulgaria = {
@@ -224,12 +202,11 @@ BUL_is_balkan_nation = {
 			# original_tag = SLV
 			# original_tag = BOS
 			# original_tag = HRZ
-			#original_tag = MAC
-			original_tag = SER
-			original_tag = CRO
+			# original_tag = MAC
+			# original_tag = SER
+			# original_tag = CRO
 			# original_tag = KOS
 			# original_tag = MNT
-			# original_tag = TRA
 		}
 	}
 }
@@ -246,12 +223,11 @@ BUL_is_balkan_nation_no_bulgaria = {
 			# original_tag = SLV
 			# original_tag = BOS
 			# original_tag = HRZ
-			#original_tag = MAC
-			original_tag = SER
-			original_tag = CRO
+			# original_tag = MAC
+			# original_tag = SER
+			# original_tag = CRO
 			# original_tag = KOS
 			# original_tag = MNT
-			# original_tag = TRA
 		}
 	}
 }
@@ -267,12 +243,11 @@ BUL_is_balkan_state = {
 		# is_core_of = SLV
 		# is_core_of = BOS
 		# is_core_of = HRZ
-		#is_core_of = MAC
-		is_core_of = SER
-		is_core_of = CRO
+		# is_core_of = MAC
+		# is_core_of = SER
+		# is_core_of = CRO
 		# is_core_of = KOS
 		# is_core_of = MNT
-		# is_core_of = TRA
 	}
 	is_on_continent = europe
 }
@@ -300,80 +275,31 @@ BUL_is_not_alone_in_faction = {
 ### AI ###
 
 BUL_is_historical_ai = {
-	OR = {
-		AND = {
-			is_historical_focus_on = yes
-			has_game_rule = {
-				rule = BUL_ai_behavior
-				option = DEFAULT
-			}
-		}
-		has_country_flag = BUL_AI_RANDOM_HISTORICAL
-		has_game_rule = {
-			rule = BUL_ai_behavior
-			option = HISTORICAL
-		}
-	}
+	always = yes
 }
 
 BUL_is_communist_stalinist_ai = {
-	OR = {
-		has_country_flag = BUL_AI_RANDOM_COMMUNIST
-		has_game_rule = {
-			rule = BUL_ai_behavior 
-			option = COMMUNIST
-		}
-	}
+	always = no
 }
 
 BUL_is_communist_balkan_ai = {
-	OR = {
-		has_country_flag = BUL_AI_RANDOM_COMMUNIST_BALKAN_FEDERATION
-		has_game_rule = {
-			rule = BUL_ai_behavior 
-			option = COMMUNIST_BALKAN_FEDERATION
-		}
-	}
+	always = no
 }
 
 BUL_is_democratic_socialist_ai = {
-	OR = {
-		has_country_flag = BUL_AI_RANDOM_DEMOCRATIC_SOCIALIST
-		has_game_rule = {
-			rule = BUL_ai_behavior 
-			option = DEMOCRATIC_SOCIALIST
-		}
-	}
+	always = no
 }
 
 BUL_is_democratic_liberal_ai = {
-	OR = {
-		has_country_flag = BUL_AI_RANDOM_DEMOCRATIC_LIBERAL
-		has_game_rule = {
-			rule = BUL_ai_behavior 
-			option = DEMOCRATIC_LIBERAL
-		}
-	}
+	always = no
 }
 
 BUL_is_fascist_axis_ai = {
-	OR = {
-		has_country_flag = BUL_AI_RANDOM_FASCIST
-		has_game_rule = {
-			rule = BUL_ai_behavior 
-			option = FASCIST
-		}
-	}
+	always = no
 }
 
 BUL_is_monarchist_ferdinand_ai = {
-	OR = {
-		has_country_flag = BUL_AI_RANDOM_THE_RETURN_OF_FERDINAND
-		has_game_rule = {
-			rule = BUL_ai_behavior 
-			option = THE_RETURN_OF_FERDINAND
-		}
-	}
+	always = no
 }
 
 BUL_save_money_for_decisions = {
@@ -450,7 +376,7 @@ BUL_has_some_sort_of_bogdan_filov = {
 			has_idea = BUL_bogdan_filov
 			has_idea = BUL_bogdan_filov_fascism
 			has_country_leader = {
-				character = BUL_bogdan_filov
+				name = "Bogdan Filov" 
 				ruling_only = yes
 			}
 		}

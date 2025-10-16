@@ -14,52 +14,75 @@ country_event = {
 	
 	is_triggered_only = yes
 	
+	# option = {
+	# 	name = tfv_south_africa.1.a	# ENG accepts the proposal
+		
+	# 	ai_chance = {
+	# 		base = 80
+
+	# 	}
+		
+	# 	effect_tooltip = {
+	# 		SAF = {
+	# 			transfer_state = 542
+	# 			transfer_state = 545
+	# 			transfer_state = 546
+	# 			transfer_state = 547
+	# 			transfer_state = 548
+	# 			transfer_state = 771
+	# 			transfer_state = 770
+	# 			#Belgian Congo
+	# 			transfer_state = 295
+	# 			transfer_state = 538
+	# 			transfer_state = 718
+	# 			transfer_state = 769
+	# 			transfer_state = 768
+	# 		}
+	# 	}
+	# 	hidden_effect = {
+	# 		SAF = {
+	# 			country_event = { id = tfv_south_africa.2 }
+	# 		}
+	# 		set_global_flag = SAF_ENG_accepted_transfering_africa
+	# 	}
+	# }
+
 	option = {
-		name = tfv_south_africa.1.a	# ENG accepts the proposal
+		name = tfv_south_africa.1.c_tt # territory but keeps resource rights
 		
 		ai_chance = {
-			base = 80
-
+			base = 100
 		}
-		
+
 		effect_tooltip = {
 			SAF = {
-				transfer_state = 540
 				transfer_state = 542
-				transfer_state = 544
 				transfer_state = 545
 				transfer_state = 546
 				transfer_state = 547
 				transfer_state = 548
 				transfer_state = 771
 				transfer_state = 770
-				transfer_state = 981
-				transfer_state = 891
-				transfer_state = 892
-				transfer_state = 896
-				transfer_state = 897
-				transfer_state = 903
-				transfer_state = 904
-				transfer_state = 905
-				transfer_state = 981
 				#Belgian Congo
 				transfer_state = 295
 				transfer_state = 538
 				transfer_state = 718
 				transfer_state = 769
 				transfer_state = 768
-				transfer_state = 888
-				transfer_state = 889
-				transfer_state = 890
+
+				give_resource_rights = { receiver = ENG state = 542 }
+				give_resource_rights = { receiver = ENG state = 771 }
 			}
 		}
+		
 		hidden_effect = {
 			SAF = {
-				country_event = { id = tfv_south_africa.2 }
+				country_event = { id = tfv_south_africa.4 }
 			}
+			set_global_flag = SAF_ENG_accepted_transfering_africa
 		}
 	}
-	
+
 	option = {
 		name = tfv_south_africa.1.b # ENG refuses the proposal
 		
@@ -86,22 +109,6 @@ country_event = {
 	
 	option = {
 		name = tfv_south_africa.2.a
-		if = {
-			limit = {
-				544 = {	is_fully_controlled_by = ENG }
-			}
-			transfer_state = 544
-		} else = {
-			544 = { add_claim_by = SAF }
-		}
-		if = {
-			limit = {
-				540 = {	is_fully_controlled_by = ENG }
-			}
-			transfer_state = 540
-		} else = {
-			540 = { add_claim_by = SAF }
-		}
 		if = {
 			limit = {
 				545 = {	is_fully_controlled_by = ENG }
@@ -158,69 +165,135 @@ country_event = {
 		} else = {
 			548 = { add_claim_by = SAF }
 		}
+
+		#Belgian Congo
 		if = {
 			limit = {
-				891 = {	is_fully_controlled_by = ENG }
+				295 = {	is_fully_controlled_by = BEL }
 			}
-			transfer_state = 891
+			transfer_state = 295
 		} else = {
-			891 = { add_claim_by = SAF }
+			295 = { add_claim_by = SAF }
 		}
 		if = {
 			limit = {
-				892 = {	is_fully_controlled_by = ENG }
+				538 = {	is_fully_controlled_by = BEL }
 			}
-			transfer_state = 892
+			transfer_state = 538
 		} else = {
-			892 = { add_claim_by = SAF }
+			538 = { add_claim_by = SAF }
 		}
 		if = {
 			limit = {
-				896 = {	is_fully_controlled_by = ENG }
+				718 = {	is_fully_controlled_by = BEL }
 			}
-			transfer_state = 896
+			transfer_state = 718
 		} else = {
-			896 = { add_claim_by = SAF }
+			718 = { add_claim_by = SAF }
 		}
 		if = {
 			limit = {
-				897 = {	is_fully_controlled_by = ENG }
+				769 = {	is_fully_controlled_by = BEL }
 			}
-			transfer_state = 897
+			transfer_state = 769
 		} else = {
-			897 = { add_claim_by = SAF }
+			769 = { add_claim_by = SAF }
 		}
 		if = {
 			limit = {
-				903 = {	is_fully_controlled_by = ENG }
+				768 = {	is_fully_controlled_by = BEL }
 			}
-			transfer_state = 903
+			transfer_state = 768
 		} else = {
-			903 = { add_claim_by = SAF }
+			768 = { add_claim_by = SAF }
+		}
+
+		hidden_effect = {
+			news_event = { id = news.260 hours = 6 }
+		}
+	}
+		
+	
+}
+#ENG refuses
+country_event = {
+	id = tfv_south_africa.3
+	title = tfv_south_africa.3.t	#
+	desc = tfv_south_africa.3.d		#
+	picture = GFX_report_event_saf_soldiers_3
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = tfv_south_africa.3.a
+	}
+}
+#ENG compromises
+country_event = {
+	id = tfv_south_africa.4
+	title = tfv_south_africa.4.t_cc	#
+	desc = tfv_south_africa.4.d_c		#
+	picture = GFX_report_event_saf_soldiers					#
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = tfv_south_africa.4.a_c
+		if = {
+			limit = {
+				545 = {	is_fully_controlled_by = ENG }
+			}
+			transfer_state = 545
+		} else = {
+			545 = { add_claim_by = SAF }
 		}
 		if = {
 			limit = {
-				904 = {	is_fully_controlled_by = ENG }
+				542 = {	is_fully_controlled_by = ENG }
 			}
-			transfer_state = 904
+			transfer_state = 542
 		} else = {
-			904 = { add_claim_by = SAF }
+			542 = { add_claim_by = SAF }
 		}
 		if = {
 			limit = {
-				905 = {	is_fully_controlled_by = ENG }
+				771 = {	is_fully_controlled_by = ENG }
 			}
-			transfer_state = 905
+			transfer_state = 771
 		} else = {
-			905 = { add_claim_by = SAF }
+			771 = { add_claim_by = SAF }
 		}
 		if = {
 			limit = {
-				981 = {	is_fully_controlled_by = ENG }
+				770 = {	is_fully_controlled_by = ENG }
 			}
-			transfer_state = 981
+			transfer_state = 770
 		} else = {
-			981 = { add_claim_by = SAF }
+			770 = { add_claim_by = SAF }
+		}
+		if = {
+			limit = {
+				546 = {	is_fully_controlled_by = ENG }
+			}
+			transfer_state = 546
+		} else = {
+			546 = { add_claim_by = SAF }
+		}
+		if = {
+			limit = {
+				547 = {	is_fully_controlled_by = ENG }
+			}
+			transfer_state = 547
+		} else = {
+			547 = { add_claim_by = SAF }
+		}
+		if = {
+			limit = {
+				548 = {	is_fully_controlled_by = ENG }
+			}
+			transfer_state = 548
+		} else = {
+			548 = { add_claim_by = SAF }
 		}
 
 		#Belgian Congo
@@ -264,62 +337,20 @@ country_event = {
 		} else = {
 			768 = { add_claim_by = SAF }
 		}
-		if = {
-			limit = {
-				888 = {	is_fully_controlled_by = BEL }
+
+		effect_tooltip = {
+			SAF = {
+				give_resource_rights = { receiver = ENG state = 542 }
+				give_resource_rights = { receiver = ENG state = 771 }
 			}
-			transfer_state = 888
-		} else = {
-			888 = { add_claim_by = SAF }
-		}
-		if = {
-			limit = {
-				889 = {	is_fully_controlled_by = BEL }
-			}
-			transfer_state = 889
-		} else = {
-			889 = { add_claim_by = SAF }
-		}
-		if = {
-			limit = {
-				890 = {	is_fully_controlled_by = BEL }
-			}
-			transfer_state = 890
-		} else = {
-			890 = { add_claim_by = SAF }
-		}
+		}	
 
 		hidden_effect = {
 			news_event = { id = news.260 hours = 6 }
+			SAF = {
+				country_event = { id = tfv_south_africa.105 days = 1 }
+			}
 		}
-	}
-		
-	
-}
-#ENG refuses
-country_event = {
-	id = tfv_south_africa.3
-	title = tfv_south_africa.3.t	#
-	desc = tfv_south_africa.3.d		#
-	picture = GFX_report_event_saf_soldiers_3
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = tfv_south_africa.3.a
-	}
-}
-#ENG compromises
-country_event = {
-	id = tfv_south_africa.4
-	title = tfv_south_africa.4.t	#
-	desc = tfv_south_africa.4.d		#
-	picture = GFX_report_event_saf_soldiers					#
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = tfv_south_africa.4.a
 	}
 }
 
@@ -1883,5 +1914,27 @@ country_event = {
 		ai_chance = {
 			base = 100
 		}	
+	}
+}
+
+country_event = {
+	id = tfv_south_africa.105
+	title = tfv_south_africa.104.t	# resource transfer
+	desc = tfv_south_africa.104.d
+	picture = GFX_report_event_african_soldiers
+	
+	is_triggered_only = yes
+	
+	hidden = yes
+
+	option = { #puppet new state
+		name = tfv_south_africa.64.a
+		ai_chance = {
+			base = 100
+		}	
+		SAF = {
+			give_resource_rights = { receiver = ENG state = 542 }
+			give_resource_rights = { receiver = ENG state = 771 }
+		}
 	}
 }

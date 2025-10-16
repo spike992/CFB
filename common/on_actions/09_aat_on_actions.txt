@@ -77,17 +77,17 @@ on_actions = {
 			}
 		}
 
-		effect = { # Setting up Nordic Cooperation system 
-			NOR = {
-				NORDIC_cooperation_initial_setup = yes 
-			}
-		}
-
-		effect = {
-			SWE = {
-				SWE_calc_refugee_from_war = yes
-			}
-		}
+		#effect = { # Setting up Nordic Cooperation system 
+			#NOR = {
+				#NORDIC_cooperation_initial_setup = yes 
+			#}
+		#}
+#
+		#effect = {
+			#SWE = {
+				#SWE_calc_refugee_from_war = yes
+			#}
+		#}
 
 		effect = {
 			GER = {
@@ -96,11 +96,11 @@ on_actions = {
 		}
 	}
 
-	on_new_term_election = {
-		random_events = {
-			100 = denmark_political_events.3 #danish election events
-		}
-	}
+	#on_new_term_election = {
+		#random_events = {
+			#100 = denmark_political_events.3 #danish election events
+		#}
+	#}
 
 	# on_weekly_SWE = {
 	# 	effect = {
@@ -138,13 +138,13 @@ on_actions = {
 	# }
 
 	#ROOT is capitulated country, FROM is winner.
-	on_capitulation_immediate = {
-		effect = {
-			SWE_is_norway_mostly_occupied = yes
-			SWE_is_finland_mostly_occupied = yes
-			SWE_is_denmark_mostly_occupied = yes
-			SWE_is_ice_mostly_occupied = yes
-		}
+	#on_capitulation_immediate = {
+		#effect = {
+			#SWE_is_norway_mostly_occupied = yes
+			#SWE_is_finland_mostly_occupied = yes
+			#SWE_is_denmark_mostly_occupied = yes
+			#SWE_is_ice_mostly_occupied = yes
+		#}
 
 		# #FINLAND - BROKEN CONTINUATION WAR PACT
 		# effect = {
@@ -165,65 +165,65 @@ on_actions = {
 	}
 	
 	# ROOT is capitulated country, FROM is winner
-	on_capitulation = {
-		effect = { #Achievement Two Arms Against Tyranny
-			if = {
-				limit = {
-					has_dlc = "Arms Against Tyranny"
-					FROM = {
-						OR = {
-							original_tag = FIN
-							is_in_faction_with = FIN
-						}
-						num_faction_members < 3
-						num_faction_members > 1
-						any_allied_country = {
-							NORDIC_is_nordic = yes
-						}
-					}
-
-					ROOT = {
-						original_tag = SOV
-					}
-				}
-
-				set_global_flag = capitulated_soviet_with_only_finland_and_another_nordic
-			}
-			if = { #Flag locking Achievement "Everything is Awesome"
-				limit = {
-					has_dlc = "Arms Against Tyranny"
-					ROOT = {
-						original_tag = DEN
-					}
-				}
-				set_global_flag = achievement_den_has_never_been_capitulated
-			}
-		}
-	}
-
-	##ROOT is affected country
-	on_uncapitulation = {
-		effect = { # Setting Oslo as capital of Oslo again 
-			if = {
-				limit = {
-					ROOT = { 
-						original_tag = NOR
-						has_government = democratic
-						has_variable = NOR_mobile_government_hq
-						NOT = {
-							check_variable = {
-								NOR_mobile_government_hq = 110 # Checking that the state is not Oslo 
-							}  
-						}
-					}
-				}
-				ROOT = {
-					set_capital = { state = 110}
-					set_variable = { NOR_mobile_government_hq = 110 }
-				}
-			}
-		}
-	}
+	#on_capitulation = {
+		#effect = { #Achievement Two Arms Against Tyranny
+			#if = {
+				#limit = {
+					#has_dlc = "Arms Against Tyranny"
+					#FROM = {
+						#OR = {
+							#original_tag = FIN
+							#is_in_faction_with = FIN
+						#}
+						#num_faction_members < 3
+						#num_faction_members > 1
+						#any_allied_country = {
+							#NORDIC_is_nordic = yes
+						#}
+					#}
+#
+					#ROOT = {
+						#original_tag = SOV
+					#}
+				#}
+#
+				#set_global_flag = capitulated_soviet_with_only_finland_and_another_nordic
+			#}
+			#if = { #Flag locking Achievement "Everything is Awesome"
+				#limit = {
+					#has_dlc = "Arms Against Tyranny"
+					#ROOT = {
+						#original_tag = DEN
+					#}
+				#}
+				#set_global_flag = achievement_den_has_never_been_capitulated
+			#}
+		#}
+	#}
+#
+	###ROOT is affected country
+	#on_uncapitulation = {
+		#effect = { # Setting Oslo as capital of Oslo again 
+			#if = {
+				#limit = {
+					#ROOT = { 
+						#original_tag = NOR
+						#has_government = democratic
+						#has_variable = NOR_mobile_government_hq
+						#NOT = {
+							#check_variable = {
+								#NOR_mobile_government_hq = 110 # Checking that the state is not Oslo 
+							#}  
+						#}
+					#}
+				#}
+				#ROOT = {
+					#set_capital = { state = 110}
+					#set_variable = { NOR_mobile_government_hq = 110 }
+				#}
+			#}
+		#}
+	#}
 
 	# FROM is the country that is hosting the government in exile.
 	# ROOT is the government in exile

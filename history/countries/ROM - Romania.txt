@@ -8,41 +8,15 @@ if = {
 		set_naval_oob = "ROM_1936_naval_legacy"
 	}
 }
-# if = {
-# 	limit = { has_dlc = "By Blood Alone" }
-# 		set_air_oob = "ROM_1936_air_bba"
-# 		set_technology = {
-# 			iw_small_airframe = 1
-# 			aa_lmg = 1
-# 			#engines_1 = 1
-# 		}
-# 	else = {
-		set_technology = {
-			early_fighter = 1
-			early_transport_plane = 1
-		}
-# 	}
-# }
-
-set_variable = { ROM_integration_recruitable_pop = -0.8 }
-
-set_variable = { ROM_iron_guard_stability_weekly = -0.002 }
-set_variable = { ROM_iron_guard_stability_factor = -0.1 }
-set_variable = { ROM_iron_guard_war_support_weekly = 0 }
-set_variable = { ROM_iron_guard_fascism_drift = 0.01 }
-set_variable = { ROM_iron_guard_army_core_attack_factor = 0 }
-
-set_variable = { ROM_king_carol_ii_political_power_factor = -0.02 }
-set_variable = { ROM_king_carol_ii_neutrality_drift = 0 }
-set_variable = { ROM_king_carol_ii_democratic_drift = 0 }
-set_variable = { ROM_king_carol_ii_stability_factor = 0 }
-set_variable = { ROM_king_carol_ii_consumer_goods_expected_value = 0.05 }
-set_variable = { ROM_king_carol_ii_consumer_goods_factor = 0 }
-set_variable = { ROM_king_carol_ii_industrial_capacity_factory = 0 }
 
 set_research_slots = 5
 set_stability = 0.6
-set_war_support = 0.4
+set_war_support = 0.6
+
+set_variable = {
+	var = min_fuel
+	value = 0.800
+}
 
 # Starting tech
 set_technology = {
@@ -57,9 +31,15 @@ set_technology = {
 	hq_1 = 1
 	gw_artillery = 1
 	basic_train = 1
+	gwtank_chassis = 1
 	fra_light_tank_export = 1
 }
 
+# MP_garrison_division_standard = yes
+
+add_ideas = volunteer_minimum_minor
+add_ideas = AFRICA_COMMONWEALTH_controls_axis_idea_6
+add_ideas = father_check
 
 if = {
 	limit = { not = { has_dlc = "Man the Guns" } }
@@ -88,38 +68,35 @@ if = {
 		has_dlc = "Death or Dishonor"
 	}
 	add_ideas = {
-		#ROM_king_carol_ii_hedonist
+		ROM_king_carol_ii_hedonist
 		ROM_undeveloped_export_industry
 	}
-	#give_guarantee = CZE
-	#give_guarantee = GRE
+	give_guarantee = CZE
+	give_guarantee = GRE
 	give_guarantee = TUR
 }
 add_ideas = neutrality_idea
-add_dynamic_modifier = { modifier = ROM_iron_guard }
-add_dynamic_modifier = { modifier = ROM_king_carol_ii }
-add_ideas = father_check
+# add_ideas = PACIFIC_COMMONWEALTH_controls_axis_original
 add_ideas = peace_training
 add_ideas = no_grinding
-add_ideas = AFRICA_COMMONWEALTH_controls_axis_idea_6
 
 
-# #Kick off kings crazy life
-# if = {
-# 	limit = {
-# 		has_dlc = "Death or Dishonor"
-# 	}
-# 	ROM = {
-# 		#Pick from list of the sane events first
-# 		random_list = {
-# 			100 = { country_event = { id = DOD_romania.81 days = 2 random = 20 } }
-# 		}
-# 	}
-# }
+#Kick off kings crazy life
+if = {
+	limit = {
+		has_dlc = "Death or Dishonor"
+	}
+	ROM = {
+		#Pick from list of the sane events first
+		random_list = {
+			100 = { country_event = { id = DOD_romania.81 days = 2 random = 20 } }
+		}
+	}
+}
 
 
 
-set_convoys = 40
+set_convoys = 10
 
 set_politics = {
 	ruling_party = neutrality
@@ -158,7 +135,7 @@ recruit_character = ROM_ioan_mihail_racovita
 recruit_character = ROM_ion_antonescu
 recruit_character = ROM_horia_macellariu
 recruit_character = ROM_gheorghe_avramescu
-recruit_character = ROM_iuliu_maniu
+# recruit_character = ROM_iuliu_maniu
 recruit_character = ROM_gheorghe_argeseanu
 recruit_character = ROM_nicolae_malaxa
 recruit_character = ROM_petru_groza
@@ -172,7 +149,8 @@ recruit_character = ROM_constantin_sanatescu
 recruit_character = ROM_gheorghe_mihail
 recruit_character = ROM_paul_teodorescu
 recruit_character = ROM_gheorghe_vasiliu
-recruit_character = ROM_corneliu_codreanu
+recruit_character = ROM_nicolae_ciupercă
+recruit_character = ROM_mihail_ascăr
 
 create_equipment_variant = {
 	name = "FT-17"
@@ -252,20 +230,6 @@ if = {
 		}
 	}
 }
-# if = {
-# 	limit = {
-# 		has_dlc = "By Blood Alone"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "IAR 14" 
-# 		type = small_plane_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = light_mg_2x
-# 			engine_type_slot = engine_1_1x
-# 			special_type_slot_1 = empty
-# 		}
-# 	}
-# }
 
 # 1939 Start #
 1939.1.1 = {
@@ -278,28 +242,228 @@ if = {
 	}
 }
 
-recruit_character = debug_karl_donitz
-recruit_character = debug_erich_raeder
-recruit_character = debug_alfred_saalwachter
-recruit_character = debug_hermann_boehm
-recruit_character = debug_wilhelm_marschall
-recruit_character = debug_gunther_lutjens
-recruit_character = debug_rolf_carls
-recruit_character = debug_inigo_campioni
-recruit_character = debug_alberto_da_zara
-recruit_character = debug_giuseppe_fioravanzo
-recruit_character = debug_carlo_bergamini
-recruit_character = debug_angelo_iachino
-recruit_character = debug_junio_valerio_borghese
-recruit_character = debug_isoroku_yamamoto
-recruit_character = debug_mineichi_koga
-recruit_character = debug_kiyoshi_hasegawa
-recruit_character = debug_shigeyoshi_inoue
-recruit_character = debug_takeo_takagi
-recruit_character = debug_soemu_toyoda
-recruit_character = debug_jisaburo_ozawa
-recruit_character = debug_zengo_yoshida
-recruit_character = debug_hiroaki_abe
-recruit_character = debug_tadashige_daigo
-recruit_character = debug_gengo_hyakutake
-recruit_character = debug_nobutake_kondō
+# AXIS
+
+			# GER
+			add_operation_token = {
+				tag = GER
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = GER
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = GER
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = GER
+				token = token_navy_friendly
+			}
+			# ITA
+			add_operation_token = {
+				tag = ITA
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = ITA
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = ITA
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = ITA
+				token = token_navy_friendly
+			}
+			# HUN
+			add_operation_token = {
+				tag = HUN
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = HUN
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = HUN
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = HUN
+				token = token_navy_friendly
+			}
+			# BUL
+			add_operation_token = {
+				tag = BUL
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = BUL
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = BUL
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = BUL
+				token = token_navy_friendly
+			}
+			# SPR
+			add_operation_token = {
+				tag = SPR
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = SPR
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = SPR
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = SPR
+				token = token_navy_friendly
+			}
+			# FIN
+			add_operation_token = {
+				tag = FIN
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = FIN
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = FIN
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = FIN
+				token = token_navy_friendly
+			}
+			#AOI
+			add_operation_token = {
+				tag = AOI
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = AOI
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = AOI
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = AOI
+				token = token_navy_friendly
+			}
+			# YUG
+			add_operation_token = {
+				tag = YUG
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = YUG
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = YUG
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = YUG
+				token = token_navy_friendly
+			}
+			# ALB
+			add_operation_token = {
+				tag = ALB
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = ALB
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = ALB
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = ALB
+				token = token_navy_friendly
+			}
+			# AUS
+			add_operation_token = {
+				tag = AUS
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = AUS
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = AUS
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = AUS
+				token = token_navy_friendly
+			}
+
+			# COPRO
+			# JAP
+			add_operation_token = {
+				tag = JAP
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = JAP
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = JAP
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = JAP
+				token = token_navy_friendly
+			}
+			# MAN
+			add_operation_token = {
+				tag = MAN
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = MAN
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = MAN
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = MAN
+				token = token_navy_friendly
+			}
+			# SIA
+			add_operation_token = {
+				tag = SIA
+				token = token_airforce_friendly
+			}
+			add_operation_token = {
+				tag = SIA
+				token = token_army_friendly
+			}
+			add_operation_token = {
+				tag = SIA
+				token = token_civilian_friendly
+			}
+			add_operation_token = {
+				tag = SIA
+				token = token_navy_friendly
+			}

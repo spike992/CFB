@@ -2076,10 +2076,6 @@ BUL_internal_factions = {
 					BUL_is_fascist_axis_ai = yes
 					BUL_is_monarchist_ferdinand_ai = yes
 					BUL_is_democratic_liberal_ai = yes
-					#AND = { #MM: Check how the AI performs without this. Might be necessary to not add it to help the FF coup.
-					#	BUL_is_historical_ai = yes
-					#	date > 1940.6.1
-					#}
 				}
 			}
 		}
@@ -6180,7 +6176,7 @@ BUL_purchase_equipment = {
 
 		priority = 8
 
-		icon = generic_trucks
+		icon = generic_decision
 
 		allowed = { always = no } #Activated from effect
 
@@ -6649,15 +6645,15 @@ BUL_purchase_equipment = {
 					num_of_civilian_factories < 10
 					AND = {
 						stockpile_ratio = { 
-			  				archetype = fighter_equipment
+			  				archetype = small_plane_airframe
 			  				ratio > 0.75
 			  			}
 			  			stockpile_ratio = { 
-			  				archetype = nav_bomber_equipment
+			  				archetype = small_plane_naval_bomber_airframe
 			  				ratio > 0.75
 			  			}
 			  			stockpile_ratio = { 
-			  				archetype = tac_bomber_equipment
+			  				archetype = medium_plane_airframe
 			  				ratio > 0.75
 			  			}
 					}
@@ -7009,7 +7005,7 @@ prospect_for_resources = {
 			212 = {
 				add_resource = {
 					type = chromium
-					amount = 50
+					amount = 130
 				}
 			}
 		}
@@ -7023,7 +7019,6 @@ prospect_for_resources = {
 		icon = eng_trade_unions_support
 
 		allowed = {
-			always = no
 			has_dlc = "Battle for the Bosporus"
 		}
 
@@ -7143,24 +7138,21 @@ BUL_negotiate_claims_in_the_balkans = {
 
 		on_map_mode = map_and_decisions_view
 
-		state_target = europe
-		target_root_trigger = {
-			has_completed_focus = BUL_peaceful_development
-			is_in_faction = yes
-		}
+		state_target = yes
+
 		target_trigger = {
 			FROM = {
 				BUL_is_balkan_state = yes
 				NOT = { is_controlled_by = BUL }
+				any_neighbor_state = {
+					is_fully_controlled_by = BUL
+				}
 				controller = {
 					PREV = {
 						NOT = { is_core_of = PREV }
 						is_fully_controlled_by = PREV
 					}
 					is_in_faction_with = ROOT
-				}
-				any_neighbor_state = {
-					is_fully_controlled_by = BUL
 				}
 			}
 		}
@@ -7218,8 +7210,6 @@ BUL_negotiate_claims_in_the_balkans = {
 		}
 
 		cost = 25
-
-		fire_only_once = yes
 		
 		complete_effect = {
 			FROM = {
@@ -7340,7 +7330,7 @@ BUL_align_bulgaria = {
 
 		available = {
 			has_equipment = {
-				fighter_equipment > 11
+				small_plane_airframe > 11
 			}
 		}
 
@@ -8029,7 +8019,7 @@ BUL_the_balkan_federation_dream = {
 		days_remove = 90
 
 		modifier = {
-			consumer_goods_expected_value = 0.05
+			consumer_goods_factor = 0.05
 		}
 		
 		complete_effect = {
@@ -9070,54 +9060,54 @@ BUL_dominance_in_the_seas = {
 
 
 political_actions = {
-	# BUL_appoint_tsankov = {
-	# 	priority = 100
+	BUL_appoint_tsankov = {
+		priority = 100
 
-	# 	icon = GFX_decision_generic_speech
+		icon = GFX_decision_generic_speech
 
-	# 	ai_will_do = {
-	# 		base = 0
-	# 	}
+		ai_will_do = {
+			base = 0
+		}
 
-	# 	allowed = {
-	# 		original_tag = BUL
-	# 		has_dlc = "Battle for the Bosporus"
-	# 	}
+		allowed = {
+			original_tag = BUL
+			has_dlc = "Battle for the Bosporus"
+		}
 
-	# 	available = {
-	# 		has_country_flag = BUL_nsm_integrated_flag
-	# 	}
+		available = {
+			has_country_flag = BUL_nsm_integrated_flag
+		}
 		
-	# 	visible = {
-	# 		has_government = fascism
-	# 		NOT = {
-	# 			has_country_leader = { name = "Aleksandar Tsankov" }
-	# 		}
-	# 	}
+		visible = {
+			has_government = fascism
+			NOT = {
+				has_country_leader = { name = "Aleksandar Tsankov" }
+			}
+		}
 
-	# 	fire_only_once = yes
+		fire_only_once = yes
 		
-	# 	cost = 50
+		cost = 50
 		
-	# 	complete_effect = {
-	# 		retire_ideology_leader = fascism
-	# 		set_party_name = {
-	# 			ideology = fascism
-	# 			long_name = BUL_national_social_movement_party_long
-	# 			name = BUL_national_social_movement_party
-	# 		}
-	# 		create_country_leader = {
-	# 			name = "Aleksandar Tsankov"
-	# 			desc = "POLITICS_BOGDAN_FILOV_DESC"
-	# 			picture = GFX_portrait_bul_aleksandar_tsankov
-	# 			expire = "1965.1.1"
-	# 			ideology = nazism
-	# 			traits = {
-	# 				the_bloody_professor
-	# 			}
-	# 		}
-	# 	}
-	# }
+		complete_effect = {
+			retire_ideology_leader = fascism
+			set_party_name = {
+				ideology = fascism
+				long_name = BUL_national_social_movement_party_long
+				name = BUL_national_social_movement_party
+			}
+			create_country_leader = {
+				name = "Aleksandar Tsankov"
+				desc = "POLITICS_BOGDAN_FILOV_DESC"
+				picture = GFX_portrait_bul_aleksandar_tsankov
+				expire = "1965.1.1"
+				ideology = nazism
+				traits = {
+					the_bloody_professor
+				}
+			}
+		}
+	}
 
 	BUL_appoint_georgiev = {
 		priority = 100
@@ -9415,7 +9405,7 @@ BUL_balkan_confederation = {
 		days_remove = 120	
 
 		modifier = {
-			consumer_goods_expected_value = 0.05
+			consumer_goods_factor = 0.05
 		}
 		
 		complete_effect = {

@@ -4044,29 +4044,24 @@ country_event = {
 			modifier = BUL_honored_bulgarian_claims
 		}
 
-		custom_effect_tooltip = if_they_accept_tt
-		effect_tooltip = {
-			every_state = {
-				limit = {
-					has_state_flag = BUL_bulgarian_claim_warranted_flag
-					OR = {
-						is_controlled_by = GER
-						controller = {
-							is_in_faction_with = GER
-							NOT = { original_tag = BUL }
-						}
-					}	
-					NOT = { is_core_of = controller } 
-				}
-				BUL = {
-					transfer_state = PREV
-					hidden_effect = {
-						set_state_controller = PREV
+		every_state = {
+			limit = {
+				has_state_flag = BUL_bulgarian_claim_warranted_flag
+				OR = {
+					is_controlled_by = GER
+					controller = {
+						is_in_faction_with = GER
+						NOT = { tag = BUL }
 					}
+				}		
+			}
+			BUL = {
+				transfer_state = PREV
+				hidden_effect = {
+					set_state_controller = PREV
 				}
 			}
 		}
-		
 	}
 }
 
@@ -4084,7 +4079,6 @@ country_event = {
 	option = {
 		name = bftb_bulgarian_claims.5.a
 
-		custom_effect_tooltip = if_they_accept_tt
 		effect_tooltip = {
 			BUL = {
 				add_opinion_modifier = { 
@@ -4119,66 +4113,16 @@ country_event = {
 
 	option = {
 		name = bftb_bulgarian_claims.6.a
-		ai_chance = {
-			base = 10
-			modifier = {
-				factor = 1.5
-				is_historical_focus_on = yes
-			}
-		}
 
-		every_state = {
-			limit = {
-				has_state_flag = BUL_bulgarian_claim_warranted_flag
-				is_controlled_by = ROOT	
-				NOT = {
-					is_core_of = ROOT
-				}
-			}
-			BUL = {
-				transfer_state = PREV
-				hidden_effect = {
-					set_state_controller = PREV
-				}
-			}
-		}
-
-	}
-	option = {
-		name = bftb_bulgarian_claims.6.b
-		ai_chance = {
-			base = 0
-		}
-
-		BUL = {
-			add_opinion_modifier = {
-				target = ROOT
-				modifier = BUL_hindered_planned_expansion
-			}	
-		}
-
-		GER = {
-			add_opinion_modifier = {
-				target = ROOT
-				modifier = BUL_hindered_planned_expansion
-			}	
-		}
-
-		hidden_effect = {
+		effect_tooltip = {
 			every_state = {
 				limit = {
 					has_state_flag = BUL_bulgarian_claim_warranted_flag
-					OR = {
-						is_controlled_by = GER
-						controller = {
-							is_in_faction_with = GER
-						}
-					}		
+					is_controlled_by = ROOT		
 				}
-				clr_state_flag = BUL_bulgarian_claim_warranted_flag
+				BUL = { set_state_controller = PREV }
 			}
 		}
-
 	}
 }
 
@@ -4371,7 +4315,7 @@ country_event = {
 
 		GER = {
 			send_equipment = {
-				type = fighter_equipment
+				type = small_plane_airframe
 				amount = 12
 				target = ROOT
 			}
@@ -4429,7 +4373,7 @@ country_event = {
 				}
 			}
 			send_equipment = {
-				type = fighter_equipment
+				type = small_plane_airframe
 				amount = 12
 				target = ROOT
 			}
@@ -4791,9 +4735,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-					archetype = artillery_equipment
-					ratio < 0.76
-				}
+	  				archetype = artillery_equipment
+	  				ratio < 0.76
+	  			}
 			}
 		}
 
@@ -4809,9 +4753,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-					archetype = anti_air_equipment
-					ratio < 0.76
-				}
+	  				archetype = anti_air_equipment
+	  				ratio < 0.76
+	  			}
 			}
 		}
 
@@ -4831,9 +4775,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-					archetype = anti_tank_equipment
-					ratio < 0.76
-				}
+	  				archetype = anti_tank_equipment
+	  				ratio < 0.76
+	  			}
 			}
 		}
 
@@ -4863,9 +4807,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-					archetype = motorized_equipment
-					ratio < 0.76
-				}
+	  				archetype = motorized_equipment
+	  				ratio < 0.76
+	  			}
 			}
 		}
 
@@ -4882,9 +4826,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-					archetype = mechanized_equipment
-					ratio < 0.76
-				}
+	  				archetype = mechanized_equipment
+	  				ratio < 0.76
+	  			}
 			}
 		}
 
@@ -4907,9 +4851,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-					archetype = armored_car_chassis
-					ratio < 0.76
-				}
+	  				archetype = armored_car_chassis
+	  				ratio < 0.76
+	  			}
 			}
 		}
 
@@ -4942,9 +4886,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-					archetype = light_tank_chassis
-					ratio < 0.76
-				}
+	  				archetype = light_tank_chassis
+	  				ratio < 0.76
+	  			}
 			}
 		}
 
@@ -4961,9 +4905,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-					archetype = medium_tank_chassis
-					ratio < 0.76
-				}
+	  				archetype = medium_tank_chassis
+	  				ratio < 0.76
+	  			}
 			}
 		}
 
@@ -4983,9 +4927,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-					archetype = heavy_tank_chassis
-					ratio < 0.76
-				}
+	  				archetype = heavy_tank_chassis
+	  				ratio < 0.76
+	  			}
 			}
 		}
 
@@ -5015,13 +4959,13 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-					archetype = fighter_equipment
-					ratio < 0.76
-				}
+	  				archetype = small_plane_airframe
+	  				ratio < 0.76
+	  			}
 			}
 		}
 
-		set_variable = { BUL_aircraft_type = token:fighter_equipment }
+		set_variable = { BUL_aircraft_type = token:small_plane_airframe }
 		FROM.FROM = { set_country_flag = BUL_producing_fighters_for_bulgaria_flag }
 		custom_effect_tooltip = bftb_bulgaria_equipment_purchases.4.a_tt
 	}
@@ -5034,9 +4978,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-					archetype = nav_bomber_equipment
-					ratio < 0.76
-				}
+	  				archetype = small_plane_naval_bomber_airframe
+	  				ratio < 0.76
+	  			}
 			}
 		}
 
@@ -5046,7 +4990,7 @@ country_event = {
 			}
 		}
 
-		set_variable = { BUL_aircraft_type = token:nav_bomber_equipment }
+		set_variable = { BUL_aircraft_type = token:small_plane_naval_bomber_airframe }
 		FROM.FROM = { set_country_flag = BUL_producing_naval_bombers_for_bulgaria_flag }
 		custom_effect_tooltip = bftb_bulgaria_equipment_purchases.4.b_tt
 	}
@@ -5059,9 +5003,9 @@ country_event = {
 			modifier = {
 				factor = 2
 				stockpile_ratio = { 
-					archetype = tac_bomber_equipment
-					ratio < 0.76
-				}
+	  				archetype = medium_plane_airframe
+	  				ratio < 0.76
+	  			}
 			}
 		}
 
@@ -5071,7 +5015,7 @@ country_event = {
 			}
 		}
 
-		set_variable = { BUL_aircraft_type = token:tac_bomber_equipment }
+		set_variable = { BUL_aircraft_type = token:medium_plane_airframe }
 		FROM.FROM = { set_country_flag = BUL_producing_tactical_bombers_for_bulgaria_flag }
 		custom_effect_tooltip = bftb_bulgaria_equipment_purchases.4.c_tt
 	}
@@ -5250,7 +5194,7 @@ country_event = {
 				limit = { has_dlc = "Man the Guns" }
 				if = {
 					limit = {
-						FROM.FROM = { has_tech = advanced_ship_hull_submarine }
+						# FROM.FROM = { has_tech = advanced_ship_hull_submarine }
 					}
 					FROM.FROM = { #LVL4
 						create_equipment_variant = {
@@ -5937,7 +5881,7 @@ country_event = {
 ##    ## ##    ## ##  ##  ## 
 ##       ##       ##  ##  ## 
  ######  ##       ##  ##  ## 
-	  ## ##       ##  ##  ## 
+      ## ##       ##  ##  ## 
 ##    ## ##    ## ##  ##  ## 
  ######   ######   ###  ###  
 
@@ -6357,372 +6301,6 @@ country_event = {
 		if = {
 			limit = {
 				check_variable = { BUL_spanish_tag_aided = FROM }
-			}
-			army_experience = 50
-		}
-		else = {
-			army_experience = 25
-		}
-	}
-}
-
-#SCW is over - Yugoslavian volunteers aiding the Spanish Nationalists are back - Event for YUG
-country_event = {
-	id = bftb_bulgaria_scw_volunteers.3
-	title = bftb_bulgaria_scw_volunteers.2.t
-	desc = bftb_bulgaria_scw_volunteers.2.desc
-	picture = GFX_report_event_spr_army_of_africa
-
-	is_triggered_only = yes
-
-	fire_only_once = yes
-
-	immediate = {
-		hidden_effect = {
-			random_list = {
-				13 = {
-					set_variable = { YUG_trait_gained_during_scw = 1 } #Commando
-				}
-				13 = {
-					set_variable = { YUG_trait_gained_during_scw = 2 } #Mountaineer
-				}
-				13 = {
-					set_variable = { YUG_trait_gained_during_scw = 3 } #Hill Fighter
-				}
-				13 = {
-					set_variable = { YUG_trait_gained_during_scw = 4 } #Urban Assault Specialist
-				}
-				13 = {
-					set_variable = { YUG_trait_gained_during_scw = 5 } #Trickster
-				}
-				13 = {
-					set_variable = { YUG_trait_gained_during_scw = 6 } #Organizer
-				}
-			}
-		}
-	}
-
-	option = {
-		name = bftb_bulgaria_scw_volunteers.2.a
-
-		trigger = {
-			country_exists = SPA
-		}
-
-		if = {
-			limit = {
-				any_unit_leader = {
-					has_unit_leader_flag = YUG_scw_promotion_flag
-				}
-			}
-			random_unit_leader = {
-				limit = {
-					has_unit_leader_flag = YUG_scw_promotion_flag
-				}
-				promote_leader = yes
-				add_skill_level = 1
-				add_attack = 1
-				add_defense = 1
-				add_planning = 1
-
-				if = {
-					limit = {
-						YUG = { check_variable = { var = YUG_trait_gained_during_scw value = 1 compare = equals } }
-					}
-					add_unit_leader_trait = commando
-				}
-				else_if = {
-					limit = {
-						YUG = { check_variable = { YUG_trait_gained_during_scw = 2 } }
-					}
-					add_unit_leader_trait = trait_mountaineer
-				}
-				else_if = {
-					limit = {
-						YUG = { check_variable = { YUG_trait_gained_during_scw = 3 } }
-					}
-					add_unit_leader_trait = hill_fighter
-				}
-				else_if = {
-					limit = {
-						YUG = { check_variable = { YUG_trait_gained_during_scw = 4 } }
-					}
-					add_unit_leader_trait = urban_assault_specialist
-				}
-				else_if = {
-					limit = {
-						YUG = { check_variable = { YUG_trait_gained_during_scw = 5 } }
-					}
-					add_unit_leader_trait = trickster
-				}
-				else_if = {
-					limit = {
-						YUG = { check_variable = { YUG_trait_gained_during_scw = 6 } }
-					}
-					add_unit_leader_trait = organizer
-				}
-			}
-		}
-		else = {
-			if = {
-				limit = {
-					YUG = { check_variable = { var = YUG_trait_gained_during_scw value = 1 compare = equals } }
-				}
-				create_corps_commander = {
-					name = "Nikola Nakov"
-					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
-					traits = { commando }
-					skill = 3
-					attack_skill = 2
-					defense_skill = 2
-					planning_skill = 4
-					logistics_skill = 2
-				}
-			}
-			else_if = {
-				limit = {
-					YUG = { check_variable = { YUG_trait_gained_during_scw = 2 } }
-				}
-				create_corps_commander = {
-					name = "Nikola Nakov"
-					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
-					traits = { trait_mountaineer }
-					skill = 3
-					attack_skill = 2
-					defense_skill = 2
-					planning_skill = 4
-					logistics_skill = 2
-				}
-			}
-			else_if = {
-				limit = {
-					YUG = { check_variable = { YUG_trait_gained_during_scw = 3 } }
-				}
-				create_corps_commander = {
-					name = "Nikola Nakov"
-					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
-					traits = { hill_fighter }
-					skill = 3
-					attack_skill = 2
-					defense_skill = 2
-					planning_skill = 4
-					logistics_skill = 2
-				}
-			}
-			else_if = {
-				limit = {
-					YUG = { check_variable = { YUG_trait_gained_during_scw = 4 } }
-				}
-				create_corps_commander = {
-					name = "Nikola Nakov"
-					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
-					traits = { urban_assault_specialist }
-					skill = 3
-					attack_skill = 2
-					defense_skill = 2
-					planning_skill = 4
-					logistics_skill = 2
-				}
-			}
-			else_if = {
-				limit = {
-					YUG = { check_variable = { YUG_trait_gained_during_scw = 5 } }
-				}
-				create_corps_commander = {
-					name = "Nikola Nakov"
-					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
-					traits = { trickster }
-					skill = 3
-					attack_skill = 2
-					defense_skill = 2
-					planning_skill = 4
-					logistics_skill = 2
-				}
-			}
-			else_if = {
-				limit = {
-					YUG = { check_variable = { YUG_trait_gained_during_scw = 6 } }
-				}
-				create_corps_commander = {
-					name = "Nikola Nakov"
-					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
-					traits = { organizer }
-					skill = 3
-					attack_skill = 2
-					defense_skill = 2
-					planning_skill = 4
-					logistics_skill = 2
-				}
-			}
-		}
-		clear_variable = YUG_trait_gained_during_scw
-		if = {
-			limit = {
-				check_variable = { YUG_spanish_tag_aided = FROM }
-			}
-			army_experience = 50
-		}
-		else = {
-			army_experience = 25
-		}
-	}
-
-	option = {
-		name = bftb_bulgaria_scw_volunteers.2.b
-
-		trigger = {
-			NOT = { country_exists = SPA }
-		}
-
-		if = {
-			limit = {
-				any_unit_leader = {
-					is_field_marshal = no
-					is_assigned = no
-				}
-			}
-			random_unit_leader = {
-				limit = {
-					is_field_marshal = no
-					is_assigned = no
-				}
-				promote_leader = yes
-				add_skill_level = 1
-
-				if = {
-					limit = {
-						YUG = { check_variable = { var = YUG_trait_gained_during_scw value = 1 compare = equals } }
-					}
-					add_unit_leader_trait = commando
-				}
-				else_if = {
-					limit = {
-						YUG = { check_variable = { YUG_trait_gained_during_scw = 2 } }
-					}
-					add_unit_leader_trait = trait_mountaineer
-				}
-				else_if = {
-					limit = {
-						YUG = { check_variable = { YUG_trait_gained_during_scw = 3 } }
-					}
-					add_unit_leader_trait = hill_fighter
-				}
-				else_if = {
-					limit = {
-						YUG = { check_variable = { YUG_trait_gained_during_scw = 4 } }
-					}
-					add_unit_leader_trait = urban_assault_specialist
-				}
-				else_if = {
-					limit = {
-						YUG = { check_variable = { YUG_trait_gained_during_scw = 5 } }
-					}
-					add_unit_leader_trait = trickster
-				}
-				else_if = {
-					limit = {
-						YUG = { check_variable = { YUG_trait_gained_during_scw = 6 } }
-					}
-					add_unit_leader_trait = organizer
-				}
-			}
-		}
-		else = {
-			if = {
-				limit = {
-					YUG = { check_variable = { var = YUG_trait_gained_during_scw value = 1 compare = equals } }
-				}
-				create_corps_commander = {
-					name = "Nikola Nakov"
-					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
-					traits = { commando }
-					skill = 3
-					attack_skill = 2
-					defense_skill = 2
-					planning_skill = 4
-					logistics_skill = 2
-				}
-			}
-			else_if = {
-				limit = {
-					YUG = { check_variable = { YUG_trait_gained_during_scw = 2 } }
-				}
-				create_corps_commander = {
-					name = "Nikola Nakov"
-					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
-					traits = { trait_mountaineer }
-					skill = 3
-					attack_skill = 2
-					defense_skill = 2
-					planning_skill = 4
-					logistics_skill = 2
-				}
-			}
-			else_if = {
-				limit = {
-					YUG = { check_variable = { YUG_trait_gained_during_scw = 3 } }
-				}
-				create_corps_commander = {
-					name = "Nikola Nakov"
-					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
-					traits = { hill_fighter }
-					skill = 3
-					attack_skill = 2
-					defense_skill = 2
-					planning_skill = 4
-					logistics_skill = 2
-				}
-			}
-			else_if = {
-				limit = {
-					YUG = { check_variable = { YUG_trait_gained_during_scw = 4 } }
-				}
-				create_corps_commander = {
-					name = "Nikola Nakov"
-					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
-					traits = { urban_assault_specialist }
-					skill = 3
-					attack_skill = 2
-					defense_skill = 2
-					planning_skill = 4
-					logistics_skill = 2
-				}
-			}
-			else_if = {
-				limit = {
-					YUG = { check_variable = { YUG_trait_gained_during_scw = 5 } }
-				}
-				create_corps_commander = {
-					name = "Nikola Nakov"
-					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
-					traits = { trickster }
-					skill = 3
-					attack_skill = 2
-					defense_skill = 2
-					planning_skill = 4
-					logistics_skill = 2
-				}
-			}
-			else_if = {
-				limit = {
-					YUG = { check_variable = { YUG_trait_gained_during_scw = 6 } }
-				}
-				create_corps_commander = {
-					name = "Nikola Nakov"
-					portrait_path = "gfx/leaders/Europe/Portrait_Europe_Generic_land_1.dds"
-					traits = { organizer }
-					skill = 3
-					attack_skill = 2
-					defense_skill = 2
-					planning_skill = 4
-					logistics_skill = 2
-				}
-			}
-		}
-		clear_variable = YUG_trait_gained_during_scw
-		if = {
-			limit = {
-				check_variable = { YUG_spanish_tag_aided = FROM }
 			}
 			army_experience = 50
 		}
@@ -7791,7 +7369,7 @@ country_event = {
 	id = bftb_bulgaria_balkan_federation.8
 	title = bftb_bulgaria_balkan_federation.8.t
 	desc = bftb_bulgaria_balkan_federation.8.desc
-	picture = GFX_report_event_generic_handshake
+	picture = GFX_report_event_hitler_handshake
 
 	is_triggered_only = yes
 
@@ -7939,33 +7517,6 @@ country_event = {
 				modifier = BUL_kicked_us_from_faction
 			}
 		}
-
-		hidden_effect = { #ROOT & FROM are not happy with each other's actions
-			add_ai_strategy = {
-				type = alliance
-				id = FROM			
-				value = -100
-			}
-
-			add_ai_strategy = {
-				type = befriend
-				id = FROM			
-				value = -100
-			}
-			FROM = {
-				add_ai_strategy = {
-					type = alliance
-					id = ROOT			
-					value = -100
-				}
-
-				add_ai_strategy = {
-					type = befriend
-					id = ROOT			
-					value = -100
-				}
-			}
-		}
 	}
 
 	option = { #Kick and Wargoal
@@ -8014,33 +7565,6 @@ country_event = {
 			add_opinion_modifier = {
 				target = ROOT
 				modifier = BUL_kicked_us_from_faction
-			}
-		}
-
-		hidden_effect = { #ROOT & FROM are mad at each other
-			add_ai_strategy = {
-				type = alliance
-				id = FROM			
-				value = -200
-			}
-
-			add_ai_strategy = {
-				type = befriend
-				id = FROM			
-				value = -200
-			}
-			FROM = {
-				add_ai_strategy = {
-					type = alliance
-					id = ROOT			
-					value = -200
-				}
-
-				add_ai_strategy = {
-					type = befriend
-					id = ROOT			
-					value = -200
-				}
 			}
 		}
 	}
@@ -8160,14 +7684,14 @@ country_event = {
 					limit = {
 						any_country = {
 							BUL_is_balkan_nation = yes
-							exists = yes
+							country_exists = yes
 							PREV = { is_core_of = THIS }
 						}
 					}
 					random_country = {
 						limit = {
 							BUL_is_balkan_nation = yes
-							exists = yes
+							country_exists = yes
 							PREV = { is_core_of = THIS }
 						}
 						transfer_state = PREV
@@ -8594,10 +8118,10 @@ country_event = {
 				}
 				add_claim_by = ROOT
 			}
-		}
-		create_wargoal = {
-			type = annex_everything
-			target = FROM
+			create_wargoal = {
+				type = annex_everything
+				target = FROM
+			}
 		}
 	}
 }
@@ -8703,6 +8227,10 @@ country_event = {
 				}
 				country_event = bftb_bulgaria_fate_of_the_balkans.10
 			}
+		}
+		add_autonomy_score = {
+			value = 300
+			localization = BUL_transferred_bulgarian_state_autonomy_desc
 		}
 	}
 
@@ -8812,10 +8340,6 @@ country_event = {
 				hidden_effect = {
 					set_state_controller = FROM.FROM
 				}
-				add_autonomy_score = {
-					value = 300
-					localization = BUL_transferred_bulgarian_state_autonomy_desc
-				}
 			}
 		}
 		hidden_effect = {
@@ -8859,12 +8383,6 @@ country_event = {
 		transfer_state = FROM.FROM.FROM
 		hidden_effect = {
 			set_state_controller = FROM.FROM.FROM
-		}
-		FROM = {
-			add_autonomy_score = {
-				value = 300
-				localization = BUL_transferred_bulgarian_state_autonomy_desc
-			}
 		}
 	}
 }

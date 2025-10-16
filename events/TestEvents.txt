@@ -11,10 +11,7 @@ country_event = {
 	desc = test.1.d
 	
 	immediate = {
-		set_variable = { testio = deployed_airforce_manpower_k }
-		set_variable = { testio1 = deployed_navy_manpower_k }
-		set_variable = { testio2 = deployed_army_manpower_k }
-		set_variable = { testio3 = deployed_total_manpower_k }
+		
 	}
 	trigger = {
 	}
@@ -23,10 +20,6 @@ country_event = {
 	
 	option = {
 		name = test.1.a
-		add_manpower = var:testio
-		add_manpower = var:testio1
-		add_manpower = var:testio2
-		add_manpower = var:testio3
 	}
 }
 
@@ -86,42 +79,6 @@ country_event = {
 			add_autonomy_score = {
 				value = 5
 				localization = "TEST_EVENT_3_OPTION: $VAL|+=2$"
-			}
-		}
-	}
-}
-
-country_event = { 
-	id = test.4
-	title = test.4.t
-	desc = test.4.d
-	
-	immediate = {
-		
-	}
-	trigger = {
-		any_country_division = {
-			unit_organization > 80
-		}
-	}
-
-	is_triggered_only = yes
-	
-	option = {
-		name = test.1.a
-		random_country_division = {
-			limit = {
-				unit_organization > 1
-			}
-			save_global_event_target_as = a_dude
-		}
-	}
-	
-	option = {
-		name = test.1.b
-		event_target:a_dude = {
-			change_division_template = {
-				division_template = "Panzer-Division"
 			}
 		}
 	}
@@ -214,25 +171,6 @@ country_event = {
 			}
 		}
 	}	
-}
-
-country_event = {
-	id = test.200
-	title = test.200.t
-	desc = test.200.d
-	
-	immediate = {
-		
-	} 
-	trigger = {
-		manpower_per_military_factory >  5000
-	} 
-
-	is_triggered_only = yes
-	
-	option = {
-		name = test.200.a
-	}
 }
 
 add_namespace = performance_test
@@ -358,11 +296,11 @@ country_event = {
 			set_variable = { div_number_eq_fighters = div_number }
 			multiply_variable = { div_number_eq_fighters = 50 } #50 fighters per new division
 			add_equipment_to_stockpile = {
-				type = fighter_equipment_1
+				type = small_plane_airframe_1
 				amount = div_number_eq_fighters
 			}
 			add_equipment_to_stockpile = {
-				type = CAS_equipment_1
+				type = medium_plane_airframe_1
 				amount = div_number_eq_fighters
 			}
 			army_experience = 500

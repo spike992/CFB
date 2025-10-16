@@ -9,296 +9,8 @@ continuous_focus_palette = {
 	reset_on_civilwar = no
 			
 	position = { x = 50 y = 1000 }
-
-	focus = {
-		id = DEN_undermine_overlord_continuous_focus
-		
-		icon = GFX_focus_DEN_undermine_overlord_continuous_focus
-		
-		available = {
-			is_subject = yes
-			hidden_trigger = { 
-				has_dlc = "Arms Against Tyranny"
-				original_tag = DEN
-			}
-		}
-
-		enable = {
-			has_power_balance = {
-				id = DEN_occupation_balance
-			}
-		}
-
-		modifier = {
-			power_balance_weekly = 0.01
-		}
-		
-		ai_will_do = {
-			base = 10
-			modifier = {
-				factor = 10
-				has_completed_focus = DEN_escalate_the_sabotages
-				has_completed_focus = DEN_expand_the_resistance
-			}
-			modifier = {
-				factor = 10
-				power_balance_value = {
-					id = DEN_occupation_balance
-					value < 0.9
-				}
-			}
-			modifier = {
-				factor = 0	
-				has_completed_focus = DEN_declare_independence
-				power_balance_value = {
-					id = DEN_occupation_balance
-					value > 0.9
-				}
-			}
-		}
-		
-		supports_ai_strategy = ai_focus_defense
-		
-		daily_cost = 1
-				
-		available_if_capitulated = yes
-
-		select_effect = {
-
-		}
-		
-
-		cancel_effect = {
-		
-		}
-	}
-
-	focus = {
-		id = ETH_strengthen_the_black_lions
-		
-		icon = GFX_focus_ETH_continuous_strengthen_the_black_lions
-		
-		available = {
-			hidden_trigger = { 
-				has_dlc = "By Blood Alone" 
-				original_tag = ETH 
-			}
-			has_completed_focus = ETH_anti-italian_propaganda
-			OR = {
-				is_government_in_exile = yes 
-				has_country_leader_with_trait = imperator_absentis
-			}
-		}
-
-		enable = {
-			any_owned_state = { NOT = { is_controlled_by = ROOT } }
-			
-		}
-
-		modifier = {
-			compliance_growth_on_our_occupied_states = -0.1
-		}
-		
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 0
-				
-				all_owned_state = { is_controlled_by = ROOT }
-			}
-		}
-		
-		supports_ai_strategy = ai_focus_military_advancements
-		
-		daily_cost = 1
-		
-		available_if_capitulated = yes
-	}
-
-	focus = {
-		id = ETH_supporting_the_arbegnoch
-		
-		icon = GFX_focus_ETH_continuous_supporting_the_arbegnoch
-		
-		available = {
-			hidden_trigger = { 
-				has_dlc = "By Blood Alone" 
-				original_tag = ETH 
-			}
-			has_completed_focus = ETH_the_patriots
-			OR = {
-				is_government_in_exile = yes 
-				has_country_leader_with_trait = imperator_absentis
-			}
-		}
-
-		enable = {
-			any_owned_state = { NOT = { is_controlled_by = ROOT } }
-			
-		}
-
-		modifier = {
-			resistance_growth_on_our_occupied_states = 0.1
-		}
-		
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 0		
-				all_owned_state = { is_controlled_by = ROOT }
-			}
-		}
-		
-		supports_ai_strategy = ai_focus_military_advancements
-		
-		daily_cost = 1
-		
-		available_if_capitulated = yes
-	}
 	
-	focus = {
-		id = SWI_build_up_military_readiness
 		
-		icon = GFX_focus_SWI_continuous_build_up_military_readiness
-		
-		available = {
-			hidden_trigger = { 
-				has_dlc = "By Blood Alone" 
-				original_tag = SWI 
-			}
-		}
-
-		enable = {
-			has_completed_focus = SWI_armed_neutrality
-		}
-
-		modifier = {
-			
-		}
-		
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 0		
-				all_owned_state = { is_controlled_by = ROOT }
-			}
-		}
-		
-		supports_ai_strategy = ai_focus_military_advancements
-		
-		daily_cost = 1
-				
-		available_if_capitulated = yes
-
-		select_effect = {
-			activate_mission = SWI_building_up_military_readiness_mission
-			set_country_flag = SWI_building_up_mr_cont_focus_active
-		}
-		
-
-		cancel_effect = {
-			clr_country_flag = SWI_building_up_mr_cont_focus_active
-		}
-	}
-	
-	focus = {
-		id = SWI_support_active_militias_continuous_focus
-		
-		icon = GFX_focus_SWI_continuous_support_active_militias
-		
-		available = {
-			hidden_trigger = { 
-				has_dlc = "By Blood Alone" 
-				original_tag = SWI
-			}
-		}
-
-		enable = {
-			has_dynamic_modifier = { modifier = SWI_active_citizen_militia }
-		}
-
-		modifier = {
-			modifier_army_sub_unit_militia_attack_factor = 0.3
-			modifier_army_sub_unit_militia_defence_factor = 0.3
-			modifier_army_sub_unit_militia_speed_factor = 0.3
-			modifier_army_sub_unit_militia_max_org_factor = 0.15
-		}
-		
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 0		
-				all_owned_state = { is_controlled_by = ROOT }
-			}
-		}
-		
-		supports_ai_strategy = ai_focus_military_advancements
-		
-		daily_cost = 1
-				
-		available_if_capitulated = yes
-
-		select_effect = {
-
-		}
-		
-
-		cancel_effect = {
-		
-		}
-	}
-
-	# focus = {
-	# 	id = continuous_naval_production
-		
-	# 	icon = GFX_goal_continuous_naval_production
-		
-	# 	available = {
-	# 	}
-		
-	# 	idea = continuous_naval_production
-		
-	# 	ai_will_do = {
-	# 		factor = 1
-	# 		modifier = {
-	# 			factor = 0.25		
-	# 			is_government_in_exile = yes 
-	# 			original_tag = ETH
-	# 		}
-	# 	}
-		
-	# 	supports_ai_strategy = ai_focus_naval
-		
-	# 	daily_cost = 1
-		
-	# 	available_if_capitulated = yes
-	# }
-
-	# focus = {
-	# 	id = continuous_air_production
-		
-	# 	icon = GFX_goal_continuous_air_production
-		
-	# 	available = {
-	# 	}
-		
-	# 	idea = continuous_air_production
-		
-	# 	ai_will_do = {
-	# 		factor = 1
-	# 		modifier = {
-	# 			factor = 0.25		
-	# 			is_government_in_exile = yes 
-	# 			original_tag = ETH 
-	# 		}
-	# 	}
-		
-	# 	supports_ai_strategy = ai_focus_aviation
-		
-	# 	daily_cost = 1
-		
-	# 	available_if_capitulated = yes
-	# }
 	
 	focus = {
 		id = continuous_non_factory_construct
@@ -311,11 +23,10 @@ continuous_focus_palette = {
 		
 		modifier = {
 			production_speed_infrastructure_factor = 0.1
-			production_speed_rail_way_factor = 0.1
-			production_speed_supply_node_factor = 0.1
+			production_speed_rail_way_factor = 0.1	
+			production_speed_supply_node_factor = 0.1	
 			production_speed_air_base_factor = 0.1
 			production_speed_naval_base_factor = 0.1
-			#production_speed_synthetic_refinery_factor = 0.1
 			production_speed_fuel_silo_factor = 0.1	
 			production_speed_rocket_site_factor = 0.1
 			production_speed_nuclear_reactor_factor = 0.1
@@ -323,6 +34,7 @@ continuous_focus_palette = {
 			production_speed_coastal_bunker_factor = 0.2
 			production_speed_anti_air_building_factor = 0.2
 			production_speed_radar_station_factor = 0.2	
+			
 		}
 		
 		ai_will_do = {
@@ -408,6 +120,7 @@ continuous_focus_palette = {
 		modifier = {
 			industry_repair_factor = 0.5
 			industry_free_repair_factor = 1.0
+			repair_speed_factor = 0.25
 		}
 		
 		ai_will_do = {
@@ -525,23 +238,23 @@ continuous_focus_palette = {
 		available_if_capitulated = yes
 	}
 	
-	focus = {
-		id = continuous_factory_retooling
+	# focus = {
+	# 	id = continuous_factory_retooling
 		
-		icon = GFX_goal_continuous_efficiency
+	# 	icon = GFX_goal_continuous_efficiency
 
-		modifier = {
-			production_factory_efficiency_gain_factor = 0.10
-		}
+	# 	modifier = {
+	# 		production_factory_efficiency_gain_factor = 0.10
+	# 	}
 		
-		ai_will_do = {
-			factor = 0
-		}
+	# 	ai_will_do = {
+	# 		factor = 0
+	# 	}
 		
-		daily_cost = 1
+	# 	daily_cost = 1
 		
-		available_if_capitulated = yes
-	}
+	# 	available_if_capitulated = yes
+	# }
 	
 	focus = {
 		id = continuous_modernisation_effort
@@ -549,7 +262,8 @@ continuous_focus_palette = {
 		icon = GFX_goal_continuous_armor_production
 
 		modifier = {
-			equipment_conversion_speed = 0.99
+			# equipment_conversion_speed = 0.4
+			production_factory_efficiency_gain_factor = 0.10
 			refit_speed = 0.25
 		}
 		
@@ -563,12 +277,19 @@ continuous_focus_palette = {
 	}
 	
 	focus = {
-		id = continuous_mobilisation
+		id = continuous_recruitment_drive #continuous_mobilisation
 		
-		icon = GFX_goal_continuous_mobilisation
+		icon = GFX_focus_recruitment_drive #GFX_goal_continuous_mobilisation
 
 		modifier = {
 			mobilization_speed = 0.5
+			weekly_manpower = 2500
+		}
+
+		available = {
+			NOT = {
+				tag = FIN
+			}
 		}
 		
 		ai_will_do = {

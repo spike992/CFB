@@ -274,7 +274,6 @@ ideas = {
 			
 			modifier = {
 				conscription_factor = 0.15
-				consumer_goods_factor = -0.1
 			}
 		}
 		FRA_anti_fascist_immigrants = {
@@ -384,7 +383,7 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				non_core_manpower = 0.05
+				non_core_manpower = 0.1
 			}
 		}
 		FRA_france_undividable = {
@@ -395,10 +394,7 @@ ideas = {
 			}
 
 			allowed_civil_war = {
-				OR = {
-					has_government = democratic
-					has_government = communism
-				}
+				has_government = democratic
 			}
 
 			removal_cost = -1
@@ -514,7 +510,7 @@ ideas = {
 			
 			modifier = {
 				production_factory_max_efficiency_factor = 0.05
-				production_factory_efficiency_gain_factor = 0.05
+				# production_factory_efficiency_gain_factor = 0.1
 			}
 			research_bonus = { industry = 0.05}
 		}
@@ -570,9 +566,8 @@ ideas = {
 				stability_weekly = 0.0025
 			}
 		}
-
 		FRA_counter_action = {
-			picture = generic_oppression
+			picture = generic_oppresion
 			allowed = {
 				original_tag = FRA
 				always = no
@@ -588,7 +583,6 @@ ideas = {
 				fascism_drift = -0.1
 			}
 		}
-
 		FRA_la_deluge = {
 			
 			allowed = {
@@ -605,11 +599,9 @@ ideas = {
 			modifier = {
 				conscription = 0.03
 				conscription_factor = 0.25
-				war_support_factor = 0.1
 				training_time_army_factor = -0.2
 			}
 		}
-
 		FRA_firepower = {
 			picture = generic_artillery_regiments
 			allowed = {
@@ -625,7 +617,11 @@ ideas = {
 			
 			equipment_bonus = {
 				artillery_equipment = {
-					build_cost_ic = -0.075
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				dp_artillery_equipment = {
+					build_cost_ic = -0.1
 					instant = yes
 				}
 				anti_tank_equipment = {
@@ -652,11 +648,11 @@ ideas = {
 			removal_cost = -1
 			
 			equipment_bonus = {
-				fighter_equipment = {
+				small_plane_airframe = {
 					build_cost_ic = -0.1
 					instant = yes
 				}
-				CAS_equipment = {
+				medium_plane_airframe = {
 					build_cost_ic = -0.1
 					instant = yes
 				}
@@ -680,11 +676,7 @@ ideas = {
 			removal_cost = -1
 			
 			equipment_bonus = {
-				tac_bomber_equipment = {
-					air_ground_attack = 0.15
-					instant = yes
-				}
-				CAS_equipment = {
+				medium_plane_airframe = {
 					air_ground_attack = 0.15
 					instant = yes
 				}
@@ -759,41 +751,10 @@ ideas = {
 				has_government = fascism
 			}
 
-			cancel = {
-				OR = {
-					has_war_with = GER
-					GER = {	is_subject = yes }
-					ROOT = {
-						exists = no
-					}
-				}
-			}
-
-			on_remove = {
-				GER = {
-					if = {
-						limit = {
-							has_dynamic_modifier = { modifier = GER_economy_of_conquest_modifier }
-							OR = {
-								has_war_with = ROOT
-								is_subject = yes
-								ROOT = {
-									exists = no
-								}
-							}
-						}
-						clr_country_flag = GER_french_war_reparations_flag
-						add_to_variable = {	GER_monthly_consumer_goods_increase = GER_change_monthly_CG_vichy_france }
-						country_event = { id = wuw_GER_diplomacy.100 hours = 1 }
-					}
-				}
-			}
-
 			removal_cost = -1
 			
 			modifier = {
-				consumer_goods_factor = 0.40
-				enemy_justify_war_goal_time = 2
+				consumer_goods_factor = 0.2
 			}
 		}
 		FRA_occupation_costs_3 = {
@@ -811,8 +772,7 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				consumer_goods_factor = 0.30
-				enemy_justify_war_goal_time = 1.5
+				consumer_goods_factor = 0.15
 			}
 		}
 		FRA_occupation_costs_2 = {
@@ -830,8 +790,7 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				consumer_goods_factor = 0.20
-				enemy_justify_war_goal_time = 1
+				consumer_goods_factor = 0.1
 			}
 		}
 		FRA_occupation_costs_1 = {
@@ -848,8 +807,7 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				consumer_goods_expected_value = 0.055
-				enemy_justify_war_goal_time = 0.5
+				consumer_goods_factor = 0.05
 			}
 		}
 		FRA_mandatory_work_service = {
@@ -866,7 +824,7 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				stability_factor = -0.1 
+				stability_factor = -0.1 #TODO_GABRIEL: replace with +15% resistance target in core states
 			}
 		}
 
@@ -902,7 +860,7 @@ ideas = {
 			removal_cost = -1
 			
 			equipment_bonus = {
-				tac_bomber_equipment = {
+				medium_plane_airframe = {
 					build_cost_ic = 0.25
 					instant = yes
 				}
@@ -910,31 +868,23 @@ ideas = {
 					build_cost_ic = 0.25
 					instant = yes
 				}
-				nav_bomber_equipment = {
+				small_plane_naval_bomber_airframe = {
 					build_cost_ic = 0.25
 					instant = yes
 				}
-				CAS_equipment = {
+				small_plane_airframe = {
 					build_cost_ic = 0.25
 					instant = yes
 				}
-				fighter_equipment = {
+				medium_plane_fighter_airframe = {
 					build_cost_ic = 0.25
 					instant = yes
 				}
-				heavy_fighter_equipment = {
+				cv_small_plane_naval_bomber_airframe = {
 					build_cost_ic = 0.25
 					instant = yes
 				}
-				cv_nav_bomber_equipment = {
-					build_cost_ic = 0.25
-					instant = yes
-				}
-				cv_CAS_equipment = {
-					build_cost_ic = 0.25
-					instant = yes
-				}
-				cv_fighter_equipment = {
+				cv_small_plane_airframe = {
 					build_cost_ic = 0.25
 					instant = yes
 				}
@@ -946,15 +896,6 @@ ideas = {
 				original_tag = GER 
 				always = no
 			}
-			available = { 
-				OR = {
-					country_exists = VIC
-					any_country_with_original_tag = {
-						original_tag_to_check = FRA
-						is_in_faction_with = GER
-					}
-				}
-			}
 			allowed_civil_war = {
 				always = yes
 			}
@@ -962,7 +903,7 @@ ideas = {
 			removal_cost = -1
 			
 			equipment_bonus = {
-				tac_bomber_equipment = {
+				medium_plane_airframe = {
 					build_cost_ic = -0.05
 					instant = yes
 				}
@@ -970,31 +911,23 @@ ideas = {
 					build_cost_ic = -0.05
 					instant = yes
 				}
-				nav_bomber_equipment = {
+				small_plane_naval_bomber_airframe = {
 					build_cost_ic = -0.05
 					instant = yes
 				}
-				CAS_equipment = {
+				small_plane_airframe = {
 					build_cost_ic = -0.05
 					instant = yes
 				}
-				fighter_equipment = {
+				medium_plane_fighter_airframe = {
 					build_cost_ic = -0.05
 					instant = yes
 				}
-				heavy_fighter_equipment = {
+				cv_small_plane_naval_bomber_airframe = {
 					build_cost_ic = -0.05
 					instant = yes
 				}
-				cv_nav_bomber_equipment = {
-					build_cost_ic = -0.05
-					instant = yes
-				}
-				cv_CAS_equipment = {
-					build_cost_ic = -0.05
-					instant = yes
-				}
-				cv_fighter_equipment = {
+				cv_small_plane_airframe = {
 					build_cost_ic = -0.05
 					instant = yes
 				}
@@ -1004,7 +937,7 @@ ideas = {
 		FRA_national_bureau_of_statistics = {
 			picture = SOV_scientist_defect
 			allowed = {
-				original_tag = FRA #should probably be VIC
+				original_tag = VIC #should probably be VIC
 				always = no
 			}
 
@@ -1021,7 +954,7 @@ ideas = {
 		FRA_legionary_service_order = {
 			picture = ast_volunteer_defence_corps
 			allowed = {
-				original_tag = FRA #should probably be VIC
+				original_tag = VIC #should probably be VIC
 				always = no
 			}
 
@@ -1038,7 +971,7 @@ ideas = {
 		FRA_milice = {
 			picture = generic_war_preparation
 			allowed = {
-				original_tag = FRA #should probably be VIC
+				original_tag = VIC #should probably be VIC
 				always = no
 			}
 
@@ -1055,7 +988,7 @@ ideas = {
 		FRA_anti_bolshevist_volunteers = {
 			picture = generic_manpower_bonus
 			allowed = {
-				original_tag = FRA #should probably be VIC
+				original_tag = VIC #should probably be VIC
 				always = no
 			}
 
@@ -1079,7 +1012,7 @@ ideas = {
 		FRA_rebuild_the_military = {
 			picture = generic_infantry_bonus
 			allowed = {
-				original_tag = FRA #should probably be VIC
+				original_tag = VIC #should probably be VIC
 				always = no
 			}
 
@@ -1098,7 +1031,7 @@ ideas = {
 		FRA_hidden_materials = {
 			picture = HUN_secret_rearmament
 			allowed = {
-				original_tag = FRA #should probably be VIC
+				original_tag = VIC #should probably be VIC
 				always = no
 			}
 
@@ -1115,7 +1048,7 @@ ideas = {
 		FRA_buy_from_the_enemy = {
 			picture = generic_license_production
 			allowed = {
-				original_tag = FRA #should probably be VIC
+				original_tag = VIC #should probably be VIC
 				always = no
 			}
 
@@ -1352,7 +1285,7 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				equipment_capture = 0.35
+				# equipment_capture = 0.35
 			}
 		}
 		FRA_colonial_recruitment = {
@@ -1671,6 +1604,7 @@ ideas = {
 				planning_speed = -0.25
 				lend_lease_tension = 1000
 				conversion_cost_civ_to_mil_factor = 10
+				# production_speed_naval_base_factor = -0.99
 			}
 		}
 
@@ -1972,7 +1906,7 @@ ideas = {
 
 			modifier = {
 				stability_factor = 0.1
-				consumer_goods_factor = 0.1
+				consumer_goods_factor = 0.05
 			}
 		}
 
@@ -1993,7 +1927,7 @@ ideas = {
 				industrial_capacity_factory = -0.15
 				industrial_capacity_dockyard = -0.15
 				stability_factor = -0.1
-				consumer_goods_factor = 0.2
+				consumer_goods_factor = 0.1
 			}
 		}
 	
@@ -2014,7 +1948,7 @@ ideas = {
 				industrial_capacity_factory = -0.15
 				industrial_capacity_dockyard = -0.15
 				stability_factor = -0.05
-				consumer_goods_factor = 0.2
+				consumer_goods_factor = 0.1
 			}
 		}
 	
@@ -2034,7 +1968,7 @@ ideas = {
 				industrial_capacity_factory = 0.10
 				industrial_capacity_dockyard = 0.10
 				stability_factor = 0.05
-				consumer_goods_factor = 0.2
+				consumer_goods_factor = 0.1
 			}
 		}
 		
@@ -2046,7 +1980,7 @@ ideas = {
 				always = no
 			}
 			modifier = {
-				consumer_goods_factor = 0.1
+				consumer_goods_factor = 0.05
 				stability_factor = -0.05
 			}
 		}
@@ -2057,7 +1991,7 @@ ideas = {
 				always = no
 			}
 			modifier = {
-				consumer_goods_factor = 0.1
+				consumer_goods_factor = 0.05
 				stability_factor = 0.05
 			}
 		}
@@ -2155,19 +2089,42 @@ ideas = {
 			picture = renault
 						
 			allowed = {
-				# original_tag = FRA
-				OR = {
-					original_tag = FRA
-					original_tag = VIC
-				}
+				tag = FRA
 			}
 						
 			research_bonus = {
 				armor = 0.15
 			}
 			
+			# traits = { heavy_tank_manufacturer }
+			equipment_bonus = {
+				heavy_tank_chassis = {
+					armor_value = 0.05 
+					hard_attack = 0.05 
+					soft_attack = 0.05
+				}
+				heavy_tank_artillery_chassis = {
+					armor_value = 0.05  
+					soft_attack = 0.1
+				}
+				heavy_tank_destroyer_chassis = {
+					ap_attack = 0.1
+					armor_value = 0.05 
+					hard_attack = 0.05 
+					soft_attack = 0.05
+				}
+				heavy_assault_gun_chassis = {
+					armor_value = 0.05 
+					hard_attack = 0.05 
+				}
+				heavy_tank_amphibious_chassis = {
+					armor_value = 0.05 
+					hard_attack = 0.05 
+					soft_attack = 0.05
+				}
+			}
 
-			traits = { heavy_tank_manufacturer }
+			modifier = { tank_manufacturer_cost_factor = -1 }
 		}
 	
 		FRA_AMX = {
@@ -2179,15 +2136,45 @@ ideas = {
 			}
 						
 			allowed = {
-				original_tag = FRA
+				tag = FRA
 			}
 						
 			research_bonus = {
 				armor = 0.15
 			}
 			
+			modifier = { tank_manufacturer_cost_factor = -1 }
 
-			traits = { fast_tank_manufacturer }
+			# traits = { fast_tank_manufacturer }
+			equipment_bonus = {
+				light_tank_chassis = {
+					build_cost_ic = 0.05
+					soft_attack = 0.1
+					hard_attack = 0.1
+				}
+				light_tank_artillery_chassis = {
+					build_cost_ic = 0.05
+					soft_attack = 0.15
+				}
+				light_tank_destroyer_chassis = {
+					build_cost_ic = 0.05
+					ap_attack = 0.1
+					hard_attack = 0.15
+				}
+				light_tank_aa_chassis = {
+					build_cost_ic = 0.05
+					# air_attack = 0.15
+				}
+				light_assault_gun_chassis = {
+					build_cost_ic = 0.05
+					soft_attack = 0.1
+				}
+				light_tank_amphibious_chassis = {
+					build_cost_ic = 0.05
+					soft_attack = 0.1
+					hard_attack = 0.1
+				}
+			}
 		}
 		FRA_hotchkiss = {
 		
@@ -2198,15 +2185,44 @@ ideas = {
 			}
 						
 			allowed = {
-				original_tag = FRA
+				tag = FRA
 			}
 						
 			research_bonus = {
 				armor = 0.15
 			}
 			
+			modifier = { tank_manufacturer_cost_factor = -1 }
 
-			traits = { infantry_tank_manufacturer }
+			# traits = { infantry_tank_manufacturer }
+			equipment_bonus = {
+				medium_tank_chassis = {
+					armor_value = 0.1
+					soft_attack = 0.1
+				}
+				medium_tank_artillery_chassis = {
+					armor_value = 0.1
+					soft_attack = 0.15
+				}
+				medium_tank_destroyer_chassis = {
+					ap_attack = 0.1
+					armor_value = 0.1
+					soft_attack = 0.1
+				}
+				medium_tank_aa_chassis = {
+					# anti_air_attack = 0.15
+					armor_value = 0.1
+					soft_attack = 0.1
+				}
+				medium_assault_gun_chassis = {
+					armor_value = 0.1
+					soft_attack = 0.1
+				}
+				medium_tank_amphibious_chassis = {
+					armor_value = 0.1
+					soft_attack = 0.1
+				}
+			}
 		}
 
 		FRA_APX = {
@@ -2218,15 +2234,50 @@ ideas = {
 			}
 						
 			allowed = {
-				original_tag = FRA
+				tag = FRA
 			}
 						
 			research_bonus = {
 				armor = 0.15
 			}
 			
+			modifier = { tank_manufacturer_cost_factor = -1 }
 
-			traits = { medium_tank_manufacturer }
+			# traits = { medium_tank_manufacturer }
+			equipment_bonus = {
+				medium_tank_chassis = {
+					defense = -0.05
+					hardness = 0.05
+					hard_attack = 0.1
+				}
+				medium_tank_artillery_chassis = {
+					defense = -0.05
+					hardness = 0.05
+					hard_attack = 0.1
+				}
+				medium_tank_destroyer_chassis = {
+					ap_attack = 0.1
+					defense = -0.05
+					hardness = 0.05
+					hard_attack = 0.1
+				}
+				medium_tank_aa_chassis = {
+					defense = -0.05
+					hardness = 0.05
+					# air_attack = 0.15
+					hard_attack = 0.1
+				}
+				medium_assault_gun_chassis = {
+					defense = -0.05
+					hardness = 0.05
+					hard_attack = 0.1
+				}
+				medium_tank_amphibious_chassis = {
+					defense = -0.05
+					hardness = 0.05
+					hard_attack = 0.1
+				}
+			}
 		}
 		FRA_panhard = {
 			
@@ -2234,10 +2285,9 @@ ideas = {
 			available = {
 				
 			}
-
-						
+	
 			allowed = {
-				original_tag = FRA
+				tag = FRA
 				has_dlc = "La Resistance"
 			}
 						
@@ -2245,8 +2295,17 @@ ideas = {
 				armor = 0.15
 			}
 			
+			modifier = { tank_manufacturer_cost_factor = -1 }
 
-			traits = { armored_car_manufacturer }
+			# traits = { armored_car_manufacturer }
+			equipment_bonus = {
+				armored_car_chassis = {
+					build_cost_ic = -0.15
+					reliability = 0.10
+					soft_attack = 0.10
+					hard_attack = 0.10
+				}
+			}
 		}
 	}
 	
@@ -2311,6 +2370,8 @@ ideas = {
 			}
 			
 			traits = { light_aircraft_manufacturer }
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 		
 		bloch = {
@@ -2324,6 +2385,8 @@ ideas = {
 			}
 			
 			traits = { medium_aircraft_manufacturer }
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 		
 		amiot = {
@@ -2337,6 +2400,8 @@ ideas = {
 			}
 			
 			traits = { heavy_aircraft_manufacturer }
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 		
 		levasseur = {
@@ -2350,6 +2415,8 @@ ideas = {
 			}
 			
 			traits = { naval_aircraft_manufacturer }
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 		SNCAN = {
 			picture = FRA_sncan		
@@ -2363,6 +2430,8 @@ ideas = {
 			}
 			
 			traits = { heavy_aircraft_manufacturer }
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 		SNCAO = {
 			picture = FRA_sncao			
@@ -2376,6 +2445,8 @@ ideas = {
 			}
 			
 			traits = { medium_aircraft_manufacturer }
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 		SNCASE = {
 			picture = FRA_sncase		
@@ -2389,6 +2460,8 @@ ideas = {
 			}
 			
 			traits = { light_aircraft_manufacturer }
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 		SNCASO = {
 			picture = FRA_sncaso		
@@ -2402,6 +2475,8 @@ ideas = {
 			}
 			
 			traits = { naval_aircraft_manufacturer }
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 		SNCAC = {
 			picture = FRA_sncac			
@@ -2415,6 +2490,8 @@ ideas = {
 			}
 			
 			traits = { aircraft_manufacturer }
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 		
 	}
@@ -2427,48 +2504,75 @@ ideas = {
 			allowed = {
 				original_tag = FRA
 			}
+
+			cost = 150
 						
 			research_bonus = {
 				naval_equipment = 0.15
 			}
 			
 			traits = { mediterranean_naval_manufacturer }
+
+			modifier = { naval_manufacturer_cost_factor = -1 }
 		}
 		aeb = {
 			picture = FRA_aeb		
 			allowed = {
 				original_tag = FRA
 			}
+
+			cost = 150
 						
 			research_bonus = {
 				naval_equipment = 0.15
 			}
 			
 			traits = { convoy_escort_naval_manufacturer }
+
+			modifier = { naval_manufacturer_cost_factor = -1 }
 		}
 		acl = {
 			picture = FRA_acl	
 			allowed = {
 				original_tag = FRA
 			}
+
+			cost = 150
 						
 			research_bonus = {
 				naval_equipment = 0.15
 			}
 			
 			traits = { atlantic_fleet_naval_manufacturer }
+
+			modifier = { naval_manufacturer_cost_factor = -1 }
 		}
 		acf = {
 			picture = FRA_acf			
 			allowed = {
-				original_tag = FRA
+				# original_tag = FRA
+				OR = {
+					original_tag = FRA
+					original_tag = ENG
+					original_tag = CAN
+					original_tag = AST
+					original_tag = NZL
+					original_tag = RAJ
+					original_tag = SAF
+					original_tag = IRE
+					original_tag = MON
+				}
 			}
 						
 			research_bonus = {
 				naval_equipment = 0.15
 			}
+
+			cost = 150
 			
 			traits = { raiding_fleet_naval_manufacturer }
+
+			modifier = { naval_manufacturer_cost_factor = -1 }
 		}
 	}
 	
@@ -2486,21 +2590,6 @@ ideas = {
 			
 			traits = { industrial_concern }
 		}
-
-		sfr = {
-
-			picture = generic_radio_concern
-						
-			allowed = {
-				original_tag = FRA
-			}
-						
-			research_bonus = {
-				electronics = 0.15
-			}
-			
-			traits = { electronics_concern }
-		}
-
 	}
+
 }

@@ -1,8 +1,21 @@
-﻿capital = 361 # Washington DC
-
+﻿capital = 361
+1936.1.1.13 = {
+	set_oob = "USA_1936_NA"
+}
 oob = "USA_1936"
 
-starting_train_buffer = 5
+starting_train_buffer = 2.5
+
+# MP_garrison_division_standard = yes
+
+# create_intelligence_agency = {
+#     name = "Office of Strategic Services"
+# }
+
+set_variable = {
+	var = min_fuel
+	value = 0.800
+}
 
 if = {
 	limit = { has_dlc = "Man the Guns" }
@@ -47,7 +60,6 @@ if = {
 set_research_slots = 7
 set_stability = 0.75
 set_war_support = 0
-set_variable = { dockyard_major = 1 }
 set_variable = { var = senators_support value = 48 }
 set_variable = { var = senators_total value = 96 }
 set_variable = { var = representatives_support value = 218 }
@@ -63,6 +75,17 @@ set_variable = { USA_propaganda_empty_slot_index = 1 } #### === INSERT EMPTY SLO
 set_variable = { USA_poster_left_icon_frame = USA_propaganda_empty_slot_index } #Set up the appropriate empty slot GFX
 set_variable = { USA_poster_center_icon_frame = USA_propaganda_empty_slot_index } #Set up the appropriate locked slot GFX
 #set_variable = { SOV_poster_right_icon_frame = SOV_propaganda_locked_slot_index } #Set up the appropriate locked slot GFX
+set_variable = { USA_Marine_Corps_division_cap = 0 }
+set_variable = { USA_Marine_Corps_increase = 1 }
+set_variable = { USA_Marine_Corps_increase_double = 2 }
+set_variable = { US_Airborne_division_cap = 0 }
+set_variable = { US_Airborne_increase = 1 }
+set_variable = { US_Airborne_increase_double = 2 }
+
+
+set_country_flag = USA_Marine_Corps_division_standard
+set_country_flag = US_Airborne_division_standard
+
 USA_recalc_congress_icon_frames = yes
 # USA = {
 # 	country_event = { id = usa.50 days = 2 }
@@ -87,6 +110,7 @@ set_technology = {
 	light_basic_dup_tech = 1
 	medium_basic_dup_tech = 1
 	gw_artillery = 1
+	
 	
 	
 	superior_firepower = 1
@@ -160,38 +184,31 @@ if = {
 	}
 	add_ideas = MTG_naval_treaty_adherent
 }
-##Monroe Doctrine - We are trying to just remove the dlc check and see what, if any, things break. Will ask QA and BETAs to test new system both with and without ToA
-#IF = {
-#	limit = { has_dlc = "Trial of Allegiance" }
-	add_ideas = USA_monroe_doctrine_enforcer
-#}
-#IF = {
-#	limit = { NOT = { has_dlc = "Trial of Allegiance" }	}
-#	give_guarantee = CAN
-#	give_guarantee = MEX
-#	give_guarantee = CUB
-#	give_guarantee = HAI
-#	give_guarantee = DOM
-#	give_guarantee = GUA
-#	give_guarantee = HON
-#	give_guarantee = ELS
-#	give_guarantee = NIC
-#	give_guarantee = COS
-#	give_guarantee = PAN
-#	give_guarantee = VEN
-#	give_guarantee = COL
-#	give_guarantee = ECU
-#	give_guarantee = PRU
-#	give_guarantee = BRA
-#	give_guarantee = BOL
-#	give_guarantee = CHL
-#	give_guarantee = PAR
-#	give_guarantee = ARG
-#	give_guarantee = URG
-#}
 
+#Monroe Doctrine
+# give_guarantee = CAN
+# give_guarantee = MEX
+# give_guarantee = CUB
+# give_guarantee = HAI
+# give_guarantee = DOM
+# give_guarantee = GUA
+# give_guarantee = HON
+# give_guarantee = ELS
+# give_guarantee = NIC
+# give_guarantee = COS
+# give_guarantee = PAN
+# give_guarantee = VEN
+# give_guarantee = COL
+# give_guarantee = ECU
+# give_guarantee = PRU
+# give_guarantee = BRA
+# give_guarantee = BOL
+# give_guarantee = CHL
+# give_guarantee = PAR
+# give_guarantee = ARG
+# give_guarantee = URG
 
-set_convoys = 600
+set_convoys = 500
 
 
 set_politics = {
@@ -206,6 +223,7 @@ set_popularities = {
 }
 
 add_ideas = {
+	ENG_tension_vol
 	undisturbed_isolation
 	great_depression
 	disarmed_nation
@@ -216,20 +234,19 @@ add_ideas = {
 	new_deal
 	USA_armed_forces_desegregation
 	bureau_of_ordnance_spirit
+	peace_training
+	no_grinding
+	PACIFIC_COMMONWEALTH_reliance_on_natural_rubber_1
+	PACIFIC_COMMONWEALTH_difficulty_with_rubber_supply_3
+	PACIFIC_COMMONWEALTH_controls_capitals_1
 }
 
 
 # DIPLOMACY
-set_autonomy = {
-	target = PHI
-	autonomous_state =  autonomy_puppet
-}
-
-1936.1.2 = {
-	remove_from_faction = PHI
-	set_autonomy = { target = PHI autonomy_state = autonomy_free }
-	set_global_flag = meta_game_flag
-}
+# set_autonomy = {
+# 	target = PHI
+# 	autonomous_state =  autonomy_puppet
+# }
 
 recruit_character = USA_franklin_delano_roosevelt
 recruit_character = USA_william_dudley_pelley
@@ -239,31 +256,31 @@ recruit_character = USA_geoffrey_keyes
 recruit_character = USA_lucian_truscott
 recruit_character = USA_mark_clark
 recruit_character = USA_douglas_macarthur
-recruit_character = USA_walter_krueger
-recruit_character = USA_lloyd_fredendall
+# recruit_character = USA_walter_krueger
+# recruit_character = USA_lloyd_fredendall
 recruit_character = USA_leslie_mcnair
-recruit_character = USA_jonathan_wainwright
-recruit_character = USA_russell_hartle
+# recruit_character = USA_jonathan_wainwright
+# recruit_character = USA_russell_hartle
 recruit_character = USA_leonard_gerow
 recruit_character = USA_edward_brooks
 recruit_character = USA_clarence_huebner
 recruit_character = USA_alexander_patch
 recruit_character = USA_william_simpson
 recruit_character = USA_courtney_hodges
-recruit_character = USA_joseph_stilwell
-recruit_character = USA_oscar_griswold
-recruit_character = USA_maurice_rose
+# recruit_character = USA_joseph_stilwell
+# recruit_character = USA_oscar_griswold
+# recruit_character = USA_maurice_rose
 recruit_character = USA_ernest_king
 recruit_character = USA_frank_jack_fletcher
 recruit_character = USA_harold_rainsford_stark
 recruit_character = USA_arleigh_burke
-recruit_character = USA_george_s._patton
+# recruit_character = USA_george_s._patton
 recruit_character = USA_dwight_d._eisenhower
 recruit_character = USA_j._lawton_collins
 recruit_character = USA_chester_w._nimitz
 recruit_character = USA_william_halsey_jr.
 recruit_character = USA_raymond_a._spruance
-recruit_character = USA_charles_m._cooke_jr
+recruit_character = USA_charles_m._cooke_jr.
 recruit_character = USA_hiram_schofield
 recruit_character = USA_robert_goddard
 recruit_character = USA_henry_morgenthau
@@ -290,12 +307,6 @@ recruit_character = USA_marc_mitscher
 recruit_character = USA_henry_stimson
 recruit_character = USA_jimmy_doolittle
 recruit_character = USA_claire_lee_chennault
-recruit_character = USA_leslie_skinner
-recruit_character = USA_edward_curtis_wells
-recruit_character = USA_william_francis_gibbs
-recruit_character = USA_andrew_mckee
-recruit_character = USA_john_walter_christie
-recruit_character = USA_vannevar_bush
 
 create_equipment_variant = {
 	name = "M2 Light"
@@ -711,184 +722,74 @@ if = {
 		}
 	}
 }
-# if = {
-# 	limit = {
-# 		has_dlc = "By Blood Alone"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "P-6" #export models only
-# 		type = small_plane_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = light_mg_2x
-# 			engine_type_slot = engine_1_1x
-# 			special_type_slot_1 = empty
-# 		}
-# 		obsolete = yes
-# 	}
-# 	create_equipment_variant = {
-# 		name = "P-26A" #
-# 		type = small_plane_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = light_mg_2x
-# 			engine_type_slot = engine_1_1x
-# 			special_type_slot_1 = empty
-# 		}
-# 		obsolete = yes
-# 		icon = "GFX_USA_light_plane_2_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "O2U" #
-# 		type = small_plane_cas_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = small_bomb_bay
-# 			fixed_auxiliary_weapon_slot_1 = light_mg_2x
-# 			engine_type_slot = engine_1_1x
-# 		}
-# 		obsolete = yes
-# 	}
-# 	create_equipment_variant = {
-# 		name = "SBU Corsair" #
-# 		type = cv_small_plane_cas_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = small_bomb_bay
-# 			engine_type_slot = engine_1_1x
-# 			special_type_slot_1 = dive_brakes_small
-# 		}
-# 		obsolete = yes
-# 	}
-# 	create_equipment_variant = {
-# 		name = "BM-2" #
-# 		type = cv_small_plane_naval_bomber_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = torpedo_mounting
-# 			engine_type_slot = engine_1_1x
-# 			special_type_slot_1 = empty
-# 		}
-# 		obsolete = yes
-# 	}
-# 	create_equipment_variant = {
-# 		name = "A-12" #
-# 		type = small_plane_cas_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = small_bomb_bay
-# 			fixed_auxiliary_weapon_slot_1 = light_mg_4x
-# 			engine_type_slot = engine_1_1x
-# 			special_type_slot_1 = empty
-# 		}
-# 		obsolete = yes
-# 		icon = "GFX_USA_CAS1_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "A-17" #
-# 		type = small_plane_cas_airframe_1
-# 		modules = {
-# 			fixed_main_weapon_slot = small_bomb_bay
-# 			fixed_auxiliary_weapon_slot_1 = light_mg_4x
-# 			engine_type_slot = engine_1_1x
-# 			special_type_slot_1 = empty
-# 		}
-# 		icon = "GFX_USA_CAS1_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "P-35A" #
-# 		type = small_plane_airframe_1
-# 		modules = {
-# 			fixed_main_weapon_slot = light_mg_2x
-# 			fixed_auxiliary_weapon_slot_1 = heavy_mg_2x
-# 			engine_type_slot = engine_2_1x
-# 			special_type_slot_1 = empty
-# 		}
-# 		icon = "GFX_USA_light_plane_4_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "P-36A" #
-# 		type = small_plane_airframe_1
-# 		modules = {
-# 			fixed_main_weapon_slot = light_mg_4x
-# 			fixed_auxiliary_weapon_slot_1 = light_mg_2x
-# 			engine_type_slot = engine_1_1x
-# 			special_type_slot_1 = empty
-# 		}
-# 		icon = "GFX_USA_fighter1_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "B-6A" #also covers other Keystone bombers
-# 		type = medium_plane_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = medium_bomb_bay
-# 			engine_type_slot = engine_1_2x
-# 			special_type_slot_1 = lmg_defense_turret
-# 		}
-# 		obsolete = yes
-# 	}
-# 	create_equipment_variant = {
-# 		name = "B-10" #
-# 		type = medium_plane_airframe_1
-# 		modules = {
-# 			fixed_main_weapon_slot = medium_bomb_bay
-# 			engine_type_slot = engine_1_2x
-# 			special_type_slot_1 = lmg_defense_turret
-# 		}
-# 		icon = "GFX_medium_plane_1_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "B-18" #
-# 		type = medium_plane_airframe_1
-# 		modules = {
-# 			fixed_main_weapon_slot = medium_bomb_bay
-# 			engine_type_slot = engine_1_2x
-# 			special_type_slot_1 = lmg_defense_turret
-# 		}
-# 		icon = "GFX_USA_early_bomber_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "P2Y" #
-# 		type = medium_plane_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = medium_bomb_bay
-# 			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay_extra
-# 			engine_type_slot = engine_2_2x
-# 			special_type_slot_1 = flying_boat_medium
-# 			special_type_slot_2 = lmg_defense_turret
-# 		}
-# 		obsolete = yes
-# 		icon = "GFX_USA_naval_bomber1_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "PBY" #
-# 		type = medium_plane_airframe_1
-# 		modules = {
-# 			fixed_main_weapon_slot = medium_bomb_bay
-# 			#fixed_auxiliary_weapon_slot_1 = torpedo_mounting
-# 			fixed_auxiliary_weapon_slot_1 = torpedo_mounting_extra
-# 			engine_type_slot = engine_1_2x
-# 			special_type_slot_1 = flying_boat_medium
-# 			special_type_slot_2 = lmg_defense_turret
-# 		}
-# 		icon = "GFX_USA_naval_bomber1_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "F4B" #also covers F2F
-# 		type = cv_small_plane_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = light_mg_2x
-# 			engine_type_slot = engine_1_1x
-# 			special_type_slot_1 = empty
-# 		}
-# 		obsolete = yes
-# 		icon = "GFX_USA_cv_fighter1_medium"
-# 	}
-# 	create_equipment_variant = {
-# 		name = "F3F" #
-# 		type = cv_small_plane_airframe_0
-# 		modules = {
-# 			fixed_main_weapon_slot = light_mg_2x
-# 			engine_type_slot = engine_2_1x
-# 			special_type_slot_1 = empty
-# 		}
-# 		icon = "GFX_USA_cv_fighter1_medium"
-# 	}
-# }
+if = {
+	limit = {
+		has_dlc = "By Blood Alone"
+	}
+	create_equipment_variant = {
+		name = "Catalina"
+		type = small_plane_naval_bomber_airframe_1
+		modules = {
+			fixed_main_weapon_slot = torpedo_mounting_small
+			fixed_auxiliary_weapon_slot_1 = light_mg_2x
+			engine_type_slot = engine_2_1x
+			special_type_slot_1 = radio_navigation_1
+			special_type_slot_2 = dive_brakes_small
+			
+		}
+		icon = "GFX_USA_naval_bomber1_medium"
+	}
+	create_equipment_variant = {
+		name = "P-40 Warhawk"
+		type = small_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = light_mg_4x
+			fixed_auxiliary_weapon_slot_1 = light_mg_2x
+			engine_type_slot = engine_1_1x
+		}
+		#icon = "GFX_USA_naval_bomber1_medium"
+	}
+	create_equipment_variant = {
+		name = "A-17"
+		type = small_plane_cas_airframe_1
+		modules = {
+			fixed_main_weapon_slot = bomb_locks
+			fixed_auxiliary_weapon_slot_1 = light_mg_2x
+			engine_type_slot = engine_1_1x
+		}
+		#icon = "GFX_USA_naval_bomber1_medium"
+	}
+	create_equipment_variant = {
+		name = "B-23 Dragon"
+		type = medium_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = medium_bomb_bay
+			fixed_auxiliary_weapon_slot_2 = lmg_defense_turret
+			engine_type_slot = engine_1_2x
+		}
+		#icon = "GFX_USA_naval_bomber1_medium"
+	}
+	create_equipment_variant = {
+		name = "P2Y"
+		type = medium_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = medium_bomb_bay
+			#fixed_auxiliary_weapon_slot_1 = torpedo_mounting
+			fixed_auxiliary_weapon_slot_2 = lmg_defense_turret
+			special_type_slot_1 = flying_boat_medium
+			engine_type_slot = engine_2_2x
+		}
+		#icon = "GFX_USA_naval_bomber1_medium"
+	}
+	create_equipment_variant = {
+		name = "F4"
+		type = medium_plane_scout_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = recon_camera
+			engine_type_slot = engine_1_2x
+		}
+	}
+}
 
 
 # 1939 Start #
@@ -1033,12 +934,448 @@ if = {
 		}
 	}
 }
-set_air_oob = "USA_1936_air_legacy"
-set_technology = {
-	early_fighter = 1
-	cv_early_fighter = 1
-	cv_CAS1 = 1
-	naval_bomber1 = 1
-	CAS1 = 1
-	early_bomber = 1
+
+add_operation_token = {
+	tag = ENG
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = ENG
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = ENG
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = ENG
+	token = token_navy_friendly
+}
+# FRA
+add_operation_token = {
+	tag = FRA
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = FRA
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = FRA
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = FRA
+	token = token_navy_friendly
+}
+# POL
+add_operation_token = {
+	tag = POL
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = POL
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = POL
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = POL
+	token = token_navy_friendly
+}
+# CAN
+add_operation_token = {
+	tag = CAN
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = CAN
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = CAN
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = CAN
+	token = token_navy_friendly
+}
+# MEX
+add_operation_token = {
+	tag = MEX
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = MEX
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = MEX
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = MEX
+	token = token_navy_friendly
+}
+# BRA
+add_operation_token = {
+	tag = BRA
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = BRA
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = BRA
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = BRA
+	token = token_navy_friendly
+}
+# IRE
+add_operation_token = {
+	tag = IRE
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = IRE
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = IRE
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = IRE
+	token = token_navy_friendly
+}
+# POR
+add_operation_token = {
+	tag = POR
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = POR
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = POR
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = POR
+	token = token_navy_friendly
+}
+# HOL
+add_operation_token = {
+	tag = HOL
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = HOL
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = HOL
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = HOL
+	token = token_navy_friendly
+}
+# BEL
+add_operation_token = {
+	tag = BEL
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = BEL
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = BEL
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = BEL
+	token = token_navy_friendly
+}
+# LUX
+# add_operation_token = {
+# 	tag = LUX
+# 	token = token_airforce_friendly
+# }
+# add_operation_token = {
+# 	tag = LUX
+# 	token = token_army_friendly
+# }
+# add_operation_token = {
+# 	tag = LUX
+# 	token = token_civilian_friendly
+# }
+# add_operation_token = {
+# 	tag = LUX
+# 	token = token_navy_friendly
+# }
+# DEN
+add_operation_token = {
+	tag = DEN
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = DEN
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = DEN
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = DEN
+	token = token_navy_friendly
+}
+# NOR
+add_operation_token = {
+	tag = NOR
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = NOR
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = NOR
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = NOR
+	token = token_navy_friendly
+}
+# CZE
+add_operation_token = {
+	tag = CZE
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = CZE
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = CZE
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = CZE
+	token = token_navy_friendly
+}
+# GRE
+add_operation_token = {
+	tag = GRE
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = GRE
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = GRE
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = GRE
+	token = token_navy_friendly
+}
+# IRQ
+add_operation_token = {
+	tag = IRQ
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = IRQ
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = IRQ
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = IRQ
+	token = token_navy_friendly
+}
+# SAF
+add_operation_token = {
+	tag = SAF
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = SAF
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = SAF
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = SAF
+	token = token_navy_friendly
+}
+# RAJ
+add_operation_token = {
+	tag = RAJ
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = RAJ
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = RAJ
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = RAJ
+	token = token_navy_friendly
+}
+# CHI
+add_operation_token = {
+	tag = CHI
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = CHI
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = CHI
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = CHI
+	token = token_navy_friendly
+}
+# MAL
+add_operation_token = {
+	tag = MAL
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = MAL
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = MAL
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = MAL
+	token = token_navy_friendly
+}
+# INS
+add_operation_token = {
+	tag = INS
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = INS
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = INS
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = INS
+	token = token_navy_friendly
+}
+# PHI
+# add_operation_token = {
+# 	tag = PHI
+# 	token = token_airforce_friendly
+# }
+# add_operation_token = {
+# 	tag = PHI
+# 	token = token_army_friendly
+# }
+# add_operation_token = {
+# 	tag = PHI
+# 	token = token_civilian_friendly
+# }
+# add_operation_token = {
+# 	tag = PHI
+# 	token = token_navy_friendly
+# }
+# AST
+add_operation_token = {
+	tag = AST
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = AST
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = AST
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = AST
+	token = token_navy_friendly
+}
+# NZL
+add_operation_token = {
+	tag = NZL
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = NZL
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = NZL
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = NZL
+	token = token_navy_friendly
+}
+
+# COMINTERN
+
+# SOV
+add_operation_token = {
+	tag = SOV
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = SOV
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = SOV
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = SOV
+	token = token_navy_friendly
+}
+# MON
+add_operation_token = {
+	tag = MON
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = MON
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = MON
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = MON
+	token = token_navy_friendly
 }

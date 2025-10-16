@@ -13,6 +13,62 @@
 #	}
 # 
 
+SOV_order_270_all_trigger = {
+	if = {
+		limit = {
+			has_completed_focus = SOV_secure_new_conquests
+		}
+		surrender_progress > 0.28
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = SOV_improve_stalin_line
+		}
+		surrender_progress > 0.22 
+	}
+	else = {
+		surrender_progress > 0.22
+	}
+	casualties > 500000
+}
+
+SOV_tankograd_all_trigger = {
+	if = {
+		limit = {
+			has_completed_focus = SOV_secure_new_conquests
+		}
+		surrender_progress > 0.3
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = SOV_improve_stalin_line
+		}
+		surrender_progress > 0.24 
+	}
+	else = {
+		surrender_progress > 0.24
+	}
+	casualties > 150000
+}
+
+SOV_focus_forced_labour_all_trigger = {
+	if = {
+		limit = {
+			has_completed_focus = SOV_secure_new_conquests
+		}
+		surrender_progress > 0.36
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = SOV_improve_stalin_line
+		}
+		surrender_progress > 0.3 
+	}
+	else = {
+		surrender_progress > 0.3
+	}
+}
+
 SOV_propaganda_poster_slot_available = {
 	custom_trigger_tooltip = {
 		tooltip = SOV_propaganda_poster_slot_available_tt
@@ -93,8 +149,8 @@ SOV_is_free_chinese_tag = {
 		tooltip = SOV_is_free_chinese_tag_tt
 		OR = {
 			original_tag = CHI
-			original_tag = PRC
-			original_tag = SIK
+			# original_tag = PRC
+			# original_tag = SIK
 			# original_tag = XSM
 			# original_tag = YUN
 			# original_tag = GXC
@@ -109,8 +165,8 @@ SOV_is_free_chinese_tag = {
 SOV_is_chinese_tag = {
 	OR = {
 		original_tag = CHI
-		original_tag = PRC
-		original_tag = SIK
+		# original_tag = PRC
+		# original_tag = SIK
 		# original_tag = XSM
 		# original_tag = YUN
 		# original_tag = GXC
@@ -122,24 +178,24 @@ SOV_is_chinese_tag = {
 
 SOV_is_soviet_republic_tag_strict = {
 	OR = {
-		tag = BLR
-		tag = UKR
+		# tag = BLR
+		# tag = UKR
 		# tag = KAZ
-		tag = GEO
+		# tag = GEO
 		# tag = ARM
 		# tag = AZR
 		# tag = UZB
 		# tag = TMS
 		# tag = KYR
 		# tag = TAJ
-		#tag = TAN
+		# tag = TAN
 
 		# tag = DON # Don Republic
 		# tag = KUB # Kuban Republic
 		# tag = BUK # Bukharan Republic
 		# tag = ALT # Altay
 		# tag = KAL # Kalmykia
-		tag = KAR # Karelia
+		# tag = KAR # Karelia
 		# tag = CRI # Crimea
 		# tag = TAT # Tatarstan
 		# tag = CIN # Chechnya Ingushetia
@@ -169,10 +225,10 @@ SOV_is_soviet_republic_tag_strict = {
 
 SOV_is_soviet_republic_tag_lax = {
 	OR = {
-		tag = BLR
-		tag = UKR
+		# tag = BLR
+		# tag = UKR
 		# tag = KAZ
-		tag = GEO
+		# tag = GEO
 		# tag = ARM
 		# tag = AZR
 		# tag = UZB
@@ -186,7 +242,7 @@ SOV_is_soviet_republic_tag_lax = {
 		# tag = BUK # Bukharan Republic
 		# tag = ALT # Altay
 		# tag = KAL # Kalmykia
-		tag = KAR # Karelia
+		# tag = KAR # Karelia
 		# tag = CRI # Crimea
 		# tag = TAT # Tatarstan
 		# tag = CIN # Chechnya Ingushetia
@@ -238,22 +294,22 @@ SOV_is_valid_academy_of_sciences_target = {
 
 SOV_has_already_built_national_academy_of_sciences = {
 	OR = {
-		AND = {
-			FROM = { tag = BLR }
-			ROOT = { has_country_flag = SOV_national_academy_of_sciences_built_BLR_flag }
-		}
-		AND = {
-			FROM = { tag = UKR }
-			ROOT = { has_country_flag = SOV_national_academy_of_sciences_built_UKR_flag }
-		}
+		# AND = {
+		# 	FROM = { tag = BLR }
+		# 	ROOT = { has_country_flag = SOV_national_academy_of_sciences_built_BLR_flag }
+		# }
+		# AND = {
+		# 	FROM = { tag = UKR }
+		# 	ROOT = { has_country_flag = SOV_national_academy_of_sciences_built_UKR_flag }
+		# }
 		# AND = {
 		# 	FROM = { tag = KAZ }
 		# 	ROOT = { has_country_flag = SOV_national_academy_of_sciences_built_KAZ_flag }
 		# }
-		AND = {
-			FROM = { tag = GEO }
-			ROOT = { has_country_flag = SOV_national_academy_of_sciences_built_GEO_flag }
-		}
+		# AND = {
+		# 	FROM = { tag = GEO }
+		# 	ROOT = { has_country_flag = SOV_national_academy_of_sciences_built_GEO_flag }
+		# }
 		# AND = {
 		# 	FROM = { tag = ARM }
 		# 	ROOT = { has_country_flag = SOV_national_academy_of_sciences_built_ARM_flag }
@@ -322,113 +378,113 @@ SOV_has_already_built_national_academy_of_sciences = {
 ### TANK DESIGNER ###
 #####################
 
-SOV_has_active_tank_designer_any = {
-	custom_trigger_tooltip = {
-		tooltip = SOV_has_active_tank_designer_any_tt
-		OR = {
-			SOV_has_active_tank_designer_morozov = yes
-			SOV_has_active_tank_designer_astrov = yes
-			SOV_has_active_tank_designer_okmo = yes
-			SOV_has_active_tank_designer_mytishchy = yes
-			SOV_has_active_tank_designer_kirov = yes
-		}
-	}
-}
+# SOV_has_active_tank_designer_any = {
+# 	custom_trigger_tooltip = {
+# 		tooltip = SOV_has_active_tank_designer_any_tt
+# 		OR = {
+# 			SOV_has_active_tank_designer_morozov = yes
+# 			SOV_has_active_tank_designer_astrov = yes
+# 			SOV_has_active_tank_designer_okmo = yes
+# 			SOV_has_active_tank_designer_mytishchy = yes
+# 			SOV_has_active_tank_designer_kirov = yes
+# 		}
+# 	}
+# }
 
-SOV_has_active_tank_designer_morozov = {
-	OR = {
-		has_idea = SOV_morozov_design_bureau
-		has_idea = SOV_morozov_design_bureau_1
-		has_idea = SOV_morozov_design_bureau_2
-		has_idea = SOV_morozov_design_bureau_3
-		has_idea = SOV_morozov_design_bureau_1_2
-		has_idea = SOV_morozov_design_bureau_1_3
-		has_idea = SOV_morozov_design_bureau_2_3
-		has_idea = SOV_morozov_design_bureau_final
-	}
-}
+# SOV_has_active_tank_designer_morozov = {
+# 	OR = {
+# 		has_idea = SOV_morozov_design_bureau
+# 		has_idea = SOV_morozov_design_bureau_1
+# 		has_idea = SOV_morozov_design_bureau_2
+# 		has_idea = SOV_morozov_design_bureau_3
+# 		has_idea = SOV_morozov_design_bureau_1_2
+# 		has_idea = SOV_morozov_design_bureau_1_3
+# 		has_idea = SOV_morozov_design_bureau_2_3
+# 		has_idea = SOV_morozov_design_bureau_final
+# 	}
+# }
 
-SOV_has_active_tank_designer_astrov = {
-	OR = {
-		has_idea = SOV_astrov_design_bureau
-		has_idea = SOV_astrov_design_bureau_1
-		has_idea = SOV_astrov_design_bureau_2
-		has_idea = SOV_astrov_design_bureau_3
-		has_idea = SOV_astrov_design_bureau_1_2
-		has_idea = SOV_astrov_design_bureau_1_3
-		has_idea = SOV_astrov_design_bureau_2_3
-		has_idea = SOV_astrov_design_bureau_final
-	}
-}
+# SOV_has_active_tank_designer_astrov = {
+# 	OR = {
+# 		has_idea = SOV_astrov_design_bureau
+# 		has_idea = SOV_astrov_design_bureau_1
+# 		has_idea = SOV_astrov_design_bureau_2
+# 		has_idea = SOV_astrov_design_bureau_3
+# 		has_idea = SOV_astrov_design_bureau_1_2
+# 		has_idea = SOV_astrov_design_bureau_1_3
+# 		has_idea = SOV_astrov_design_bureau_2_3
+# 		has_idea = SOV_astrov_design_bureau_final
+# 	}
+# }
 
-SOV_has_active_tank_designer_okmo = {
-	OR = {
-		has_idea = SOV_okmo
-		has_idea = SOV_okmo_1
-		has_idea = SOV_okmo_2
-		has_idea = SOV_okmo_3
-		has_idea = SOV_okmo_1_2
-		has_idea = SOV_okmo_1_3
-		has_idea = SOV_okmo_2_3
-		has_idea = SOV_okmo_final
-	}
-}
+# SOV_has_active_tank_designer_okmo = {
+# 	OR = {
+# 		has_idea = SOV_okmo
+# 		has_idea = SOV_okmo_1
+# 		has_idea = SOV_okmo_2
+# 		has_idea = SOV_okmo_3
+# 		has_idea = SOV_okmo_1_2
+# 		has_idea = SOV_okmo_1_3
+# 		has_idea = SOV_okmo_2_3
+# 		has_idea = SOV_okmo_final
+# 	}
+# }
 
-SOV_has_active_tank_designer_mytishchy = {
-	OR = {
-		has_idea = SOV_mytishchy_machine_building_plant
-		has_idea = SOV_mytishchy_machine_building_plant_1
-		has_idea = SOV_mytishchy_machine_building_plant_2
-		has_idea = SOV_mytishchy_machine_building_plant_3
-		has_idea = SOV_mytishchy_machine_building_plant_1_2
-		has_idea = SOV_mytishchy_machine_building_plant_1_3
-		has_idea = SOV_mytishchy_machine_building_plant_2_3
-		has_idea = SOV_mytishchy_machine_building_plant_final
-	}
-}
+# SOV_has_active_tank_designer_mytishchy = {
+# 	OR = {
+# 		has_idea = SOV_mytishchy_machine_building_plant
+# 		has_idea = SOV_mytishchy_machine_building_plant_1
+# 		has_idea = SOV_mytishchy_machine_building_plant_2
+# 		has_idea = SOV_mytishchy_machine_building_plant_3
+# 		has_idea = SOV_mytishchy_machine_building_plant_1_2
+# 		has_idea = SOV_mytishchy_machine_building_plant_1_3
+# 		has_idea = SOV_mytishchy_machine_building_plant_2_3
+# 		has_idea = SOV_mytishchy_machine_building_plant_final
+# 	}
+# }
 
-SOV_has_active_tank_designer_kirov = {
-	OR = {
-		has_idea = SOV_kirov
-		has_idea = SOV_kirov_1
-		has_idea = SOV_kirov_2
-		has_idea = SOV_kirov_3
-		has_idea = SOV_kirov_1_2
-		has_idea = SOV_kirov_1_3
-		has_idea = SOV_kirov_2_3
-		has_idea = SOV_kirov_final
-	}
-}
+# SOV_has_active_tank_designer_kirov = {
+# 	OR = {
+# 		has_idea = SOV_kirov
+# 		has_idea = SOV_kirov_1
+# 		has_idea = SOV_kirov_2
+# 		has_idea = SOV_kirov_3
+# 		has_idea = SOV_kirov_1_2
+# 		has_idea = SOV_kirov_1_3
+# 		has_idea = SOV_kirov_2_3
+# 		has_idea = SOV_kirov_final
+# 	}
+# }
 
-SOV_has_tank_merged_1 = {
-	OR = {
-		has_country_flag = SOV_merge_tank_morozov_1_flag
-		has_country_flag = SOV_merge_tank_astrov_1_flag
-		has_country_flag = SOV_merge_tank_okmo_1_flag
-		has_country_flag = SOV_merge_tank_mytishchy_1_flag
-		has_country_flag = SOV_merge_tank_kirov_1_flag
-	}
-}
+# SOV_has_tank_merged_1 = {
+# 	OR = {
+# 		has_country_flag = SOV_merge_tank_morozov_1_flag
+# 		has_country_flag = SOV_merge_tank_astrov_1_flag
+# 		has_country_flag = SOV_merge_tank_okmo_1_flag
+# 		has_country_flag = SOV_merge_tank_mytishchy_1_flag
+# 		has_country_flag = SOV_merge_tank_kirov_1_flag
+# 	}
+# }
 
-SOV_has_tank_merged_2 = {
-	OR = {
-		has_country_flag = SOV_merge_tank_morozov_2_flag
-		has_country_flag = SOV_merge_tank_astrov_2_flag
-		has_country_flag = SOV_merge_tank_okmo_2_flag
-		has_country_flag = SOV_merge_tank_mytishchy_2_flag
-		has_country_flag = SOV_merge_tank_kirov_2_flag
-	}
-}
+# SOV_has_tank_merged_2 = {
+# 	OR = {
+# 		has_country_flag = SOV_merge_tank_morozov_2_flag
+# 		has_country_flag = SOV_merge_tank_astrov_2_flag
+# 		has_country_flag = SOV_merge_tank_okmo_2_flag
+# 		has_country_flag = SOV_merge_tank_mytishchy_2_flag
+# 		has_country_flag = SOV_merge_tank_kirov_2_flag
+# 	}
+# }
 
-SOV_has_tank_merged_3 = {
-	OR = {
-		has_country_flag = SOV_merge_tank_morozov_3_flag
-		has_country_flag = SOV_merge_tank_astrov_3_flag
-		has_country_flag = SOV_merge_tank_okmo_3_flag
-		has_country_flag = SOV_merge_tank_mytishchy_3_flag
-		has_country_flag = SOV_merge_tank_kirov_3_flag
-	}
-}
+# SOV_has_tank_merged_3 = {
+# 	OR = {
+# 		has_country_flag = SOV_merge_tank_morozov_3_flag
+# 		has_country_flag = SOV_merge_tank_astrov_3_flag
+# 		has_country_flag = SOV_merge_tank_okmo_3_flag
+# 		has_country_flag = SOV_merge_tank_mytishchy_3_flag
+# 		has_country_flag = SOV_merge_tank_kirov_3_flag
+# 	}
+# }
 
 
 #####################
@@ -1009,8 +1065,6 @@ SOV_basic_promote_rallies_triggers = { #Used in foreign politics targeted decs -
 SOV_basic_ultimatum_triggers = { #Used in foreign politics targeted decs - Expected Scope: ROOT = SOV // FROM = Target
 	country_exists = FROM
 	FROM = {
-		has_capitulated = no
-		is_subject = no
 		NOT = { has_war_with = ROOT }
 		NOT = { is_in_faction_with = ROOT } #CAN'T SEND ULTIMATUMS TO ALLIES OR SUBJECTS
 		#OR = { #Can send Ultimatum to non-allies or puppets (but not to faction allies)
@@ -1027,13 +1081,6 @@ SOV_basic_fight_alongside_comrades_triggers = { #Used in foreign politics target
 		has_civil_war = yes
 		has_government = ROOT
 		NOT = { has_war_with = ROOT }
-	}
-	NOT = { #Don't show up once ROOT is already at war with this country
-		any_other_country = {
-			original_tag = FROM
-			has_war_with = FROM
-			has_war_with = ROOT
-		}
 	}
 }
 
@@ -1237,20 +1284,20 @@ SOV_is_stalinist = {
 	has_completed_focus = SOV_the_centre
 }
 
-SOV_we_want_to_send_ultimatums = {
-	OR = {
-		has_completed_focus = SOV_claims_on_baltic
-		focus_progress = {
-			focus = SOV_claims_on_baltic
-			progress > 0.01
-		}
-	}
-	any_other_country = {
-		OR = {
-			original_tag = LIT
-			original_tag = LAT
-			original_tag = EST
-		}
-		NOT = { has_country_flag = SOV_ultimatum_sent_flag }
-	}
-}
+# SOV_we_want_to_send_ultimatums = {
+# 	OR = {
+# 		has_completed_focus = SOV_claims_in_baltic
+# 		focus_progress = {
+# 			focus = SOV_claims_in_baltic
+# 			progress > 0.01
+# 		}
+# 	}
+# 	any_other_country = {
+# 		OR = {
+# 			original_tag = LIT
+# 			original_tag = LAT
+# 			original_tag = EST
+# 		}
+# 		NOT = { has_country_flag = SOV_ultimatum_sent_flag }
+# 	}
+# }

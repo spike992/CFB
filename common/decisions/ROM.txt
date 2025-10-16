@@ -12,7 +12,7 @@ operations = {
 		
 		available = {
 
-			ROM = { has_completed_focus = ROM_the_transnistria_compromise }
+			ROM = { has_completed_focus = ROM_expand_greater_romania }
 			has_full_control_of_state = 192
 			has_full_control_of_state = 198
 			has_full_control_of_state = 834
@@ -93,13 +93,6 @@ operations = {
 		}
 
 		complete_effect = {
-			every_state = {
-				limit = {
-					is_fully_controlled_by = ROM
-					NOT = { is_owned_by = ROM }
-				}
-				transfer_state_to = GER
-			}
 			set_autonomy = {
 				target = ROM
 				autonomy_state = autonomy_reichsprotectorate
@@ -115,7 +108,6 @@ operations = {
 			}
 			effect_tooltip = {
 				ROM = {
-					leave_faction = yes
 					white_peace = SOV
 					every_country = {
 						limit = {
@@ -124,6 +116,7 @@ operations = {
 						}
 						white_peace = ROM
 					}
+					leave_faction = yes
 				}
 				SOV = { 
 					add_to_faction = ROM
@@ -227,10 +220,7 @@ operations = {
 			SOV = {
 				white_peace = ROM
 			}
-			ROM = { 
-				set_country_flag = bessarabia_finished
-				set_country_flag = ROM_won_bessarabia
-			}
+			ROM = { set_country_flag = bessarabia_finished }
 			diplomatic_relation = {
 				country = SOV
 				relation = non_aggression_pact
@@ -238,42 +228,6 @@ operations = {
 		}
 		ai_will_do = {
 			factor = 200
-		}
-	}
-
-	ROM_iron_guard_coup = {
-		icon = generic_nationalism
-		allowed = {
-			original_tag = ROM
-		}
-		visible = {
-			has_completed_focus = ROM_force_abdication
-		}
-
-		available = {
-			hidden_trigger = {
-				always = no
-			}
-		}
-
-		cancel_trigger = {
-			OR = {
-				has_completed_focus = ROM_execute_the_coup
-				has_completed_focus = ROM_crush_legionnaires
-			}
-		}
-		fire_only_once = yes
-
-		activation = {
-			has_completed_focus = ROM_force_abdication
-		}
-		
-		days_mission_timeout = 140
-
-		timeout_effect = {
-			start_civil_war = {
-				ideology = fascism
-			}
 		}
 	}
 }

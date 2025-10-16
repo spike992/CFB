@@ -1,5 +1,5 @@
 on_actions = {
-
+	
 	on_startup = {
 		# Launch Ethipoian BoP events
 		effect = {
@@ -10,26 +10,26 @@ on_actions = {
 				ETH = {
 					country_event = {
 						id = BBA_ethiopia_balance_of_power_events.50
-						days = 35
+						days = 35 
 						random_days = 35
 					}
 				}
 			}
 		}
-		effect = {
+		effect = { 
 			if = {
-				limit = {
-					has_dlc = "By Blood Alone"
+				limit = { 
+					has_dlc = "By Blood Alone" 
 				}
-
-				SWI = {
+				
+				SWI = { 
 					SWI_update_neighbor_opinion_balance = yes
 					SWI_find_biggest_fascist_neighbor = yes
 					SWI_find_best_democratic_ally = yes
-					SWI_find_democratic_planes_seller = yes
-				}
+					SWI_find_democratic_planes_seller = yes 
+				} 
 			}
-		}
+		} 
 		effect = {
 			#Albania - Oil concessions to Italy
 			if = {
@@ -55,9 +55,9 @@ on_actions = {
 					limit = {
 						OR = {
 							### Original Members
-							tag = ARG
+							# tag = ARG 
 							tag = BEL
-							#tag = BOL
+							# tag = BOL
 							tag = ENG
 							tag = AST
 							tag = CAN
@@ -65,7 +65,7 @@ on_actions = {
 							tag = NZL
 							tag = SAF
 							tag = CHI
-							#tag = COL
+							# tag = COL
 							# tag = CUB
 							tag = CZE
 							tag = DEN
@@ -73,12 +73,12 @@ on_actions = {
 							tag = GRE
 							# tag = HAI
 							tag = ITA
-							#tag = LIB
+							# tag = LIB
 							tag = HOL
 							tag = NOR
 							# tag = PAN
 							tag = PER
-							#tag = PRU
+							# tag = PRU
 							tag = POL
 							tag = POR
 							tag = ROM
@@ -92,9 +92,9 @@ on_actions = {
 							### 1920
 							tag = AUS
 							tag = BUL
-							#tag = COS
+							# tag = COS
 							tag = FIN
-							tag = LUX
+							# tag = LUX
 							tag = ALB
 							### 1921
 							tag = EST
@@ -111,16 +111,16 @@ on_actions = {
 							tag = MEX
 							### 1932
 							tag = TUR
-							tag = IRQ
+							tag = IRQ 
 							### 1934
 							tag = SOV
-							tag = AFG
-							# tag = ECU
+							# tag = AFG
+							# tag = ECU 
 						}
 					}
 					add_ideas = league_of_nations_member_idea
 				}
-
+				
 			}
 		}
 	}
@@ -136,35 +136,32 @@ on_actions = {
 					NOT = { has_country_flag = yes_to_unification_flag }
 					NOT = { has_country_flag = no_to_unification_flag }
 					NOT = { has_country_flag = unification_request_sent_flag }
-					is_yug_cosmetic_tag = no
 					any_country_with_original_tag = {
 						original_tag_to_check = ROOT
 						NOT = { tag = ROOT }
-						exists = yes
+						exists = yes 
 						is_subject = no
 						has_government = ROOT
 						has_war = no
 						NOT = { has_country_flag = yes_to_unification_flag }
 						NOT = { has_country_flag = no_to_unification_flag }
 						NOT = { has_country_flag = unification_request_sent_flag }
-						is_yug_cosmetic_tag = no
 					}
-
+					 
 				}
 
-				# LOG = "dispatcher event for [ROOT.GetName] triggered" 
+				# LOG = "dispatcher event for [ROOT.GetName] triggered" #TODO_TA Remove logging
 				set_global_flag = global_unification_request_sent_flag
 				every_country = {
-
+					
 					limit = {
-						original_tag = ROOT
+						original_tag = ROOT 
 						is_subject = no
 						has_government = ROOT
 						has_war = no
 						NOT = { has_country_flag = yes_to_unification_flag }
 						NOT = { has_country_flag = no_to_unification_flag }
 						NOT = { has_country_flag = unification_request_sent_flag }
-						is_yug_cosmetic_tag = no
 					}
 					set_country_flag = unification_request_sent_flag
 					country_event = {
@@ -174,19 +171,18 @@ on_actions = {
 					}
 				}
 			}
-		}
-		effect = {
 			if = {
 				limit = {
 					SWI_bba = yes
 				}
-				SWI = {
+				SWI = { 
 
-					SWI_find_democratic_planes_seller = yes
+					SWI_find_democratic_planes_seller = yes 
 					SWI_find_biggest_fascist_neighbor = yes
 					SWI_update_neighbor_opinion_balance = yes
-				}
+				} 
 			}
+
 		}
 	}
 
@@ -461,18 +457,18 @@ on_actions = {
 	#ROOT = attacking side
 	#FROM = defending side
 	#fired when two countries end up at war with each other (on_war is fired when a country goes to war against anyone and is not fired again when it enters war against another country unless it went to peace first)
-	on_declare_war = {
-   	# Disable LoN if more members go to war with each other
+	on_declare_war = { 
+   	# Disable LoN if more members go to war with each other 
 		effect = {
 			IF = {
 				limit = {
 					NOT = { has_global_flag = LoN_disbanded_flag }
 					FROM = {
-						# is_major = yes
+						# is_major = yes 
 						has_idea = league_of_nations_member_idea
 					}
 					ROOT = {
-						is_major = yes
+						is_major = yes 
 						has_idea = league_of_nations_member_idea
 					}
 				}
@@ -483,7 +479,6 @@ on_actions = {
 			}
 		}
 	}
-	# ROOT is capitulated country, FROM is winner
 	# ROOT is capitulated country, FROM is winner
 	on_capitulation = {
 		# effect = {
@@ -1296,70 +1291,70 @@ on_actions = {
 		}
 
 		# In case of historical split of N and S Korea try to locate the correct leaders
-		effect = {
-			IF = {
-				limit = {
-					original_tag = KOR
-					has_government = democratic
-					NOT = {
-						has_country_leader = {
-							name = "Syngman Rhee"
-							ruling_only = no
-						}
-					}
-				}
-
-				random_other_country = {
-					limit = {
-						original_tag = KOR
-						has_country_leader = {
-							name = "Syngman Rhee"
-							ruling_only = no
-						}
-						NOT = { has_government = democratic }
-					}
-					every_character = {
-						limit = {
-							has_ideology_group = democratic
-						}
-						set_nationality =  ROOT
-					}
-				}
-				retire_country_leader = yes
-
-			}
-			IF = {
-				limit = {
-					original_tag = KOR
-					has_government = communism
-					NOT = {
-						has_country_leader = {
-							name = "Kim Il-sung"
-							ruling_only = no
-						}
-					}
-				}
-
-				random_other_country = {
-					limit = {
-						original_tag = KOR
-						has_country_leader = {
-							name = "Kim Il-sung"
-							ruling_only = no
-						}
-						NOT = { has_government = communism }
-					}
-					every_character = {
-						limit = {
-							has_ideology_group = communism
-						}
-						set_nationality =  ROOT
-					}
-				}
-				retire_country_leader = yes
-
-			}
-		}
+		# effect = {
+		# 	IF = {
+		# 		limit = {
+		# 			original_tag = KOR
+		# 			has_government = democratic
+		# 			NOT = { 
+		# 				has_country_leader = {
+		# 					name = "Syngman Rhee"
+		# 					ruling_only = no
+		# 				}
+		# 			}
+		# 		}
+				
+		# 		random_other_country = {
+		# 			limit = {
+		# 				original_tag = KOR
+		# 				has_country_leader = {
+		# 					name = "Syngman Rhee"
+		# 					ruling_only = no
+		# 				}
+		# 				NOT = { has_government = democratic }
+		# 			}
+		# 			every_character = {
+		# 				limit = {
+		# 					has_ideology_group = democratic
+		# 				}
+		# 				set_nationality =  ROOT
+		# 			}	
+		# 		}
+		# 		retire_country_leader = yes
+				
+		# 	}
+		# 	IF = {
+		# 		limit = {
+		# 			original_tag = KOR
+		# 			has_government = communism
+		# 			NOT = { 
+		# 				has_country_leader = {
+		# 					name = "Kim Il-sung"
+		# 					ruling_only = no
+		# 				}
+		# 			}
+		# 		}
+				
+		# 		random_other_country = {
+		# 			limit = {
+		# 				original_tag = KOR
+		# 				has_country_leader = {
+		# 					name = "Kim Il-sung"
+		# 					ruling_only = no
+		# 				}
+		# 				NOT = { has_government = communism }
+		# 			}
+		# 			every_character = {
+		# 				limit = {
+		# 					has_ideology_group = communism
+		# 				}
+		# 				set_nationality =  ROOT
+		# 			}	
+		# 		}
+		# 		retire_country_leader = yes
+				
+		# 	}
+		# }
 
 		#Italian Confederation -> Add NS to new subjects
 		# effect = {
@@ -1442,19 +1437,19 @@ on_actions = {
 	# 	}
 	# }
 
-	# on_ruling_party_change = {
-	# 	#ITALY CHANGES IDEOLOGY -> Make sure it gets the appropriate name for Army NSs
-	# 	effect = {
-	# 		if = {
-	# 			limit = {
-	# 				original_tag = ITA
-	# 			}
-	# 			#log = "Updating NS names"
-	# 			mark_focus_tree_layout_dirty = yes
-	# 			ITA_replace_stuff_based_on_ideology_effect = yes
-	# 		}
-	# 	}
-	# }
+	on_ruling_party_change = { 
+		#ITALY CHANGES IDEOLOGY -> Make sure it gets the appropriate name for Army NSs
+		effect = {
+			if = {
+				limit = {
+					original_tag = ITA
+				}
+				#log = "Updating NS names"
+				mark_focus_tree_layout_dirty = yes
+				#ITA_replace_stuff_based_on_ideology_effect = yes
+			}
+		}
+	}
 
 	on_government_change = {
 		effect = {

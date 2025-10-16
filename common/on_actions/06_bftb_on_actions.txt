@@ -447,19 +447,14 @@ on_actions = {
 	}
 
 	on_startup = {
-		# effect = {
-		# 	#Iraqi oil concessions
-		# 	if = {
-		# 		limit = {
-		# 			has_dlc = "Battle for the Bosporus"
-		# 		}
-		# 		IRQ = {
-		# 			give_resource_rights = { receiver = ENG state = 291 }
-		# 			give_resource_rights = { receiver = ENG state = 676 }
-		#			give_resource_rights = { receiver = ENG state = 1010 }
-		# 		}
-		# 	}
-		# }
+		effect = {
+			#Iraqi oil concessions
+			if = {
+				limit = {
+					has_dlc = "Battle for the Bosporus"
+				}
+			}
+		}
 		effect = {
 			#Greek faction set-up
 			if = {
@@ -698,26 +693,6 @@ on_actions = {
 						clr_country_flag = BUL_sent_volunteers_to_SPA_flag
 					}
 				}
-				# Can't send to republicans so left out
-				# if = {
-				# 	limit = {
-				# 		YUG = { has_country_flag = BUL_sent_volunteers_to_SPD_flag }
-				# 	}
-				# 	YUG = { 
-				# 		set_country_flag = BUL_back_from_the_scw_flag
-				# 		country_event = { id = bftb_bulgaria_scw_volunteers.1 hours = 12 random_hours = 8 }
-				# 		clr_country_flag = BUL_sent_volunteers_to_SPD_flag
-				# 	}
-				# }
-				if = {
-					limit = {
-						YUG = { has_country_flag = YUG_sent_volunteers_to_SPA_flag }
-					}
-					YUG = {						
-						country_event = { id = bftb_bulgaria_scw_volunteers.3 hours = 12 random_hours = 8 }
-						clr_country_flag = YUG_sent_volunteers_to_SPA_flag
-					}
-				}
 			}
 		}
 	}
@@ -763,45 +738,6 @@ on_actions = {
 				}
 				else = {
 					set_country_flag = BUL_sent_volunteers_to_SPA_flag
-				}
-			}	
-			if = { #Yugoslavia has sent volunteers to Spanish Republicans/Nationalists (LaR)
-				limit = {
-					tag = YUG
-					FROM = { original_tag = SPR }
-					has_dlc = "La Resistance"
-					SPR_scw_in_progress = yes
-				}
-				if = {
-					limit = {
-						FROM = { tag = SPD }
-					}
-					set_country_flag = YUG_sent_volunteers_to_SPD_flag
-				}
-				else = {
-					set_country_flag = YUG_sent_volunteers_to_SPA_flag
-				}
-			}
-			else_if = {
-				limit = {
-					tag = YUG
-					FROM = { original_tag = SPR }
-					NOT = { has_dlc = "La Resistance" }
-					FROM = { has_civil_war = yes }
-				}
-				if = {
-					limit = {
-						FROM = {
-							OR = {
-								has_government = democratic
-								has_government = communism
-							}
-						}
-					}
-					set_country_flag = YUG_sent_volunteers_to_SPD_flag
-				}
-				else = {
-					set_country_flag = YUG_sent_volunteers_to_SPA_flag
 				}
 			}	
 		}
@@ -1478,7 +1414,7 @@ on_actions = {
 	# 							is_in_faction_with = GER
 	# 							NOT = { tag = BUL }
 	# 							NOT = { owns_state = PREV } #Not owner (it should be actually occupating the state -> Also prevents the issue in YUG with IMRO removing the core)
-	# 							#NOT = { PREV.PREV = { is_core_of = PREV } }
+	# 							NOT = { PREV = { is_core_of = PREV } }
 	# 						}
 	# 					}
 	# 				}
@@ -1806,37 +1742,6 @@ on_actions = {
 							}
 						}
 						set_unit_leader_flag = BUL_scw_promotion_flag 
-					}
-				}
-			}
-		}
-	}
-	on_monthly_YUG = {
-		effect = { #Support the Spanish Coup - Check for a general assigned to volunteers in the SCW fighting for SPA (it cannot be any other side)
-			if = {
-				limit = {
-					has_country_flag = YUG_sent_volunteers_to_SPA_flag
-				}
-				if = {
-					limit = {
-						any_unit_leader = {
-							is_field_marshal = no
-							OR = {
-								is_leading_volunteer_group_with_original_country = SPR
-								is_leading_volunteer_group = SPR
-							}
-							NOT = { has_unit_leader_flag = YUG_scw_promotion_flag }
-						}
-					}
-					random_unit_leader = {
-						limit = {
-							is_field_marshal = no
-							OR = {
-								is_leading_volunteer_group_with_original_country = SPR
-								is_leading_volunteer_group = SPR
-							}
-						}
-						set_unit_leader_flag = YUG_scw_promotion_flag 
 					}
 				}
 			}

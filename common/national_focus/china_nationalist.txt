@@ -1,4 +1,18 @@
-﻿focus_tree = {
+﻿#!gfx:interface\lw_goals.gfx
+#!gfx:interface\KR_goals.gfx
+#!gfx:interface\cic_goals.gfx
+#!gfx:interface\snek_teleport.gfx
+#!gfx:interface\replace\bruh_interface.gfx
+#!gfx:interface\replace\bruh_bra_interface.gfx
+#!gfx:interface\replace\bruh_eng_interface.gfx
+#!gfx:interface\replace\bruh_ger_interface.gfx
+#!gfx:interface\replace\bruh_hol_interface.gfx
+#!gfx:interface\replace\bruh_ita_interface.gfx
+#!gfx:interface\replace\bruh_jap_interface.gfx
+#!gfx:interface\replace\bruh_nsb_interface.gfx
+#!gfx:interface\replace\bruh_sov_interface.gfx
+
+focus_tree = {
 	id = china_nationalist_focus
 	
 	country = {
@@ -427,7 +441,7 @@
 		completion_reward = {
 			add_war_support = 0.1
 		}
-	}
+	}	
 
 	focus = {
 		id = CHI_judicial_yuan
@@ -555,19 +569,7 @@
 
 		search_filters = { FOCUS_FILTER_MANPOWER }
 		completion_reward = {
-			IF = {
-				limit = {
-					has_idea = CHI_ineffective_bureaucracy
-				}
-				remove_ideas = CHI_ineffective_bureaucracy
-			} 
-			IF = {
-				limit = {
-					has_idea = CHI_ineffective_bureaucracy_warlord
-				}
-				remove_ideas = CHI_ineffective_bureaucracy_warlord
-			}
-			
+			remove_ideas = CHI_ineffective_bureaucracy
 		}
 	}
 
@@ -664,14 +666,8 @@
 
 		available = {
 			NOT = { is_in_faction_with = JAP }
-			is_subject = no
-		}
-
-		bypass = {
-			OR = {
-				has_war_with = JAP
-				has_war_with = MAN
-			}
+			surrender_progress > 0.2
+			has_defensive_war = yes
 		}
 
 		cancel_if_invalid = yes
@@ -683,6 +679,12 @@
 		}
 
 		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.8
+				uses = 6
+				name = CHI_pick_a_fight_with_japan
+				category = cat_mass_assault
+			}
 			add_ideas = CHI_determination
 		}
 	}
@@ -771,7 +773,7 @@
 		}
 
 		available = {
-			surrender_progress > 0.3
+			surrender_progress > 0.25
 			has_defensive_war = yes
 		}
 
@@ -861,6 +863,12 @@
 		available_if_capitulated = no
 
 		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.8
+				uses = 4
+				name = CHI_pick_a_fight_with_japan
+				category = cat_mass_assault
+			}
 			add_ideas = CHI_war_of_anti_imperialism
 		}
 	}
@@ -952,7 +960,7 @@
 		}
 
 		available = {
-			surrender_progress > 0.65
+			surrender_progress > 0.4
 			has_defensive_war = yes
 		}
 

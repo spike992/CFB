@@ -36,10 +36,7 @@ on_actions = {
 			if = {
 				limit = {
 					ROOT = {
-						OR = {
-							original_tag = POL
-							original_tag = GRE
-						}
+						original_tag = POL
 					}
 				}
 				remove_ideas = {
@@ -69,15 +66,9 @@ on_actions = {
 						original_tag = RAJ
 						original_tag = MAL
 						original_tag = INS
-						#original_tag = JOR
-						original_tag = EGY
-						#original_tag = PAL
-						original_tag = SYR
-						#original_tag = LEB
-						#original_tag = KUW
 					}
 				}
-				#abandon_colony_tag = yes
+				abandon_colony_tag = yes
 			}
 			if = {
 				limit = { 
@@ -107,17 +98,13 @@ on_actions = {
 			if = {
 				limit = {
 					original_tag = RAJ
-					OR = {
-						is_using_old_raj = yes
-						NOT = { has_dlc = "Graveyard of Empires" }
-					}
 				}				
 				remove_ideas = {
 					RAJ_quit_india_movement
 					RAJ_marginalized_muslim_community
 					RAJ_marginalized_muslim_community_angry
 					RAJ_marginalized_muslim_community_happy
-					RAJ_princely_states
+					# RAJ_princely_states
 					RAJ_princely_states_donations
 					RAJ_princely_states_donations_troops
 					RAJ_agrarian_society
@@ -137,30 +124,30 @@ on_actions = {
 					}
 					set_country_flag = SAF_released_ANG
 				}
-				# if = {
-				# 	limit = {
-				# 		tag = MZB
-				# 	}
-				# 	set_country_flag = SAF_released_MZB
-				# }
-				# if = {
-				# 	limit = {
-				# 		tag = BOT
-				# 	}
-				# 	set_country_flag = SAF_released_BOT
-				# }
+				if = {
+					limit = {
+						tag = MZB
+					}
+					set_country_flag = SAF_released_MZB
+				}
+				if = {
+					limit = {
+						tag = BOT
+					}
+					set_country_flag = SAF_released_BOT
+				}
 				if = {
 					limit = {
 						tag = ZIM
 					}
 					set_country_flag = SAF_released_ZIM
 				}
-				# if = {
-				# 	limit = {
-				# 		tag = KEN
-				# 	}
-				# 	set_country_flag = SAF_released_KEN
-				# }
+				if = {
+					limit = {
+						tag = KEN
+					}
+					set_country_flag = SAF_released_KEN
+				}
 				if = {
 					limit = {
 						tag = COG
@@ -212,10 +199,6 @@ on_actions = {
 				limit = {
 					tag = RAJ
 					has_autonomy_state = autonomy_dominion
-					OR = {
-						is_using_old_raj = yes
-						NOT = { has_dlc = "Graveyard of Empires" }
-					}
 				}
 				set_politics = {
 					ruling_party = democratic
@@ -313,7 +296,7 @@ on_actions = {
 				limit = {
 					AND = {
 						TAG = CZE
-						SLO = { exists = yes }
+						# SLO = { exists = yes }
 					}
 				}
 				CZE = { set_cosmetic_tag = CZE_ONLY } #cosmetic tag for CZE if Slovakia exists
@@ -415,7 +398,7 @@ on_actions = {
 				limit = {
 					AND = {
 						TAG = CZE
-						SLO = { exists = yes }
+						# SLO = { exists = yes }
 					}
 				}
 				CZE = { set_cosmetic_tag = CZE_ONLY } #cosmetic tag for CZE if Slovakia exists
@@ -478,7 +461,7 @@ on_actions = {
 				limit = {
 					AND = {
 						TAG = CZE
-						SLO = { exists = yes }
+						# SLO = { exists = yes }
 					}
 				}
 				CZE = { set_cosmetic_tag = CZE_ONLY } #cosmetic tag for CZE if Slovakia exists
@@ -522,61 +505,5 @@ on_actions = {
 			}
 		}
 	}
-
-	# #ROOT is free nation FROM is releaser
-	# on_release_as_free = { 
-
-	# 	# Making sure Quebec City becomes the Capital of Quebec
-	# 	effect = {
-	# 		IF = {
-	# 			limit = {
-	# 				ROOT = {
-	# 					tag = QUE
-	# 					owns_state = 468
-	# 				}
-	# 			}
-	# 			468 = {
-	# 				set_victory_points = {
-	# 					province = 4345
-	# 					value = 15
-	# 				}
-
-	# 				set_victory_points = {
-	# 					province = 12149
-	# 					value = 20
-	# 				}
-	# 			}	
-	# 		}
-	# 	}
-
-	# }
-
-	# ROOT is the nation being released, FROM is the overlord
-	# on_release_as_puppet = {
-
-	# 	# Making sure Quebec City becomes the Capital of Quebec
-	#     effect = {
-	#     	IF = {
-	#     		limit = {
-	#     			ROOT = {
-	#     				tag = QUE
-	#     				owns_state = 468
-	#     			}
-	#     		}
-	#     		468 = {
-	#     			set_victory_points = {
-	#     				province = 4345
-	#     				value = 15
-	#     			}
-
-	#     			set_victory_points = {
-	#     				province = 12149
-	#     				value = 20
-	#     			}
-	#     		}	
-	#     	}
-	#     }
-	# }
-	
 
 }

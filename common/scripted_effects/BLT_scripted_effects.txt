@@ -71,20 +71,6 @@ LIT_iron_wolf_down_effect = {
 		if = { #Easier civil war for AI on historical since we don't want historical Lithuanian AI to join the Axis and so on
 			limit = {
 				is_ai = yes
-				OR = {
-					AND = {
-						is_historical_focus_on = yes
-						has_game_rule = {
-							rule = LIT_ai_behavior
-							option = DEFAULT
-						}
-					}
-					has_country_flag = LIT_AI_RANDOM_HISTORICAL
-					has_game_rule = {
-						rule = LIT_ai_behavior
-						option = HISTORICAL
-					}
-				}
 			}
 			start_civil_war = {
 				ideology = fascism
@@ -207,20 +193,6 @@ EST_vaps_down_effect = {
 		if = { #Easier civil war for AI on historical since we don't want historical Estonian AI to puppet Finland and form the Fino-Ugra Empire
 			limit = {
 				is_ai = yes
-				OR = {
-					AND = {
-						is_historical_focus_on = yes
-						has_game_rule = {
-							rule = EST_ai_behavior
-							option = DEFAULT
-						}
-					}
-					has_country_flag = EST_AI_RANDOM_HISTORICAL
-					has_game_rule = {
-						rule = EST_ai_behavior
-						option = HISTORICAL
-					}
-				}
 			}
 			start_civil_war = {
 				ideology = fascism
@@ -351,18 +323,10 @@ remove_perkonkrust_effect = {
 look_north_focus_effect = {
 	if = {
 		limit = { FIN = { is_in_faction = no } }
-		if = {
-			limit = {
-				FIN = { has_idea = FIN_the_lone_wolf }
-			}
-			custom_effect_tooltip = FIN_the_lone_wolf_no_faction_tt
-		}
-		else = {
-			FIN = {
-				country_event = {
-					id = BALTIC_events.2
-					days = 1
-				}
+		FIN = {
+			country_event = {
+				id = BALTIC_events.2
+				days = 1
 			}
 		}
 	}
@@ -639,8 +603,7 @@ give_fascist_tank_licences = { #does not have to take non-dlc into account becau
 give_aircraft_and_licences = {	
 	if = {
 		limit = {
-			#has_tech = jet_fighter2
-			is_special_project_completed = sp:sp_air_axial_jet_engine
+			has_tech = jet_fighter2
 		}
 		create_production_license = {
 			target = ROOT
@@ -659,8 +622,7 @@ give_aircraft_and_licences = {
 	}
 	else_if = {
 		limit = {
-			#has_tech = jet_fighter1
-			is_special_project_completed = sp:sp_air_jet_engine
+			has_tech = jet_fighter1
 		}
 		create_production_license = {
 			target = ROOT
@@ -684,13 +646,13 @@ give_aircraft_and_licences = {
 		create_production_license = {
 			target = ROOT
 			equipment = {
-				type = fighter_equipment_3
+				type = small_plane_airframe_3
 			}
 			cost_factor = 0
 		}
 		ROOT = {
 			add_equipment_to_stockpile = {
-				type = fighter_equipment_3
+				type = small_plane_airframe_3
 				amount = 360
 				producer = PREV
 			}
@@ -703,13 +665,13 @@ give_aircraft_and_licences = {
 		create_production_license = {
 			target = ROOT
 			equipment = {
-				type = fighter_equipment_2
+				type = small_plane_airframe_2
 			}
 			cost_factor = 0
 		}
 		ROOT = {
 			add_equipment_to_stockpile = {
-				type = fighter_equipment_2
+				type = small_plane_airframe_2
 				amount = 360
 				producer = PREV
 			}
@@ -722,13 +684,13 @@ give_aircraft_and_licences = {
 		create_production_license = {
 			target = ROOT
 			equipment = {
-				type = fighter_equipment_1
+				type = small_plane_airframe_1
 			}
 			cost_factor = 0
 		}
 		ROOT = {
 			add_equipment_to_stockpile = {
-				type = fighter_equipment_1
+				type = small_plane_airframe_1
 				amount = 360
 				producer = PREV
 			}
@@ -738,13 +700,13 @@ give_aircraft_and_licences = {
 		create_production_license = {
 			target = ROOT
 			equipment = {
-				type = fighter_equipment_0
+				type = small_plane_airframe_0
 			}
 			cost_factor = 0
 		}
 		ROOT = {
 			add_equipment_to_stockpile = {
-				type = fighter_equipment_0
+				type = small_plane_airframe_0
 				amount = 360
 				producer = PREV
 			}

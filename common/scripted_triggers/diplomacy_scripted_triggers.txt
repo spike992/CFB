@@ -31,7 +31,7 @@
 #		}
 
 # This specifically overrides the rule check as to whether or not you can guarantee other ideologies
-DIPLOMACY_GUARANTEE_ENABLE_TRIGGER_OVERRIDES_GAME_TRIGGER = {
+DIPLOMACY_GUARANTEE_ENABLE_TRIGGER_OVERRIDES_GAME = {
 	NOT = {
 		has_game_rule = {
 			rule = allow_guarantees
@@ -88,10 +88,7 @@ DIPLOMACY_GUARANTEE_ENABLE_TRIGGER = {
 DIPLOMACY_REVOKE_GUARANTEE_ENABLE_TRIGGER = {
 	if = {
 		limit = {
-			has_game_rule = {
-				rule = allow_revoke_guarantees
-				option = BLOCKED
-			}
+			always = yes
 		}
 		custom_trigger_tooltip = {
 			tooltip = RULE_ALLOW_REVOKE_GUARANTEES_BLOCKED_TOOLTIP
@@ -121,10 +118,6 @@ DIPLOMACY_RELEASE_NATION_ENABLE_TRIGGER = {
 					NOT = { original_tag = ROM }
 					NOT = { original_tag = YUG }
 				}
-			}
-			OR = {
-				NOT = { has_dlc = "Trial of Allegiance" }
-				NOT = { original_tag = CHL }
 			}
 			NOT = { original_tag = SOV }
 		}
@@ -182,38 +175,38 @@ DIPLOMACY_RELEASE_NATION_ENABLE_TRIGGER = {
 		}
 		custom_trigger_tooltip = {
 			tooltip = RULE_ALLOW_RELEASE_NATIONS_NOT_BRITAIN_TOOLTIP
-			# NOT = { FROM = { tag = MLT } }
-			# NOT = { FROM = { tag = CYP } }
-			# NOT = { FROM = { tag = PAL } }
-			# NOT = { FROM = { tag = ISR } }
-			# NOT = { FROM = { tag = JOR } }
+			NOT = { FROM = { tag = MLT } }
+			NOT = { FROM = { tag = CYP } }
+			NOT = { FROM = { tag = PAL } }
+			NOT = { FROM = { tag = ISR } }
+			NOT = { FROM = { tag = JOR } }
 			NOT = { FROM = { tag = EGY } }
-			#NOT = { FROM = { tag = KUW } }
-			# NOT = { FROM = { tag = QAT } }
-			# NOT = { FROM = { tag = UAE } }
-			# NOT = { FROM = { tag = BLZ } }
-			# NOT = { FROM = { tag = BAH } }
-			# NOT = { FROM = { tag = JAM } }
-			# NOT = { FROM = { tag = TRI } }
+			NOT = { FROM = { tag = KUW } }
+			NOT = { FROM = { tag = QAT } }
+			NOT = { FROM = { tag = UAE } }
+			NOT = { FROM = { tag = BLZ } }
+			NOT = { FROM = { tag = BAH } }
+			NOT = { FROM = { tag = JAM } }
+			NOT = { FROM = { tag = TRI } }
 			NOT = { FROM = { tag = BAS } }
-			#NOT = { FROM = { tag = GYA } }
+			NOT = { FROM = { tag = GYA } }
 			NOT = { FROM = { tag = SRL } }
-			# NOT = { FROM = { tag = MLD } }
-			# NOT = { FROM = { tag = FIJ } }
-			NOT = { FROM = { tag = BRM } }
-			# NOT = { FROM = { tag = SUD } }
-			#NOT = { FROM = { tag = SOM } }
-			#NOT = { FROM = { tag = UGA } }
-			#NOT = { FROM = { tag = KEN } }
-			#NOT = { FROM = { tag = TZN } }
-			#NOT = { FROM = { tag = ZAM } }
-			#NOT = { FROM = { tag = MLW } }
+			NOT = { FROM = { tag = MLD } }
+			NOT = { FROM = { tag = FIJ } }
+			NOT = { FROM = { tag = WST } }
+			NOT = { FROM = { tag = SUD } }
+			NOT = { FROM = { tag = SOM } }
+			NOT = { FROM = { tag = UGA } }
+			NOT = { FROM = { tag = KEN } }
+			NOT = { FROM = { tag = TZN } }
+			NOT = { FROM = { tag = ZAM } }
+			NOT = { FROM = { tag = MLW } }
 			NOT = { FROM = { tag = ZIM } }
-			#NOT = { FROM = { tag = BOT } }
-			#NOT = { FROM = { tag = NGA } }
+			NOT = { FROM = { tag = BOT } }
+			NOT = { FROM = { tag = NGA } }
 			NOT = { FROM = { tag = GHA } }
-			#NOT = { FROM = { tag = SIE } }
-			#NOT = { FROM = { tag = GAM } }
+			NOT = { FROM = { tag = SIE } }
+			NOT = { FROM = { tag = GAM } }
 		}
 		NOT = { original_tag = SPR }
 		NOT = { original_tag = FRA }
@@ -270,7 +263,34 @@ DIPLOMACY_MILACC_ENABLE_TRIGGER = {
 		OR = {
 			NOT = { tag = USA }
 			NOT = { has_idea = USA_neutrality_idea }
-			
+		}
+		if = {
+			limit = {
+				FROM = {
+					original_tag = SOV
+				}
+				OR = {
+					original_tag = USA
+					original_tag = MEX
+					original_tag = BRA
+					original_tag = ENG
+					original_tag = FRA
+					original_tag = CAN
+					original_tag = SAF
+					original_tag = RAJ
+					original_tag = AST
+					original_tag = NZL
+					original_tag = IRE
+					original_tag = HOL
+				}
+			}
+			SOV = {
+				has_war = yes
+			}
+			# date > 1941.5.1
+			JAP = {
+				has_capitulated = yes
+			}
 		}
 	}
 	if = {
@@ -309,6 +329,34 @@ DIPLOMACY_OFFER_MILACC_ENABLE_TRIGGER = {
 		OR = {
 			NOT = { tag = USA }
 			NOT = { has_idea = USA_neutrality_idea }
+		}
+		if = {
+			limit = {
+				FROM = {
+					OR = {
+						original_tag = USA
+						original_tag = MEX
+						original_tag = BRA
+						original_tag = ENG
+						original_tag = FRA
+						original_tag = CAN
+						original_tag = SAF
+						original_tag = RAJ
+						original_tag = AST
+						original_tag = NZL
+						original_tag = IRE
+						original_tag = HOL
+					}
+				}
+				original_tag = SOV
+			}
+			SOV = {
+				has_war = yes
+			}
+			# date > 1941.5.1
+			JAP = {
+				has_capitulated = yes
+			}
 		}
 		# USA = { 				
 		# 	AND = {
@@ -429,7 +477,7 @@ DIPLOMACY_OFFER_DOCKING_RIGHTS_ENABLE_TRIGGER = {
 		}
 	}
 }
-DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER = {
+DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER = { # send
 	if = {
 		limit = {
 			has_game_rule = {
@@ -441,7 +489,42 @@ DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER = {
 		OR = {
 			NOT = { tag = FRA }
 			NOT = { has_idea = FRA_protected_by_the_maginot_line }
-			
+		}
+		OR = {
+			NOT = { 
+				FROM = {
+					tag = FRA
+				}
+			}
+			NOT = { has_idea = FRA_protected_by_the_maginot_line }
+		}
+		OR = {
+			NOT = { tag = USA }
+			has_completed_focus = USA_lend_lease_act
+		}
+		OR = {
+			NOT = { 
+				FROM = {
+					tag = USA
+				}
+			}
+			FROM = {
+				has_completed_focus = USA_lend_lease_act
+			}
+		}
+		OR = {
+			NOT = { tag = SOV }
+			has_completed_focus = SOV_war_mobilisation
+		}
+		OR = {
+			NOT = { 
+				FROM = {
+					tag = SOV
+				}
+			}
+			FROM = {
+				has_completed_focus = SOV_war_mobilisation
+			}
 		}
 	}
 	if = {
@@ -455,7 +538,42 @@ DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER = {
 		OR = {
 			NOT = { tag = FRA }
 			NOT = { has_idea = FRA_protected_by_the_maginot_line }
-			
+		}
+		OR = {
+			NOT = { 
+				FROM = {
+					tag = FRA
+				}
+			}
+			NOT = { has_idea = FRA_protected_by_the_maginot_line }
+		}
+		OR = {
+			NOT = { tag = USA }
+			has_completed_focus = USA_lend_lease_act
+		}
+		OR = {
+			NOT = { 
+				FROM = {
+					tag = USA
+				}
+			}
+			FROM = {
+				has_completed_focus = USA_lend_lease_act
+			}
+		}
+		OR = {
+			NOT = { tag = SOV }
+			has_completed_focus = SOV_war_mobilisation
+		}
+		OR = {
+			NOT = { 
+				FROM = {
+					tag = SOV
+				}
+			}
+			FROM = {
+				has_completed_focus = SOV_war_mobilisation
+			}
 		}
 	}
 	if = {
@@ -495,7 +613,7 @@ DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER = {
 		}
 	}
 }
-DIPLOMACY_INCOMING_LEND_LEASE_ENABLE_TRIGGER = {
+DIPLOMACY_INCOMING_LEND_LEASE_ENABLE_TRIGGER = { #request
 	if = {
 		limit = {
 			has_game_rule = {
@@ -507,7 +625,43 @@ DIPLOMACY_INCOMING_LEND_LEASE_ENABLE_TRIGGER = {
 		OR = {
 			NOT = { tag = FRA }
 			NOT = { has_idea = FRA_protected_by_the_maginot_line }
-			
+		}
+		OR = {
+			NOT = { 
+				FROM = {
+					tag = FRA
+				}
+			}
+			NOT = { has_idea = FRA_protected_by_the_maginot_line }
+		}
+		OR = {
+			NOT = { tag = USA }
+			has_completed_focus = USA_lend_lease_act
+		}
+		OR = {
+			NOT = { 
+				FROM = {
+					tag = USA
+				}
+			}
+			FROM = {
+				has_completed_focus = USA_lend_lease_act
+			}
+		}
+		OR = {
+			NOT = { tag = SOV }
+			has_completed_focus = SOV_war_mobilisation
+		}
+		OR = {
+			NOT = { 
+				FROM = {
+					tag = SOV
+				}
+			}
+			has_completed_focus = SOV_war_mobilisation
+		}
+		FROM = {
+			is_ai = no
 		}
 	}
 	if = {
@@ -521,7 +675,43 @@ DIPLOMACY_INCOMING_LEND_LEASE_ENABLE_TRIGGER = {
 		OR = {
 			NOT = { tag = FRA }
 			NOT = { has_idea = FRA_protected_by_the_maginot_line }
-			
+		}
+		OR = {
+			NOT = { 
+				FROM = {
+					tag = FRA
+				}
+			}
+			NOT = { has_idea = FRA_protected_by_the_maginot_line }
+		}
+		OR = {
+			NOT = { tag = USA }
+			has_completed_focus = USA_lend_lease_act
+		}
+		OR = {
+			NOT = { 
+				FROM = {
+					tag = USA
+				}
+			}
+			FROM = {
+				has_completed_focus = USA_lend_lease_act
+			}
+		}
+		OR = {
+			NOT = { tag = SOV }
+			has_completed_focus = SOV_war_mobilisation
+		}
+		OR = {
+			NOT = { 
+				FROM = {
+					tag = SOV
+				}
+			}
+			has_completed_focus = SOV_war_mobilisation
+		}
+		FROM = {
+			is_ai = no
 		}
 	}
 	if = {
@@ -610,107 +800,11 @@ DIPLOMACY_REQUEST_LICENSED_PRODUCTION_ENABLE_TRIGGER = {
 }
 DIPLOMACY_GENERATE_WARGOAL_ENABLE_TRIGGER = {
 	if = {
-		limit = {
-			has_game_rule = {
-				rule = allow_wargoals
-				option = ALWAYS_FREE
-			}
-		}
-		always = yes
-	}
-	if = {
-		limit = {
-			has_game_rule = {
-				rule = allow_wargoals
-				option = LIMITED
-			}
-		}
-		always = yes
-	}
-	if = {
-		limit = {
-			has_game_rule = {
-				rule = allow_wargoals
-				option = FREE_25
-			}
-		}
-		threat>0.24
-	}
-	if = {
-		limit = {
-			has_game_rule = {
-				rule = allow_wargoals
-				option = FREE_50
-			}
-		}
-		threat>0.49
-	}
-	if = {
-		limit = {
-			has_game_rule = {
-				rule = allow_wargoals
-				option = FREE_75
-			}
-		}
-		threat>0.74
-	}
-	if = {
-		limit = {
-			has_game_rule = {
-				rule = allow_wargoals
-				option = FREE_100
-			}
-		}
-		threat>0.99
-	}
-	if = {
-		limit = {
-			has_game_rule = {
-				rule = allow_wargoals
-				option = FOCUSES_ONLY
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = RULE_WARGOALS_BLOCKED_TT
-			always = no
-		}
-	}
-	if = {
-		limit = {
-			has_game_rule = {
-				rule = allow_wargoals
-				option = FOCUSES_ONLY_UNTIL_38
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = RULE_ALLOW_WARGOALS_FOCUSES_ONLY_38_DESC
-			date > 1938.1.1
-		}
-	}
-	if = {
-		limit = {
-			has_game_rule = {
-				rule = allow_wargoals
-				option = FOCUSES_ONLY_UNTIL_39
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = RULE_ALLOW_WARGOALS_FOCUSES_ONLY_39_DESC
-			date > 1939.1.1
-		}
-	}
-	if = {
-		limit = {
-			has_game_rule = {
-				rule = allow_wargoals
-				option = FOCUSES_ONLY_UNTIL_40
-			}
-		}
 		custom_trigger_tooltip = {
 			tooltip = RULE_ALLOW_WARGOALS_FOCUSES_ONLY_40_DESC
 			date > 1940.1.1
 		}
-	}
+	}	
 }
 DIPLOMACY_BOOST_PARTY_POPULARITY_ENABLE_TRIGGER = {
 	if = {
@@ -759,41 +853,6 @@ DIPLOMACY_BOOST_PARTY_POPULARITY_ENABLE_TRIGGER = {
 		}
 	}
 }
-DIPLOMACY_STAGE_COUP_ENABLE_TRIGGER = {
-	if = {
-		limit = {
-			has_game_rule = {
-				rule = allow_coups
-				option = FREE
-			}
-		}
-		always = yes
-	}
-	if = {
-		limit = {
-			has_game_rule = {
-				rule = allow_coups
-				option = AI_ONLY
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = RULE_COUP_AI_ONLY_TT
-			FROM = { is_ai = yes }
-		}
-	}
-	if = {
-		limit = {
-			has_game_rule = {
-				rule = allow_coups
-				option = BLOCKED
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = RULE_COUP_BLOCKED_TT
-			always = no
-		}
-	}
-}
 DIPLOMACY_LEAVE_FACTION_ENABLE_TRIGGER = {
 	if = {
 		limit = {
@@ -808,7 +867,7 @@ DIPLOMACY_LEAVE_FACTION_ENABLE_TRIGGER = {
 		}
 	}
 }
- DIPLOMACY_ASSUME_FACTION_LEADERSHIP_ENABLE_TRIGGER = {
+DIPLOMACY_ASSUME_FACTION_LEADERSHIP_ENABLE_TRIGGER = {
 	if = {
 		limit = {
 			has_game_rule = {
@@ -842,25 +901,6 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 			has_game_rule = {
 				rule = allow_volunteers
 				option = LIMITED
-			}
-		}
-		if = {
-			limit = {
-				tag = SOV
-				FROM = {tag = CHI}
-				if = {
-					limit = {
-						NOT = { has_global_flag = soviet_volunteer_flag }
-					}
-					NOT = { SOV = { has_completed_focus = SOV_father_of_nations } }
-				} else = {
-					NOT = { SOV = { has_completed_focus = SOV_the_military_conspiracy } }
-				}
-				
-			}
-			custom_trigger_tooltip = {
-				tooltip = SOV_VOLUNTEERS_BLOCKED_TT
-				always = no
 			}
 		}
 		else = {
@@ -905,26 +945,29 @@ DIPLOMACY_SEND_EXP_FORCE_ENABLE_TRIGGER = {
 	if = {
 		limit = {
 			AND = {
-				OR = {
-					tag = KSR
-					FROM = { tag = KSR }
+				FROM = {
+					has_tech = trench_warfare
 				}
-				NOT = { has_war_with = JAP}
+				NOT = {
+					has_tech = trench_warfare
+				}
 			}
 		}
-		always = no
-	}
-	if = {
-		limit = {
-			AND = {
-				OR = {
-					tag = YUG
-					FROM = { tag = YUG }
+		hidden_trigger = {
+			if = {
+				limit = {
+					FROM = {
+						NOT = {
+							tag = ITA
+						}
+					}
 				}
-				has_government = fascism
+				always = no
 			}
 		}
-		always = no
+		custom_trigger_tooltip = {
+			tooltip = EXPED_GBP_NOT_ALLOWED_TT
+		}
 	}
 }
 game_weight_can_add_fascist = {
@@ -1020,45 +1063,11 @@ game_weight_can_add_communist = {
 }
 
 DIPLOMACY_JOIN_ALLY_ENABLE_TRIGGER = {
-	# "Join Ally" Stuff.
-	if = {
-		limit = {
-			check_variable = {
-				var = modifier@cant_faction_join
-				value = 1
-				compare = greater_than_or_equals
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = cant_faction_join_tt
-			always = no
-		}
-	}
-	else_if = {
-		limit = {
-			FROM = {
-				check_variable = {
-					var = modifier@cant_faction_call
-					value = 1
-					compare = greater_than_or_equals
-				}
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = ally_cant_faction_call_tt
-			always = no
-		}
-	}
-	if = { 
+	if = { # TODO_TA make more generic trigger
 		limit = {
 			NOT = { has_global_flag = ethiopia_recognized_flag }
-			OR = {
-				ROOT = {
-					tag = ETH
-				}
-				FROM = {
-					tag = ETH
-				}
+			FROM = {
+				tag = ETH 
 			}
 			
 		}
@@ -1067,84 +1076,13 @@ DIPLOMACY_JOIN_ALLY_ENABLE_TRIGGER = {
 			always = no
 		}
 	}
-	if = { 
-		limit = {
-			FROM = { NOT = { has_war_with_non_exiled_country = yes } }
-		}
-		custom_trigger_tooltip = {
-			tooltip = RULE_NON_GIE_JOIN
-			always = no
-		}
-	}
-	if = { 
-		limit = {
-			has_dlc = "Arms Against Tyranny"
-			ROOT = {
-				original_tag = ICE
-				has_idea = neutrality_idea
-				is_subject = yes 
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = ICELAND_HAS_DECLARED_NEUTRALITY_JOIN
-			always = no
-		}
-	}
-	if = { 
-		limit = {
-			has_dlc = "Arms Against Tyranny"
-			ROOT = {
-				original_tag = DEN
-				has_country_flag = DEN_is_protectorate_flag
-				is_subject = yes 
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = DENMARK_IS_A_PUPPET_JOIN
-			always = no
-		}
-	}
 }
 DIPLOMACY_CALL_ALLY_ENABLE_TRIGGER = {
-	# "Call Ally" Stuff.
-	if = {
-		limit = {
-			check_variable = {
-				var = modifier@cant_faction_call
-				value = 1
-				compare = greater_than_or_equals
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = cant_faction_call_tt
-			always = no
-		}
-	}
-	else_if = {
-		limit = {
-			FROM = {
-				check_variable = {
-					var = modifier@cant_faction_join
-					value = 1
-					compare = greater_than_or_equals
-				}
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = ally_cant_faction_join_tt
-			always = no
-		}
-	}
-	if = { 
+	if = { # TODO_TA make more generic trigger
 		limit = {
 			NOT = { has_global_flag = ethiopia_recognized_flag }
-			OR = {
-				ROOT = {
-					tag = ETH
-				}
-				FROM = {
-					tag = ETH
-				}
+			ROOT = {
+				tag = ETH
 			}
 			
 		}
@@ -1153,75 +1091,4 @@ DIPLOMACY_CALL_ALLY_ENABLE_TRIGGER = {
 			always = no
 		}
 	}
-	if = { 
-		limit = {
-			NOT = { has_war_with_non_exiled_country = yes } 
-		}
-		custom_trigger_tooltip = {
-			tooltip = RULE_NON_GIE_CALL
-			always = no
-		}
-	}
-	if = { 
-		limit = {
-			has_dlc = "Arms Against Tyranny"
-			FROM = {
-				original_tag = ICE
-				has_idea = neutrality_idea
-				is_subject = yes 
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = ICELAND_HAS_DECLARED_NEUTRALITY_CALL
-			always = no
-		}
-	}
-	if = { 
-		limit = {
-			has_dlc = "Arms Against Tyranny"
-			FROM = {
-				original_tag = DEN
-				has_country_flag = DEN_is_protectorate_flag
-				is_subject = yes 
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = DENMARK_IS_A_PUPPET_CALL
-			always = no
-		}
-	}
 }
-DIPLOMACY_JOIN_FACTION_ENABLE_TRIGGER = {
-	if = { 
-		limit = {
-			has_dlc = "Arms Against Tyranny"
-			original_tag = DEN
-			has_country_flag = DEN_is_protectorate_flag
-			is_subject = yes 
-
-		}
-		custom_trigger_tooltip = {
-			tooltip = DENMARK_IS_A_PUPPET_FACTION
-			always = no
-		}
-	}
-}
-DIPLOMACY_OFFER_JOIN_FACTION_ENABLE_TRIGGER = {
-	if = { 
-		limit = {
-			is_faction_leader = yes
-			has_dlc = "Arms Against Tyranny"
-			FROM = {
-				original_tag = DEN
-				has_country_flag = DEN_is_protectorate_flag
-				is_subject = yes 
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = DENMARK_IS_A_PUPPET_FACTION
-			always = no
-		}
-	}
-}
-
-

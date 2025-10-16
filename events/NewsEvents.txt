@@ -245,6 +245,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	is_triggered_only = yes
 	
 	option = {
@@ -314,6 +316,8 @@ news_event = {
 	picture = GFX_news_event_011
 	
 	major = yes
+	
+	hidden = yes
 	
 	is_triggered_only = yes
 	
@@ -574,9 +578,11 @@ news_event = {
 	desc = news.19.d
 	picture = GFX_news_event_romanian_soldiers
 	
-	major = no
+	major = yes
 	
 	is_triggered_only = yes
+	
+	hidden = yes
 	
 	option = {
 		name = news.19.a
@@ -606,7 +612,6 @@ news_event = {
 			is_in_faction_with = GER
 		}
 	}
-
 }
 
 # German Claims Memel - Lithuania Rejects Demands
@@ -616,7 +621,7 @@ news_event = {
 	desc = news.20.d
 	picture = GFX_news_event_german_soldiers
 	
-	major = no
+	major = yes
 	
 	is_triggered_only = yes
 	
@@ -661,6 +666,8 @@ news_event = {
 	
 	is_triggered_only = yes
 	
+	hidden = yes
+	
 	option = {
 		name = news.21.a
 		trigger = {
@@ -690,7 +697,9 @@ news_event = {
 	major = yes
 	
 	is_triggered_only = yes
-
+	
+	hidden = yes
+	
 	option = {
 		name = news.22.a
 		trigger = {
@@ -747,14 +756,16 @@ news_event = {
 	}
 }
 
-# Reichstag Speech (The Polish Question) - NOT USED
+# Reichstag Speech (The Polish Question)
 news_event = {
 	id = news.24
 	title = news.24.t
 	desc = news.24.d
-	picture = GFX_news_event_hitler_speech2
+	picture = GFX_news_event_hitler_speech
 	
 	major = yes
+	
+	hidden = yes
 	
 	is_triggered_only = yes
 	
@@ -773,6 +784,7 @@ news_event = {
 	major = yes
 	
 	is_triggered_only = yes
+	
 	
 	option = {
 		name = news.25.a
@@ -1048,20 +1060,7 @@ news_event = {
 news_event = {
 	id = news.32
 	title = news.32.t
-	desc = {
-		text = news.32.d
-		trigger = {
-			NOT = { original_tag = FIN }
-		}
-	}
-
-	desc = {
-		text = news.32.d_finland
-		trigger = {
-			original_tag = FIN
-		}
-	}
-	
+	desc = news.32.d
 	picture = GFX_news_event_017
 	
 	major = yes
@@ -1076,10 +1075,6 @@ news_event = {
 				TAG = SOV
 				is_in_faction_with = GER
 				is_in_faction_with = SOV
-				AND = {
-					original_tag = FIN
-					NOT = { is_in_faction_with = SOV }
-				}
 			}
 		}
 		if = {
@@ -1146,14 +1141,6 @@ news_event = {
 			}
 		}
 	}
-	option = {
-		name = news.32.f
-		trigger = { 
-			original_tag = FIN
-			NOT = { is_in_faction_with = GER }
-			NOT = { is_in_faction_with = SOV }
-		}
-	}
 }
 
 # USSR Occupies Eastern Poland
@@ -1164,6 +1151,8 @@ news_event = {
 	picture = GFX_news_event_006
 	
 	major = yes
+	
+	hidden = yes
 	
 	is_triggered_only = yes
 	
@@ -1205,9 +1194,11 @@ news_event = {
 	id = news.34
 	title = news.34.t
 	desc = news.34.d
-	picture = [GetHitlerHandshakeNewsEventPicture]
+	picture = GFX_news_event_hitler_handshake
 	
 	major = yes
+	
+	hidden = yes
 	
 	is_triggered_only = yes
 	
@@ -1333,18 +1324,19 @@ news_event = {
 	
 	major = yes
 	
+	
 	is_triggered_only = yes
 
-	immediate = {
-		hidden_effect = {
-			if = {
-				limit = {
-					tag = SOV
-				}
-				SOV_kill_trotsky_effect = yes
-			}
-		}
-	}
+	# immediate = {
+	# 	hidden_effect = {
+	# 		if = {
+	# 			limit = {
+	# 				tag = SOV
+	# 			}
+	# 			SOV_kill_trotsky_effect = yes
+	# 		}
+	# 	}
+	# }
 	
 	option = {
 		name = news.37.a
@@ -1378,10 +1370,10 @@ news_event = {
 			}
 			effect_tooltip = {
 				retire_character = SOV_lev_trotsky
-				swap_ideas = {
-					remove_idea = trotskyite_plot_nsb
-					add_idea = trotskyite_plot_purged
-				}
+			}
+			swap_ideas = {
+				remove_idea = trotskyite_plot_nsb
+				add_idea = trotskyite_plot_purged
 			}
 		}
 	}
@@ -1434,7 +1426,7 @@ news_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		set_global_flag = flag_trotsky_dead
+		set_global_flag = trotsky_dead
 	}
 	
 	option = {
@@ -1508,6 +1500,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	is_triggered_only = yes
 
 	immediate = {
@@ -1528,6 +1522,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	is_triggered_only = yes
 	
 	immediate = {
@@ -1547,6 +1543,8 @@ news_event = {
 	picture = GFX_news_event_029
 	
 	major = yes
+	
+	hidden = yes
 	
 	is_triggered_only = yes
 
@@ -1582,6 +1580,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	is_triggered_only = yes
 	
 	show_major = {
@@ -1615,6 +1615,8 @@ news_event = {
 	picture = GFX_news_event_026
 	
 	major = yes
+	
+	hidden = yes
 	
 	is_triggered_only = yes
 	
@@ -1650,6 +1652,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	is_triggered_only = yes
 	
 	show_major = {
@@ -1684,6 +1688,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	is_triggered_only = yes
 	
 	immediate = {
@@ -1704,6 +1710,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	is_triggered_only = yes
 	
 	option = {
@@ -1711,7 +1719,7 @@ news_event = {
 	}
 }
 
-# Hindenburg Trigger (HIDDEN)
+# Trotsky Trigger (HIDDEN)
 news_event = {
 	id = news.50
 	hidden = yes
@@ -1745,46 +1753,45 @@ news_event = {
 }
 
 # Hindenburg Trigger (HIDDEN)
-news_event = {
-	id = news.51
-	hidden = yes
+# news_event = {
+# 	id = news.51
+# 	hidden = yes
 	
-	fire_only_once = yes
+# 	fire_only_once = yes
 	
-	trigger = {
-		date > 1937.5.5
-		date < 1939.5.5
-		country_exists = USA
-		country_exists = GER
-		USA = { has_war = no }
-		GER = { has_war = no }
-		GER = { has_civil_war = no }
-		NOT = { has_global_flag = hindenburg_destroyed }
-		NOT = { has_global_flag = hindenburg_event_in_progress }
-	}
+# 	trigger = {
+# 		date > 1937.5.5
+# 		date < 1939.5.5
+# 		country_exists = USA
+# 		country_exists = GER
+# 		USA = { has_war = no }
+# 		GER = { has_war = no }
+# 		GER = { has_civil_war = no }
+# 		NOT = { has_global_flag = hindenburg_destroyed }
+# 		NOT = { has_global_flag = hindenburg_event_in_progress }
+# 	}
 
-	mean_time_to_happen = {
-		days = 240
-	}
+# 	mean_time_to_happen = {
+# 		days = 240
+# 	}
 	
-	immediate = {
-		random_list = {
-			70 = {
-				modifier = {
-					factor = 0
-					has_global_flag = GER_air_safety_regulations_flag
-				}
-				USA = { news_event = { id = news.42 } }
-			}
-			30 = { USA = { news_event = { id = news.43 } } }
-		}
-	}
+# 	immediate = {
+# 		random_list = {
+# 			70 = {
+# 				modifier = {
+# 					factor = 0
+# 					has_global_flag = GER_air_safety_regulations_flag
+# 				}
+# 				USA = { news_event = { id = news.42 } }
+# 			}
+# 			30 = { USA = { news_event = { id = news.43 } } }
+# 		}
+# 	}
 	
-	option = {
-		name = news.51.a
-	}
-	
-}
+# 	option = {
+# 		name = news.51.a
+# 	}
+# }
 
 # Rudolf Hess Trigger (HIDDEN)
 news_event = {
@@ -1801,8 +1808,7 @@ news_event = {
 			has_war_with = ENG 
 			NOT = { has_war_with = SOV }
 			has_government = fascism
-			has_country_leader = { ruling_only = yes character = GER_adolf_hitler }
-			NOT = { has_completed_focus = GER_rally_the_industrialists }
+			has_country_leader = { ruling_only = yes name = "Adolf Hitler" }
 		}
 		has_global_flag = fall_of_france
 		NOT = { has_global_flag = hindenburg_survives }
@@ -1818,7 +1824,6 @@ news_event = {
 			controls_state = 132
 			controls_state = 130
 			controls_state = 131
-			controls_state = 931
 			controls_state = 121
 			controls_state = 133
 			controls_state = 136
@@ -1863,7 +1868,6 @@ news_event = {
 			has_war_with = ENG 
 			NOT = { has_war_with = SOV }
 			has_government = fascism
-			NOT = { has_completed_focus = GER_rally_the_industrialists }
 		}
 		has_global_flag = fall_of_france
 		has_global_flag = hindenburg_survives
@@ -1965,7 +1969,7 @@ news_event = {
 			NOT = { is_in_faction_with = GER }
 		}
 		GER = {
-			has_completed_focus = GER_reassert_eastern_claims
+			has_completed_focus = GER_demand_memel
 		}
 	}
 	
@@ -2007,6 +2011,8 @@ news_event = {
 
 	major = yes
 	
+	hidden = yes
+	
 	is_triggered_only = yes
 	
 	option = {
@@ -2041,6 +2047,8 @@ news_event = {
 	picture = GFX_news_event_009
 
 	major = yes
+	
+	hidden = yes
 	
 	is_triggered_only = yes
 	
@@ -2083,6 +2091,8 @@ news_event = {
 
 	major = yes
 	
+	hidden = yes
+	
 	is_triggered_only = yes
 	
 	option = {
@@ -2123,6 +2133,8 @@ news_event = {
 
 	major = yes
 	
+	hidden = yes
+	
 	is_triggered_only = yes
 	
 	option = {
@@ -2159,6 +2171,8 @@ news_event = {
 	picture = GFX_news_event_german_inspect_troops
 
 	major = yes
+	
+	hidden = yes
 	
 	is_triggered_only = yes
 	
@@ -2202,6 +2216,8 @@ news_event = {
 	picture = GFX_news_event_german_inspect_troops
 
 	major = yes
+	
+	hidden = yes
 	
 	is_triggered_only = yes
 	
@@ -2250,6 +2266,8 @@ news_event = {
 	picture = GFX_news_event_german_inspect_troops
 
 	major = yes
+	
+	hidden = yes
 	
 	is_triggered_only = yes
 	
@@ -2311,6 +2329,8 @@ news_event = {
 	picture = GFX_news_event_033
 	
 	major = yes
+	
+	hidden = yes
 	
 	trigger = {
 		has_global_flag = spanish_civil_war
@@ -2419,6 +2439,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	trigger = {
 		date > 1936.8.15
 		NOT = { has_global_flag = olympics_1936 }
@@ -2461,6 +2483,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	trigger = {
 		date > 1940.10.5
 		has_global_flag = olympics_1936 
@@ -2499,6 +2523,8 @@ news_event = {
 	picture = GFX_news_event_069
 	
 	major = yes
+	
+	hidden = yes
 	
 	trigger = {
 		date > 1940.8.3
@@ -2709,6 +2735,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	trigger = {
 		16 = { is_controlled_by = GER }
 		16 = { is_owned_by = FRA }
@@ -2795,6 +2823,8 @@ news_event = {
 	
 	major = yes
 	
+    hidden = yes
+	
 	trigger = {
 		195 = { is_controlled_by = GER }
 		195 = { is_owned_by = SOV }
@@ -2838,10 +2868,11 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	trigger = {
 		202 = { is_controlled_by = GER }
 		202 = { is_owned_by = SOV }
-		SOV = { has_government = communism }
 		GER = { has_war_with = SOV }
 		NOT = { has_global_flag = fall_of_kiev }
 	}
@@ -2881,6 +2912,8 @@ news_event = {
 	picture = GFX_news_event_soviet_soldiers_ruins
 	
 	major = yes
+	
+	hidden = yes
 	
 	trigger = {
 		217 = { is_controlled_by = GER }
@@ -2968,6 +3001,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	trigger = {
 		137 = { is_controlled_by = GER }
 		137 = { is_owned_by = SOV }
@@ -3053,6 +3088,8 @@ news_event = {
 	picture = GFX_news_event_042
 	
 	major = yes
+	
+	hidden = yes
 	
 	trigger = {
 		446 = { is_controlled_by = GER }
@@ -3183,6 +3220,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	trigger = {
 		118 = { is_controlled_by = GER }
 		118 = { is_owned_by = ENG }
@@ -3225,6 +3264,8 @@ news_event = {
 	picture = GFX_news_event_italian_tank_desert
 	
 	major = yes
+	
+	hidden = yes
 	
 	trigger = {
 		446 = { is_controlled_by = ITA }
@@ -3269,6 +3310,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	trigger = {
 		16 = { is_controlled_by = ITA }
 		16 = { is_owned_by = FRA }
@@ -3311,6 +3354,8 @@ news_event = {
 	picture = GFX_news_event_churchill_ruins
 	
 	major = yes
+	
+	hidden = yes
 	
 	trigger = {
 		126 = { is_controlled_by = ITA }
@@ -3398,17 +3443,11 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	trigger = {
 		336 = { is_controlled_by = JAP }
-		OR = {
-			336 = {
-				is_owned_by = ENG
-			}
-			MAL = {
-				is_subject_of = ENG
-				owns_state = 336
-			}
-		}
+		336 = { is_owned_by = ENG }
 		JAP = { has_war_with = ENG }
 		NOT = { has_global_flag = fall_of_singapore }
 	}
@@ -3427,7 +3466,6 @@ news_event = {
 			NOT = {
 				TAG = JAP
 				TAG = ENG
-				TAG = MAL
 			}
 		}
 	}
@@ -3437,12 +3475,7 @@ news_event = {
 	}
 	option = {
 		name = news.100.c
-		trigger = { 
-			OR = {
-				TAG = ENG 
-				TAG = MAL 
-			}
-		}
+		trigger = { TAG = ENG }
 	}
 }
 
@@ -3584,6 +3617,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	trigger = {
 		613 = { is_controlled_by = JAP }
 		613 = { is_owned_by = CHI }
@@ -3626,6 +3661,8 @@ news_event = {
 	picture = GFX_news_event_050
 	
 	major = yes
+	
+	hidden = yes
 	
 	trigger = {
 		408 = { is_controlled_by = JAP }
@@ -3670,6 +3707,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	trigger = {
 		326 = { is_controlled_by = JAP }
 		326 = { is_owned_by = ENG }
@@ -3713,10 +3752,12 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	trigger = {
 		327 = { is_controlled_by = JAP }
-		327 = { is_owned_by = PHI }
-		JAP = { has_war_with = PHI }
+		327 = { is_owned_by = USA }
+		JAP = { has_war_with = USA }
 		NOT = { has_global_flag = fall_of_manila }
 	}
 	
@@ -3733,7 +3774,7 @@ news_event = {
 		trigger = {
 			NOT = {
 				TAG = JAP
-				TAG = PHI
+				# TAG = PHI
 				TAG = USA
 			}
 		}
@@ -3746,7 +3787,7 @@ news_event = {
 		name = news.100.c
 		trigger = { 
 			OR = {
-				TAG = PHI 
+				# TAG = PHI 
 				TAG = USA
 			}
 		}
@@ -3762,17 +3803,11 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	trigger = {
 		431 = { is_controlled_by = JAP }
-		OR = {
-			431 = {
-				is_owned_by = ENG
-			}
-			RAJ = {
-				is_subject_of = ENG
-				owns_state = 431
-			}
-		}
+		431 = { is_owned_by = ENG }
 		JAP = { has_war_with = ENG }
 		NOT = { has_global_flag = fall_of_calcutta }
 	}
@@ -3791,7 +3826,6 @@ news_event = {
 			NOT = {
 				TAG = JAP
 				TAG = ENG
-				TAG = RAJ
 			}
 		}
 	}
@@ -3801,12 +3835,7 @@ news_event = {
 	}
 	option = {
 		name = news.100.c
-		trigger = { 
-			OR = {
-				TAG = ENG 
-				TAG = RAJ 
-			}
-		}
+		trigger = { TAG = ENG }
 	}
 }
 
@@ -3819,17 +3848,10 @@ news_event = {
 	
 	major = yes
 	
+	
 	trigger = {
 		439 = { is_controlled_by = JAP }
-		OR = {
-			439 = {
-				is_owned_by = ENG
-			}
-			RAJ = {
-				is_subject_of = ENG
-				owns_state = 439
-			}
-		}
+		439 = { is_owned_by = ENG }
 		JAP = { has_war_with = ENG }
 		NOT = { has_global_flag = fall_of_new_delhi }
 	}
@@ -3848,7 +3870,6 @@ news_event = {
 			NOT = {
 				TAG = JAP
 				TAG = ENG
-				TAG = RAJ
 			}
 		}
 	}
@@ -3858,12 +3879,7 @@ news_event = {
 	}
 	option = {
 		name = news.100.c
-		trigger = { 
-			OR = {
-				TAG = ENG 
-				TAG = RAJ 
-			}
-		}
+		trigger = { TAG = ENG }
 	}
 }
 
@@ -4206,6 +4222,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	is_triggered_only = yes
 
 	trigger = {
@@ -4366,6 +4384,8 @@ news_event = {
 	desc = news.137.d
 	picture = GFX_news_event_061
 	
+	hidden = yes
+	
 	major = yes
 	is_triggered_only = yes 
 	trigger = {
@@ -4402,6 +4422,8 @@ news_event = {
 	title = news.100.t
 	desc = news.138.d
 	picture = GFX_news_event_067
+	
+	hidden = yes
 	
 	major = yes
 	
@@ -4445,6 +4467,8 @@ news_event = {
 	title = news.139.t
 	desc = news.139.d
 	picture = GFX_news_event_polish_resistance_warsaw
+	
+	hidden = yes
 	
 	major = yes
 	is_triggered_only = yes
@@ -4570,6 +4594,8 @@ news_event = {
 	desc = news.142.d
 	picture = GFX_news_event_064
 	
+	hidden = yes
+	
 	major = yes
 	
 	trigger = {
@@ -4612,6 +4638,8 @@ news_event = {
 	title = news.134.t
 	desc = news.143.d
 	picture = GFX_news_event_073
+	
+	hidden = yes
 	
 	major = yes
 	
@@ -4699,6 +4727,8 @@ news_event = {
 	desc = news.145.d
 	picture = GFX_news_event_063
 	
+	hidden = yes
+	
 	major = yes
 	
 	trigger = {
@@ -4785,6 +4815,8 @@ news_event = {
 	desc = news.147.d
 	picture = GFX_news_event_056
 	
+	hidden = yes
+	
 	major = yes
 	
 	trigger = {
@@ -4828,6 +4860,7 @@ news_event = {
 	desc = news.148.d
 	picture = GFX_news_event_chinese_soldiers_march
 	
+
 	major = yes
 	
 	trigger = {
@@ -4872,6 +4905,8 @@ news_event = {
 	picture = GFX_news_event_052
 	
 	major = yes
+	
+	hidden = yes
 	
 	trigger = {
 		any_other_country = {
@@ -4927,6 +4962,8 @@ news_event = {
 	
 	is_triggered_only = yes
 	
+	hidden = yes
+	
 	option = {
 		name = news.145.a
 		trigger = { NOT = { tag = GER } }
@@ -4948,7 +4985,7 @@ news_event = {
 	id = news.151
 	title = news.151.t
 	desc = news.151.d
-	picture = GFX_news_event_hitler_speech2
+	picture = GFX_news_event_hitler_speech
 	
 	major = yes
 	
@@ -4990,7 +5027,7 @@ news_event = {
 	id = news.152
 	title = news.151.t
 	desc = news.152.d
-	picture = GFX_news_event_hitler_speech2
+	picture = GFX_news_event_hitler_speech
 	
 	major = yes
 	
@@ -5031,26 +5068,14 @@ news_event = {
 	id = news.153
 	title = news.153.t
 	desc = news.153.d
-	#picture = GFX_event_germany_barb_gif
-	picture = GFX_news_event_german_inspect_troops
+	picture = GFX_event_germany_barb_gif
 	
 	major = yes
-
-	trigger = {
-		SOV = {
-			has_defensive_war_with = GER
-			has_opinion_modifier = MR_pact
-		}
-		NOT = { has_global_flag = MR_pact_broken_event_flag }
-	}
-
-	mean_time_to_happen = {
-		days = 2
-	}
+	
+	is_triggered_only = yes
 
 	immediate = {
 		hidden_effect = {
-			set_global_flag = MR_pact_broken_event_flag
 			SOV = { 
 				remove_opinion_modifier = { target = GER modifier = MR_pact }
 				remove_ideas = SOV_molotov_ribbentrop_pact
@@ -5122,7 +5147,6 @@ news_event = {
 			has_defensive_war_with = SOV
 			has_opinion_modifier = MR_pact
 		}
-		NOT = { has_global_flag = MR_pact_broken_event_flag }
 	}
 
 	mean_time_to_happen = {
@@ -5131,7 +5155,6 @@ news_event = {
 
 	immediate = {
 		hidden_effect = {
-			set_global_flag = MR_pact_broken_event_flag
 			SOV = { 
 				remove_opinion_modifier = { target = GER modifier = MR_pact }
 				remove_ideas = SOV_molotov_ribbentrop_pact
@@ -5183,7 +5206,7 @@ news_event = {
 		GER = {
 			OR = {
 				has_country_flag = GER_rhineland_backed_down
-				NOT = { has_completed_focus = GER_remilitarize_the_rhineland }
+				NOT = { has_completed_focus = GER_rhineland }
 			}
 			has_offensive_war = yes
 		}
@@ -5219,6 +5242,8 @@ news_event = {
 	picture = GFX_news_event_komet
 	
 	#major = yes
+	
+	hidden = yes
 
 	fire_only_once = yes
 
@@ -5358,7 +5383,7 @@ news_event = {
 		GER = {
 			OR = {
 				has_country_flag = GER_rhineland_backed_down
-				NOT = { has_completed_focus = GER_remilitarize_the_rhineland }
+				NOT = { has_completed_focus = GER_rhineland }
 			}
 			has_defensive_war = yes
 			NOT = { has_civil_war = yes }
@@ -6205,6 +6230,8 @@ news_event = {
 
 	major = yes
 
+	hidden = yes
+
 	is_triggered_only = yes
 
 	#We stand together.
@@ -6748,6 +6775,8 @@ news_event = {
 	major = yes
 
 	is_triggered_only = yes
+	
+	hidden = yes
 
 	fire_for_sender = no
 
@@ -6837,6 +6866,8 @@ news_event = {
 	is_triggered_only = yes
 
 	fire_for_sender = no
+	
+	hidden = yes
 
 	immediate = {
 		GRE = {
@@ -7188,6 +7219,8 @@ news_event = {
 
 	is_triggered_only = yes
 
+	hidden = yes
+
 	fire_for_sender = no
 
 	immediate = {
@@ -7234,6 +7267,8 @@ news_event = {
 	major = yes
 
 	is_triggered_only = yes
+	
+	hidden = yes
 
 	fire_for_sender = no
 
@@ -7449,6 +7484,8 @@ news_event = {
 	is_triggered_only = yes
 
 	fire_for_sender = no
+	
+	hidden = yes
 
 	immediate = {
 		ROM = {
@@ -8228,6 +8265,8 @@ news_event = {
 
 	major = yes
 
+	hidden = yes
+
 	is_triggered_only = yes
 
 	fire_for_sender = no
@@ -8329,9 +8368,11 @@ news_event = {
 			}
 		}
 	}
-	picture = [GetHitlerHandshakeNewsEventPicture]
+	picture = GFX_news_event_hitler_handshake
 
 	major = yes
+	
+	hidden = yes
 
 	is_triggered_only = yes
 
@@ -8548,7 +8589,7 @@ news_event = {
 			}
 		}
 	}
-	picture = [GetHitlerHandshakeNewsEventPicture]
+	picture = GFX_news_event_hitler_handshake
 
 	major = yes
 
@@ -8705,7 +8746,6 @@ news_event = {
 		OR = {
 			has_idea = war_economy
 			has_idea = tot_economic_mobilisation
-			has_idea = totaler_krieg_economy
 		}
 		any_other_country = {
 			is_major = yes
@@ -8735,6 +8775,8 @@ news_event = {
 	major = yes
 
 	is_triggered_only = yes
+
+	hidden = yes
 
 	fire_for_sender = no
 
@@ -8978,7 +9020,7 @@ news_event = {
 			OR = {
 				tag = BEL
 				tag = HOL
-				tag = LUX
+				# tag = LUX
 			}
 		}
 	}
@@ -9004,7 +9046,7 @@ news_event = {
 				OR = {
 					tag = BEL
 					tag = HOL
-					tag = LUX
+					# tag = LUX
 				}
 			}
 		}
@@ -9018,7 +9060,7 @@ news_event = {
 					tag = ENG
 					tag = BEL
 					tag = HOL
-					tag = LUX
+					# tag = LUX
 					is_in_faction_with = ENG
 					is_in_faction = yes
 				}
@@ -9601,7 +9643,7 @@ news_event = {
 		trigger = {
 			OR = {
 				tag = BEL
-				tag = LUX
+				# tag = LUX
 			}
 		}
 	}
@@ -9612,7 +9654,7 @@ news_event = {
 			OR = {
 				tag = HOL
 				is_in_faction_with = BEL
-				is_in_faction_with = LUX
+				# is_in_faction_with = LUX
 				is_in_faction_with = HOL
 			}
 			has_war_with = GER
@@ -9623,17 +9665,14 @@ news_event = {
 		name = news.234.c
 		trigger = {
 			NOT = {
-				tag = BEL
-				tag = LUX
-			}
-			OR = {
-				NOT = {
+				OR = {
 					tag = HOL
+					tag = BEL
+					# tag = LUX
 					is_in_faction_with = HOL
-					is_in_faction_with = LUX
+					# is_in_faction_with = LUX
 					is_in_faction_with = BEL
 				}
-				NOT = { has_war_with = GER }
 			}
 		}
 	}
@@ -10693,75 +10732,6 @@ news_event = {
 	}
 
 }
-# #NZL finishes Bob Semple tank
-# news_event = {
-# 	id = news.270
-# 	title = news.270.t
-# 	desc = news.270.desc
-# 	picture = GFX_news_event_glorious_vehicle
-	
-# 	major = yes
-
-# 	fire_only_once = yes
-	
-# 	trigger = {
-# 		NZL = { 
-# 			OR = {
-# 				has_tech = basic_light_tank 
-# 				has_tech = basic_light_tank_chassis
-# 			}
-# 		}
-# 	}
-	
-# 	option = {
-# 		name = news.270.a
-# 		trigger = {
-# 			TAG = NZL
-# 		}
-# 	}
-# 	option = {
-# 		name = news.270.b
-# 		trigger = { 
-# 			NOT = {
-# 				TAG = NZL	
-# 			}
-# 		}
-# 	}
-
-# }
-
-# #NZL finishes Big Bob tank
-# news_event = {
-# 	id = news.271
-# 	title = news.271.t
-# 	desc = news.271.desc
-# 	picture = GFX_news_event_glorious_vehicle
-	
-# 	major = yes
-
-# 	fire_only_once = yes
-	
-# 	trigger = {
-# 	NZL = { has_tech = super_heavy_tank }
-# 	}
-	
-# 	option = {
-# 		name = news.271.a
-# 		trigger = {
-# 			TAG = NZL
-# 		}
-# 	}
-# 	option = {
-# 		name = news.271.b
-# 		trigger = { 
-# 			NOT = {
-# 				TAG = NZL	
-# 			}
-# 		}
-# 	}
-
-# }
-
 
 #RAJ gets famine
 news_event = {
@@ -11018,7 +10988,7 @@ news_event = {
 
 }
 
-# News event - PAK free
+# News event - WST free
 news_event = {
 	id = news.285
 	title = news.285.t
@@ -11031,24 +11001,24 @@ news_event = {
 	
 	option = {
 		name = news.285.a
-		trigger = {
-			TAG = RAJ
-		}
+		# trigger = {
+		# 	TAG = RAJ
+		# }
 	}
 	option = {
 		name = news.285.b
-		trigger = {
-			TAG = PAK
-		}
+		# trigger = {
+		# 	TAG = WST
+		# }
 	}
 	option = {
 		name = news.285.c
-		trigger = { 
-			NOT = {
-				TAG = RAJ
-				TAG = PAK
-			}
-		}
+		# trigger = { 
+		# 	NOT = {
+		# 		TAG = RAJ
+		# 		TAG = WST
+		# 	}
+		# }
 	}
 	
 
@@ -11100,6 +11070,8 @@ news_event = {
 	
 	major = yes
 	
+	hidden = yes
+	
 	is_triggered_only = yes
 	
 	option = {
@@ -11150,7 +11122,7 @@ news_event = {
 		trigger = {
 			OR = {
 				TAG = CHI
-				TAG = PRC
+				# TAG = PRC
 			}
 		}
 	}
@@ -11159,7 +11131,7 @@ news_event = {
 		trigger = { 
 			NOT = {
 				TAG = CHI
-				TAG = PRC
+				# TAG = PRC
 			}
 			OR = {
 				TAG = JAP
@@ -11171,7 +11143,7 @@ news_event = {
 		name = news.288.c
 		trigger = { 
 			NOT = { 
-				TAG = PRC 
+				# TAG = PRC 
 				TAG = CHI
 				TAG = JAP
 				is_in_faction_with = JAP
@@ -11602,6 +11574,8 @@ news_event = {
 	
 	is_triggered_only = yes
 	
+	hidden = yes
+	
 	option = {
 		name = news.290.a
 		trigger = {
@@ -11638,6 +11612,8 @@ news_event = {
 	
 	is_triggered_only = yes
 	
+	hidden = yes
+	
 	option = {
 		name = news.298.a
 		trigger = {
@@ -11670,6 +11646,8 @@ news_event = {
 	major = yes
 	
 	is_triggered_only = yes
+	
+	hidden = yes
 	
 	option = {
 		name = news.299.a
@@ -11727,6 +11705,8 @@ news_event = {
 	picture = GFX_news_event_generic_sign_treaty1
 	
 	major = yes
+	
+	hidden = yes
 	
 	is_triggered_only = yes
 	
@@ -11999,24 +11979,26 @@ news_event = {
 		text = news.309.desc.a
 		trigger = { 
 			OR = {
-				NOT = { country_exists = SLO }
-				AND = {
-					country_exists = SLO
-					SLO = { is_subject = yes }
-				}
+				# NOT = { country_exists = SLO }
+				# AND = {
+				# 	country_exists = SLO
+				# 	SLO = { is_subject = yes }
+				# }
 			}
 		}
 	}
 	desc = {
 		text = news.309.desc.b
 		trigger = { 
-			country_exists = SLO
-			SLO = { is_subject = no }
+			# country_exists = SLO
+			# SLO = { is_subject = no }
 		}
 	}
 	picture = GFX_news_event_hungary_refused
 	
 	major = yes
+	
+	hidden = yes
 	
 	is_triggered_only = yes
 	
@@ -12031,11 +12013,11 @@ news_event = {
 		trigger = { 
 			TAG = CZE
 			OR = {
-				NOT = { country_exists = SLO }
-				AND = {
-					country_exists = SLO
-					SLO = { is_subject = yes }
-				}
+				# NOT = { country_exists = SLO }
+				# AND = {
+				# 	country_exists = SLO
+				# 	SLO = { is_subject = yes }
+				# }
 			}
 		}
 	}
@@ -12043,8 +12025,8 @@ news_event = {
 		name = news.309.c
 		trigger = { 
 			AND = {
-				TAG = SLO
-				SLO = { is_subject = no }
+				# TAG = SLO
+				# SLO = { is_subject = no }
 			}
 		}
 	}
@@ -12055,8 +12037,8 @@ news_event = {
 				TAG = HUN
 				TAG = CZE
 				AND = {
-					TAG = SLO
-					SLO = { is_subject = yes }
+					# TAG = SLO
+					# SLO = { is_subject = yes }
 				}
 			}
 		}
@@ -12071,19 +12053,19 @@ news_event = {
 		text = news.310.desc.a
 		trigger = { 
 			OR = {
-				NOT = { country_exists = SLO }
-				AND = {
-					country_exists = SLO
-					SLO = { is_subject = yes }
-				}
+				# NOT = { country_exists = SLO }
+				# AND = {
+				# 	country_exists = SLO
+				# 	SLO = { is_subject = yes }
+				# }
 			}
 		}
 	}
 	desc = {
 		text = news.310.desc.b
 		trigger = { 
-			country_exists = SLO
-			SLO = { is_subject = no }
+			# country_exists = SLO
+			# SLO = { is_subject = no }
 		}
 	}
 	picture = GFX_news_event_generic_sign_treaty1
@@ -12123,20 +12105,20 @@ news_event = {
 		text = news.311.desc.a
 		trigger = { 
 			OR = {
-				NOT = { country_exists = SLO }
-				AND = {
-					country_exists = SLO
-					SLO = { is_subject = yes }
-				}
+				# NOT = { country_exists = SLO }
+				# AND = {
+				# 	country_exists = SLO
+				# 	SLO = { is_subject = yes }
+				# }
 			}
 		}
 	}
 	desc = {
 		text = news.311.desc.b
-		trigger = { 
-			country_exists = SLO
-			SLO = { is_subject = no }
-		}
+		# trigger = { 
+		# 	country_exists = SLO
+		# 	SLO = { is_subject = no }
+		# }
 	}
 	picture = GFX_news_event_hungarian_soldiers
 	
@@ -12155,7 +12137,7 @@ news_event = {
 		trigger = { 
 			OR = {
 				TAG = CZE
-				TAG = SLO
+				# TAG = SLO
 			}
 		}
 	}
@@ -12165,7 +12147,7 @@ news_event = {
 			NOT = {
 				TAG = HUN
 				TAG = CZE
-				TAG = SLO
+				# TAG = SLO
 			}
 		}
 	}
@@ -12826,16 +12808,16 @@ news_event = {
 	}
 	option = {
 		name = news.326.b
-		trigger = {
-			TAG = CRO
-		}
+		# trigger = {
+		# 	TAG = CRO
+		# }
 	}
 	option = {
 		name = news.326.c
 		trigger = { 
 			NOT = {
 				TAG = YUG
-				TAG = CRO
+				# TAG = CRO
 			}
 		}
 	}
@@ -12951,6 +12933,8 @@ news_event = {
 	picture = GFX_news_event_generic_sign_treaty3
 	
 	major = yes
+	
+	hidden = yes
 	
 	is_triggered_only = yes
 	

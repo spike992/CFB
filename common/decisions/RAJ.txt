@@ -15,15 +15,11 @@ political_actions = {
 		fire_only_once = yes
 
 		cancel_trigger = {
-			has_completed_focus = RAJ_clamp_down_on_corruption
+			has_completed_focus = RAJ_for_the_worst
 		}
 
 		activation = {
 			has_idea = RAJ_risk_of_famine
-			OR = {
-				is_using_old_raj = yes
-				NOT = { has_dlc = "Graveyard of Empires" }
-			}
 			NOT = { has_country_flag = indian_famine }
 			has_war = yes
 		}
@@ -36,8 +32,52 @@ political_actions = {
 		timeout_effect = {
 			country_event = { id = tfv_raj.21 }
 			effect_tooltip = {
-				add_ideas = RAJ_famine
+				add_ideas = RAJ_bengal_famine
 			}
 		}
 	}
+	
+	# RAJ_bengal_famine_descsion = {
+	# 	priority = 100
+	# 	allowed = { tag = RAJ }
+
+	# 	icon = generic_prepare_civil_war
+
+	# 	available = {
+	# 		has_completed_focus = RAJ_Indian_reforms
+	# 	}
+
+	# 	days_mission_timeout = 90
+	# 	is_good = no
+	# 	fire_only_once = yes
+
+	# 	cancel_trigger = {
+	# 		has_completed_focus = RAJ_Indian_reforms
+	# 	}
+
+	# 	activation = {
+	# 		NOT = {
+	# 			has_completed_focus = RAJ_Indian_reforms
+	# 		}
+	# 		has_idea = RAJ_under_british_rule
+	# 		has_war_with = JAP
+	# 	}
+
+	# 	visible = {
+	# 		has_idea = RAJ_under_british_rule
+	# 		has_war_with = JAP
+	# 	}
+		
+	# 	timeout_effect = {
+	# 		remove_ideas = RAJ_under_british_rule
+	# 		# add_timed_idea = {
+	# 		# 	idea = RAJ_bengal_famine
+	# 		# 	days = 365
+	# 		# }
+	# 		add_timed_idea = {
+	# 			idea = RAJ_bengal_famine_small
+	# 			days = 365
+	# 		}
+	# 	}
+	# }
 }

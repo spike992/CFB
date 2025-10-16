@@ -1,138 +1,55 @@
 ideas = {
 	country = {
-
 		
-		ITA_the_sun_never_sets_idea_1 = {
-
-			name = ITA_the_sun_never_sets
-
+		ITA_naval_strike = {			
+			
 			allowed = {
-				always = no
+				original_tag = "ITA"
 			}
-
-			allowed_civil_war = {
-				always = yes
+			
+			picture = air_support_focus
+			
+			removal_cost = -1
+			
+			equipment_bonus = {
+				small_plane_naval_bomber_airframe = {
+					build_cost_ic = -0.05
+					naval_strike_attack = 0.05
+					instant = yes
+				}
 			}
+		}
 
+		ITA_mobilized_naval_workers = {			
+			
+			allowed = {
+				original_tag = "ITA"
+			}
+			
+			picture = ITA_mob_nav_workers
+			
+			removal_cost = -1
+			
 			modifier = {
-				army_core_attack_factor = 0.2
-				army_core_defence_factor = 0.2
+				industrial_capacity_dockyard = 0.05
 			}
-
-			picture = ITA_italian_irredentism
-			
-			removal_cost = -1	
-
-		}
-		
-		ITA_the_sun_never_sets_idea_2 = {
-
-			name = ITA_the_sun_never_sets
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				army_core_attack_factor = 0.15
-				army_core_defence_factor = 0.15
-			}
-
-			picture = ITA_italian_irredentism
-			
-			removal_cost = -1	
-
 		}
 
-
-		
-		ITA_the_sun_never_sets_idea_3 = {
-
-			name = ITA_the_sun_never_sets
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				army_core_attack_factor = 0.1
-				army_core_defence_factor = 0.1
-			}
-
-
-			picture = ITA_italian_irredentism
-			
-			removal_cost = -1	
-
-		}
-
-		ITA_the_sun_never_sets_idea_4 = {
-
-			name = ITA_the_sun_never_sets
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				army_core_attack_factor = 0.05
-				army_core_defence_factor = 0.05
-			}
-
-
-			picture = ITA_italian_irredentism
-			
-			removal_cost = -1	
-
-		}
-
-		ITA_the_sun_never_sets_idea_5 = {
-
-			name = ITA_the_sun_never_sets
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			picture = ITA_italian_irredentism
-			
-			removal_cost = -1	
-
-		}
-	
 		ITA_german_occupation = {			
 			
 			allowed = {
 				original_tag = "ITA"
 			}
 			
-			picture = hol_caved_to_the_germans
+			picture = idea_hol_caved_to_the_germans
 			
 			removal_cost = -1
 			
 			modifier = {
 				surrender_limit = 0.15
 				max_surrender_limit_offset = 0.05
-				army_core_attack_factor = 0.15
-				army_core_defence_factor = 0.25
-				army_attack_factor = -0.10
-				army_defence_factor = -0.10
+				army_core_attack_factor = 0.05
+				army_core_defence_factor = 0.15
 			}
 
 			targeted_modifier = {
@@ -153,7 +70,7 @@ ideas = {
 			removal_cost = -1
 			
 			equipment_bonus = {
-				fighter_equipment = {
+				small_plane_airframe = {
 					instant = yes
 					air_agility = 0.1
 					maximum_speed = -0.1
@@ -172,7 +89,7 @@ ideas = {
 			removal_cost = -1
 			
 			equipment_bonus = {
-				fighter_equipment = {
+				small_plane_airframe = {
 					instant = yes
 					air_agility = 0.1
 				}
@@ -190,11 +107,11 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				#special_forces_cap = 0.05
+				special_forces_cap = 0.05
 				naval_torpedo_screen_penetration_factor = 0.10
 			}
 		}
-	
+
 		ITA_naval_air = {			
 			
 			allowed = {
@@ -210,9 +127,9 @@ ideas = {
 				sortie_efficiency = 0.1
 			}
 			equipment_bonus = {
-			cv_nav_bomber_equipment = {
-				naval_strike_attack = 0.1
-			}
+				small_plane_naval_bomber_airframe = {
+					naval_strike_attack = 0.1 instant = yes
+				}
 			}
 		}
 	
@@ -360,8 +277,8 @@ ideas = {
 			
 			modifier = {
 				
-				#terrain_penalty_reduction = 0.05
-				breakthrough_factor = 0.1
+				terrain_penalty_reduction = 0.05
+				breakthrough_factor = 0.05
 
 				#land_night_attack = 0.05
 				#cas_damage_reduction = 0.1
@@ -394,9 +311,9 @@ ideas = {
 			picture = ita_shock
 			
 			modifier = {
-				#terrain_penalty_reduction = 0.05
+				terrain_penalty_reduction = 0.05
 				#army_speed_factor = 0.05
-				breakthrough_factor = 0.1
+				breakthrough_factor = 0.05
 
 				land_night_attack = 0.05
 				cas_damage_reduction = 0.05
@@ -468,6 +385,27 @@ ideas = {
 				army_defence_factor = -0.1
 			}
 		}
+
+		ITA_incompetent_officers_offset = {			
+			
+			allowed = {
+				original_tag = "ITA"
+			}
+			
+			picture = chi_incompetent_officers
+			name = "Incompetent Officers Offset for SCW and China War"
+			
+			removal_cost = -1
+
+			cancel = {
+				has_war = yes
+			}
+			
+			modifier = {
+				army_attack_factor = 0.1
+				army_defence_factor = 0.1
+			}
+		}
 	
 		ITA_old_guard_base = {			
 			
@@ -482,7 +420,7 @@ ideas = {
 			
 			modifier = {
 				max_dig_in = 2.5
-				experience_gain_factor = -0.30
+				# experience_gain_factor = -0.30
 				planning_speed = -0.25
 				max_planning = 0.10
 				cat_mobile_warfare_cost_factor = 0.25
@@ -504,7 +442,7 @@ ideas = {
 			
 			modifier = {
 				max_dig_in = 5
-				experience_gain_factor = -0.25
+				# experience_gain_factor = -0.25
 				planning_speed = -0.25
 				max_planning = 0.20
 				cat_mobile_warfare_cost_factor = 0.25
@@ -527,7 +465,7 @@ ideas = {
 			
 			modifier = {
 				max_dig_in = 2.5
-				experience_gain_factor = -0.20
+				# experience_gain_factor = -0.20
 				planning_speed = -0.20
 				cat_mobile_warfare_cost_factor = 0.25
 				cat_superior_firepower_cost_factor = -0.1
@@ -548,7 +486,7 @@ ideas = {
 			
 			modifier = {
 				max_dig_in = 1
-				experience_gain_factor = -0.10
+				# experience_gain_factor = -0.10
 				planning_speed = -0.10
 				max_planning = 0.15
 				fascism_drift = 0.10
@@ -570,7 +508,7 @@ ideas = {
 			picture = italian_general_staff
 			
 			modifier = {
-				experience_gain_factor = -0.10
+				# experience_gain_factor = -0.10
 				planning_speed = -0.10
 				cat_mobile_warfare_cost_factor = -0.05
 				cat_superior_firepower_cost_factor = 0.25
@@ -590,7 +528,7 @@ ideas = {
 			picture = italian_general_staff
 			
 			modifier = {
-				experience_gain_factor = 0.15
+				# experience_gain_factor = 0.15
 				planning_speed = 0.1
 				cat_mobile_warfare_cost_factor = -0.05
 				cat_superior_firepower_cost_factor = 0.25
@@ -615,7 +553,6 @@ ideas = {
 				navy_max_range_factor = 0.10
 				industrial_capacity_factory = 0.1
 				industrial_capacity_dockyard = 0.1
-				stability_factor = 0.1
 			}
 		}
 	
@@ -665,7 +602,7 @@ ideas = {
 			modifier = {
 				local_resources_factor = 0.15
 				production_speed_synthetic_refinery_factor = 0.1
-				production_speed_synthetic_rubber_refinery_factor = 0.1
+				# production_speed_synthetic_rubber_refinery_factor = 0.1
 				production_speed_steel_refinery_factor = 0.1
 			}
 		}
@@ -683,7 +620,7 @@ ideas = {
 			modifier = {
 				local_resources_factor = 0.05
 				production_speed_synthetic_refinery_factor = 0.1
-				production_speed_synthetic_rubber_refinery_factor = 0.1
+				# production_speed_synthetic_rubber_refinery_factor = 0.1
 				production_speed_steel_refinery_factor = 0.1
 			}
 		}
@@ -752,7 +689,7 @@ ideas = {
 		}
 
 	
-		ITA_german_investments_idea = {			
+		ITA_german_investments = {			
 			
 			allowed = {
 				original_tag = "ITA"
@@ -767,7 +704,7 @@ ideas = {
 				trade_cost_for_target_factor = -0.25
 			}
 			modifier = {
-				consumer_goods_expected_value = -0.04
+				consumer_goods_factor = -0.025
 			}
 		}
 	
@@ -952,17 +889,36 @@ ideas = {
 	
 		fiat = {
 			
-			
 			allowed = {
-				original_tag = ITA
+				OR = {
+					original_tag = ITA
+					original_tag = HUN
+				}	
 			}
 			
+			available = {
+				OR = {
+					original_tag = ITA
+					has_completed_focus = HUN_mobile_focus
+				}
+			}
 			
 			research_bonus = {
 				armor = 0.15
 			}
 			
-			traits = { tank_manufacturer }
+			equipment_bonus = {
+				armor = {
+					reliability = 0.05
+					breakthrough = 0.05
+					maximum_speed = 0.05
+					armor_value = 0.05
+					soft_attack = 0.05
+					hard_attack = 0.05
+				}
+			}
+
+			modifier = { tank_manufacturer_cost_factor = -1 }
 		}
 	}
 	
@@ -973,7 +929,6 @@ ideas = {
 		designer = yes
 		
 		beretta = {
-			
 			
 			allowed = {
 				original_tag = ITA
@@ -1042,6 +997,8 @@ ideas = {
 			}
 			
 			traits = { light_aircraft_manufacturer }
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 		
 		savoia_marchetti = {
@@ -1056,6 +1013,8 @@ ideas = {
 			}
 			
 			traits = { medium_aircraft_manufacturer }
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 		
 		caproni = {
@@ -1073,6 +1032,8 @@ ideas = {
 			}
 			
 			traits = { naval_aircraft_manufacturer }
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 		
 		piaggio = {
@@ -1086,6 +1047,8 @@ ideas = {
 			}
 			
 			traits = { heavy_aircraft_manufacturer }
+
+			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 	}
 	
@@ -1187,14 +1150,30 @@ ideas = {
 		crda = {
 						
 			allowed = {
-				original_tag = ITA
+				OR = {
+					original_tag = ITA
+					original_tag = SPR
+				}
+			}
+
+			available = {
+				if = {
+					limit = {
+						original_tag = SPR
+					}
+					has_completed_focus = SPA_italian_naval_designers
+				}
 			}
 						
 			research_bonus = {
 				naval_equipment = 0.15
 			}
+
+			cost = 150
 			
 			traits = { naval_manufacturer }
+
+			modifier = { naval_manufacturer_cost_factor = -1 }
 		}
 
 		
@@ -1202,74 +1181,145 @@ ideas = {
 			picture	= ITA_oto
 
 			allowed = {
-				original_tag = ITA
+				OR = {
+					original_tag = ITA
+					original_tag = SPR
+				}
 			}
 
-
 			available = {
-				has_completed_focus = ITA_green_water_navy
+				ITA = {
+					has_completed_focus = ITA_green_water_navy
+				}
+				if = {
+					limit = {
+						original_tag = SPR
+					}
+					has_completed_focus = SPA_italian_naval_designers
+				}
 			}
 						
 			research_bonus = {
 				naval_equipment = 0.15
 			}
+
+			cost = 150
 			
 			traits = { mediterranean_naval_manufacturer }
+
+			modifier = { naval_manufacturer_cost_factor = -1 }
 		}
 
 		ITA_navalmeccanica = { #SOUTH
 			picture	= ITA_navalmeccanica
 
 			allowed = {
-				original_tag = ITA
+				OR = {
+					original_tag = ITA
+					original_tag = SPR
+				}
 			}
 
 			available = {
-				has_completed_focus = ITA_convoy_defence
+				ITA = {
+					has_completed_focus = ITA_convoy_defence
+				}	
+				if = {
+					limit = {
+						original_tag = SPR
+					}
+					has_completed_focus = SPA_italian_naval_designers
+				}
 			}
 						
 			research_bonus = {
 				naval_equipment = 0.15
 			}
+
+			cost = 150
 			
 			traits = { convoy_escort_naval_manufacturer }
+
+			modifier = { naval_manufacturer_cost_factor = -1 }
 		}
 
 		ITA_cantiere_navale_di_ancona = { #SOUTH
 			picture	= ITA_cantera_navale_di_ancona
 
 			allowed = {
-				original_tag = ITA
+				OR = {
+					original_tag = ITA
+					original_tag = SPR
+					original_tag = BUL
+					original_tag = JAP
+					original_tag = MAN
+					original_tag = SIA
+				}
 			}
 
 
 			available = {
-				has_completed_focus = ITA_new_cruisers
+				if = {
+					limit = {
+						OR = {
+							original_tag = SPR
+							original_tag = ITA
+						}
+					}
+					ITA = {
+						has_completed_focus = ITA_new_cruisers
+					}
+				}
+				if = {
+					limit = {
+						original_tag = SPR
+					}
+					has_completed_focus = SPA_italian_naval_designers
+				}
 			}
 						
 			research_bonus = {
 				naval_equipment = 0.15
 			}
+
+			cost = 150
 			
 			traits = { raiding_fleet_naval_manufacturer }
+
+			modifier = { naval_manufacturer_cost_factor = -1 }
 		}
 
 		ITA_cantieri_navali_tosi = { #SOUTH
 			picture	= ITA_cantieri_navali_tosi
 
 			allowed = {
-				original_tag = ITA
+				OR = {
+					original_tag = ITA
+					original_tag = SPR
+				}
 			}
 
 			available = {
-				has_completed_focus = ITA_sub_raiders
+				ITA = {
+					has_completed_focus = ITA_sub_raiders
+				}
+				if = {
+					limit = {
+						original_tag = SPR
+					}
+					has_completed_focus = SPA_italian_naval_designers
+				}
 			}
 						
 			research_bonus = {
 				naval_equipment = 0.15
 			}
+
+			cost = 150
 			
 			traits = { submarine_manufacturer }
+
+			modifier = { naval_manufacturer_cost_factor = -1 }
 		}
 
 	}

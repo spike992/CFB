@@ -4,7 +4,7 @@
 
 add_namespace = finland
 
-# Soviet Ultimatum - Event for FIN
+# Soviet Ultimatum
 country_event = {
 	id = finland.1
 	title = finland.1.t
@@ -16,11 +16,9 @@ country_event = {
 	option = { # Accept demands
 		name = finland.1.a
 		ai_chance = { 
-			base = 25
-			modifier = { # Don't accept if in a faction that can protect them
+		factor = 25
+		modifier = { # Don't accept if in a faction that can protect them
 				factor = 0
-				NOT = { is_in_faction_with = FROM }
-				NOT = { is_subject_of = FROM }
 				OR = {
 					any_other_country = {
 						is_major = yes
@@ -29,46 +27,21 @@ country_event = {
 							has_guaranteed = FIN
 						}
 					}
-					FIN_is_historical_ai = yes # Finland expected to resist on historical
 					has_idea = anti_soviet_pact
 				}
 			}
 		}
-		FROM = {
+		SOV = {
 			country_event = { days = 5 id = soviet.12 }
 			effect_tooltip = {
 				transfer_state = 146
-				custom_effect_tooltip = FIN_remove_soviet_claims_in_other_states_tt
-			}
-		}
-		hidden_effect = {
-			FROM = {
-				add_ai_strategy = { 
-					type = antagonize 
-					id = ROOT
-					value = -100
-				}
-				add_ai_strategy = { 
-					type = conquer 
-					id = ROOT
-					value = -100
-				}
 			}
 		}
 	}
 	option = { # Refuse
 		name = finland.1.b
-		ai_chance = {
-			base = 75
-			modifier = {
-				factor = 0
-				OR = {
-					is_in_faction_with = FROM
-					is_subject_of = FROM
-				}
-			}
-		}
-		FROM = {
+		ai_chance = { factor = 75 }
+		SOV = {
 			country_event = { days = 5 id = soviet.13 }
 			effect_tooltip = {
 				create_wargoal = {
@@ -83,113 +56,3 @@ country_event = {
 
 
 
-# WINTER WAR STARTS! -> (NSB Barbarossa free patch)
-country_event = {
-	id = finland.10
-	title = finland.10.t
-	desc = finland.10.d
-	picture = GFX_report_event_finnish_soldiers_snow
-	
-	is_triggered_only = yes
-
-	option = {
-		name = finland.10.a
-
-		add_ideas = winter_war_ns
-
-		custom_effect_tooltip = FIN_winter_war_push_back_tt
-	}
-}
-
-country_event = {
-	id = finland.500
-	title = finland.500.t
-	desc = finland.500.d
-	picture = GFX_report_event_chinese_soldiers_02
-
-	is_triggered_only = yes
-	fire_only_once = yes
-
-	option = {
-		set_country_flag = FINLAND_LONE_WOLF
-		name = finland.500.a
-		custom_effect_tooltip = finland.500.a_desc
-		ai_chance = {
-			base = 1
-			modifier = {
-				factor = 0
-				FIN = { is_ai = yes }
-			}
-		}
-	}
-	option = {
-		set_country_flag = FINLAND_JOIN_FACTION
-		name = finland.500.b
-		if = {
-			limit = {
-				has_war_with = SOV
-			}
-			remove_ideas = {
-				FIN_the_lone_wolf
-			}
-		}else = {
-			custom_effect_tooltip = finland.500.b_desc
-			effect_tooltip = {
-				remove_ideas = FIN_the_lone_wolf
-			}
-		}
-		ai_chance = {
-			base = 1
-			modifier = {
-				factor = 0
-				FIN = { is_ai = no }
-			}
-		}
-
-	}
-}
-
-country_event = {
-	id = finland.502
-	title = finland.502.t
-	desc = finland.502.d
-	picture = GFX_report_event_german_speech
-	
-	is_triggered_only = yes
-
-	fire_only_once = yes
-
-	option = {
-		name = finland.502.a
-	}
-}
-
-country_event = {
-	id = finland.503
-	title = finland.503.t
-	desc = finland.503.d
-	picture = GFX_report_event_german_speech
-	
-	is_triggered_only = yes
-
-	fire_only_once = yes
-
-	option = {
-		name = finland.503.a
-	}
-}
-
-country_event = {
-	id = finland.504
-	title = finland.504.t
-	desc = finland.504.d
-	picture = GFX_report_event_german_speech
-	
-	is_triggered_only = yes
-
-	fire_only_once = yes
-
-	option = {
-		name = finland.504.a
-	}
-}

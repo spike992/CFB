@@ -1,6 +1,7 @@
 ﻿division_template = {
 	name = "Grenzwacht"
 	division_names_group = GER_GAR_01
+
 	regiments = {
 		garrison = { x = 0 y = 0 }
 	    garrison = { x = 0 y = 1 }
@@ -50,7 +51,7 @@ division_template = {
 	division_names_group = GER_SS_01
 	is_locked = yes
 	force_allow_recruiting = yes
-	template_counter = 129
+	template_counter = 110
 	regiments = {
 		medium_armor = { x = 0 y = 0 }
 		medium_armor = { x = 0 y = 1 }
@@ -80,8 +81,8 @@ division_template = {
 		light_tank_recon  = { x = 0 y = 2 }
 		light_sp_anti_air_brigade  = { x = 0 y = 3 }
 
-		ss_hq_company = { x = 1 y = 0 }
-		engineer = { x = 1 y = 1 }
+		ss_hq_company_medium = { x = 1 y = 0 }
+		assault_engineer = { x = 1 y = 1 }
 		signal_company = { x = 1 y = 2 }
 		maintenance_company = { x = 1 y = 3 }
 	}
@@ -110,13 +111,10 @@ division_template = {
 		
 	}
 }
-
 division_template = {
 	name = "Infanterie-Division (mot.)" 			# Used to be SS division -> New system for SS. Also messed up the civil war by refusing to move to the fascists, and immersion-breaking to have them around as royalists
 
 	division_names_group = GER_MOT_02
-
-	role = motorized
 
 	regiments = {
 		motorized = { x = 0 y = 0 }
@@ -138,7 +136,6 @@ division_template = {
 		logistics_company = { x = 0 y = 3 }
 	}
 }
-
 division_template = {
 	name = "Gebirgs-Brigade"		# Gebirgsbrigade
 	#Note: precursor to Gebirgs-Divisions
@@ -162,7 +159,6 @@ division_template = {
 		logistics_company = { x = 0 y = 3 }
 	}
 }
-
 division_template = {
 	name = "Kavallerie-Brigade"
 
@@ -695,148 +691,142 @@ instant_effect = {
 	add_equipment_production = {
 		equipment = {
 			type = infantry_equipment_1
-			creator = GER
+			creator = "GER"
 		}
 		requested_factories = 10
 		progress = 0.1
-		efficiency = 58
-		industrial_manufacturer = mio:GER_mauser_organization
+		efficiency = 50
 	}
 
 	add_equipment_production = {
 		equipment = {
 			type = support_equipment_1
-			creator = GER
+			creator = "GER" 
 		}
 		requested_factories = 2
 		progress = 0.3
-		efficiency = 55
-		industrial_manufacturer = mio:GER_carl_walther_organization
+		efficiency = 50
 	}
 
 	add_equipment_production = {
 		equipment = {
 			type = artillery_equipment_1
-			creator = GER 
+			creator = "GER" 
 		}
 		requested_factories = 1
 		progress = 0.3
-		efficiency = 55
-		industrial_manufacturer = mio:GER_rheinmetall_organization
+		efficiency = 50
 	}
 	add_equipment_production = {
 		equipment = {
 			type = pack_artillery_equipment_1
-			creator = GER 
+			creator = "GER" 
 		}
 		requested_factories = 1
 		progress = 0.3
-		efficiency = 55
+		efficiency = 50
 	}
 	
 	add_equipment_production = {
 		equipment = {
 			type = horse_equipment_0
-			creator = GER 
+			creator = "GER" 
 		}
 		requested_factories = 1
 		progress = 0.3
-		efficiency = 55
+		efficiency = 50
 	}
 	
 	add_equipment_production = {
 		equipment = {
 			type = radio_equipment_0
-			creator = GER 
+			creator = "GER" 
 		}
 		requested_factories = 1
 		progress = 0.3
-		efficiency = 55
+		efficiency = 50
 	}
 	
 	add_equipment_production = {
 		equipment = {
 			type = squad_equipment_0
-			creator = GER 
+			creator = "GER" 
 		}
 		requested_factories = 1
 		progress = 0.3
-		efficiency = 55
-		industrial_manufacturer = mio:GER_mauser_organization
+		efficiency = 50
 	}
 	
 	add_equipment_production = {
 		equipment = {
 			type = sf_equipment_0
-			creator = GER 
+			creator = "GER" 
 		}
 		requested_factories = 1
 		progress = 0.3
-		efficiency = 55
+		efficiency = 50
 	}
 
 	add_equipment_production = {
 		equipment = {
 			type = light_tank_chassis_2
-			creator = GER 
-			version_name = "Panzer II"
+			creator = "GER" 
+			version_name = "Panzer II Ausf. a"
 		}
 		requested_factories = 2
 		progress = 0.4
-		efficiency = 55
-		industrial_manufacturer = mio:GER_henschel_organization
+		efficiency = 50
 	}
 
 	add_equipment_production = {
 		equipment = {
 			type = motorized_equipment_1
-			creator = GER 
+			creator = "GER" 
 		}
 		requested_factories = 2
 		progress = 0.4
-		efficiency = 55
-		industrial_manufacturer = mio:GER_opel_organization
+		efficiency = 50
 	}
 
-	add_equipment_production = {
-		equipment = {
-			type = fighter_equipment_1
-			creator = GER 
-			#version_name = "Bf 109 E"
-		}
-		requested_factories = 1
-		progress = 0.15
-		efficiency = 55
-	}
+	# add_equipment_production = {
+	# 	equipment = {
+	# 		type = fighter_equipment_1
+	# 		creator = "GER" 
+	# 		version_name = "Bf 109 E"
+	# 	}
+	# 	requested_factories = 1
+	# 	progress = 0.15
+	# 	efficiency = 50
+	# }
 
-	add_equipment_production = {
-		equipment = {
-			type = CAS_equipment_1
-			creator = GER 
-		}
-		requested_factories = 1
-		progress = 0.2
-		efficiency = 55
-	}
+	# add_equipment_production = {
+	# 	equipment = {
+	# 		type = CAS_equipment_1
+	# 		creator = "GER" 
+	# 	}
+	# 	requested_factories = 1
+	# 	progress = 0.2
+	# 	efficiency = 50
+	# }
 
-	add_equipment_production = {
-		equipment = {
-			type = tac_bomber_equipment_1
-			creator = GER 
-		}
-		requested_factories = 1
-		progress = 0.1
-		efficiency = 55
-	}
+	# add_equipment_production = {
+	# 	equipment = {
+	# 		type = tac_bomber_equipment_1
+	# 		creator = "GER" 
+	# 	}
+	# 	requested_factories = 1
+	# 	progress = 0.1
+	# 	efficiency = 50
+	# }
 
 	add_equipment_production = {
 		equipment = {
 			type = train_equipment_1
-			creator = GER 
+			creator = "GER" 
 		}
 		requested_factories = 1
 		progress = 0.3
-		efficiency = 55
+		efficiency = 50
 	}
 }
 

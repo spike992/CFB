@@ -1,3 +1,17 @@
+#!gfx:interface\lw_goals.gfx
+#!gfx:interface\KR_goals.gfx
+#!gfx:interface\cic_goals.gfx
+#!gfx:interface\snek_teleport.gfx
+#!gfx:interface\replace\bruh_interface.gfx
+#!gfx:interface\replace\bruh_bra_interface.gfx
+#!gfx:interface\replace\bruh_eng_interface.gfx
+#!gfx:interface\replace\bruh_ger_interface.gfx
+#!gfx:interface\replace\bruh_hol_interface.gfx
+#!gfx:interface\replace\bruh_ita_interface.gfx
+#!gfx:interface\replace\bruh_jap_interface.gfx
+#!gfx:interface\replace\bruh_nsb_interface.gfx
+#!gfx:interface\replace\bruh_sov_interface.gfx
+
 focus_tree = {
 	id = australian_focus
 	
@@ -19,7 +33,7 @@ focus_tree = {
 	
 	default = no
 	
-	continuous_focus_position = { x = 50 y = 850 }
+	continuous_focus_position = { x = 50 y = 950 }
 	
 	shared_focus = COM_commonwealth_command
 
@@ -86,7 +100,6 @@ focus_tree = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
-		search_filters = { FOCUS_FILTER_RESEARCH }
 
 		completion_reward = {
 			army_experience = 10
@@ -111,6 +124,14 @@ focus_tree = {
 
 		available_if_capitulated = yes
 
+		offset = {
+			x = 0
+			y = 1
+			trigger = {
+				has_global_flag = NO_ASIA
+			}
+		}
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = AST_cruiser
@@ -125,6 +146,7 @@ focus_tree = {
 				category = land_doctrine
 			}
 		}
+		
 	}
 
 	focus = {
@@ -158,9 +180,53 @@ focus_tree = {
 			add_tech_bonus = {
 				name = AST_royal_australian_artillery
 				bonus = 0.5
-				uses = 1
+				uses = 2
 				category = artillery
 			}
+		}
+	}
+
+	focus = {
+		id = AST_revive_the_screw_guns
+		icon = GFX_goal_generic_army_artillery
+		prerequisite = { focus = AST_royal_australian_artillery }
+		x = 0
+		y = 1
+		relative_position_id = AST_royal_australian_artillery
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		available = {
+			# has_tech = artillery2
+		}
+
+		bypass = {
+
+		}
+
+		allow_branch = {
+			has_global_flag = NO_ASIA
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = RAJ_indian_armor
+				bonus = 1
+				uses = 2
+				category = artillery
+			}
+			# set_technology = {
+			# 	# mountain_arty = 1
+			# 	artillery3 = 1
+			# }
 		}
 	}
 
@@ -171,6 +237,14 @@ focus_tree = {
 		x = 0
 		y = 3
 		relative_position_id = AST_additional_militia_training
+
+		offset = {
+			x = 0
+			y = 1
+			trigger = {
+				has_global_flag = NO_ASIA
+			}
+		}
 
 		cost = 5
 
@@ -201,14 +275,15 @@ focus_tree = {
 			}
 			custom_effect_tooltip = AST_new_general_tt
 			hidden_effect = {
-				add_corps_commander_role = {
-					character = AST_iven_mackay
-					traits = { }
-					skill = 3
-					attack_skill = 2
+				create_corps_commander = {
+					name = "Iven Mackay"
+					gfx = "GFX_AST_iven_mackay"
+					traits = { commando hill_fighter trait_mountaineer }
+					skill = 5
+					attack_skill = 4
 					defense_skill = 2
 					planning_skill = 3
-					logistics_skill = 3
+					logistics_skill = 4
 				}
 			}
 		}
@@ -259,6 +334,14 @@ focus_tree = {
 		x = 3
 		y = 2
 		relative_position_id = AST_additional_militia_training
+
+		offset = {
+			x = 0
+			y = 1
+			trigger = {
+				has_global_flag = NO_ASIA
+			}
+		}
 
 		cost = 5
 
@@ -473,7 +556,6 @@ focus_tree = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH  }
 
 		completion_reward = {
 			add_doctrine_cost_reduction = {
@@ -531,10 +613,6 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_RESEARCH  }
 
 		completion_reward = {
-			add_breakthrough_progress = {
-				specialization = specialization_land
-				value = 0.5
-			}
 			add_tech_bonus = {
 				name = AST_sentinel_tank
 				bonus = 0.75
@@ -653,7 +731,7 @@ focus_tree = {
 		completion_reward = {
 			add_tech_bonus = {
 				name = AST_z_special_unit
-				bonus = 0.6
+				bonus = 0.75
 				uses = 1
 				category = marine_tech
 				category = para_tech
@@ -700,7 +778,7 @@ focus_tree = {
 			add_ideas = AST_m_special_unit_idea
 		}
 	}
-	
+
 	focus = {
 		id = AST_central_bureau
 		icon = GFX_goal_generic_radar
@@ -716,10 +794,16 @@ focus_tree = {
 		}
 
 		available = {
-			is_in_faction_with = USA
-			USA = {
-				has_war = yes
+			if = {
+				limit = {
+					has_global_flag = NO_ASIA
+
+				}
+				date > 1941.1.1
 			}
+			else = {
+				is_in_faction_with = USA
+			}	
 		}
 		
 		bypass = {
@@ -753,7 +837,7 @@ focus_tree = {
 	focus = {
 		id = AST_expand_the_raaf
 		icon = GFX_goal_generic_build_airforce
-		x = 12
+		x = 15
 		y = 0
 		cost = 10
 
@@ -769,55 +853,33 @@ focus_tree = {
 
 		}
 
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH  }
-
-		complete_tooltip = {
-			air_experience = 25
-			add_breakthrough_progress = {
-				specialization = specialization_air
-				value = 0.25
-			}
-			random_state = {				
-				limit = {
-					has_state_flag = AST_expand_the_raaf_AB
+		allow_branch = {
+			NOT = {
+				has_game_rule = {
+					rule = air_minors
+					option = DISABLED
 				}
-				add_building_construction = {
-					type = air_base
-					level = 2
-					instant_build = yes
-				}
-			}
-			add_doctrine_cost_reduction = {
-				name = AST_expand_the_raaf
-				cost_reduction = 0.5
-				uses = 1
-				category = air_doctrine
 			}
 		}
 
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
 		completion_reward = {
 			air_experience = 25
-			add_breakthrough_progress = {
-				specialization = specialization_air
-				value = 0.25
-			}
 			random_owned_controlled_state = {
 				limit = {
 					free_building_slots = {
 						building = air_base
 						size > 1
 					}
-					NOT = { state = 674 }
 				}
 				add_building_construction = {
 					type = air_base
 					level = 2
 					instant_build = yes
 				}
-				set_state_flag = AST_expand_the_raaf_AB
 			}
 			add_doctrine_cost_reduction = {
 				name = AST_expand_the_raaf
@@ -891,49 +953,26 @@ focus_tree = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH  }
-
-		complete_tooltip = {
-			air_experience = 25
-			random_state = {				
-				limit = {
-					has_state_flag = AST_expand_northern_presence_AB
-				}
-				add_building_construction = {
-					type = air_base
-					level = 2
-					instant_build = yes
-				}
-			}
-			add_doctrine_cost_reduction = {
-				name = AST_expand_northern_presence
-				cost_reduction = 0.5
-				uses = 1
-				category = air_doctrine
-			}
-		}
 
 		completion_reward = {
 			air_experience = 25
 			random_owned_controlled_state = {
-				prioritize = { 521 520 872}
+				prioritize = { 521 520 }
 				limit = {
 					free_building_slots = {
 						building = air_base
 						size > 1
 					}
-					NOT = { state = 674 }
 				}
 				add_building_construction = {
 					type = air_base
 					level = 2
 					instant_build = yes
 				}
-				set_state_flag = AST_expand_the_raaf_AB
 			}
 			add_doctrine_cost_reduction = {
 				name = AST_expand_northern_presence
-				cost_reduction = 0.5
+				cost_reduction = 0.25
 				uses = 1
 				category = air_doctrine
 			}
@@ -1114,8 +1153,8 @@ focus_tree = {
 					set_state_flag = AST_volunteer_air_observers_corps_radar3
 				}
 				else = {
-					complete_special_project = {
-						project = sp:sp_air_radar
+					set_technology = {
+						radio_detection = 1
 					}
 					effect_tooltip = {
 						random_owned_controlled_state = {
@@ -1379,7 +1418,6 @@ focus_tree = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_RESEARCH  }
 
 		completion_reward = {
 			air_experience = 25
@@ -1414,7 +1452,7 @@ focus_tree = {
 	focus = {
 		id = AST_cockatoo_island_shipyards
 		icon = GFX_goal_generic_construct_naval_dockyard
-		x = 15
+		x = 11
 		y = 0
 
 		cost = 5
@@ -1440,126 +1478,50 @@ focus_tree = {
 		search_filters = {  FOCUS_FILTER_INDUSTRY }
 
 		complete_tooltip = {
-			navy_experience = 25
+			navy_experience = 50
 			random_state = {
 				limit = {
 					has_state_flag = AST_cockatoo_island_shipyards_DY
 				}
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 5
 				add_building_construction = {
 					type = dockyard
-					level = 2
+					level = 5
 					instant_build = yes
 				}
 			}
-			custom_effect_tooltip = available_mio_tt
-			show_mio_tooltip = AST_cockatoo_doe_organization
 		}
 
-			
 		completion_reward = {
-			navy_experience = 25
+			navy_experience = 50
 			random_owned_controlled_state = {
 				prioritize = { 285 }
 				limit = {
 					is_coastal = yes
 					free_building_slots = {
 						building = dockyard
-						size > 1
+						size > 4
 						include_locked = yes
 					}
 					NOT = { state = 674 }
 				}
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 5
 				add_building_construction = {
 					type = dockyard
-					level = 2
+					level = 5
 					instant_build = yes
 				}
 				set_state_flag = AST_cockatoo_island_shipyards_DY
 			}
-			custom_effect_tooltip = available_mio_tt
-			show_mio_tooltip = AST_cockatoo_doe_organization
 		}
 	}
-	
-	focus = {
-		id = AST_kangaroo_point_shipyards
-		icon = GFX_goal_generic_construct_naval_dockyard
-		x = 2
-		y = 0
-		relative_position_id = AST_cockatoo_island_shipyards
-		cost = 5
 
-		ai_will_do = {
-			factor = 1
-		}
-
-		available = {
-			any_state = {
-				is_coastal = yes
-				is_controlled_by = ROOT
-			}
-		}
-		
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-		search_filters = {  FOCUS_FILTER_INDUSTRY }
-
-		complete_tooltip = {
-			navy_experience = 25
-			random_state = {
-				limit = {
-					has_state_flag = AST_kangaroo_point_shipyards_DY
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = dockyard
-					level = 2
-					instant_build = yes
-				}
-			}
-			custom_effect_tooltip = available_mio_tt
-			show_mio_tooltip = AST_evans_deakin_co_organization
-		}
-
-		completion_reward = {
-			navy_experience = 25
-			random_owned_controlled_state = {
-				prioritize = { 521 }
-				limit = {
-					is_coastal = yes
-					free_building_slots = {
-						building = dockyard
-						size > 1
-						include_locked = yes
-					}
-					NOT = { state = 674 }
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = dockyard
-					level = 2
-					instant_build = yes
-				}
-				set_state_flag = AST_kangaroo_point_shipyards_DY
-			}
-			custom_effect_tooltip = available_mio_tt
-			show_mio_tooltip = AST_evans_deakin_co_organization
-		}
-	}
-	
 	focus = {
 		id = AST_protect_overseas_commerce
 		icon = GFX_goal_generic_navy_doctrines_tactics
-		prerequisite = { focus = AST_cockatoo_island_shipyards focus = AST_kangaroo_point_shipyards }
+		prerequisite = { focus = AST_cockatoo_island_shipyards }
 		mutually_exclusive = { focus = AST_fly_the_jolly_roger }
-		x = 0
+		x = -1
 		y = 1
 		relative_position_id = AST_cockatoo_island_shipyards
 
@@ -1585,7 +1547,7 @@ focus_tree = {
 		completion_reward = {
 			add_doctrine_cost_reduction = {
 				name = AST_protect_overseas_commerce
-				cost_reduction = 0.25
+				cost_reduction = 0.5
 				uses = 2
 				category = fleet_in_being_tree
 				category = convoy_defense_tree
@@ -1596,9 +1558,9 @@ focus_tree = {
 	focus = {
 		id = AST_fly_the_jolly_roger
 		icon = GFX_goal_generic_navy_submarine
-		prerequisite = { focus = AST_cockatoo_island_shipyards focus = AST_kangaroo_point_shipyards }
+		prerequisite = { focus = AST_cockatoo_island_shipyards }
 		mutually_exclusive = { focus = AST_protect_overseas_commerce }
-		x = 2
+		x = 1
 		y = 1
 		relative_position_id = AST_cockatoo_island_shipyards
 
@@ -1624,7 +1586,7 @@ focus_tree = {
 		completion_reward = {
 			add_doctrine_cost_reduction = {
 				name = AST_fly_the_jolly_roger
-				cost_reduction = 0.25
+				cost_reduction = 0.5
 				uses = 2
 				category = submarine_doctrine
 			}
@@ -1635,7 +1597,7 @@ focus_tree = {
 		id = AST_scrap_iron_flotilla
 		icon = GFX_goal_generic_navy_cruiser
 		prerequisite = { focus = AST_protect_overseas_commerce focus = AST_fly_the_jolly_roger }
-		x = 0
+		x = -1
 		y = 2
 		relative_position_id = AST_cockatoo_island_shipyards
 
@@ -1673,7 +1635,7 @@ focus_tree = {
 		id = AST_royal_australian_submarine_service
 		icon = GFX_goal_generic_wolf_pack
 		prerequisite = { focus = AST_protect_overseas_commerce focus = AST_fly_the_jolly_roger }
-		x = 2
+		x = 1
 		y = 2
 		relative_position_id = AST_cockatoo_island_shipyards
 
@@ -1711,7 +1673,7 @@ focus_tree = {
 		id = AST_naval_auxiliary_patrol
 		icon = GFX_goal_generic_fortify_city
 		prerequisite = { focus = AST_royal_australian_submarine_service focus = AST_scrap_iron_flotilla }
-		x = 0
+		x = -1
 		y = 3
 		relative_position_id = AST_cockatoo_island_shipyards
 
@@ -1743,7 +1705,7 @@ focus_tree = {
 		id = AST_improve_dockyard_facilities
 		icon = GFX_goal_generic_production2
 		prerequisite = { focus = AST_royal_australian_submarine_service focus = AST_scrap_iron_flotilla }
-		x = 2
+		x = 1
 		y = 3
 		relative_position_id = AST_cockatoo_island_shipyards
 
@@ -1770,15 +1732,15 @@ focus_tree = {
 						is_coastal = yes
 						free_building_slots = {
 							building = dockyard
-							size > 1
+							size > 2
 							include_locked = yes
 						}
 						dockyard > 1
 					}
-					add_extra_state_shared_building_slots = 2
+					add_extra_state_shared_building_slots = 3
 					add_building_construction = {
 						type = dockyard
-						level = 2
+						level = 3
 						instant_build = yes
 					}
 				}
@@ -1789,7 +1751,7 @@ focus_tree = {
 		id = AST_cruisers
 		icon = GFX_goal_generic_navy_battleship
 		prerequisite = { focus = AST_naval_auxiliary_patrol focus = AST_improve_dockyard_facilities }
-		x = 0
+		x = -1
 		y = 4
 		relative_position_id = AST_cockatoo_island_shipyards
 
@@ -1828,7 +1790,7 @@ focus_tree = {
 		id = AST_pacific_area_navy
 		icon = GFX_goal_generic_navy_doctrines_tactics
 		prerequisite = { focus = AST_naval_auxiliary_patrol focus = AST_improve_dockyard_facilities }
-		x = 2
+		x = 1
 		y = 4
 		relative_position_id = AST_cockatoo_island_shipyards
 
@@ -1863,15 +1825,15 @@ focus_tree = {
 					is_coastal = yes
 					free_building_slots = {
 						building = dockyard
-						size > 1
+						size > 2
 						include_locked = yes
 					}
 					dockyard > 1
 				}
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 					type = dockyard
-					level = 2
+					level = 3
 					instant_build = yes
 				}
 			}
@@ -1888,10 +1850,23 @@ focus_tree = {
 	focus = {
 		id = AST_standard_gauge_railway
 		icon = GFX_goal_generic_construct_infrastructure
-		x = 19
+		x = 14
 		y = 0
 
-		cost = 10
+		offset = {
+			x = 4
+			y = 0
+			trigger = {
+				NOT = {
+					has_game_rule = {
+						rule = air_minors
+						option = DISABLED
+					}
+				}
+			}
+		}
+
+		cost = 5
 
 		ai_will_do = {
 			factor = 4
@@ -1908,7 +1883,6 @@ focus_tree = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		complete_tooltip = {
 			random_state = {
@@ -1935,9 +1909,6 @@ focus_tree = {
 				}
 			}
 			add_ideas = AST_standard_gauge_railway
-			custom_effect_tooltip = generic_skip_one_line_tt
-			custom_effect_tooltip = available_industrial_concern
-			show_ideas_tooltip = AST_new_south_wales_rc_ic
 		}
 
 		completion_reward = {
@@ -1959,9 +1930,6 @@ focus_tree = {
 				set_state_flag = AST_standard_gauge_railway_Inf2
 			}
 			add_ideas = AST_standard_gauge_railway
-			custom_effect_tooltip = generic_skip_one_line_tt
-			custom_effect_tooltip = available_industrial_concern
-			show_ideas_tooltip = AST_new_south_wales_rc_ic
 		}
 	}
 
@@ -1972,7 +1940,7 @@ focus_tree = {
 		y = 0
 		relative_position_id = AST_standard_gauge_railway
 
-		cost = 10
+		cost = 5
 
 		ai_will_do = {
 			factor = 5
@@ -2010,7 +1978,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = AST_standard_gauge_railway
 
-		cost = 10
+		cost = 5
 
 		ai_will_do = {
 			factor = 5
@@ -2027,7 +1995,6 @@ focus_tree = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
-		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		complete_tooltip = {
 			random_state = {
@@ -2300,10 +2267,10 @@ focus_tree = {
 				limit = {
 					has_state_flag = AST_allied_works_council_IC1
 				}
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
 					type = industrial_complex
-					level = 2
+					level = 4
 					instant_build = yes
 				}
 			}
@@ -2313,10 +2280,10 @@ focus_tree = {
 					is_controlled_by = ROOT
 					is_core_of = ROOT
 				}
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 					type = industrial_complex
-					level = 2
+					level = 3
 					instant_build = yes
 				}
 			}
@@ -2351,10 +2318,10 @@ focus_tree = {
 					}
 					is_core_of = ROOT
 				}
-				add_extra_state_shared_building_slots = 3
+				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
 					type = industrial_complex
-					level = 3
+					level = 4
 					instant_build = yes
 				}
 				set_state_flag = AST_allied_works_council_IC2
@@ -2370,7 +2337,7 @@ focus_tree = {
 		y = 4
 		relative_position_id = AST_standard_gauge_railway
 
-		cost = 10
+		cost = 5
 
 		ai_will_do = {
 			factor = 1
@@ -2501,8 +2468,21 @@ focus_tree = {
 	focus = {
 		id = AST_establish_advisory_war_council
 		icon = GFX_goal_generic_demand_territory
-		x = 27
+		x = 23
 		y = 0
+
+		offset = {
+			x = 3
+			y = 0
+			trigger = {
+				NOT = {
+					has_game_rule = {
+						rule = air_minors
+						option = DISABLED
+					}
+				}
+			}
+		}
 
 		cost = 10
 
@@ -2630,10 +2610,11 @@ focus_tree = {
 	focus = {
 		id = AST_army_inventions_directorate
 		icon = GFX_focus_research
-		prerequisite = { focus = AST_national_security_act }
-		x = -2
-		y = 2
-		relative_position_id = AST_establish_advisory_war_council
+		prerequisite = { focus = AST_industries_assistance_corporation }
+		prerequisite = { focus = AST_standard_gauge_railway }
+		x = 1.5
+		y = 1
+		relative_position_id = AST_industries_assistance_corporation
 
 		cost = 10
 
@@ -3014,7 +2995,7 @@ focus_tree = {
 		}
 
 		available = {
-			is_subject = yes
+			# is_subject = yes
 		}
 		
 		bypass = {
@@ -3038,10 +3019,23 @@ focus_tree = {
 	focus = {
 		id = AST_support_the_policy_of_appeasement
 		icon = GFX_goal_generic_improve_relations
-		x = 32
+		x = 28
 		y = 0
 
-		cost = 5
+		offset = {
+			x = 3
+			y = 0
+			trigger = {
+				NOT = {
+					has_game_rule = {
+						rule = air_minors
+						option = DISABLED
+					}
+				}
+			}
+		}
+
+		cost = 10
 
 		ai_will_do = {
 			factor = 1
@@ -3067,7 +3061,7 @@ focus_tree = {
 				}
 			}
 			ENG = { has_war = no }
-			GER = { has_completed_focus = GER_remilitarize_the_rhineland }
+			GER = { has_completed_focus = GER_rhineland }
 		}
 		
 		bypass = {
@@ -3101,7 +3095,7 @@ focus_tree = {
 		x = 0
 		y = 1
 
-		cost = 5
+		cost = 10
 
 		ai_will_do = {
 			factor = 1
@@ -3142,7 +3136,7 @@ focus_tree = {
 		y = 2
 		relative_position_id = AST_support_the_policy_of_appeasement
 
-		cost = 5
+		cost = 10
 
 		ai_will_do = {
 			factor = 1
@@ -3186,7 +3180,7 @@ focus_tree = {
 		y = 3
 		relative_position_id = AST_support_the_policy_of_appeasement
 
-		cost = 5
+		cost = 10
 
 		ai_will_do = {
 			factor = 10
@@ -3230,7 +3224,7 @@ focus_tree = {
 		y = 3
 		relative_position_id = AST_support_the_policy_of_appeasement
 
-		cost = 5
+		cost = 10
 
 		ai_will_do = {
 			factor = 1
@@ -3374,7 +3368,7 @@ focus_tree = {
 		y = 4
 		relative_position_id = AST_support_the_policy_of_appeasement
 
-		cost = 5
+		cost = 10
 
 		ai_will_do = {
 			factor = 1
@@ -3397,19 +3391,7 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			IF = {
-				limit = {
-					has_dlc = "Arms Against Tyranny"
-				}
-				custom_effect_tooltip = available_mio_tt
-				show_mio_tooltip = AST_com_aircraft_corporation_organization
-				mio:AST_com_aircraft_corporation_organization = {
-					add_mio_size = 2
-				}
-			}
-			ELSE = {
-				add_ideas = AST_commonwealth_aircraft_corporation 
-			}
+			add_ideas = AST_commonwealth_aircraft_corporation
 		}
 	}
 	

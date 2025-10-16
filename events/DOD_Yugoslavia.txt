@@ -91,14 +91,7 @@ country_event = {
 			}
 			hidden_effect = { set_country_flag = peter_is_of_age }
 		}
-		GER = { 
-			country_event = {
-				id = DOD_yugoslavia.2
-				hours = 4
-				random_hours = 6
-			}	
-		}
-		custom_effect_tooltip = generic_skip_one_line_tt
+		GER = { country_event = DOD_yugoslavia.2 }
 		if = {
 			limit = {
 				is_in_faction_with = GER
@@ -118,41 +111,22 @@ country_event = {
 			limit = {
 				has_government = fascism
 			}
-			set_politics = { 
-				ruling_party = neutrality 
-				elections_allowed = no 
-			}
-			add_popularity = { 
-				ideology = neutrality 
-				popularity = 0.5 
-			}
-			set_party_name = { 
-				ideology = neutrality 
-				long_name = YUG_royal_party 
-				name = YUG_royal_party 
-			}
+			set_politics = { ruling_party = neutrality elections_allowed = no }
+			add_popularity = { ideology = neutrality popularity = 0.5 }
+			set_party_name = { ideology = neutrality long_name = YUG_royal_party name = YUG_royal_party }
 		}
-
 	}
 	option = { #resistance to the coup, call on Germans for support
 		name = DOD_yugoslavia.1.b
 		ai_chance = {
 			factor = 30
 		}	
-
-		GER = { 
-			country_event = {
-				id = DOD_yugoslavia.3
-				hours = 4
-				random_hours = 6
-			}	
-		}
+		GER = { country_event = DOD_yugoslavia.3 }
 		YUG_start_peters_coup = yes
-
 	}
 }
 
-# Yugoslavian coup event - Yugoslavia has rolled over, event for Germany to intervene
+#Yugoslavian coup event - Yugoslavia has rolled over, event for Germany to intervene
 country_event = {
 	id = DOD_yugoslavia.2
 	title = DOD_yugoslavia.2.t
@@ -161,48 +135,16 @@ country_event = {
 	
 	is_triggered_only = yes
 	
-	option = { # invasion!
-		name = DOD_yugoslavia.2.a	
-
-		create_wargoal = {
-			type = annex_everything
-			target = YUG
+	option = { #resistance to the coup, call on Germans for support
+		name = DOD_yugoslavia.2.a
+		ai_chance = {
+			factor = 30
 		}
-
-		IF = {
-			limit = {
-				CRO = { 
-					exists = yes 
-					is_subject_of = YUG
-				}
-				# YUG = { 
-				# 	NOT = { 
-				# 		has_completed_focus = YUG_towards_independence 
-				# 	} 
-				# }
-			}
-			puppet = CRO
-		}
-
-		# Claiming German Slovenia
-		102 = {
-			add_claim_by = ROOT
-		}
-
-		custom_effect_tooltip = generic_skip_one_line_tt
-
-		# Claiming Serbia proper for Protection under the Reich 
-		107 = {
-			add_claim_by = ROOT
-		}
-		108 = {
-			add_claim_by = ROOT
-		}
-
 	}
+	
 }
 
-# Yugoslavian coup event - Yugoslavian government resists the coup, Germany comes to the rescue...or not
+#Yugoslavian coup event - Yugoslavian government resists the coup, Germany comes to the rescue...or not
 country_event = {
 	id = DOD_yugoslavia.3
 	title = DOD_yugoslavia.2.t
@@ -215,28 +157,11 @@ country_event = {
 		name = DOD_yugoslavia.3.a
 		ai_chance = {
 			factor = 70
-		}
-
+		}	
 		create_wargoal = {
 			type = annex_everything
 			target = YUG
 		}
-
-		# Claiming German Slovenia
-		102 = {
-			add_claim_by = ROOT
-		}
-
-		custom_effect_tooltip = generic_skip_one_line_tt
-
-		# Claiming Serbia proper for Protection under the Reich 
-		107 = {
-			add_claim_by = ROOT
-		}
-		108 = {
-			add_claim_by = ROOT
-		}
-
 	}
 
 	option = { #rescue
@@ -244,9 +169,7 @@ country_event = {
 		ai_chance = {
 			factor = 30
 		}
-
 		add_to_faction = YUG
-
 	}
 }
 
@@ -267,11 +190,11 @@ country_event = {
 			factor = 70
 		}	
 		trigger = {
-			has_equipment = { fighter_equipment > 50 }
+			has_equipment = { small_plane_airframe > 50 }
 		}
 		send_equipment = {
 			target = YUG
-			type = fighter_equipment
+			type = small_plane_airframe
 			amount = 50
 		}
 		add_timed_idea = { idea = YUG_air_payment days = 180 }
@@ -285,11 +208,11 @@ country_event = {
 			factor = 70
 		}
 		trigger = {
-			has_equipment = { tac_bomber_equipment > 25 }
+			has_equipment = { medium_plane_airframe > 25 }
 		}
 		send_equipment = {
 			target = YUG
-			type = tac_bomber_equipment
+			type = medium_plane_airframe
 			amount = 25
 		}	
 		add_timed_idea = { idea = YUG_air_payment days = 180 }
@@ -304,7 +227,7 @@ country_event = {
 			factor = 70
 		}	
 		trigger = {
-			NOT = { has_equipment = { fighter_equipment > 50 } }
+			NOT = { has_equipment = { small_plane_airframe > 50 } }
 		}
 		add_timed_idea = { idea = YUG_air_payment days = 180 }
 		add_timed_idea = { idea = YUG_fighter_production_diverted days = 120 }
@@ -319,7 +242,7 @@ country_event = {
 			factor = 70
 		}
 		trigger = {
-			NOT = { has_equipment = { tac_bomber_equipment > 25 } }
+			NOT = { has_equipment = { medium_plane_airframe > 25 } }
 		}
 		add_timed_idea = { idea = YUG_air_payment days = 180 }
 		add_timed_idea = { idea = YUG_bomber_production_diverted days = 120 }
@@ -402,7 +325,7 @@ country_event = {
 						NOT = { has_tech = fighter1 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = fighter_equipment_0 amount = 50 producer = GER } 
+				add_equipment_to_stockpile = { type = small_plane_airframe_0 amount = 50 producer = GER } 
 			}
 			if = {
 				limit = { 
@@ -411,7 +334,7 @@ country_event = {
 						NOT = { has_tech = fighter2 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = fighter_equipment_1 amount = 50 producer = GER } 
+				add_equipment_to_stockpile = { type = small_plane_airframe_1 amount = 50 producer = GER } 
 			}
 			if = {
 				limit = { 
@@ -420,7 +343,7 @@ country_event = {
 						NOT = { has_tech = fighter3 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = fighter_equipment_2 amount = 50 producer = GER } 
+				add_equipment_to_stockpile = { type = small_plane_airframe_2 amount = 50 producer = GER } 
 			}
 			if = {
 				limit = { 
@@ -428,7 +351,7 @@ country_event = {
 						has_tech = fighter3 
 					} 
 				}
-				add_equipment_to_stockpile = { type = fighter_equipment_3 amount = 50 producer = GER } 
+				add_equipment_to_stockpile = { type = small_plane_airframe_3 amount = 50 producer = GER } 
 			}
 		} 
 		if = {
@@ -444,7 +367,7 @@ country_event = {
 						NOT = { has_tech = fighter1 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = fighter_equipment_0 amount = 50 producer = ITA } 
+				add_equipment_to_stockpile = { type = small_plane_airframe_0 amount = 50 producer = ITA } 
 			}
 			if = {
 				limit = { 
@@ -453,7 +376,7 @@ country_event = {
 						NOT = { has_tech = fighter2 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = fighter_equipment_1 amount = 50 producer = ITA } 
+				add_equipment_to_stockpile = { type = small_plane_airframe_1 amount = 50 producer = ITA } 
 			}
 			if = {
 				limit = { 
@@ -462,7 +385,7 @@ country_event = {
 						NOT = { has_tech = fighter3 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = fighter_equipment_2 amount = 50 producer = ITA } 
+				add_equipment_to_stockpile = { type = small_plane_airframe_2 amount = 50 producer = ITA } 
 			}
 			if = {
 				limit = { 
@@ -470,7 +393,7 @@ country_event = {
 						has_tech = fighter3 
 					} 
 				}
-				add_equipment_to_stockpile = { type = fighter_equipment_3 amount = 50 producer = ITA } 
+				add_equipment_to_stockpile = { type = small_plane_airframe_3 amount = 50 producer = ITA } 
 			}
 		}
 
@@ -487,7 +410,7 @@ country_event = {
 						NOT = { has_tech = fighter1 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = fighter_equipment_0 amount = 50 producer = FRA } 
+				add_equipment_to_stockpile = { type = small_plane_airframe_0 amount = 50 producer = FRA } 
 			}
 			if = {
 				limit = { 
@@ -496,7 +419,7 @@ country_event = {
 						NOT = { has_tech = fighter2 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = fighter_equipment_1 amount = 50 producer = FRA } 
+				add_equipment_to_stockpile = { type = small_plane_airframe_1 amount = 50 producer = FRA } 
 			}
 			if = {
 				limit = { 
@@ -505,7 +428,7 @@ country_event = {
 						NOT = { has_tech = fighter3 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = fighter_equipment_2 amount = 50 producer = FRA } 
+				add_equipment_to_stockpile = { type = small_plane_airframe_2 amount = 50 producer = FRA } 
 			}
 			if = {
 				limit = { 
@@ -513,7 +436,7 @@ country_event = {
 						has_tech = fighter3 
 					} 
 				}
-				add_equipment_to_stockpile = { type = fighter_equipment_3 amount = 50 producer = FRA } 
+				add_equipment_to_stockpile = { type = small_plane_airframe_3 amount = 50 producer = FRA } 
 			}
 		}
 
@@ -530,7 +453,7 @@ country_event = {
 						NOT = { has_tech = fighter1 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = fighter_equipment_0 amount = 50 producer = ENG } 
+				add_equipment_to_stockpile = { type = small_plane_airframe_0 amount = 50 producer = ENG } 
 			}
 			if = {
 				limit = { 
@@ -539,7 +462,7 @@ country_event = {
 						NOT = { has_tech = fighter2 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = fighter_equipment_1 amount = 50 producer = ENG } 
+				add_equipment_to_stockpile = { type = small_plane_airframe_1 amount = 50 producer = ENG } 
 			}
 			if = {
 				limit = { 
@@ -548,7 +471,7 @@ country_event = {
 						NOT = { has_tech = fighter3 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = fighter_equipment_2 amount = 50 producer = ENG } 
+				add_equipment_to_stockpile = { type = small_plane_airframe_2 amount = 50 producer = ENG } 
 			}
 			if = {
 				limit = { 
@@ -556,7 +479,7 @@ country_event = {
 						has_tech = fighter3 
 					} 
 				}
-				add_equipment_to_stockpile = { type = fighter_equipment_3 amount = 50 producer = ENG } 
+				add_equipment_to_stockpile = { type = small_plane_airframe_3 amount = 50 producer = ENG } 
 			}
 		}
 		add_opinion_modifier = { target = FROM modifier = YUG_sold_planes}	
@@ -592,7 +515,7 @@ country_event = {
 						NOT = { has_tech = tactical_bomber1 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = tac_bomber_equipment_0 amount = 25 producer = GER } 
+				add_equipment_to_stockpile = { type = medium_plane_airframe_0 amount = 25 producer = GER } 
 			}
 			if = {
 				limit = { 
@@ -601,7 +524,7 @@ country_event = {
 						NOT = { has_tech = tactical_bomber2 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = tac_bomber_equipment_1 amount = 25 producer = GER } 
+				add_equipment_to_stockpile = { type = medium_plane_airframe_1 amount = 25 producer = GER } 
 			}
 			if = {
 				limit = { 
@@ -610,7 +533,7 @@ country_event = {
 						NOT = { has_tech = tactical_bomber3 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = tac_bomber_equipment_2 amount = 25 producer = GER } 
+				add_equipment_to_stockpile = { type = medium_plane_airframe_2 amount = 25 producer = GER } 
 			}
 			if = {
 				limit = { 
@@ -618,7 +541,7 @@ country_event = {
 						has_tech = tactical_bomber3 
 					} 
 				}
-				add_equipment_to_stockpile = { type = tac_bomber_equipment_3 amount = 25 producer = GER } 
+				add_equipment_to_stockpile = { type = medium_plane_airframe_3 amount = 25 producer = GER } 
 			}
 		}
 		if = {
@@ -634,7 +557,7 @@ country_event = {
 						NOT = { has_tech = tactical_bomber1 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = tac_bomber_equipment_0 amount = 25 producer = ITA } 
+				add_equipment_to_stockpile = { type = medium_plane_airframe_0 amount = 25 producer = ITA } 
 			}
 			if = {
 				limit = { 
@@ -643,7 +566,7 @@ country_event = {
 						NOT = { has_tech = tactical_bomber2 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = tac_bomber_equipment_1 amount = 25 producer = ITA } 
+				add_equipment_to_stockpile = { type = medium_plane_airframe_1 amount = 25 producer = ITA } 
 			}
 			if = {
 				limit = { 
@@ -652,7 +575,7 @@ country_event = {
 						NOT = { has_tech = tactical_bomber3 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = tac_bomber_equipment_2 amount = 25 producer = ITA } 
+				add_equipment_to_stockpile = { type = medium_plane_airframe_2 amount = 25 producer = ITA } 
 			}
 			if = {
 				limit = { 
@@ -660,7 +583,7 @@ country_event = {
 						has_tech = tactical_bomber3 
 					} 
 				}
-				add_equipment_to_stockpile = { type = tac_bomber_equipment_3 amount = 25 producer = ITA } 
+				add_equipment_to_stockpile = { type = medium_plane_airframe_3 amount = 25 producer = ITA } 
 			}
 		}
 
@@ -677,7 +600,7 @@ country_event = {
 						NOT = { has_tech = tactical_bomber1 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = tac_bomber_equipment_0 amount = 25 producer = FRA } 
+				add_equipment_to_stockpile = { type = medium_plane_airframe_0 amount = 25 producer = FRA } 
 			}
 			if = {
 				limit = { 
@@ -686,7 +609,7 @@ country_event = {
 						NOT = { has_tech = tactical_bomber2 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = tac_bomber_equipment_1 amount = 25 producer = FRA } 
+				add_equipment_to_stockpile = { type = medium_plane_airframe_1 amount = 25 producer = FRA } 
 			}
 			if = {
 				limit = { 
@@ -695,7 +618,7 @@ country_event = {
 						NOT = { has_tech = tactical_bomber3 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = tac_bomber_equipment_2 amount = 25 producer = FRA } 
+				add_equipment_to_stockpile = { type = medium_plane_airframe_2 amount = 25 producer = FRA } 
 			}
 			if = {
 				limit = { 
@@ -703,7 +626,7 @@ country_event = {
 						has_tech = tactical_bomber3 
 					} 
 				}
-				add_equipment_to_stockpile = { type = tac_bomber_equipment_3 amount = 25 producer = FRA } 
+				add_equipment_to_stockpile = { type = medium_plane_airframe_3 amount = 25 producer = FRA } 
 			}
 		}
 
@@ -720,7 +643,7 @@ country_event = {
 						NOT = { has_tech = tactical_bomber1 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = tac_bomber_equipment_0 amount = 25 producer = ENG } 
+				add_equipment_to_stockpile = { type = medium_plane_airframe_0 amount = 25 producer = ENG } 
 			}
 			if = {
 				limit = { 
@@ -729,7 +652,7 @@ country_event = {
 						NOT = { has_tech = tactical_bomber2 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = tac_bomber_equipment_1 amount = 25 producer = ENG } 
+				add_equipment_to_stockpile = { type = medium_plane_airframe_1 amount = 25 producer = ENG } 
 			}
 			if = {
 				limit = { 
@@ -738,7 +661,7 @@ country_event = {
 						NOT = { has_tech = tactical_bomber3 }
 					} 
 				}
-				add_equipment_to_stockpile = { type = tac_bomber_equipment_2 amount = 25 producer = ENG } 
+				add_equipment_to_stockpile = { type = medium_plane_airframe_2 amount = 25 producer = ENG } 
 			}
 			if = {
 				limit = { 
@@ -746,15 +669,15 @@ country_event = {
 						has_tech = tactical_bomber3 
 					} 
 				}
-				add_equipment_to_stockpile = { type = tac_bomber_equipment_3 amount = 25 producer = ENG } 
+				add_equipment_to_stockpile = { type = medium_plane_airframe_3 amount = 25 producer = ENG } 
 			}
 		}
 		add_opinion_modifier = { target = FROM modifier = YUG_sold_planes}	
-	}		
+	}	
+		
 	
 }
-
-# Yugoslavia pressured by Germany - after Anschluss - event for GER
+#Yugoslavia pressured by Germany - Anschluss
 country_event = {
 	id = DOD_yugoslavia.30
 	title = DOD_yugoslavia.30.t
@@ -766,15 +689,10 @@ country_event = {
 	option = { # put the squeeze on them
 		name = DOD_yugoslavia.30.a
 		ai_chance = {
-			base = 70
+			factor = 70
 		}
-
 		YUG = { 
-			country_event = {
-				id = DOD_yugoslavia.31 
-				hours = 6
-				random_hours = 12
-			}	
+			country_event = DOD_yugoslavia.31 
 			set_country_flag = YUG_GER_pressure_1 #for ai_weights in focus tree
 		}
 		
@@ -782,11 +700,7 @@ country_event = {
 	option = { # not interested
 		name = DOD_yugoslavia.30.b
 		ai_chance = {
-			base = 30
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes 
-			}
+			factor = 30
 		}
 		
 	}
@@ -794,7 +708,7 @@ country_event = {
 	
 }
 
-#Yugoslavia pressured by Germany - First event - event for YUG
+#Yugoslavia pressured by Germany - First event
 country_event = {
 	id = DOD_yugoslavia.31
 	title = DOD_yugoslavia.31.t
@@ -806,46 +720,15 @@ country_event = {
 	option = { # not that bad yet
 		name = DOD_yugoslavia.31.a
 		ai_chance = {
-			base = 50
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes 
-			}
+			factor = 30
 		}
-
-		add_opinion_modifier = {
-			target = FROM
-			modifier = YUG_GER_pressured_us_annoyed_opm
-		}	
-		set_country_flag = YUG_stands_up_to_german_pressure_once_flag
-		
-	}
-
-	option = { # We must keep up good relation with them...
-		name = DOD_yugoslavia.31.b
-		ai_chance = {
-			base = 50
-		}
-		
-		FROM = {
-			add_opinion_modifier = {
-				target = ROOT
-				modifier = YUG_wavering_to_GER_pressure_opm
-			}
-		}
-		add_opinion_modifier = {
-			target = FROM
-			modifier = YUG_wavering_to_GER_pressure_reverse_opm
-		}
-			
-		set_country_flag = YUG_wavered_to_german_pressure_once_flag
 		
 	}
 		
 	
 }
 
-# Yugoslavia pressured by Germany - Fate of CZE - event for GER
+#Yugoslavia pressured by Germany - Fate of CZE
 country_event = {
 	id = DOD_yugoslavia.32
 	title = DOD_yugoslavia.30.t
@@ -857,15 +740,10 @@ country_event = {
 	option = { # put the squeeze on them
 		name = DOD_yugoslavia.32.a
 		ai_chance = {
-			base = 80
+			factor = 80
 		}
-
 		YUG = { 
-			country_event = {
-				id = DOD_yugoslavia.33 
-				hours = 6
-				random_hours = 12
-			}	
+			country_event = DOD_yugoslavia.33 
 			set_country_flag = YUG_GER_pressure_2 #for ai_weights
 		}
 		
@@ -873,11 +751,7 @@ country_event = {
 	option = { # not interested
 		name = DOD_yugoslavia.32.b
 		ai_chance = {
-			base = 20
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes 
-			}
+			factor = 20
 		}
 		
 	}
@@ -894,70 +768,13 @@ country_event = {
 	
 	is_triggered_only = yes
 		
-	option = { # not that bad 
+	option = { # not that bad
 		name = DOD_yugoslavia.33.a
-		ai_chance = {
-			base = 50
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes 
-			}
-		}
-
-		IF = {
-			limit = {
-				has_country_flag = YUG_stands_up_to_german_pressure_once_flag
-			}
-			set_country_flag = YUG_stands_up_to_german_pressure_twice_flag
-			clr_country_flag = YUG_stands_up_to_german_pressure_once_flag
-		}		
-		ELSE_IF = {
-			limit = {
-				has_country_flag = YUG_wavered_to_german_pressure_once_flag
-			}
-			set_country_flag = YUG_wavered_to_german_pressure_once_and_stood_up_once_flag
-		}
-		
-	}
-
-	option = { # This is getting serious, we must crack down on anti-German elements immediately!
-		name = DOD_yugoslavia.33.b
-		ai_chance = {
-			base = 50
-		}
-
-		add_stability = -0.03
-
-		IF = {
-			limit = {
-				has_idea = anti_german_military
-			}
-			remove_ideas = anti_german_military
-		}
-
-		add_popularity = {
-			ideology = FROM
-			popularity = 0.05
-		}	
-
-		IF = {
-			limit = {
-				has_country_flag = YUG_wavered_to_german_pressure_once_flag
-			}
-			set_country_flag = YUG_wavered_to_german_pressure_twice_flag
-			clr_country_flag = YUG_wavered_to_german_pressure_once_flag
-		}		
-		ELSE_IF = {
-			limit = {
-				has_country_flag = YUG_stands_up_to_german_pressure_once_flag
-			}
-			set_country_flag = YUG_wavered_to_german_pressure_once_and_stood_up_once_flag
-		}
 		
 	}
 }
 
-# Yugoslavia pressured by Germany - Last Warning - after Fall of France - event for GER
+#Yugoslavia pressured by Germany - Last Warning - after Fall of France
 country_event = {
 	id = DOD_yugoslavia.34
 	title = DOD_yugoslavia.30.t
@@ -967,12 +784,9 @@ country_event = {
 	mean_time_to_happen = {
 		days = 5
 	}
-
 	fire_only_once = yes
-
 	trigger = {
 		tag = GER
-		has_government = fascism
 		NOT = {
 			has_war_with = YUG
 		}
@@ -990,36 +804,23 @@ country_event = {
 	option = { # put the squeeze on them
 		name = DOD_yugoslavia.34.a
 		ai_chance = {
-			base = 90
+			factor = 90
 		}
-
-		YUG = { 
-			country_event = {
-				id = DOD_yugoslavia.35
-				hours = 6
-				random_hours = 12
-			}
-		}
+		YUG = { country_event = DOD_yugoslavia.35 }
 		
 	}	
 	option = { # not interested
 		name = DOD_yugoslavia.34.b
 		ai_chance = {
-			base = 10
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes 
-			}
+			factor = 10
 		}
-
-
 		
 	}
 		
 	
 }
 
-# Yugoslavia pressured by Germany - third event - event for YUG
+#Yugoslavia pressured by Germany - third event
 country_event = {
 	id = DOD_yugoslavia.35
 	title = DOD_yugoslavia.31.t
@@ -1031,46 +832,7 @@ country_event = {
 	option = { # not that bad
 		name = DOD_yugoslavia.35.a
 		ai_chance = {
-			base = 30
-		}
-
-		add_political_power = -25
-
-		add_popularity = {
-			ideology = FROM
-			popularity = 0.05
-		}	
-
-		FROM = {
-			add_opinion_modifier = {
-				target = ROOT
-				modifier = YUG_wavering_to_GER_pressure_2_opm
-			}
-		}
-		add_opinion_modifier = {
-			target = FROM
-			modifier = YUG_wavering_to_GER_pressure_reverse_2_opm
-		}
-		
-	}
-
-	option = { # No, we must not placate them further!
-		name = DOD_yugoslavia.35.b
-		ai_chance = {
-			base = 30
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes 
-			}
-		}
-
-		add_war_support = 0.05
-
-		FROM = {
-			add_opinion_modifier = {
-				target = ROOT
-				modifier = enemy_of_the_reich_opm
-			}	
+			factor = 30
 		}
 		
 	}
@@ -1080,7 +842,7 @@ country_event = {
 
 
 
-# Yugoslavia pressured by Britain - Balkan Strategy - event for ENG
+#Yugoslavia pressured by Britain - Balkan Strategy
 country_event = {
 	id = DOD_yugoslavia.40
 	title = DOD_yugoslavia.30.t
@@ -1092,26 +854,15 @@ country_event = {
 	option = { # put the squeeze on them
 		name = DOD_yugoslavia.40.a
 		ai_chance = {
-			base = 70
+			factor = 70
 		}
-
-		YUG = { 
-			country_event = {
-				id = DOD_yugoslavia.41 
-				hours = 6
-				random_hours = 12
-			} 
-		}
+		YUG = { country_event = DOD_yugoslavia.41 }
 		
 	}	
 	option = { # not interested
 		name = DOD_yugoslavia.40.b
 		ai_chance = {
-			base = 30
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes 
-			}
+			factor = 30
 		}
 		
 	}
@@ -1119,7 +870,7 @@ country_event = {
 	
 }
 
-# Yugoslavia pressured by Britain - First event - event for YUG
+#Yugoslavia pressured by Britain - First event
 country_event = {
 	id = DOD_yugoslavia.41
 	title = DOD_yugoslavia.41.t
@@ -1131,18 +882,13 @@ country_event = {
 	option = { # not that bad yet
 		name = DOD_yugoslavia.41.a
 		ai_chance = {
-			base = 30
+			factor = 30
 		}
-
-		add_popularity = {
-			ideology = FROM
-			popularity = 0.05
-		}	
 		
 	}	
 }
 
-# Yugoslavia pressured by Britain - Munich - event for ENG
+#Yugoslavia pressured by Britain - Munich
 country_event = {
 	id = DOD_yugoslavia.42
 	title = DOD_yugoslavia.30.t
@@ -1154,34 +900,23 @@ country_event = {
 	option = { # put the squeeze on them
 		name = DOD_yugoslavia.42.a
 		ai_chance = {
-			base = 70
+			factor = 70
 		}
-		YUG = { 
-			country_event = {
-				id = DOD_yugoslavia.43 
-				hours = 6
-				random_hours = 12
-			} 
-		}
+		YUG = { country_event = DOD_yugoslavia.43 }
 		
 	}	
 	option = { # not interested
 		name = DOD_yugoslavia.42.b
 		ai_chance = {
-			base = 30
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes 
-			}
+			factor = 30
 		}
-
-
 		
 	}
+		
 	
 }
 
-# Yugoslavia pressured by Britain - Second event - event for YUG
+#Yugoslavia pressured by Britain - Second event
 country_event = {
 	id = DOD_yugoslavia.43
 	title = DOD_yugoslavia.41.t
@@ -1193,15 +928,13 @@ country_event = {
 	option = { # not that bad yet
 		name = DOD_yugoslavia.43.a
 		ai_chance = {
-			base = 30
+			factor = 30
 		}
-
-
 		
 	}	
 }
 
-#Yugoslavia pressured by Britain - late 1940, last warning - event for ENG
+#Yugoslavia pressured by Britain - late 1940, last warning
 country_event = {
 	id = DOD_yugoslavia.44
 	title = DOD_yugoslavia.30.t
@@ -1212,7 +945,6 @@ country_event = {
 	
 	trigger = {
 		tag = ENG
-		is_historical_focus_on = no
 		has_government = democratic
 		has_war_with = GER
 		NOT = { has_war_with = YUG }
@@ -1220,6 +952,7 @@ country_event = {
 		YUG = { is_in_faction = no }
 		YUG = { NOT = { has_war_with = GER } }
 		YUG = { exists = yes }
+		is_historical_focus_on = no
 	}
 
 	mean_time_to_happen = { days = 4 }
@@ -1227,40 +960,21 @@ country_event = {
 	option = { # put the squeeze on them
 		name = DOD_yugoslavia.44.a
 		ai_chance = {
-			base = 90
+			factor = 90
 		}
-		YUG = { 
-			country_event = {
-				id = DOD_yugoslavia.45  
-				hours = 6
-				random_hours = 12
-			} 
-		}
-		hidden_effect = { 
-			country_event = { 
-				id = DOD_yugoslavia.46 
-				days = 180 
-				random = 672 
-			} 
-		}
+		YUG = { country_event = DOD_yugoslavia.45 }
+		hidden_effect = { country_event = { id = DOD_yugoslavia.46 days = 180 random = 672 } }
 		
 	}	
 	option = { # not interested
 		name = DOD_yugoslavia.44.b
 		ai_chance = {
-			base = 10
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes 
-			}
-		}
-
-
-
+			factor = 10
+		}	
 	}
 }
 
-#Yugoslavia pressured by Britain - Third event - event for YUG
+#Yugoslavia pressured by Britain - Third event
 country_event = {
 	id = DOD_yugoslavia.45
 	title = DOD_yugoslavia.41.t
@@ -1272,15 +986,13 @@ country_event = {
 	option = { # not that bad yet
 		name = DOD_yugoslavia.45.a
 		ai_chance = {
-			base = 30
+			factor = 30
 		}
 		
-		custom_effect_tooltip = YUG_if_we_dont_side_with_britain_within_a_year_warning_tt
-
 	}	
 }
 
-# Yugoslavia pressured by Britain - war - event for ENG
+#Yugoslavia pressured by Britain - war
 country_event = {
 	id = DOD_yugoslavia.46
 	title = DOD_yugoslavia.30.t
@@ -1300,9 +1012,8 @@ country_event = {
 	option = { # put the squeeze on them
 		name = DOD_yugoslavia.46.a
 		ai_chance = {
-			base = 90
+			factor = 90
 		}
-
 		declare_war_on = {
 			target = YUG
 			type = puppet_wargoal_focus
@@ -1312,11 +1023,8 @@ country_event = {
 	option = { # not interested
 		name = DOD_yugoslavia.46.b
 		ai_chance = {
-			base = 10
-		}
-
-
-
+			factor = 10
+		}	
 	}
 }
 
@@ -1336,19 +1044,19 @@ country_event = {
 		trigger = {
 			OR = {
 				GER = {
-					is_available_fighter_HUN = yes #it says HUN but it is really using ROOT
+					is_available_fighter_YUG = yes
 				}
 				FRA = {
-					is_available_fighter_HUN = yes
+					is_available_fighter_YUG = yes
 				}
 				ITA = {
-					is_available_fighter_HUN = yes
+					is_available_fighter_YUG = yes
 				}
 				ENG = {
-					is_available_fighter_HUN = yes
+					is_available_fighter_YUG = yes
 				}
 				USA = {
-					is_available_fighter_HUN = yes
+					is_available_fighter_YUG = yes
 				}
 			}
 		}
@@ -1376,19 +1084,19 @@ country_event = {
 		trigger = {
 			OR = {
 				GER = {
-					is_available_heavy_fighter_HUN = yes
+					is_available_heavy_fighter_YUG = yes
 				}
 				FRA = {
-					is_available_heavy_fighter_HUN = yes
+					is_available_heavy_fighter_YUG = yes
 				}
 				ITA = {
-					is_available_heavy_fighter_HUN = yes
+					is_available_heavy_fighter_YUG = yes
 				}
 				ENG = {
-					is_available_heavy_fighter_HUN = yes
+					is_available_heavy_fighter_YUG = yes
 				}
 				USA = {
-					is_available_heavy_fighter_HUN = yes
+					is_available_heavy_fighter_YUG = yes
 				}
 			}
 		}
@@ -2083,7 +1791,7 @@ country_event = {
 			create_production_license = {
 				target = YUG 
 				equipment = {
-					type = fighter_equipment_1
+					type = small_plane_airframe_1
 					
 				}
 				cost_factor = 0
@@ -2097,7 +1805,7 @@ country_event = {
 			create_production_license = {
 				target = YUG 
 				equipment = {
-					type = fighter_equipment_2
+					type = small_plane_airframe_2
 				}
 				cost_factor = 0
 			}
@@ -2109,7 +1817,7 @@ country_event = {
 			create_production_license = {
 				target = YUG 
 				equipment = {
-					type = fighter_equipment_3
+					type = small_plane_airframe_3
 				}
 				cost_factor = 0
 			}
@@ -3018,7 +2726,7 @@ country_event = {
 			create_production_license = {
 				target = YUG 
 				equipment = {
-					type = CAS_equipment_1
+					type = medium_plane_airframe_1
 				}
 				cost_factor = 0
 			}
@@ -3031,7 +2739,7 @@ country_event = {
 			create_production_license = {
 				target = YUG 
 				equipment = {
-					type = CAS_equipment_2	
+					type = medium_plane_airframe_2	
 				}
 				cost_factor = 0
 			}
@@ -3043,7 +2751,7 @@ country_event = {
 			create_production_license = {
 				target = YUG 
 				equipment = {
-					type = CAS_equipment_3
+					type = medium_plane_airframe_3
 				}
 				cost_factor = 0
 			}
@@ -3112,7 +2820,7 @@ country_event = {
 			create_production_license = {
 				target = YUG 
 				equipment = {
-					type = tac_bomber_equipment_1
+					type = medium_plane_airframe_1
 				}
 				cost_factor = 0
 			}
@@ -3125,7 +2833,7 @@ country_event = {
 			create_production_license = {
 				target = YUG 
 				equipment = {
-					type = tac_bomber_equipment_2	
+					type = medium_plane_airframe_2	
 				}
 				cost_factor = 0
 			}
@@ -3137,7 +2845,7 @@ country_event = {
 			create_production_license = {
 				target = YUG 
 				equipment = {
-					type = tac_bomber_equipment_3
+					type = medium_plane_airframe_3
 				}
 				cost_factor = 0
 			}
@@ -3766,22 +3474,22 @@ country_event = {
 		}
 		add_opinion_modifier = { target = YUG modifier = tripartite_pact_opinion }
 		reverse_add_opinion_modifier = { target = YUG modifier = tripartite_pact_opinion }
-		# if = {
-		# 	limit = { 
-		# 		ENG = {
-		# 			is_faction_leader = yes
-		# 			has_government = democratic
-		# 			NOT = { has_country_flag = has_already_decided_yugo_coup_flag }
-		# 		}
-		# 	}
-		# 	ENG = { country_event = { id = DOD_yugoslavia.702 days = 20 } }
-		# }
-		# else = {
-		# 	get_best_alliance_match_democratic_effect = yes
-		# 	var:best_leader = {
-		# 		country_event = { id = DOD_yugoslavia.702 days = 20 }
-		# 	}
-		# }
+		if = {
+			limit = { 
+				ENG = {
+					is_faction_leader = yes
+					has_government = democratic
+					NOT = { has_country_flag = has_already_decided_yugo_coup_flag }
+				}
+			}
+			ENG = { country_event = { id = DOD_yugoslavia.702 days = 20 } }
+		}
+		else = {
+			get_best_alliance_match_democratic_effect = yes
+			var:best_leader = {
+				country_event = { id = DOD_yugoslavia.702 days = 20 }
+			}
+		}
 	}
 
 	option = {
@@ -3789,15 +3497,9 @@ country_event = {
 		ai_chance = {
 			factor = 0
 		}
-		YUG = { 
-			country_event = {
-				id = DOD_yugoslavia.701 
-				hours = 6
-			}	
-		}
+		YUG = { country_event = DOD_yugoslavia.701 }
 	}
 }
-
 #Yugo is informed of their choice
 country_event = {
 	id = DOD_yugoslavia.701
@@ -3860,27 +3562,15 @@ country_event = {
 						target = YUG
 					}
 				}
-				102 = {
-					add_claim_by = GER
-				}
 			}
-			else_if = {
-				limit = {
-					ITA = {
-						exists = yes
-						has_capitulated = no
-						has_government = fascism
-					}
-				}
-				ITA = {
+			else = {
+				get_best_alliance_match_fascism_effect = yes
+				var:best_leader = {
 					create_wargoal = {
 						type = annex_everything
 						target = YUG
 					}
 				}
-			}
-			ELSE = {
-				add_stability = -0.05
 			}
 		}
 		complete_national_focus = YUG_end_the_regency #switches to the Peter branch so Yugoslavia is not stuck
@@ -3903,8 +3593,7 @@ country_event = {
 		YUG_start_peters_coup = yes
 	}
 }
-
-# England can demand Paul to step down
+#England can demand Paul to step down
 country_event = {
 	id = DOD_yugoslavia.702
 	title = DOD_yugoslavia.702.t
@@ -3966,7 +3655,7 @@ country_event = {
 	}
 }
 
-# Italy recieves Yugo's request to control Zara
+#Italy recieves Yugo's request to control Zara
 country_event = {
 	id = DOD_yugoslavia.80
 	title = DOD_yugoslavia.80.t
@@ -4221,72 +3910,5 @@ country_event = {
 			enemy = GER
 			hostility_reason = asked_to_join
 		}
-	}
-}
-
-# Germany: Italy demands lands in Vichy France
-country_event = {
-	id = DOD_yugoslavia.104
-	title = DOD_yugoslavia.104.t
-	desc = DOD_yugoslavia.104.d
- 
- 
-	picture = GFX_report_event_german_italian_pact
-
-	is_triggered_only = yes
-
-	# Yugo gets Albania
-	option = {
-		ai_chance = { base = 70 }
-		name = DOD_yugoslavia.104.a
-		ITA = {
-			44 = { transfer_state_to = YUG }
-			934 = { transfer_state_to = YUG }
-			805 = { transfer_state_to = YUG }
-		}
-		YUG = { country_event = { id = DOD_yugoslavia.105 hours = 1 } }
-	}
-
-	# Yugo gets nothing
-	option = {
-		ai_chance = { base = 0 }
-		name = DOD_yugoslavia.104.b
-		YUG = { country_event = { id = DOD_yugoslavia.106 hours = 1 } }
-	}
-}
-
-# Italy Gives Land
-country_event = {
-	id = DOD_yugoslavia.105
-	title = DOD_yugoslavia.105.t
-	desc = DOD_yugoslavia.105.d
- 
- 
-	picture = GFX_report_event_german_italian_pact
-
-	is_triggered_only = yes
-
-	# Yugo gets nothing
-	option = {
-		ai_chance = { base = 0 }
-		name = DOD_yugoslavia.105.a
-	}
-}
-
-# Italy Gives Nothing
-country_event = {
-	id = DOD_yugoslavia.106
-	title = DOD_yugoslavia.106.t
-	desc = DOD_yugoslavia.106.d
- 
- 
-	picture = GFX_report_event_german_italian_pact
-
-	is_triggered_only = yes
-
-	# Yugo gets nothing
-	option = {
-		ai_chance = { base = 0 }
-		name = DOD_yugoslavia.106.a
 	}
 }

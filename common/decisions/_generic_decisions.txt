@@ -1,12 +1,946 @@
-political_actions = {
+host_decisions = {
+	toggle_host_tool_decisions = {
 
+		icon = GFX_decision_generic_break_treaty
+
+		allowed = {
+			always = yes
+		}
+
+		available = {
+			
+		}
+
+		complete_effect = {
+			if = {
+				limit = {
+					has_global_flag = host_tool_decision_enabled
+				}
+				clr_global_flag = host_tool_decision_enabled
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_global_flag = host_tool_decision_enabled
+					}
+				}
+				set_global_flag = host_tool_decision_enabled
+			}
+		}
+
+	}
+
+	end_spanish_civil_war = {
+
+		icon = GFX_decision_generic_break_treaty
+
+		allowed = {
+			always = yes
+		}
+
+		available = {
+			has_global_flag = host_tool_decision_enabled
+			SPA = {
+				has_civil_war = yes
+			}
+		}
+
+		complete_effect = {
+			set_global_flag = SCW_ended_by_host
+			every_other_country = {
+				limit = { original_tag = SPR }
+				add_timed_idea = {
+					idea = spirit_of_bozo_spain
+					days = 365
+				}
+			}
+			SOV = {
+				add_offsite_building = { type = arms_factory level = 10 }
+				army_experience = 50
+			}
+			SOV = {
+				army_experience = 125
+				air_experience = 50
+				add_doctrine_cost_reduction = {
+					name = SPA_SCW_comintern_victory
+					cost_reduction = 0.5
+					uses = 2
+					category = land_doctrine
+				}
+			}
+			FRA = {
+				army_experience = 125
+				air_experience = 50
+				add_doctrine_cost_reduction = {
+					name = SPA_SCW_comintern_victory
+					cost_reduction = 0.5
+					uses = 2
+					category = land_doctrine
+				}
+				add_war_support = 0.125
+			}
+			ENG = {
+				army_experience = 125
+				air_experience = 50
+				add_doctrine_cost_reduction = {
+					name = SPA_SCW_comintern_victory
+					cost_reduction = 0.5
+					uses = 2
+					category = land_doctrine
+				}
+			}
+			every_country = {
+				limit = {
+					original_tag = SPR
+				}
+				if = { # Nationalist victory SCW
+					limit = {
+						SPR_scw_in_progress = yes
+					}
+					set_global_flag = nationalist_victory
+					set_global_flag = scw_over
+					country_event = { id = lar_news.1 }
+				}
+				SPA = {
+					annex_country = { target = PREV transfer_troops = no }
+				}
+			}
+			custom_effect_tooltip = "Ends the Spanish Civil War"
+		}
+
+	}
+
+	end_sino_japanese_war = {
+
+		icon = GFX_decision_generic_break_treaty
+
+		allowed = {
+			always = yes
+		}
+
+		visible = {
+			has_game_rule = {
+				rule = china_war_rule
+				option = ENABLED
+			}
+			country_exists = CHI
+		}
+
+		available = {
+			has_global_flag = host_tool_decision_enabled
+			JAP = {
+				has_war_with = CHI
+			}
+		}
+
+		complete_effect = {
+			JAP = {
+				set_variable = { collabo_CHI = has_collaboration@FRA }
+				multiply_variable = { collabo_CHI = 100 }
+				every_owned_state = {
+					limit = {
+						is_core_of = CHI
+					}
+					add_compliance = JAP.collabo_CHI
+				}
+			}
+			set_global_flag = HOST_SSJW_END
+			JAP = {
+				add_timed_idea = {
+					idea = spirit_of_bozo_japan
+					days = 365
+				}
+				unlock_national_focus = JAP_secure_china
+			}		
+			USA = {
+				add_offsite_building = { type = arms_factory level = 10 }
+			}
+			JAP = {
+				annex_country = {
+					target = CHI
+					transfer_troops = no
+				}
+				add_named_threat = {
+					threat = 45
+					name = JAP_threat_treaty_of_nanjing
+				}
+			}
+			CHI = {
+				transfer_units_fraction = {
+					target = JAP
+					size = 1
+					stockpile_ratio = 0
+					army_ratio = 0
+					navy_ratio = 1.0
+					air_ratio = 0
+				}
+			}
+		}
+
+	}
+
+	JAP_declare_china = {
+
+		icon = jap_conquer_china
+
+		allowed = {
+			always = yes
+		}
+
+		available = {
+			has_global_flag = host_tool_decision_enabled
+            JAP = {
+				NOT = { has_war_with = CHI }
+			}
+			country_exists = CHI
+		}	
+		
+		visible = {
+			JAP = {
+				NOT = { has_war_with = CHI }
+			}
+			country_exists = CHI
+			has_game_rule = {
+				rule = china_war_rule
+				option = ENABLED
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+		}
+		
+		complete_effect = {
+			set_global_flag = HOST_SSJW_START
+			JAP = { add_ideas = JAP_intervene_in_china_5 }
+			MAN = { add_ideas = MAN_intervene_in_china_5 }			
+            JAP = {
+				declare_war_on = {
+			    	target = CHI
+					type = annex_everything
+				}
+			}
+		}
+	}
+
+	host_SOV_annex_mon_bessarabia = {
+
+		name = SOV_annex_mon_bessarabia
+
+		allowed = {
+			always = yes
+		}
+
+		available = {
+			has_global_flag = host_tool_decision_enabled
+			MON = {
+				is_ai = yes
+			}
+			SOV = {
+				NOT = {
+					has_global_flag = MON_annexed
+				}
+				SOV = { has_completed_focus = SOV_claim_bessarabia }
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			always = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			SOV = {
+				annex_country = { target = MON transfer_troops = no }
+				add_state_core = 287
+				add_state_core = 329
+				add_state_core = 330
+				add_state_core = 617
+				add_state_core = 618
+				add_state_core = 619
+				add_state_core = 759
+				add_state_core = 760
+				add_state_core = 817
+				add_state_core = 818
+				add_state_core = 819
+				add_state_core = 820
+				set_global_flag = MON_annexed
+				add_offsite_building = {
+					type = industrial_complex
+					level = 35
+				}
+				add_offsite_building = {
+					type = arms_factory
+					level = 60
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 287
+							state = 329
+							state = 330
+							state = 617
+							state = 618
+							state = 619
+							state = 759
+							state = 760
+							state = 817
+							state = 818
+							state = 819
+							state = 820
+						}
+					}
+					add_dynamic_modifier = { modifier = no_factories_mon }
+				}
+			}
+		}
+	}
+
+	host_SOV_annex_mon_t70 = {
+
+		name = SOV_annex_mon_t70
+
+		allowed = {
+			always = yes
+		}
+
+		available = {
+			has_global_flag = host_tool_decision_enabled
+			MON = {
+				is_ai = yes
+			}
+			SOV = {
+				NOT = {
+					has_global_flag = MON_annexed
+				}
+				has_tech = sov_light_tank_3
+				date > 1941.1.1
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			always = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			SOV = {
+				annex_country = { target = MON transfer_troops = no }
+				add_state_core = 287
+				add_state_core = 329
+				add_state_core = 330
+				add_state_core = 617
+				add_state_core = 618
+				add_state_core = 619
+				add_state_core = 759
+				add_state_core = 760
+				add_state_core = 817
+				add_state_core = 818
+				add_state_core = 819
+				add_state_core = 820
+				set_global_flag = MON_annexed
+				add_offsite_building = {
+					type = industrial_complex
+					level = 60
+				}
+				add_offsite_building = {
+					type = arms_factory
+					level = 80
+				}
+				custom_effect_tooltip = "You will get given equipment if you have it researched, the tanks, mechanized, 1939 infanty weapons, 1938 squad weapons etc."
+				create_equipment_variant = {
+					name = "T-70 - [MON]"
+					type = sov_light_tank_chassis_t70
+					parent_version = 0
+					modules = {
+						main_armament_slot = tank_small_gun_3
+						turret_type_slot = tank_light_turret_3
+						suspension_type_slot = tank_christie_suspension
+						armor_type_slot = tank_riveted_armor
+						engine_type_slot = tank_gasoline_engine
+						special_type_slot_1 = tank_radio_2
+						special_type_slot_2 = extra_ammo_storage
+						special_type_slot_3 = additional_machine_guns
+					}
+				}
+				create_equipment_variant = {
+					name = "T-70 SPG - [MON]"
+					type = light_tank_artillery_chassissov_light_tank_chassis_t70
+					parent_version = 0
+					modules = {
+						main_armament_slot = tank_light_art_gun_1
+						turret_type_slot = tank_light_turret_open
+						suspension_type_slot = tank_christie_suspension
+						armor_type_slot = tank_riveted_armor
+						engine_type_slot = tank_gasoline_engine
+						special_type_slot_1 = tank_radio_2
+						special_type_slot_2 = extra_ammo_storage
+					}
+				}
+				create_equipment_variant = {
+					name = "T-70 Tank Destroyer - [MON]"
+					type = light_tank_destroyer_chassissov_light_tank_chassis_t70
+					parent_version = 0
+					modules = {
+						main_armament_slot = tank_light_td_1
+						turret_type_slot = tank_light_superstructure
+						suspension_type_slot = tank_christie_suspension
+						armor_type_slot = tank_riveted_armor
+						engine_type_slot = tank_gasoline_engine
+						special_type_slot_1 = tank_radio_2
+						special_type_slot_2 = extra_ammo_storage
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_2
+					amount = 9350
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = squad_equipment_1
+					amount = 1850
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = radio_equipment
+					amount = 1180
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = mechanized_equipment_1
+					amount = 4200
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = motorized_equipment_1
+					amount = 2650
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = support_equipment
+					amount = 1350
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = sov_light_tank_chassis_t70
+					amount = 1600
+					producer = SOV
+					variant_name = "T-70 - [MON]"
+				}
+				add_equipment_to_stockpile = {
+					type = light_tank_artillery_chassissov_light_tank_chassis_t70
+					amount = 480
+					producer = SOV
+					variant_name = "T-70 SPG - [MON]"
+				}
+				add_equipment_to_stockpile = {
+					type = light_tank_destroyer_chassissov_light_tank_chassis_t70
+					amount = 1920
+					producer = SOV
+					variant_name = "T-70 Tank Destroyer - [MON]"
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 287
+							state = 329
+							state = 330
+							state = 617
+							state = 618
+							state = 619
+							state = 759
+							state = 760
+							state = 817
+							state = 818
+							state = 819
+							state = 820
+						}
+					}
+					add_dynamic_modifier = { modifier = no_factories_mon }
+				}
+			}
+		}
+	}
+
+	host_SOV_annex_mon_t34 = {
+
+		name = SOV_annex_mon_t34
+
+		allowed = {
+			always = yes
+		}
+
+		available = {
+			has_global_flag = host_tool_decision_enabled
+			MON = {
+				is_ai = yes
+			}
+			SOV = {
+				NOT = {
+					has_global_flag = MON_annexed
+				}
+				has_tech = sov_medium_tank_1
+				date > 1941.1.1
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			always = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			SOV = {
+				annex_country = { target = MON transfer_troops = no }
+				add_state_core = 287
+				add_state_core = 329
+				add_state_core = 330
+				add_state_core = 617
+				add_state_core = 618
+				add_state_core = 619
+				add_state_core = 759
+				add_state_core = 760
+				add_state_core = 817
+				add_state_core = 818
+				add_state_core = 819
+				add_state_core = 820
+				set_global_flag = MON_annexed
+				add_offsite_building = {
+					type = industrial_complex
+					level = 60
+				}
+				add_offsite_building = {
+					type = arms_factory
+					level = 80
+				}
+				custom_effect_tooltip = "You will get given equipment if you have it researched, the tanks, mechanized, 1939 infanty weapons, 1938 squad weapons etc."
+				create_equipment_variant = {
+					name = "BT-7 - [MON]"
+					type = sov_light_tank_chassis_bt7
+					parent_version = 0
+					modules = {
+						main_armament_slot = tank_small_gun_1
+						turret_type_slot = tank_light_turret_1
+						suspension_type_slot = tank_christie_suspension
+						armor_type_slot = tank_riveted_armor
+						engine_type_slot = tank_gasoline_engine
+					}
+				}
+				create_equipment_variant = {
+					name = "T-34 - [MON]"
+					type = sov_medium_tank_chassis_t34
+					parent_version = 0
+					modules = {
+						main_armament_slot = tank_med_hv_gun_1
+						turret_type_slot = tank_medium_turret_1
+						suspension_type_slot = tank_christie_suspension
+						armor_type_slot = tank_riveted_armor
+						engine_type_slot = tank_gasoline_engine
+						special_type_slot_1 = tank_radio_2
+						special_type_slot_2 = extra_ammo_storage
+						special_type_slot_3 = additional_machine_guns
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_2
+					amount = 7480
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = squad_equipment_1
+					amount = 1480
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = radio_equipment
+					amount = 1336
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = mechanized_equipment_1
+					amount = 3360
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = motorized_equipment_1
+					amount = 2120
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = support_equipment
+					amount = 1080
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = sov_medium_tank_chassis_t34
+					amount = 2560
+					producer = SOV
+					variant_name = "T-34 - [MON]"
+				}
+				add_equipment_to_stockpile = {
+					type = sov_light_tank_chassis_bt7
+					amount = 320
+					producer = SOV
+					variant_name = "BT-7 - [MON]"
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 287
+							state = 329
+							state = 330
+							state = 617
+							state = 618
+							state = 619
+							state = 759
+							state = 760
+							state = 817
+							state = 818
+							state = 819
+							state = 820
+						}
+					}
+					add_dynamic_modifier = { modifier = no_factories_mon }
+				}
+			}
+		}
+	}
+
+	host_SOV_annex_mon_kv1 = {
+
+		name = SOV_annex_mon_kv1
+
+		allowed = {
+			always = yes
+		}
+
+		available = {
+			has_global_flag = host_tool_decision_enabled
+			MON = {
+				is_ai = yes
+			}
+			SOV = {
+				NOT = {
+					has_global_flag = MON_annexed
+				}
+				has_tech = sov_heavy_tank_2
+				date > 1941.1.1
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			always = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			SOV = {
+				annex_country = { target = MON transfer_troops = no }
+				add_state_core = 287
+				add_state_core = 329
+				add_state_core = 330
+				add_state_core = 617
+				add_state_core = 618
+				add_state_core = 619
+				add_state_core = 759
+				add_state_core = 760
+				add_state_core = 817
+				add_state_core = 818
+				add_state_core = 819
+				add_state_core = 820
+				set_global_flag = MON_annexed
+				add_offsite_building = {
+					type = industrial_complex
+					level = 60
+				}
+				add_offsite_building = {
+					type = arms_factory
+					level = 80
+				}
+				custom_effect_tooltip = "You will get given equipment if you have it researched, the tanks, mechanized, 1939 infanty weapons, 1938 squad weapons etc."
+				create_equipment_variant = {
+					name = "BT-7 - [MON]"
+					type = sov_light_tank_chassis_bt7
+					parent_version = 0
+					modules = {
+						main_armament_slot = tank_small_gun_1
+						turret_type_slot = tank_light_turret_1
+						suspension_type_slot = tank_christie_suspension
+						armor_type_slot = tank_riveted_armor
+						engine_type_slot = tank_gasoline_engine
+					}
+				}
+				create_equipment_variant = {
+					name = "KV-1 - [MON]"
+					type = sov_heavy_tank_chassis_kv1
+					parent_version = 0
+					modules = {
+						main_armament_slot = tank_med_hv_gun_1
+						turret_type_slot = tank_heavy_turret_early
+						suspension_type_slot = tank_christie_suspension
+						armor_type_slot = tank_riveted_armor
+						engine_type_slot = tank_gasoline_engine
+						special_type_slot_1 = tank_radio_2
+						special_type_slot_2 = extra_ammo_storage
+						special_type_slot_3 = additional_machine_guns
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_2
+					amount = 3740
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = squad_equipment_1
+					amount = 740
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = radio_equipment
+					amount = 472
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = mechanized_equipment_1
+					amount = 1680
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = motorized_equipment_1
+					amount = 1060
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = support_equipment
+					amount = 540
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = sov_heavy_tank_chassis_kv1
+					amount = 1280
+					producer = SOV
+					variant_name = "KV-1 - [MON]"
+				}
+				add_equipment_to_stockpile = {
+					type = sov_light_tank_chassis_bt7
+					amount = 160
+					producer = SOV
+					variant_name = "BT-7 - [MON]"
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 287
+							state = 329
+							state = 330
+							state = 617
+							state = 618
+							state = 619
+							state = 759
+							state = 760
+							state = 817
+							state = 818
+							state = 819
+							state = 820
+						}
+					}
+					add_dynamic_modifier = { modifier = no_factories_mon }
+				}
+			}
+		}
+	}
+
+	host_SOV_annex_mon_mot_at = {
+
+		name = SOV_annex_mon_mot_at
+
+		allowed = {
+			always = yes
+		}
+
+		available = {
+			has_global_flag = host_tool_decision_enabled
+			MON = {
+				is_ai = yes
+			}
+			SOV = {
+				NOT = {
+					has_global_flag = MON_annexed
+				}
+				has_tech = antitank3
+				date > 1941.1.1
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			always = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			SOV = {
+				annex_country = { target = MON transfer_troops = no }
+				add_state_core = 287
+				add_state_core = 329
+				add_state_core = 330
+				add_state_core = 617
+				add_state_core = 618
+				add_state_core = 619
+				add_state_core = 759
+				add_state_core = 760
+				add_state_core = 817
+				add_state_core = 818
+				add_state_core = 819
+				add_state_core = 820
+				set_global_flag = MON_annexed
+				add_offsite_building = {
+					type = industrial_complex
+					level = 60
+				}
+				add_offsite_building = {
+					type = arms_factory
+					level = 80
+				}
+				custom_effect_tooltip = "You will get given equipment if you have it researched, 1939 AT, 1941 AT, 1939 infanty weapons, 1938 squad weapons etc."
+				create_equipment_variant = {
+					name = "BT-7 - [MON]"
+					type = sov_light_tank_chassis_bt7
+					parent_version = 0
+					modules = {
+						main_armament_slot = tank_small_gun_1
+						turret_type_slot = tank_light_turret_1
+						suspension_type_slot = tank_christie_suspension
+						armor_type_slot = tank_riveted_armor
+						engine_type_slot = tank_gasoline_engine
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = anti_tank_equipment_2
+					amount = 1000
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = anti_tank_equipment_3
+					amount = 920
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_2
+					amount = 27600
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = squad_equipment_1
+					amount = 5700
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = radio_equipment
+					amount = 1800
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = motorized_equipment_1
+					amount = 22340
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = support_equipment
+					amount = 2700
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = sov_light_tank_chassis_bt7
+					amount = 800
+					producer = SOV
+					variant_name = "BT-7 - [MON]"
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 287
+							state = 329
+							state = 330
+							state = 617
+							state = 618
+							state = 619
+							state = 759
+							state = 760
+							state = 817
+							state = 818
+							state = 819
+							state = 820
+						}
+					}
+					add_dynamic_modifier = { modifier = no_factories_mon }
+				}
+			}
+		}
+	}
+}
+political_actions = {
 	
+	enabled_game_rules_decision = {
+
+		icon = GFX_decision_generic_break_treaty
+
+		allowed = {
+			always = yes
+		}
+
+		available = {
+		}	
+		
+		visible = {
+		}
+
+		fire_only_once = no
+
+		ai_will_do = {
+		}
+		
+		complete_effect = {
+			custom_effect_tooltip = "Gets event 'Enabled Game Rules'"
+			hidden_effect = {
+				FROM = { 
+					country_event = startingevent.1002
+				}
+			}
+		}
+	}
+
 	targeted_race_for_the_bomb = {
 
 		icon = generic_research
 
 		allowed = {
-			always = yes
+			always = no
 		}
 
 		available = {
@@ -27,7 +961,7 @@ political_actions = {
 			#Target is FROM
 			FROM = {
         		NOT = { is_in_faction_with = ROOT }
-				is_special_project_completed = sp:sp_nuclear_reactor
+				has_tech = nuclear_reactor
 				any_owned_state = {
 					nuclear_reactor > 0
 				}
@@ -41,7 +975,7 @@ political_actions = {
             NOT = { has_idea = race_for_the_bomb }
             FROM = {
         		NOT = { is_in_faction_with = ROOT }
-				is_special_project_completed = sp:sp_nuclear_reactor
+				has_tech = nuclear_reactor
 				any_owned_state = {
 					nuclear_reactor > 0
 				}
@@ -57,85 +991,95 @@ political_actions = {
 			factor = 1
 			modifier = {
 				factor = 0
-				any_other_country = { is_special_project_completed = sp:sp_nuclear_bomb }
+				any_other_country = { has_tech = nukes }
 			}
 		}
 	}
 
+	# improved_worker_conditions = {  ## OLD WORKERS
+
+	# 	icon = generic_industry
+
+	# 	available = {
+	# 		has_stability < 1.0
+	# 		if = {
+	# 			limit = {
+	# 				tag = SPR
+	# 			}
+	# 			NOT = {
+	# 				has_idea = SPR_political_violence
+	# 			}
+	# 		}
+	# 	}
+
+	# 	visible = {
+	# 		always = yes
+	# 	}
+
+	# 	fire_only_once = no
+
+	# 	modifier = {
+	# 		stability_weekly = 0.005
+	# 		consumer_goods_expected_value = 0.05
+	# 		industrial_capacity_factory = -0.1
+	# 	}
+
+	# 	days_remove = 180
+	# 	days_re_enable = 540
+
+	# 	cost = 100
+
+	# 	complete_effect = {
+	# 	}
+
+	# 	ai_will_do = {
+	# 		base = 0
+	# 	}
+	# }
+
+	# LW 
 	improved_worker_conditions = {
-
 		icon = generic_industry
-		priority = 10
-		available = {
-			has_stability < 1.0
-			if = {
-				limit = {
-					tag = SPR
-				}
-				NOT = {
-					has_idea = SPR_political_violence
-				}
-			}
+		allowed = {
+			always = yes
 		}
-
 		visible = {
 			always = yes
 		}
-
 		fire_only_once = no
-
 		modifier = {
-			stability_weekly = 0.006
-			consumer_goods_expected_value = 0.050
+			political_power_gain = -0.50
+			stability_weekly = 0.005
 			industrial_capacity_factory = -0.1
-			
 		}
-
-		days_remove = 180
-		days_re_enable = 360
-
-		cost = 100
-
+		days_remove = -1
+		cost = 0
 		complete_effect = {
-
 		}
-
 		ai_will_do = {
 			base = 0
-			modifier = {
-				add = 1
-				has_stability < 0.6
-				has_political_power > 155 #Spend on other things first
-			}
-			modifier = {
-				factor = 0
-				original_tag = SPR
-				NOT = { has_global_flag = spanish_civil_war }
-			}
-			modifier = {
-				factor = 0 
-				tag = ICE
-				has_completed_focus = ICE_not_our_king
-				NOT = { has_completed_focus = ICE_break_with_the_crown }
-			}
-			modifier = {
-				factor = 0 
-				tag = GER
-				has_completed_focus = GER_oppose_hitler_ww
-				NOT = { 
-					OR = {
-						has_completed_focus = GER_the_peoples_victory 
-						has_completed_focus = GER_monarchist_sentiment 
-					}
-				}
-			}
-			modifier = {
-				add = 1000
-				has_stability < 0.76
-				original_tag = SWE
-				has_idea = SWE_hungershield
-			}
 		}
+	}
+
+	improved_worker_conditions_cancel = {
+		icon = generic_industry
+		allowed = {
+			always = yes
+		}
+		available = {
+		}
+		visible = {
+			has_decision = improved_worker_conditions
+		}
+		fire_only_once = no
+		cost = 0
+		complete_effect = {
+			remove_decision = improved_worker_conditions
+		}
+		ai_will_do = {
+			base = 0
+		}
+		
 	}
 
 	promises_of_peace = {
@@ -195,37 +1139,6 @@ political_actions = {
 			}
 		}
 	}
-
-	add_convoy = {
-		priority = 100
-        icon = SWE_set_navy_budget
-        allowed = {
- 		}
-		visible = {
-			is_ai = no
-		}
-        days_remove = 1
-        cost = 0
-        complete_effect = {
-            add_manpower = 1
-            add_equipment_to_stockpile = {
-                type = convoy_1
-                amount = 1
-            }
-        }
-		
- 		remove_effect = {
-            add_manpower = -1
-            add_equipment_to_stockpile = {
-                type = convoy_1
-                amount = -1
-            }
- 		}
-        ai_will_do = {
-            factor = 0
-        }
-    }
-
 }
 
 economy_decisions = {
@@ -235,7 +1148,7 @@ economy_decisions = {
 		icon = generic_construction
 
 		allowed = {
-			NOT = { OR = { original_tag = GER original_tag = FRA } }
+			NOT = { OR = { tag = GER tag = FRA original_tag = GER original_tag = FRA } }
 		}
 
 		cost = 50
@@ -303,54 +1216,8 @@ economy_decisions = {
 					}
 				}
 			}
-			if = {
-				limit = {
-					has_idea = FRA_protected_by_the_maginot_line
-				}
-				remove_ideas = FRA_protected_by_the_maginot_line
-			}
 		}
-	}
-
-	restructure_supply_system = { #one time boost to get a few cheap supply hubs
-
-		icon = GFX_decision_generic_construction
-
-		visible = { 
-			OR = {
-				is_major = no
-				AND = {
-					is_faction_leader = yes
-					num_of_factories < 51 #would be a minor if it wasn't for faction leader status
-				}
-			}
-		}
-		fire_only_once = yes
-
-		days_remove = 120
-
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				num_of_factories < 30
-				factor = 0
-			}
-		}
-
-		modifier = {
-			production_speed_supply_node_factor = 2
-		}
-
-		complete_effect = {
-			set_variable = { node_goal = num_of_supply_nodes }
-			add_to_variable = { node_goal = 2 } #maximum 3 additional nodes
-		}
-
-		cancel_trigger = {
-			
-			 check_variable = { node_goal < num_of_supply_nodes } #if the number of supply nodes exceeds the old number by +3, immediately cancel
-		}
-	}	
+	}		
 }
 
 propaganda_efforts = {
@@ -727,6 +1594,86 @@ propaganda_efforts = {
 }
 
 operations = {
+	NO_ASIA_attache = {
+        cost = 100
+
+        fire_only_once = yes
+
+        available = {
+			command_power > 49
+			if = {
+				limit = {
+					OR = {
+						has_game_rule = {
+							rule = china_war_rule
+							option = ENABLED
+						}
+						has_global_flag = NO_ASIA
+					}
+				}
+				date > 1937.12.1
+				NOT = {
+					GER = {
+						has_completed_focus = GER_danzig_or_war
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					has_game_rule = {
+						rule = china_war_rule
+						option = DISABLED
+					}
+				}
+				JAP = {
+					has_completed_focus = JAP_intervene_in_china
+				}
+				NOT = {
+					JAP = {
+						has_completed_focus = JAP_secure_china
+					}
+				}
+			}
+        }
+
+        visible = {
+			OR = {
+				has_global_flag = NO_ASIA
+				has_game_rule = {
+					rule = china_war_rule
+					option = DISABLED
+				}
+			}
+			NOT = {
+				original_tag = JAP
+				original_tag = MAN
+				original_tag = SIA
+				original_tag = CHI
+			}
+		}
+
+        complete_effect = {
+			add_command_power = -50
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = china_war_rule
+						option = DISABLED
+					}
+					NOT = {
+						has_global_flag = NO_ASIA
+					}
+				}
+				add_ideas = NO_CHINA_attache_idea
+			}
+			else = {
+				add_ideas = NO_ASIA_attache_idea
+			}
+		}
+		ai_will_do = {
+			factor = 999
+		}
+	}
 	#MTG_TEST_NAVAL_MIXED_VS_MIXED_EARLY = { #MTG_TODO_GABRIEL: remove before launch (no seriously do not ship with this (hehe get it don't SHIP with it)) 
 #
 	#	icon = generic
@@ -1241,23 +2188,21 @@ operations = {
 			has_dlc = "Waking the Tiger"
 		}
 		available = {
-			controls_state = 446
-			controls_state = 1028
+			has_full_control_of_state = 844
 			OR = {
 				NOT = {
-					owns_state = 446
-					owns_state = 1028
+					owns_state = 844
 				}
 				any_enemy_country = {
 					OR = {
+						controls_state = 446
+						controls_state = 453
 						controls_state = 452
 						controls_state = 447
 						controls_state = 456
 						controls_state = 457
 						controls_state = 454
 						controls_state = 455
-						controls_state = 453
-						controls_state = 1017
 					}
 				}
 			}
@@ -1266,7 +2211,8 @@ operations = {
 		visible = {
 			has_war = yes
 			NOT = { has_global_flag = SUEZ_CANAL_BLOCKED }
-			any_controlled_state = {
+			any_state = {
+				is_controlled_by = ROOT
 				OR = {
 					region = 28
 					region = 128
@@ -1289,14 +2235,16 @@ operations = {
 				if = {
 					limit = {
 						NOT = {
-							owns_state = 446
-							owns_state = 453
+							# owns_state = 446
+							# owns_state = 453
+							owns_state = 844
 						}
 					}
 					random_country = {
 						limit = {
-							owns_state = 446
-							owns_state = 453
+							# owns_state = 446
+							# owns_state = 453
+							owns_state = 844
 						}
 						country_event = { id = generic.12 days = 1 }
 					}
@@ -1308,8 +2256,9 @@ operations = {
 			if = {
 				limit = {
 					OR = {
-						has_full_control_of_state = 446
-						has_full_control_of_state = 453
+						has_full_control_of_state = 844
+						# has_full_control_of_state = 446
+						# has_full_control_of_state = 453
 					}
 				}
 				set_country_flag = blew_up_suez
@@ -1320,8 +2269,9 @@ operations = {
 				if = {
 					limit = {
 						ENG = {
-							owns_state = 446
-							owns_state = 453
+							owns_state = 844
+							# owns_state = 446
+							# owns_state = 453
 						}
 					}
 					add_war_support = -0.05
@@ -1386,7 +2336,8 @@ operations = {
 		visible = {
 			has_war = yes
 			NOT = { has_global_flag = PANAMA_CANAL_BLOCKED }
-			any_controlled_state = {
+			any_state = {
+				is_controlled_by = ROOT
 				OR = {
 					region = 34
 					region = 124
@@ -1482,8 +2433,9 @@ special_projects = {
 		icon = GFX_decision_generic_special_project
 
 		available = {
-			has_full_control_of_state = 446
-			has_full_control_of_state = 1028
+			has_full_control_of_state = 844
+			# has_full_control_of_state = 446
+			# has_full_control_of_state = 453
 			num_of_civilian_factories > 15
 		}
 	
@@ -1493,7 +2445,7 @@ special_projects = {
 	
 		fire_only_once = no
 	
-		days_remove = 365
+		days_remove = 180
 	
 		cost = 75
 	
@@ -1504,8 +2456,9 @@ special_projects = {
 		remove_effect = {
 			if = {
 				limit = {
-					has_full_control_of_state = 446
-					has_full_control_of_state = 1028
+					has_full_control_of_state = 844
+					# has_full_control_of_state = 446
+					# has_full_control_of_state = 453
 				}
 				set_country_flag = rebuilt_suez
 				clr_global_flag = SUEZ_CANAL_BLOCKED
@@ -1631,8 +2584,7 @@ war_measures = {
 
 		visible = {
 			has_defensive_war = yes
-			has_offensive_war = no
-			num_of_controlled_states > 0			
+			has_offensive_war = no			
 		}
 
 		fire_only_once = no
@@ -1702,10 +2654,6 @@ war_measures = {
 				surrender_progress > 0.6
 				factor = 10
 			}
-			modifier = {
-				has_capitulated = yes
-				factor = 0
-			}
 		}
 
 		modifier = {
@@ -1728,22 +2676,7 @@ war_measures = {
 
         available = {
             has_war = yes
-            if = {
-				limit = {
-					NOT = { original_tag = GER }
-				}
-        		has_idea = tot_economic_mobilisation
-			}
-			else_if = {
-				limit = {
-					original_tag = GER
-				}
-				OR = {
-        			has_idea = tot_economic_mobilisation
-					has_idea = totaler_krieg_economy
-				}
-				NOT = { has_completed_focus = GER_womens_rights_and_equality }
-			}
+            has_idea = tot_economic_mobilisation
             OR = {
                 AND = {
                     has_government = democratic
@@ -1769,35 +2702,14 @@ war_measures = {
         }
         visible = {
             has_war = yes
-            if = {
-            	limit = {
-            		original_tag = GER
-            	}
-            	NOT = { has_completed_focus = GER_womens_rights_and_equality }
-            }
         }
         cost = 100
         days_remove = -1
         remove_trigger = {
-            if = {
-            	limit = {
-            		original_tag = GER
-            	}
-        		OR = {
-        			has_war = no
-        			AND = {
-        				NOT = { has_idea = tot_economic_mobilisation }
-        				NOT = { has_idea = totaler_krieg_economy }
-        			}
-        			has_completed_focus = GER_womens_rights_and_equality
-        		}
+        	OR = {
+            	has_war = no
+            	not = { has_idea = tot_economic_mobilisation }
             }
-        	else = {
-	        	OR = {
-	            	has_war = no
-	            	NOT = { has_idea = tot_economic_mobilisation }
-	            }
-        	}
         }
         modifier = {
             conscription = 0.01
@@ -1866,7 +2778,7 @@ war_measures = {
 		cost = GER_war_bonds_var?50
 
 		modifier = {
-			consumer_goods_factor = -0.20
+			consumer_goods_expected_value = -0.05
 		}
 
 		ai_will_do = {
@@ -1939,160 +2851,60 @@ war_measures = {
 			}
 		}
     }
-	
-	diversify_special_forces = {
-
-		icon = GFX_decision_generic_military
-
-		allowed = {
-			has_dlc = "Arms Against Tyranny"
-			NOT = {
-				OR = {
-					tag = ENG #has a focus
-					tag = USA #has a focus
-					tag = SOV #has a focus
-					tag = JAP #has a focus
-					tag = AST #has a focus
-					tag = FRA #has a focus
-					tag = GER #has a focus
-				}
-			}
-		}
-
-		available = {
-		}
-
-		visible = {
-			is_major = yes
-			date > 1940.7.1
-			IF = {
-				limit = {
-					has_dlc = "Trial of Allegiance"
-				}
-				NOT = {
-					OR = {
-						tag = CHL #has a focus
-						tag = BRA #has a focus
-						tag = ARG #has a focus
-						# tag = URG #has a focus
-						# tag = PAR #has a focus
-					}
-				}
-			}
-			IF = {
-				limit = {
-					has_dlc = "Gotterdammerung"
-				}
-				NOT = {
-					OR = {
-						tag = BEL #has a focus
-						tag = COG #has a focus
-					}
-				}
-			}
-		}
-
-		fire_only_once = yes
-
-		cost = 50
-
-		complete_effect = {
-			add_potential_special_forces_tree = yes
-		}
-		ai_will_do = {
-			factor = 201
-			modifier = {
-				factor = 0
-				is_major = no
-			}
-		}
-	}
-
-	diversify_special_forces_2 = {
-
-		icon = GFX_decision_generic_military
-
-		available = {
-			date > 1943.1.1
-		}
-
-		visible = {
-			has_dlc = "Arms Against Tyranny"
-		}
-
-		fire_only_once = yes
-
-		cost = 100
-
-		complete_effect = {
-			add_potential_special_forces_tree = yes
-		}
-		ai_will_do = {
-			factor = 200
-		}
-	}
-	
 }
 
 foreign_politics = {
-	object_to_attaches = {
+	# object_to_attaches = {
 
-		allowed = {
-            has_dlc = "Waking the Tiger"
-        }
+	# 	allowed = {
+    #         has_dlc = "Waking the Tiger"
+    #     }
 
-        cost = 50
-        fire_only_once = no
+    #     cost = 50
+    #     fire_only_once = no
 
-        days_re_enable = 30
+    #     days_re_enable = 30
 
-        available = {
-        }
+    #     available = {
+    #     }
 
-        visible = {
-        	FROM = {
-        		NOT = { has_country_flag = rejected_withdrawing_attache }
-        		NOT = { has_country_flag = rejected_withdrawing_attache@ROOT }
-        		NOT = { has_country_flag = object_attache_going_on }
-        	}
-        	has_war = yes
-        	has_capitulated = no
-        	NOT = { has_war_with = FROM }
-        	any_enemy_country = {
-				has_attache_from = FROM
-			}
-			NOT = {
-				AND = {
-					original_tag = SPR
-					has_completed_focus = SPR_regional_defense_council_of_aragon
-				}
-			}
-		}
+    #     visible = {
+    #     	FROM = {
+    #     		NOT = { has_country_flag = rejected_withdrawing_attache }
+    #     		NOT = { has_country_flag = rejected_withdrawing_attache@ROOT }
+    #     		NOT = { has_country_flag = object_attache_going_on }
+    #     	}
+    #     	has_war = yes
+    #     	has_capitulated = no
+    #     	NOT = { has_war_with = FROM }
+    #     	any_enemy_country = {
+	# 			has_attache_from = FROM
+	# 		}
+	# 	}
 
-		target_root_trigger = {
-			has_war = yes
-			has_capitulated = no
-		}
+	# 	target_root_trigger = {
+	# 		has_war = yes
+	# 		has_capitulated = no
+	# 	}
 
-		target_trigger = {
-			NOT = { has_war_with = FROM }
-			#FROM = { has_sent_attache = yes } # Make such trigger to optimize if it becomes a performance problem again.
-			any_enemy_country = {
-				has_attache_from = FROM
-			}			
-		}
+	# 	target_trigger = {
+	# 		NOT = { has_war_with = FROM }
+	# 		#FROM = { has_sent_attache = yes } # Make such trigger to optimize if it becomes a performance problem again.
+	# 		any_enemy_country = {
+	# 			has_attache_from = FROM
+	# 		}			
+	# 	}
 
-        complete_effect = {
-			FROM = { country_event = { id = generic.14 hours = 6 } }
-			hidden_effect = {
-				FROM = { set_country_flag = object_attache_going_on }
-			}
-		}
-		ai_will_do = {
-			factor = 1
-		}
-	}
-
+    #     complete_effect = {
+	# 		FROM = { country_event = { id = generic.14 hours = 6 } }
+	# 		hidden_effect = {
+	# 			FROM = { set_country_flag = object_attache_going_on }
+	# 		}
+	# 	}
+	# 	ai_will_do = {
+	# 		factor = 0
+	# 	}
+	# }
 	revoke_attaches = {
 
 		allowed = {
@@ -2130,7 +2942,6 @@ foreign_politics = {
 }
 
 economy_decisions = {
-
 	infrastructure_building_slot = {
 
 		icon = generic_construction
@@ -2139,10 +2950,10 @@ economy_decisions = {
             always = yes
         }
 
-        cost = 100
+        cost = 50
         fire_only_once = no
 
-        days_re_enable = 30
+        days_re_enable = 0
 
 		available = {
 			any_owned_state = {
@@ -2154,7 +2965,7 @@ economy_decisions = {
 				}
 			}
 		}
-	
+
 		visible = {
 			any_owned_state = {
 				NOT = { has_state_flag = infrastructure_building_slot_flag }
@@ -2166,11 +2977,12 @@ economy_decisions = {
 			}
 		}
 
-        complete_effect = {
+		complete_effect = {
 			random_owned_state = {
 				limit = {
 					is_fully_controlled_by = ROOT
-            		free_building_slots = {
+					is_owned_by = ROOT
+					free_building_slots = {
 						building = industrial_complex
 						size > 1
 						include_locked = yes
@@ -2181,15 +2993,16 @@ economy_decisions = {
 					}
 					NOT = { has_state_flag = infrastructure_building_slot_flag }
 				}
-				add_extra_state_shared_building_slots = 1
+				add_extra_state_shared_building_slots = 2
 				set_state_flag = infrastructure_building_slot_flag
 			}
 		}
+
 		ai_will_do = {
-			base = 1
+			factor = 1
 			modifier = {
-				factor = 1.5
-				all_owned_state = { free_building_slots = { building = industrial_complex size < 1 include_locked = no } }
+				factor = 10
+				any_owned_state = { free_building_slots = { building = industrial_complex size < 1 include_locked = no } }
 			}
 		}
     }
@@ -2206,23 +3019,12 @@ economy_decisions = {
         fire_only_once = no
 
         available = {
-			IF = { 
-				limit = { 
-					OR = { 
-						has_dlc = "Man the Guns" 	
-						has_dlc = "By Blood Alone" 
-					}
-				}
-				has_war_with_non_exiled_country = yes   
-			}
-			ELSE = {
-				has_war = yes
-			}
-			any_owned_state = {
-				NOT = { has_state_flag = war_building_slot_flag }
-				is_fully_controlled_by = ROOT
-			}
-		}
+            has_war = yes
+            any_owned_state = {
+            	NOT = { has_state_flag = war_building_slot_flag }
+            	is_fully_controlled_by = ROOT
+            }
+        }
 
         visible = {
 			has_war = yes
@@ -2309,10 +3111,17 @@ economy_decisions = {
 			}
 		}
 		ai_will_do = {
-			base = 0
+			factor = 1
 			modifier = {
-				add = 1
+				factor = 10
 				all_owned_state = { free_building_slots = { building = industrial_complex size < 1 include_locked = no } }
+			}
+			modifier = {
+				any_owned_state = {
+					infrastructure > 5
+					free_building_slots = { building = industrial_complex size > 0 include_locked = no }
+				}
+				factor = 0
 			}
 		}
     }
@@ -2372,12 +3181,6 @@ foreign_support = {
 
 		visible = {
 			is_subject = no
-			NOT = {
-				OR = {
-					has_subject = CHI
-					has_war_with = CHI
-				}
-			}
 			OR = {
 				AND = {
 					288 = { #Burma
@@ -2407,9 +3210,10 @@ foreign_support = {
 					}
 				}
 			}
-			any_other_country = {
+			any_country = {
 				check_variable = { CHI_burma_road_current_level > 0 }
 				NOT = { is_in_faction_with = ROOT }
+				NOT = { tag = ROOT }
 			}
 		}
 
@@ -2422,7 +3226,7 @@ foreign_support = {
 		}
 
 		ai_will_do = {
-			base = 1
+			factor = 1
 			modifier = {
 				factor = 0
 				any_country = {
@@ -2534,12 +3338,6 @@ foreign_support = {
 
 		visible = {
 			is_subject = no
-			NOT = {
-				OR = {
-					has_subject = CHI
-					has_war_with = CHI
-				}
-			}
 			OR = {
 				AND = {
 					288 = { #Burma
@@ -2599,7 +3397,7 @@ foreign_support = {
 		}
 
 		ai_will_do = {
-			base = 1
+			factor = 1
 			modifier = {
 				factor = 200
 				any_country = {
@@ -2731,12 +3529,6 @@ foreign_support = {
 
 		visible = {
 			is_subject = no
-			NOT = {
-				OR = {
-					has_subject = CHI
-					has_war_with = CHI
-				}
-			}
 			OR = {
 				AND = {
 					432 = { #Assam
@@ -2766,9 +3558,10 @@ foreign_support = {
 					}
 				}
 			}
-			any_other_country = {
+			any_country = {
 				check_variable = { CHI_ledo_road_current_level > 0 }
 				NOT = { is_in_faction_with = ROOT }
+				NOT = { tag = ROOT }
 			}
 		}
 
@@ -2781,7 +3574,7 @@ foreign_support = {
 		}
 
 		ai_will_do = {
-			base = 1
+			factor = 1
 			modifier = {
 				factor = 0
 				any_country = {
@@ -2893,12 +3686,6 @@ foreign_support = {
 
 		visible = {
 			is_subject = no
-			NOT = {
-				OR = {
-					has_subject = CHI
-					has_war_with = CHI
-				}
-			}
 			OR = {
 				AND = {
 					432 = { #Assam
@@ -2970,7 +3757,7 @@ foreign_support = {
 		}
 
 		ai_will_do = {
-			base = 1
+			factor = 1
 			modifier = {
 				factor = 200
 				any_country = {
@@ -3091,12 +3878,6 @@ foreign_support = {
 
  		visible = {
  			is_subject = no
- 			NOT = {
- 				OR = {
- 					has_subject = CHI
- 					has_war_with = CHI
- 				}
- 			}
 			OR = {
 				AND = {
 					434 = { #Arunachal Pradesh
@@ -3117,9 +3898,10 @@ foreign_support = {
 					}
 				}
 			}
- 			any_other_country = {
+ 			any_country = {
  				check_variable = { CHI_the_hump_current_level > 0 }
  				NOT = { is_in_faction_with = ROOT }
+ 				NOT = { tag = ROOT }
  			}
  		}
 
@@ -3132,7 +3914,7 @@ foreign_support = {
  		}
 
  		ai_will_do = {
- 			base = 1
+ 			factor = 1
 			modifier = {
 				factor = 0
 				any_country = {
@@ -3229,12 +4011,6 @@ foreign_support = {
 
  		visible = {
  			is_subject = no
- 			NOT = {
- 				OR = {
- 					has_subject = CHI
- 					has_war_with = CHI
- 				}
- 			}
 			OR = {
 				AND = {
 					434 = { #Arunachal Pradesh
@@ -3280,7 +4056,7 @@ foreign_support = {
  		}
 
  		ai_will_do = {
- 			base = 1
+ 			factor = 1
 			modifier = {
 				factor = 200
 				any_country = {
@@ -3403,12 +4179,6 @@ foreign_support = {
 
 		visible = {
 			is_subject = no
-			NOT = {
-				OR = {
-					has_subject = CHI
-					has_war_with = CHI
-				}
-			}
 			OR = {
 				AND = {
 					671 = { #Tonkin
@@ -3429,9 +4199,10 @@ foreign_support = {
 					}
 				}
 			}
-			any_other_country = {
+			any_country = {
 				check_variable = { CHI_hanoi_route_current_level > 0 }
 				NOT = { is_in_faction_with = ROOT }
+				NOT = { tag = ROOT }
 			}
 		}
 
@@ -3444,7 +4215,7 @@ foreign_support = {
 		}
 
 		ai_will_do = {
-			base = 1
+			factor = 1
 			modifier = {
 				factor = 0
 				any_country = {
@@ -3501,362 +4272,6 @@ foreign_support = {
 				}
 				country_event = { id = wtt_hanoi_route.2 }
 				custom_effect_tooltip = close_hanoi_route_explanation # Prints the contents of the CHI_hanoi_route_current_level variable
-			}
-		}
-	}
-}
-
-generic_purchase_old_ships_category = {
-	purchase_ships_eng = {
-		cost = 50
-		icon = GFX_decision_generic_naval
-		fire_only_once = no
-		visible = {
-			has_country_flag = generic_purchase_old_ships_flag
-			ENG = { 
-				NOT = { 
-					has_country_flag = sold_ships_to_us@ROOT
-					has_country_flag = negotiating_ship_purchase_flag@ROOT 
-				}
-			}
-			NOT = { has_war_with = ENG}
-		}
-		available = {
-			NOT = {
-				ENG = {
-					OR = {
-						has_civil_war = yes
-						has_capitulated = yes
-						has_opinion = {
-							target = FROM
-							value < 30
-						}
-					}					
-				}
-			}
-			
-		}
-		days_remove = 14
-		remove_effect = {
-			ENG = {
-				country_event = {
-					id = generic_purchase_ships_events.01
-					hours = 1
-				}
-				set_country_flag = negotiating_ship_purchase_flag@ROOT
-			}			
-		}
-	}
-	purchase_ships_sov = {
-		cost = 50
-		icon = GFX_decision_generic_naval
-		fire_only_once = no
-		visible = {
-			has_country_flag = generic_purchase_old_ships_flag
-			SOV = { 
-					has_country_flag = sold_ships_to_us@ROOT
-					has_country_flag = negotiating_ship_purchase_flag@ROOT 
-			}
-
-			NOT = { has_war_with = SOV}
-		}
-		available = {
-			NOT = {
-				SOV = {
-					OR = {
-						has_civil_war = yes
-						has_capitulated = yes
-						has_opinion = {
-							target = FROM
-							value < 30
-						}
-					}					
-				}
-			}
-			
-		}
-		days_remove = 14
-		remove_effect = {
-			SOV = {
-				country_event = {
-					id = generic_purchase_ships_events.01
-					hours = 1
-				}
-				set_country_flag = negotiating_ship_purchase_flag@ROOT
-			}
-		}
-	}
-	purchase_ships_ger = {
-		cost = 50
-		icon = GFX_decision_generic_naval
-		fire_only_once = no
-		visible = {
-			has_country_flag = generic_purchase_old_ships_flag
-			GER = { 
-				NOT = { 
-					has_country_flag = sold_ships_to_us@ROOT
-					has_country_flag = negotiating_ship_purchase_flag@ROOT
-				}
-
-			}
-			NOT = { has_war_with = GER}
-		}
-		available = {
-			NOT = {
-				GER = {
-					OR = {
-						has_civil_war = yes
-						has_capitulated = yes
-						has_opinion = {
-							target = FROM
-							value < 30
-						}
-					}					
-				}
-			}
-			
-		}
-		days_remove = 14
-		remove_effect = {
-			GER = {
-				country_event = {
-					id = generic_purchase_ships_events.01
-					hours = 1
-				}
-				set_country_flag = negotiating_ship_purchase_flag@ROOT
-			}
-		}
-	}
-	purchase_ships_usa = {
-		cost = 50
-		icon = GFX_decision_generic_naval
-		fire_only_once = no
-		visible = {
-			has_country_flag = generic_purchase_old_ships_flag
-			USA = { 
-				NOT = { 
-					has_country_flag = sold_ships_to_us@ROOT
-					has_country_flag = negotiating_ship_purchase_flag@ROOT  
-				}
-			}
-			NOT = { has_war_with = USA}
-		}
-		available = {
-			NOT = {
-				USA = {
-					OR = {
-						has_civil_war = yes
-						has_capitulated = yes
-						has_opinion = {
-							target = FROM
-							value < 30
-						}
-					}					
-				}
-			}
-			
-		}
-		days_remove = 14
-		remove_effect = {
-			USA = {
-				country_event = {
-					id = generic_purchase_ships_events.01
-					hours = 1
-				}
-				set_country_flag = negotiating_ship_purchase_flag@ROOT
-			}
-		}
-	}
-}
-
-generic_refit_civilian_ships_category = {
-	refit_to_destroyer = {
-		cost = 15
-		icon = GFX_decision_generic_merge_plant_ship
-		fire_only_once = no
-		visible = {
-			has_country_flag = refit_convoy_ships_flag
-		}
-		available = {	
-			has_equipment = {
-   				convoy > 9
-	  		}	
-	  		if = {
-				limit = {
-					has_dlc = "Man the Guns"
-				}
-				has_tech = early_ship_hull_light
-			}
-			else = {
-				has_tech = early_destroyer
-			}
-		}
-		days_remove = 50
-
-		complete_effect = {
-			add_equipment_to_stockpile = { 
-				type = convoy_1
-				amount = -10 
-
-			}
-		}
-		remove_effect = {
-			if = {
-				limit = {
-					has_dlc = "Man the Guns"
-				}
-				if = {
-					limit = {
-						NOT = {	has_country_flag = refit_to_destroyer_flag } #FIN gets flag along with Ship variants via the focus that unlocks these decisions
-					}			
-					set_country_flag = refit_to_destroyer_flag
-	
-					create_equipment_variant = {	
-						name = "Refitted Destroyer Class" 		
-						type = ship_hull_light_1
-						name_group = "DEN_DD_HISTORICAL" #Note: Doesn't matter if ROOT is not DEN, the effect will grab the appropriate country-specific name list anyways
-						parent_version = 0
-						modules = {
-							fixed_ship_battery_slot = ship_light_battery_1
-							fixed_ship_anti_air_slot = ship_anti_air_1
-							fixed_ship_fire_control_system_slot = ship_fire_control_system_0
-							fixed_ship_radar_slot = empty
-							fixed_ship_engine_slot = light_ship_engine_1
-							fixed_ship_torpedo_slot = ship_torpedo_1
-							mid_1_custom_slot = empty
-							rear_1_custom_slot = empty
-						}
-						obsolete = yes
-					}
-				}
-				create_ship = {
-					type = ship_hull_light_1
-					equipment_variant = "Refitted Destroyer Class"
-					creator = ROOT
-					name = "Coastguard"
-				}
-			}
-			#NO MTG
-			else = {
-				if = {
-					limit = {
-						NOT = {	has_country_flag = refit_to_destroyer_flag }
-					}			
-					set_country_flag = refit_to_destroyer_flag
-
-					create_equipment_variant = {
-						name = "Refitted Destroyer Class"
-						type = destroyer_1
-						upgrades = {
-							ship_torpedo_upgrade = 0
-							destroyer_engine_upgrade = 0
-							ship_ASW_upgrade = 0
-							ship_anti_air_upgrade = 0
-						}
-						obsolete = yes
-					}
-				}
-				create_ship = {
-					type = destroyer_1
-					equipment_variant = "Refitted Destroyer Class"
-					creator = ROOT
-					name = "Coastguard"
-				}		
-			}
-		}
-	}
-	refit_to_cruiser = {
-		cost = 30
-		icon = GFX_decision_generic_merge_plant_ship
-		fire_only_once = no
-		visible = {
-			has_country_flag = refit_convoy_ships_flag
-		}
-		available = {	
-			has_equipment = {
-   				convoy > 29
-	  		}
-	  		if = {
-				limit = {
-					has_dlc = "Man the Guns"
-				}
-				has_tech = early_ship_hull_cruiser
-			}
-			else = {
-				has_tech = early_light_cruiser
-			}
-		}
-		days_remove = 100
-
-		complete_effect = {
-			add_equipment_to_stockpile = { 
-				type = convoy_1
-				amount = -30 
-			}
-		}
-		remove_effect = {
-			if = {
-				limit = {
-					has_dlc = "Man the Guns"
-				}
-				if = {
-					limit = {
-						NOT = {	has_country_flag = refit_to_cruiser_flag } #FIN gets flag along with Ship variants via the focus that unlocks these decisions
-					}			
-					set_country_flag = refit_to_cruiser_flag
-	
-					create_equipment_variant = {
-						name = "Refitted Cruiser Class"				
-						type = ship_hull_cruiser_1
-						name_group = DEN_CL_HISTORICAL #Note: Doesn't matter if ROOT is not DEN, the effect will grab the appropriate country-specific name list anyways
-						parent_version = 0
-						modules = {
-							fixed_ship_battery_slot = ship_light_medium_battery_1
-							fixed_ship_anti_air_slot = ship_anti_air_1
-							fixed_ship_fire_control_system_slot = ship_fire_control_system_0
-							fixed_ship_radar_slot = empty
-							fixed_ship_engine_slot = cruiser_ship_engine_1
-							fixed_ship_armor_slot = ship_armor_cruiser_1
-							fixed_ship_secondaries_slot = dp_ship_secondaries_1
-							mid_1_custom_slot = empty
-							mid_2_custom_slot = empty
-							rear_1_custom_slot = empty
-						}
-						obsolete = yes
-					}
-				}
-				create_ship = {
-					type = ship_hull_cruiser_1
-					equipment_variant = "Refitted Cruiser Class"
-					creator = ROOT
-					name = "Protector"
-				}
-			}
-			else = {
-				if = {
-					limit = {
-						NOT = {	has_country_flag = refit_to_cruiser_flag }
-					}			
-					set_country_flag = refit_to_cruiser_flag
-
-					create_equipment_variant = {
-						name = "Refitted Cruiser Class"
-						type = light_cruiser_1
-						upgrades = {
-							ship_reliability_upgrade = 0
-							ship_engine_upgrade = 0
-							ship_gun_upgrade = 0
-							ship_anti_air_upgrade = 0
-						}
-						obsolete = yes
-					}
-				}
-				create_ship = {
-					type = light_cruiser_1
-					equipment_variant = "Refitted Cruiser Class"
-					creator = ROOT
-					name = "Protector"
-				}	
 			}
 		}
 	}

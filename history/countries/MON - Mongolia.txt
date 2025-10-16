@@ -13,6 +13,7 @@ set_technology = {
 	basic_train = 1
 	hq_1 = 1
 	motorised_infantry = 1
+
 	sov_light_tank_1 = 1
 	sov_bt_tank_1 = 1
 	sov_bt_tank_2 = 1
@@ -24,9 +25,12 @@ set_research_slots = 5
 add_ideas = {
 	limited_conscription
 	MON_collectivisation_1
+	MON_nomad_1
+	russian_closed_eco
 	MON_allow_soviet_trade
+	peace_training
 	father_check
-#	MON_overlord_factories
+	no_grinding
 }
 
 set_variable = {
@@ -49,6 +53,8 @@ set_popularities = {
 	neutrality = 40
 }
 
+# MP_garrison_division_standard = yes
+
 recruit_character = MON_khorloogiin_choibalsan
 recruit_character = MON_tong_shangzhi
 recruit_character = MON_oboi_kangan
@@ -70,39 +76,9 @@ recruit_character = MON_dagva
 recruit_character = MON_ganbaatar
 recruit_character = MON_ulanhu
 recruit_character = MON_khan
+recruit_character = MON_throat_singer
+recruit_character = MON_pdchigin_abaga
 
-
-
-add_dynamic_modifier = {
-	modifier = MON_the_agitprop_dynamic_modifier
-}
-
-add_to_variable = { MON_economy_political_power_gain = -0.1 }
-add_to_variable = { MON_economy_production_speed_industrial_complex_factor = 0.1 }
-add_to_variable = { MON_local_resources_factor = -0.15 }
-add_to_variable = { MON_supply_consumption_factor = 0.15 }
-add_to_variable = { MON_agitrop_industrial_capacity_factory = -0.15  }
-add_to_variable = { MON_agitprop_production_speed_buildings_factor = -0.25 } 
-add_to_variable = { MON_mobilization_speed = -0.4 }
-add_to_variable = { MON_economy_production_speed_arms_factory_factor = 0 }
-add_to_variable = { MON_economy_production_speed_bunker_factor = 0 }
-add_to_variable = { MON_economy_equipment_line_change_production_efficiency_factor = 0 }
-add_to_variable = { MON_economy_global_building_slots_factor = 0 }
-add_to_variable = { MON_economy_production_speed_synthetic_refinery_factor = 0 }
-add_to_variable = { MON_economy_consumer_goods_factor = 0 }
-add_to_variable = { MON_agitprop_stability_weekly = 0 }
-add_to_variable = { MON_agitprop_production_factory_max_efficiency_factor = 0 }
-add_to_variable = { MON_agitprop_production_factory_efficiency_gain_factor = 0 }
-add_to_variable = { MON_agitprop_production_factory_start_efficiency_factor = 0 }
-add_to_variable = { MON_agitprop_conscription = 0 }
-add_to_variable = { MON_agitprop_research_speed_factor = 0 }
-add_to_variable = { MON_agitprop_operative_slot = 0 }
-add_to_variable = { MON_agitprop_stability_factor = 0 }
-add_to_variable = { MON_agitprop_experience_gain_factor = 0 }
-add_to_variable = { MON_agitprop_army_morale_factor = 0 }
-add_to_variable = { MON_agitprop_war_support_factor = 0 }
-
-# ENG
 add_operation_token = {
 	tag = ENG
 	token = token_airforce_friendly
@@ -272,23 +248,23 @@ add_operation_token = {
 	tag = HOL
 	token = token_navy_friendly
 }
-# # BEL
-# add_operation_token = {
-# 	tag = BEL
-# 	token = token_airforce_friendly
-# }
-# add_operation_token = {
-# 	tag = BEL
-# 	token = token_army_friendly
-# }
-# add_operation_token = {
-# 	tag = BEL
-# 	token = token_civilian_friendly
-# }
-# add_operation_token = {
-# 	tag = BEL
-# 	token = token_navy_friendly
-# }
+# BEL
+add_operation_token = {
+	tag = BEL
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = BEL
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = BEL
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = BEL
+	token = token_navy_friendly
+}
 # LUX
 # add_operation_token = {
 # 	tag = LUX
@@ -338,6 +314,23 @@ add_operation_token = {
 }
 add_operation_token = {
 	tag = NOR
+	token = token_navy_friendly
+}
+# CZE
+add_operation_token = {
+	tag = CZE
+	token = token_airforce_friendly
+}
+add_operation_token = {
+	tag = CZE
+	token = token_army_friendly
+}
+add_operation_token = {
+	tag = CZE
+	token = token_civilian_friendly
+}
+add_operation_token = {
+	tag = CZE
 	token = token_navy_friendly
 }
 # GRE

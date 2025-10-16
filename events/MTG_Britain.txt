@@ -1,4 +1,4 @@
-add_namespace = mtg_britain 
+﻿add_namespace = mtg_britain 
 
 # Abdication Crisis Edward VIII
 country_event = {
@@ -24,16 +24,6 @@ country_event = {
 		name = mtg_britain.1.c
 		ai_chance = {
 			factor = 70
-			modifier = {
-				factor = 0
-				OR = {
-					has_game_rule = {
-						rule = ENG_ai_behavior 
-						option = NEUTRALITY
-					}
-					has_country_flag = ENG_AI_RANDOM_NEUTRALITY
-				}
-			}
 		}
 		add_stability = 0.05
 		set_country_flag = ENG_edward_abdicating
@@ -54,8 +44,7 @@ country_event = {
 	immediate = {
 		hidden_effect = {
 			remove_ideas = ENG_king_edward
-			add_ideas = ENG_george_vi
-			set_country_flag = ENG_edward_viii_abdicated
+			add_ideas = ENG_george_vi		
 		}
 	}
 
@@ -90,83 +79,30 @@ country_event = {
 				limit = {
 					tag = RAJ
 					NOT = { is_subject = no }
-					has_dlc = "Together for Victory"
-				}
-				ENG = {
-					if = {
-						limit = {
-							NOT = {
-								has_government = fascism
-							}
-						}
-						set_autonomy = { target = RAJ autonomy_state = autonomy_dominion }
-					}
-					else = {
-						set_autonomy = { target = RAJ autonomy_state = autonomy_satellite }
-					}
-				}
-			}	
-			if = {
-				limit = {
-					tag = PAK
-					NOT = { is_subject = no }
 					NOT = { has_autonomy_state = autonomy_dominion }
 					has_dlc = "Together for Victory"
 				}
-				ENG = {
-					set_autonomy = { target = PAK autonomy_state = autonomy_dominion }
-				}
+				set_autonomy = { target = RAJ autonomy_state = autonomy_dominion }
 			}
-			if = {
-				limit = {
-					tag = BAN
-					NOT = { is_subject = no }
-					NOT = { has_autonomy_state = autonomy_dominion }
-					has_dlc = "Together for Victory"
-				}
-				ENG = {
-					set_autonomy = { target = BAN autonomy_state = autonomy_dominion }
-				}
-			}
-			if = {
-				limit = {
-					OR = {
-						is_using_old_raj = yes
-						NOT = { has_dlc = "Graveyard of Empires" }
-					}
-				}
-				retire_country_leader = yes
-			}
-			else = { 
-
-				if = {
-					limit = {
-						has_country_leader = {
-							character = RAJ_lord_linlithgow
-						}
-
-						has_country_leader_with_trait = aloof_authority
-					}
-
-					remove_country_leader_trait = {
-						 trait = aloof_authority 
-					}
-				}
-
-				if = {
-					limit = {
-						has_country_leader = {
-							character = RAJ_freeman_freeman_thomas
-						}
-
-						has_country_leader_with_trait = staunch_imperialist
-					}
-
-					remove_country_leader_trait = {
-						 trait = staunch_imperialist 
-					}
-				}
-			}
+			# if = {
+			# 	limit = {
+			# 		tag = WST
+			# 		NOT = { is_subject = no }
+			# 		NOT = { has_autonomy_state = autonomy_dominion }
+			# 		has_dlc = "Together for Victory"
+			# 	}
+			# 	set_autonomy = { target = RAJ autonomy_state = autonomy_dominion }
+			# }
+			# if = {
+			# 	limit = {
+			# 		tag = BAN
+			# 		NOT = { is_subject = no }
+			# 		NOT = { has_autonomy_state = autonomy_dominion }
+			# 		has_dlc = "Together for Victory"
+			# 	}
+			# 	set_autonomy = { target = RAJ autonomy_state = autonomy_dominion }
+			# }
+			retire_country_leader = yes
 		}
 	}
 }
@@ -606,11 +542,9 @@ country_event = {
 	# Reject
 	option = {
 		name = mtg_britain.36.b
-
 		ai_chance = {
 			factor = 0
 		}
-
 		FROM = { country_event = { id = mtg_britain.38 hours = 6 } }
 	}
 }
@@ -831,18 +765,16 @@ country_event = {
 	# Get rid of them all
 	option = {
 		name = mtg_britain.45.a
-		
-		retire_character = ENG_alan_brooke
-		retire_character = ENG_bernard_montgomery
-		retire_character = ENG_harold_alexander
-		retire_character = ENG_john_vereker
-		retire_character = ENG_oliver_leese
-		retire_character = ENG_archibald_wavell
-		retire_character = ENG_james_fownes_somerville
-		retire_character = ENG_henry_harwood
-		retire_character = ENG_john_tovey
-		retire_character = ENG_bernard_rawlings
-
+		remove_unit_leader = 997
+		remove_unit_leader = 996
+		remove_unit_leader = 995
+		remove_unit_leader = 994
+		remove_unit_leader = 993
+		remove_unit_leader = 998
+		remove_unit_leader = 983
+		remove_unit_leader = 984
+		remove_unit_leader = 987
+		remove_unit_leader = 988
 		random_owned_controlled_state = {
 			limit = {
 				free_building_slots = {
@@ -915,1054 +847,1040 @@ country_event = {
 }
 
 # Enforce Decolonization event - release or else!!!!
-country_event = {
-	id = mtg_britain.46
-	title = mtg_britain.46.t
-	desc = mtg_britain.46.d
-	picture = GFX_report_event_communist_leader
+# country_event = {
+# 	id = mtg_britain.46
+# 	title = mtg_britain.46.t
+# 	desc = mtg_britain.46.d
+# 	picture = GFX_report_event_communist_leader
 
-	is_triggered_only = yes
+# 	is_triggered_only = yes
 	
-	# Accept - We will release
-	option = {
-		name = mtg_britain.46.a
-		ai_chance = {
-			factor = 34
-			modifier = {
-				factor = 1.5
-				strength_ratio = {
-					tag = ENG
-					ratio < 0.5
-				}
-			}
-			modifier = {
-				factor = 2
-				strength_ratio = {
-					tag = ENG
-					ratio < 0.3
-				}
-			}
-			modifier = {
-				factor = 2
-				strength_ratio = {
-					tag = ENG
-					ratio < 0.2
-				}
-			}
-			modifier = {
-				factor = 2
-				strength_ratio = {
-					tag = ENG
-					ratio < 0.1
-				}
-			}
-			modifier = {
-				factor = 0
-				strength_ratio = {
-					tag = ENG
-					ratio > 1.6
-				}
-			}
-		}
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = PUE }
-		# 		owns_state = 686
-		# 		has_full_control_of_state = 686
-		# 	}
-		# 	release = PUE
-		# }
-		# if = {
-		# 	limit = {
-		# 		PUE = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = PUE autonomy_state = autonomy_free }
-		# 	PUE = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = "PAN" }
-		# 		owns_state = 685
-		# 		has_full_control_of_state = 685
-		# 	}
-		# 	"PAN" = { transfer_state = 685 }
-		# }
-		if = {
-			limit = {
-				"PHI" = {
-					is_subject_of = ROOT
-				}
-			}
-			set_autonomy = { target = PHI autonomy_state = autonomy_free }
-			"PHI" = { leave_faction = yes }
-		}
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = CRC }
-		# 		owns_state = 695
-		# 		has_full_control_of_state = 695
-		# 	}
-		# 	release = CRC
-		# }
-		# if = {
-		# 	limit = {
-		# 		CRC = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = CRC autonomy_state = autonomy_free }
-		# 	CRC = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = SUR }
-		# 		owns_state = 309
-		# 		has_full_control_of_state = 309
-		# 	}
-		# 	release = SUR
-		# }
-		# if = {
-		# 	limit = {
-		# 		SUR = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = SUR autonomy_state = autonomy_free }
-		# 	SUR = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = SUR }
-		# 		owns_state = 309
-		# 		has_full_control_of_state = 309
-		# 	}
-		# 	release = SUR
-		# }
-		if = {
-			limit = {
-				INS = {
-					is_subject_of = ROOT
-				}
-			}
-			set_autonomy = { target = INS autonomy_state = autonomy_free }
-			INS = { leave_faction = yes }
-		}
-		if = {
-			limit = {
-				NOT = { original_tag = INS }
-				owns_state = 335
-				has_full_control_of_state = 335
-				owns_state = 672
-				has_full_control_of_state = 672
-				owns_state = 334
-				has_full_control_of_state = 334
-				owns_state = 673
-				has_full_control_of_state = 673
-				owns_state = 667
-				has_full_control_of_state = 667
-				owns_state = 309
-				has_full_control_of_state = 309
-				owns_state = 668
-				has_full_control_of_state = 668
-				owns_state = 738
-				has_full_control_of_state = 738
-				owns_state = 669
-				has_full_control_of_state = 669
-			}
-			release = INS
-		}
-		if = {
-			limit = {
-				NOT = { original_tag = COG }
-				owns_state = 295
-				has_full_control_of_state = 295
-				owns_state = 538
-				has_full_control_of_state = 538
-				owns_state = 718
-				has_full_control_of_state = 718
-				owns_state = 888
-				has_full_control_of_state = 888
-				owns_state = 889
-				has_full_control_of_state = 889
-				owns_state = 890
-				has_full_control_of_state = 890
-			}
-			release = COG
-		}
-		if = {
-			limit = {
-				COG = {
-					is_subject_of = ROOT
-				}
-			}
-			set_autonomy = { target = COG autonomy_state = autonomy_free }
-			COG = { leave_faction = yes }
-		}
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = RWA }
-		# 		owns_state = 768
-		# 		has_full_control_of_state = 768
-		# 	}
-		# 	release = RWA
-		# }
-		# if = {
-		# 	limit = {
-		# 		RWA = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = RWA autonomy_state = autonomy_free }
-		# 	RWA = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = BRD }
-		# 		owns_state = 769
-		# 		has_full_control_of_state = 769
-		# 	}
-		# 	release = BRD
-		# }
-		# if = {
-		# 	limit = {
-		# 		BRD = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = BRD autonomy_state = autonomy_free }
-		# 	BRD = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = GDL }
-		# 		owns_state = 694
-		# 		has_full_control_of_state = 694
-		# 	}
-		# 	release = GDL
-		# }
-		# if = {
-		# 	limit = {
-		# 		GDL = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = GDL autonomy_state = autonomy_free }
-		# 	GDL = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = CAY }
-		# 		owns_state = 310
-		# 		has_full_control_of_state = 310
-		# 	}
-		# 	release = CAY
-		# }
-		# if = {
-		# 	limit = {
-		# 		CAY = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = CAY autonomy_state = autonomy_free }
-		# 	CAY = { leave_faction = yes }
-		# }
-		if = {
-			limit = {
-				NOT = { original_tag = SYR }
-				owns_state = 677
-				has_full_control_of_state = 677
-				owns_state = 680
-				has_full_control_of_state = 680
-				owns_state = 554
-				has_full_control_of_state = 554
-			}
-			release = SYR
-		}
-		if = {
-			limit = {
-				SYR = {
-					is_subject_of = ROOT
-				}
-			}
-			set_autonomy = { target = SYR autonomy_state = autonomy_free }
-			SYR = { leave_faction = yes }
-		}
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = LEB }
-		# 		owns_state = 553
-		# 		has_full_control_of_state = 553
-		# 	}
-		# 	release = LEB
-		# }
-		# if = {
-		# 	limit = {
-		# 		LEB = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = LEB autonomy_state = autonomy_free }
-		# 	LEB = { leave_faction = yes }
-		# }
-		if = {
-			limit = {
-				NOT = { original_tag = MAD }
-				owns_state = 543
-				has_full_control_of_state = 543
-			}
-			release = MAD
-		}
-		if = {
-			limit = {
-				MAD = {
-					is_subject_of = ROOT
-				}
-			}
-			set_autonomy = { target = MAD autonomy_state = autonomy_free }
-			MAD = { leave_faction = yes }
-		}
-		if = {
-			limit = {
-				NOT = { original_tag = MOR }
-				owns_state = 461
-				has_full_control_of_state = 461
-				owns_state = 462
-				has_full_control_of_state = 462
-			}
-			release = MOR
-		}
-		if = {
-			limit = {
-				MOR = {
-					is_subject_of = ROOT
-				}
-			}
-			set_autonomy = { target = MOR autonomy_state = autonomy_free }
-			MOR = { leave_faction = yes }
-		}
-		if = {
-			limit = {
-				NOT = { original_tag = ALG }
-				owns_state = 459
-				has_full_control_of_state = 459
-				owns_state = 513
-				has_full_control_of_state = 513
-				owns_state = 460
-				has_full_control_of_state = 460
-				owns_state = 514
-				has_full_control_of_state = 514
-			}
-			release = ALG
-		}
-		if = {
-			limit = {
-				ALG = {
-					is_subject_of = ROOT
-				}
-			}
-			set_autonomy = { target = ALG autonomy_state = autonomy_free }
-			ALG = { leave_faction = yes }
-		}
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = TUN }
-		# 		owns_state = 458
-		# 		has_full_control_of_state = 458
-		# 		owns_state = 665
-		# 		has_full_control_of_state = 665
-		# 	}
-		# 	release = TUN
-		# }
-		# if = {
-		# 	limit = {
-		# 		TUN = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = TUN autonomy_state = autonomy_free }
-		# 	TUN = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = DJI }
-		# 		owns_state = 268
-		# 		has_full_control_of_state = 268
-		# 	}
-		# 	release = DJI
-		# }
-		# if = {
-		# 	limit = {
-		# 		DJI = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = DJI autonomy_state = autonomy_free }
-		# 	DJI = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = RCG }
-		# 		owns_state = 772
-		# 		has_full_control_of_state = 772
-		# 	}
-		# 	release = RCG
-		# }
-		# if = {
-		# 	limit = {
-		# 		RCG = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = RCG autonomy_state = autonomy_free }
-		# 	RCG = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = GAB }
-		# 		owns_state = 539
-		# 		has_full_control_of_state = 539
-		# 	}
-		# 	release = GAB
-		# }
-		# if = {
-		# 	limit = {
-		# 		GAB = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = GAB autonomy_state = autonomy_free }
-		# 	GAB = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = CMR }
-		# 		owns_state = 773
-		# 		has_full_control_of_state = 773
-		# 	}
-		# 	release = CMR
-		# }
-		# if = {
-		# 	limit = {
-		# 		CMR = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = CMR autonomy_state = autonomy_free }
-		# 	CMR = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = CAR }
-		# 		owns_state = 660
-		# 		has_full_control_of_state = 660
-		# 	}
-		# 	release = CAR
-		# }
-		# if = {
-		# 	limit = {
-		# 		CAR = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = CAR autonomy_state = autonomy_free }
-		# 	CAR = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = CHA }
-		# 		owns_state = 774
-		# 		has_full_control_of_state = 774
-		# 		owns_state = 775
-		# 		has_full_control_of_state = 775
-		# 	}
-		# 	release = CHA
-		# }
-		# if = {
-		# 	limit = {
-		# 		CHA = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = CHA autonomy_state = autonomy_free }
-		# 	CHA = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = NGR }
-		# 		owns_state = 515
-		# 		has_full_control_of_state = 515
-		# 		owns_state = 781
-		# 		has_full_control_of_state = 781
-		# 	}
-		# 	release = NGR
-		# }
-		# if = {
-		# 	limit = {
-		# 		NGR = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = NGR autonomy_state = autonomy_free }
-		# 	NGR = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = DAH }
-		# 		owns_state = 776
-		# 		has_full_control_of_state = 776
-		# 	}
-		# 	release = DAH
-		# }
-		# if = {
-		# 	limit = {
-		# 		DAH = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = DAH autonomy_state = autonomy_free }
-		# 	DAH = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = TOG }
-		# 		owns_state = 777
-		# 		has_full_control_of_state = 777
-		# 	}
-		# 	release = TOG
-		# }
-		# if = {
-		# 	limit = {
-		# 		TOG = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = TOG autonomy_state = autonomy_free }
-		# 	TOG = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = VOL }
-		# 		owns_state = 778
-		# 		has_full_control_of_state = 778
-		# 	}
-		# 	release = VOL
-		# }
-		# if = {
-		# 	limit = {
-		# 		VOL = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = VOL autonomy_state = autonomy_free }
-		# 	VOL = { leave_faction = yes }
-		# }
-		if = {
-			limit = {
-				NOT = { original_tag = IVO }
-				owns_state = 779
-				has_full_control_of_state = 779
-			}
-			release = IVO
-		}
-		if = {
-			limit = {
-				IVO = {
-					is_subject_of = ROOT
-				}
-			}
-			set_autonomy = { target = IVO autonomy_state = autonomy_free }
-			IVO = { leave_faction = yes }
-		}
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = MLI }
-		# 		owns_state = 556
-		# 		has_full_control_of_state = 556
-		# 		owns_state = 782
-		# 		has_full_control_of_state = 782
-		# 	}
-		# 	release = MLI
-		# }
-		# if = {
-		# 	limit = {
-		# 		MLI = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = MLI autonomy_state = autonomy_free }
-		# 	MLI = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = SEN }
-		# 		owns_state = 272
-		# 		has_full_control_of_state = 272
-		# 	}
-		# 	release = SEN
-		# }
-		# if = {
-		# 	limit = {
-		# 		SEN = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = SEN autonomy_state = autonomy_free }
-		# 	SEN = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = CAY }
-		# 		owns_state = 310
-		# 		has_full_control_of_state = 310
-		# 	}
-		# 	release = CAY
-		# }
-		# if = {
-		# 	limit = {
-		# 		CAY = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = CAY autonomy_state = autonomy_free }
-		# 	CAY = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = GNA }
-		# 		owns_state = 780
-		# 		has_full_control_of_state = 780
-		# 	}
-		# 	release = GNA
-		# }
-		# if = {
-		# 	limit = {
-		# 		GNA = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = GNA autonomy_state = autonomy_free }
-		# 	GNA = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = LAO }
-		# 		owns_state = 670
-		# 		has_full_control_of_state = 670
-		# 	}
-		# 	release = LAO
-		# }
-		# if = {
-		# 	limit = {
-		# 		LAO = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = LAO autonomy_state = autonomy_free }
-		# 	LAO = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = CAM }
-		# 		owns_state = 741
-		# 		has_full_control_of_state = 741
-		# 	}
-		# 	release = CAM
-		# }
-		# if = {
-		# 	limit = {
-		# 		CAM = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = CAM autonomy_state = autonomy_free }
-		# 	CAM = { leave_faction = yes }
-		# }
-		if = {
-			limit = {
-				NOT = { original_tag = VIN }
-				owns_state = 671
-				has_full_control_of_state = 671
-				owns_state = 286
-				has_full_control_of_state = 286
-			}
-			release = VIN
-		}
-		if = {
-			limit = {
-				VIN = {
-					is_subject_of = ROOT
-				}
-			}
-			set_autonomy = { target = VIN autonomy_state = autonomy_free }
-			VIN = { leave_faction = yes }
-		}
-		if = {
-			limit = {
-				NOT = { original_tag = event_target:WTT_current_china_leader }
-				owns_state = 728
-				has_full_control_of_state = 728
-			}
-			event_target:WTT_current_china_leader = { transfer_state = 728 }
-		}
-		if = {
-			limit = {
-				NOT = { original_tag = ANG }
-				owns_state = 540
-				has_full_control_of_state = 540
-				owns_state = 891
-				has_full_control_of_state = 891
-				owns_state = 892
-				has_full_control_of_state = 892
-			}
-			release = ANG
-		}
-		if = {
-			limit = {
-				ANG = {
-					is_subject_of = ROOT
-				}
-			}
-			set_autonomy = { target = ANG autonomy_state = autonomy_free }
-			ANG = { leave_faction = yes }
-		}
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = GNB }
-		# 		owns_state = 296
-		# 		has_full_control_of_state = 296
-		# 	}
-		# 	release = GNB
-		# }
-		# if = {
-		# 	limit = {
-		# 		GNB = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = GNB autonomy_state = autonomy_free }
-		# 	GNB = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = MZB }
-		# 		owns_state = 544
-		# 		has_full_control_of_state = 544
-		# 		owns_state = 896
-		# 		has_full_control_of_state = 896
-		# 		owns_state = 897
-		# 		has_full_control_of_state = 897
-		# 	}
-		# 	release = MZB
-		# }
-		# if = {
-		# 	limit = {
-		# 		MZB = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = MZB autonomy_state = autonomy_free }
-		# 	MZB = { leave_faction = yes }
-		# }
-		if = {
-			limit = {
-				NOT = { original_tag = event_target:WTT_current_china_leader }
-				owns_state = 729
-				has_full_control_of_state = 729
-			}
-			event_target:WTT_current_china_leader = { transfer_state = 729 }
-		}
-		if = {
-			limit = {
-				NOT = { original_tag = INS }
-				owns_state = 721
-				has_full_control_of_state = 721
-			}
-			INS = { transfer_state = 721 }
-		}
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = EQG }
-		# 		owns_state = 297
-		# 		has_full_control_of_state = 297
-		# 	}
-		# 	release = EQG
-		# }
-		# if = {
-		# 	limit = {
-		# 		EQG = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = EQG autonomy_state = autonomy_free }
-		# 	EQG = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = WES }
-		# 		owns_state = 699
-		# 		has_full_control_of_state = 699
-		# 	}
-		# 	release = WES
-		# }
-		# if = {
-		# 	limit = {
-		# 		WES = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = WES autonomy_state = autonomy_free }
-		# 	WES = { leave_faction = yes }
-		# }
-		if = {
-			limit = {
-				NOT = { original_tag = MOR }
-				owns_state = 290
-				has_full_control_of_state = 290
-			}
-			MOR = { transfer_state = 290 }
-		}
-		if = {
-			limit = {
-				NOT = { original_tag = MOR }
-				owns_state = 783
-				has_full_control_of_state = 783
-			}
-			MOR = { transfer_state = 783 }
-		}
-		if = {
-			limit = {
-				NOT = { original_tag = LBA }
-				owns_state = 448
-				has_full_control_of_state = 448
-				owns_state = 661
-				has_full_control_of_state = 661
-				owns_state = 449
-				has_full_control_of_state = 449
-				owns_state = 662
-				has_full_control_of_state = 662
-				owns_state = 450
-				has_full_control_of_state = 450
-				owns_state = 451
-				has_full_control_of_state = 451
-				owns_state = 663
-				has_full_control_of_state = 663
-				owns_state = 273
-				has_full_control_of_state = 273
-			}
-			release = LBA
-		}
-		if = {
-			limit = {
-				LBA = {
-					is_subject_of = ROOT
-				}
-			}
-			set_autonomy = { target = LBA autonomy_state = autonomy_free }
-			LBA = { leave_faction = yes }
-		}
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = ERI }
-		# 		owns_state = 550
-		# 		has_full_control_of_state = 550
-		# 	}
-		# 	release = ERI
-		# }
-		# if = {
-		# 	limit = {
-		# 		ERI = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = ERI autonomy_state = autonomy_free }
-		# 	ERI = { leave_faction = yes }
-		# }
-		# if = {
-		# 	limit = {
-		# 		NOT = { original_tag = SOM }
-		# 		owns_state = 559
-		# 		has_full_control_of_state = 559
-		# 	}
-		# 	release = SOM
-		# }
-		# if = {
-		# 	limit = {
-		# 		SOM = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = SOM autonomy_state = autonomy_free }
-		# 	SOM = { leave_faction = yes }
-		# }
-		if = {
-			limit = {
-				NOT = { original_tag = ETH }
-				owns_state = 271
-				has_full_control_of_state = 271
-			}
-			release = ETH
-		}
-		if = {
-			limit = {
-				ETH = {
-					is_subject_of = ROOT
-				}
-			}
-			set_autonomy = { target = ETH autonomy_state = autonomy_free }
-			ETH = { leave_faction = yes }
-		}
-		if = {
-			limit = {
-				NOT = { original_tag = KOR }
-				owns_state = 527
-				has_full_control_of_state = 527
-				owns_state = 525
-				has_full_control_of_state = 525
-			}
-			release = KOR
-		}
-		if = {
-			limit = {
-				KOR = {
-					is_subject_of = ROOT
-				}
-			}
-			set_autonomy = { target = KOR autonomy_state = autonomy_free }
-			KOR = { leave_faction = yes }
-		}
-		if = {
-			limit = {
-				MAN = {
-					is_subject_of = ROOT
-				}
-			}
-			set_autonomy = { target = MAN autonomy_state = autonomy_free }
-			MAN = { leave_faction = yes }
-		}
-		# if = {
-		# 	limit = {
-		# 		MEN = {
-		# 			is_subject_of = ROOT
-		# 		}
-		# 	}
-		# 	set_autonomy = { target = MEN autonomy_state = autonomy_free }
-		# 	MEN = { leave_faction = yes }
-		# }
-		if = {
-			limit = {
-				NOT = { original_tag = event_target:WTT_current_china_leader }
-				owns_state = 609
-				has_full_control_of_state = 609
-			}
-			event_target:WTT_current_china_leader = { transfer_state = 609 }
-		}
-		if = {
-			limit = {
-				NOT = { original_tag = event_target:WTT_current_china_leader }
-				owns_state = 745
-				has_full_control_of_state = 745
-			}
-			event_target:WTT_current_china_leader = { transfer_state = 745 }
-		}
-		if = {
-			limit = {
-				NOT = { original_tag = event_target:WTT_current_china_leader }
-				owns_state = 524
-				has_full_control_of_state = 524
-			}
-			event_target:WTT_current_china_leader = { transfer_state = 524 }
-		}
-		FROM = { country_event = { id = mtg_britain.47 hours = 6 } }
-	}
+# 	# Accept - We will release
+# 	option = {
+# 		name = mtg_britain.46.a
+# 		ai_chance = {
+# 			factor = 34
+# 			modifier = {
+# 				factor = 1.5
+# 				strength_ratio = {
+# 					tag = ENG
+# 					ratio < 0.5
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 2
+# 				strength_ratio = {
+# 					tag = ENG
+# 					ratio < 0.3
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 2
+# 				strength_ratio = {
+# 					tag = ENG
+# 					ratio < 0.2
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 2
+# 				strength_ratio = {
+# 					tag = ENG
+# 					ratio < 0.1
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 0
+# 				strength_ratio = {
+# 					tag = ENG
+# 					ratio > 1.6
+# 				}
+# 			}
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = PUE }
+# 				owns_state = 686
+# 				has_full_control_of_state = 686
+# 			}
+# 			release = PUE
+# 		}
+# 		if = {
+# 			limit = {
+# 				PUE = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = PUE autonomy_state = autonomy_free }
+# 			PUE = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = "PAN" }
+# 				owns_state = 685
+# 				has_full_control_of_state = 685
+# 			}
+# 			"PAN" = { transfer_state = 685 }
+# 		}
+# 		if = {
+# 			limit = {
+# 				"PHI" = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = PHI autonomy_state = autonomy_free }
+# 			"PHI" = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = CRC }
+# 				owns_state = 695
+# 				has_full_control_of_state = 695
+# 			}
+# 			release = CRC
+# 		}
+# 		if = {
+# 			limit = {
+# 				CRC = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = CRC autonomy_state = autonomy_free }
+# 			CRC = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = SUR }
+# 				owns_state = 309
+# 				has_full_control_of_state = 309
+# 			}
+# 			release = SUR
+# 		}
+# 		if = {
+# 			limit = {
+# 				SUR = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = SUR autonomy_state = autonomy_free }
+# 			SUR = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = SUR }
+# 				owns_state = 309
+# 				has_full_control_of_state = 309
+# 			}
+# 			release = SUR
+# 		}
+# 		if = {
+# 			limit = {
+# 				INS = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = INS autonomy_state = autonomy_free }
+# 			INS = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = INS }
+# 				owns_state = 335
+# 				has_full_control_of_state = 335
+# 				owns_state = 672
+# 				has_full_control_of_state = 672
+# 				owns_state = 334
+# 				has_full_control_of_state = 334
+# 				owns_state = 673
+# 				has_full_control_of_state = 673
+# 				owns_state = 667
+# 				has_full_control_of_state = 667
+# 				owns_state = 309
+# 				has_full_control_of_state = 309
+# 				owns_state = 668
+# 				has_full_control_of_state = 668
+# 				owns_state = 738
+# 				has_full_control_of_state = 738
+# 				owns_state = 669
+# 				has_full_control_of_state = 669
+# 			}
+# 			release = INS
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = COG }
+# 				owns_state = 295
+# 				has_full_control_of_state = 295
+# 				owns_state = 538
+# 				has_full_control_of_state = 538
+# 				owns_state = 718
+# 				has_full_control_of_state = 718
+# 			}
+# 			release = COG
+# 		}
+# 		if = {
+# 			limit = {
+# 				COG = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = COG autonomy_state = autonomy_free }
+# 			COG = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = RWA }
+# 				owns_state = 768
+# 				has_full_control_of_state = 768
+# 			}
+# 			release = RWA
+# 		}
+# 		if = {
+# 			limit = {
+# 				RWA = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = RWA autonomy_state = autonomy_free }
+# 			RWA = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = BRD }
+# 				owns_state = 769
+# 				has_full_control_of_state = 769
+# 			}
+# 			release = BRD
+# 		}
+# 		if = {
+# 			limit = {
+# 				BRD = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = BRD autonomy_state = autonomy_free }
+# 			BRD = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = GDL }
+# 				owns_state = 694
+# 				has_full_control_of_state = 694
+# 			}
+# 			release = GDL
+# 		}
+# 		if = {
+# 			limit = {
+# 				GDL = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = GDL autonomy_state = autonomy_free }
+# 			GDL = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = CAY }
+# 				owns_state = 310
+# 				has_full_control_of_state = 310
+# 			}
+# 			release = CAY
+# 		}
+# 		if = {
+# 			limit = {
+# 				CAY = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = CAY autonomy_state = autonomy_free }
+# 			CAY = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = SYR }
+# 				owns_state = 677
+# 				has_full_control_of_state = 677
+# 				owns_state = 680
+# 				has_full_control_of_state = 680
+# 				owns_state = 554
+# 				has_full_control_of_state = 554
+# 			}
+# 			release = SYR
+# 		}
+# 		if = {
+# 			limit = {
+# 				SYR = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = SYR autonomy_state = autonomy_free }
+# 			SYR = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = LEB }
+# 				owns_state = 553
+# 				has_full_control_of_state = 553
+# 			}
+# 			release = LEB
+# 		}
+# 		if = {
+# 			limit = {
+# 				LEB = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = LEB autonomy_state = autonomy_free }
+# 			LEB = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = MAD }
+# 				owns_state = 543
+# 				has_full_control_of_state = 543
+# 			}
+# 			release = MAD
+# 		}
+# 		if = {
+# 			limit = {
+# 				MAD = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = MAD autonomy_state = autonomy_free }
+# 			MAD = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = MOR }
+# 				owns_state = 461
+# 				has_full_control_of_state = 461
+# 				owns_state = 462
+# 				has_full_control_of_state = 462
+# 			}
+# 			release = MOR
+# 		}
+# 		if = {
+# 			limit = {
+# 				MOR = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = MOR autonomy_state = autonomy_free }
+# 			MOR = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = ALG }
+# 				owns_state = 459
+# 				has_full_control_of_state = 459
+# 				owns_state = 513
+# 				has_full_control_of_state = 513
+# 				owns_state = 460
+# 				has_full_control_of_state = 460
+# 				owns_state = 514
+# 				has_full_control_of_state = 514
+# 			}
+# 			release = ALG
+# 		}
+# 		if = {
+# 			limit = {
+# 				ALG = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = ALG autonomy_state = autonomy_free }
+# 			ALG = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = TUN }
+# 				owns_state = 458
+# 				has_full_control_of_state = 458
+# 				owns_state = 665
+# 				has_full_control_of_state = 665
+# 			}
+# 			release = TUN
+# 		}
+# 		if = {
+# 			limit = {
+# 				TUN = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = TUN autonomy_state = autonomy_free }
+# 			TUN = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = DJI }
+# 				owns_state = 268
+# 				has_full_control_of_state = 268
+# 			}
+# 			release = DJI
+# 		}
+# 		if = {
+# 			limit = {
+# 				DJI = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = DJI autonomy_state = autonomy_free }
+# 			DJI = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = RCG }
+# 				owns_state = 772
+# 				has_full_control_of_state = 772
+# 			}
+# 			release = RCG
+# 		}
+# 		if = {
+# 			limit = {
+# 				RCG = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = RCG autonomy_state = autonomy_free }
+# 			RCG = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = GAB }
+# 				owns_state = 539
+# 				has_full_control_of_state = 539
+# 			}
+# 			release = GAB
+# 		}
+# 		if = {
+# 			limit = {
+# 				GAB = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = GAB autonomy_state = autonomy_free }
+# 			GAB = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = CMR }
+# 				owns_state = 773
+# 				has_full_control_of_state = 773
+# 			}
+# 			release = CMR
+# 		}
+# 		if = {
+# 			limit = {
+# 				CMR = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = CMR autonomy_state = autonomy_free }
+# 			CMR = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = CAR }
+# 				owns_state = 660
+# 				has_full_control_of_state = 660
+# 			}
+# 			release = CAR
+# 		}
+# 		if = {
+# 			limit = {
+# 				CAR = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = CAR autonomy_state = autonomy_free }
+# 			CAR = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = CHA }
+# 				owns_state = 774
+# 				has_full_control_of_state = 774
+# 				owns_state = 775
+# 				has_full_control_of_state = 775
+# 			}
+# 			release = CHA
+# 		}
+# 		if = {
+# 			limit = {
+# 				CHA = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = CHA autonomy_state = autonomy_free }
+# 			CHA = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = NGR }
+# 				owns_state = 515
+# 				has_full_control_of_state = 515
+# 				owns_state = 781
+# 				has_full_control_of_state = 781
+# 			}
+# 			release = NGR
+# 		}
+# 		if = {
+# 			limit = {
+# 				NGR = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = NGR autonomy_state = autonomy_free }
+# 			NGR = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = DAH }
+# 				owns_state = 776
+# 				has_full_control_of_state = 776
+# 			}
+# 			release = DAH
+# 		}
+# 		if = {
+# 			limit = {
+# 				DAH = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = DAH autonomy_state = autonomy_free }
+# 			DAH = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = TOG }
+# 				owns_state = 777
+# 				has_full_control_of_state = 777
+# 			}
+# 			release = TOG
+# 		}
+# 		if = {
+# 			limit = {
+# 				TOG = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = TOG autonomy_state = autonomy_free }
+# 			TOG = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = VOL }
+# 				owns_state = 778
+# 				has_full_control_of_state = 778
+# 			}
+# 			release = VOL
+# 		}
+# 		if = {
+# 			limit = {
+# 				VOL = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = VOL autonomy_state = autonomy_free }
+# 			VOL = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = IVO }
+# 				owns_state = 779
+# 				has_full_control_of_state = 779
+# 			}
+# 			release = IVO
+# 		}
+# 		if = {
+# 			limit = {
+# 				IVO = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = IVO autonomy_state = autonomy_free }
+# 			IVO = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = MLI }
+# 				owns_state = 556
+# 				has_full_control_of_state = 556
+# 				owns_state = 782
+# 				has_full_control_of_state = 782
+# 			}
+# 			release = MLI
+# 		}
+# 		if = {
+# 			limit = {
+# 				MLI = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = MLI autonomy_state = autonomy_free }
+# 			MLI = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = SEN }
+# 				owns_state = 272
+# 				has_full_control_of_state = 272
+# 			}
+# 			release = SEN
+# 		}
+# 		if = {
+# 			limit = {
+# 				SEN = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = SEN autonomy_state = autonomy_free }
+# 			SEN = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = CAY }
+# 				owns_state = 310
+# 				has_full_control_of_state = 310
+# 			}
+# 			release = CAY
+# 		}
+# 		if = {
+# 			limit = {
+# 				CAY = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = CAY autonomy_state = autonomy_free }
+# 			CAY = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = GNA }
+# 				owns_state = 780
+# 				has_full_control_of_state = 780
+# 			}
+# 			release = GNA
+# 		}
+# 		if = {
+# 			limit = {
+# 				GNA = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = GNA autonomy_state = autonomy_free }
+# 			GNA = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = LAO }
+# 				owns_state = 670
+# 				has_full_control_of_state = 670
+# 			}
+# 			release = LAO
+# 		}
+# 		if = {
+# 			limit = {
+# 				LAO = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = LAO autonomy_state = autonomy_free }
+# 			LAO = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = CAM }
+# 				owns_state = 741
+# 				has_full_control_of_state = 741
+# 			}
+# 			release = CAM
+# 		}
+# 		if = {
+# 			limit = {
+# 				CAM = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = CAM autonomy_state = autonomy_free }
+# 			CAM = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = VIN }
+# 				owns_state = 671
+# 				has_full_control_of_state = 671
+# 				owns_state = 286
+# 				has_full_control_of_state = 286
+# 			}
+# 			release = VIN
+# 		}
+# 		if = {
+# 			limit = {
+# 				VIN = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = VIN autonomy_state = autonomy_free }
+# 			VIN = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = event_target:WTT_current_china_leader }
+# 				owns_state = 728
+# 				has_full_control_of_state = 728
+# 			}
+# 			event_target:WTT_current_china_leader = { transfer_state = 728 }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = ANG }
+# 				owns_state = 540
+# 				has_full_control_of_state = 540
+# 			}
+# 			release = ANG
+# 		}
+# 		if = {
+# 			limit = {
+# 				ANG = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = ANG autonomy_state = autonomy_free }
+# 			ANG = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = GNB }
+# 				owns_state = 296
+# 				has_full_control_of_state = 296
+# 			}
+# 			release = GNB
+# 		}
+# 		if = {
+# 			limit = {
+# 				GNB = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = GNB autonomy_state = autonomy_free }
+# 			GNB = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = MZB }
+# 				owns_state = 544
+# 				has_full_control_of_state = 544
+# 			}
+# 			release = MZB
+# 		}
+# 		if = {
+# 			limit = {
+# 				MZB = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = MZB autonomy_state = autonomy_free }
+# 			MZB = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = event_target:WTT_current_china_leader }
+# 				owns_state = 729
+# 				has_full_control_of_state = 729
+# 			}
+# 			event_target:WTT_current_china_leader = { transfer_state = 729 }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = INS }
+# 				owns_state = 721
+# 				has_full_control_of_state = 721
+# 			}
+# 			INS = { transfer_state = 721 }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = EQG }
+# 				owns_state = 297
+# 				has_full_control_of_state = 297
+# 			}
+# 			release = EQG
+# 		}
+# 		if = {
+# 			limit = {
+# 				EQG = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = EQG autonomy_state = autonomy_free }
+# 			EQG = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = WES }
+# 				owns_state = 699
+# 				has_full_control_of_state = 699
+# 			}
+# 			release = WES
+# 		}
+# 		if = {
+# 			limit = {
+# 				WES = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = WES autonomy_state = autonomy_free }
+# 			WES = { leave_faction = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = MOR }
+# 				owns_state = 290
+# 				has_full_control_of_state = 290
+# 			}
+# 			MOR = { transfer_state = 290 }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = MOR }
+# 				owns_state = 783
+# 				has_full_control_of_state = 783
+# 			}
+# 			MOR = { transfer_state = 783 }
+# 		}
+# 		if = {
+# 			limit = {
+# 				# NOT = { original_tag = LBA }
+# 				owns_state = 448
+# 				has_full_control_of_state = 448
+# 				owns_state = 661
+# 				has_full_control_of_state = 661
+# 				owns_state = 449
+# 				has_full_control_of_state = 449
+# 				owns_state = 662
+# 				has_full_control_of_state = 662
+# 				owns_state = 450
+# 				has_full_control_of_state = 450
+# 				owns_state = 451
+# 				has_full_control_of_state = 451
+# 				owns_state = 663
+# 				has_full_control_of_state = 663
+# 				owns_state = 273
+# 				has_full_control_of_state = 273
+# 			}
+# 			# release = LBA
+# 		}
+# 		# if = {
+# 		# 	limit = {
+# 		# 		LBA = {
+# 		# 			is_subject_of = ROOT
+# 		# 		}
+# 		# 	}
+# 		# 	set_autonomy = { target = LBA autonomy_state = autonomy_free }
+# 		# 	LBA = { leave_faction = yes }
+# 		# }
+# 		# if = {
+# 		# 	limit = {
+# 		# 		NOT = { original_tag = ERI }
+# 		# 		owns_state = 550
+# 		# 		has_full_control_of_state = 550
+# 		# 	}
+# 		# 	release = ERI
+# 		# }
+# 		# if = {
+# 		# 	limit = {
+# 		# 		ERI = {
+# 		# 			is_subject_of = ROOT
+# 		# 		}
+# 		# 	}
+# 		# 	set_autonomy = { target = ERI autonomy_state = autonomy_free }
+# 		# 	ERI = { leave_faction = yes }
+# 		# }
+# 		# if = {
+# 		# 	limit = {
+# 		# 		NOT = { original_tag = SOM }
+# 		# 		owns_state = 559
+# 		# 		has_full_control_of_state = 559
+# 		# 	}
+# 		# 	release = SOM
+# 		# }
+# 		# if = {
+# 		# 	limit = {
+# 		# 		SOM = {
+# 		# 			is_subject_of = ROOT
+# 		# 		}
+# 		# 	}
+# 		# 	set_autonomy = { target = SOM autonomy_state = autonomy_free }
+# 		# 	SOM = { leave_faction = yes }
+# 		# }
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = ETH }
+# 				owns_state = 271
+# 				has_full_control_of_state = 271
+# 			}
+# 			release = ETH
+# 		}
+# 		if = {
+# 			limit = {
+# 				ETH = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = ETH autonomy_state = autonomy_free }
+# 			ETH = { leave_faction = yes }
+# 		}
+# 		# if = {
+# 		# 	limit = {
+# 		# 		NOT = { original_tag = KOR }
+# 		# 		owns_state = 527
+# 		# 		has_full_control_of_state = 527
+# 		# 		owns_state = 525
+# 		# 		has_full_control_of_state = 525
+# 		# 	}
+# 		# 	release = KOR
+# 		# }
+# 		# if = {
+# 		# 	limit = {
+# 		# 		KOR = {
+# 		# 			is_subject_of = ROOT
+# 		# 		}
+# 		# 	}
+# 		# 	set_autonomy = { target = KOR autonomy_state = autonomy_free }
+# 		# 	KOR = { leave_faction = yes }
+# 		# }
+# 		if = {
+# 			limit = {
+# 				MAN = {
+# 					is_subject_of = ROOT
+# 				}
+# 			}
+# 			set_autonomy = { target = MAN autonomy_state = autonomy_free }
+# 			MAN = { leave_faction = yes }
+# 		}
+# 		# if = {
+# 		# 	limit = {
+# 		# 		MEN = {
+# 		# 			is_subject_of = ROOT
+# 		# 		}
+# 		# 	}
+# 		# 	set_autonomy = { target = MEN autonomy_state = autonomy_free }
+# 		# 	MEN = { leave_faction = yes }
+# 		# }
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = event_target:WTT_current_china_leader }
+# 				owns_state = 609
+# 				has_full_control_of_state = 609
+# 			}
+# 			event_target:WTT_current_china_leader = { transfer_state = 609 }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = event_target:WTT_current_china_leader }
+# 				owns_state = 745
+# 				has_full_control_of_state = 745
+# 			}
+# 			event_target:WTT_current_china_leader = { transfer_state = 745 }
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { original_tag = event_target:WTT_current_china_leader }
+# 				owns_state = 524
+# 				has_full_control_of_state = 524
+# 			}
+# 			event_target:WTT_current_china_leader = { transfer_state = 524 }
+# 		}
+# 		FROM = { country_event = { id = mtg_britain.47 hours = 6 } }
+# 	}
 
-	# Reject - We will NOT release
-	option = {
-		name = mtg_britain.46.b
-		ai_chance = {
-			factor = 66
-			modifier = {
-				factor = 1.5
-				strength_ratio = {
-					tag = ENG
-					ratio > 0.7
-				}
-			}
-			modifier = {
-				factor = 2
-				strength_ratio = {
-					tag = ENG
-					ratio > 0.85
-				}
-			}
-			modifier = {
-				factor = 2
-				strength_ratio = {
-					tag = ENG
-					ratio > 1
-				}
-			}
-			modifier = {
-				factor = 2
-				strength_ratio = {
-					tag = ENG
-					ratio > 1.2
-				}
-			}
-			modifier = {
-				factor = 2
-				strength_ratio = {
-					tag = ENG
-					ratio > 1.4
-				}
-			}
-		}
-		FROM = { country_event = { id = mtg_britain.48 hours = 6 } }
-		effect_tooltip = {
-			FROM = { 
-				create_wargoal = {
-					type = puppet_wargoal_focus
-					target = ROOT
-				}
-			}
-		}
-	}
-}
+# 	# Reject - We will NOT release
+# 	option = {
+# 		name = mtg_britain.46.b
+# 		ai_chance = {
+# 			factor = 66
+# 			modifier = {
+# 				factor = 1.5
+# 				strength_ratio = {
+# 					tag = ENG
+# 					ratio > 0.7
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 2
+# 				strength_ratio = {
+# 					tag = ENG
+# 					ratio > 0.85
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 2
+# 				strength_ratio = {
+# 					tag = ENG
+# 					ratio > 1
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 2
+# 				strength_ratio = {
+# 					tag = ENG
+# 					ratio > 1.2
+# 				}
+# 			}
+# 			modifier = {
+# 				factor = 2
+# 				strength_ratio = {
+# 					tag = ENG
+# 					ratio > 1.4
+# 				}
+# 			}
+# 		}
+# 		FROM = { country_event = { id = mtg_britain.48 hours = 6 } }
+# 		effect_tooltip = {
+# 			FROM = { 
+# 				create_wargoal = {
+# 					type = puppet_wargoal_focus
+# 					target = ROOT
+# 				}
+# 			}
+# 		}
+# 	}
+# }
 
 # Enforce Decolonization event - FROM has released
-country_event = {
-	id = mtg_britain.47
-	title = mtg_britain.47.t
-	desc = mtg_britain.47.d
-	picture = GFX_report_event_generic_sign_treaty3
+# country_event = {
+# 	id = mtg_britain.47
+# 	title = mtg_britain.47.t
+# 	desc = mtg_britain.47.d
+# 	picture = GFX_report_event_generic_sign_treaty3
 
-	is_triggered_only = yes
+# 	is_triggered_only = yes
 	
-	# Ok
-	option = {
-		name = mtg_britain.47.a
-	}
-}
+# 	# Ok
+# 	option = {
+# 		name = mtg_britain.47.a
+# 	}
+# }
 
 # Enforce Decolonization event - FROM has refused to release!
-country_event = {
-	id = mtg_britain.48
-	title = mtg_britain.48.t
-	desc = mtg_britain.48.d
-	picture = GFX_report_event_british_inspect_troops
+# country_event = {
+# 	id = mtg_britain.48
+# 	title = mtg_britain.48.t
+# 	desc = mtg_britain.48.d
+# 	picture = GFX_report_event_british_inspect_troops
 
-	is_triggered_only = yes
+# 	is_triggered_only = yes
 	
-	# Ok
-	option = {
-		name = mtg_britain.48.a
-		create_wargoal = {
-			type = puppet_wargoal_focus
-			target = FROM
-		}
-	}
-}
+# 	# Ok
+# 	option = {
+# 		name = mtg_britain.48.a
+# 		create_wargoal = {
+# 			type = puppet_wargoal_focus
+# 			target = FROM
+# 		}
+# 	}
+# }
 
 # Soviet Cooperation - event for SOV - Wanna gang up on GER?
 country_event = {
@@ -2018,7 +1936,7 @@ country_event = {
 	id = mtg_britain.50
 	title = mtg_britain.50.t
 	desc = mtg_britain.50.d
-	picture = GFX_report_event_generic_handshake
+	picture = GFX_report_event_hitler_handshake
 
 	is_triggered_only = yes
 	
@@ -2145,7 +2063,7 @@ country_event = {
 			if = {
 				limit = {
 					has_country_leader = {
-						character = ENG_harry_pollitt
+						name = "Harry Pollitt"
 						ruling_only = yes
 					}
 				}
@@ -2297,15 +2215,6 @@ country_event = {
 		}
 		if = {
 			limit = {
-				has_country_flag = ENG_march_temp_man
-			}
-			add_stability = -0.009
-			add_popularity = { ideology = fascism popularity = 0.006 }
-			120 = { set_state_flag = ENG_has_blackshirt_support }
-			custom_effect_tooltip = ENG_blackshirt_march_tt
-		}
-		if = {
-			limit = {
 				has_country_flag = ENG_march_temp_aberdeenshire
 			}
 			add_stability = -0.026
@@ -2338,15 +2247,6 @@ country_event = {
 			add_stability = -0.072
 			add_popularity = { ideology = fascism popularity = 0.048 }
 			131 = { set_state_flag = ENG_has_blackshirt_support }
-			custom_effect_tooltip = ENG_blackshirt_march_tt
-		}
-		if = {
-			limit = {
-				has_country_flag = ENG_march_temp_cumbria
-			}
-			add_stability = -0.048
-			add_popularity = { ideology = fascism popularity = 0.032 }
-			121 = { set_state_flag = ENG_has_blackshirt_support }
 			custom_effect_tooltip = ENG_blackshirt_march_tt
 		}
 		if = {
@@ -2441,11 +2341,9 @@ country_event = {
 		}
 		clr_country_flag = ENG_march_temp_northern_ireland
 		clr_country_flag = ENG_march_temp_highlands
-		clr_country_flag = ENG_march_temp_man
 		clr_country_flag = ENG_march_temp_aberdeenshire
 		clr_country_flag = ENG_march_temp_lanark
 		clr_country_flag = ENG_march_temp_lothian
-		clr_country_flag = ENG_march_temp_cumbria
 		clr_country_flag = ENG_march_temp_northern_england
 		clr_country_flag = ENG_march_temp_yorkshire
 		clr_country_flag = ENG_march_temp_lancashire
@@ -2494,15 +2392,6 @@ country_event = {
 		}
 		if = {
 			limit = {
-				has_country_flag = ENG_march_temp_man
-			}
-			add_stability = -0.012
-			add_popularity = { ideology = fascism popularity = 0.006 }
-			120 = { set_state_flag = ENG_has_blackshirt_support }
-			custom_effect_tooltip = ENG_blackshirt_march_tt
-		}
-		if = {
-			limit = {
 				has_country_flag = ENG_march_temp_aberdeenshire
 			}
 			add_stability = -0.034
@@ -2522,15 +2411,6 @@ country_event = {
 		if = {
 			limit = {
 				has_country_flag = ENG_march_temp_lothian
-			}
-			add_stability = -0.064
-			add_popularity = { ideology = fascism popularity = 0.032 }
-			121 = { set_state_flag = ENG_has_blackshirt_support }
-			custom_effect_tooltip = ENG_blackshirt_march_tt
-		}
-		if = {
-			limit = {
-				has_country_flag = ENG_march_temp_cumbria
 			}
 			add_stability = -0.064
 			add_popularity = { ideology = fascism popularity = 0.032 }
@@ -2638,7 +2518,6 @@ country_event = {
 		}
 		clr_country_flag = ENG_march_temp_northern_ireland
 		clr_country_flag = ENG_march_temp_highlands
-		clr_country_flag = ENG_march_temp_man
 		clr_country_flag = ENG_march_temp_aberdeenshire
 		clr_country_flag = ENG_march_temp_lanark
 		clr_country_flag = ENG_march_temp_lothian
@@ -2690,15 +2569,6 @@ country_event = {
 		}
 		if = {
 			limit = {
-				has_country_flag = ENG_march_temp_man
-			}
-			add_stability = -0.018
-			add_popularity = { ideology = fascism popularity = 0.006 }
-			120 = { set_state_flag = ENG_has_blackshirt_support }
-			custom_effect_tooltip = ENG_blackshirt_march_tt
-		}
-		if = {
-			limit = {
 				has_country_flag = ENG_march_temp_aberdeenshire
 			}
 			add_stability = -0.051
@@ -2709,15 +2579,6 @@ country_event = {
 		if = {
 			limit = {
 				has_country_flag = ENG_march_temp_lanark
-			}
-			add_stability = -0.153
-			add_popularity = { ideology = fascism popularity = 0.051 }
-			133 = { set_state_flag = ENG_has_blackshirt_support }
-			custom_effect_tooltip = ENG_blackshirt_march_tt
-		}
-		if = {
-			limit = {
-				has_country_flag = ENG_march_temp_cumbria
 			}
 			add_stability = -0.153
 			add_popularity = { ideology = fascism popularity = 0.051 }
@@ -2834,11 +2695,9 @@ country_event = {
 		}
 		clr_country_flag = ENG_march_temp_northern_ireland
 		clr_country_flag = ENG_march_temp_highlands
-		clr_country_flag = ENG_march_temp_man
 		clr_country_flag = ENG_march_temp_aberdeenshire
 		clr_country_flag = ENG_march_temp_lanark
 		clr_country_flag = ENG_march_temp_lothian
-		clr_country_flag = ENG_march_temp_cumbria
 		clr_country_flag = ENG_march_temp_northern_england
 		clr_country_flag = ENG_march_temp_yorkshire
 		clr_country_flag = ENG_march_temp_lancashire
@@ -2906,545 +2765,545 @@ country_event = {
 	# We won't back down!
 	option = {
 		name = mtg_britain.73.a
-		release = PAK
-		PAK = {
-			declare_war_on = {
-				target = ROOT
-				type = annex_everything
-			}
-		}
-		hidden_effect = {
-			PAK = {
-				add_equipment_to_stockpile = {
-				    type = infantry_equipment
-				    amount = 15000
-				    producer = RAJ
-				}
-				division_template = {
-					name = "Pakistani Liberation Army"
-					priority = 1
-					division_names_group = RAJ_INF_01
-					is_locked = yes
-					regiments = {
-						infantry = { x = 0 y = 0 }
-						infantry = { x = 0 y = 1 }
-						infantry = { x = 0 y = 2 }
-						infantry = { x = 1 y = 0 }
-						infantry = { x = 1 y = 1 }
-						infantry = { x = 1 y = 2 }
-					}
-				}
-				# Sind
-				443 = {
-					create_unit = {
-						division = "name = \"1. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"2. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"3. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-				}
-				# Punjab
-				440 = {
-					create_unit = {
-						division = "name = \"4. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"5. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"6. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-				}
-				# Northern Kashmir
-				787 = {
-					create_unit = {
-						division = "name = \"7. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"8. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"9. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-				}
-				# Peshawar
-				442 = {
-					create_unit = {
-						division = "name = \"10. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"11. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-				}
-				# Baluchistan
-				444 = {
-					create_unit = {
-						division = "name = \"12. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"13. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-				}
-				# Quetta
-				445 = {
-					create_unit = {
-						division = "name = \"14. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"15. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"16. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"17. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"18. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"19. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-				}
-				# East Bengal (Bangladesh)
-				430 = {
-					create_unit = {
-						division = "name = \"20. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"21. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"22. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"23. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"24. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"25. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"26. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"27. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"28. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"29. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"30. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"31. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"32. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"33. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-					create_unit = {
-						division = "name = \"34. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-						owner = PAK
-					}
-				}
-			}
-			hidden_effect = {
-				division_template = {
-					name = "Hindu Militia"
-					priority = 1
-					division_names_group = RAJ_INF_01
-					is_locked = yes
-					regiments = {
-						infantry = { x = 0 y = 0 }
-						infantry = { x = 0 y = 1 }
-						infantry = { x = 0 y = 2 }
-						infantry = { x = 1 y = 0 }
-						infantry = { x = 1 y = 1 }
-						infantry = { x = 1 y = 2 }
-					}
-				}
-				# Delhi
-				439 = {
-					create_unit = {
-						division = "name = \"1. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"2. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"3. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"4. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"5. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"6. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-				}
-				# Rajahsthan
-				433 = {
-					create_unit = {
-						division = "name = \"7. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"8. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"9. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"10. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"11. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"12. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-				}
-				# Gujarat
-				428 = {
-					create_unit = {
-						division = "name = \"13. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"14. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"15. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-				}
-				# Assam
-				432 = {
-					create_unit = {
-						division = "name = \"16. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"17. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"18. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"19. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-				}
-				# West bengal
-				431 = {
-					create_unit = {
-						division = "name = \"20. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"21. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"22. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-					create_unit = {
-						division = "name = \"23. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
-						owner = RAJ
-					}
-				}
-			}
-			PAK = {
-				if = {
-					limit = {
-						strength_ratio = {
-						    tag = RAJ
-						    ratio < 0.9
-						}
-					}
-					# East Bengal (Bangladesh)
-					430 = {
-						create_unit = {
-							division = "name = \"35. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-						create_unit = {
-							division = "name = \"36. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-					}
-					# Punjab
-					440 = {
-						create_unit = {
-							division = "name = \"37. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-						create_unit = {
-							division = "name = \"38. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-					}
-				}
-				if = {
-					limit = {
-						strength_ratio = {
-						    tag = RAJ
-						    ratio < 0.9
-						}
-					}
-					# East Bengal (Bangladesh)
-					430 = {
-						create_unit = {
-							division = "name = \"39. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-						create_unit = {
-							division = "name = \"40. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-					}
-					# Punjab
-					440 = {
-						create_unit = {
-							division = "name = \"41. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-						create_unit = {
-							division = "name = \"42. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-					}
-				}
-				if = {
-					limit = {
-						strength_ratio = {
-						    tag = RAJ
-						    ratio < 0.9
-						}
-					}
-					# East Bengal (Bangladesh)
-					430 = {
-						create_unit = {
-							division = "name = \"43. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-						create_unit = {
-							division = "name = \"44. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-					}
-					# Punjab
-					440 = {
-						create_unit = {
-							division = "name = \"45. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-						create_unit = {
-							division = "name = \"46. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-					}
-				}
-				if = {
-					limit = {
-						strength_ratio = {
-						    tag = RAJ
-						    ratio < 0.9
-						}
-					}
-					# East Bengal (Bangladesh)
-					430 = {
-						create_unit = {
-							division = "name = \"47. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-						create_unit = {
-							division = "name = \"48. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-					}
-					# Punjab
-					440 = {
-						create_unit = {
-							division = "name = \"49. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-						create_unit = {
-							division = "name = \"50. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-					}
-				}
-				if = {
-					limit = {
-						strength_ratio = {
-						    tag = RAJ
-						    ratio < 0.9
-						}
-					}
-					# East Bengal (Bangladesh)
-					430 = {
-						create_unit = {
-							division = "name = \"51. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-					}
-					# Punjab
-					440 = {
-						create_unit = {
-							division = "name = \"52. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-						create_unit = {
-							division = "name = \"53. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-					}
-				}
-				if = {
-					limit = {
-						strength_ratio = {
-						    tag = RAJ
-						    ratio < 0.9
-						}
-					}
-					# East Bengal (Bangladesh)
-					430 = {
-						create_unit = {
-							division = "name = \"54. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-					}
-					# Punjab
-					440 = {
-						create_unit = {
-							division = "name = \"55. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-						create_unit = {
-							division = "name = \"56. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-					}
-				}
-				if = {
-					limit = {
-						strength_ratio = {
-						    tag = RAJ
-						    ratio < 0.9
-						}
-					}
-					# East Bengal (Bangladesh)
-					430 = {
-						create_unit = {
-							division = "name = \"57. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-					}
-					# Punjab
-					440 = {
-						create_unit = {
-							division = "name = \"58. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-						create_unit = {
-							division = "name = \"59. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
-							owner = PAK
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_idea = RAJ_marginalized_muslim_community_angry
-				}
-				swap_ideas = {
-					add_idea = RAJ_marginalized_muslim_community_happy
-					remove_idea = RAJ_marginalized_muslim_community_angry
-				}
-			}
-			if = {
-				limit = {
-					has_idea = RAJ_marginalized_muslim_community
-				}
-				swap_ideas = {
-					add_idea = RAJ_marginalized_muslim_community_happy
-					remove_idea = RAJ_marginalized_muslim_community
-				}
-			}
-			set_country_flag = RAJ_pakistani_civil_war_flag
-			hidden_effect = { country_event = { id = mtg_britain.109 days = 15 random_days = 75 } }
-		}
+		# release = WST
+		# WST = {
+		# 	declare_war_on = {
+		# 		target = ROOT
+		# 		type = annex_everything
+		# 	}
+		# }
+		# hidden_effect = {
+		# 	WST = {
+		# 		add_equipment_to_stockpile = {
+		# 		    type = infantry_equipment
+		# 		    amount = 15000
+		# 		    producer = RAJ
+		# 		}
+		# 		division_template = {
+		# 			name = "Pakistani Liberation Army"
+		# 			priority = 1
+		# 			division_names_group = RAJ_INF_01
+		# 			is_locked = yes
+		# 			regiments = {
+		# 				infantry = { x = 0 y = 0 }
+		# 				infantry = { x = 0 y = 1 }
+		# 				infantry = { x = 0 y = 2 }
+		# 				infantry = { x = 1 y = 0 }
+		# 				infantry = { x = 1 y = 1 }
+		# 				infantry = { x = 1 y = 2 }
+		# 			}
+		# 		}
+		# 		# Sind
+		# 		443 = {
+		# 			create_unit = {
+		# 				division = "name = \"1. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"2. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"3. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 		}
+		# 		# Punjab
+		# 		440 = {
+		# 			create_unit = {
+		# 				division = "name = \"4. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"5. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"6. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 		}
+		# 		# Northern Kashmir
+		# 		787 = {
+		# 			create_unit = {
+		# 				division = "name = \"7. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"8. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"9. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 		}
+		# 		# Peshawar
+		# 		442 = {
+		# 			create_unit = {
+		# 				division = "name = \"10. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"11. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 		}
+		# 		# Baluchistan
+		# 		444 = {
+		# 			create_unit = {
+		# 				division = "name = \"12. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"13. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 		}
+		# 		# Quetta
+		# 		445 = {
+		# 			create_unit = {
+		# 				division = "name = \"14. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"15. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"16. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"17. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"18. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"19. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 		}
+		# 		# East Bengal (Bangladesh)
+		# 		430 = {
+		# 			create_unit = {
+		# 				division = "name = \"20. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"21. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"22. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"23. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"24. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"25. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"26. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"27. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"28. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"29. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"30. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"31. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"32. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"33. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"34. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = WST
+		# 			}
+		# 		}
+		# 	}
+		# 	hidden_effect = {
+		# 		division_template = {
+		# 			name = "Hindu Militia"
+		# 			priority = 1
+		# 			division_names_group = RAJ_INF_01
+		# 			is_locked = yes
+		# 			regiments = {
+		# 				infantry = { x = 0 y = 0 }
+		# 				infantry = { x = 0 y = 1 }
+		# 				infantry = { x = 0 y = 2 }
+		# 				infantry = { x = 1 y = 0 }
+		# 				infantry = { x = 1 y = 1 }
+		# 				infantry = { x = 1 y = 2 }
+		# 			}
+		# 		}
+		# 		# Delhi
+		# 		439 = {
+		# 			create_unit = {
+		# 				division = "name = \"1. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"2. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"3. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"4. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"5. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"6. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 		}
+		# 		# Rajahsthan
+		# 		433 = {
+		# 			create_unit = {
+		# 				division = "name = \"7. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"8. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"9. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"10. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"11. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"12. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 		}
+		# 		# Gujarat
+		# 		428 = {
+		# 			create_unit = {
+		# 				division = "name = \"13. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"14. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"15. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 		}
+		# 		# Assam
+		# 		432 = {
+		# 			create_unit = {
+		# 				division = "name = \"16. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"17. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"18. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"19. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 		}
+		# 		# West bengal
+		# 		431 = {
+		# 			create_unit = {
+		# 				division = "name = \"20. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"21. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"22. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"23. Hindu Militia\" division_template = \"Hindu Militia\" start_experience_factor = 0.5" 
+		# 				owner = RAJ
+		# 			}
+		# 		}
+		# 	}
+		# 	WST = {
+		# 		if = {
+		# 			limit = {
+		# 				strength_ratio = {
+		# 				    tag = RAJ
+		# 				    ratio < 0.9
+		# 				}
+		# 			}
+		# 			# East Bengal (Bangladesh)
+		# 			430 = {
+		# 				create_unit = {
+		# 					division = "name = \"35. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 				create_unit = {
+		# 					division = "name = \"36. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 			}
+		# 			# Punjab
+		# 			440 = {
+		# 				create_unit = {
+		# 					division = "name = \"37. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 				create_unit = {
+		# 					division = "name = \"38. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 			}
+		# 		}
+		# 		if = {
+		# 			limit = {
+		# 				strength_ratio = {
+		# 				    tag = RAJ
+		# 				    ratio < 0.9
+		# 				}
+		# 			}
+		# 			# East Bengal (Bangladesh)
+		# 			430 = {
+		# 				create_unit = {
+		# 					division = "name = \"39. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 				create_unit = {
+		# 					division = "name = \"40. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 			}
+		# 			# Punjab
+		# 			440 = {
+		# 				create_unit = {
+		# 					division = "name = \"41. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 				create_unit = {
+		# 					division = "name = \"42. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 			}
+		# 		}
+		# 		if = {
+		# 			limit = {
+		# 				strength_ratio = {
+		# 				    tag = RAJ
+		# 				    ratio < 0.9
+		# 				}
+		# 			}
+		# 			# East Bengal (Bangladesh)
+		# 			430 = {
+		# 				create_unit = {
+		# 					division = "name = \"43. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 				create_unit = {
+		# 					division = "name = \"44. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 			}
+		# 			# Punjab
+		# 			440 = {
+		# 				create_unit = {
+		# 					division = "name = \"45. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 				create_unit = {
+		# 					division = "name = \"46. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 			}
+		# 		}
+		# 		if = {
+		# 			limit = {
+		# 				strength_ratio = {
+		# 				    tag = RAJ
+		# 				    ratio < 0.9
+		# 				}
+		# 			}
+		# 			# East Bengal (Bangladesh)
+		# 			430 = {
+		# 				create_unit = {
+		# 					division = "name = \"47. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 				create_unit = {
+		# 					division = "name = \"48. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 			}
+		# 			# Punjab
+		# 			440 = {
+		# 				create_unit = {
+		# 					division = "name = \"49. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 				create_unit = {
+		# 					division = "name = \"50. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 			}
+		# 		}
+		# 		if = {
+		# 			limit = {
+		# 				strength_ratio = {
+		# 				    tag = RAJ
+		# 				    ratio < 0.9
+		# 				}
+		# 			}
+		# 			# East Bengal (Bangladesh)
+		# 			430 = {
+		# 				create_unit = {
+		# 					division = "name = \"51. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 			}
+		# 			# Punjab
+		# 			440 = {
+		# 				create_unit = {
+		# 					division = "name = \"52. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 				create_unit = {
+		# 					division = "name = \"53. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 			}
+		# 		}
+		# 		if = {
+		# 			limit = {
+		# 				strength_ratio = {
+		# 				    tag = RAJ
+		# 				    ratio < 0.9
+		# 				}
+		# 			}
+		# 			# East Bengal (Bangladesh)
+		# 			430 = {
+		# 				create_unit = {
+		# 					division = "name = \"54. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 			}
+		# 			# Punjab
+		# 			440 = {
+		# 				create_unit = {
+		# 					division = "name = \"55. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 				create_unit = {
+		# 					division = "name = \"56. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 			}
+		# 		}
+		# 		if = {
+		# 			limit = {
+		# 				strength_ratio = {
+		# 				    tag = RAJ
+		# 				    ratio < 0.9
+		# 				}
+		# 			}
+		# 			# East Bengal (Bangladesh)
+		# 			430 = {
+		# 				create_unit = {
+		# 					division = "name = \"57. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 			}
+		# 			# Punjab
+		# 			440 = {
+		# 				create_unit = {
+		# 					division = "name = \"58. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 				create_unit = {
+		# 					division = "name = \"59. Pakistani Liberation Army\" division_template = \"Pakistani Liberation Army\" start_experience_factor = 0.5" 
+		# 					owner = WST
+		# 				}
+		# 			}
+		# 		}
+		# 	}
+		# 	if = {
+		# 		limit = {
+		# 			has_idea = RAJ_marginalized_muslim_community_angry
+		# 		}
+		# 		swap_ideas = {
+		# 			add_idea = RAJ_marginalized_muslim_community_happy
+		# 			remove_idea = RAJ_marginalized_muslim_community_angry
+		# 		}
+		# 	}
+		# 	if = {
+		# 		limit = {
+		# 			has_idea = RAJ_marginalized_muslim_community
+		# 		}
+		# 		swap_ideas = {
+		# 			add_idea = RAJ_marginalized_muslim_community_happy
+		# 			remove_idea = RAJ_marginalized_muslim_community
+		# 		}
+		# 	}
+		# 	set_country_flag = RAJ_pakistani_civil_war_flag
+		# 	hidden_effect = { country_event = { id = mtg_britain.109 days = 15 random_days = 75 } }
+		# }
 	}
 	# Give them their independence
 	option = {
 		name = mtg_britain.73.b
-		ai_chance = {
-			factor = 0
-		}
-		release = PAK
-		hidden_effect = { country_event = { id = mtg_britain.109 days = 5 random_days = 5 } }
+		# ai_chance = {
+		# 	factor = 0
+		# }
+		# release = WST
+		# hidden_effect = { country_event = { id = mtg_britain.109 days = 5 random_days = 5 } }
 	}
 }
 
@@ -3484,34 +3343,34 @@ country_event = {
 	# Let's make peace
 	option = {
 		name = mtg_britain.74.a
-		every_country = {
-			limit = {
-				is_in_faction_with = RAJ
-				has_war_with = PAK
-			}
-			white_peace = PAK
-		}
-		white_peace = PAK
-		PAK = { country_event = { id = mtg_britain.75 } }
-		effect_tooltip = {
-			delete_unit_template_and_units = {
-   				division_template = "Hindu Militia"
-			}
-		}
-		clr_country_flag = RAJ_pakistani_civil_war_flag
+		# every_country = {
+		# 	limit = {
+		# 		is_in_faction_with = RAJ
+		# 		has_war_with = WST
+		# 	}
+		# 	white_peace = WST
+		# }
+		# white_peace = WST
+		# WST = { country_event = { id = mtg_britain.75 } }
+		# effect_tooltip = {
+		# 	delete_unit_template_and_units = {
+   		# 		division_template = "Hindu Militia"
+		# 	}
+		# }
+		# clr_country_flag = RAJ_pakistani_civil_war_flag
 	}
 
 	# All or nothing - no peace!
 	option = {
 		name = mtg_britain.74.b
-		ai_chance = {
-			factor = 0
-		}
-		add_war_support = -0.1
+		# ai_chance = {
+		# 	factor = 0
+		# }
+		# add_war_support = -0.1
 	}
 }
 
-# Event for PAK notifying of white peace
+# Event for WST notifying of white peace
 country_event = {
 	id = mtg_britain.75
 	title = mtg_britain.75.t
@@ -3522,31 +3381,31 @@ country_event = {
 	
 	# Ok
 	option = {
-		name = mtg_britain.75.a
-		effect_tooltip = {
-			every_country = {
-				limit = {
-					is_in_faction_with = RAJ
-					has_war_with = PAK
-				}
-				white_peace = PAK
-			}
-			RAJ = { white_peace = PAK }
-		}
-		delete_unit_template_and_units = {
-   			division_template = "Pakistani Liberation Army"
-		}
-		hidden_effect = {
-			FROM = {
-				delete_unit_template_and_units = {
-   					division_template = "Hindu Militia"
-				}
-			}
-		}
+		# name = mtg_britain.75.a
+		# effect_tooltip = {
+		# 	every_country = {
+		# 		limit = {
+		# 			is_in_faction_with = RAJ
+		# 			has_war_with = WST
+		# 		}
+		# 		white_peace = WST
+		# 	}
+		# 	RAJ = { white_peace = WST }
+		# }
+		# delete_unit_template_and_units = {
+   		# 	division_template = "Pakistani Liberation Army"
+		# }
+		# hidden_effect = {
+		# 	FROM = {
+		# 		delete_unit_template_and_units = {
+   		# 			division_template = "Hindu Militia"
+		# 		}
+		# 	}
+		# }
 	}
 }
 
-# Event for PAK starting civil war
+# Event for WST starting civil war
 country_event = {
 	id = mtg_britain.76
 	title = mtg_britain.76.t
@@ -3555,14 +3414,6 @@ country_event = {
 
 	trigger = {
 		always = no
-		# tag = PAK
-		# NOT = { country_exists = BAN }
-		# NOT = { has_country_flag = PAK_civil_war }
-		# NOT = { ENG = { has_completed_focus = ENG_the_three_nation_solution } }
-		# is_subject = no
-		# has_war = no
-		# has_dlc = "Man the Guns"
-		# NOT = { has_dlc = "Graveyard of Empires" }
 	}
 	
 	fire_only_once = yes
@@ -3571,108 +3422,107 @@ country_event = {
 	
 	# We won't back down!
 	option = {
-		name = mtg_britain.76.a
-		set_country_flag = PAK_civil_war
-		release = BAN
-		hidden_effect = {
-			BAN = {
-				division_template = {
-					name = "Bangladeshi Liberation Army"
-					priority = 1
-					division_names_group = RAJ_INF_01
-					is_locked = yes
-					regiments = {
-						infantry = { x = 0 y = 0 }
-						infantry = { x = 0 y = 1 }
-						infantry = { x = 0 y = 2 }
-						infantry = { x = 1 y = 0 }
-						infantry = { x = 1 y = 1 }
-						infantry = { x = 1 y = 2 }
-					}
-				}
-				# East Bengal (Bangladesh)
-				430 = {
-					create_unit = {
-						division = "name = \"1. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
-						owner = BAN
-					}
-					create_unit = {
-						division = "name = \"2. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
-						owner = BAN
-					}
-					create_unit = {
-						division = "name = \"3. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
-						owner = BAN
-					}
-					create_unit = {
-						division = "name = \"4. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
-						owner = BAN
-					}
-					create_unit = {
-						division = "name = \"5. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
-						owner = BAN
-					}
-					create_unit = {
-						division = "name = \"6. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
-						owner = BAN
-					}
-					create_unit = {
-						division = "name = \"7. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
-						owner = BAN
-					}
-					create_unit = {
-						division = "name = \"8. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
-						owner = BAN
-					}
-					create_unit = {
-						division = "name = \"9. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
-						owner = BAN
-					}
-					create_unit = {
-						division = "name = \"10. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
-						owner = BAN
-					}
-					create_unit = {
-						division = "name = \"11. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
-						owner = BAN
-					}
-					create_unit = {
-						division = "name = \"12. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
-						owner = BAN
-					}
-					create_unit = {
-						division = "name = \"13. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
-						owner = BAN
-					}
-					create_unit = {
-						division = "name = \"14. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
-						owner = BAN
-					}
-					create_unit = {
-						division = "name = \"15. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
-						owner = BAN
-					}
-				}
-				declare_war_on = {
-					target = ROOT
-					type = annex_everything
-				}
-			}
-			hidden_effect = { country_event = { id = mtg_britain.77 days = 270 random_days = 95 } }
-		}
+		# name = mtg_britain.76.a
+		# set_country_flag = PAK_civil_war
+		# release = BAN
+		# hidden_effect = {
+		# 	BAN = {
+		# 		division_template = {
+		# 			name = "Bangladeshi Liberation Army"
+		# 			priority = 1
+		# 			division_names_group = RAJ_INF_01
+		# 			is_locked = yes
+		# 			regiments = {
+		# 				infantry = { x = 0 y = 0 }
+		# 				infantry = { x = 0 y = 1 }
+		# 				infantry = { x = 0 y = 2 }
+		# 				infantry = { x = 1 y = 0 }
+		# 				infantry = { x = 1 y = 1 }
+		# 				infantry = { x = 1 y = 2 }
+		# 			}
+		# 		}
+		# 		# East Bengal (Bangladesh)
+		# 		430 = {
+		# 			create_unit = {
+		# 				division = "name = \"1. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = BAN
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"2. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = BAN
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"3. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = BAN
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"4. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = BAN
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"5. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = BAN
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"6. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = BAN
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"7. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = BAN
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"8. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = BAN
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"9. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = BAN
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"10. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = BAN
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"11. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = BAN
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"12. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = BAN
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"13. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = BAN
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"14. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = BAN
+		# 			}
+		# 			create_unit = {
+		# 				division = "name = \"15. Bangladeshi Liberation Army\" division_template = \"Bangladeshi Liberation Army\" start_experience_factor = 0.5" 
+		# 				owner = BAN
+		# 			}
+		# 		}
+		# 		declare_war_on = {
+		# 			target = ROOT
+		# 			type = annex_everything
+		# 		}
+		# 	}
+		# 	hidden_effect = { country_event = { id = mtg_britain.77 days = 270 random_days = 95 } }
 	}
 	# Give them their independence
 	option = {
-		name = mtg_britain.76.b
-		ai_chance = {
-			factor = 0
-		}
-		release = BAN
-		set_country_flag = PAK_civil_war
+		# name = mtg_britain.76.b
+		# ai_chance = {
+		# 	factor = 0
+		# }
+		# release = BAN
+		# set_country_flag = PAK_civil_war
 	}
 }
 
-# Event for PAK ending civil war if Bangladesh hasn't been dealt with.
+# Event for WST ending civil war if Bangladesh hasn't been dealt with.
 country_event = {
 	id = mtg_britain.77
 	title = mtg_britain.77.t
@@ -3688,17 +3538,17 @@ country_event = {
 	# Let's make peace
 	option = {
 		name = mtg_britain.77.a
-		white_peace = BAN
-		BAN = { country_event = { id = mtg_britain.78 } }
+		# white_peace = BAN
+		# BAN = { country_event = { id = mtg_britain.78 } }
 	}
 
 	# All or nothing - no peace!
 	option = {
 		name = mtg_britain.77.b
-		ai_chance = {
-			factor = 0
-		}
-		add_war_support = -0.1
+		# ai_chance = {
+		# 	factor = 0
+		# }
+		# add_war_support = -0.1
 	}
 }
 
@@ -3711,13 +3561,12 @@ country_event = {
 
 	is_triggered_only = yes
 	
-	# Ok
 	option = {
 		name = mtg_britain.75.a
-		effect_tooltip = { BAN = { white_peace = PAK } }
-		delete_unit_template_and_units = {
-   			division_template = "Bangladeshi Liberation Army"
-		}
+		# effect_tooltip = { BAN = { white_peace = WST } }
+		# delete_unit_template_and_units = {
+   		# 	division_template = "Bangladeshi Liberation Army"
+		# }
 	}
 }
 
@@ -3851,35 +3700,35 @@ country_event = {
 			tag = ENG
 		}
 		activate_mission = ENG_imperial_conference_decision
-		set_country_flag = { flag = ENG_imperial_conference_timer_flag value = 1 days = 70 }
-		every_country = {
-			limit = {
-				OR = {
-					AND = {
-						is_subject_of = ENG
-						tag = CAN
-					}
-					AND = {
-						is_subject_of = ENG
-						tag = SAF
-					}
-					AND = {
-						is_subject_of = ENG
-						tag = RAJ
-					}
-					AND = {
-						is_subject_of = ENG
-						tag = AST
-					}
-					AND = {
-						is_subject_of = ENG
-						tag = NZL
-					}
-				}
-			}
-			add_opinion_modifier = { target = ROOT modifier = ENG_imperial_conference_opinion }
-			custom_effect_tooltip = mtg_britain.82_tt
-		}
+		set_country_flag = { flag = ENG_imperial_conference_timer_flag value = 1 days = 60 }
+		# every_country = {
+		# 	limit = {
+		# 		OR = {
+		# 			AND = {
+		# 				is_subject_of = ENG
+		# 				tag = CAN
+		# 			}
+		# 			AND = {
+		# 				is_subject_of = ENG
+		# 				tag = SAF
+		# 			}
+		# 			AND = {
+		# 				is_subject_of = ENG
+		# 				tag = RAJ
+		# 			}
+		# 			AND = {
+		# 				is_subject_of = ENG
+		# 				tag = AST
+		# 			}
+		# 			AND = {
+		# 				is_subject_of = ENG
+		# 				tag = NZL
+		# 			}
+		# 		}
+		# 	}
+		# 	add_opinion_modifier = { target = ROOT modifier = ENG_imperial_conference_opinion }
+		# 	custom_effect_tooltip = mtg_britain.82_tt
+		# }
 	}
 
 	# Ok
@@ -4039,7 +3888,7 @@ country_event = {
 			target = FROM
 			modifier = ENG_imperial_conference_approved_resolution
 		}
-		#FROM = { country_event = { id = mtg_britain.85 } }
+		FROM = { country_event = { id = mtg_britain.85 } }
 		ENG = {
 			if = {
 				limit = {
@@ -4068,7 +3917,7 @@ country_event = {
 
 # Event for ENG telling FROM voted yes on Imperial Defense
 country_event = {
-	id = mtg_britain.85
+	id = mtg_britain.85 #
 	title = mtg_britain.85.t
 	desc = mtg_britain.85.d
 	picture = GFX_report_event_generic_read_write
@@ -4294,7 +4143,7 @@ country_event = {
 			modifier = ENG_imperial_conference_approved_resolution
 		}
 		reverse_add_opinion_modifier = { target = FROM modifier = ENG_imperial_trade }
-		#FROM = { country_event = { id = mtg_britain.89 } }
+		FROM = { country_event = { id = mtg_britain.89 } }
 	}
 
 	# Reject
@@ -4319,7 +4168,7 @@ country_event = {
 				has_opinion = { target = ENG value > 75 }
 			}
 		}
-		#FROM = { country_event = { id = mtg_britain.90 } }
+		FROM = { country_event = { id = mtg_britain.90 } }
 	}
 }
 
@@ -4550,7 +4399,7 @@ country_event = {
 			target = FROM
 			modifier = ENG_imperial_conference_approved_resolution
 		}
-		# FROM = { country_event = { id = mtg_britain.93 } }
+		FROM = { country_event = { id = mtg_britain.93 } }
 		ENG = {
 			if = {
 				limit = {
@@ -4806,7 +4655,7 @@ country_event = {
 			modifier = ENG_imperial_conference_approved_resolution
 		}
 		effect_tooltip = { FROM = { add_war_support = 0.02 } }
-		#FROM = { country_event = { id = mtg_britain.97 } }
+		FROM = { country_event = { id = mtg_britain.97 } }
 	}
 
 	# Reject
@@ -5498,7 +5347,7 @@ country_event = {
 	}
 }
 
-# Event for RAJ giving BRM independence
+# Event for RAJ giving WST independence
 country_event = {
 	id = mtg_britain.109
 	title = mtg_britain.109.t
@@ -5510,31 +5359,31 @@ country_event = {
 	# Ok I guess
 	option = {
 		name = mtg_britain.109.a
-		release = BRM
+		release = WST
 	}
 }
 
-# # UK becomes just England
-# country_event = {
-# 	id = mtg_britain.110
+# UK becomes just England
+country_event = {
+	id = mtg_britain.110
 	
-# 	trigger = {
-# 		tag = ENG
-# 		country_exists = NIR
-# 		country_exists = WLS
-# 		country_exists = SCO
-# 		NOT = { has_global_flag = ENG_became_england }
-# 	}
+	trigger = {
+		tag = ENG
+		country_exists = NIR
+		country_exists = WLS
+		country_exists = SCO
+		NOT = { has_global_flag = ENG_became_england }
+	}
 
-# 	mean_time_to_happen = { days = 2 }
+	mean_time_to_happen = { days = 2 }
 
-# 	hidden = yes
+	hidden = yes
 
-# 	immediate = {
-# 		set_cosmetic_tag = ENG_england
-# 		set_global_flag = ENG_became_england
-# 	}
-# }
+	immediate = {
+		set_cosmetic_tag = ENG_england
+		set_global_flag = ENG_became_england
+	}
+}
 
 # UK becomes UK again
 country_event = {
@@ -5542,9 +5391,9 @@ country_event = {
 	
 	trigger = {
 		tag = ENG
-		#NOT = { country_exists = NIR }
-		#NOT = { country_exists = WLS }
-		#NOT = { country_exists = SCO }
+		NOT = { country_exists = NIR }
+		NOT = { country_exists = WLS }
+		NOT = { country_exists = SCO }
 		owns_state = 120
 		owns_state = 119
 		owns_state = 136
@@ -5651,5 +5500,1526 @@ country_event = {
 		}
 		set_party_name = { ideology = neutrality long_name = ENG_neutrality_party_queens_party_long name = ENG_neutrality_party_queens_party }
 		hidden_effect = { news_event = { id = mtg_news.59 days = 1 } }
+	}
+}
+
+country_event = {
+	id = mtg_britain.1001
+	title = mtg_britain.1001.t
+	desc = mtg_britain.1001.d
+	picture = GFX_report_event_generic_funeral
+
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = mtg_britain.1001.a
+		hidden_effect = {
+			hidden_effect = {
+				division_template = {
+					name = "Home Guard"
+					is_locked = no
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+				
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+				
+						infantry = { x = 2 y = 0 }
+						infantry = { x = 2 y = 1 }
+						infantry = { x = 2 y = 2 }
+				
+						artillery_brigade = { x = 3 y = 0}
+						anti_tank_brigade = { x = 3 y = 1}
+				
+					}
+					support = {
+						engineer = { x = 0 y = 0 }   
+						anti_air = { x = 0 y = 1 }
+					}
+				}
+				# 40 Spawn Ins
+				126 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				125 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				122 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				127 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				123 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				338 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				253 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				128 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				129 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				130 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				132 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				131 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				133 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				121 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				120 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				136 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				119 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+			}
+		}
+		custom_effect_tooltip = ENG_home_guard_20w_tt
+	}
+
+	option = {
+		name = mtg_britain.1001.b
+		hidden_effect = {
+			hidden_effect = {
+				division_template = {
+					name = "Home Guard"
+					is_locked = no
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+				
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+						infantry = { x = 1 y = 3 }
+				
+						infantry = { x = 2 y = 0 }
+						infantry = { x = 2 y = 1 }
+						infantry = { x = 2 y = 2 }
+				
+						artillery_brigade = { x = 3 y = 0}
+						artillery_brigade = { x = 3 y = 1 }
+						artillery_brigade = { x = 3 y = 2 }
+						artillery_brigade = { x = 3 y = 3 }
+						
+						artillery_brigade = { x = 4 y = 0 }
+						artillery_brigade = { x = 4 y = 1 }
+						artillery_brigade = { x = 4 y = 2 }
+						artillery_brigade = { x = 4 y = 3 }
+						
+				
+					}
+					support = {
+						engineer = { x = 0 y = 0 }   
+						anti_air = { x = 0 y = 1 }
+						hq_company = { x = 0 y = 2 }
+					}
+				}
+				# 28 Spawn Ins
+				126 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				125 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				122 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				127 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				123 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				338 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				253 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				128 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				129 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+				130 = {
+					if = {					
+						limit = { is_controlled_by = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+						create_unit = { division = "division_template = \"Home Guard\" force_equipment_variants = { infantry_equipment_0 = { owner = \"ENG\" } }" owner = ENG }
+					}
+				}
+			}
+		}
+		custom_effect_tooltip = ENG_home_guard_30w_tt
+	}
+}
+
+country_event = {
+	id = mtg_britain.1002
+	title = mtg_britain.1002.t
+	desc = mtg_britain.1002.d
+	picture = GFX_report_event_generic_funeral
+
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+
+	option = {
+		name = mtg_britain.1002.a
+		hidden_effect = {
+			set_technology = {
+				improved_ship_hull_heavy = 1
+				basic_heavy_armor_scheme = 1
+				basic_battery = 1
+				basic_heavy_battery = 1
+				basic_heavy_shell = 1
+				improved_heavy_battery = 1
+				improved_heavy_shell = 1
+				advanced_heavy_battery = 1
+				damage_control_1 = 1
+				damage_control_2 = 1
+				damage_control_3 = 1
+				fire_control_methods_1 = 1
+				fire_control_methods_2 = 1
+				fire_control_methods_3 = 1
+				radio_detection = 1
+				decimetric_radar = 1
+				improved_decimetric_radar = 1
+				centimetric_radar = 1
+				basic_fire_control_system = 1
+				improved_fire_control_system = 1
+				advanced_fire_control_system = 1
+				antiair_research1 = 1
+				antiair2 = 1
+				basic_medium_shell = 1
+				improved_medium_battery = 1
+				improved_medium_shell = 1
+				advanced_medium_battery = 1
+				basic_dp_medium_battery = 1
+				basic_light_shell = 1
+				improved_light_battery = 1
+				improved_light_shell = 1
+				advanced_light_battery = 1
+				basic_dp_light_battery = 1
+				improved_dp_light_battery = 1
+				advanced_dp_light_battery = 1
+				improved_ship_torpedo_launcher = 1
+				advanced_ship_torpedo_launcher = 1
+				magnetic_detonator = 1
+				modern_ship_torpedo_launcher = 1
+				homing_torpedo = 1
+				improved_ship_hull_light = 1
+				improved_depth_charges = 1
+				advanced_depth_charges = 1
+				improved_sonar = 1
+				improved_ship_hull_cruiser = 1
+				improved_heavy_armor_scheme = 1
+				improved_ship_hull_carrier = 1
+				basic_ship_hull_submarine = 1
+				improved_ship_hull_submarine = 1
+				basic_submarine_snorkel = 1
+				electric_torpedo = 1
+				ship_hull_super_heavy = 1
+				super_ship_hull_carrier = 1
+				nav_3 = 1
+				engines_4 = 1
+				range_improvements = 1
+				survivability_studies = 1
+				self_sealing_fuel_tanks = 1
+				aa_hmg = 1
+				aa_cannon_1 = 1
+				aa_cannon_2 = 1
+				advanced_small_airframe = 1
+				advanced_computing_machine = 1
+				advanced_centimetric_radar = 1
+			}
+		}
+		create_equipment_variant = {
+			name = "Monkey Class Naval Bomber"
+			type = small_plane_naval_bomber_airframe_3
+			parent_version = 0
+			modules = {
+				fixed_main_weapon_slot = torpedo_mounting3_small
+				fixed_auxiliary_weapon_slot_1 = recon_camera
+				fixed_auxiliary_weapon_slot_2 = bomb_locks
+				fixed_auxiliary_weapon_slot_3 = bomb_locks
+				engine_type_slot = engine_4_1x
+				special_type_slot_1 = air_ground_radar_2
+				special_type_slot_2 = dive_brakes_small
+				special_type_slot_3 = bomb_sights_2
+			}
+		}
+		add_equipment_to_stockpile = {
+			type = small_plane_naval_bomber_airframe_3
+			amount = 700
+			producer = ENG
+		}
+		create_equipment_variant = {
+			name = "Monkey Class Battlecruiser"
+			type = ship_hull_heavy_3
+			name_group = ENG_BB_HISTORICAL
+			parent_version = 0
+			modules = {
+				fixed_ship_battery_slot = ship_heavy_battery_4
+				fixed_ship_anti_air_slot = ship_anti_air_3
+				fixed_ship_fire_control_system_slot = ship_fire_control_system_3
+				fixed_ship_radar_slot = ship_radar_3
+				fixed_ship_engine_slot = heavy_ship_engine_3
+				fixed_ship_secondaries_slot = dp_ship_secondaries_3
+				fixed_ship_armor_slot = ship_armor_bc_1
+				front_1_custom_slot = ship_heavy_battery_4
+				mid_1_custom_slot = ship_anti_air_3
+				mid_2_custom_slot = ship_anti_air_3
+				mid_3_custom_slot = ship_anti_air_3
+				rear_1_custom_slot = ship_heavy_battery_4
+			}
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_heavy_3
+			equipment_variant = "Monkey Class Battlecruiser"
+			creator = ENG
+		}
+		create_equipment_variant = {
+			name = "Monkey Class Carrier"
+			type = ship_hull_carrier_2
+			name_group = ENG_CV_HISTORICAL
+			parent_version = 0
+			modules = {
+				fixed_ship_deck_slot_1 = ship_deck_space
+				fixed_ship_deck_slot_2 = ship_deck_space
+				fixed_ship_anti_air_slot = ship_anti_air_3
+				fixed_ship_radar_slot = ship_radar_3
+				fixed_ship_engine_slot = carrier_ship_engine_3
+				fixed_ship_secondaries_slot = dp_ship_secondaries_3
+				front_1_custom_slot = ship_deck_space
+				mid_1_custom_slot = ship_deck_space
+			}
+		}
+		create_ship = {
+			type = ship_hull_carrier_2
+			equipment_variant = "Monkey Class Carrier"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_carrier_2
+			equipment_variant = "Monkey Class Carrier"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_carrier_2
+			equipment_variant = "Monkey Class Carrier"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_carrier_2
+			equipment_variant = "Monkey Class Carrier"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_carrier_2
+			equipment_variant = "Monkey Class Carrier"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_carrier_2
+			equipment_variant = "Monkey Class Carrier"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_carrier_2
+			equipment_variant = "Monkey Class Carrier"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_carrier_2
+			equipment_variant = "Monkey Class Carrier"
+			creator = ENG
+		}
+		create_equipment_variant = {
+			name = "Monkey Class Light Cruiser"
+			type = ship_hull_cruiser_3
+			name_group = ENG_DD_HISTORICAL
+			parent_version = 0
+			modules = {
+				fixed_ship_battery_slot = ship_light_battery_4
+				fixed_ship_anti_air_slot = ship_anti_air_3
+				fixed_ship_fire_control_system_slot = ship_fire_control_system_3
+				fixed_ship_radar_slot = ship_radar_3
+				fixed_ship_engine_slot = cruiser_ship_engine_3
+				fixed_ship_secondaries_slot = ship_anti_air_3
+				fixed_ship_armor_slot = ship_armor_cruiser_1
+				front_1_custom_slot = dp_light_battery_3
+				mid_1_custom_slot = dp_light_battery_3
+				mid_2_custom_slot = dp_light_battery_3
+				rear_1_custom_slot = dp_light_battery_3
+				rear_2_custom_slot = dp_light_battery_3
+			}
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Light Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Light Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Light Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Light Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Light Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Light Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Light Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Light Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Light Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Light Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Light Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Light Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Light Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Light Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Light Cruiser"
+			creator = ENG
+		}
+		create_equipment_variant = {
+			name = "Monkey Class Heavy Cruiser"
+			type = ship_hull_cruiser_3
+			name_group = ENG_DD_HISTORICAL
+			parent_version = 0
+			modules = {
+				fixed_ship_battery_slot = ship_medium_battery_4
+				fixed_ship_anti_air_slot = ship_anti_air_3
+				fixed_ship_fire_control_system_slot = ship_fire_control_system_3
+				fixed_ship_radar_slot = ship_radar_3
+				fixed_ship_engine_slot = cruiser_ship_engine_3
+				# fixed_ship_secondaries_slot = ship_anti_air_3
+				fixed_ship_armor_slot = ship_armor_cruiser_1
+			}
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Heavy Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Heavy Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Heavy Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Heavy Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Heavy Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Heavy Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Heavy Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Heavy Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Heavy Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Heavy Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Heavy Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Heavy Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Heavy Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Heavy Cruiser"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_cruiser_3
+			equipment_variant = "Monkey Class Heavy Cruiser"
+			creator = ENG
+		}
+		create_equipment_variant = {
+			name = "Monkey Class Destroyer"
+			type = ship_hull_light_3
+			name_group = ENG_DD_HISTORICAL
+			parent_version = 0
+			modules = {
+				fixed_ship_battery_slot = ship_light_battery_1
+				fixed_ship_anti_air_slot = ship_anti_air_3
+				fixed_ship_fire_control_system_slot = ship_fire_control_system_3
+				fixed_ship_radar_slot = ship_radar_3
+				fixed_ship_torpedo_slot = ship_torpedo_4
+				fixed_ship_engine_slot = light_ship_engine_3
+				front_1_custom_slot = ship_anti_air_3
+				mid_1_custom_slot = ship_anti_air_3
+				rear_1_custom_slot = ship_anti_air_3
+			}
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
+		create_ship = {
+			type = ship_hull_light_3
+			equipment_variant = "Monkey Class Destroyer"
+			creator = ENG
+		}
 	}
 }

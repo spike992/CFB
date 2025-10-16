@@ -3,7 +3,6 @@
 ###########################
 
 add_namespace = DOD_romania
-add_namespace = ROM_border_war
 
 #Jakob: 80-90
 #Gabriel: 100-110
@@ -98,10 +97,10 @@ country_event = {
 		}
 		ROM = { country_event = DOD_romania.11 }
 		add_ai_strategy = {
-			type = alliance
-			id = ROM
-			value = 200
-		}
+					type = alliance
+					id = "ROM"
+					value = 200
+				}
 	}
 
 	option = { #no
@@ -221,18 +220,7 @@ country_event = {
 country_event = {
 	id = DOD_romania.30
 	title = DOD_romania.30.t
-	desc = {
-		text = DOD_romania.30.desc
-		trigger = {
-			SOV = { has_government = communism }
-		}
-	}
-	desc = {
-		text = DOD_romania.30.desc_alt
-		trigger = {
-			NOT = { SOV = { has_government = communism } }
-		}
-	}
+	desc = DOD_romania.30.desc
 	picture = GFX_report_event_aid_pact
 	
 	is_triggered_only = yes
@@ -586,30 +574,6 @@ country_event = {
 
 }
 
-# Romania wants to split Yugoslavia - invitation from Romania to come help out
-country_event = {
-	id = DOD_romania.601
-	title = DOD_romania.601.t
-	desc = DOD_romania.601.desc
-	picture = GFX_report_event_yugoslavian_split
-	
-	is_triggered_only = yes
-	
-	option = { #sure
-		name = DOD_romania.601.a
-		ai_chance = {
-			factor = 10
-		}
-		set_country_flag = invited_to_split_yugo
-		unlock_decision_category_tooltip = ROM_dividing_yugo
-	}
-
-	option = { #no
-		name = DOD_romania.601.b
-	}
-
-}
-
 # Romania wants to split Yugoslavia - Yugoslavia agrees
 country_event = {
 	id = DOD_romania.61
@@ -662,31 +626,31 @@ country_event = {
 		# puppet = MNT
 
 
-		if = {
-			limit = {
-				103 = { is_owned_by = YUG }
-			}
-			CRO = { transfer_state = 103 }
-		}
-		if = {
-			limit = {
-				104 = { is_owned_by = YUG }
-			}
-			CRO = { transfer_state = 104 }
-		}
-		if = {
-			limit = {
-				109 = { is_owned_by = YUG }
-			}
-			CRO = { transfer_state = 109 }
-		}
-		if = {
-			limit = {
-				102 = { is_owned_by = YUG }
-			}
-			CRO = { transfer_state = 102 }
-		}
-		puppet = CRO
+		# if = {
+		# 	limit = {
+		# 		103 = { is_owned_by = YUG }
+		# 	}
+		# 	CRO = { transfer_state = 103 }
+		# }
+		# if = {
+		# 	limit = {
+		# 		104 = { is_owned_by = YUG }
+		# 	}
+		# 	CRO = { transfer_state = 104 }
+		# }
+		# if = {
+		# 	limit = {
+		# 		109 = { is_owned_by = YUG }
+		# 	}
+		# 	CRO = { transfer_state = 109 }
+		# }
+		# if = {
+		# 	limit = {
+		# 		102 = { is_owned_by = YUG }
+		# 	}
+		# 	CRO = { transfer_state = 102 }
+		# }
+		# puppet = CRO
 		hidden_effect = {
 			annex_country = { target = YUG }
 		}
@@ -755,7 +719,7 @@ country_event = {
 	id = DOD_romania.63
 	title = DOD_romania.63.t
 	desc = DOD_romania.63.desc
-	picture = [GetHitlerHandshakeEventPicture]
+	picture = GFX_report_event_hitler_handshake
 	
 	is_triggered_only = yes
 	
@@ -1019,12 +983,6 @@ country_event = {
 		# 	}
 		# 	SER = { transfer_state = 106 }
 		# }
-		# if = {
-		# 	limit = {
-		# 		970 = { is_owned_by = YUG }
-		# 	}
-		# 	SER = { transfer_state = 970 }
-		# }
 		# puppet = SER
 
 		if = {
@@ -1042,16 +1000,16 @@ country_event = {
 		# 	MNT = { transfer_state = 105 }
 		# 	puppet = MNT
 		# }
-		if = {
-			limit = {
-				103 = { 
-					is_owned_by = YUG 
-					NOT = { is_claimed_by = ITA }
-				}
+		# if = {
+		# 	limit = {
+		# 		103 = { 
+		# 			is_owned_by = YUG 
+		# 			NOT = { is_claimed_by = ITA }
+		# 		}
 
-			}
-			CRO = { transfer_state = 103 }
-		}
+		# 	}
+		# 	CRO = { transfer_state = 103 }
+		# }
 		if = {
 			limit = {
 				103 = { 
@@ -1062,62 +1020,46 @@ country_event = {
 			}
 			ITA = { transfer_state = 103 }
 		}
-		if = {
-			limit = {
-				104 = { is_owned_by = YUG }
-			}
-			CRO = { transfer_state = 104 }
-		}
-		if = {
-			limit = {
-				109 = { is_owned_by = YUG }
-			}
-			CRO = { transfer_state = 109 }
-		}
-		if = {
-			limit = {
-				102 = { 
-					is_owned_by = YUG 
-					NOT = { is_claimed_by = GER }
-				}
-			}
-			CRO = { transfer_state = 102 }
-		}
+		# if = {
+		# 	limit = {
+		# 		104 = { is_owned_by = YUG }
+		# 	}
+		# 	CRO = { transfer_state = 104 }
+		# }
+		# if = {
+		# 	limit = {
+		# 		109 = { is_owned_by = YUG }
+		# 	}
+		# 	CRO = { transfer_state = 109 }
+		# }
+		# if = {
+		# 	limit = {
+		# 		102 = { 
+		# 			is_owned_by = YUG 
+		# 			NOT = { is_claimed_by = GER }
+		# 		}
+
+		# 	}
+		# 	CRO = { transfer_state = 102 }
+		# }
 		if = {
 			limit = {
 				102 = { 
 					is_owned_by = YUG 
 					is_claimed_by = GER
 				}
+
 			}
 			GER = { transfer_state = 102 }
 		}
-		if = {
-			limit = {
-				853 = { 
-					is_owned_by = YUG 
-					NOT = { is_claimed_by = GER }
-				}
-			}
-			CRO = { transfer_state = 853 }
-		}
-		if = {
-			limit = {
-				853 = { 
-					is_owned_by = YUG 
-					is_claimed_by = GER
-				}
-			}
-			GER = { transfer_state = 853 }
-		}
-		if = {
-			limit = { has_country_flag = ROM_YUG_GER_approves }
-			GER = { puppet = CRO }
-		}
-		if = {
-			limit = { NOT = { has_country_flag = ROM_YUG_GER_approves } }
-			puppet = CRO 
-		}
+		# if = {
+		# 	limit = { has_country_flag = ROM_YUG_GER_approves }
+		# 	GER = { puppet = CRO }
+		# }
+		# if = {
+		# 	limit = { NOT = { has_country_flag = ROM_YUG_GER_approves } }
+		# 	puppet = CRO 
+		# }
 		hidden_effect = {
 			annex_country = { target = YUG }
 			news_event = { id = news.321 days = 1 }
@@ -1152,7 +1094,7 @@ country_event = {
 				create_wargoal = {
 					target = YUG
 					type = take_state_focus
-					generator = { 104 102 853 109 } 
+					generator = { 104 102 109 } 
 				}
 			}
 		}
@@ -1211,560 +1153,560 @@ country_event = {
 	}
 }
 
-# # King Carol II's lifestyle events - Mistress buys villa
-# country_event = {
-# 	id = DOD_romania.81
-# 	title = DOD_romania.81.t
-# 	desc = DOD_romania.81.desc
-# 	picture = GFX_report_event_ROM_mistress
+# King Carol II's lifestyle events - Mistress buys villa
+country_event = {
+	id = DOD_romania.81
+	title = DOD_romania.81.t
+	desc = DOD_romania.81.desc
+	picture = GFX_report_event_ROM_mistress
 	
-# 	is_triggered_only = yes
+	is_triggered_only = yes
 
-# 	trigger = {
-# 		has_idea = ROM_king_carol_ii_hedonist
-# 	}
+	trigger = {
+		has_idea = ROM_king_carol_ii_hedonist
+	}
 
-# 	immediate = {
-# 		set_country_flag = DOD_romania.81_fired
-# 	}
+	immediate = {
+		set_country_flag = DOD_romania.81_fired
+	}
 
-# 	option = { #Pay for it
-# 		name = DOD_romania.81.a
-# 		ai_chance = {
-# 			base = 1
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 3
-# 					slots = { political_advisor }
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 2
-# 					slots = { political_advisor }
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 1
-# 					slots = { political_advisor }
-# 				}
-# 			}			
-# 			modifier = {
-# 				add = 5
-# 				amount_taken_ideas = {
-# 					amount < 1
-# 					slots = { army_chief }
-# 				}
-# 			}
+	option = { #Pay for it
+		name = DOD_romania.81.a
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 3
+					slots = { political_advisor }
+				}
+			}
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 2
+					slots = { political_advisor }
+				}
+			}
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 1
+					slots = { political_advisor }
+				}
+			}			
+			modifier = {
+				add = 5
+				amount_taken_ideas = {
+					amount < 1
+					slots = { army_chief }
+				}
+			}
 
-# 		}
-# 		add_timed_idea = { idea = ROM_king_carol_ii_consumer_penalty days = 90 }
-# 		hidden_effect = {
-# 			country_event = { id = DOD_romania.80 }
-# 		}
-# 	}
-# 	option = { #Negotiate a deal
-# 		name = DOD_romania.81.b
-# 		ai_chance = {
-# 			base = 4
-# 			modifier = {
-# 				add = -2
-# 				date < 1937.01.02
-# 				has_war = no
-# 			}
-# 			modifier = {
-# 				add = 20
-# 				OR = {
-# 					has_war = yes
-# 					any_other_country = {
-# 						OR = {
-# 							is_justifying_wargoal_against = ROOT
-# 							has_wargoal_against = ROOT
-# 						}
-# 					}
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 20
-# 				date > 1937.01.02
-# 			}
-# 		}
-# 		add_political_power = -90
-# 		add_timed_idea = { idea = ROM_king_carol_ii_paid_with_pp days = 90 }
-# 		hidden_effect = {
-# 			country_event = { id = DOD_romania.80 }
-# 		}
-# 	}
+		}
+		add_timed_idea = { idea = ROM_king_carol_ii_consumer_penalty days = 90 }
+		hidden_effect = {
+			country_event = { id = DOD_romania.80 }
+		}
+	}
+	option = { #Negotiate a deal
+		name = DOD_romania.81.b
+		ai_chance = {
+			base = 4
+			modifier = {
+				add = -2
+				date < 1937.01.02
+				has_war = no
+			}
+			modifier = {
+				add = 20
+				OR = {
+					has_war = yes
+					any_other_country = {
+						OR = {
+							is_justifying_wargoal_against = ROOT
+							has_wargoal_against = ROOT
+						}
+					}
+				}
+			}
+			modifier = {
+				add = 20
+				date > 1937.01.02
+			}
+		}
+		add_political_power = -90
+		add_timed_idea = { idea = ROM_king_carol_ii_paid_with_pp days = 90 }
+		hidden_effect = {
+			country_event = { id = DOD_romania.80 }
+		}
+	}
 
-# }
-# # King Carol's Lifestyle - King bans critical book
-# country_event = {
-# 	id = DOD_romania.82
-# 	title = DOD_romania.82.t
-# 	desc = DOD_romania.82.desc
-# 	picture = GFX_report_event_ROM_mistress
+}
+# King Carol's Lifestyle - King bans critical book
+country_event = {
+	id = DOD_romania.82
+	title = DOD_romania.82.t
+	desc = DOD_romania.82.desc
+	picture = GFX_report_event_ROM_mistress
 	
-# 	is_triggered_only = yes
+	is_triggered_only = yes
 
-# 	trigger = {
-# 		has_idea = ROM_king_carol_ii_hedonist
-# 	}
+	trigger = {
+		has_idea = ROM_king_carol_ii_hedonist
+	}
 
-# 	immediate = {
-# 		set_country_flag = DOD_romania.82_fired
-# 	}
+	immediate = {
+		set_country_flag = DOD_romania.82_fired
+	}
 
-# 	option = { #keep author imprisoned
-# 		name = DOD_romania.82.a
-# 		ai_chance = {
-# 			base = 1
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 3
-# 					slots = { political_advisor }
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 2
-# 					slots = { political_advisor }
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 1
-# 					slots = { political_advisor }
-# 				}
-# 			}						
-# 			modifier = {
-# 				add = 5
-# 				amount_taken_ideas = {
-# 					amount < 1
-# 					slots = { army_chief }
-# 				}
-# 			}			
+	option = { #keep author imprisoned
+		name = DOD_romania.82.a
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 3
+					slots = { political_advisor }
+				}
+			}
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 2
+					slots = { political_advisor }
+				}
+			}
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 1
+					slots = { political_advisor }
+				}
+			}						
+			modifier = {
+				add = 5
+				amount_taken_ideas = {
+					amount < 1
+					slots = { army_chief }
+				}
+			}			
 
-# 			modifier = {
-# 				add = -10
-# 				AND = {
-# 					neutrality < 0.5
-# 					has_war = no
-# 					NOT = { has_idea = ROM_mihail_sturdza }
-# 					NOT = { has_idea = generic_democratic_reformer }
-# 				}
-# 			}
-# 		}
-# 		add_stability = -0.05
-# 		add_popularity = { ideology = fascism popularity = 0.05 } #because she is Jewish
-# 		add_popularity = { ideology = democratic popularity = 0.05 } #because Freedom of the Press
-# 		hidden_effect = {
-# 			country_event = { id = DOD_romania.80 }
-# 		}
-# 	}
-# 	option = { #Release him
-# 		name = DOD_romania.82.b
-# 		ai_chance = {
-# 			base = 3
-# 		}
-# 		add_political_power = -90
-# 		hidden_effect = {
-# 			country_event = { id = DOD_romania.80 }
-# 		}
-# 	}
-# }
+			modifier = {
+				add = -10
+				AND = {
+					neutrality < 0.5
+					has_war = no
+					NOT = { has_idea = ROM_mihail_sturdza }
+					NOT = { has_idea = generic_democratic_reformer }
+				}
+			}
+		}
+		add_stability = -0.05
+		add_popularity = { ideology = fascism popularity = 0.05 } #because she is Jewish
+		add_popularity = { ideology = democratic popularity = 0.05 } #because Freedom of the Press
+		hidden_effect = {
+			country_event = { id = DOD_romania.80 }
+		}
+	}
+	option = { #Release him
+		name = DOD_romania.82.b
+		ai_chance = {
+			base = 3
+		}
+		add_political_power = -90
+		hidden_effect = {
+			country_event = { id = DOD_romania.80 }
+		}
+	}
+}
 
-# # King Carol II's lifestyle events - King throws big party
-# country_event = {
-# 	id = DOD_romania.83
-# 	title = DOD_romania.83.t
-# 	desc = DOD_romania.83.desc
-# 	picture = GFX_report_event_carol_party
+# King Carol II's lifestyle events - King throws big party
+country_event = {
+	id = DOD_romania.83
+	title = DOD_romania.83.t
+	desc = DOD_romania.83.desc
+	picture = GFX_report_event_carol_party
 	
-# 	is_triggered_only = yes
-# 	trigger = {
-# 		has_idea = ROM_king_carol_ii_hedonist
-# 	}
+	is_triggered_only = yes
+	trigger = {
+		has_idea = ROM_king_carol_ii_hedonist
+	}
 
-# 	immediate = {
-# 		set_country_flag = DOD_romania.83_fired
-# 	}
+	immediate = {
+		set_country_flag = DOD_romania.83_fired
+	}
 
-# 	option = { #Pay for it
-# 		name = DOD_romania.83.a
-# 		ai_chance = {
-# 			base = 1
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 3
-# 					slots = { political_advisor }
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 2
-# 					slots = { political_advisor }
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 1
-# 					slots = { political_advisor }
-# 				}
-# 			}			
-# 			modifier = {
-# 				add = 5
-# 				amount_taken_ideas = {
-# 					amount < 1
-# 					slots = { army_chief }
-# 				}
-# 			}
+	option = { #Pay for it
+		name = DOD_romania.83.a
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 3
+					slots = { political_advisor }
+				}
+			}
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 2
+					slots = { political_advisor }
+				}
+			}
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 1
+					slots = { political_advisor }
+				}
+			}			
+			modifier = {
+				add = 5
+				amount_taken_ideas = {
+					amount < 1
+					slots = { army_chief }
+				}
+			}
 
-# 		}
-# 		add_timed_idea = { idea = ROM_king_carol_ii_consumer_penalty days = 90 }
-# 		hidden_effect = {
-# 			country_event = { id = DOD_romania.80 }
-# 		}
-# 	}
-# 	option = { #Negotiate a deal
-# 		name = DOD_romania.83.b
-# 		ai_chance = {
-# 			base = 4
-# 			modifier = {
-# 				add = -2
-# 				date < 1937.01.02
-# 				has_war = no
-# 			}
-# 			modifier = {
-# 				add = 20
-# 				OR = {
-# 					has_war = yes
-# 					any_other_country = {
-# 						OR = {
-# 							is_justifying_wargoal_against = ROOT
-# 							has_wargoal_against = ROOT
-# 						}
-# 					}
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 20
-# 				date > 1937.01.02
-# 			}
-# 		}
-# 		add_political_power = -90
-# 		add_timed_idea = { idea = ROM_king_carol_ii_paid_with_pp days = 90 }
-# 		hidden_effect = {
-# 			country_event = { id = DOD_romania.80 }
-# 		}
-# 	}
-# }
+		}
+		add_timed_idea = { idea = ROM_king_carol_ii_consumer_penalty days = 90 }
+		hidden_effect = {
+			country_event = { id = DOD_romania.80 }
+		}
+	}
+	option = { #Negotiate a deal
+		name = DOD_romania.83.b
+		ai_chance = {
+			base = 4
+			modifier = {
+				add = -2
+				date < 1937.01.02
+				has_war = no
+			}
+			modifier = {
+				add = 20
+				OR = {
+					has_war = yes
+					any_other_country = {
+						OR = {
+							is_justifying_wargoal_against = ROOT
+							has_wargoal_against = ROOT
+						}
+					}
+				}
+			}
+			modifier = {
+				add = 20
+				date > 1937.01.02
+			}
+		}
+		add_political_power = -90
+		add_timed_idea = { idea = ROM_king_carol_ii_paid_with_pp days = 90 }
+		hidden_effect = {
+			country_event = { id = DOD_romania.80 }
+		}
+	}
+}
 
-# # King Carol II's lifestyle events - Mistress on shopping spree in France
-# country_event = {
-# 	id = DOD_romania.84
-# 	title = DOD_romania.84.t
-# 	desc = DOD_romania.84.desc
-# 	picture = GFX_report_event_ROM_mistress
+# King Carol II's lifestyle events - Mistress on shopping spree in France
+country_event = {
+	id = DOD_romania.84
+	title = DOD_romania.84.t
+	desc = DOD_romania.84.desc
+	picture = GFX_report_event_ROM_mistress
 	
-# 	is_triggered_only = yes
+	is_triggered_only = yes
 
-# 	trigger = {
-# 		has_idea = ROM_king_carol_ii_hedonist
-# 	}
+	trigger = {
+		has_idea = ROM_king_carol_ii_hedonist
+	}
 
-# 	immediate = {
-# 		set_country_flag = DOD_romania.84_fired
-# 	}
+	immediate = {
+		set_country_flag = DOD_romania.84_fired
+	}
 
-# 	option = { #Pay for it
-# 		name = DOD_romania.84.a
-# 		ai_chance = {
-# 			base = 1
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 3
-# 					slots = { political_advisor }
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 2
-# 					slots = { political_advisor }
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 1
-# 					slots = { political_advisor }
-# 				}
-# 			}			
-# 			modifier = {
-# 				add = 5
-# 				amount_taken_ideas = {
-# 					amount < 1
-# 					slots = { army_chief }
-# 				}
-# 			}
+	option = { #Pay for it
+		name = DOD_romania.84.a
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 3
+					slots = { political_advisor }
+				}
+			}
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 2
+					slots = { political_advisor }
+				}
+			}
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 1
+					slots = { political_advisor }
+				}
+			}			
+			modifier = {
+				add = 5
+				amount_taken_ideas = {
+					amount < 1
+					slots = { army_chief }
+				}
+			}
 
-# 		}
-# 		add_timed_idea = { idea = ROM_king_carol_ii_consumer_penalty days = 90 }
-# 		hidden_effect = {
-# 			country_event = { id = DOD_romania.80 }
-# 		}
-# 	}
-# 	option = { #Negotiate a deal
-# 		name = DOD_romania.84.b
-# 		ai_chance = {
-# 			base = 4
-# 			modifier = {
-# 				add = -2
-# 				date < 1937.01.02
-# 				has_war = no
-# 			}
-# 			modifier = {
-# 				add = 20
-# 				OR = {
-# 					has_war = yes
-# 					any_other_country = {
-# 						OR = {
-# 							is_justifying_wargoal_against = ROOT
-# 							has_wargoal_against = ROOT
-# 						}
-# 					}
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 20
-# 				date > 1937.01.02
-# 			}
-# 		}
-# 		add_political_power = -90
-# 		add_timed_idea = { idea = ROM_king_carol_ii_paid_with_pp days = 90 }
-# 		hidden_effect = {
-# 			country_event = { id = DOD_romania.80 }
-# 		}
-# 	}
-# }
+		}
+		add_timed_idea = { idea = ROM_king_carol_ii_consumer_penalty days = 90 }
+		hidden_effect = {
+			country_event = { id = DOD_romania.80 }
+		}
+	}
+	option = { #Negotiate a deal
+		name = DOD_romania.84.b
+		ai_chance = {
+			base = 4
+			modifier = {
+				add = -2
+				date < 1937.01.02
+				has_war = no
+			}
+			modifier = {
+				add = 20
+				OR = {
+					has_war = yes
+					any_other_country = {
+						OR = {
+							is_justifying_wargoal_against = ROOT
+							has_wargoal_against = ROOT
+						}
+					}
+				}
+			}
+			modifier = {
+				add = 20
+				date > 1937.01.02
+			}
+		}
+		add_political_power = -90
+		add_timed_idea = { idea = ROM_king_carol_ii_paid_with_pp days = 90 }
+		hidden_effect = {
+			country_event = { id = DOD_romania.80 }
+		}
+	}
+}
 
-# # King Carol II's lifestyle events - King takes expensive holiday (somewhere in southern France)
-# country_event = {
-# 	id = DOD_romania.85
-# 	title = DOD_romania.85.t
-# 	desc = DOD_romania.85.desc
-# 	picture = GFX_report_event_carol_party
+# King Carol II's lifestyle events - King takes expensive holiday (somewhere in southern France)
+country_event = {
+	id = DOD_romania.85
+	title = DOD_romania.85.t
+	desc = DOD_romania.85.desc
+	picture = GFX_report_event_carol_party
 	
-# 	is_triggered_only = yes
+	is_triggered_only = yes
 
-# 	trigger = {
-# 		has_idea = ROM_king_carol_ii_hedonist
-# 	}
+	trigger = {
+		has_idea = ROM_king_carol_ii_hedonist
+	}
 
-# 	immediate = {
-# 		set_country_flag = DOD_romania.85_fired
-# 	}
+	immediate = {
+		set_country_flag = DOD_romania.85_fired
+	}
 
-# 	option = { #Pay for it
-# 		name = DOD_romania.85.a
-# 		ai_chance = {
-# 			base = 1
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 3
-# 					slots = { political_advisor }
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 2
-# 					slots = { political_advisor }
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 1
-# 					slots = { political_advisor }
-# 				}
-# 			}			
-# 			modifier = {
-# 				add = 5
-# 				amount_taken_ideas = {
-# 					amount < 1
-# 					slots = { army_chief }
-# 				}
-# 			}
+	option = { #Pay for it
+		name = DOD_romania.85.a
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 3
+					slots = { political_advisor }
+				}
+			}
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 2
+					slots = { political_advisor }
+				}
+			}
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 1
+					slots = { political_advisor }
+				}
+			}			
+			modifier = {
+				add = 5
+				amount_taken_ideas = {
+					amount < 1
+					slots = { army_chief }
+				}
+			}
 
-# 		}
-# 		add_timed_idea = { idea = ROM_king_carol_ii_consumer_penalty days = 90 }
-# 		hidden_effect = {
-# 			country_event = { id = DOD_romania.80 }
-# 		}
-# 	}
-# 	option = { #Negotiate a deal
-# 		name = DOD_romania.85.b
-# 		ai_chance = {
-# 			base = 4
-# 			modifier = {
-# 				add = -2
-# 				date < 1937.01.02
-# 				has_war = no
-# 			}
-# 			modifier = {
-# 				add = 20
-# 				OR = {
-# 					has_war = yes
-# 					any_other_country = {
-# 						OR = {
-# 							is_justifying_wargoal_against = ROOT
-# 							has_wargoal_against = ROOT
-# 						}
-# 					}
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 20
-# 				date > 1937.01.02
-# 			}
-# 		}
-# 		add_political_power = -90
-# 		add_timed_idea = { idea = ROM_king_carol_ii_paid_with_pp days = 90 }
-# 		hidden_effect = {
-# 			country_event = { id = DOD_romania.80 }
-# 		}
-# 	}
+		}
+		add_timed_idea = { idea = ROM_king_carol_ii_consumer_penalty days = 90 }
+		hidden_effect = {
+			country_event = { id = DOD_romania.80 }
+		}
+	}
+	option = { #Negotiate a deal
+		name = DOD_romania.85.b
+		ai_chance = {
+			base = 4
+			modifier = {
+				add = -2
+				date < 1937.01.02
+				has_war = no
+			}
+			modifier = {
+				add = 20
+				OR = {
+					has_war = yes
+					any_other_country = {
+						OR = {
+							is_justifying_wargoal_against = ROOT
+							has_wargoal_against = ROOT
+						}
+					}
+				}
+			}
+			modifier = {
+				add = 20
+				date > 1937.01.02
+			}
+		}
+		add_political_power = -90
+		add_timed_idea = { idea = ROM_king_carol_ii_paid_with_pp days = 90 }
+		hidden_effect = {
+			country_event = { id = DOD_romania.80 }
+		}
+	}
 
-# }
+}
 
-# # King Carol II's lifestyle events - King aids embezzlement in the army
-# country_event = {
-# 	id = DOD_romania.86
-# 	title = DOD_romania.86.t
-# 	desc = DOD_romania.86.desc
-# 	picture = GFX_report_event_iww_demonstration
+# King Carol II's lifestyle events - King aids embezzlement in the army
+country_event = {
+	id = DOD_romania.86
+	title = DOD_romania.86.t
+	desc = DOD_romania.86.desc
+	picture = GFX_report_event_iww_demonstration
 	
-# 	is_triggered_only = yes
+	is_triggered_only = yes
 
-# 	trigger = {
-# 		has_idea = ROM_king_carol_ii_hedonist
-# 	}
+	trigger = {
+		has_idea = ROM_king_carol_ii_hedonist
+	}
 
-# 	immediate = {
-# 		set_country_flag = DOD_romania.86_fired
-# 	}
+	immediate = {
+		set_country_flag = DOD_romania.86_fired
+	}
 
-# 	option = { #Pay for it
-# 		name = DOD_romania.86.a
-# 		ai_chance = {
-# 			base = 1
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 3
-# 					slots = { political_advisor }
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 2
-# 					slots = { political_advisor }
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 5
-# 				has_war = no
-# 				amount_taken_ideas = {
-# 					amount < 1
-# 					slots = { political_advisor }
-# 				}
-# 			}			
-# 			modifier = {
-# 				add = 5
-# 				amount_taken_ideas = {
-# 					amount < 1
-# 					slots = { army_chief }
-# 				}
-# 			}
+	option = { #Pay for it
+		name = DOD_romania.86.a
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 3
+					slots = { political_advisor }
+				}
+			}
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 2
+					slots = { political_advisor }
+				}
+			}
+			modifier = {
+				add = 5
+				has_war = no
+				amount_taken_ideas = {
+					amount < 1
+					slots = { political_advisor }
+				}
+			}			
+			modifier = {
+				add = 5
+				amount_taken_ideas = {
+					amount < 1
+					slots = { army_chief }
+				}
+			}
 
-# 		}
-# 		add_timed_idea = { idea = ROM_king_carol_ii_factory_penalty days = 120 }
-# 		hidden_effect = {
-# 			country_event = { id = DOD_romania.80 }
-# 		}
-# 	}
-# 	option = { #Negotiate a deal
-# 		name = DOD_romania.86.b
-# 		ai_chance = {
-# 			base = 4
-# 			modifier = {
-# 				add = -2
-# 				date < 1937.01.02
-# 				has_war = no
-# 			}
-# 			modifier = {
-# 				add = 20
-# 				OR = {
-# 					has_war = yes
-# 					any_other_country = {
-# 						OR = {
-# 							is_justifying_wargoal_against = ROOT
-# 							has_wargoal_against = ROOT
-# 						}
-# 					}
-# 				}
-# 			}
-# 			modifier = {
-# 				add = 20
-# 				date > 1937.01.02
-# 			}
-# 		}
-# 		add_political_power = -90
-# 		add_timed_idea = { idea = ROM_king_carol_ii_factory_paid_with_pp days = 90 }
-# 		hidden_effect = {
-# 			country_event = { id = DOD_romania.80 }
-# 		}
-# 	}
+		}
+		add_timed_idea = { idea = ROM_king_carol_ii_factory_penalty days = 120 }
+		hidden_effect = {
+			country_event = { id = DOD_romania.80 }
+		}
+	}
+	option = { #Negotiate a deal
+		name = DOD_romania.86.b
+		ai_chance = {
+			base = 4
+			modifier = {
+				add = -2
+				date < 1937.01.02
+				has_war = no
+			}
+			modifier = {
+				add = 20
+				OR = {
+					has_war = yes
+					any_other_country = {
+						OR = {
+							is_justifying_wargoal_against = ROOT
+							has_wargoal_against = ROOT
+						}
+					}
+				}
+			}
+			modifier = {
+				add = 20
+				date > 1937.01.02
+			}
+		}
+		add_political_power = -90
+		add_timed_idea = { idea = ROM_king_carol_ii_factory_paid_with_pp days = 90 }
+		hidden_effect = {
+			country_event = { id = DOD_romania.80 }
+		}
+	}
 
-# }
+}
 
 #Split CZE - GER approached by Romania
 country_event = {
 	id = DOD_romania.110
 	title = DOD_romania.110.t
 	desc = DOD_romania.110.desc 
-	picture = [GetHitlerHandshakeEventPicture]
+	picture = GFX_report_event_hitler_handshake
 	
 	is_triggered_only = yes
 
@@ -1844,14 +1786,8 @@ country_event = {
 		ai_chance = {
 			factor = 80
 			modifier = {
+				is_in_faction = yes
 				factor = 0
-				OR = {
-					is_in_faction = yes
-					any_other_country = {
-						is_major = yes
-						has_guaranteed = ROOT
-					}
-				}
 			}
 			modifier = {
 				GER = {
@@ -1863,10 +1799,8 @@ country_event = {
 		}
 		custom_effect_tooltip = GAME_OVER_TT
 		GER = {
-			set_country_flag = GER_split_CZE_with_ROM_flag
 			transfer_state = 9
 			transfer_state = 69
-			transfer_state = 972
 			transfer_state = 75
 			transfer_state = 74
 		}
@@ -1877,25 +1811,25 @@ country_event = {
 			HUN = {
 				transfer_state = 664 #might as well throw them a bone
 			}
-			else = { #Need to get rid of everything
-				SLO = { transfer_state = 664 }
-			}
+			# else = { #Need to get rid of everything
+			# 	SLO = { transfer_state = 664 }
+			# }
 		}
-		SLO = {
-			transfer_state = 70
-			transfer_state = 71
-			transfer_state = 72
-			transfer_state = 73
-			add_state_core = 70
-			add_state_core = 71
-			add_state_core = 72
-			add_state_core = 73
+		# SLO = {
+		# 	transfer_state = 70
+		# 	transfer_state = 71
+		# 	transfer_state = 72
+		# 	transfer_state = 73
+		# 	add_state_core = 70
+		# 	add_state_core = 71
+		# 	add_state_core = 72
+		# 	add_state_core = 73
 
-		}
-		ROM = {
-			puppet = SLO
-			annex_country = { target = CZE } #cleanup
-		}
+		# }
+		# ROM = {
+		# 	puppet = SLO
+		# 	annex_country = { target = CZE } #cleanup
+		# }
 	}
 	option = {# refuse
 		name = DOD_romania.114.b
@@ -1903,7 +1837,6 @@ country_event = {
 			factor = 20
 			modifier = {
 				owns_state = 69
-				owns_state = 972
 				factor = 2
 			}
 			modifier = {
@@ -1956,7 +1889,7 @@ country_event = {
 	}
 }
 
-#Invite Foreign Motor Companies 
+#Invite Foreign Motor Companies
 country_event = {
 	id = DOD_romania.120
 	title = DOD_romania.120.t
@@ -2008,7 +1941,7 @@ country_event = {
 	}
 }
 
-#fighter competition - initial choice for Romania
+#fighter competition - initial choice for Hungary
 country_event = {
 	id = DOD_romania.150
 	title = DOD_hungary.150.t
@@ -2097,7 +2030,7 @@ country_event = {
 	}
 }
 
-#Fighter competition - Romania is looking for a light fighter
+#Fighter competition - Hungary is looking for a light fighter
 country_event = {
 	id = DOD_romania.151
 	title = DOD_hungary.151.t
@@ -2769,7 +2702,7 @@ country_event = {
 			create_production_license = {
 				target = ROM 
 				equipment = {
-					type = fighter_equipment_1
+					type = small_plane_airframe_1
 					
 				}
 				cost_factor = 0
@@ -2783,7 +2716,7 @@ country_event = {
 			create_production_license = {
 				target = ROM 
 				equipment = {
-					type = fighter_equipment_2
+					type = small_plane_airframe_2
 				}
 				cost_factor = 0
 			}
@@ -2795,7 +2728,7 @@ country_event = {
 			create_production_license = {
 				target = ROM 
 				equipment = {
-					type = fighter_equipment_3
+					type = small_plane_airframe_3
 				}
 				cost_factor = 0
 			}
@@ -2979,7 +2912,7 @@ country_event = {
 		ai_chance = {
 			base = 0
 		}
-		#add_timed_idea = { idea = ROM_king_carol_ii_consumer_penalty days = 90 }
+		add_timed_idea = { idea = ROM_king_carol_ii_consumer_penalty days = 90 }
 	}
 
 }
@@ -2999,72 +2932,6 @@ country_event = {
 			base = 100
 		}
 		ROM = {
-			leave_faction = yes
-		}
-		effect_tooltip = {
-			ROM = {
-				every_country = {
-					limit = {
-						has_war_with = ROM
-						is_in_faction_with = SOV
-					}
-					white_peace = ROM
-				}
-				every_country = {
-					limit = {
-						has_war_with = ROM
-						is_in_faction_with = ENG
-					}
-					white_peace = ROM
-				}
-			}
-			white_peace = FROM
-			every_country = {
-				limit = {
-					is_subject_of = FROM
-					has_war_with = ROOT
-				}
-				white_peace = ROOT
-			}
-			SOV = { 
-				add_to_faction = ROM 
-				transfer_state = 78
-				transfer_state = 766
-				transfer_state = 80
-			}
-			GER = {
-				create_wargoal = {
-					type = puppet_wargoal_focus
-					target = ROM
-				}
-			}			
-		}
-		hidden_effect = {
-			ROM = { country_event = DOD_romania.502 }
-		}
-	}
-
-	option = { #rather not
-		name = DOD_romania.501.b
-		ai_chance = {
-			base = 0
-		}
-	}
-
-}
-
-#Actually do the rest of it.
-country_event = {
-	id = DOD_romania.502
-	title = DOD_romania.502.t
-	desc = DOD_romania.502.desc
-	picture = GFX_report_event_german_reichstag_gathering
-
-	is_triggered_only = yes
-	
-	option = { #They Accepted!
-		name = DOD_romania.502.a
-		ROM = {
 			every_country = {
 				limit = {
 					has_war_with = ROM
@@ -3079,14 +2946,7 @@ country_event = {
 				}
 				white_peace = ROM
 			}
-		}
-		white_peace = SOV
-		every_country = {
-			limit = {
-				is_subject_of = SOV
-				has_war_with = ROM
-			}
-			white_peace = ROM
+			leave_faction = yes
 		}
 		SOV = { 
 			add_to_faction = ROM 
@@ -3101,268 +2961,12 @@ country_event = {
 			}
 		}
 	}
-}
 
-# They Declined.
-country_event = {
-	id = DOD_romania.503
-	title = DOD_romania.503.t
-	desc = DOD_romania.503.desc
-	picture = GFX_report_event_german_reichstag_gathering
-
-	is_triggered_only = yes
-	
-	option = { #They Declined!
-		name = DOD_romania.503.a
-	}
-}
-
-
-# Ask for Land from Yugo (West Banat)
-country_event = {
-	id = DOD_romania.504
-	title = DOD_romania.504.t
-	desc = DOD_romania.504.desc
-	picture = GFX_report_event_german_reichstag_gathering
-
-	is_triggered_only = yes
-	
-	option = { # Give Land 
-		name = DOD_romania.504.a
-		764 = { transfer_state_to = ROM }
-	}
-
-	option = { # Piss off
-		name = DOD_romania.504.b
-		
-	}
-
-}
-
-# They gave the land
-country_event = {
-	id = DOD_romania.505
-	title = DOD_romania.505.t
-	desc = DOD_romania.505.desc
-	picture = GFX_report_event_german_reichstag_gathering
-
-	is_triggered_only = yes
-	
-	option = { # Yay
-		name = DOD_romania.505.a
-	}
-
-}
-
-# They said no
-country_event = {
-	id = DOD_romania.506
-	title = DOD_romania.506.t
-	desc = DOD_romania.506.desc
-	picture = GFX_report_event_german_reichstag_gathering
-
-	is_triggered_only = yes
-	
-	option = { # Damn
-		name = DOD_romania.506.a
-	}
-
-	option = { # With Force Then
-		name = DOD_romania.506.b
-		start_border_war = {
-			attacker = {
-				state = 82
-				num_provinces = 3
-				on_win = ROM_border_war.1
-				on_lose = ROM_border_war.2
-				on_cancel = ROM_border_war.3
-			}
-			defender = {
-				state = 764
-				num_provinces = 3
-				on_win = ROM_border_war.2
-				on_lose = ROM_border_war.1
-				on_cancel = ROM_border_war.3
-			}
+	option = { #rather not
+		name = DOD_romania.501.b
+		ai_chance = {
+			base = 0
 		}
 	}
 
 }
-
-
-# Ask for Land from Hungary (debrecen)
-country_event = {
-	id = DOD_romania.507
-	title = DOD_romania.507.t
-	desc = DOD_romania.507.desc
-	picture = GFX_report_event_german_reichstag_gathering
-
-	is_triggered_only = yes
-	
-	option = { # Give Land 
-		name = DOD_romania.507.a
-		154 = { transfer_state_to = ROM }
-	}
-
-	option = { # Piss off
-		name = DOD_romania.507.b
-	}
-
-}
-
-# They gave the land
-country_event = {
-	id = DOD_romania.508
-	title = DOD_romania.508.t
-	desc = DOD_romania.508.desc
-	picture = GFX_report_event_german_reichstag_gathering
-
-	is_triggered_only = yes
-	
-	option = { # Yay
-		name = DOD_romania.508.a
-	}
-
-}
-
-# They said no
-country_event = {
-	id = DOD_romania.509
-	title = DOD_romania.509.t
-	desc = DOD_romania.509.desc
-	picture = GFX_report_event_german_reichstag_gathering
-
-	is_triggered_only = yes
-	
-	option = { # Damn
-		name = DOD_romania.509.a
-	}
-
-	option = { # With Force Then
-		name = DOD_romania.509.b
-		start_border_war = {
-			attacker = {
-				state = 76
-				num_provinces = 3
-				on_win = ROM_border_war.1
-				on_lose = ROM_border_war.2
-				on_cancel = ROM_border_war.3
-			}
-			defender = {
-				state = 154
-				num_provinces = 4
-				on_win = ROM_border_war.2
-				on_lose = ROM_border_war.1
-				on_cancel = ROM_border_war.3
-			}
-		}
-	}
-
-}
-
-# Change of Government
-country_event = {
-	id = DOD_romania.510
-	title = DOD_romania.510.t
-	desc = DOD_romania.510.desc
-	picture = GFX_report_event_german_reichstag_gathering
-
-	is_triggered_only = yes
-	
-	option = { # Non Aligned
-		name = DOD_romania.510.a
-		set_party_name = {
-			ideology = neutrality
-			long_name = "Antonescu Loyalists"
-			name = "Antonescu Loyalists"
-		}
-		set_politics = {
-			ruling_party = neutrality
-		}
-	}
-
-	option = { # Fascist
-		name = DOD_romania.510.b
-		set_party_name = {
-			ideology = fascism
-			long_name = "Antonescu Loyalists"
-			name = "Antonescu Loyalists"
-		}
-	}
-
-}
-
-
-
-#Romania wins
-country_event = {
-	id = ROM_border_war.1
-	title = ROM_border_war.1.t
-	desc = ROM_border_war.1.desc
-	picture = GFX_report_event_japanese_transport_soldiers
-
-	is_triggered_only = yes
-
-	option = {
-		name = ROM_border_war.1.a
-		trigger = {
-			original_tag = ROM
-		}
-	}
-	option = {
-		name = ROM_border_war.2.b
-		trigger = {
-			NOT = { original_tag = ROM }
-		}
-	}
-}
-
-#Romania loses
-country_event = {
-	id = ROM_border_war.2
-	title = ROM_border_war.2.t
-	desc = ROM_border_war.2.desc
-	picture = GFX_report_event_japanese_soldiers_03
-
-	is_triggered_only = yes
-
-	option = {
-		name = ROM_border_war.1.b
-		trigger = {
-			original_tag = ROM
-		}
-	}
-	option = {
-		name = ROM_border_war.1.a
-		trigger = {
-			NOT = { original_tag = ROM }
-		}
-	}
-}
-
-#stalemate
-country_event = { 
-	id = ROM_border_war.3
-	title = ROM_border_war.3.t
-	desc = ROM_border_war.3.desc
-	picture = GFX_report_event_japanese_army_parade
-
-	is_triggered_only = yes
-
-	option = {
-		name = ROM_border_war.3.a
-		trigger = {
-			original_tag = ROM
-		}
-	}
-	option = {
-		name = ROM_border_war.3.b
-		trigger = {
-			NOT = { original_tag = ROM }
-		}
-	}
-}
-
-
-
-

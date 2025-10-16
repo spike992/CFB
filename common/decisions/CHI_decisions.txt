@@ -219,10 +219,9 @@ war_measures = {
 
 		available = {
 			has_war = yes
-			OR = {
-				NOT = { controls_state = 608 }
-				NOT = { controls_state = 614 }
-				surrender_progress > 0.08
+			NOT = {
+				controls_state = 608
+				controls_state = 614
 			}
 		}
 
@@ -268,6 +267,7 @@ war_measures = {
 				4123
 				4005
 				1001
+				10079
 				4079
 				11916
 				9958
@@ -276,7 +276,6 @@ war_measures = {
 		
 		visible = {
 			has_war_with = JAP
-			tag = CHI
 		}
 
 		remove_effect = {
@@ -317,6 +316,7 @@ war_measures = {
 						id = 4123
 						id = 4005
 						id = 1001
+						id = 1076
 					}
 				}
 				damage_building = {
@@ -393,7 +393,6 @@ war_measures = {
 						id = 7085
 						id = 9995
 						id = 7126
-						id = 9958
 					}
 				}
 			}
@@ -404,10 +403,13 @@ war_measures = {
 						id = 11973
 						id = 1121
 						id = 1161
+						id = 7126
+						id = 10079
 						id = 1076
 						id = 4123
 						id = 4005
 						id = 1001
+						id = 1076
 					}
 				}
 			}
@@ -430,7 +432,7 @@ war_measures = {
 		icon = generic_scorched_earth
 		available = {
 			any_owned_state = {
-				is_controlled_by = CHI
+				is_controlled_by = ROOT
 				infrastructure > 0
 				NOT = { state = 601 }
 				NOT = { state = 604 }
@@ -470,13 +472,13 @@ war_measures = {
 					damage = 3
 				}
 			}
-			random_country = {
-				limit = {
-					PRC_has_low_popular_support = yes
-				}
+			# random_country = {
+			# 	limit = {
+			# 		PRC_has_low_popular_support = yes
+			# 	}
 
-				PRC_low_popular_support_level_down = yes
-			}			
+			# 	PRC_low_popular_support_level_down = yes
+			# }			
 		}
 	}
 
@@ -489,24 +491,23 @@ war_measures = {
 		available = {
 			tag = CHI
 			has_war_with = JAP
-			if = {
-				limit = {
-					has_global_flag = china_waves_style_flag
-				}
-				OR = {
-					casualties > 500000
-					surrender_progress > 0.15
-				}
-			} else = {
-				casualties > 500000
-				surrender_progress > 0.15			
-			}
+			casualties > 500000
+			surrender_progress > 0.15
 			is_ai = yes
 			NOT = { JAP = { is_ai = yes } }
 			OR = {
-				has_global_flag = allow_china_waves_3_flag
-				has_global_flag = allow_china_waves_2_flag
-				has_global_flag = allow_china_waves_1_flag
+				has_game_rule = {
+					rule = allow_china_waves
+					option = ONEWAVES
+				}
+				has_game_rule = {
+					rule = allow_china_waves
+					option = TWOWAVES
+				}
+				has_game_rule = {
+					rule = allow_china_waves
+					option = THREEWAVES
+				}
 			}
 		}
 
@@ -537,7 +538,9 @@ war_measures = {
 					infantry = { x = 2 y = 0 }
 					infantry = { x = 2 y = 1 }
 					infantry = { x = 2 y = 2 }
-	
+				}
+				support = {
+					anti_air = { x = 0 y = 0 }
 				}
 			}
 			every_state = {
@@ -545,10 +548,11 @@ war_measures = {
 					NOT = {
 						OR = {
 							state = 616
+							state = 756
 						}
 					}
 					AND = {
-						any_neighbor_state = { OR = { is_controlled_by = JAP is_controlled_by = MAN } NOT = { state = 616 } }
+						any_neighbor_state = { OR = { is_controlled_by = JAP is_controlled_by = MAN } }
 						is_controlled_by = CHI
 					}
 									
@@ -606,24 +610,20 @@ war_measures = {
 
 		available = {
 			tag = CHI
-			has_war_with = JAP
-			if = {
-				limit = {
-					has_global_flag = china_waves_style_flag
-				}
-				OR = {
-					casualties > 1250000
-					surrender_progress > 0.3
-				}
-			} else = {
-				casualties > 1250000
-				surrender_progress > 0.3			
-			}
+			has_war_with = JAP		
+			casualties > 1250000
+			surrender_progress > 0.3
 			is_ai = yes
 			NOT = { JAP = { is_ai = yes } }
 			OR = {
-				has_global_flag = allow_china_waves_3_flag
-				has_global_flag = allow_china_waves_2_flag
+				has_game_rule = {
+					rule = allow_china_waves
+					option = TWOWAVES
+				}
+				has_game_rule = {
+					rule = allow_china_waves
+					option = THREEWAVES
+				}
 			}
 		}
 
@@ -656,6 +656,9 @@ war_measures = {
 					infantry = { x = 2 y = 2 }
 	
 				}
+				support = {
+					anti_air = { x = 0 y = 0 }
+				}
 			}
 			every_state = {
 				
@@ -663,10 +666,11 @@ war_measures = {
 					NOT = {
 						OR = {
 							state = 616
+							state = 756
 						}
 					}
 					AND = {
-						any_neighbor_state = { OR = { is_controlled_by = JAP is_controlled_by = MAN } NOT = { state = 616 } }
+						any_neighbor_state = { OR = { is_controlled_by = JAP is_controlled_by = MAN } }
 						is_controlled_by = CHI
 					}
 					
@@ -731,7 +735,10 @@ war_measures = {
 			}
 			is_ai = yes
 			NOT = { JAP = { is_ai = yes } }
-			has_global_flag = allow_china_waves_3_flag
+			has_game_rule = {
+				rule = allow_china_waves
+				option = THREEWAVES
+			}
 		}
 
 		ai_will_do = {
@@ -763,80 +770,84 @@ war_measures = {
 					infantry = { x = 2 y = 2 }
 	
 				}
+				support = {
+					anti_air = { x = 0 y = 0 }
+				}
 			}
 			every_state = {
 				limit = {
 					NOT = {
 						OR = {
 							state = 616
+							state = 756
 						}
 					}	
 					AND = {
-						any_neighbor_state = { OR = { is_controlled_by = JAP is_controlled_by = MAN } NOT = { state = 616 }}
+						any_neighbor_state = { OR = { is_controlled_by = JAP is_controlled_by = MAN } }
 						is_controlled_by = CHI
 					}
 					
 				}
 				create_unit = {
-					division = "division_template = \"Juntuan\" force_equipment_variants = { infantry_equipment_0 = { owner = \"CHI\" } } start_experience_factor = 0.1 start_equipment_factor = 1.0"
+					division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
 					owner = CHI
 				}
 				create_unit = {
-					division = "division_template = \"Juntuan\" force_equipment_variants = { infantry_equipment_0 = { owner = \"CHI\" } } start_experience_factor = 0.1 start_equipment_factor = 1.0"
+					division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
 					owner = CHI
 				}
 				create_unit = {
-					division = "division_template = \"Juntuan\" force_equipment_variants = { infantry_equipment_0 = { owner = \"CHI\" } } start_experience_factor = 0.1 start_equipment_factor = 1.0"
+					division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
 					owner = CHI
 				}
 				create_unit = {
-					division = "division_template = \"Juntuan\" force_equipment_variants = { infantry_equipment_0 = { owner = \"CHI\" } } start_experience_factor = 0.1 start_equipment_factor = 1.0"
+					division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
 					owner = CHI
 				}
 				create_unit = {
-					division = "division_template = \"Juntuan\" force_equipment_variants = { infantry_equipment_0 = { owner = \"CHI\" } } start_experience_factor = 0.1 start_equipment_factor = 1.0"
+					division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
 					owner = CHI
 				}
 				create_unit = {
-					division = "division_template = \"Juntuan\" force_equipment_variants = { infantry_equipment_0 = { owner = \"CHI\" } } start_experience_factor = 0.1 start_equipment_factor = 1.0"
+					division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
 					owner = CHI
 				}
 				create_unit = {
-					division = "division_template = \"Juntuan\" force_equipment_variants = { infantry_equipment_0 = { owner = \"CHI\" } } start_experience_factor = 0.1 start_equipment_factor = 1.0"
+					division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
 					owner = CHI
 				}
 				create_unit = {
-					division = "division_template = \"Juntuan\" force_equipment_variants = { infantry_equipment_0 = { owner = \"CHI\" } } start_experience_factor = 0.1 start_equipment_factor = 1.0"
+					division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
 					owner = CHI
 				}
 				create_unit = {
-					division = "division_template = \"Juntuan\" force_equipment_variants = { infantry_equipment_0 = { owner = \"CHI\" } } start_experience_factor = 0.1 start_equipment_factor = 1.0"
+					division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
 					owner = CHI
 				}
 				create_unit = {
-					division = "division_template = \"Juntuan\" force_equipment_variants = { infantry_equipment_0 = { owner = \"CHI\" } } start_experience_factor = 0.1 start_equipment_factor = 1.0"
+					division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
 					owner = CHI
 				}
 				create_unit = {
-					division = "division_template = \"Juntuan\" force_equipment_variants = { infantry_equipment_0 = { owner = \"CHI\" } } start_experience_factor = 0.1 start_equipment_factor = 1.0"
+					division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
 					owner = CHI
 				}
 				create_unit = {
-					division = "division_template = \"Juntuan\" force_equipment_variants = { infantry_equipment_0 = { owner = \"CHI\" } } start_experience_factor = 0.1 start_equipment_factor = 1.0"
+					division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
 					owner = CHI
 				}
-				# create_unit = {
-				# 	division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
-				# 	owner = CHI
-				# }
-				# create_unit = {
-				# 	division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
-				# 	owner = CHI
-				# }
-				# create_unit = {
-				# 	division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
-				# 	owner = CHI
-				# }
+				create_unit = {
+					division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
+					owner = CHI
+				}
+				create_unit = {
+					division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
+					owner = CHI
+				}
+				create_unit = {
+					division = "division_template = \"Juntuan\" start_experience_factor = 0.1 start_equipment_factor = 1.0"
+					owner = CHI
+				}
 			}
 			add_ideas = CHI_wave3
 		}
@@ -2531,7 +2542,7 @@ foreign_support = {
 	CHI_flying_tigers = {
 		icon = generic_air
 		available = {
-			has_equipment = { fighter_equipment > 149 }
+			has_equipment = { small_plane_airframe > 149 }
 		}
 		visible = {
 			has_country_flag = CHI_flying_tigers
@@ -2552,7 +2563,7 @@ foreign_support = {
 					USA = {
 						send_equipment = {
 							target = PREV
-							type = fighter_equipment
+							type = small_plane_airframe
 							amount = 150
 						}
 					}
@@ -2561,15 +2572,15 @@ foreign_support = {
 			add_war_support = 0.05
 		}
 		modifier = {
-			air_volunteer_cap = 1
+			air_volunteer_cap = 100
 		}
 	}
 
 	CHI_soviet_volunteer_group = {
 		icon = generic_air
 		available = {
-			has_equipment = { fighter_equipment > 99 }
-			has_equipment = { tac_bomber_equipment > 49 }
+			has_equipment = { small_plane_airframe > 99 }
+			has_equipment = { medium_plane_airframe > 49 }
 		}
 		visible = {
 			has_country_flag = CHI_soviet_volunteer_group
@@ -2590,14 +2601,14 @@ foreign_support = {
 					SOV = {
 						send_equipment = {
 							target = PREV
-							type = fighter_equipment
+							type = small_plane_airframe
 							amount = 100
 						}
 					}
 					SOV = {
 						send_equipment = {
 							target = PREV
-							type = tac_bomber_equipment
+							type = medium_plane_airframe
 							amount = 50
 						}
 					}
@@ -2732,7 +2743,7 @@ foreign_support = {
 		}
 		days_re_enable = 360
 		ai_will_do = {
-			base = 1
+			factor = 1
 		}
 		cost = 25
 		days_remove = 60
@@ -2847,7 +2858,7 @@ foreign_support = {
 		}
 		days_re_enable = 360
 		ai_will_do = {
-			base = 1
+			factor = 1
 		}
 		cost = 25
 		days_remove = 60
@@ -2927,7 +2938,7 @@ foreign_support = {
 		cost = 25
 		days_re_enable = 360
 		ai_will_do = {
-			base = 1
+			factor = 1
 		}
 		days_remove = 60
 		modifier = {

@@ -20,9 +20,24 @@ country_event = {
   			type = annex_everything
   			target = CHI
   		}
-  		
+
 		hidden_effect = {
 			country_event = { days = 5 id = news.1 }
+			ROM = {
+				diplomatic_relation = {
+					country = JAP
+					relation = military_access
+					active = yes
+				}
+			}
+	
+			BUL = {
+				diplomatic_relation = {
+					country = JAP
+					relation = military_access
+					active = yes
+				}
+			}
 		}
 		USA = { set_country_flag = { flag = USA_china_window days = 60 value = 1 } }
 		if = {
@@ -251,6 +266,7 @@ country_event = {
 						CONTROLLER = {
 							OR = {
 								original_tag = FRA
+								original_tag = VIC
 								is_subject_of = FRA
 								is_subject_of = VIC
 							}
@@ -265,6 +281,7 @@ country_event = {
 						CONTROLLER = {
 							OR = {
 								original_tag = FRA
+								original_tag = VIC
 								is_subject_of = FRA
 								is_subject_of = VIC
 							}
@@ -279,6 +296,7 @@ country_event = {
 						CONTROLLER = {
 							OR = {
 								original_tag = FRA
+								original_tag = VIC
 								is_subject_of = FRA
 								is_subject_of = VIC
 							}
@@ -293,6 +311,7 @@ country_event = {
 						CONTROLLER = {
 							OR = {
 								original_tag = FRA
+								original_tag = VIC
 								is_subject_of = FRA
 								is_subject_of = VIC
 							}
@@ -307,6 +326,7 @@ country_event = {
 						CONTROLLER = {
 							OR = {
 								original_tag = FRA
+								original_tag = VIC
 								is_subject_of = FRA
 								is_subject_of = VIC
 							}
@@ -375,7 +395,6 @@ country_event = {
 	#}
 }
 
-#MM: Never used. Unlocalized
 # USA condemns our war 
 country_event = {
 	id = japan.10
@@ -452,6 +471,12 @@ country_event = {
 	
 	option = {
 		name = japan.13.a
+		
+		JAP = {
+			SIA = {
+				pow_before_annex = yes
+			}
+		}
 		annex_country = {
 			target = SIA
 			transfer_troops = no
@@ -607,405 +632,200 @@ country_event = {
 	}
 }
 
-country_event = {
-	id = japan.500
-	title = japan.500.t
-	desc = japan.500.d
-	picture = GFX_report_event_chinese_soldiers_02
-
-	fire_only_once = yes
-	
-	trigger = {
-		tag = JAP
-		focus_progress = {
-			focus = JAP_strike_south_doctrine
-			progress > 0.25
-		}
-	}
-
-	mean_time_to_happen = {
-		days = 1
-	}
-
-	option = {
-		set_country_flag = JAP_siam1
-		name = japan.500.a
-		custom_effect_tooltip = japan.500.a_desc
-		effect_tooltip = {
-			SIA = { country_event = japan.12 }
-		}
-		ai_chance = {
-			factor = 1
-			modifier = {
-				factor = 0
-				SIA = { is_ai = no }
-			}
-		}
-	}
-	option = {
-		set_country_flag = JAP_siam2
-		name = japan.500.b
-		custom_effect_tooltip = japan.500.b_desc
-		effect_tooltip = {
-			SIA = { country_event = generic.5 }
-			SIA = { add_ideas = SIA_rubber_extortion }
-			add_ai_strategy = {
-				type = protect
-				id = "SIA"
-				value = 100
-			}
-		}
-		ai_chance = {
-			factor = 1
-			modifier = {
-				factor = 0
-				SIA = { is_ai = yes }
-			}
-		}
-	}
-}
-
-country_event = {
-	id = japan.501
-	title = japan.501.t
-	desc = japan.501.d
-	picture = GFX_report_event_chinese_soldiers_02
-
-	fire_only_once = yes
-	
-	trigger = {
-		tag = JAP
-		focus_progress = {
-			focus = JAP_strike_south_doctrine
-			progress > 0.25
-		}
-	}
-
-	mean_time_to_happen = {
-		days = 1
-	}
-
-	option = {
-		set_country_flag = JAP_army1
-		name = japan.501.a
-		custom_effect_tooltip = japan.501.a_desc
-		effect_tooltip = {
-			add_tech_bonus = {
-				name = JAP_lessons
-				bonus = 0.50
-				uses = 2
-				category = infantry_weapons
-			}
-			add_ideas = JAP_expand_the_army
-			add_potential_special_forces_tree = yes
-		}
-		
-	}
-	option = {
-		set_country_flag = JAP_army2
-		name = japan.501.b
-		custom_effect_tooltip = japan.501.b_desc
-		effect_tooltip = {
-			add_ideas = JAP_expand_the_snlf
-			add_tech_bonus = {
-				name = JAP_lessons
-				bonus = 0.50
-				uses = 2
-				category = marine_tech
-				category = tp_tech
-			}
-			add_potential_special_forces_tree = yes
-		}
-	}
-}
-
-country_event = {
-	id = japan.502
-	title = japan.502.t
-	desc = japan.502.d
-	picture = GFX_report_event_chinese_soldiers_02
-
-	fire_only_once = yes
-	
-	trigger = {
-		tag = JAP
-		focus_progress = {
-			focus = JAP_strike_south_doctrine
-			progress > 0.5
-		}
-	}
-
-	mean_time_to_happen = {
-		days = 1
-	}
-
-	option = {
-		set_country_flag = JAP_buildup1
-		name = japan.502.a
-		custom_effect_tooltip = japan.502.a_desc
-		effect_tooltip = {
-			289 = {
-				add_building_construction = {
-					type = naval_base
-					level = 5
-					province = 7408
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 5
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = air_base
-					level = 5
-					instant_build = yes
-				}
-			}
-			724 = {
-				add_building_construction = {
-					type = infrastructure
-					level = 3
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = air_base
-					level = 3
-					instant_build = yes
-				}
-			}
-		}
-		
-	}
-	option = {
-		set_country_flag = JAP_buildup2
-		name = japan.502.b
-		custom_effect_tooltip = japan.502.b_desc
-		effect_tooltip = {
-			645 = {
-				add_building_construction = {
-					type = naval_base
-					level = 4
-					province = 13025
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = coastal_bunker 
-					level = 2
-					province = 13025
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = air_base
-					level = 3
-					instant_build = yes
-				}
-			}
-			526 = {
-				add_building_construction = {
-					type = naval_base
-					level = 3
-					province = 11932
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = coastal_bunker 
-					level = 3
-					province = 11932
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = air_base
-					level = 2
-					instant_build = yes
-				}
-			}
-			646 = {
-				add_building_construction = {
-					type = naval_base
-					level = 4
-					province = 3995
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = coastal_bunker 
-					level = 3
-					province = 3995
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = air_base
-					level = 2
-					instant_build = yes
-				}
-			}
-		}
-	}
-}
-
-country_event = {
-	id = japan.503
-	title = japan.503.t
-	desc = japan.503.d
-	picture = GFX_report_event_chinese_soldiers_02
-
-	fire_only_once = yes
-	
-	trigger = {
-		tag = JAP
-		focus_progress = {
-			focus = JAP_strike_south_doctrine
-			progress > 0.5
-		}
-	}
-
-	mean_time_to_happen = {
-		days = 1
-	}
-
-	option = {
-		set_country_flag = JAP_usa1
-		name = japan.503.a
-		custom_effect_tooltip = japan.503.a_desc
-		
-	}
-	option = {
-		trigger = {
-			has_game_rule = {
-				rule = japan_leave_out_USA
-				option = ENABLED
-			}
-		}
-		set_country_flag = JAP_usa2
-		name = japan.503.b
-		custom_effect_tooltip = japan.503.b_desc
-		
-	}
-}
-
-# # Divide up China - 29.2 Threat generated
 # country_event = {
-#     id = japan.504
-#     title = japan.504.t
-#     desc = japan.504.desc
-#     picture = GFX_report_event_generic_sign_treaty2
+# 	id = japan.500
+# 	title = japan.500.t
+# 	desc = japan.500.d
+# 	picture = GFX_report_event_chinese_soldiers_02
 
-#     fire_only_once = yes
+# 	fire_only_once = yes
+	
+# 	trigger = {
+# 		tag = JAP
+# 		focus_progress = {
+# 			focus = JAP_strike_south_doctrine
+# 			progress > 0.25
+# 		}
+# 	}
 
-#     trigger = {
-#         tag = JAP
-#         has_war_with = CHI
-#         CHI = {
-#             surrender_progress > 0.80
-#         }
-#     }
+# 	mean_time_to_happen = {
+# 		days = 1
+# 	}
 
-#     option = {
-#         name = japan.504.a #Peace Conference
-#         ai_chance = { factor = 0 }
-# 		custom_effect_tooltip = japan.504.a_desc
-#     }
-#     option = {
-#         name = japan.504.b #Manchu gets some, Japan gets the rest
-#         ai_chance = { factor = 100 }
-# 		set_global_flag = JAP_split_china
-# 		custom_effect_tooltip = japan.504.b_desc
-#     }
-#     option = {
-#         name = japan.504.c #Japan Takes All
-#         ai_chance = { factor = 0 }
-# 		set_global_flag = JAP_take_china
-# 		custom_effect_tooltip = japan.504.c_desc
-#     }
 # 	option = {
-#         name = japan.504.d #Manchu Takes All
-#         ai_chance = { factor = 0 }
-# 		set_global_flag = JAP_give_china
-# 		custom_effect_tooltip = japan.504.d_desc
-#     }
-# 	#option = {
-#     #    name = japan.504.e #Japan puppets China
-#     #    ai_chance = { factor = 0 }
-# 	#	set_global_flag = JAP_puppet_china
-# 	#	custom_effect_tooltip = japan.504.e_desc
-#     #}
+# 		set_country_flag = JAP_siam1
+# 		name = japan.500.a
+# 		custom_effect_tooltip = japan.500.a_desc
+# 		ai_chance = {
+# 			factor = 1
+# 			modifier = {
+# 				factor = 0
+# 				SIA = { is_ai = no }
+# 			}
+# 		}
+# 	}
+# 	option = {
+# 		set_country_flag = JAP_siam2
+# 		name = japan.500.b
+# 		custom_effect_tooltip = japan.500.b_desc
+# 		ai_chance = {
+# 			factor = 1
+# 			modifier = {
+# 				factor = 0
+# 				SIA = { is_ai = yes }
+# 			}
+# 		}
+# 	}
 # }
 
-country_event = {
-	id = japan.505
-	title = japan.505.t
-	desc = japan.505.d
-	picture = GFX_report_event_chinese_soldiers_02
+# country_event = {
+# 	id = japan.501
+# 	title = japan.501.t
+# 	desc = japan.501.d
+# 	picture = GFX_report_event_chinese_soldiers_02
 
-	fire_only_once = no
-	is_triggered_only = yes
+# 	fire_only_once = yes
 	
+# 	trigger = {
+# 		tag = JAP
+# 		focus_progress = {
+# 			focus = JAP_strike_south_doctrine
+# 			progress > 0.25
+# 		}
+# 	}
 
-	option = {
-		name = startingevent.999.a
-	}
-}
+# 	mean_time_to_happen = {
+# 		days = 1
+# 	}
 
+# 	option = {
+# 		set_country_flag = JAP_army1
+# 		name = japan.501.a
+# 		custom_effect_tooltip = japan.501.a_desc
+		
+# 	}
+# 	option = {
+# 		set_country_flag = JAP_army2
+# 		name = japan.501.b
+# 		custom_effect_tooltip = japan.501.b_desc
+# 	}
+# }
+
+# country_event = {
+# 	id = japan.502
+# 	title = japan.502.t
+# 	desc = japan.502.d
+# 	picture = GFX_report_event_chinese_soldiers_02
+
+# 	fire_only_once = yes
+	
+# 	trigger = {
+# 		tag = JAP
+# 		focus_progress = {
+# 			focus = JAP_strike_south_doctrine
+# 			progress > 0.5
+# 		}
+# 	}
+
+# 	mean_time_to_happen = {
+# 		days = 1
+# 	}
+
+# 	option = {
+# 		set_country_flag = JAP_buildup1
+# 		name = japan.502.a
+# 		custom_effect_tooltip = japan.502.a_desc
+		
+# 	}
+# 	option = {
+# 		set_country_flag = JAP_buildup2
+# 		name = japan.502.b
+# 		custom_effect_tooltip = japan.502.b_desc
+# 	}
+# }
+
+# country_event = {
+# 	id = japan.503
+# 	title = japan.503.t
+# 	desc = japan.503.d
+# 	picture = GFX_report_event_chinese_soldiers_02
+
+# 	fire_only_once = yes
+	
+# 	trigger = {
+# 		tag = JAP
+# 		focus_progress = {
+# 			focus = JAP_strike_south_doctrine
+# 			progress > 0.5
+# 		}
+# 	}
+
+# 	mean_time_to_happen = {
+# 		days = 1
+# 	}
+
+# 	option = {
+# 		set_country_flag = JAP_usa1
+# 		name = japan.503.a
+# 		custom_effect_tooltip = japan.503.a_desc
+		
+# 	}
+# 	# option = {
+# 	# 	set_country_flag = JAP_usa2
+# 	# 	name = japan.503.b
+# 	# 	custom_effect_tooltip = japan.503.b_desc
+		
+# 	# }
+# }
+
+# Divide up China - 29.2 Threat generated
 country_event = {
-	id = japan.506
-	title = japan.506.t
-	desc = japan.506.d
-	picture = GFX_report_event_chinese_soldiers_02
+    id = japan.504
+    title = japan.504.t
+    desc = japan.504.desc
+    picture = GFX_report_event_generic_sign_treaty2
 
-	fire_only_once = yes
-	is_triggered_only = yes
+    fire_only_once = yes
 
-	option = {
-		name = startingevent.999.a
+    trigger = {
+        tag = JAP
+        has_war_with = CHI
+        CHI = {
+            surrender_progress > 0.60
+        }
+    }
+
+	mean_time_to_happen = {
+		days = 1
 	}
-}
 
-country_event = {
-	id = japan.507
-	title = japan.507.t
-	desc = japan.507.d
-	picture = GFX_report_event_chinese_soldiers_02
-
-	fire_only_once = yes
-	is_triggered_only = yes
-
-	# War Eco
+    # option = {
+    #     name = japan.504.a #Peace Conference
+    #     ai_chance = { factor = 0 }
+	# 	custom_effect_tooltip = japan.504.a_desc
+    # }
+    option = {
+        name = japan.504.b #Manchu gets some, Japan gets the rest
+        ai_chance = { factor = 100 }
+		set_global_flag = JAP_split_china
+		custom_effect_tooltip = japan.504.b_desc
+    }
+    option = {
+        name = japan.504.c #Japan Takes All
+        ai_chance = { factor = 0 }
+		set_global_flag = JAP_take_china
+		custom_effect_tooltip = japan.504.c_desc
+    }
 	option = {
-		name = japan.507.a
-		JAP = { 
-			add_ideas = war_economy
-		}
-	}
-	# 35 PP back
-	option = {
-		name = japan.507.b
-		JAP = { 
-			add_political_power = 35
-		}
-	}
-}
-
-country_event = {
-	id = japan.508
-	title = japan.508.t
-	desc = japan.508.d
-	picture = GFX_report_event_chinese_soldiers_02
-
-	fire_only_once = yes
-	is_triggered_only = yes
-
-	# Partial Mob
-	option = {
-		name = japan.508.a
-		MAN = { 
-			add_ideas = partial_economic_mobilisation
-		}
-	}
-	# War Eco
-	option = {
-		name = japan.508.b
-		MAN = { 
-			add_ideas = war_economy
-		}
-	}
+        name = japan.504.d #Manchu Takes All
+        ai_chance = { factor = 0 }
+		set_global_flag = JAP_give_china
+		custom_effect_tooltip = japan.504.d_desc
+    }
+	#option = {
+    #    name = japan.504.e #Japan puppets China
+    #    ai_chance = { factor = 0 }
+	#	set_global_flag = JAP_puppet_china
+	#	custom_effect_tooltip = japan.504.e_desc
+    #}
 }

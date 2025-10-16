@@ -1,3 +1,98 @@
+# less surrender
+CHI_dwindle_spirit = {
+	if = {
+		limit = { has_idea = CHI_spirit_dwindling_13 }
+		swap_ideas = {
+			remove_idea = CHI_spirit_dwindling_13
+			add_idea = CHI_spirit_dwindling_14
+		}
+	}
+	if = {
+		limit = { has_idea = CHI_spirit_dwindling_12 }
+		swap_ideas = {
+			remove_idea = CHI_spirit_dwindling_12
+			add_idea = CHI_spirit_dwindling_13
+		}
+	}
+	if = {
+		limit = { has_idea = CHI_spirit_dwindling_11 }
+		swap_ideas = {
+			remove_idea = CHI_spirit_dwindling_11
+			add_idea = CHI_spirit_dwindling_12
+		}
+	}
+	if = {
+		limit = { has_idea = CHI_spirit_dwindling_10 }
+		swap_ideas = {
+			remove_idea = CHI_spirit_dwindling_10
+			add_idea = CHI_spirit_dwindling_11
+		}
+	}
+	if = {
+		limit = { has_idea = CHI_spirit_dwindling_9 }
+		swap_ideas = {
+			remove_idea = CHI_spirit_dwindling_9
+			add_idea = CHI_spirit_dwindling_10
+		}
+	}
+	if = {
+		limit = { has_idea = CHI_spirit_dwindling_8 }
+		swap_ideas = {
+			remove_idea = CHI_spirit_dwindling_8
+			add_idea = CHI_spirit_dwindling_9
+		}
+	}
+	if = {
+		limit = { has_idea = CHI_spirit_dwindling_7 }
+		swap_ideas = {
+			remove_idea = CHI_spirit_dwindling_7
+			add_idea = CHI_spirit_dwindling_8
+		}
+	}
+	if = {
+		limit = { has_idea = CHI_spirit_dwindling_6 }
+		swap_ideas = {
+			remove_idea = CHI_spirit_dwindling_6
+			add_idea = CHI_spirit_dwindling_7
+		}
+	}
+	if = {
+		limit = { has_idea = CHI_spirit_dwindling_5 }
+		swap_ideas = {
+			remove_idea = CHI_spirit_dwindling_5
+			add_idea = CHI_spirit_dwindling_6
+		}
+	}
+	if = {
+		limit = { has_idea = CHI_spirit_dwindling_4 }
+		swap_ideas = {
+			remove_idea = CHI_spirit_dwindling_4
+			add_idea = CHI_spirit_dwindling_5
+		}
+	}
+	if = {
+		limit = { has_idea = CHI_spirit_dwindling_3 }
+		swap_ideas = {
+			remove_idea = CHI_spirit_dwindling_3
+			add_idea = CHI_spirit_dwindling_4
+		}
+	}
+	if = {
+		limit = { has_idea = CHI_spirit_dwindling_2 }
+		swap_ideas = {
+			remove_idea = CHI_spirit_dwindling_2
+			add_idea = CHI_spirit_dwindling_3
+		}
+	}
+	if = {
+		limit = { has_idea = CHI_spirit_dwindling }
+		swap_ideas = {
+			remove_idea = CHI_spirit_dwindling
+			add_idea = CHI_spirit_dwindling_2
+		}
+	}
+}
+
 #Add to scripted triggers if more levels of hyper inflation is added
 CHI_hyper_inflation_clear_all = {
 	remove_ideas = {
@@ -184,7 +279,7 @@ CHI_show_state_uprising_effect_after_infiltration_level_down = {
 	if = {
 		limit = {
 			any_country = {
-				is_potentially_communist_china = yes
+				# is_potentially_communist_china = yes
 				PREV = {
 					has_state_flag = {
 						flag = PRC_infiltration_@PREV
@@ -198,7 +293,7 @@ CHI_show_state_uprising_effect_after_infiltration_level_down = {
 	else_if = {
 		limit = {
 			any_country = {
-				is_potentially_communist_china = yes
+				# is_potentially_communist_china = yes
 				PREV = {
 					has_state_flag = {
 						flag = PRC_infiltration_@PREV
@@ -216,7 +311,7 @@ CHI_show_state_uprising_effect_after_infiltration_level_down = {
 CHI_infiltration_flag_down_2 = {
 	hidden_effect = {	
 		every_country = {
-			limit = { is_potentially_communist_china = yes }
+			# limit = { is_potentially_communist_china = yes }
 			PREV = {
 				modify_state_flag = {
 					flag = PRC_infiltration_@PREV
@@ -358,18 +453,18 @@ CHI_set_ally_strat_on_current_leader = {
     #         value = 200
     #     }
 	# }
-	else_if = {
-		limit = {
-			FROM = {
-				tag = SIK
-			}
-		}
-		add_ai_strategy = {
-            type = alliance
-            id = "SIK"
-            value = 200
-        }
-	}
+	# else_if = {
+	# 	limit = {
+	# 		FROM = {
+	# 			tag = SIK
+	# 		}
+	# 	}
+	# 	add_ai_strategy = {
+    #         type = alliance
+    #         id = "SIK"
+    #         value = 200
+    #     }
+	# }
 }
 
 CHI_negative_spirit_transfer = {
@@ -446,42 +541,3 @@ CHI_negative_spirit_transfer = {
 		add_ideas = CHI_hyper_inflation_5
 	}
 }
-
-CHI_no_longer_a_warlord_idea_removal = {
-	if = {
-		limit = {
-			has_idea = CHI_warlord_state_idea
-		}
-		remove_ideas = {
-			CHI_warlord_state_idea
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = CHI_warlord_state_idea_2
-		}
-		remove_ideas = {
-			CHI_warlord_state_idea_2
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = CHI_warlord_state_idea_cav
-		}
-		remove_ideas = {
-			CHI_warlord_state_idea_cav
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = CHI_warlord_state_idea_mnt
-		}
-		remove_ideas = {
-			CHI_warlord_state_idea_mnt
-		}
-	}
-
-}
-
-
-
