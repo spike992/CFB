@@ -667,7 +667,7 @@ set_variable = { SOV_the_politburo_political_power_factor = 0 } #0.05 -> The Sta
 set_variable = { SOV_the_politburo_economy_cost_factor = 0 } # -> Secure the Administration
 set_variable = { SOV_the_politburo_trade_laws_cost_factor = 0 } # -> Secure the Administration
 set_variable = { SOV_the_politburo_mobilization_laws_cost_factor = 0 } # -> Secure the Administration
-set_variable = { SOV_the_politburo_good_consumer_goods_factor = 0 } # -> Collectivization Process
+set_variable = { SOV_the_politburo_good_consumer_goods_expected_value = 0 } # -> Collectivization Process
 set_variable = { SOV_the_politburo_production_speed_buildings_factor = 0 } # -> Collectivization Process
 set_variable = { SOV_the_politburo_global_building_slots_factor = 0 } # -> Collectivization Process
 set_variable = { SOV_the_politburo_max_surrender_limit_offset = 0 } # -> The Workers Dictatorship
@@ -738,7 +738,7 @@ set_variable = { SOV_planned_economy_production_lack_of_resource_penalty_factor_
 set_variable = { SOV_planned_economy_party_popularity_stability_factor = 0 } #Victory Over Devastation
 set_variable = { SOV_planned_economy_max_surrender_limit_offset = 0 } #Victory Over Devastation
 set_variable = { SOV_planned_economy_industry_repair_factor = 0 } #Victory Over Devastation
-set_variable = { SOV_planned_economy_consumer_goods_factor = 0 } #Victory Over Devastation
+set_variable = { SOV_planned_economy_consumer_goods_expected_value = 0 } #Victory Over Devastation
 
 
 #Add synthetic refineries tech and armorured car
@@ -1391,13 +1391,12 @@ create_equipment_variant = {
 	parent_version = 0
 	modules = {
 		main_armament_slot = tank_small_gun_1
-		turret_type_slot = tank_multi_turret_1
+		turret_type_slot = tank_medium_turret_1
 		suspension_type_slot = tank_bogie_suspension
 		armor_type_slot = tank_riveted_armor
 		engine_type_slot = tank_gasoline_engine
 		special_type_slot_2 = secondary_turret_small_cannon
-		special_type_slot_3 = additional_machine_guns
-		special_type_slot_4 = additional_machine_guns
+		special_type_slot_3 = secondary_turret_small_cannon
 	}
 }
 # create_equipment_variant = {
@@ -1544,7 +1543,7 @@ if = {
 		name_group = SOV_DD_HISTORICAL
 		parent_version = 0
 		modules = {
-			fixed_ship_battery_slot = ship_light_battery_2
+			fixed_ship_battery_slot = ship_light_battery_1
 			fixed_ship_anti_air_slot = empty
 			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
 			fixed_ship_radar_slot = empty
@@ -1702,86 +1701,64 @@ if = {
 		}
 	}
 }
-if = {
-	limit = {
-		has_dlc = "By Blood Alone"
-	}
-	create_equipment_variant = {
-		name = "I-16"
-		type = small_plane_airframe_1
-		modules = {
-			fixed_main_weapon_slot = light_mg_4x
-			fixed_auxiliary_weapon_slot_1 = light_mg_2x
-			engine_type_slot = engine_2_1x
-		}
-		icon = "GFX_SOV_fighter1_medium"
-	}
-	create_equipment_variant = {
-		name = "I-15"
-		type = small_plane_airframe_0
-		modules = {
-			fixed_main_weapon_slot = light_mg_4x
-			fixed_auxiliary_weapon_slot_1 = light_mg_2x
-			engine_type_slot = engine_1_1x
-		}
-		icon = "GFX_SOV_fighter1_medium"
-	}
-	create_equipment_variant = {
-		name = "LBsh"
-		type = small_plane_cas_airframe_1
-		modules = {
-			fixed_main_weapon_slot = tank_buster_1
-			fixed_auxiliary_weapon_slot_1 = lmg_defense_turret
-			engine_type_slot = engine_2_1x
-			special_type_slot_2 = dive_brakes_small
-		}
-		icon = "GFX_SOV_CAS1_medium"
-	}
-	create_equipment_variant = {
-		name = "Il-4"
-		type = small_plane_naval_bomber_airframe_1
-		modules = {
-			fixed_main_weapon_slot = torpedo_mounting_small
-			fixed_auxiliary_weapon_slot_1 = lmg_defense_turret
-			engine_type_slot = engine_2_1x
-			special_type_slot_1 = dive_brakes_small
-			
-		}
-		icon = "GFX_SOV_naval_bomber1_medium"
-	}
-	create_equipment_variant = {
-		name = "DB-3"
-		type = medium_plane_airframe_1
-		modules = {
-			fixed_main_weapon_slot = Medium_bomb_bay
-			fixed_auxiliary_weapon_slot_1 = Medium_bomb_bay
-			fixed_auxiliary_weapon_slot_2 = lmg_defense_turret
-			fixed_auxiliary_weapon_slot_3 = empty
-			engine_type_slot = engine_2_2x
-			special_type_slot_1 = radio_navigation_1
-			special_type_slot_2 = dive_brakes_medium
-		}
-		icon = "GFX_SOV_tactical_bomber1_medium"
-	}
-	create_equipment_variant = {
-		name = "TB-3"
-		type = large_plane_airframe_0
-		modules = {
-			fixed_main_weapon_slot = large_bomb_bay
-			fixed_auxiliary_weapon_slot_2 = lmg_defense_turret
-			engine_type_slot = engine_1_4x
-		}
-		#icon = "GFX_SOV_tactical_bomber1_medium"
-	}
-	create_equipment_variant = {
-		name = "R-10"
-		type = medium_plane_scout_plane_airframe_1
-		modules = {
-			fixed_main_weapon_slot = recon_camera
-			engine_type_slot = engine_1_2x
-		}
-	}
-}
+# if = {
+# 	limit = {
+# 		has_dlc = "By Blood Alone"
+# 	}
+# 	create_equipment_variant = {
+# 		name = "I-15" #
+# 		type = small_plane_airframe_0
+# 		modules = {
+# 			fixed_main_weapon_slot = light_mg_4x
+# 			engine_type_slot = engine_1_1x
+# 			special_type_slot_1 = empty
+# 		}
+# 		obsolete = yes
+# 	}
+# 	create_equipment_variant = {
+# 		name = "I-16" #
+# 		type = small_plane_airframe_1
+# 		modules = {
+# 			fixed_main_weapon_slot = light_mg_2x
+# 			engine_type_slot = engine_1_1x
+# 			special_type_slot_1 = empty
+# 		}
+# 		icon = "GFX_SOV_fighter1_medium"
+# 	}
+# 	create_equipment_variant = {
+# 		name = "DB-3" #
+# 		type = medium_plane_airframe_0
+# 		modules = {
+# 			fixed_main_weapon_slot = medium_bomb_bay
+# 			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay_extra
+# 			engine_type_slot = engine_1_2x
+# 			special_type_slot_1 = lmg_defense_turret
+# 		}
+# 		icon = "GFX_SOV_early_bomber_medium"
+# 	}
+# 	create_equipment_variant = {
+# 		name = "TB-3" #
+# 		type = large_plane_airframe_0
+# 		modules = {
+# 			fixed_main_weapon_slot = large_bomb_bay
+# 			fixed_auxiliary_weapon_slot_1 = empty
+# 			engine_type_slot = engine_1_4x
+# 			special_type_slot_1 = lmg_defense_turret_2x
+# 		}
+# 		icon = "GFX_SOV_transport_plane_equipment_1_medium"
+# 	}
+# 	create_equipment_variant = {
+# 		name = "ANT-40" #
+# 		type = medium_plane_airframe_1
+# 		modules = {
+# 			fixed_main_weapon_slot = medium_bomb_bay
+# 			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay_extra
+# 			engine_type_slot = engine_1_2x
+# 			special_type_slot_1 = lmg_defense_turret_2x
+# 		}
+# 		icon = "GFX_SOV_tactical_bomber1_medium"
+# 	}
+# }
 
 # 1939 Start #
 1939.1.1 = {

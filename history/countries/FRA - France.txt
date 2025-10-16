@@ -286,17 +286,30 @@ create_equipment_variant = {
 	obsolete = yes #used for oob
 }
 create_equipment_variant = {
-	name = "Char 2C"
-	type = fra_heavy_tank_chassis_2c
+	name = "Somua S35"
+	type = fra_medium_tank_chassis_s35
 	parent_version = 0
 	modules = {
 		main_armament_slot = tank_small_gun_1
-		turret_type_slot = tank_light_turret_1
+		turret_type_slot = tank_medium_turret_1
 		suspension_type_slot = tank_bogie_suspension
 		armor_type_slot = tank_riveted_armor
 		engine_type_slot = tank_gasoline_engine
-		special_type_slot_2 = additional_machine_guns
-		special_type_slot_3 = additional_machine_guns
+	}
+	icon = "gfx/interface/technologies/tanks/fra/fra_medium_tank_1.dds"
+}
+create_equipment_variant = {
+	name = "Char 2C"
+	type = heavy_assault_gun_chassisfra_heavy_tank_chassis_2c
+	parent_version = 0
+	modules = {
+		main_armament_slot = tank_small_cs_gun
+		turret_type_slot = tank_medium_turret_1
+		suspension_type_slot = tank_bogie_suspension
+		armor_type_slot = tank_riveted_armor
+		engine_type_slot = tank_gasoline_engine
+		special_type_slot_2 = secondary_turret_hmg
+		special_type_slot_3 = secondary_turret_hmg
 	}
 	icon = "gfx/interface/technologies/tanks/fra/fra_super_1.dds"
 	# obsolete = yes #used for oob
@@ -741,76 +754,6 @@ if = {
 	}
 }
 
-if = {
-	limit = {
-		has_dlc = "By Blood Alone"
-	}
-	create_equipment_variant = {
-		name = "M S.410"
-		type = small_plane_airframe_1
-		modules = {
-			fixed_main_weapon_slot = light_mg_4x
-			fixed_auxiliary_weapon_slot_1 = light_mg_2x
-			engine_type_slot = engine_2_1x
-			special_type_slot_1 = radio_navigation_1
-		}
-		icon = "GFX_FRA_fighter1_medium"
-	}
-	create_equipment_variant = {
-		name = "Br.693"
-		type = small_plane_cas_airframe_1
-		modules = {
-			fixed_main_weapon_slot = bomb_locks
-			fixed_auxiliary_weapon_slot_1 = lmg_defense_turret
-			engine_type_slot = engine_2_1x				
-			special_type_slot_1 = radio_navigation_1
-			special_type_slot_2 = dive_brakes_small
-			
-		}
-		icon = "GFX_FRA_CAS1_medium"
-	}
-	create_equipment_variant = {
-		name = "F.222"
-		type = large_plane_airframe_0
-		modules = {
-			fixed_main_weapon_slot = early_large_bomb_bay
-			fixed_auxiliary_weapon_slot_2 = lmg_defense_turret
-			engine_type_slot = engine_1_4x
-		}
-		#icon = "GFX_SOV_tactical_bomber1_medium"
-	}
-	create_equipment_variant = {
-		name = "Amiot 143"
-		type = medium_plane_airframe_1
-		modules = {
-			fixed_main_weapon_slot = medium_bomb_bay
-			fixed_auxiliary_weapon_slot_2 = lmg_defense_turret
-			engine_type_slot = engine_1_2x
-		}
-		#icon = "GFX_USA_naval_bomber1_medium"
-	}
-	create_equipment_variant = {
-		name = "Latécoère 296"
-		type = small_plane_naval_bomber_airframe_1
-		modules = {
-			fixed_main_weapon_slot = torpedo_mounting_small
-			fixed_auxiliary_weapon_slot_1 = light_mg_2x
-			engine_type_slot = engine_2_1x
-			special_type_slot_1 = radio_navigation_1
-			special_type_slot_2 = dive_brakes_small
-			
-		}
-		#icon = "GFX_USA_naval_bomber1_medium"
-	}
-	create_equipment_variant = {
-		name = "Bombardier Baguette 157"
-		type = medium_plane_scout_plane_airframe_1
-		modules = {
-			fixed_main_weapon_slot = recon_camera
-			engine_type_slot = engine_1_2x
-		}
-	}
-}
 
 add_operation_token = {
 	tag = ENG

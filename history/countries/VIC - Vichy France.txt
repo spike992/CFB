@@ -181,22 +181,32 @@ create_equipment_variant = {
 	}
 	obsolete = yes #used for oob
 }
-create_equipment_variant = {
-	name = "Char 2C"
-	type = fra_heavy_tank_chassis_2c
+	create_equipment_variant = {
+	name = "Somua S35"
+	type = fra_medium_tank_chassis_s35
 	parent_version = 0
 	modules = {
 		main_armament_slot = tank_small_gun_1
-		turret_type_slot = tank_light_turret_1
+		turret_type_slot = tank_medium_turret_1
 		suspension_type_slot = tank_bogie_suspension
 		armor_type_slot = tank_riveted_armor
 		engine_type_slot = tank_gasoline_engine
-		special_type_slot_2 = additional_machine_guns
-		special_type_slot_3 = additional_machine_guns
 	}
-	icon = "gfx/interface/technologies/tanks/fra/fra_super_1.dds"
-	# obsolete = yes #used for oob
+	icon = "gfx/interface/technologies/tanks/fra/fra_medium_tank_1.dds"
 }
+create_equipment_variant = {
+	name = "Char 2C"
+	type = heavy_assault_gun_chassisfra_heavy_tank_chassis_2c
+	parent_version = 0
+	modules = {
+		main_armament_slot = tank_small_cs_gun
+		turret_type_slot = tank_medium_turret_1
+		suspension_type_slot = tank_bogie_suspension
+		armor_type_slot = tank_riveted_armor
+		engine_type_slot = tank_gasoline_engine
+		special_type_slot_2 = secondary_turret_hmg
+		special_type_slot_3 = secondary_turret_hmg
+	}
 
 if = {
 	limit = { has_dlc = "La Resistance" }
@@ -352,19 +362,19 @@ if = {
 			rear_1_custom_slot = ship_torpedo_sub_1
 		}
 	}
-	create_equipment_variant = {
-		name = "Surcouf Class"				# cruiser submarine
-		type = ship_hull_cruiser_submarine
-		name_group = FRA_SS_HISTORICAL
-		parent_version = 0
-		modules = {
-			fixed_ship_torpedo_slot = ship_torpedo_sub_1
-			fixed_ship_engine_slot = sub_ship_engine_1
-			front_1_custom_slot = ship_airplane_launcher_1
-			rear_1_custom_slot = ship_torpedo_sub_1
-		}
-		obsolete = yes
-	}
+	# create_equipment_variant = {
+	# 	name = "Surcouf Class"				# cruiser submarine
+	# 	type = ship_hull_cruiser_submarine
+	# 	name_group = FRA_SS_HISTORICAL
+	# 	parent_version = 0
+	# 	modules = {
+	# 		fixed_ship_torpedo_slot = ship_torpedo_sub_1
+	# 		fixed_ship_engine_slot = sub_ship_engine_1
+	# 		front_1_custom_slot = ship_airplane_launcher_1
+	# 		rear_1_custom_slot = ship_torpedo_sub_1
+	# 	}
+	# 	obsolete = yes
+	# }
 	create_equipment_variant = {
 		name = "Minerve Class"
 		type = ship_hull_submarine_1
@@ -421,7 +431,7 @@ if = {
 			fixed_ship_anti_air_slot = ship_anti_air_1
 			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
 			fixed_ship_radar_slot = empty
-			fixed_ship_engine_slot = light_ship_engine_3
+			fixed_ship_engine_slot = light_ship_engine_2
 			fixed_ship_torpedo_slot = ship_torpedo_2
 			mid_1_custom_slot = ship_torpedo_1
 			rear_1_custom_slot = ship_depth_charge_1
@@ -433,13 +443,13 @@ if = {
 		name_group = FRA_DD_HISTORICAL
 		parent_version = 0
 		modules = {
-			fixed_ship_battery_slot = dp_light_battery_2
+			fixed_ship_battery_slot = dp_light_battery_1
 			fixed_ship_anti_air_slot = ship_anti_air_1
 			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
 			fixed_ship_radar_slot = empty
 			fixed_ship_engine_slot = light_ship_engine_2
 			fixed_ship_torpedo_slot = ship_torpedo_2
-			mid_1_custom_slot = dp_light_battery_2
+			mid_1_custom_slot = dp_light_battery_1
 			rear_1_custom_slot = ship_depth_charge_1
 		}
 	}
