@@ -3310,4 +3310,553 @@ focus_tree = {
 			}
 		}
 	}
+
+	focus = {
+		id = RAJ_ammunition_factory_khadki
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = RAJ_ishapore_arsenal }
+		prerequisite = { focus = RAJ_british_arms_investors }
+		x = 1
+		y = 1
+		relative_position_id = RAJ_ishapore_arsenal
+	
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+	
+		bypass = {
+
+	}
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	search_filters = {FOCUS_FILTER_INDUSTRY}
+
+	completion_reward = {
+		random_core_state = {
+			limit = {
+				is_owned_by = RAJ
+			}
+			prioritize = { 429 } #optional: to pick those states first if they fulfill the limit
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+			}
+
+			if = {
+				limit = {
+				has_dlc = "Arms Against Tyranny"
+				}
+
+				mio:RAJ_ammunition_factory_khadki_organization = {
+				add_mio_funds = 1000
+				}
+			}
+			else = {
+			upgrade_ordance_factories_no_aat = yes
+			}
+		}
+	}
+
+	focus = {
+        id = RAJ_rifle_factory_ishapore_west_bengal
+        icon = GFX_goal_generic_small_arms
+        prerequisite = { focus = RAJ_ammunition_factory_khadki }
+        x = -2
+        y = 1
+        relative_position_id = RAJ_ammunition_factory_khadki
+        
+        cost = 5
+
+        ai_will_do = {
+            factor = 1
+        }
+
+        available = {
+
+        }
+        
+        bypass = {
+
+        }
+
+        cancel_if_invalid = yes
+        continue_if_invalid = no
+        available_if_capitulated = no
+
+        search_filters = { FOCUS_FILTER_INDUSTRY }
+
+        completion_reward = {
+            if = {
+                limit = {
+                    has_dlc = "Arms Against Tyranny"
+                }
+                mio:RAJ_ammunition_factory_khadki_organization = {
+                    add_mio_funds = 1000
+                    unlock_mio_trait_tooltip = {
+                        trait = RAJ_mio_trait_rifle_factory_ishapore
+                    }
+                }
+            }
+            else = {
+                upgrade_ordance_factories_no_aat = yes
+            }
+
+            try_build_mil_in_core_otherwise_build_in_controlled = yes
+            
+        }
+    }
+
+	focus = {
+        id = RAJ_ordnance_factory_medak
+        icon = GFX_focus_CHL_domestic_production_of_the_willys_mb
+        prerequisite = { focus = RAJ_rifle_factory_ishapore_west_bengal }
+        x = -2
+        y = 1
+        relative_position_id = RAJ_rifle_factory_ishapore_west_bengal   
+        
+        cost = 5
+
+        ai_will_do = {
+            factor = 1
+        }
+
+        available = {
+
+        }
+        
+        bypass = {
+
+        }
+
+        cancel_if_invalid = yes
+        continue_if_invalid = no
+        available_if_capitulated = no
+
+        search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY }
+
+        completion_reward = {
+            if = {
+                limit = {
+                    has_dlc = "Arms Against Tyranny"
+                }
+
+                mio:RAJ_ordnance_factory_medak_organization = {
+                    add_mio_funds = 1000
+                    unlock_mio_trait_tooltip = {
+                        trait = RAJ_mio_trait_apc_research_effort
+                    }
+                }
+            }
+            else = {
+                add_tech_bonus = {
+                    name = RAJ_ordnance_factory_medak
+                    bonus = 0.75
+                    uses = 1
+                    category = cat_mechanized_equipment # optional 
+                    # technology  = technology_id # optional
+                }
+
+            }
+            try_build_mil_in_core_otherwise_build_in_controlled = yes
+
+        }
+    }
+
+	focus = {
+        id = RAJ_ordnance_factory_kanpur_uttar_pradesh
+        icon = GFX_goal_generic_construct_mil_factory
+        prerequisite = { focus = RAJ_rifle_factory_ishapore_west_bengal }
+        x = 0
+        y = 1
+        relative_position_id = RAJ_rifle_factory_ishapore_west_bengal   
+        
+        cost = 5
+
+        ai_will_do = {
+            factor = 1
+        }
+
+        available = {
+
+        }
+        
+        bypass = {
+
+        }
+
+        cancel_if_invalid = yes
+        continue_if_invalid = no
+        available_if_capitulated = no
+
+        search_filters = {FOCUS_FILTER_INDUSTRY}
+
+        completion_reward = {
+            
+            if = {
+                limit = {
+                    has_dlc = "Arms Against Tyranny"
+                }
+
+                mio:RAJ_ammunition_factory_khadki_organization = {
+                    add_mio_funds = 1000
+                    unlock_mio_trait_tooltip = {
+                        trait = RAJ_mio_trait_ordnance_factory_kanpur_uttar_pradesh_inf
+                    }
+                }
+
+                mio:RAJ_ordnance_factory_kanpur_organization = {
+                    add_mio_funds = 1000
+                    unlock_mio_trait_tooltip = {
+                        trait = RAJ_mio_trait_ordnance_factory_kanpur_uttar_pradesh_art
+                    }
+                }
+            }
+            else = {
+                upgrade_ordance_factories_no_aat = yes
+                upgrade_ordance_factories_art_no_aat = yes
+            }
+
+            try_build_mil_in_core_otherwise_build_in_controlled = yes
+        }
+    }
+
+	focus = {
+        id = RAJ_chariot_of_victory
+        icon = GFX_focus_generic_mechanized
+        prerequisite = { focus = RAJ_ordnance_factory_medak focus = RAJ_ordnance_factory_kanpur_uttar_pradesh }
+        x = 1
+        y = 1
+        relative_position_id = RAJ_ordnance_factory_medak   
+        
+        cost = 5
+
+        ai_will_do = {
+            factor = 1
+        }
+
+        available = {
+
+        }
+        
+        bypass = {
+
+        }
+
+        cancel_if_invalid = yes
+        continue_if_invalid = no
+        available_if_capitulated = no
+
+        search_filters = {FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY}
+
+        completion_reward = {
+            add_tech_bonus = {
+                bonus = 0.5
+                uses = 1
+                category = cat_mechanized_equipment # optional 
+                name = RAJ_chariot_of_victory
+                # technology  = technology_id # optional
+            }
+            if = {
+                limit = {
+                    has_dlc = "Arms Against Tyranny"
+                }
+
+                mio:RAJ_ordnance_factory_medak_organization = {
+                    add_mio_size = 1
+                    unlock_mio_trait_tooltip = {
+                        trait = RAJ_mio_trait_chariot_of_victory
+                    }
+                }
+            }
+            else = {
+                if = {
+                    limit = {
+                        has_idea = idea_medak
+                    }
+                    swap_ideas = {
+                        remove_idea = idea_medak
+                        add_idea = idea_medak_1
+                    }
+                }
+                else = {
+                    effect_tooltip = {
+                        swap_ideas = {
+                            remove_idea = idea_medak
+                            add_idea = idea_medak_1
+                        }
+                    }
+                }
+            }
+
+            try_build_mil_in_core_otherwise_build_in_controlled = yes
+        }
+    }
+
+	focus = {
+        id = RAJ_the_ordnance_factories_board
+        icon = GFX_focus_eng_concessions_to_the_trade_unions
+        prerequisite = { focus = RAJ_cordite_factory_aruvankadu_tamil_nadu focus = RAJ_ordnance_factory_kanpur_uttar_pradesh }
+        x = -2
+        y = 1
+        relative_position_id = RAJ_cordite_factory_aruvankadu_tamil_nadu
+        
+        cost = 5
+
+        ai_will_do = {
+            factor = 1
+        }
+
+        available = {
+
+            if = {
+                limit = {
+                    NOT = { has_dlc = "Arms Against Tyranny" }
+                }
+                has_completed_focus = RAJ_rifle_factory_ishapore_west_bengal
+                has_completed_focus = RAJ_gun_and_shell_factory_cossipore
+            }
+
+            if = {
+                limit = {
+                     has_dlc = "Arms Against Tyranny"
+                }
+                OR = {
+                    mio:RAJ_ammunition_factory_khadki_organization = { has_mio_size > 4  }                   
+                    mio:RAJ_ordnance_factory_kanpur_organization  = { has_mio_size > 4  } 
+                    mio:RAJ_ordnance_factory_medak_organization  = { has_mio_size > 4  }  
+                    mio:RAJ_vickers_armstrong_organization  = { has_mio_size > 4  }   
+                }
+            }
+            
+        }
+        
+        bypass = {
+
+        }
+
+        cancel_if_invalid = yes
+        continue_if_invalid = no
+        available_if_capitulated = no
+
+        search_filters = {FOCUS_FILTER_INDUSTRY}
+
+        completion_reward = {
+            if = {
+                limit = {
+                    has_dlc = "Arms Against Tyranny"
+                }
+
+                unlock_mio_policy_tooltip = {
+                    policy = mio_policy_RAJ_general_ordnance_factory_board
+                }
+            }
+            else = {
+                try_build_mil_in_core_otherwise_build_in_controlled_2_mil = yes
+            }
+
+            try_build_mil_in_core_otherwise_build_in_controlled_2_mil = yes
+            try_build_mil_in_core_otherwise_build_in_controlled = yes
+        }
+    }
+
+	focus = {
+        id = RAJ_gun_and_shell_factory_cossipore
+        icon = GFX_goal_generic_construct_mil_factory
+        prerequisite = { focus = RAJ_ammunition_factory_khadki }
+        x = 2
+        y = 1
+        relative_position_id = RAJ_ammunition_factory_khadki
+        
+        cost = 5
+
+        ai_will_do = {
+            factor = 1
+        }
+
+        available = {
+
+        }
+        
+        bypass = {
+
+        }
+
+        cancel_if_invalid = yes
+        continue_if_invalid = no
+        available_if_capitulated = no
+
+        search_filters = {FOCUS_FILTER_INDUSTRY}
+
+        completion_reward = {
+            if = {
+                limit = {
+                    has_dlc = "Arms Against Tyranny"
+                }
+
+                mio:RAJ_ammunition_factory_khadki_organization = {
+                    add_mio_funds = 1000
+                    unlock_mio_trait_tooltip = {
+                        trait = RAJ_mio_trait_gun_and_shell_facatory_cassiopore
+                    }
+                }
+            }
+            else = {
+                upgrade_ordance_factories_art_no_aat = yes
+            }
+
+            try_build_mil_in_core_otherwise_build_in_controlled = yes
+        }
+    }
+
+	focus = {
+        id = RAJ_cordite_factory_aruvankadu_tamil_nadu
+        icon = GFX_goal_generic_construct_mil_factory
+        prerequisite = { focus = RAJ_gun_and_shell_factory_cossipore }
+        x = -1
+        y = 1
+        relative_position_id = RAJ_gun_and_shell_factory_cossipore
+        
+        cost = 5
+
+        ai_will_do = {
+            factor = 1
+        }
+
+        available = {
+
+        }
+        
+        bypass = {
+
+        }
+
+        cancel_if_invalid = yes
+        continue_if_invalid = no
+        available_if_capitulated = no
+
+        search_filters = {FOCUS_FILTER_INDUSTRY}
+
+        completion_reward = {
+            if = {
+                limit = {
+                    has_dlc = "Arms Against Tyranny"
+                }
+                mio:RAJ_ordnance_factory_kanpur_organization = {
+                    add_mio_funds = 1000
+                    unlock_mio_trait_tooltip = {
+                        trait = RAJ_mio_trait_cordite_factory_aruvankadu_tamil_nadu
+                        show_modifiers = yes
+                    }
+                }
+            }
+            else = {
+                upgrade_ordance_factories_art_no_aat = yes
+            }
+
+             try_build_mil_in_core_otherwise_build_in_controlled = yes
+        }
+    }
+
+	focus = {
+        id = RAJ_ordnance_factory_khamaria_jabalpur
+        icon = GFX_focus_CHL_high_quality_nitrate
+        prerequisite = { focus = RAJ_gun_and_shell_factory_cossipore }
+        x = 1
+        y = 1
+        relative_position_id = RAJ_gun_and_shell_factory_cossipore
+        
+        cost = 5
+
+        ai_will_do = {
+            factor = 1
+        }
+
+        available = {
+
+        }
+        
+        bypass = {
+
+        }
+
+        cancel_if_invalid = yes
+        continue_if_invalid = no
+        available_if_capitulated = no
+
+        search_filters = {FOCUS_FILTER_INDUSTRY}
+
+        completion_reward = {
+            if = {
+                limit = {
+                    has_dlc = "Arms Against Tyranny"
+                }
+
+                mio:RAJ_ammunition_factory_khadki_organization = {
+                    add_mio_funds = 1000
+                    unlock_mio_trait_tooltip = {
+                        trait = RAJ_mio_trait_ordnance_factory_khamaria_jabalpur
+                    }
+                }
+            }
+            else = {
+                upgrade_ordance_factories_no_aat = yes
+            }
+
+             
+             try_build_mil_in_core_otherwise_build_in_controlled = yes
+        }
+    }
+	
+	focus = {
+        id = RAJ_engineering_revolution
+        icon = GFX_focus_SWE_landsverk
+        prerequisite = { focus = RAJ_ordnance_factory_khamaria_jabalpur }
+        x = 0
+        y = 1
+        relative_position_id = RAJ_ordnance_factory_khamaria_jabalpur
+        
+        cost = 5
+
+        ai_will_do = {
+            factor = 1
+        }
+
+        available = {
+
+        }
+        
+        bypass = {
+
+        }
+
+        cancel_if_invalid = yes
+        continue_if_invalid = no
+        available_if_capitulated = no
+
+        search_filters = {FOCUS_FILTER_RESEARCH}
+        search_filters = {FOCUS_FILTER_INDUSTRY}
+
+        completion_reward = {
+            add_tech_bonus = {
+                name = RAJ_engineering_revolution
+                bonus = 1
+                uses = 1
+                category = engineers_tech # optional 
+                # technology  = technology_id # optional
+            }
+           try_build_mil_in_core_otherwise_build_in_controlled_2_mil = yes
+        }
+    }
 }

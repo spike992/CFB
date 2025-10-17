@@ -233,3 +233,57 @@ going_war_with_SOV = {
 		has_wargoal_against = SOV
 	}
 }
+
+GER_is_friend_for_danish_strait = { #Scripted Trigger for handling the Danish Strait
+	hidden_trigger = {
+		OR = {
+			AND = {
+				OR = {
+					ROOT = {
+						tag = GER
+						is_in_faction_with = GER 
+					}
+				}
+				has_global_flag = GER_weserubung_start
+				NOT = { has_global_flag = GER_weserubung_over }
+			}
+			AND = {
+				var:global.province_controllers^3260 = {
+					OR = {
+						tag = ROOT
+						is_in_faction_with = ROOT 
+						ROOT = { has_military_access_to = PREV }
+					}
+				}
+				var:global.province_controllers^3325 = {
+					OR = {
+						tag = ROOT
+						is_in_faction_with = ROOT 
+						ROOT = { has_military_access_to = PREV }
+					}
+				}
+				var:global.province_controllers^3277 = {
+					OR = {
+						tag = ROOT
+						is_in_faction_with = ROOT 
+						ROOT = { has_military_access_to = PREV }
+					}
+				}
+				var:global.province_controllers^3374 = {
+					OR = {
+						tag = ROOT
+						is_in_faction_with = ROOT 
+						ROOT = { has_military_access_to = PREV }
+					}
+				}
+				var:global.province_controllers^11251 = {
+					OR = {
+						tag = ROOT
+						is_in_faction_with = ROOT 
+						ROOT = { has_military_access_to = PREV }
+					}
+				}
+			}
+		}
+	}	
+}
