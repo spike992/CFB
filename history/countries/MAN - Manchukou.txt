@@ -1,6 +1,22 @@
-﻿capital = 328
+﻿capital = 328 # Hsingking
 
-oob = "MAN_1936"
+set_variable = { MAN_state_shintoism_surrender_limit = 0 }
+set_variable = { MAN_state_shintoism_war_support_factor = 0 }
+set_variable = { MAN_state_shintoism_pocket_penalty = 0 }
+set_variable = { MAN_state_shintoism_stability_factor = -0.05 }
+set_variable = { MAN_state_shintoism_army_core_defence_factor = 0 }
+set_variable = { MAN_state_shintoism_research_speed_factor = 0 }
+set_variable = { MAN_state_shintoism_recruitable_population_factor = 0 }
+set_variable = { MAN_state_shintoism_political_power_gain = -0.1 }
+set_variable = { MAN_levy_cap_max = 48 }
+set_variable = { MAN_levy_cap_min = 0 }
+set_variable = { MAN_levy_cap = 12 }
+set_variable = { MAN_levy_deployed = 0 }
+clamp_variable = {
+	var = MAN_levy_cap
+	min = MAN_levy_cap_min
+	max = MAN_levy_cap_max
+}
 
 set_technology = {
 	infantry_weapons = 1
@@ -10,40 +26,199 @@ set_technology = {
 	gw_artillery = 1
 	support_weapons = 1
 	basic_train = 1
-	hq_1 = 1
-	motorised_infantry = 1
 }
 
-MAN = {
-	send_embargo = CHI
+oob = "MAN_1936"
+load_oob = "MEN_1936"
+
+set_country_flag = MAN_northern_bandits
+set_country_flag = MAN_eastern_bandits
+set_country_flag = MAN_western_bandits
+
+add_ideas = MAN_banditry
+add_ideas = MAN_kwantung_veto
+add_ideas = MAN_low_legitimacy_5
+add_ideas = MAN_the_kangde_emperor
+
+
+recruit_character = MAN_aisin_gioro_puyi
+recruit_character = MAN_zhang_haipeng
+recruit_character = MAN_zhang_jinghui
+recruit_character = MAN_aisin_gioro_xiqia
+recruit_character = MAN_yoshiko_kawashima
+recruit_character = MAN_zhao_shangzhi
+recruit_character = MAN_deng_linge
+recruit_character = MAN_yin_zuoqian
+recruit_character = MAN_xian_yuan
+recruit_character = MAN_urzhin_garmaev
+recruit_character = MAN_yu_zishan
+recruit_character = MAN_ma_zhanshan
+recruit_character = MAN_jonjurjab
+recruit_character = MAN_pujie
+recruit_character = MAN_songgotu_zhanshan
+recruit_character = MAN_zhang_yanqing
+recruit_character = MAN_zhang_shiyi
+recruit_character = MAN_sun_qichang
+recruit_character = MAN_li_shaogeng
+recruit_character = MAN_chu_kudo
+recruit_character = MAN_yuan_jinkai
+recruit_character = MAN_xie_jieshi
+recruit_character = MAN_ding_chao
+recruit_character = MAN_li_zhaolin
+recruit_character = MAN_kanjurjab
+recruit_character = MAN_ding_jianxiu
+recruit_character = MAN_kawashima_naniwa
+
+# Old fake characters 
+#recruit_character = MAN_kyoiji_tomonaga
+#recruit_character = MAN_yonimitsu_kasahara
+#recruit_character = MAN_hesehn_tiemei
+#recruit_character = MAN_guan_xingde
+#recruit_character = MAN_megata_toshiro
+#recruit_character = MAN_hung_zhehuang
+#recruit_character = MAN_nakajima_kesago
+
+IF = {
+	limit = { has_dlc = "No Step Back" }
+	recruit_character = SOV_grigory_semyonov
+	SOV_grigory_semyonov = { 
+		set_character_flag = SOV_exiled_army_leader
+	}
 }
-
-set_variable = {
-	var = min_fuel
-	value = 0.800
-}
-
-set_research_slots = 5
-
-if = {
-	limit = { has_dlc = "Waking the Tiger" }
-	set_country_flag = MAN_northern_bandits
-	set_country_flag = MAN_eastern_bandits
-	set_country_flag = MAN_western_bandits
-	add_ideas = MAN_puyi
-	add_ideas = MAN_banditry
-	add_ideas = MAN_kwantung_veto
-	add_ideas = MAN_low_legitimacy_5
-	add_ideas = MAN_opium_plantations
-	add_ideas = MAN_yamato-damashii
-	add_ideas = volunteer_minimum_minor
-	add_ideas = peace_training
-	add_ideas = no_grinding
-	add_ideas = father_check
-	add_ideas = father_check
+IF = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	add_ideas = { MAN_aisin_gioro_puyi }
 }
 
 set_convoys = 5
+
+328 = { #Kirin
+	add_dynamic_modifier = { modifier = dense_rural_infrastructure }
+}
+715 = { #Liaoning
+	add_dynamic_modifier = { modifier = dense_rural_infrastructure }
+}
+714 = { #Heilungkiang
+	add_dynamic_modifier = { modifier = dense_rural_infrastructure }
+}
+717 = { #Hungkiang
+	add_dynamic_modifier = { modifier = dense_rural_infrastructure }
+}
+761 = { #Hulunbuir
+	add_dynamic_modifier = { modifier = dense_rural_infrastructure }
+}
+
+1939.1.1 = {
+
+	add_to_war = {
+		targeted_alliance = JAP
+		enemy = CHI
+		hostility_reason = puppet
+	}
+
+	remove_ideas = {
+		MAN_aisin_gioro_puyi
+	}	
+	
+	add_political_power = 1198
+	add_command_power = 100
+	
+	#generic focuses
+	complete_national_focus = army_effort
+	complete_national_focus = equipment_effort
+	complete_national_focus = motorization_effort
+	complete_national_focus = aviation_effort
+	complete_national_focus = naval_effort
+	complete_national_focus = flexible_navy
+	complete_national_focus = industrial_effort
+	complete_national_focus = construction_effort
+	complete_national_focus = production_effort
+
+
+	if = {
+		limit = { has_dlc = "Waking the Tiger" }
+
+		
+		#No bandits
+		unlock_national_focus = MAN_pacify_the_countryside
+		remove_ideas = MAN_banditry
+
+		complete_national_focus = MAN_army_modernization
+		complete_national_focus = MAN_mukden_military_academy
+		complete_national_focus = MAN_law_university
+		complete_national_focus = MAN_obedience
+
+		#Five year plan
+		unlock_national_focus = MAN_first_five_year_plan
+		add_timed_idea = { days = 1275 idea = MAN_five_year_plan_industry }
+
+		complete_national_focus = MAN_trade_delegation
+		complete_national_focus = MAN_expand_the_textile_industry
+		complete_national_focus = MAN_hoankyoku
+		complete_national_focus = MAN_invite_japanese_investors
+		complete_national_focus = MAN_expand_the_railways
+		complete_national_focus = MAN_develop_aluminum_sources
+		complete_national_focus = MAN_social_research_unit
+	}
+
+	if = {
+		limit = { has_dlc = "No Compromise, No Surrender" }
+
+		
+		#No bandits
+		unlock_national_focus = MAN_tsr_pacify_the_countryside
+		remove_ideas = MAN_banditry
+
+		complete_national_focus = MAN_tsr_army_modernization
+		complete_national_focus = MAN_tsr_mukden_military_academy
+		complete_national_focus = MAN_tsr_law_university
+		complete_national_focus = MAN_tsr_obedience
+
+		#Five year plan
+		unlock_national_focus = MAN_tsr_first_five_year_plan
+		add_timed_idea = { days = 1275 idea = MAN_five_year_plan_industry }
+
+		complete_national_focus = MAN_tsr_trade_delegation
+		complete_national_focus = MAN_tsr_expand_the_textile_industry
+		complete_national_focus = MAN_tsr_hoankyoku
+		complete_national_focus = MAN_tsr_invite_japanese_investors
+		complete_national_focus = MAN_tsr_expand_the_railways
+		complete_national_focus = MAN_tsr_expand_showa_steel_works
+		complete_national_focus = MAN_tsr_develop_aluminum_sources
+		complete_national_focus = MAN_tsr_strengthen_ties_with_nissan
+		complete_national_focus = MAN_tsr_social_research_unit
+	}
+	
+	oob = "MAN_1939"
+	set_technology = {
+
+		#electronics
+		electronic_mechanical_engineering = 1
+		radio = 1
+		mechanical_computing = 1
+
+		#industry
+		basic_machine_tools = 1
+		improved_machine_tools = 1
+		advanced_machine_tools = 1
+		fuel_silos = 1
+		construction1 = 1
+		construction2 = 1
+		dispersed_industry = 1
+		dispersed_industry2 = 1
+	}
+
+set_grand_doctrine = grand_battleplan
+set_grand_doctrine = new_fleet_in_being
+
+	complete_special_project = {
+		project = sp:sp_air_radar
+	}
+}
+
+set_convoys = 25
 set_politics = {
 	ruling_party = fascism
 	last_election = "1936.1.1"
@@ -55,259 +230,5 @@ set_popularities = {
 	neutrality = 20
 }
 
-# MP_garrison_division_standard = yes
-
-recruit_character = MAN_zhang_jinghui
-recruit_character = MAN_zhang_haipeng
-# recruit_character = MAN_aisin_gioro_xiqia
-# recruit_character = MAN_yoshiko_kawashima
-recruit_character = MAN_tong_xingde
-recruit_character = MAN_sonin_shangzhi
-recruit_character = MAN_megata_toshiro
-recruit_character = MAN_nalan_kang_an
-recruit_character = MAN_songgotu_zhanshan
-recruit_character = MAN_nobusuke_kishi
-recruit_character = MAN_yoshisuke_ayukawa
-recruit_character = MAN_guan_xingde
-recruit_character = MAN_nakajima_kesago
-recruit_character = MAN_yin_zuoqian
-recruit_character = MAN_yonimitsu_kasahara
-recruit_character = MAN_kyoiji_tomonaga
-recruit_character = MAN_hesehn_tiemei
-recruit_character = MAN_hung_zhehuang
-recruit_character = MAN_xian_yuan
-recruit_character = MAN_deng_linge
-# recruit_character = MAN_um_lai_tung
-recruit_character = MAN_sum_ting_wong
-recruit_character = MAN_ho_lee_fuk
-recruit_character = MAN_hu_ren_sun
-recruit_character = MAN_kam_in_mie
-
 1939.1.1 = {
 }
-
-# AXIS
-
-			# GER
-			add_operation_token = {
-				tag = GER
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = GER
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = GER
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = GER
-				token = token_navy_friendly
-			}
-			# ITA
-			add_operation_token = {
-				tag = ITA
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = ITA
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = ITA
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = ITA
-				token = token_navy_friendly
-			}
-			# HUN
-			add_operation_token = {
-				tag = HUN
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = HUN
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = HUN
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = HUN
-				token = token_navy_friendly
-			}
-			# ROM
-			add_operation_token = {
-				tag = ROM
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = ROM
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = ROM
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = ROM
-				token = token_navy_friendly
-			}
-			# BUL
-			add_operation_token = {
-				tag = BUL
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = BUL
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = BUL
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = BUL
-				token = token_navy_friendly
-			}
-			# SPR
-			add_operation_token = {
-				tag = SPR
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = SPR
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = SPR
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = SPR
-				token = token_navy_friendly
-			}
-			# FIN
-			add_operation_token = {
-				tag = FIN
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = FIN
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = FIN
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = FIN
-				token = token_navy_friendly
-			}
-			#AOI
-			add_operation_token = {
-				tag = AOI
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = AOI
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = AOI
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = AOI
-				token = token_navy_friendly
-			}
-			# YUG
-			add_operation_token = {
-				tag = YUG
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = YUG
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = YUG
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = YUG
-				token = token_navy_friendly
-			}
-			# ALB
-			add_operation_token = {
-				tag = ALB
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = ALB
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = ALB
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = ALB
-				token = token_navy_friendly
-			}
-			# AUS
-			add_operation_token = {
-				tag = AUS
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = AUS
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = AUS
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = AUS
-				token = token_navy_friendly
-			}
-
-			# COPRO
-			# JAP
-			add_operation_token = {
-				tag = JAP
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = JAP
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = JAP
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = JAP
-				token = token_navy_friendly
-			}
-			# SIA
-			add_operation_token = {
-				tag = SIA
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = SIA
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = SIA
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = SIA
-				token = token_navy_friendly
-			}

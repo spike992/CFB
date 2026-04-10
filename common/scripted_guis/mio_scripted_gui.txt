@@ -1,0 +1,42 @@
+scripted_gui = {
+	MIO_Transfer_GUI = {
+        window_name = "MIO_Transfer_GUI"
+        context_type = decision_category
+        dirty = MIO_Transfer_GUI_dirty_var
+        
+        effects = {
+            tank_mio_button_click = {
+				set_variable = {
+					var = tank_mio_displayed
+				}
+                clear_variable = donor_MIO
+                clear_variable = recipient_MIO
+				clear_variable = air_mio_displayed
+				clear_variable = naval_mio_displayed
+                add_to_variable = { MIO_Transfer_GUI_dirty_var = 1 }	
+			}
+
+            ship_mio_button_click = {
+				set_variable = {
+					var = naval_mio_displayed
+				}
+                clear_variable = donor_MIO
+                clear_variable = recipient_MIO
+				clear_variable = air_mio_displayed
+				clear_variable = tank_mio_displayed
+                add_to_variable = { MIO_Transfer_GUI_dirty_var = 1 }	
+			}
+			
+            aircraft_mio_button_click = {
+				set_variable = {
+					var = air_mio_displayed
+				}
+                clear_variable = donor_MIO
+                clear_variable = recipient_MIO
+				clear_variable = tank_mio_displayed
+				clear_variable = naval_mio_displayed
+                add_to_variable = { MIO_Transfer_GUI_dirty_var = 1 }	
+			}
+        }
+    } 
+}

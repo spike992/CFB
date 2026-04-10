@@ -11,14 +11,12 @@ set_technology = {
 	tech_support = 1		
 	tech_engineers = 1
 	tech_recon = 1
-	#early_fighter = 1
-	#CAS1 = 1
+	early_fighter = 1
+	CAS1 = 1
 	fuel_silos = 1
 	support_weapons = 1
 	basic_train = 1
 }
-
-# MP_garrison_division_standard = yes
 
 ##### Characters for both
 recruit_character = SWI_federal_assembly 
@@ -137,6 +135,7 @@ recruit_character = SWI_lucien_tronchet
 	set_variable = { SWI_time_to_appease_angry_country = 60 }
 	set_variable = { SWI_angry_threshold = -85 }
 	set_variable = { SWI_no_longer_angry_threshold = SWI_terrible_opinion }
+	set_variable = { SWI_fascist_germany = GER } #Yes I know it's stupid but I had to do it for tooltips.
 	
 	#Gold Trade
 	set_variable = { SWI_max_gold_trade = 6 }
@@ -148,6 +147,8 @@ recruit_character = SWI_lucien_tronchet
 	set_variable = { SWI_gold_trade_factory_max_efficiency_factor_increase = 0.025 } 
 
 1939.1.1 = {
+
+	######   Basic   ###### 
 
 	add_political_power = 1198
 	add_command_power = 100
@@ -170,17 +171,11 @@ recruit_character = SWI_lucien_tronchet
 		support_weapons = 1
 
 		#doctrines
-		air_superiority = 1
-		grand_battle_plan = 1
-		trench_warfare = 1
-		fleet_in_being = 1
-		battlefleet_concentration = 1
-		convoy_sailing = 1
+		#air_superiority = 1
 
 		#electronics
 		electronic_mechanical_engineering = 1
 		radio = 1
-		radio_detection = 1
 		mechanical_computing = 1
 		computing_machine = 1
 
@@ -193,6 +188,14 @@ recruit_character = SWI_lucien_tronchet
 		dispersed_industry = 1
 		dispersed_industry2 = 1
 		fuel_refining = 1
+	}
+
+set_grand_doctrine = grand_battleplan
+set_grand_doctrine = new_fleet_in_being
+set_grand_doctrine = new_strategic_destruction
+
+	complete_special_project = {
+		project = sp:sp_air_radar
 	}
 }
 
@@ -221,7 +224,6 @@ add_ideas = {
 	neutrality_idea
 	neutrality_idea2
 	limited_conscription
-	peace_training
 }
 
 set_stability = 0.85

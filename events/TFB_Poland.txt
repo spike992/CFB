@@ -1,0 +1,64 @@
+###########################
+# Australian TFB events Events
+###########################
+
+add_namespace = tfb_poland
+
+country_event = {
+	id = tfb_poland.1
+	title = tfb_poland.1.t
+	desc = tfb_poland.1.d
+	picture = GFX_report_event_polish_army
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = tfb_poland.1.a # Transfer Liberia & Sierra Leone
+		ai_chance = {
+			base = 100
+		}
+		if = {
+			limit = {
+				owns_state = 298
+			}
+			298 = {
+				transfer_state_to = POL
+			}
+		}
+		if = {
+			limit = {
+				owns_state = 700
+			}
+			700 = {
+				transfer_state_to = POL
+			}
+		}
+	}
+	
+	option = {
+		name = tfb_poland.1.b # Refuse
+		ai_chance = {
+			base = 0
+		}
+		POL = {
+			country_event = { id = tfb_poland.2 hours = 6 }
+		}
+	}
+}
+
+country_event = {
+	id = tfb_poland.2
+	title = tfb_poland.2.t
+	desc = tfb_poland.2.d
+	picture = GFX_report_event_polish_army
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = tfb_poland.2.a
+		ai_chance = {
+			base = 100
+		}
+		
+	}
+}

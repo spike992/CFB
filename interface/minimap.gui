@@ -1,0 +1,838 @@
+guiTypes = {
+
+	iconType = {
+		name = "minimap_offensive_icon"
+		spriteType = "GFX_minimap_ping_offensive"
+		position = { x=290 y=150 }
+		scale = 0.8
+		centerPosition = yes
+	}
+
+	iconType = {
+		name = "minimap_defensive_icon"
+		spriteType = "GFX_minimap_ping_defensive"
+		position = { x=290 y=150 }
+		scale = 0.8
+		centerPosition = yes
+	}
+
+	containerWindowType = {
+		name = "hide_vps_container"
+		position = { x=-100 y=-390 }
+		Orientation = LOWER_RIGHT
+
+		buttonType = {
+			name = "tool_open2"
+			#quadTextureSprite = "GFX_generic_bg"
+			quadTextureSprite = "GFX_generic_box_96"
+			position = { x = 0 y = 0 }
+			pdx_tooltip = "Toggle Minimap VP"
+			clicksound = click_ok
+			oversound = ui_menu_over
+		}
+		
+		instantTextboxType = {
+			name = "title2"
+			#position = {x=22 y=5}
+			position = {x=3 y=4}
+			font = "hoi_18mbs"
+			text = "Minimap VP"
+			maxWidth = 90
+			maxHeight = 23
+			format = center
+		}
+
+	}
+
+	containerWindowType =  {
+		name = "mini_map_interface"
+		position = { x=-480 y=-147 }	
+		Orientation = LOWER_RIGHT
+		
+		iconType = {
+			name = "worldmap_bg"
+			quadTextureSprite = "GFX_minimap_world"
+			position = { x=0 y=0 }
+			Orientation = "UPPER_LEFT"
+			scale = 1.5
+		}
+		
+		containerWindowType =  {
+			name = "border_container"
+			position = { x=0 y=0 }	
+			Orientation = UPPER_LEFT
+			
+			iconType = {
+				name = "camera_quad_wrap"
+				spriteType = "GFX_minimap_quad_pixel"
+				position = { x=0 y=0 }
+				Orientation = "UPPER_LEFT"
+				centerPosition = yes
+				alwaystransparent = yes
+			}
+			
+			iconType = {
+				name = "camera_quad_wrap_top"
+				spriteType = "GFX_minimap_quad_pixel"
+				position = { x=0 y=0 }
+				Orientation = "UPPER_LEFT"
+				centerPosition = yes
+				rotation = 1.5708
+				alwaystransparent = yes
+			}
+			
+			iconType = {
+				name = "camera_quad_wrap_bottom"
+				spriteType = "GFX_minimap_quad_pixel"
+				position = { x=0 y=0 }
+				Orientation = "UPPER_LEFT"
+				centerPosition = yes
+				rotation = 1.5708
+				alwaystransparent = yes
+			}
+			
+			iconType = {
+				name = "camera_quad_left"
+				spriteType = "GFX_minimap_quad_pixel"
+				position = { x=0 y=0 }
+				Orientation = "UPPER_LEFT"
+				centerPosition = yes
+				alwaystransparent = yes
+			}
+			
+			iconType = {
+				name = "camera_quad_right"
+				spriteType = "GFX_minimap_quad_pixel"
+				position = { x=0 y=0 }
+				Orientation = "UPPER_LEFT"
+				centerPosition = yes
+				alwaystransparent = yes
+			}
+			
+			iconType = {
+				name = "camera_quad_top"
+				spriteType = "GFX_minimap_quad_pixel"
+				position = { x=0 y=0 }
+				Orientation = "UPPER_LEFT"
+				centerPosition = yes
+				alwaystransparent = yes
+				rotation = 1.5708
+			}
+			
+			iconType = {
+				name = "camera_quad_bottom"
+				spriteType = "GFX_minimap_quad_pixel"
+				position = { x=0 y=0 }
+				Orientation = "UPPER_LEFT"
+				centerPosition = yes
+				alwaystransparent = yes
+				rotation = 1.5708
+			}
+			
+			
+			iconType = {
+				name = "circle"
+				position = {x=60 y=20}
+				quadTextureSprite = "GFX_minimap_ping_circle"
+				scale = 0.75
+				
+				centerPosition = yes
+				alwaystransparent = yes
+			}
+		}
+		
+		
+		buttonType = {
+			name = "handle"
+			position = {x=-25 y=70}
+			spriteType = "GFX_minimap_handle_default"
+			scale = 1.2
+			shortcut = "ctrl+m"
+		}
+		
+		buttonType = {
+			name = "handle_pinged"
+			position = {x=-25 y=70}
+			spriteType = "GFX_minimap_handle_pinged"
+			scale = 1.2
+			shortcut = "ctrl+m"
+		}
+		
+		iconType = {
+			name = "worldmap_border"
+			quadTextureSprite = "GFX_minimap_border"
+			position = { x=-5 y=-5 }
+			Orientation = "UPPER_LEFT"
+			alwaystransparent = yes
+			scale = 1.5
+		}
+		
+		buttonType = {
+			name = "offensive_ping"
+			position = {x=8 y=66}
+			spriteType = "GFX_minimap_offensive_ping_btn"
+			scale = 1.2
+		}
+		
+		buttonType = {
+			name = "defensive_ping"
+			position = {x=8 y=104}
+			spriteType = "GFX_minimap_defensive_ping_btn"
+			scale = 1.2
+		}
+
+	}
+	#Western Europe
+	#London
+	containerWindowType = {
+		name = "london_container"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "london"
+			position = { x = 190 y = 22 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 1
+			clicksound = click_default
+		}
+	}
+	#Paris
+	containerWindowType = {
+		name = "paris_container"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "paris"
+			position = { x = 195 y = 34 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 1
+			clicksound = click_default
+		}
+	}
+	#Amsterdam
+	containerWindowType = {
+		name = "amsterdam_container"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "amsterdam"
+			position = { x = 200 y = 26 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 1
+			clicksound = click_default
+		}
+	}
+	#Oslo
+	containerWindowType = {
+		name = "oslo_container"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "oslo"
+			position = { x = 205 y = 17 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 1
+			clicksound = click_default
+		}
+	}
+	#Eastern Europe
+	#Gomel
+	containerWindowType = {
+		name = "gomel_container"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "gomel"
+			position = { x = 226 y = 28 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 1
+			clicksound = click_default
+		}
+	}
+	#lenningrad
+	containerWindowType = {
+		name = "lenningrad_container"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "lenningrad"
+			position = { x = 228 y = 15 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 1
+			clicksound = click_default
+		}
+	}
+	#Moscow
+	containerWindowType = {
+		name = "moscow_container"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "moscow"
+			position = { x = 236 y = 24 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 1
+			clicksound = click_default
+		}
+	}
+	#Stalingrad
+	containerWindowType = {
+		name = "stalingrad_container"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "stalingrad"
+			position = { x = 244 y = 34 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 1
+			clicksound = click_default
+		}
+	}
+	#Africa
+	#Libya
+	containerWindowType = {
+		name = "Libya_container"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "Libya"
+			position = { x = 207 y = 54 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 1
+			clicksound = click_default
+		}
+	}
+	#Cairo
+	containerWindowType = {
+		name = "cairo_container"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "cairo"
+			position = { x = 226 y = 59 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 1
+			clicksound = click_default
+		}
+	}
+	#Asia
+	#Iwo Jima
+	containerWindowType = {
+		name = "iwojima_container"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "iwojima"
+			position = { x = 351 y = 62 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 1
+			clicksound = click_default
+		}
+	}
+	#Delhi
+	containerWindowType = {
+		name = "Delhi_container"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "Delhi"
+			position = { x = 279 y = 57 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 1
+			clicksound = click_default
+		}
+	}
+	#mandalay
+	containerWindowType = {
+		name = "mandalay_container"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "mandalay"
+			position = { x = 301 y = 66 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 1
+			clicksound = click_default
+		}
+	}
+	#batavia
+	containerWindowType = {
+		name = "batavia_container"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "batavia"
+			position = { x = 314 y = 102 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 1
+			clicksound = click_default
+		}
+	}
+	#Canberra
+	containerWindowType = {
+		name = "canberra_container"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "canberra"
+			position = { x = 357 y = 124 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 1
+			clicksound = click_default
+		}
+	}
+
+	containerWindowType = {
+		name = "london_container_allied"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+
+		buttonType = {
+			name = "london_allied"
+			position = { x = 190 y = 22 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 4
+			clicksound = click_default
+		}
+
+	}
+	containerWindowType = {
+		name = "paris_container_allied"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "paris_allied"
+			position = { x = 195 y = 34 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 4
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "amsterdam_container_allied"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "amsterdam_allied"
+			position = { x = 200 y = 26 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 4
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "oslo_container_allied"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "oslo_allied"
+			position = { x = 205 y = 17 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 4
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "gomel_container_allied"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "gomel_allied"
+			position = { x = 226 y = 28 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 4
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "lenningrad_container_allied"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "lenningrad_allied"
+			position = { x = 228 y = 15 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 4
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "moscow_container_allied"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "moscow_allied"
+			position = { x = 236 y = 24 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 4
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "stalingrad_container_allied"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "stalingrad_allied"
+			position = { x = 244 y = 34 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 4
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "Libya_container_allied"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "Libya_allied"
+			position = { x = 207 y = 54 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 4
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "cairo_container_allied"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "cairo_allied"
+			position = { x = 226 y = 59 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 4
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "iwojima_container_allied"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "iwojima_allied"
+			position = { x = 351 y = 62 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 4
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "Delhi_container_allied"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "Delhi_allied"
+			position = { x = 279 y = 57 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 4
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "mandalay_container_allied"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "mandalay_allied"
+			position = { x = 301 y = 66 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 4
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "batavia_container_allied"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "batavia_allied"
+			position = { x = 314 y = 102 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 4
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "canberra_container_allied"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "canberra_allied"
+			position = { x = 357 y = 124 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 4
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "london_container_axis"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "london_axis"
+			position = { x = 190 y = 22 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 2
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "paris_container_axis"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "paris_axis"
+			position = { x = 195 y = 34 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 2
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "amsterdam_container_axis"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "amsterdam_axis"
+			position = { x = 200 y = 26 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 2
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "oslo_container_axis"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "oslo_axis"
+			position = { x = 205 y = 17 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 2
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "gomel_container_axis"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "gomel_axis"
+			position = { x = 226 y = 28 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 2
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "lenningrad_container_axis"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "lenningrad_axis"
+			position = { x = 228 y = 15 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 2
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "moscow_container_axis"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "moscow_axis"
+			position = { x = 236 y = 24 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 2
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "stalingrad_container_axis"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "stalingrad_axis"
+			position = { x = 244 y = 34 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 2
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "Libya_container_axis"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "Libya_axis"
+			position = { x = 207 y = 54 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 2
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "cairo_container_axis"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "cairo_axis"
+			position = { x = 226 y = 59 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 2
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "iwojima_container_axis"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "iwojima_axis"
+			position = { x = 351 y = 62 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 2
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "Delhi_container_axis"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "Delhi_axis"
+			position = { x = 279 y = 57 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 2
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "mandalay_container_axis"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "mandalay_axis"
+			position = { x = 301 y = 66 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 2
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "batavia_container_axis"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "batavia_axis"
+			position = { x = 314 y = 102 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 2
+			clicksound = click_default
+		}
+	}
+	containerWindowType = {
+		name = "canberra_container_axis"
+		position = { x=-480 y=-147 }
+		Orientation = LOWER_RIGHT
+		buttonType = {
+			name = "canberra_axis"
+			position = { x = 357 y = 124 }
+			buttonFont = "hoi_16mbs"
+			quadTextureSprite = "GFX_deploy_priority"
+			scale = 0.625
+			frame = 2
+			clicksound = click_default
+		}
+	}
+
+}

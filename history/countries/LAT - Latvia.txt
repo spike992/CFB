@@ -21,8 +21,6 @@ add_ideas = {
 # 	}
 # }
 
-# MP_garrison_division_standard = yes
-
 recruit_character = LAT_gustavs_celminsh
 recruit_character = LAT_augusts_kirhensteins
 recruit_character = LAT_martinsh_penikis
@@ -45,6 +43,7 @@ recruit_character = LAT_janis_kaminskis
 recruit_character = LAT_fricis_menders
 recruit_character = LAT_alberts_kvesis
 recruit_character = LAT_karlis_ulmanis
+
 IF = { 
 	limit = { has_dlc = "No Step Back" }
 	recruit_character = LAT_janis_balodis
@@ -62,10 +61,11 @@ IF = {
 set_technology = {
 	infantry_weapons = 1
 	infantry_weapons1 = 1
-	#early_fighter = 1
+	early_fighter = 1
 	tech_support = 1
 	basic_train = 1
 }
+
 if = {
 	limit = { not = { has_dlc = "Man the Guns" } }
 	set_technology = {
@@ -94,6 +94,13 @@ set_convoys = 10
 		LAT_perkonkrust_idea
 		democratic_opposition
 	}
+
+	IF = {
+		limit = { has_dlc = "No Step Back" }
+		add_ideas = {
+			LAT_janis_balodis
+		}
+	}
 	
 	set_country_flag = fought_perkonkrust_flag
 	
@@ -117,6 +124,7 @@ set_convoys = 10
 	complete_national_focus = BALTIC_allied_shipments
 	
 	oob = "LAT_1939"
+	
 	if = {
 		limit = { has_dlc = "Man the Guns" }
 			set_naval_oob = "LAT_1939_naval_mtg"
@@ -130,17 +138,11 @@ set_convoys = 10
 		support_weapons = 1
 
 		#doctrines
-		air_superiority = 1
-		grand_battle_plan = 1
-		trench_warfare = 1
-		fleet_in_being = 1
-		battlefleet_concentration = 1
-		convoy_sailing = 1
+		#air_superiority = 1
 
 		#electronics
 		electronic_mechanical_engineering = 1
 		radio = 1
-		radio_detection = 1
 		mechanical_computing = 1
 		computing_machine = 1
 
@@ -156,6 +158,14 @@ set_convoys = 10
 		construction2 = 1
 		dispersed_industry = 1
 		dispersed_industry2 = 1
+	}
+
+set_grand_doctrine = grand_battleplan
+set_grand_doctrine = new_fleet_in_being
+set_grand_doctrine = new_strategic_destruction
+
+	complete_special_project = {
+		project = sp:sp_air_radar
 	}
 }
 

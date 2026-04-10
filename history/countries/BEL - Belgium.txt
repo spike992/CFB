@@ -4,11 +4,36 @@ IF = {
 	limit = { 
 		has_dlc = "Gotterdammerung"
 		has_dlc = "La Resistance"
+		has_dlc = "No Compromise, No Surrender"
 	}
 	set_technology = {
 		armored_car1 = 1
+		rangers_tech = 1
+		BEL_chasseurs_ardennais_ncns = 1 
 	}
-	set_oob = "BEL_WW_1936_lar"
+	set_oob = "BEL_WW_1936_lar_ncns"	
+	ELSE_IF = {
+		limit = { 
+			has_dlc = "Gotterdammerung"
+			has_dlc = "No Compromise, No Surrender"
+		}
+		set_technology = {
+			rangers_tech = 1
+			BEL_chasseurs_ardennais_ncns = 1 
+		}
+		set_oob = "BEL_WW_1936_ncns"
+	}
+	ELSE_IF = {
+		limit = { 
+			has_dlc = "Gotterdammerung"
+			has_dlc = "La Resistance"
+		}
+		set_technology = {
+			armored_car1 = 1
+			BEL_chasseurs_ardennais = 1 
+		}
+		set_oob = "BEL_WW_1936_lar"
+	}
 	ELSE_IF = {
 		limit = {
 			has_dlc = "Gotterdammerung"
@@ -17,6 +42,9 @@ IF = {
 			}
 		}
 		set_oob = "BEL_WW_1936"
+		set_technology = {
+			BEL_chasseurs_ardennais = 1 
+		}
 	}
 	ELSE_IF = {
 		limit = {
@@ -66,8 +94,6 @@ set_technology = {
 	tech_recon = 1
 	tech_engineers = 1
 	motorised_infantry = 1
-	early_fighter = 1
-	trench_warfare = 1
 	fuel_silos = 1
 	fuel_refining = 1
 	support_weapons = 1
@@ -78,6 +104,9 @@ set_technology = {
 	tech_mountaineers = 1
 	gwtank_chassis = 1
 }
+
+set_grand_doctrine = grand_battleplan
+
 
 # IF = {
 # 	limit = {
@@ -110,11 +139,7 @@ if = {
 		basic_battery = 1
 	}
 }
-add_ideas = {
-	peace_training
-	no_grinding
-	father_check
-}
+
 # if = {
 # 	limit = { has_dlc = "By Blood Alone" }
 # 		set_air_oob = "BEL_1936_air_bba"
@@ -590,7 +615,7 @@ IF = {
 
 set_politics = {
 	ruling_party = democratic
-	last_election = "1932.11.27"
+	last_election = "1936.1.1" #Was 1932.11.27 but changed to allow for Government Resigns focus to simulate this election.
 	election_frequency = 48
 	elections_allowed = yes
 }
@@ -617,454 +642,27 @@ set_popularities = {
 
 set_convoys = 300
 set_stability = 0.75
+
 IF = {
-	limit = { has_dlc = "Gotterdammerung" }
+	limit = { 
+		has_dlc = "Gotterdammerung" 
+		NOT = {
+			has_dlc = "No Compromise, No Surrender"
+		} 
+	}
 	add_ideas = {
 		BEL_language_barriers_ns
 		BEL_chasseurs_ardennais_ns
 	}
 }
-add_operation_token = {
-	tag = ENG
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = ENG
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = ENG
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = ENG
-	token = token_navy_friendly
-}
-# USA
-add_operation_token = {
-	tag = USA
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = USA
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = USA
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = USA
-	token = token_navy_friendly
-}
-# FRA
-add_operation_token = {
-	tag = FRA
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = FRA
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = FRA
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = FRA
-	token = token_navy_friendly
-}
-# POL
-add_operation_token = {
-	tag = POL
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = POL
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = POL
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = POL
-	token = token_navy_friendly
-}
-# CAN
-add_operation_token = {
-	tag = CAN
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = CAN
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = CAN
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = CAN
-	token = token_navy_friendly
-}
-# MEX
-add_operation_token = {
-	tag = MEX
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = MEX
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = MEX
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = MEX
-	token = token_navy_friendly
-}
-# BRA
-add_operation_token = {
-	tag = BRA
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = BRA
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = BRA
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = BRA
-	token = token_navy_friendly
-}
-# IRE
-add_operation_token = {
-	tag = IRE
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = IRE
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = IRE
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = IRE
-	token = token_navy_friendly
-}
-# POR
-add_operation_token = {
-	tag = POR
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = POR
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = POR
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = POR
-	token = token_navy_friendly
-}
-# HOL
-add_operation_token = {
-	tag = HOL
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = HOL
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = HOL
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = HOL
-	token = token_navy_friendly
-}
-# LUX
-# add_operation_token = {
-# 	tag = LUX
-# 	token = token_airforce_friendly
-# }
-# add_operation_token = {
-# 	tag = LUX
-# 	token = token_army_friendly
-# }
-# add_operation_token = {
-# 	tag = LUX
-# 	token = token_civilian_friendly
-# }
-# add_operation_token = {
-# 	tag = LUX
-# 	token = token_navy_friendly
-# }
-# DEN
-add_operation_token = {
-	tag = DEN
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = DEN
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = DEN
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = DEN
-	token = token_navy_friendly
-}
-# NOR
-add_operation_token = {
-	tag = NOR
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = NOR
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = NOR
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = NOR
-	token = token_navy_friendly
-}
-# CZE
-add_operation_token = {
-	tag = CZE
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = CZE
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = CZE
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = CZE
-	token = token_navy_friendly
-}
-# GRE
-add_operation_token = {
-	tag = GRE
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = GRE
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = GRE
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = GRE
-	token = token_navy_friendly
-}
-# IRQ
-add_operation_token = {
-	tag = IRQ
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = IRQ
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = IRQ
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = IRQ
-	token = token_navy_friendly
-}
-# SAF
-add_operation_token = {
-	tag = SAF
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = SAF
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = SAF
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = SAF
-	token = token_navy_friendly
-}
-# RAJ
-add_operation_token = {
-	tag = RAJ
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = RAJ
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = RAJ
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = RAJ
-	token = token_navy_friendly
-}
-# CHI
-add_operation_token = {
-	tag = CHI
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = CHI
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = CHI
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = CHI
-	token = token_navy_friendly
-}
-# MAL
-add_operation_token = {
-	tag = MAL
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = MAL
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = MAL
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = MAL
-	token = token_navy_friendly
-}
-# INS
-add_operation_token = {
-	tag = INS
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = INS
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = INS
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = INS
-	token = token_navy_friendly
-}
-# # PHI
-# add_operation_token = {
-# 	tag = PHI
-# 	token = token_airforce_friendly
-# }
-# add_operation_token = {
-# 	tag = PHI
-# 	token = token_army_friendly
-# }
-# add_operation_token = {
-# 	tag = PHI
-# 	token = token_civilian_friendly
-# }
-# add_operation_token = {
-# 	tag = PHI
-# 	token = token_navy_friendly
-# }
-# AST
-add_operation_token = {
-	tag = AST
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = AST
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = AST
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = AST
-	token = token_navy_friendly
-}
-# NZL
-add_operation_token = {
-	tag = NZL
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = NZL
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = NZL
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = NZL
-	token = token_navy_friendly
+IF = {
+	limit = { 
+		has_dlc = "Gotterdammerung" 
+		has_dlc = "No Compromise, No Surrender"
+	}
+	add_ideas = {
+		BEL_language_barriers_ns
+		BEL_chasseurs_ardennais_ns_ncns
+	}
 }
 
-# COMINTERN
-
-# SOV
-add_operation_token = {
-	tag = SOV
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = SOV
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = SOV
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = SOV
-	token = token_navy_friendly
-}
-# MON
-add_operation_token = {
-	tag = MON
-	token = token_airforce_friendly
-}
-add_operation_token = {
-	tag = MON
-	token = token_army_friendly
-}
-add_operation_token = {
-	tag = MON
-	token = token_civilian_friendly
-}
-add_operation_token = {
-	tag = MON
-	token = token_navy_friendly
-}

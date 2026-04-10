@@ -1,0 +1,90 @@
+scripted_gui = {
+    new_scripted_gui = {
+        window_name = "intel_agency_gui_window"
+        context_type = player_context
+
+        visible = {
+            if = {
+                limit = {
+                    is_ai = no
+                    NOT = {
+                        has_country_flag = disabled_agency_alert_flag
+                    }
+                    NOT = {
+                        has_country_flag = disabled_agency_alert_flag_permanent
+                    }
+                }
+                if = {
+                    limit = {
+                        has_intelligence_agency = yes
+                    }
+                    if = {
+                        limit = {
+                            check_variable = { modifier@int_agency_upgrade_modifier = 0 }
+                        }
+                        intelligence_agency_alert = yes
+                    }
+                    else = {
+                        always = no
+                    }
+                }
+                else = {
+                    num_of_civilian_factories_available_for_projects > 4
+                }
+            }
+            else = {
+                always = no
+            }
+        }
+
+        effects = {
+            intel_agency_gui_alert_button_not_formed_right_click = {
+                set_country_flag = disabled_agency_alert_flag
+            }
+            intel_agency_gui_alert_button_not_formed_shift_right_click = {
+                set_country_flag = disabled_agency_alert_flag_permanent
+            }
+            intel_agency_gui_alert_button_right_click = {
+                set_country_flag = disabled_agency_alert_flag
+            }
+            intel_agency_gui_alert_button_shift_right_click = {
+                set_country_flag = disabled_agency_alert_flag_permanent
+            }
+        }
+
+        triggers = {
+            intel_agency_gui_alert_button_not_formed_visible = {
+                has_intelligence_agency = no
+            }
+            intel_agency_gui_alert_button_visible = {
+                has_intelligence_agency = yes
+            }
+        }
+
+        dynamic_lists = {
+
+        }
+
+        properties = {
+
+        }
+
+        ai_enabled = {
+            always = no
+        }
+
+        ai_test_interval = 1000  # The higher, the long it takes the ai to do actions
+
+        ai_check = {
+
+        }
+
+        ai_check_scope = {
+
+        }
+
+        ai_weights = {
+
+        }
+    }
+}

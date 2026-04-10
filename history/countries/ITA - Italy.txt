@@ -1,11 +1,25 @@
-﻿capital = 2
+﻿capital = 2 # Rome
 
 oob = "ITA_1936"
+
+starting_train_buffer = 1.5
 
 set_research_slots = 6
 set_stability = 0.6
 set_war_support = 0.65
+set_major = yes
 
+IF = {
+	limit = {
+		has_dlc = "Gotterdammerung"
+	}
+	set_war_support = 0.65 # Was 0.7, but now get +5% from the Collosseum
+	ELSE = {
+		set_war_support = 0.8
+	}
+}
+
+set_variable = { dockyard_major = 1 }
 #set_variable = { ITA_poster_center_icon_frame = 1 }
 set_variable = { ITA_new_propaganda_campaign = 0 } #Used to pick a poster slot
 set_variable = { ITA_propaganda_campaign_to_remove = 0 } #Used to reset a poster slot
@@ -15,42 +29,63 @@ set_variable = { ITA_poster_left_icon_frame = ITA_propaganda_empty_slot_index } 
 set_variable = { ITA_poster_center_icon_frame = ITA_propaganda_empty_slot_index } #Set up the appropriate locked slot GFX
 #set_variable = { SOV_poster_right_icon_frame = SOV_propaganda_locked_slot_index } #Set up the appropriate locked slot GFX
 set_variable = { ITA_re_unit_camelry_design_cost_factor = 0 }
-set_variable = { AFRICA_COMMONWEALTH_BASES_LEVEL = 6 } #What level variable to use
-
-# create_intelligence_agency = {
-#     name = "Servizio Informazioni Militare"
-# }
-
-set_variable = {
-	var = min_fuel
-	value = 0.800
-}
-
-army_experience = 200
-air_experience = 100
 
 add_ideas = {
 	vittorio_emanuele
 	vittoria_mutilata
 	export_focus
 	limited_conscription
-	partial_economic_mobilisation #war_economy
+	partial_economic_mobilisation
 	ITA_inflexible_economy
 	ITA_neutrality_idea
 	ITA_old_guard_base
 	ITA_incompetent_officers
 	ITA_outdated_industry
-	# PACIFIC_COMMONWEALTH_controls_axis_original
-	MEDITERRANEAN_AXIS_controls_original
-	peace_training
-	no_grinding
-	AFRICA_COMMONWEALTH_controls_axis_idea_6
-	ITA_incompetent_officers_offset
-	volunteer_minimum_major
-	volunteer_minimum_GER_NA
+	ITA_the_sun_never_sets_idea_2
 }
 
-# MP_garrison_division_standard = yes
+# RESISTANCE / COMPLIANCE
+
+550 = { #ERITREA
+	start_resistance = yes
+	set_compliance = 20
+	set_resistance = 0
+	set_garrison_strength = 1.0
+}
+
+559 = { #SOMALILAND
+	start_resistance = yes
+	set_compliance = 20
+	set_resistance = 0
+	set_garrison_strength = 1.0
+}
+
+844 = { #JUBALAND
+	start_resistance = yes
+	set_compliance = 20
+	set_resistance = 0
+	set_garrison_strength = 1.0
+}
+
+every_owned_state = { #LIBYAN STATES
+	limit = {
+		is_core_of = LBA
+		NOT = { state = 273 } #Don't add resistance in the middle of the impassable desert thanks
+	}
+	start_resistance = yes
+	set_compliance = 35
+	set_resistance = 0
+	set_garrison_strength = 1.0
+}
+add_breakthrough_progress = {
+	specialization = specialization_land
+	value = 0.3
+}
+
+add_breakthrough_progress = {
+	specialization = specialization_naval
+	value = 0.5
+}
 
 # Starting tech
 set_technology = {
@@ -76,8 +111,6 @@ set_technology = {
 	early_bomber = 1
 	naval_bomber1 = 1
 	CAS1 = 1
-	trench_warfare = 1
-	fleet_in_being = 1
 	fuel_silos = 1
 	fuel_refining = 1
 	militia_tech = 1
@@ -88,6 +121,8 @@ set_technology = {
 	early_transport_plane = 1
 	camelry = 1
 }
+set_grand_doctrine = grand_battleplan
+set_grand_doctrine = new_fleet_in_being
 if = {
 	limit = { not = { has_dlc = "Man the Guns" } }
 		set_technology = {
@@ -112,7 +147,7 @@ if = {
 		basic_battery = 1
 		basic_cruiser_armor_scheme = 1
 		basic_heavy_battery = 1
-		basic_medium_battery = 1
+		#basic_medium_battery = 1
 		basic_light_battery = 1
 		#basic_heavy_armor_scheme = 1
 		early_ship_hull_submarine = 1
@@ -125,7 +160,7 @@ if = {
 		basic_ship_hull_heavy = 1
 		mtg_transport = 1
 		coastal_defense_ships = 1
-		improved_airplane_launcher = 1
+		#improved_airplane_launcher = 1
 	}
 	set_naval_oob = "ITA_1936_naval_mtg"
 }
@@ -163,13 +198,13 @@ if = {
 # DIPLOMACY / WAR 36
 if = {
 	limit = {
-		has_start_date < 1936.01.02
+		has_start_date < 1936.01.05
 	}
 
-	# declare_war_on = {
-	# 	target = ETH
-	# 	type = annex_everything
-	# }
+	declare_war_on = {
+		target = ETH
+		type = annex_everything
+	}
 	give_guarantee = ALB
 }
 
@@ -183,9 +218,10 @@ set_politics = {
 	elections_allowed = no
 }
 set_popularities = {
-	democratic = 22
-	fascism = 76
+	democratic = 20
+	fascism = 73
 	communism = 2
+	neutrality = 5
 }
 
 recruit_character = ITA_benito_mussolini
@@ -203,10 +239,12 @@ recruit_character = ITA_inigo_campioni
 recruit_character = ITA_alberto_da_zara
 recruit_character = ITA_giuseppe_fioravanzo
 recruit_character = ITA_carlo_bergamini
+recruit_character = ITA_prince_aimone
+recruit_character = ITA_giuseppe_di_bartolo
 recruit_character = ITA_angelo_iachino
 recruit_character = ITA_giulio_presbitero
-# recruit_character = ITA_amadeo_bordiga
-# recruit_character = ITA_ivanoe_bonomi
+recruit_character = ITA_amadeo_bordiga
+recruit_character = ITA_ivanoe_bonomi
 recruit_character = ITA_carlo_scorza
 recruit_character = ITA_giovanni_marinelli
 recruit_character = ITA_gian_galeazzo_ciano
@@ -232,9 +270,12 @@ recruit_character = ITA_guiseppe_fioravanzo
 recruit_character = ITA_amedeo_mecozzi
 recruit_character = ITA_renato_sandalli
 recruit_character = ITA_gaetano_crocco
-recruit_character = ITA_angelo_di_maria
-recruit_character = ITA_mario_fama
-recruit_character = ITA_mario_federico
+recruit_character = ITA_enrico_fermi
+recruit_character = ITA_robert_longhi
+recruit_character = ITA_mario_castoldi
+recruit_character = ITA_giovanni_giorgi
+recruit_character = ITA_filippo_bonfiglietti
+recruit_character = ITA_curio_bernardis
 
 create_equipment_variant = {
 	name = "L3/33"
@@ -673,8 +714,8 @@ if = {
 		}
 	}
 }
-if = {
-	limit = { NOT = { has_dlc = "By Blood Alone" } }
+# if = {
+# 	limit = { NOT = { has_dlc = "By Blood Alone" } }
 	create_equipment_variant = {
 		name = "CR.42"
 		type = fighter_equipment_0
@@ -766,229 +807,4 @@ if = {
 # 		icon = "GFX_ITA_CAS1_medium"
 # 	}
 
-
-# AXIS
-
-			# GER
-			add_operation_token = {
-				tag = GER
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = GER
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = GER
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = GER
-				token = token_navy_friendly
-			}
-			# HUN
-			add_operation_token = {
-				tag = HUN
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = HUN
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = HUN
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = HUN
-				token = token_navy_friendly
-			}
-			# ROM
-			add_operation_token = {
-				tag = ROM
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = ROM
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = ROM
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = ROM
-				token = token_navy_friendly
-			}
-			# BUL
-			add_operation_token = {
-				tag = BUL
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = BUL
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = BUL
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = BUL
-				token = token_navy_friendly
-			}
-			# SPR
-			add_operation_token = {
-				tag = SPR
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = SPR
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = SPR
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = SPR
-				token = token_navy_friendly
-			}
-			# FIN
-			add_operation_token = {
-				tag = FIN
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = FIN
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = FIN
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = FIN
-				token = token_navy_friendly
-			}
-			#AOI
-			add_operation_token = {
-				tag = AOI
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = AOI
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = AOI
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = AOI
-				token = token_navy_friendly
-			}
-			# YUG
-			add_operation_token = {
-				tag = YUG
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = YUG
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = YUG
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = YUG
-				token = token_navy_friendly
-			}
-			# ALB
-			add_operation_token = {
-				tag = ALB
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = ALB
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = ALB
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = ALB
-				token = token_navy_friendly
-			}
-			# AUS
-			add_operation_token = {
-				tag = AUS
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = AUS
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = AUS
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = AUS
-				token = token_navy_friendly
-			}
-
-			# COPRO
-			# JAP
-			add_operation_token = {
-				tag = JAP
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = JAP
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = JAP
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = JAP
-				token = token_navy_friendly
-			}
-			# MAN
-			add_operation_token = {
-				tag = MAN
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = MAN
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = MAN
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = MAN
-				token = token_navy_friendly
-			}
-			# SIA
-			add_operation_token = {
-				tag = SIA
-				token = token_airforce_friendly
-			}
-			add_operation_token = {
-				tag = SIA
-				token = token_army_friendly
-			}
-			add_operation_token = {
-				tag = SIA
-				token = token_civilian_friendly
-			}
-			add_operation_token = {
-				tag = SIA
-				token = token_navy_friendly
-			}
+# }

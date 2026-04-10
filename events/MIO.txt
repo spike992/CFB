@@ -1,0 +1,41 @@
+###########################
+# MIO Events
+###########################
+
+add_namespace = mioevents
+
+country_event = {
+	id = mioevents.1
+	title = mioevents.1.t
+	desc = mioevents.1.d
+	picture = GFX_report_event_german_inspect_troops
+	
+	fire_only_once = no
+	
+	is_triggered_only = yes
+
+	option = {
+		name = mioevents.1.a
+        ROOT = {
+            var:donor_MIO = {
+                add_mio_funds_gain_factor = -10
+                add_mio_research_bonus = -10
+                add_mio_size_up_requirement_factor = 10
+                set_mio_flag = has_transfered
+            }
+        }
+
+        ROOT = {
+            MIO_total_effects = yes
+        }
+
+        hidden_effect = {
+            clear_variable = donor_MIO
+            clear_variable = recipient_MIO
+        }
+	}
+	
+	option = {
+		name = mioevents.1.b
+	}
+}

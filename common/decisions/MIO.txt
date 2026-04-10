@@ -1,0 +1,251 @@
+MIO_transfer_decisions = {
+	hide_mio_donating = {
+		icon = generic_propaganda
+
+		allowed = {
+
+		}
+
+		visible = {
+			always = yes
+			NOT = { has_country_flag = disabled_mio_transfer }
+		}
+
+		fire_only_once = no
+		cost = 0
+
+		complete_effect = {
+			set_country_flag = disabled_mio_transfer
+		}
+	}
+    # Tank
+	MIO_donor_tank = {
+		priority = 10
+        icon = GFX_decision_generic_tank
+		allowed = {
+			always = yes
+		}
+		visible = {
+			is_ai = no
+            NOT = { has_variable = donor_MIO }
+            has_variable = tank_mio_displayed
+			FROM = {
+				var:target_MIO@ROOT = {
+                    is_mio_available = yes
+					has_mio_flag = tank_mio
+                    NOT = { has_mio_flag = has_transfered }
+                    has_mio_size > 1
+				}
+			}
+		}
+
+		on_map_mode = decision_view_only
+
+		state_target = yes
+		target_array = ROOT.target_MIO_state
+
+		target_trigger = {
+
+		}
+		
+		fire_only_once = no
+
+		complete_effect = {
+            set_variable = { donor_MIO = FROM.target_MIO@ROOT }
+            var:donor_MIO = { set_mio_flag = active_source }
+            add_to_variable = { MIO_Transfer_GUI_dirty_var = 1 }	
+		}
+	}
+
+	MIO_recipient_tank = {
+		priority = 9
+        icon = GFX_decision_generic_tank
+		allowed = {
+			always = yes
+		}
+		visible = {
+			is_ai = no
+            has_variable = donor_MIO
+            has_variable = tank_mio_displayed
+			FROM = {
+				var:target_MIO@ROOT = {
+					is_mio_available = yes
+					has_mio_flag = tank_mio
+                    NOT = { has_mio_flag = active_source }
+                    NOT = { has_mio_flag = has_transfered }
+				}
+			}
+		}
+
+		on_map_mode = decision_view_only
+
+		state_target = yes
+		target_array = ROOT.target_MIO_state
+
+		target_trigger = {
+
+		}
+		
+		fire_only_once = no
+
+		complete_effect = {
+            set_variable = { recipient_MIO = FROM.target_MIO@ROOT }
+            hidden_effect = { country_event = { id = mioevents.1 } }
+            add_to_variable = { MIO_Transfer_GUI_dirty_var = 1 }	
+		}
+	}
+    # Air
+
+	MIO_donor_air = {
+		priority = 8
+        icon = GFX_decision_generic_air
+		allowed = {
+			always = yes
+		}
+		visible = {
+			is_ai = no
+            NOT = { has_variable = donor_MIO }
+            has_variable = air_mio_displayed
+			FROM = {
+				var:target_MIO@ROOT = {
+                    is_mio_available = yes
+					has_mio_flag = air_mio
+                    NOT = { has_mio_flag = has_transfered }
+                    has_mio_size > 1
+				}
+			}
+		}
+
+		on_map_mode = decision_view_only
+
+		state_target = yes
+		target_array = ROOT.target_MIO_state
+
+		target_trigger = {
+
+		}
+		
+		fire_only_once = no
+
+		complete_effect = {
+            set_variable = { donor_MIO = FROM.target_MIO@ROOT }
+            var:donor_MIO = { set_mio_flag = active_source }
+            add_to_variable = { MIO_Transfer_GUI_dirty_var = 1 }	
+		}
+	}
+
+	MIO_recipient_air = {
+		priority = 7
+        icon = GFX_decision_generic_air
+		allowed = {
+			always = yes
+		}
+		visible = {
+			is_ai = no
+            has_variable = donor_MIO
+            has_variable = air_mio_displayed
+			FROM = {
+				var:target_MIO@ROOT = {
+					is_mio_available = yes
+					has_mio_flag = air_mio
+                    NOT = { has_mio_flag = active_source }
+                    NOT = { has_mio_flag = has_transfered }
+				}
+			}
+		}
+
+		on_map_mode = decision_view_only
+
+		state_target = yes
+		target_array = ROOT.target_MIO_state
+
+		target_trigger = {
+
+		}
+		
+		fire_only_once = no
+
+		complete_effect = {
+            set_variable = { recipient_MIO = FROM.target_MIO@ROOT }
+            hidden_effect = { country_event = { id = mioevents.1 } }
+            add_to_variable = { MIO_Transfer_GUI_dirty_var = 1 }	
+		}
+	}
+
+    # Navy
+	MIO_donor_navy = {
+		priority = 6
+        icon = GFX_decision_generic_naval
+		allowed = {
+			always = yes
+		}
+		visible = {
+			is_ai = no
+            NOT = { has_variable = donor_MIO }
+            has_variable = naval_mio_displayed
+			FROM = {
+				var:target_MIO@ROOT = {
+                    is_mio_available = yes
+					has_mio_flag = naval_mio
+                    NOT = { has_mio_flag = has_transfered }
+                    has_mio_size > 1
+				}
+			}
+		}
+
+		on_map_mode = decision_view_only
+
+		state_target = yes
+		target_array = ROOT.target_MIO_state
+
+		target_trigger = {
+
+		}
+		
+		fire_only_once = no
+
+		complete_effect = {
+            set_variable = { donor_MIO = FROM.target_MIO@ROOT }
+            var:donor_MIO = { set_mio_flag = active_source }
+            add_to_variable = { MIO_Transfer_GUI_dirty_var = 1 }	
+		}
+	}
+
+	MIO_recipient_navy = {
+		priority = 5
+        icon = GFX_decision_generic_naval
+		allowed = {
+			always = yes
+		}
+		visible = {
+			is_ai = no
+            has_variable = donor_MIO
+            has_variable = naval_mio_displayed
+			FROM = {
+				var:target_MIO@ROOT = {
+					is_mio_available = yes
+					has_mio_flag = naval_mio
+                    NOT = { has_mio_flag = active_source }
+                    NOT = { has_mio_flag = has_transfered }
+				}
+			}
+		}
+
+		on_map_mode = decision_view_only
+
+		state_target = yes
+		target_array = ROOT.target_MIO_state
+
+		target_trigger = {
+
+		}
+		
+		fire_only_once = no
+
+		complete_effect = {
+            set_variable = { recipient_MIO = FROM.target_MIO@ROOT }
+            hidden_effect = { country_event = { id = mioevents.1 } }
+            add_to_variable = { MIO_Transfer_GUI_dirty_var = 1 }	
+		}
+	}
+}
