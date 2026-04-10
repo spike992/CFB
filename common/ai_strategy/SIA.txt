@@ -1,9 +1,9 @@
 SIA_prio_military_factories = {
 	allowed = { original_tag = SIA }
+	abort_when_not_enabled = yes
 	enable = {
 		always = yes
 	}	
-	abort_when_not_enabled = yes
 	ai_strategy = {
 		type = added_military_to_civilian_factory_ratio
 		value = 50000
@@ -25,7 +25,23 @@ SIA_rubber_refs = {
 	}
 	ai_strategy = {
 		type = building_target
-		id = synthetic_refinery
+		id = synthetic_rubber_refinery
 		value = 1000
 	}
+}
+
+SIA_dont_join_GER = {
+	allowed = { original_tag = SIA }
+	abort = { always = no }
+
+	enable = {
+		always = yes
+	}
+
+	ai_strategy = {
+		type = alliance
+		id = GER
+		value = -2000
+	}
+
 }

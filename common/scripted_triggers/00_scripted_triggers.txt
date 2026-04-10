@@ -9,48 +9,9 @@
 #	In a script file:
 #
 #	trigger = {
-#		exampel_trigger = yes
+#		example_trigger = yes
 #	}
 #
-
-is_controlled_by_ROOT_or_ally = {
-	custom_trigger_tooltip = {
-		tooltip = is_controlled_by_ROOT_or_ally
-		CONTROLLER = {
-			OR = {
-				tag = ROOT
-				is_subject_of = ROOT
-				is_in_faction_with = ROOT
-			}
-		}
-	}
-}
-is_controlled_by_ENG_or_ally = {
-	custom_trigger_tooltip = {
-		tooltip = is_controlled_by_ROOT_or_ally
-		CONTROLLER = {
-			OR = {
-				tag = ENG
-				is_subject_of = ENG
-				is_in_faction_with = ENG
-			}
-		}
-	}
-}
-is_controlled_by_GER_or_ally = {
-	custom_trigger_tooltip = {
-		tooltip = is_controlled_by_ROOT_or_ally
-		CONTROLLER = {
-			OR = {
-				tag = GER
-				is_subject_of = GER
-				is_in_faction_with = GER
-			}
-		}
-	}
-}
-
-immune_to_pause_block = { OR = { tag = GER tag = ENG tag = SOV tag = USA tag = ITA  tag = JAP } }
 
 can_ROOT_get_wargoal_on_THIS = {
 	exists = yes
@@ -72,6 +33,7 @@ is_border_conflict_defender_vs_FROM = {
 }
 
 has_not_initiated_border_incident_with_FROM = {
+	# NOTE this check is very expensive! Use it with caution.
 	custom_trigger_tooltip = {
 		tooltip = not_initiated_border_incident_with_FROM
 		NOT = {
@@ -83,6 +45,7 @@ has_not_initiated_border_incident_with_FROM = {
 }
 
 has_not_initiated_border_incident_with_ROOT = {
+	# NOTE this check is very expensive! Use it with caution.
 	custom_trigger_tooltip = {
 		tooltip = not_initiated_border_incident_with_ROOT
 		NOT = {
@@ -134,6 +97,24 @@ check_has_focus_tree_to_switch_to_fascism = {
 		AND = {
 			tag = FRA
 			has_dlc = "La Resistance"
+		}
+	}
+	NOT = {
+		AND = {
+			tag = HUN
+			has_dlc = "Gotterdammerung"
+		}
+	}
+	NOT = {
+		AND = {
+			original_tag = PHI
+			has_dlc =  "No Compromise, No Surrender"
+		}
+	}
+	NOT = {
+		AND = {
+			original_tag = CHI
+			has_dlc =  "No Compromise, No Surrender"
 		}
 	}
 }
@@ -195,18 +176,30 @@ check_has_focus_tree_to_switch_to_democratic = {
 	# 		NOT = { has_focus_tree = china_nationalist_focus }
 	# 	}
 	# }
-	# NOT = {
-	# 	AND = {
-	# 		tag = SIK
-	# 		has_dlc = "Waking the Tiger"
-	# 		NOT = { has_focus_tree = china_nationalist_focus }
-	# 	}
-	# }
+	NOT = {
+		AND = {
+			tag = SIK
+			has_dlc = "Waking the Tiger"
+			NOT = { has_focus_tree = china_nationalist_focus }
+		}
+	}
+	NOT = {
+		AND = {
+			original_tag = PHI
+			has_dlc =  "No Compromise, No Surrender"
+		}
+	}
+	NOT = {
+		AND = {
+			original_tag = CHI 
+			has_dlc =  "No Compromise, No Surrender"
+		}
+	}
 }
 
 check_has_focus_tree_to_switch_to_communism = {
-	# NOT = { tag = PRC }
-	# NOT = { tag = SIK }
+	NOT = { tag = PRC }
+	NOT = { tag = SIK }
 	NOT = { tag = MAN }
 	NOT = { tag = SOV }
 	NOT = {
@@ -263,6 +256,30 @@ check_has_focus_tree_to_switch_to_communism = {
 			has_dlc = "La Resistance"
 		}
 	}
+	NOT = {
+		AND = {
+			original_tag = NOR
+			has_dlc =  "Arms Against Tyranny"
+		}
+	}
+	NOT = {
+		AND = {
+			original_tag = ARG
+			has_dlc =  "Trial of Allegiance"
+		}
+	}
+	NOT = {
+		AND = {
+			original_tag = GER
+			has_dlc =  "Gotterdammerung"
+		}
+	}
+	NOT = {
+		AND = {
+			original_tag = PHI
+			has_dlc =  "No Compromise, No Surrender"
+		}
+	}
 }
 
 #State scope
@@ -273,6 +290,20 @@ is_controlled_by_ROOT_or_subject = {
 			OR = {
 				tag = ROOT
 				is_subject_of = ROOT
+			}
+		}
+	}
+}
+
+is_not_controlled_by_ROOT_or_subject = {
+	custom_trigger_tooltip = {
+		tooltip = is_not_controlled_by_ROOT_or_subject
+		CONTROLLER = {
+			NOT = {
+				OR = {
+					tag = ROOT
+					is_subject_of = ROOT
+				}
 			}
 		}
 	}
@@ -292,6 +323,20 @@ is_controlled_by_ROOT_or_ally = {
 		tooltip = is_controlled_by_ROOT_or_ally
 		CONTROLLER = {
 			OR = {
+				tag = ROOT
+				is_subject_of = ROOT
+				is_in_faction_with = ROOT
+			}
+		}
+	}
+}
+
+#State scope
+is_not_controlled_by_ROOT_or_ally = {
+	custom_trigger_tooltip = {
+		tooltip = is_not_controlled_by_ROOT_or_ally
+		CONTROLLER = {
+			NOT = {
 				tag = ROOT
 				is_subject_of = ROOT
 				is_in_faction_with = ROOT
@@ -325,69 +370,121 @@ has_naval_treaty_trigger = {
 	}
 }
 
-ai_air_doctrine_tier_1_trigger = {
-	OR = {
-		has_tech = naval_strike_tactics
-		has_tech = direct_ground_support
-		has_tech = low_echelon_support
-	}
-}
-
-ai_air_doctrine_tier_2_trigger = {
-	OR = {
-		has_tech = multialtitude_flying
-		has_tech = hunt_and_destroy
-		has_tech = operational_destruction
-	}
-}
-ai_air_doctrine_tier_3_trigger = {
-	OR = {
-		has_tech = flying_fortress
-		has_tech = naval_strike_torpedo_tactics
-		has_tech = infiltration_bombing
-	}
-}
-
-ai_land_doctrine_tier_1_trigger = {
-	OR = {
-		has_tech = elastic_defence
-		has_tech = mobile_defence
-		has_tech = grand_assault
-		has_tech = defence_in_depth
-	}
-}
-
-ai_land_doctrine_tier_2_trigger = {
-	OR = {
-		has_tech = kampfgruppe
-		has_tech = mechanised_offensive
-		has_tech = branch_interoperation
-		has_tech = infiltration_assault
-		has_tech = vast_offensives
-		has_tech = large_front_offensive
-	}
-}
-
 CHI_is_on_historical_plan_trigger = {
 	has_dlc = "Waking the Tiger"
-	always = yes
+	OR = {
+		AND = {
+			is_historical_focus_on = yes
+			has_game_rule = {
+				rule = CHI_ai_behavior
+				option = DEFAULT
+			}
+		}
+		has_country_flag = CHI_AI_RANDOM_HISTORICAL
+		has_game_rule = {
+			rule = CHI_ai_behavior
+			option = HISTORICAL
+		}
+	}
 }
 SOV_is_on_historical_plan_trigger = {
-	always = yes
+	OR = {
+		AND = {
+			is_historical_focus_on = yes
+			has_game_rule = {
+				rule = SOV_ai_behavior
+				option = DEFAULT
+			}
+		}
+		has_country_flag = SOV_AI_RANDOM_COMMUNIST_HISTORICAL
+		has_game_rule = {
+			rule = SOV_ai_behavior
+			option = HISTORICAL
+		}
+	}
 }
 USA_is_on_historical_plan_trigger = {
-	always = yes
+	OR = {
+		AND = {
+			is_historical_focus_on = yes
+			has_game_rule = {
+				rule = USA_ai_behavior
+				option = DEFAULT
+			}
+		}
+		has_country_flag = USA_AI_DEMOCRATIC_HISTORICAL
+		has_game_rule = {
+			rule = USA_ai_behavior
+			option = DEMOCRATIC_HISTORICAL
+		}
+	}
 }
 ROM_is_on_historical_plan_trigger = {
 	has_dlc = "Death or Dishonor"
-	always = yes
+	OR = {
+		AND = {
+			is_historical_focus_on = yes
+			has_game_rule = {
+				rule = ROM_ai_behavior
+				option = DEFAULT
+			}
+		}
+		has_country_flag = ROM_AI_RANDOM_FASCIST_HISTORICAL
+		has_game_rule = {
+			rule = ROM_ai_behavior
+			option = FASCIST_HISTORICAL
+		}
+	}
 }
 HUN_is_on_historical_plan_trigger = {
 	has_dlc = "Death or Dishonor"
-	always = yes
+	OR = {
+		AND = {
+			is_historical_focus_on = yes
+			has_game_rule = {
+				rule = HUN_ai_behavior
+				option = DEFAULT
+			}
+		}
+		has_country_flag = HUN_AI_RANDOM_FASCIST_HISTORICAL
+		has_game_rule = {
+			rule = HUN_ai_behavior
+			option = FASCIST_HISTORICAL
+		}
+	}
+}
+COG_is_on_historical_plan_trigger = {
+	has_dlc = "Gotterdammerung"
+	OR = {
+		AND = {
+			is_historical_focus_on = yes
+			has_game_rule = {
+				rule = COG_AI_BEHAVIOR
+				option = DEFAULT
+			}
+		}
+		has_country_flag = COG_AI_RANDOM_HISTORICAL
+		has_game_rule = {
+			rule = COG_AI_BEHAVIOR
+			option = HISTORICAL
+		}
+	}
 }
 ENG_is_on_historical_plan_trigger = {
-	always = yes
+	OR = {
+		AND = {
+			is_historical_focus_on = yes
+			has_game_rule = {
+				rule = ENG_ai_behavior
+				option = DEFAULT
+			}
+		}
+		has_country_flag = ENG_AI_DEMOCRATIC_HISTORICAL
+		has_game_rule = {
+			rule = eng_ai_behavior
+			option = DEMOCRATIC_HISTORICAL
+		}
+	}
 }
 
 SOV_save_pp_for_manpower_trouble = {
@@ -556,6 +653,26 @@ enemy_has_equal_or_better_radar_tech_trigger = {
 }
 
 is_available_to_collaboration_government = { # occupied_countries.1 should be updated along with this
+	is_subject = no
+	if = {
+		limit = {
+			original_tag = ITA
+		}
+		NOT = { FROM = { original_tag = YUG } }
+	}
+
+	# if = {
+	# 	limit = {
+	# 		original_tag = POL
+	# 	}
+	# 	NOT = { FROM = { original_tag = DNZ } }
+	# }
+	if = {
+		limit = {
+			original_tag = TUR
+		}
+		NOT = { FROM = { original_tag = KUR } }
+	}
 	NOT = {
 		any_country_with_original_tag = {
 			original_tag_to_check = FROM
@@ -704,9 +821,7 @@ state_is_in_the_mediterranean_sea = {
 			state = 22
 			state = 21
 			state = 851
-			state = 911
 			state = 735
-			state = 771
 			state = 162
 			state = 2
 			state = 117
@@ -717,6 +832,7 @@ state_is_in_the_mediterranean_sea = {
 			state = 116
 			state = 849
 			state = 157
+			state = 158
 			state = 161
 			state = 160
 			state = 736
@@ -761,7 +877,53 @@ state_is_in_the_mediterranean_sea = {
 			state = 459
 			state = 461
 			state = 290
+			state = 934
 		}
+	}
+}
+
+state_is_in_the_baltic_sea = { # Checks if the state borders the Baltic Sea  
+	OR = {	
+		state = 37 # Sjaelland
+		state = 911 # Fyn
+		state = 912 # Sonderjylland
+		state = 909
+		state = 58
+		state = 61
+		state = 62
+		state = 63
+		state = 807
+		state = 85
+		state = 5
+		state = 763
+		state = 188
+		state = 189
+		state = 190
+		state = 809
+		state = 808
+		state = 12
+		state = 13
+		state = 811 
+		state = 812
+		state = 813
+		state = 208
+		state = 195
+		state = 146
+		state = 928
+		state = 111
+		state = 926
+		state = 145
+		state = 149
+		state = 929 
+		state = 148 # Lappi
+		state = 666 # Norrbotten
+		state = 918 # Vasterbotten
+		state = 38 # Gavleborg
+		state = 141 # Sodermaland
+		state = 913 # Ostergotland
+		state = 139 # Smaland
+		state = 138 # Skane
+		state = 124 # Gotland
 	}
 }
 
@@ -789,7 +951,6 @@ is_initial_ethiopian_state = {
 
 has_subject_autonomy_feature = {
 	has_dlc = "Together for Victory"
-	#TODO_Manu: More DLCs?
 }
 
 is_organization_of_african_unity_member = {
@@ -875,13 +1036,15 @@ is_alpine_state = {
 			state = 159 #Lombardia - ITA 
 			state = 850 #Trentino - ITA 
 			state = 39 #Alto Adige - ITA
-			state = 847 #Western Swiss Alps - SWi
+			state = 847 #Western Swiss Alps - SWI
 			state = 151 #Eastern Swiss Alps - SWI 
 			state = 846 #Ticino - SWI
 			state = 848 #Vorarlberg - AUS
 			state = 153 #Tyrol - AUS 
 			state = 152 #Upper Austria - AUS 
 			state = 4 #Lower Austria 
+			state = 975 #Burgenland
+			state = 976 #Steiermark-K�mten 
 		}
 	}
 }
@@ -912,6 +1075,10 @@ state_has_any_resource = {
 			resource = chromium
 			amount > 0
 		}
+		has_resources_amount = {
+			resource = coal
+			amount > 0
+		}
 	}
 }
 
@@ -926,6 +1093,7 @@ country_can_be_reasonable_target_of_wargoal = { #Expected scopes: Target country
 	}
 }
 
+# Countries will be less likely to try and liberate or puppet these nations 
 is_unlikely_country_tag = {
 	OR = {
 	    # tag = BRI
@@ -969,12 +1137,12 @@ is_unlikely_country_tag = {
 		# tag = UDM
 		# tag = KHA
 		# tag = VGE
-		# tag = KAL
-		# tag = KAR
-		# tag = SIL
+		#tag = KAL
+		tag = KAR
+		#tag = SIL
 		# tag = KSH
-		# tag = ALT
-		# tag = UZB
+		#tag = ALT
+		# tag = BUK
 		# tag = KHI
 		tag = SMI
 		# tag = QUE
@@ -993,6 +1161,22 @@ is_unlikely_country_tag = {
 		# tag = THU
 		tag = HES
 		# tag = RHI
+		tag = RNG 
+		#tag = PSR 
+		#tag = GXC
+		#tag = YUN
+		#tag = SHX
+		#tag = XSM
+		#tag = SIK
+		#tag = GDC
+		#tag = SND
+		#tag = SIC
+		#tag = NXM
+		#tag = GSM
+		#tag = XIC
+		#tag = KHM
+		#tag = KUM
+		#tag = HBC
 	}
 }
 
@@ -1270,43 +1454,6 @@ FROM_is_twice_as_weak = {
 	}
 }
 
-ai_has_completed_army_doctrine = {
-	is_ai = yes
-	OR = {
-		has_tech = werwolf_guerillas
-		has_tech = modern_blitzkrieg
-		has_tech = air_land_battle
-		has_tech = shock_and_awe
-		has_tech = c3i_theory
-		has_tech = infiltration_in_depth
-		has_tech = continuous_offensive
-		has_tech = guerilla_warfare
-	}
-}
-
-ai_has_completed_air_doctrine = {
-	is_ai = yes
-	OR = {
-		has_tech = offensive_formations
-		has_tech = mass_destruction
-		has_tech = forward_interception
-		has_tech = high_level_bombing
-	}
-}
-
-ai_has_completed_naval_doctrine = {
-	is_ai = yes
-	OR = {
-		has_tech = grand_battlefleet
-		has_tech = submarine_offensive
-		has_tech = floating_airfield
-		has_tech = combined_operations_raiding
-		has_tech = integrated_convoy_defence
-		has_tech = submarine_offensive_bs
-		has_tech = carrier_battlegroups
-	}
-}
-
 ### Neutrality Act - only trade with countries at peace 
 trade_partner_not_at_war = {
 	custom_trigger_tooltip = {
@@ -1346,6 +1493,17 @@ is_allied_seller_trigger = {
 	custom_trigger_tooltip = {
 		tooltip = subsidy_allied_nation_tt
 		FROM = { is_in_faction_with = ROOT }
+	}
+}
+
+should_play_south_american_music = {
+	capital_scope = { is_on_continent = south_america }
+}
+
+check_allow_alternate_political_events = {
+	OR = {
+		original_tag = PHI
+		#
 	}
 }
 

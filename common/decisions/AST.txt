@@ -1,160 +1,160 @@
 political_actions = {
 
-	AST_annex_dei = {
+	# AST_annex_nz = {
+
+	# 	allowed = {
+	# 		original_tag = AST
+	# 	}
+
+	# 	available = {
+	# 		date > 1939.1.1
+	# 		NZL = {is_ai = yes}
+	# 		NOT = { 523 = {is_core_of = AST} }
+	# 	}
+
+	# 	ai_will_do = {
+	# 		factor = 200
+	# 	}
+
+	# 	visible = {
+	# 		always = yes
+	# 		country_exists = NZL
+	# 	}
+	# 	fire_only_once = yes
+	# 	complete_effect = {
+	# 		annex_country = { target = NZL transfer_troops = yes }
+	# 		add_state_core = 723 
+	# 		add_state_core = 284
+	# 		add_state_core = 726
+	# 		set_global_flag = AST_NZL_ANNEXED
+	# 	}
+	# }
+
+	# AST_core_papua = {
+
+	# 	allowed = {
+	# 		original_tag = AST
+	# 	}
+
+	# 	available = {
+	# 		date > 1939.1.1
+	# 		country_exists = NZL
+	# 	}
+
+	# 	ai_will_do = {
+	# 		factor = 0
+	# 	}
+
+	# 	visible = {
+	# 		always = yes
+	# 	}
+	# 	fire_only_once = yes
+	# 	complete_effect = {
+	# 		523 = { add_core_of = AST }
+	# 		979 = { add_core_of = AST }
+	# 		add_ideas = AST_no_nzl_annex
+	# 	}
+	# }
+
+	AST_cancel_insurance_act = {
 
 		allowed = {
 			original_tag = AST
-		}
-
-		available = {
-			original_tag = HOL
-			HOL = { is_ai = yes }
-			NOT = {
-				has_global_flag = DEI_transfered
-			}
-			has_game_rule = {
-				rule = ast_annex_dei_at_hol_cap
-				option = ENABLED
-			}
-			HOL = {
-				has_capitulated = yes
-			}
-		}
-
-		ai_will_do = {
-			factor = 200
 		}
 
 		visible = {
-			always = yes
-		}
-
-		fire_only_once = yes
-
-		complete_effect = {
-			# weird island near venezuela
-			ENG = { transfer_state = 695 }
-			695 = { set_compliance = 20 }
-			# suriname
-			ENG = { transfer_state = 309 }
-			309 = { set_compliance = 20 }
-
-			# DEI - go to australia
-			transfer_state = 672
-			672 = { set_compliance = 20 }
-			transfer_state = 334
-			334 = { set_compliance = 20 }
-			transfer_state = 335
-			335 = { set_compliance = 20 }
-			transfer_state = 667
-			667 = { set_compliance = 20 }
-			transfer_state = 673
-			673 = { set_compliance = 20 }
-			transfer_state = 668
-			668 = { set_compliance = 20 }
-			transfer_state = 669
-			669 = { set_compliance = 20 }
-			transfer_state = 738
-			738 = { set_compliance = 20 }
-			AST = { annex_country = { target = INS transfer_troops = yes } }
-
-			GER = {
-				transfer_state = 35
-				transfer_state = 7
-				transfer_state = 36
-			}
-
-			set_global_flag = DEI_transfered
-
-			set_cosmetic_tag = AST_autonomy_dominion_OCEANIA
-
-			# ENG ANNEX
-			ENG = {
-				HOL = {
-					pow_before_annex = yes
-				}
-			}
-			ENG = { annex_country = { target = HOL transfer_troops = yes } }
-		}
-	}
-
-	AST_annex_nz = {
-
-		allowed = {
-			original_tag = AST
+			has_completed_focus = AST_national_insurance_act
+			has_idea = AST_national_insurance_act
 		}
 
 		available = {
-			date > 1939.1.1
-			NZL = { is_ai = yes }
-			# NOT = { 523 = {is_core_of = AST} }
-		}
-
-		ai_will_do = {
-			factor = 200
-		}
-
-		visible = {
-			always = yes
-		}
-		fire_only_once = yes
-		complete_effect = {
-			if = {
-				limit = {
-					523 = {is_core_of = AST}
-				}
-				523 = {
-					remove_core_of = AST
-				}
-			}
-			if = {
-				limit = {
-					has_idea = AST_no_nzl_annex
-				}
-				remove_ideas = AST_no_nzl_annex
-			}
-			set_global_flag = AST_NZL_ANNEXED
-			AST = {
-				set_cosmetic_tag = AST_autonomy_dominion_NZLA
-			}
-			AST = {
-				NZL = {
-					pow_before_annex = yes
-				}
-			}
-			ENG = {
-				add_ideas = ENG_AST_annex_operative
-			}
-			annex_country = { target = NZL transfer_troops = yes }
-			add_state_core = 723 
-			add_state_core = 284
-			add_state_core = 726
-		}
-	}
-
-	AST_core_papau = {
-
-		allowed = {
-			original_tag = AST
-		}
-
-		available = {
-			date > 1939.1.1
-			country_exists = NZL
 		}
 
 		ai_will_do = {
 			factor = 0
 		}
 
-		visible = {
-			always = yes
-		}
+		cost = 50
+
 		fire_only_once = yes
+
 		complete_effect = {
-			add_manpower = 100000
-			523 = { add_core_of = AST }
-			add_ideas = AST_no_nzl_annex
+			remove_ideas = AST_national_insurance_act
+		}
+	}
+
+	AST_cancel_nationalised_bank = {
+
+		allowed = {
+			original_tag = AST
+		}
+
+		visible = {
+			has_completed_focus = AST_nationalise_the_commonwealth_bank
+			has_idea = AST_nationalise_the_commonwealth_bank
+		}
+
+		available = {
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		cost = 50
+
+		fire_only_once = yes
+
+		complete_effect = {
+			remove_ideas = AST_nationalise_the_commonwealth_bank
+		}
+	}
+}
+
+war_measures = {
+
+	AST_hold_singapore = {
+
+		icon = generic_civil_support
+
+		allowed = {
+			original_tag = AST
+		}
+
+		#Fail trigger
+		available = {
+			NOT = { 
+				OR = {
+					ENG = { controls_state = 1021 } 
+					MAL = { controls_state = 1021 } 
+					RAJ = { controls_state = 1021 } 
+					AST = { controls_state = 1021 } 
+					NZL = { controls_state = 1021 } 
+				}
+			}
+		}
+
+		days_mission_timeout = 150
+
+		fire_only_once = yes
+
+		is_good = yes
+
+		activation = {
+			has_war_with = JAP
+			has_civil_war = no
+			AST = { has_completed_focus = AST_trust_in_the_singapore_strategy }
+		}
+
+		#Success
+		timeout_effect = {
+			set_global_flag = held_singapore
+		}
+		#Fail
+		complete_effect = {
+			add_stability = -0.15
+			add_war_support = -0.15
+			set_global_flag = failed_to_hold_singapore
 		}
 	}
 }

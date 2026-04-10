@@ -15,38 +15,355 @@ country_event = {
 	
 	option = {
 		name = japan.1.a
+
 		add_war_support = 0.05
-		create_wargoal = {
-  			type = annex_everything
-  			target = CHI
-  		}
+
+		IF = {
+			limit = {
+				NOT = {
+					has_completed_focus = JAP_subdue_the_kwantung_army
+				}
+			}
+			custom_effect_tooltip = JAP_first_strike_blocked_due_to_kwantung_army_tt
+		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		IF = {
+			limit = {
+				CHI = {
+					exists = yes
+					NOT = {
+						is_ally_with = ROOT
+						has_war_with = ROOT
+					}
+				}
+			}
+			hidden_effect = {
+				IF = {
+					limit = {
+						NOT = {
+							has_completed_focus = JAP_subdue_the_kwantung_army
+						}
+					}
+					CHI = {
+						set_country_flag = JAP_first_strike_principle_blocked
+					}
+				}
+			}
+			declare_war_on = {
+				target = CHI
+				type = annex_everything
+			}
+			IF = {
+				limit = {
+					MAN = {
+						is_subject_of = ROOT
+						NOT = {
+							has_completed_focus = MAN_assertiveness
+							has_completed_focus = MAN_tsr_assertiveness
+						}
+					}
+				}
+				MAN = {
+					add_to_war = {
+					    targeted_alliance = ROOT
+					    enemy = CHI
+					    hostility_reason = asked_to_join
+					}
+				}
+			}
+			# IF = {
+			# 	limit = {
+			# 		MEN = {
+			# 			is_subject_of = ROOT
+			# 		}
+			# 	}
+			# 	MEN = {
+			# 		add_to_war = {
+			# 		    targeted_alliance = ROOT
+			# 		    enemy = CHI
+			# 		    hostility_reason = asked_to_join
+			# 		}
+			# 	}
+			# }
+			custom_effect_tooltip = generic_skip_one_line_tt
+		}
+
+		# IF = {
+		# 	limit = {
+		# 		SHX = {
+		# 			exists = yes
+		# 			NOT = {
+		# 				is_ally_with = ROOT
+		# 				has_war_with = ROOT
+		# 			}
+		# 		}
+		# 	}
+		# 	hidden_effect = {
+		# 		IF = {
+		# 			limit = {
+		# 				NOT = {
+		# 					has_completed_focus = JAP_subdue_the_kwantung_army
+		# 				}
+		# 			}
+		# 			SHX = {
+		# 				set_country_flag = JAP_first_strike_principle_blocked
+		# 			}
+		# 		}
+		# 	}
+		# 	declare_war_on = {
+		# 		target = SHX
+		# 		type = annex_everything
+		# 	}
+		# 	IF = {
+		# 		limit = {
+		# 			MAN = {
+		# 				is_subject_of = ROOT
+		# 				NOT = {
+		# 					has_completed_focus = MAN_assertiveness
+		# 					has_completed_focus = MAN_tsr_assertiveness
+		# 				}
+		# 			}
+		# 		}
+		# 		MAN = {
+		# 			add_to_war = {
+		# 			    targeted_alliance = ROOT
+		# 			    enemy = SHX
+		# 			    hostility_reason = asked_to_join
+		# 			}
+		# 		}
+		# 	}
+		# 	IF = {
+		# 		limit = {
+		# 			MEN = {
+		# 				is_subject_of = ROOT
+		# 			}
+		# 		}
+		# 		MEN = {
+		# 			add_to_war = {
+		# 			    targeted_alliance = ROOT
+		# 			    enemy = SHX
+		# 			    hostility_reason = asked_to_join
+		# 			}
+		# 		}
+		# 	}
+		# 	custom_effect_tooltip = generic_skip_one_line_tt
+		# }
+
+		# IF = {
+		# 	limit = {
+		# 		SND = {
+		# 			exists = yes
+		# 			NOT = {
+		# 				is_ally_with = ROOT
+		# 				has_war_with = ROOT
+		# 			}
+		# 		}
+		# 	}
+		# 	hidden_effect = {
+		# 		IF = {
+		# 			limit = {
+		# 				NOT = {
+		# 					has_completed_focus = JAP_subdue_the_kwantung_army
+		# 				}
+		# 			}
+		# 			SND = {
+		# 				set_country_flag = JAP_first_strike_principle_blocked
+		# 			}
+		# 		}
+		# 	}
+		# 	declare_war_on = {
+		# 		target = SND
+		# 		type = annex_everything
+		# 	}
+		# 	IF = {
+		# 		limit = {
+		# 			MAN = {
+		# 				is_subject_of = ROOT
+		# 				NOT = {
+		# 					has_completed_focus = MAN_assertiveness
+		# 					has_completed_focus = MAN_tsr_assertiveness
+		# 				}
+		# 			}
+		# 		}
+		# 		MAN = {
+		# 			add_to_war = {
+		# 			    targeted_alliance = ROOT
+		# 			    enemy = SND
+		# 			    hostility_reason = asked_to_join
+		# 			}
+		# 		}
+		# 	}
+		# 	IF = {
+		# 		limit = {
+		# 			MEN = {
+		# 				is_subject_of = ROOT
+		# 			}
+		# 		}
+		# 		MEN = {
+		# 			add_to_war = {
+		# 			    targeted_alliance = ROOT
+		# 			    enemy = SND
+		# 			    hostility_reason = asked_to_join
+		# 			}
+		# 		}
+		# 	}
+		# 	custom_effect_tooltip = generic_skip_one_line_tt
+		# }
+
+		# IF = {
+		# 	limit = {
+		# 		HBC = {
+		# 			exists = yes
+		# 			NOT = {
+		# 				is_ally_with = ROOT
+		# 				has_war_with = ROOT
+		# 			}
+		# 		}
+		# 	}
+		# 	hidden_effect = {
+		# 		IF = {
+		# 			limit = {
+		# 				NOT = {
+		# 					has_completed_focus = JAP_subdue_the_kwantung_army
+		# 				}
+		# 			}
+		# 			HBC = {
+		# 				set_country_flag = JAP_first_strike_principle_blocked
+		# 			}
+		# 		}
+		# 	}
+		# 	declare_war_on = {
+		# 		target = HBC
+		# 		type = annex_everything
+		# 	}
+		# 	IF = {
+		# 		limit = {
+		# 			MAN = {
+		# 				is_subject_of = ROOT
+		# 				NOT = {
+		# 					has_completed_focus = MAN_assertiveness
+		# 					has_completed_focus = MAN_tsr_assertiveness
+		# 				}
+		# 			}
+		# 		}
+		# 		MAN = {
+		# 			add_to_war = {
+		# 			    targeted_alliance = ROOT
+		# 			    enemy = HBC
+		# 			    hostility_reason = asked_to_join
+		# 			}
+		# 		}
+		# 	}
+		# 	IF = {
+		# 		limit = {
+		# 			MEN = {
+		# 				is_subject_of = ROOT
+		# 			}
+		# 		}
+		# 		MEN = {
+		# 			add_to_war = {
+		# 			    targeted_alliance = ROOT
+		# 			    enemy = HBC
+		# 			    hostility_reason = asked_to_join
+		# 			}
+		# 		}
+		# 	}
+		# 	custom_effect_tooltip = generic_skip_one_line_tt
+		# }
+
+		# IF = {
+		# 	limit = {
+		# 		XIC = {
+		# 			exists = yes
+		# 			owns_state = 608
+		# 			NOT = {
+		# 				is_ally_with = ROOT
+		# 				has_war_with = ROOT
+		# 			}
+		# 		}
+		# 	}
+		# 	hidden_effect = {
+		# 		IF = {
+		# 			limit = {
+		# 				NOT = {
+		# 					has_completed_focus = JAP_subdue_the_kwantung_army
+		# 				}
+		# 			}
+		# 			XIC = {
+		# 				set_country_flag = JAP_first_strike_principle_blocked
+		# 			}
+		# 		}
+		# 	}
+		# 	declare_war_on = {
+		# 		target = XIC
+		# 		type = annex_everything
+		# 	}
+		# 	IF = {
+		# 		limit = {
+		# 			MAN = {
+		# 				is_subject_of = ROOT
+		# 				NOT = {
+		# 					has_completed_focus = MAN_assertiveness
+		# 					has_completed_focus = MAN_tsr_assertiveness
+		# 				}
+		# 			}
+		# 		}
+		# 		MAN = {
+		# 			add_to_war = {
+		# 			    targeted_alliance = ROOT
+		# 			    enemy = XIC
+		# 			    hostility_reason = asked_to_join
+		# 			}
+		# 		}
+		# 	}
+		# 	IF = {
+		# 		limit = {
+		# 			MEN = {
+		# 				is_subject_of = ROOT
+		# 			}
+		# 		}
+		# 		MEN = {
+		# 			add_to_war = {
+		# 			    targeted_alliance = ROOT
+		# 			    enemy = XIC
+		# 			    hostility_reason = asked_to_join
+		# 			}
+		# 		}
+		# 	}
+		# 	custom_effect_tooltip = generic_skip_one_line_tt
+		# }
+
+		IF = {
+			limit = {
+				NOT = {
+					has_completed_focus = JAP_subdue_the_kwantung_army
+				}
+			}
+			
+			add_timed_idea = {
+				idea = JAP_surprise_invasion_idea
+				days = 245 
+			}	
+			
+		}
 
 		hidden_effect = {
 			country_event = { days = 5 id = news.1 }
-			ROM = {
-				diplomatic_relation = {
-					country = JAP
-					relation = military_access
-					active = yes
-				}
-			}
-	
-			BUL = {
-				diplomatic_relation = {
-					country = JAP
-					relation = military_access
-					active = yes
-				}
-			}
 		}
+
 		USA = { set_country_flag = { flag = USA_china_window days = 60 value = 1 } }
-		if = {
+
+		IF = {
 			limit = {
 				has_country_leader = { id = 700 ruling_only = yes }
 			}
 			remove_country_leader_trait = imperial_sanction
 		}
+
 	}
+	
 }
 
 # Chinese Concessions
@@ -58,6 +375,7 @@ country_event = {
 	
 	is_triggered_only = yes
 	
+
 	option = {
 		name = japan.2.a
 		effect_tooltip = {
@@ -66,7 +384,9 @@ country_event = {
 		hidden_effect = {
 			country_event = { days = 5 id = news.2 }
 		}
-		if = {
+
+		#HBC STATES
+		IF = {
 			limit = {
 				608 = {
 					is_controlled_by = FROM
@@ -76,17 +396,32 @@ country_event = {
 				transfer_state = 608
 			}
 		}
-		if = {
+		ELSE_IF = {
 			limit = {
-				597 = {
-					is_controlled_by = FROM
+				608 = {
+					OWNER = {
+						is_literally_china = yes
+						NOT = { 
+							original_tag = FROM 
+							original_tag = ROOT 
+							has_country_flag = JAP_already_sent_demand_for_northern_chinese_concessions
+						}
+					}
 				}
 			}
-			JAP = {
-				transfer_state = 597
+
+			608 = { 
+				OWNER = {
+					set_country_flag = JAP_already_sent_demand_for_northern_chinese_concessions
+					country_event = { id = SEA_china.28 days = 2 }
+				}
 			}
 		}
-		if = {
+		ELSE = {
+			608 = { add_claim_by = ROOT }
+		}
+
+		IF = {
 			limit = {
 				614 = {
 					is_controlled_by = FROM
@@ -96,7 +431,199 @@ country_event = {
 				transfer_state = 614
 			}
 		}
-		if = {
+		ELSE_IF = {
+			limit = {
+				614 = {
+					OWNER = {
+						is_literally_china = yes
+						NOT = { 
+							original_tag = FROM 
+							original_tag = ROOT 
+							has_country_flag = JAP_already_sent_demand_for_northern_chinese_concessions
+						}
+					}
+				}
+			}
+			614 = { 
+				if = {
+					limit = {
+						OWNER = {
+							owns_state = 608
+						}
+					}
+
+					hidden_effect = { #to hide duplicate events in tooltip
+						OWNER = {
+							set_country_flag = JAP_already_sent_demand_for_northern_chinese_concessions
+							country_event = { id = SEA_china.28 days = 2 }
+						}
+					}
+				}
+				else = {
+					OWNER = {
+						set_country_flag = JAP_already_sent_demand_for_northern_chinese_concessions
+						country_event = { id = SEA_china.28 days = 2 }
+					}
+				}
+
+			}
+		}
+		ELSE = {
+			614 = { add_claim_by = ROOT }
+		}
+
+		# IF = {
+		# 	limit = {
+		# 		1039 = {
+		# 			is_controlled_by = FROM
+		# 		}
+		# 		has_subject = MEN
+		# 	}
+		# 	MEN = {
+		# 		transfer_state = 1039
+		# 	}
+		# }
+		# ELSE_IF = {
+		# 	limit = {
+		# 		1039 = {
+		# 			is_controlled_by = FROM
+		# 		}
+		# 		NOT = {
+		# 			has_subject = MEN
+		# 		}
+		# 	}
+		# 	transfer_state = 1039
+		# }
+		IF = {
+			limit = {
+				1039 = {
+					OWNER = {
+						is_literally_china = yes
+
+						NOT = {
+							original_tag = ROOT 
+							original_tag = FROM 
+							has_country_flag = JAP_already_sent_demand_for_northern_chinese_concessions
+						}
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					OWNER = {
+						owns_state = 608
+					}
+				}
+
+				hidden_effect = { #to hide duplicate events in tooltip in the most
+					OWNER = {
+						set_country_flag = JAP_already_sent_demand_for_northern_chinese_concessions
+						country_event = { id = SEA_china.28 days = 2 }
+					}
+				}
+			}
+			else = {
+				OWNER = {
+					set_country_flag = JAP_already_sent_demand_for_northern_chinese_concessions
+					country_event = { id = SEA_china.28 days = 2 }
+				}
+			}
+		}
+
+		#### SND STATES
+
+		IF = {
+			limit = {
+				597 = {
+					is_controlled_by = FROM
+				}
+			}
+			JAP = {
+				transfer_state = 597
+			}
+		}
+		ELSE_IF = {
+			limit = {
+				597 = {
+					OWNER = {
+						is_literally_china = yes
+						NOT = { 
+							original_tag = FROM 
+							original_tag = ROOT 
+							has_country_flag = JAP_already_sent_demand_for_northern_chinese_concessions
+						}
+					}
+				}
+			}
+			597 = { 
+				OWNER = {
+					set_country_flag = JAP_already_sent_demand_for_northern_chinese_concessions
+					country_event = { id = SEA_china.28 days = 2 }
+				}
+			}
+		}
+		ELSE = {
+			597 = { add_claim_by = ROOT }
+		}
+
+		IF = {
+			limit = {
+				1038 = {
+					is_controlled_by = FROM
+				}
+			}
+			JAP = {
+				transfer_state = 1038
+			}
+		}
+		ELSE_IF = {
+			limit = {
+				1038 = {
+					OWNER = {
+						is_literally_china = yes
+						NOT = { 
+							original_tag = FROM 
+							original_tag = ROOT 
+							has_country_flag = JAP_already_sent_demand_for_northern_chinese_concessions
+						}
+					}
+				}
+			}
+			if = {	
+				limit = {
+					1038 = {
+						OWNER = {
+							owns_state = 597
+						}
+					}
+				}
+
+				hidden_effect = {
+					1038 = { 
+						OWNER = {
+							set_country_flag = JAP_already_sent_demand_for_northern_chinese_concessions
+							country_event = { id = SEA_china.28 days = 2 }
+						}
+					}
+				}
+			}
+			else = {
+				1038 = { 
+					OWNER = {
+						set_country_flag = JAP_already_sent_demand_for_northern_chinese_concessions
+						country_event = { id = SEA_china.28 days = 2 }
+					}
+				}
+			}
+
+		}
+		ELSE = {
+			1038 = { add_claim_by = ROOT }
+		}
+
+		#SHANDONG
+		IF = {
 			limit = {
 				743 = {
 					is_controlled_by = FROM
@@ -106,8 +633,72 @@ country_event = {
 				transfer_state = 743
 			}
 		}
+		ELSE_IF = {
+			limit = {
+				743 = {
+					OWNER = {
+						is_literally_china = yes
+						NOT = { 
+							original_tag = FROM 
+							original_tag = ROOT 
+							has_country_flag = JAP_already_sent_demand_for_northern_chinese_concessions
+						}
+					}
+				}
+			}
+			743 = { 
+				OWNER = {
+					set_country_flag = JAP_already_sent_demand_for_northern_chinese_concessions
+					country_event = { id = SEA_china.28 days = 2 }
+				}
+			}
+		}
+		ELSE = {
+			743 = { add_claim_by = ROOT }
+		}
+
+
+
+
+		####
+		#IF = {
+		#	limit = {
+		#		597 = {
+		#			is_controlled_by = FROM
+		#		}
+		#	}
+		#	JAP = {
+		#		transfer_state = 597
+		#	}
+		#}
+		#IF = {
+		#	limit = {
+		#		614 = {
+		#			is_controlled_by = FROM
+		#		}
+		#	}
+		#	JAP = {
+		#		transfer_state = 614
+		#	}
+		#}
+		#IF = {
+		#	limit = {
+		#		743 = {
+		#			is_controlled_by = FROM
+		#		}
+		#	}
+		#	JAP = {
+		#		transfer_state = 743
+		#	}
+		#}
+		#ELSE = {
+		#	add_state_claim = 743
+		#}
+
+
 		add_state_claim = 613
-		if = {
+
+		IF = {
 			limit = {
 				has_country_leader = { id = 700 ruling_only = yes }
 			}
@@ -116,9 +707,14 @@ country_event = {
 		
 		add_ai_strategy = {
 			type = antagonize
-			id = "CHI"
+			id = CHI
 			value = 500
 		}
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		activate_mission = JAP_growing_unrest_in_the_shanghai_concession
+		
 	}
 }
 
@@ -214,9 +810,9 @@ country_event = {
 			}
 		}
 		army_experience = 15
-		add_tech_bonus = {
-			name = japan.4.t #test_the_ussr_focus
-			bonus = 1.0
+		add_doctrine_cost_reduction = {
+			name = japan.4.t
+			cost_reduction = 0.35
 			uses = 1
 			category = cat_grand_battle_plan
 		}
@@ -260,13 +856,12 @@ country_event = {
 			news_event = { days = 5 id = news.5 }
 		}
 		JAP = {
-			if = {
+			IF = {
 				limit = {
 					286 = {
 						CONTROLLER = {
 							OR = {
 								original_tag = FRA
-								original_tag = VIC
 								is_subject_of = FRA
 								is_subject_of = VIC
 							}
@@ -275,13 +870,12 @@ country_event = {
 				}
 				transfer_state = 286
 			}
-			if = {
+			IF = {
 				limit = {
 					670 = {
 						CONTROLLER = {
 							OR = {
 								original_tag = FRA
-								original_tag = VIC
 								is_subject_of = FRA
 								is_subject_of = VIC
 							}
@@ -290,13 +884,12 @@ country_event = {
 				}
 				transfer_state = 670
 			}
-			if = {
+			IF = {
 				limit = {
 					671 = {
 						CONTROLLER = {
 							OR = {
 								original_tag = FRA
-								original_tag = VIC
 								is_subject_of = FRA
 								is_subject_of = VIC
 							}
@@ -305,13 +898,12 @@ country_event = {
 				}
 				transfer_state = 671
 			}
-			if = {
+			IF = {
 				limit = {
 					741 = {
 						CONTROLLER = {
 							OR = {
 								original_tag = FRA
-								original_tag = VIC
 								is_subject_of = FRA
 								is_subject_of = VIC
 							}
@@ -320,13 +912,12 @@ country_event = {
 				}
 				transfer_state = 741
 			}
-			if = {
+			IF = {
 				limit = {
 					728 = {
 						CONTROLLER = {
 							OR = {
 								original_tag = FRA
-								original_tag = VIC
 								is_subject_of = FRA
 								is_subject_of = VIC
 							}
@@ -334,6 +925,20 @@ country_event = {
 					}
 				}
 				transfer_state = 728
+			}
+			IF = {
+				limit = {
+					1017 = {
+						CONTROLLER = {
+							OR = {
+								original_tag = FRA
+								is_subject_of = FRA
+								is_subject_of = VIC
+							}
+						}
+					}
+				}
+				transfer_state = 1017
 			}
 			add_named_threat = { threat = 3 name = france.1.t }
 		}
@@ -355,7 +960,7 @@ country_event = {
 			type = take_state
 			target = FROM
 			generator = {
-				286 741 670 671 728
+				286 741 670 671 728 1017 
 			}
 		}
 		hidden_effect = {
@@ -395,6 +1000,7 @@ country_event = {
 	#}
 }
 
+#MM: Never used. Unlocalized
 # USA condemns our war 
 country_event = {
 	id = japan.10
@@ -428,6 +1034,10 @@ country_event = {
 		}
 	}
 
+	option = {
+		name = japan.11.b
+		ai_chance = { factor = 0 }
+	}
 }
 
 # Siam event from Japan: Become puppet or not
@@ -458,6 +1068,19 @@ country_event = {
 		}
 	}
 
+	option = {
+		name = japan.12.b
+		ai_chance = { factor = 10 }
+		JAP = { 
+			country_event = { id = japan.14 }
+			effect_tooltip = {
+				declare_war_on = {
+					target = SIA
+					type = puppet_wargoal_focus
+				}
+			}
+		}
+	}
 }
 
 # Siam accepts and is puppeted
@@ -471,23 +1094,7 @@ country_event = {
 	
 	option = {
 		name = japan.13.a
-		
-		JAP = {
-			SIA = {
-				pow_before_annex = yes
-			}
-		}
-		annex_country = {
-			target = SIA
-			transfer_troops = no
-		}
-		
-		every_controlled_state = {
-			limit = {
-				is_core_of = SIA
-			}
-			add_compliance = 75
-		}
+		puppet = SIA
 	}
 }
 
@@ -632,200 +1239,16 @@ country_event = {
 	}
 }
 
-# country_event = {
-# 	id = japan.500
-# 	title = japan.500.t
-# 	desc = japan.500.d
-# 	picture = GFX_report_event_chinese_soldiers_02
-
-# 	fire_only_once = yes
-	
-# 	trigger = {
-# 		tag = JAP
-# 		focus_progress = {
-# 			focus = JAP_strike_south_doctrine
-# 			progress > 0.25
-# 		}
-# 	}
-
-# 	mean_time_to_happen = {
-# 		days = 1
-# 	}
-
-# 	option = {
-# 		set_country_flag = JAP_siam1
-# 		name = japan.500.a
-# 		custom_effect_tooltip = japan.500.a_desc
-# 		ai_chance = {
-# 			factor = 1
-# 			modifier = {
-# 				factor = 0
-# 				SIA = { is_ai = no }
-# 			}
-# 		}
-# 	}
-# 	option = {
-# 		set_country_flag = JAP_siam2
-# 		name = japan.500.b
-# 		custom_effect_tooltip = japan.500.b_desc
-# 		ai_chance = {
-# 			factor = 1
-# 			modifier = {
-# 				factor = 0
-# 				SIA = { is_ai = yes }
-# 			}
-# 		}
-# 	}
-# }
-
-# country_event = {
-# 	id = japan.501
-# 	title = japan.501.t
-# 	desc = japan.501.d
-# 	picture = GFX_report_event_chinese_soldiers_02
-
-# 	fire_only_once = yes
-	
-# 	trigger = {
-# 		tag = JAP
-# 		focus_progress = {
-# 			focus = JAP_strike_south_doctrine
-# 			progress > 0.25
-# 		}
-# 	}
-
-# 	mean_time_to_happen = {
-# 		days = 1
-# 	}
-
-# 	option = {
-# 		set_country_flag = JAP_army1
-# 		name = japan.501.a
-# 		custom_effect_tooltip = japan.501.a_desc
-		
-# 	}
-# 	option = {
-# 		set_country_flag = JAP_army2
-# 		name = japan.501.b
-# 		custom_effect_tooltip = japan.501.b_desc
-# 	}
-# }
-
-# country_event = {
-# 	id = japan.502
-# 	title = japan.502.t
-# 	desc = japan.502.d
-# 	picture = GFX_report_event_chinese_soldiers_02
-
-# 	fire_only_once = yes
-	
-# 	trigger = {
-# 		tag = JAP
-# 		focus_progress = {
-# 			focus = JAP_strike_south_doctrine
-# 			progress > 0.5
-# 		}
-# 	}
-
-# 	mean_time_to_happen = {
-# 		days = 1
-# 	}
-
-# 	option = {
-# 		set_country_flag = JAP_buildup1
-# 		name = japan.502.a
-# 		custom_effect_tooltip = japan.502.a_desc
-		
-# 	}
-# 	option = {
-# 		set_country_flag = JAP_buildup2
-# 		name = japan.502.b
-# 		custom_effect_tooltip = japan.502.b_desc
-# 	}
-# }
-
-# country_event = {
-# 	id = japan.503
-# 	title = japan.503.t
-# 	desc = japan.503.d
-# 	picture = GFX_report_event_chinese_soldiers_02
-
-# 	fire_only_once = yes
-	
-# 	trigger = {
-# 		tag = JAP
-# 		focus_progress = {
-# 			focus = JAP_strike_south_doctrine
-# 			progress > 0.5
-# 		}
-# 	}
-
-# 	mean_time_to_happen = {
-# 		days = 1
-# 	}
-
-# 	option = {
-# 		set_country_flag = JAP_usa1
-# 		name = japan.503.a
-# 		custom_effect_tooltip = japan.503.a_desc
-		
-# 	}
-# 	# option = {
-# 	# 	set_country_flag = JAP_usa2
-# 	# 	name = japan.503.b
-# 	# 	custom_effect_tooltip = japan.503.b_desc
-		
-# 	# }
-# }
-
-# Divide up China - 29.2 Threat generated
 country_event = {
-    id = japan.504
-    title = japan.504.t
-    desc = japan.504.desc
-    picture = GFX_report_event_generic_sign_treaty2
+	id = japan.506
+	title = japan.506.t
+	desc = japan.506.d
+	picture = GFX_report_event_chinese_soldiers_02
 
-    fire_only_once = yes
+	fire_only_once = yes
+	is_triggered_only = yes
 
-    trigger = {
-        tag = JAP
-        has_war_with = CHI
-        CHI = {
-            surrender_progress > 0.60
-        }
-    }
-
-	mean_time_to_happen = {
-		days = 1
-	}
-
-    # option = {
-    #     name = japan.504.a #Peace Conference
-    #     ai_chance = { factor = 0 }
-	# 	custom_effect_tooltip = japan.504.a_desc
-    # }
-    option = {
-        name = japan.504.b #Manchu gets some, Japan gets the rest
-        ai_chance = { factor = 100 }
-		set_global_flag = JAP_split_china
-		custom_effect_tooltip = japan.504.b_desc
-    }
-    option = {
-        name = japan.504.c #Japan Takes All
-        ai_chance = { factor = 0 }
-		set_global_flag = JAP_take_china
-		custom_effect_tooltip = japan.504.c_desc
-    }
 	option = {
-        name = japan.504.d #Manchu Takes All
-        ai_chance = { factor = 0 }
-		set_global_flag = JAP_give_china
-		custom_effect_tooltip = japan.504.d_desc
-    }
-	#option = {
-    #    name = japan.504.e #Japan puppets China
-    #    ai_chance = { factor = 0 }
-	#	set_global_flag = JAP_puppet_china
-	#	custom_effect_tooltip = japan.504.e_desc
-    #}
+		name = startingevent.999.a
+	}
 }

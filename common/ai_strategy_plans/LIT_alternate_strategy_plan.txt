@@ -8,7 +8,20 @@ LIT_fascist = {
 
 	enable = {
 		has_dlc = "No Step Back"
-		always = no
+		OR = {
+			AND = {
+				is_historical_focus_on = yes
+				has_game_rule = {
+					rule = LIT_ai_behavior
+					option = FASCIST
+				}
+			}
+			has_country_flag = LIT_AI_RANDOM_FASCIST
+			has_game_rule = {
+				rule = LIT_ai_behavior
+				option = FASCIST
+			}
+		}
 	}
 	abort = {
 		
@@ -96,7 +109,13 @@ LIT_monarchist = {
 
 	enable = {
 		has_dlc = "No Step Back"
-		always = no
+		OR = {
+			has_country_flag = LIT_AI_RANDOM_MONARCHY
+			has_game_rule = {
+				rule = LIT_ai_behavior
+				option = MONARCHIST
+			}
+		}
 	}
 	abort = {
 		

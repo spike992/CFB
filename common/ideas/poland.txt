@@ -1,45 +1,7 @@
 ideas = {
 
-	hidden_ideas = {
-		POL_supply_fix = {
-
-			allowed = {
-				always = no
-			}
-	
-			allowed_civil_war = {
-				always = yes
-			}
-	
-			removal_cost = -1
-	
-			modifier = {
-				supply_consumption_factor = -0.5
-			}
-		}
-	}
-
 country = {
 
-	POL_no_agency = {
-		picture = generic_spy_intel
-
-		allowed = {
-			has_capitulated = no
-		}
-
-		allowed_civil_war = {
-			always = yes
-		}
-
-		removal_cost = -1
-
-		modifier = {
-			agency_upgrade_time = 20
-		}
-		
-	}
-	
 	POL_new_military_academy_idea = {
 
 		allowed = {
@@ -101,7 +63,7 @@ country = {
 			communism_drift = 0.15
 			production_speed_buildings_factor = -0.5
 			industrial_capacity_factory = -0.5
-			consumer_goods_expected_value = 0.25
+			consumer_goods_factor = 0.50
 			stability_factor = -0.2
 		}
 	}
@@ -126,6 +88,8 @@ country = {
 	}
 
 	POL_four_year_plan_complete_bad = {
+		name = POL_four_year_plan_idea
+		
 		allowed = {
 			original_tag = POL
 			always = no
@@ -137,11 +101,11 @@ country = {
 
 		removal_cost = -1
 
-		picture = idea_POL_disjointed_industry
+		picture = POL_disjointed_industry
 
 		modifier = {
 			production_speed_buildings_factor = -0.15
-			consumer_goods_expected_value = 0.05
+			consumer_goods_factor = 0.10
 			industrial_capacity_factory	= -0.15
 		}
 	}
@@ -181,7 +145,7 @@ country = {
 
 		modifier = {
 			production_speed_buildings_factor = 0.1
-			consumer_goods_expected_value = -0.025
+			consumer_goods_factor = -0.075
 		}
 	}
 
@@ -201,7 +165,7 @@ country = {
 
 		modifier = {
 			production_speed_buildings_factor = 0.15
-			consumer_goods_expected_value = -0.05
+			consumer_goods_factor = -0.15
 			industrial_capacity_factory	= 0.1
 		}
 	}
@@ -222,7 +186,7 @@ country = {
 
 		modifier = {
 			production_speed_buildings_factor = 0.25
-			consumer_goods_expected_value = -0.1
+			consumer_goods_factor = -0.25
 			industrial_capacity_factory	= 0.15
 		}
 	}
@@ -271,7 +235,7 @@ country = {
 
 		modifier = {
 			stability_factor = -0.1
-			consumer_goods_expected_value = 0.025
+			consumer_goods_factor = 0.05
 			neutrality_drift = -0.05
 		}
 	}
@@ -296,7 +260,7 @@ country = {
 
 		modifier = {
 			stability_factor = -0.2
-			consumer_goods_expected_value = 0.05
+			consumer_goods_factor = 0.1
 			neutrality_drift = -0.1
 		}
 	}
@@ -321,7 +285,7 @@ country = {
 
 		modifier = {
 			stability_factor = -0.25
-			consumer_goods_expected_value = 0.1
+			consumer_goods_factor = 0.2
 			neutrality_drift = -0.2
 		}
 	}
@@ -872,6 +836,10 @@ country = {
 
 		modifier = {
 			operative_slot = 1
+			intel_network_gain_factor = 0.15
+			intel_from_operatives_factor = 0.15
+			own_operative_detection_chance = -0.15
+			operative_death_on_capture_chance = 0.15
 		}
 	}
 
@@ -954,7 +922,7 @@ country = {
 		picture = SPR_seize_the_gold_reserves
 
 		modifier = {
-			consumer_goods_expected_value = -0.15
+			consumer_goods_factor = -0.35
 		}
 	}
 
@@ -1256,7 +1224,7 @@ country = {
 		picture = SPR_collectivized_society
 
 		modifier = {
-			consumer_goods_expected_value = -0.05
+			consumer_goods_factor = -0.15
 			drift_defence_factor = 0.25
 		}
 	}
@@ -1364,7 +1332,7 @@ country = {
 		picture = por_colonial_assimilation
 
 		modifier = {
-			consumer_goods_expected_value = -0.1
+			consumer_goods_factor = -0.25
 		}
 	}
 
@@ -1384,7 +1352,7 @@ country = {
 		picture = por_colonial_assimilation
 
 		modifier = {
-			consumer_goods_expected_value = -0.05
+			consumer_goods_factor = -0.15
 		}
 	}
 
@@ -1404,7 +1372,7 @@ country = {
 		picture = can_wartime_prices_and_trade_board
 
 		modifier = {
-			consumer_goods_expected_value = -0.05
+			consumer_goods_factor = -0.15
 		}
 	}
 
@@ -1469,7 +1437,7 @@ country = {
 
 		modifier = {
 			stability_factor = 0.1
-			consumer_goods_expected_value = -0.05
+			consumer_goods_factor = -0.15
 		}
 	}
 
@@ -1753,7 +1721,7 @@ country = {
 		picture = generic_goods_red_bonus
 
 		modifier = {
-			consumer_goods_expected_value = -0.02
+			consumer_goods_factor = -0.05
 		}
 	}
 
@@ -1803,23 +1771,9 @@ country = {
 				build_cost_ic = -0.1
 				instant = yes
 			}
-			mechanized_equipment = { 
-				build_cost_ic = -0.1 instant = yes
-			}
-			mechanized_td_equipment = {
-				build_cost_ic = -0.1 instant = yes
-			}
-			mechanized_spg_equipment = {
-				build_cost_ic = -0.1 instant = yes
-			}
-			mechanized_aa_equipment = {
-				build_cost_ic = -0.1 instant = yes
-			}
-			mechanized_amphibious_chassis = {
-				build_cost_ic = -0.1 instant = yes
-			}
-			mechanized_utility_equipment = {
-				build_cost_ic = -0.1 instant = yes
+			mechanized_equipment = {
+				build_cost_ic = -0.1
+				instant = yes
 			}
 		}
 	}
@@ -1919,7 +1873,7 @@ country = {
 		removal_cost = -1
 
 		modifier = {
-			consumer_goods_expected_value = -0.05
+			consumer_goods_factor = -0.15
 		}
 	}
 
@@ -1983,184 +1937,7 @@ country = {
 			training_time_factor = -0.1
 		}
 	}
-
-	POL_buy_equipment = {
-		picture = generic_license_production
-			allowed = {
-				original_tag = POL #should probably be VIC
-				always = no
-			}		
-
-			removal_cost = -1
-			
-			modifier = {
-				license_purchase_cost = -0.5
-			}
-	}
-
-	POL_alone_1 = {
-
-		name = POL_alone
-		picture = chi_army_corruption2
-
-		removal_cost = -1
-
-		allowed = {
-			has_capitulated = no
-		}
-
-		modifier = {
-			army_core_attack_factor = -0.1
-			army_core_defence_factor = -0.1
-		}
-
-	}
-
-	POL_alone_2 = {
-
-		name = POL_alone
-		picture = chi_army_corruption2
-
-		removal_cost = -1
-
-		allowed = {
-			has_capitulated = no
-		}
-
-		modifier = {
-			army_core_attack_factor = -0.2
-			army_core_defence_factor = -0.2
-		}
-
-	}
-
-	POL_alone_3 = {
-
-		name = POL_alone
-		picture = chi_army_corruption2
-
-		removal_cost = -1
-
-		allowed = {
-			has_capitulated = no
-		}
-
-		modifier = {
-			army_core_attack_factor = -0.3
-			army_core_defence_factor = -0.3
-		}
-
-	}
-
-	POL_alone_4 = {
-
-		name = POL_alone
-		picture = chi_army_corruption2
-
-		removal_cost = -1
-
-		allowed = {
-			has_capitulated = no
-		}
-
-		modifier = {
-			army_core_attack_factor = -0.4
-			army_core_defence_factor = -0.4
-		}
-
-	}
-
-	POL_alone_5 = {
-
-		name = POL_alone
-		picture = chi_army_corruption2
-
-		removal_cost = -1
-
-		allowed = {
-			has_capitulated = no
-		}
-
-		modifier = {
-			army_core_attack_factor = -0.5
-			army_core_defence_factor = -0.5
-		}
-
-	}
-
-	POL_alone_6 = {
-
-		name = POL_alone
-		picture = chi_army_corruption2
-
-		removal_cost = -1
-
-		allowed = {
-			has_capitulated = no
-		}
-
-		modifier = {
-			army_core_attack_factor = -0.6
-			army_core_defence_factor = -0.6
-		}
-
-	}
-
-	POL_alone_7 = {
-
-		name = POL_alone
-		picture = chi_army_corruption2
-
-		removal_cost = -1
-
-		allowed = {
-			has_capitulated = no
-		}
-
-		modifier = {
-			army_core_attack_factor = -0.7
-			army_core_defence_factor = -0.7
-		}
-
-	}
-
-	POL_alone_8 = {
-
-		name = POL_alone
-		picture = chi_army_corruption2
-
-		removal_cost = -1
-
-		allowed = {
-			has_capitulated = no
-		}
-
-		modifier = {
-			army_core_attack_factor = -0.8
-			army_core_defence_factor = -0.8
-		}
-
-	}
-
-	POL_alone_9 = {
-
-		name = POL_alone
-		picture = chi_army_corruption2
-
-		removal_cost = -1
-
-		allowed = {
-			has_capitulated = no
-		}
-
-		modifier = {
-			army_core_attack_factor = -0.9
-			army_core_defence_factor = -0.9
-		}
-
-	}
 }
-
 
 	materiel_manufacturer = {
 
@@ -2248,28 +2025,13 @@ country = {
 				motorized_equipment = {
 					build_cost_ic = -0.15
 				}
-				mechanized_equipment = { 
-					build_cost_ic = -0.15 instant = yes
-				}
-				mechanized_td_equipment = {
-					build_cost_ic = -0.15 instant = yes
-				}
-				mechanized_spg_equipment = {
-					build_cost_ic = -0.15 instant = yes
-				}
-				mechanized_aa_equipment = {
-					build_cost_ic = -0.15 instant = yes
-				}
-				mechanized_amphibious_chassis = {
-					build_cost_ic = -0.15 instant = yes
-				}
-				mechanized_utility_equipment = {
-					build_cost_ic = -0.15 instant = yes
+				mechanized_equipment = {
+					build_cost_ic = -0.15
 				}
 			}
 
 			modifier = {
-				consumer_goods_expected_value = 0.025
+				consumer_goods_factor = 0.05
 			}
 		}
 
@@ -2303,7 +2065,7 @@ country = {
 			}
 
 			modifier = {
-				consumer_goods_expected_value = 0.02
+				consumer_goods_factor = 0.05
 			}
 		}
 
@@ -2337,7 +2099,7 @@ country = {
 			}
 
 			modifier = {
-				consumer_goods_expected_value = 0.02
+				consumer_goods_factor = 0.05
 			}
 		}
 
@@ -2479,8 +2241,6 @@ country = {
 
 			modifier = {
 			}
-
-			cost = 150
 		}
 	}
 

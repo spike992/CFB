@@ -1,5 +1,26 @@
 ideas = {
 
+	hidden_ideas = { # Used to prevent AI to hold outside of the Iberian Peninsula during the SCW
+		SPR_death_before_surrender_capitulation = {
+
+			name = SPR_death_before_surrender
+
+			allowed = {
+				original_tag = SPR
+				NOT = { has_government = fascism }
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			modifier = {
+				surrender_limit = 1
+				max_surrender_limit_offset = 1
+			}
+		}
+	}
+
 	economy = {
 		law = yes
 		SPR_collectivized_society = {
@@ -13,19 +34,19 @@ ideas = {
 		
 			modifier = {
 				resistance_target = -0.2
-				consumer_goods_expected_value = 0.15
+				consumer_goods_factor = 0.30
 				production_speed_industrial_complex_factor = 0.15
 				production_speed_arms_factory_factor = 0.3
 				conversion_cost_civ_to_mil_factor= -0.3
 				conversion_cost_mil_to_civ_factor = -0.3
 				global_building_slots_factor = 0.1
-				industry_free_repair_factor = 0.5
 				industrial_capacity_factory = 0.7
 				industrial_capacity_dockyard = 0.7
 				research_speed_factor = -0.1
 				production_factory_efficiency_gain_factor = -0.2
 				production_factory_max_efficiency_factor = -0.2
 				line_change_production_efficiency_factor = 0.1
+				factory_energy_consumption = 0.45
 			}
 			
 			allowed_to_remove = {
@@ -37,315 +58,22 @@ ideas = {
 	}
 
 	country = {
-		SCW_republican_spirit_dwindling = {
 
-			name = "Republican Spirit High"
+		SPR_government_power_struggle = {
 
-			picture = SPA_maquis
-
-			allowed = {
-				original_tag = SPR
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				army_core_attack_factor = 0.1
-				surrender_limit = 1
-				max_surrender_limit_offset = 0.10
-			}
-		}
-
-		SCW_republican_spirit_dwindling_2 = {
-
-			name = "Republican Spirit High"
-
-			picture = SPA_maquis
+			picture = generic_disjointed_gov
 
 			allowed = {
 				original_tag = SPR
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
-				always = yes
+				always = no
 			}
 
 			modifier = {
-				army_core_attack_factor = 0.09
-				army_core_defence_factor = 0.01
-				surrender_limit = 0.85
-				max_surrender_limit_offset = 0.10
-			}
-		}
-
-		SCW_republican_spirit_dwindling_3 = {
-			
-			name = "Republican Spirit High"
-			
-			picture = SPA_maquis
-
-			allowed = {
-				original_tag = SPR
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				army_core_attack_factor = 0.08
-				army_core_defence_factor = 0.02
-				surrender_limit = 0.7
-				max_surrender_limit_offset = 0.10
-			}
-		}
-
-		SCW_republican_spirit_dwindling_4 = {
-			
-			name = "Republican Spirit High"
-			
-			picture = SPA_maquis
-
-			allowed = {
-				original_tag = SPR
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				army_core_attack_factor = 0.07
-				army_core_defence_factor = 0.03
-				surrender_limit = 0.55
-				max_surrender_limit_offset = 0.10
-			}
-		}
-
-		SCW_republican_spirit_dwindling_5 = {
-			
-			name = "Republican Spirit Dwindling"
-			
-			picture = SPA_maquis
-
-			allowed = {
-				original_tag = SPR
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				army_core_attack_factor = 0.06
-				army_core_defence_factor = 0.04
-				surrender_limit = 0.4
-				max_surrender_limit_offset = 0.10
-			}
-		}
-
-		SCW_republican_spirit_dwindling_6 = {
-			
-			name = "Republican Spirit Dwindling"
-			
-			picture = SPA_maquis
-
-			allowed = {
-				original_tag = SPR
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				army_core_attack_factor = 0.05
-				army_core_defence_factor = 0.05
-				surrender_limit = 0.25
-				max_surrender_limit_offset = 0.10
-			}
-		}
-
-		SCW_republican_spirit_dwindling_7 = {
-			
-			name = "Republican Spirit Dwindling"
-			
-			picture = SPA_maquis
-
-			allowed = {
-				original_tag = SPR
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				army_core_attack_factor = 0.04
-				army_core_defence_factor = 0.06
-				surrender_limit = 0.1
-				max_surrender_limit_offset = 0.10
-			}
-		}
-
-		SCW_republican_spirit_dwindling_8 = {
-			
-			name = "Republican Spirit Dwindling"
-			
-			picture = SPA_maquis
-
-			allowed = {
-				original_tag = SPR
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				army_core_attack_factor = 0.03
-				army_core_defence_factor = 0.07
-				surrender_limit = -0.05
-			}
-		}
-
-		SCW_republican_spirit_dwindling_9 = {
-			
-			name = "Republican Spirit Dwindling"
-			
-			picture = SPA_maquis
-
-			allowed = {
-				original_tag = SPR
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				army_core_attack_factor = 0.02
-				army_core_defence_factor = 0.08
-				surrender_limit = -0.20
-			}
-		}
-
-		SCW_republican_spirit_dwindling_10 = {
-			
-			name = "Republican Spirit Dwindling"
-			
-			picture = SPA_maquis
-
-			allowed = {
-				original_tag = SPR
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				army_core_attack_factor = 0.01
-				army_core_defence_factor = 0.09
-				surrender_limit = -0.35
-			}
-		}
-
-		SCW_republican_spirit_dwindling_11 = {
-			
-			name = "Republican Spirit Dwindling"
-			
-			picture = SPA_maquis
-
-			allowed = {
-				original_tag = SPR
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				army_core_defence_factor = 0.1
-				surrender_limit = -0.50
-			}
-		}
-
-		SCW_republican_spirit_dwindling_12 = {
-			
-			name = "Republican Spirit Low"
-			
-			picture = SPA_maquis
-			allowed = {
-				original_tag = SPR
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				army_core_defence_factor = 0.06
-				surrender_limit = -0.65
-			}
-		}
-
-		SCW_republican_spirit_dwindling_13 = {
-			
-			name = "Republican Spirit Low"
-			
-			picture = SPA_maquis
-			allowed = {
-				original_tag = SPR
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				army_core_defence_factor = 0.02
-				surrender_limit = -0.80
-			}
-		}
-
-		SCW_republican_spirit_dwindling_14 = {
-			
-			name = "Republican Spirit Low"
-			
-			picture = SPA_maquis
-
-			allowed = {
-				original_tag = SPR
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				surrender_limit = -0.95
-			}
-		}
-
-		SPA_death_before_surrender_rep = {
-
-			picture = SPA_maquis
-
-			allowed = {
-				original_tag = SPR
-				has_government = fascism
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			modifier = {
-				army_core_attack_factor = 0.1
-				army_core_defence_factor = 0.1
+				political_power_factor = -0.1
 			}
 		}
 
@@ -355,7 +83,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -630,7 +358,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -655,7 +383,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -679,7 +407,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -699,7 +427,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -721,7 +449,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -744,7 +472,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -767,7 +495,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -778,7 +506,7 @@ ideas = {
 				stability_weekly = -0.01
 				production_speed_industrial_complex_factor = 0.1
 				production_speed_arms_factory_factor = 0.1
-				consumer_goods_expected_value = -0.03
+				consumer_goods_factor = -0.10
 			}
 		}
 
@@ -790,7 +518,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -802,7 +530,7 @@ ideas = {
 				production_speed_industrial_complex_factor = 0.1
 				production_speed_arms_factory_factor = 0.1
 				industrial_capacity_factory = 0.05
-				consumer_goods_expected_value = -0.03
+				consumer_goods_factor = -0.10
 			}
 		}
 
@@ -814,7 +542,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -826,7 +554,7 @@ ideas = {
 				production_speed_industrial_complex_factor = 0.1
 				production_speed_arms_factory_factor = 0.1
 				industrial_capacity_factory = 0.1
-				consumer_goods_expected_value = -0.03
+				consumer_goods_factor = -0.10
 			}
 		}
 
@@ -838,7 +566,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -849,7 +577,7 @@ ideas = {
 				stability_weekly = -0.01
 				production_speed_industrial_complex_factor = 0.1
 				production_speed_arms_factory_factor = 0.1
-				consumer_goods_expected_value = -0.06
+				consumer_goods_factor = -0.15
 			}
 		}
 
@@ -861,7 +589,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -873,7 +601,7 @@ ideas = {
 				production_speed_industrial_complex_factor = 0.1
 				production_speed_arms_factory_factor = 0.1
 				industrial_capacity_factory = 0.05
-				consumer_goods_expected_value = -0.06
+				consumer_goods_factor = -0.15
 			}
 		}
 
@@ -885,7 +613,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -897,7 +625,7 @@ ideas = {
 				production_speed_industrial_complex_factor = 0.1
 				production_speed_arms_factory_factor = 0.1
 				industrial_capacity_factory = 0.1
-				consumer_goods_expected_value = -0.06
+				consumer_goods_factor = -0.15
 			}
 		}
 
@@ -909,7 +637,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -920,7 +648,7 @@ ideas = {
 				stability_weekly = -0.01
 				production_speed_industrial_complex_factor = 0.1
 				production_speed_arms_factory_factor = 0.1
-				consumer_goods_expected_value = -0.03
+				consumer_goods_factor = -0.10
 				conscription = 0.03
 			}
 		}
@@ -933,7 +661,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -944,7 +672,7 @@ ideas = {
 				stability_weekly = -0.01
 				production_speed_industrial_complex_factor = 0.1
 				production_speed_arms_factory_factor = 0.1
-				consumer_goods_expected_value = -0.03
+				consumer_goods_factor = -0.10
 				industrial_capacity_factory = 0.05
 				conscription = 0.03
 			}
@@ -958,7 +686,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -969,7 +697,7 @@ ideas = {
 				stability_weekly = -0.01
 				production_speed_industrial_complex_factor = 0.1
 				production_speed_arms_factory_factor = 0.1
-				consumer_goods_expected_value = -0.06
+				consumer_goods_factor = -0.15
 				conscription = 0.03
 			}
 		}
@@ -982,7 +710,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -993,7 +721,7 @@ ideas = {
 				stability_weekly = -0.01
 				production_speed_industrial_complex_factor = 0.1
 				production_speed_arms_factory_factor = 0.1
-				consumer_goods_expected_value = -0.06
+				consumer_goods_factor = -0.15
 				industrial_capacity_factory = 0.05
 				conscription = 0.03
 			}
@@ -1007,7 +735,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1018,7 +746,7 @@ ideas = {
 				stability_weekly = -0.01
 				production_speed_industrial_complex_factor = 0.1
 				production_speed_arms_factory_factor = 0.1
-				consumer_goods_expected_value = -0.03
+				consumer_goods_factor = -0.10
 				industrial_capacity_factory = 0.1
 				conscription = 0.03
 			}
@@ -1032,7 +760,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1043,7 +771,7 @@ ideas = {
 				stability_weekly = -0.01
 				production_speed_industrial_complex_factor = 0.1
 				production_speed_arms_factory_factor = 0.1
-				consumer_goods_expected_value = -0.06
+				consumer_goods_factor = -0.15
 				industrial_capacity_factory = 0.1
 				conscription = 0.03
 			}
@@ -1057,7 +785,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1069,7 +797,7 @@ ideas = {
 				stability_weekly = -0.02
 				production_speed_industrial_complex_factor = 0.1
 				production_speed_arms_factory_factor = 0.1
-				consumer_goods_expected_value = -0.03
+				consumer_goods_factor = -0.10
 				industrial_capacity_factory = 0.1
 				conscription = 0.08
 			}
@@ -1083,7 +811,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1095,7 +823,7 @@ ideas = {
 				stability_weekly = -0.02
 				production_speed_industrial_complex_factor = 0.1
 				production_speed_arms_factory_factor = 0.1
-				consumer_goods_expected_value = -0.06
+				consumer_goods_factor = -0.15
 				industrial_capacity_factory = 0.1
 				conscription = 0.08
 			}
@@ -1109,7 +837,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1121,7 +849,7 @@ ideas = {
 				stability_weekly = -0.02
 				production_speed_industrial_complex_factor = 0.1
 				production_speed_arms_factory_factor = 0.1
-				consumer_goods_expected_value = -0.1
+				consumer_goods_factor = -0.25
 				industrial_capacity_factory = 0.1
 				conscription = 0.08
 			}
@@ -1133,7 +861,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1153,7 +881,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1171,7 +899,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1189,7 +917,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1197,7 +925,7 @@ ideas = {
 			}
 
 			modifier = {
-				consumer_goods_expected_value = -0.05
+				consumer_goods_factor = -0.15
 				industrial_capacity_factory = 0.05
 			}
 		}
@@ -1208,7 +936,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1230,7 +958,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1250,7 +978,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1272,7 +1000,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1292,7 +1020,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1313,7 +1041,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1334,7 +1062,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1352,7 +1080,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1371,7 +1099,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1389,7 +1117,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1407,7 +1135,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1427,7 +1155,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1450,7 +1178,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1461,7 +1189,7 @@ ideas = {
 				army_defence_factor = 0.05
 				army_attack_factor = 0.05
 				industrial_capacity_factory = 0.05
-				consumer_goods_expected_value = -0.05
+				consumer_goods_factor = -0.15
 				conscription = 0.02
 			}
 		}
@@ -1474,7 +1202,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1485,7 +1213,7 @@ ideas = {
 				army_defence_factor = 0.05
 				army_attack_factor = 0.05
 				industrial_capacity_factory = 0.05
-				consumer_goods_expected_value = -0.05
+				consumer_goods_factor = -0.15
 				conscription = 0.05
 			}
 		}
@@ -1496,7 +1224,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1504,7 +1232,7 @@ ideas = {
 			}
 
 			modifier = {
-				consumer_goods_expected_value = -0.05
+				consumer_goods_factor = -0.15
 				production_speed_buildings_factor = 0.1
 			}
 		}
@@ -1517,7 +1245,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1537,7 +1265,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1556,7 +1284,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1564,7 +1292,7 @@ ideas = {
 			}
 
 			modifier = {
-				consumer_goods_expected_value = -0.05
+				consumer_goods_factor = -0.15
 			}
 		}
 
@@ -1576,7 +1304,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1601,7 +1329,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1625,7 +1353,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1650,7 +1378,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1673,7 +1401,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1681,7 +1409,7 @@ ideas = {
 			}
 
 			modifier = {
-				consumer_goods_expected_value = -0.05
+				consumer_goods_factor = -0.15
 			}
 		}
 
@@ -1691,7 +1419,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1709,7 +1437,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1729,7 +1457,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1749,7 +1477,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1769,7 +1497,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1777,7 +1505,7 @@ ideas = {
 			}
 
 			modifier = {
-				consumer_goods_expected_value = -0.05
+				consumer_goods_factor = -0.15
 				stability_factor = 0.1
 			}
 		}
@@ -1788,7 +1516,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1808,7 +1536,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1829,7 +1557,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1850,7 +1578,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1871,7 +1599,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1892,7 +1620,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1910,7 +1638,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1929,7 +1657,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1937,7 +1665,7 @@ ideas = {
 			}
 
 			modifier = {
-				consumer_goods_expected_value = -0.05
+				consumer_goods_factor = -0.15
 			}
 		}
 
@@ -1949,7 +1677,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -1957,7 +1685,7 @@ ideas = {
 			}
 
 			modifier = {
-				consumer_goods_expected_value = 0.1
+				consumer_goods_factor = 0.20
 			}
 		}
 
@@ -1980,6 +1708,7 @@ ideas = {
 
 			modifier = {
 				lend_lease_tension = -0.5
+				request_lease_tension = -0.5
 			}
 		}
 
@@ -2008,7 +1737,7 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
+				NOT = { has_government = fascism }
 			}
 
 			allowed_civil_war = {
@@ -2028,7 +1757,6 @@ ideas = {
 
 			allowed = {
 				original_tag = SPR
-				has_government = fascism
 			}
 
 			allowed_civil_war = {
@@ -2042,6 +1770,7 @@ ideas = {
 			}
 		}
 	}
+	
 	naval_manufacturer = { 			
 		
 		designer = yes
@@ -2070,9 +1799,9 @@ ideas = {
 			
 			traits = { naval_manufacturer }
 			
-			modifier = { naval_manufacturer_cost_factor = -1 }
-
-			cost = 150
+			modifier = {
+				# Weak defence vs air
+			}
 		}
 
 		### La Resistance ###
@@ -2097,9 +1826,9 @@ ideas = {
 			
 			traits = { atlantic_fleet_naval_manufacturer }
 			
-			modifier = { naval_manufacturer_cost_factor = -1 }
-
-			cost = 150
+			modifier = {
+				# Weak defence vs air
+			}
 		}
 
 		SPR_euskalduna = {
@@ -2132,9 +1861,9 @@ ideas = {
 			
 			traits = { raiding_fleet_naval_manufacturer }
 			
-			modifier = { naval_manufacturer_cost_factor = -1 }
-
-			cost = 150
+			modifier = {
+				# Weak defence vs air
+			}
 		}
 	}
 	
@@ -2169,8 +1898,6 @@ ideas = {
 			ai_will_do = {
 				factor = 1
 			}
-
-			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 
 		### La Resistance ###
@@ -2208,8 +1935,6 @@ ideas = {
 			ai_will_do = {
 				factor = 1
 			}
-
-			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 
 		SPR_hispano_aviacion = {
@@ -2218,8 +1943,14 @@ ideas = {
 
 			
 			allowed = {
-				has_dlc = "La Resistance"
-				original_tag = SPR
+				OR = {
+					AND = {
+						has_dlc = "La Resistance"
+						original_tag = SPR
+					}
+					SWI_bba_lar = yes
+				}						
+									
 			}
 
 			available = {
@@ -2244,9 +1975,12 @@ ideas = {
 			
 			ai_will_do = {
 				factor = 1
+				modifier = {
+					factor = 0
+					SWI_bba_lar = yes
+					NOT = { has_global_flag = scw_over } 
+				}
 			}
-
-			modifier = { aircraft_manufacturer_cost_factor = -1 }
 		}
 	}
 
@@ -2347,8 +2081,13 @@ ideas = {
 			picture = SPR_hispano_suiza
 			
 			allowed = {
-				has_dlc = "La Resistance"
-				original_tag = SPR
+				OR = {
+					AND = {
+						has_dlc = "La Resistance"
+						original_tag = SPR						
+					}
+					SWI_bba_lar = yes 
+				}
 			}
 
 			available = {
@@ -2368,6 +2107,15 @@ ideas = {
 			traits = { motorized_equipment_manufacturer }
 			
 			modifier = {
+			}
+			
+			ai_will_do = {
+				factor = 1
+				modifier = {
+					factor = 0
+					SWI_bba_lar = yes
+					NOT = { has_global_flag = scw_over } 
+				}
 			}
 		}
 

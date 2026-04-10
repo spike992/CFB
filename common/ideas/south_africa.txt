@@ -1,4 +1,5 @@
 ideas = {
+	# MILITARY
 
 	country = {
 
@@ -8,7 +9,7 @@ ideas = {
 			}
 
 			allowed_civil_war = {
-				 has_government = fascism
+				has_government = fascism
 			}
 
 			removal_cost = -1
@@ -17,8 +18,8 @@ ideas = {
 
 			modifier = {
 				fascism_drift = 0.01
-				industrial_capacity_factory = -0.10
-				industrial_capacity_dockyard = -0.10
+				industrial_capacity_factory = -0.1
+				industrial_capacity_dockyard = -0.1
 			}
 		}		
 
@@ -28,7 +29,7 @@ ideas = {
 			}
 
 			allowed_civil_war = {
-				 has_government = fascism
+				has_government = fascism
 			}
 
 			removal_cost = -1
@@ -36,8 +37,8 @@ ideas = {
 			picture = saf_ossewabrandwag_2
 
 			modifier = {
-				industrial_capacity_factory = -0.10
-				industrial_capacity_dockyard = -0.10
+				industrial_capacity_factory = -0.05
+				industrial_capacity_dockyard = -0.05
 			}
 		}
 
@@ -47,7 +48,7 @@ ideas = {
 			}
 
 			allowed_civil_war = {
-				 has_government = fascism
+				has_government = fascism
 			}
 
 			removal_cost = -1
@@ -179,9 +180,8 @@ ideas = {
 				production_speed_arms_factory_factor = 0.1
 				production_speed_infrastructure_factor = 0.1
 				production_speed_steel_refinery_factor = 0.1
-				# production_speed_synthetic_rubber_refinery_factor = 0.1
+				production_speed_synthetic_rubber_refinery_factor = 0.1
 				production_speed_synthetic_refinery_factor = 0.1
-				min_export = -0.1
 			}
 
 		}
@@ -200,8 +200,8 @@ ideas = {
 			picture = generic_manpower_bonus
 
 			modifier = {
-				industrial_capacity_factory = 0.025
-				industrial_capacity_dockyard = 0.025
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
 				conscription_factor = -0.05
 			}
 
@@ -223,7 +223,7 @@ ideas = {
 			modifier = {
 				industrial_capacity_factory = 0.05
 				industrial_capacity_dockyard = 0.05
-				consumer_goods_expected_value = -0.02
+				consumer_goods_factor = -0.05
 				conscription_factor = -0.10
 			}
 
@@ -245,7 +245,7 @@ ideas = {
 			modifier = {
 				industrial_capacity_factory = 0.1
 				industrial_capacity_dockyard = 0.1
-				consumer_goods_expected_value = -0.05
+				consumer_goods_factor = -0.1
 				conscription_factor = -0.15
 			}
 
@@ -462,7 +462,7 @@ ideas = {
 			picture = generic_goods_red_bonus
 
 			modifier = {
-				consumer_goods_expected_value = -0.05
+				consumer_goods_factor = -0.15
 			}
 
 		}
@@ -480,11 +480,6 @@ ideas = {
 			equipment_bonus = {
 				artillery_equipment = {
 					soft_attack = 0.1
-					instant = yes
-				}
-				dp_artillery_equipment = {
-					soft_attack = 0.05
-					hard_attack = 0.05
 					instant = yes
 				}
 				squad_equipment = {
@@ -514,32 +509,42 @@ ideas = {
 			picture = generic_air_bonus
 			
 			equipment_bonus = {
-				small_plane_airframe = {
+				fighter_equipment = {
 					air_range = 0.1
 					air_attack = 0.05
 					instant = yes
 				}
-				cv_small_plane_airframe = {
+				cv_fighter_equipment = {
 					air_range = 0.1
 					air_attack = 0.05
 					instant = yes
 				}
-				medium_plane_airframe = {
+				CAS_equipment = {
 					air_range = 0.1
 					air_ground_attack = 0.05
 					instant = yes
 				}
-				cv_small_plane_naval_bomber_airframe = {
+				cv_CAS_equipment = {
+					air_range = 0.1
+					air_ground_attack = 0.05
+					instant = yes
+				}
+				cv_nav_bomber_equipment = {
 					air_range = 0.1
 					naval_strike_attack = 0.05
 					instant = yes
 				}
-				small_plane_naval_bomber_airframe = {
+				nav_bomber_equipment = {
 					air_range = 0.1
 					naval_strike_attack = 0.05
 					instant = yes
 				}
-				medium_plane_fighter_airframe = {
+				tac_bomber_equipment = {
+					air_range = 0.1
+					air_ground_attack = 0.05
+					instant = yes
+				}
+				heavy_fighter_equipment = {
 					air_range = 0.1
 					air_attack = 0.05
 					instant = yes
@@ -560,6 +565,7 @@ ideas = {
 			}
 		}
 	}
+
 	tank_manufacturer = {
 
 		# iscor = {
@@ -597,52 +603,15 @@ ideas = {
 			}
 
 			research_bonus = {
-				armor = 0.15
+					armor = 0.15
 			}
 
-			# traits = {
-			# 	cope_trait
-			# }
-
-			equipment_bonus = {
-				heavy_tank_chassis = {
-					armor_value = 0.05
-					maximum_speed = 0.1
-					build_cost_ic = -0.1
-					maximum_speed = 0.1
-				}
-				heavy_tank_artillery_chassis = {
-					armor_value = 0.05
-					maximum_speed = 0.1
-					build_cost_ic = -0.1
-					maximum_speed = 0.1
-				}
-				heavy_tank_destroyer_chassis = {
-					armor_value = 0.05
-					maximum_speed = 0.1
-					build_cost_ic = -0.1
-					maximum_speed = 0.1
-				}
-				heavy_assault_gun_chassis = {
-					armor_value = 0.05
-					maximum_speed = 0.1
-					build_cost_ic = -0.1
-					maximum_speed = 0.1
-				}
-				heavy_tank_amphibious_chassis = {
-					armor_value = 0.05
-					maximum_speed = 0.1
-					build_cost_ic = -0.1
-					maximum_speed = 0.1
-				}
+			traits = {
+				cope_trait
 			}
-
-			modifier = { tank_manufacturer_cost_factor = -1 }
 		}
 	}
-	
-	
-	
+
 	industrial_concern = {
 		SAF_south_african_railways = {
 			
@@ -656,7 +625,7 @@ ideas = {
 			available = {
 				has_completed_focus = SAF_south_african_railways
 			}
-			cost = 75
+			cost = 50
 			research_bonus = {
 				train_tech = 0.15
 			}
@@ -667,4 +636,5 @@ ideas = {
 			}
 		}
 	}
+
 }

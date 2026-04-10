@@ -15,11 +15,15 @@ political_actions = {
 		fire_only_once = yes
 
 		cancel_trigger = {
-			has_completed_focus = RAJ_for_the_worst
+			has_completed_focus = RAJ_clamp_down_on_corruption
 		}
 
 		activation = {
 			has_idea = RAJ_risk_of_famine
+			OR = {
+				is_using_old_raj = yes
+				NOT = { has_dlc = "Graveyard of Empires" }
+			}
 			NOT = { has_country_flag = indian_famine }
 			has_war = yes
 		}
@@ -32,52 +36,99 @@ political_actions = {
 		timeout_effect = {
 			country_event = { id = tfv_raj.21 }
 			effect_tooltip = {
-				add_ideas = RAJ_bengal_famine
+				add_ideas = RAJ_famine
 			}
 		}
 	}
-	
-	# RAJ_bengal_famine_descsion = {
-	# 	priority = 100
-	# 	allowed = { tag = RAJ }
+}
 
-	# 	icon = generic_prepare_civil_war
+RAJ_population_decisions = {
 
-	# 	available = {
-	# 		has_completed_focus = RAJ_Indian_reforms
-	# 	}
+	RAJ_industrialize_state_goe = {
 
-	# 	days_mission_timeout = 90
-	# 	is_good = no
-	# 	fire_only_once = yes
-
-	# 	cancel_trigger = {
-	# 		has_completed_focus = RAJ_Indian_reforms
-	# 	}
-
-	# 	activation = {
-	# 		NOT = {
-	# 			has_completed_focus = RAJ_Indian_reforms
-	# 		}
-	# 		has_idea = RAJ_under_british_rule
-	# 		has_war_with = JAP
-	# 	}
-
-	# 	visible = {
-	# 		has_idea = RAJ_under_british_rule
-	# 		has_war_with = JAP
-	# 	}
+		icon = generic_construction
 		
-	# 	timeout_effect = {
-	# 		remove_ideas = RAJ_under_british_rule
-	# 		# add_timed_idea = {
-	# 		# 	idea = RAJ_bengal_famine
-	# 		# 	days = 365
-	# 		# }
-	# 		add_timed_idea = {
-	# 			idea = RAJ_bengal_famine_small
-	# 			days = 365
-	# 		}
-	# 	}
-	# }
+		allowed = {
+			has_dlc = "Graveyard of Empires"
+		}
+		
+		visible = { 
+			FROM = {
+				NOT = { has_state_flag = RAJ_industrialized_this_state }
+			}
+		}
+		
+		available = {
+			FROM = { 
+				infrastructure > 4
+				NOT = { has_state_flag = RAJ_industrialized_this_state }
+			}
+		}
+
+		target_ROOT_trigger = {
+			has_completed_focus = RAJ_rural_development_plan
+			check_variable = { RAJ_agrarian_society_conscription_factor < 0 }
+		}
+
+		state_target = yes
+
+		target_array = ROOT.owned_states_at_game_start
+		
+		target_trigger = {			
+			FROM = {
+				is_fully_controlled_by = ROOT
+				NOT = {
+					state = 439
+					state = 430
+					state = 431
+					state = 441
+					state = 787
+					state = 427
+					state = 434
+				}
+			}
+		}
+
+		on_map_mode = map_only
+		
+		cost = 75
+		fire_only_once = no
+		days_remove = 90
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 160
+			}
+			modifier = {
+				add = 25
+				FROM = {
+					OR = { 
+						state = 438
+						state = 435
+					}
+				}
+			}
+		}
+
+		complete_effect = {
+			ROOT = { add_stability = -0.03 }
+		}
+
+		remove_effect = {
+			FROM = {
+				set_state_flag = RAJ_industrialized_this_state
+				add_dynamic_modifier = {
+					modifier = RAJ_industrialized_personnel
+				}
+				if = {
+					limit = {
+						ROOT = { has_completed_focus = RAJ_territorial_development_scheme }
+					}
+					add_extra_state_shared_building_slots = 1
+				}
+			}
+		}
+	}
+
 }

@@ -71,6 +71,32 @@ focus_tree = {
 		x = 34
 		y = 0
 
+		allow_branch = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				NOT = {
+					has_completed_focus = BALTIC_restore_workers_republic
+				}
+			}
+		}
+
+		offset = {
+			x = -12
+			y = 0
+			trigger = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+				has_completed_focus = LIT_secure_a_loyal_cabinet
+			}
+		}
+
 		cost = 10
 
 		ai_will_do = {
@@ -98,6 +124,16 @@ focus_tree = {
 			custom_effect_tooltip = available_political_advisor
 			show_ideas_tooltip = LIT_jonas_staugaitis
 			activate_mission_tooltip = LIT_iron_wolf_partisans
+
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				mark_focus_tree_layout_dirty = yes 
+			}
 		}
 	}
 	
@@ -139,7 +175,9 @@ focus_tree = {
 					logistics_skill = 4
 					skill = 2
 					}
-					set_leader_portrait = "GFX_portrait_LIT_jonas_cernius"
+					set_portraits = { 
+						army = { large = GFX_portrait_LIT_jonas_cernius }
+					}
 			}
 			LIT_antanas_gustaitis = {
 				add_corps_commander_role = {
@@ -200,7 +238,7 @@ focus_tree = {
 	
 	focus = {
 		id = LIT_soviet_mutual_assistance
-		icon = GFX_focus_chi_cooperation_with_the_communists
+		icon = GFX_focus_chi_mission_to_the_soviet_union
 		prerequisite = { focus = LIT_patriotic_education }
 		dynamic = yes
 		mutually_exclusive = { focus = LIT_peace_with_poland }
@@ -215,12 +253,18 @@ focus_tree = {
 		}
 
 		available = {
+			SOV = { exists = yes }
 			SOV = { has_civil_war = no } 	
-			NOT = { is_in_faction_with = POL } 
+			NOT = { is_in_faction_with = POL }
+			NOT = { 
+				SOV = { has_war_with = GER}
+			} 
+			SOV = { is_subject = no }
 		}
 
 		bypass = {
-			
+			SOV = { is_subject = yes }
+			SOV = { has_capitulated = yes }
 		}
 
 		cancel_if_invalid = yes
@@ -695,10 +739,20 @@ focus_tree = {
 					}
 				}
 			}
-			GER = {
-				add_opinion_modifier = {
-					target = LIT
-					modifier = LIT_arrested_party_members
+			IF = {
+				limit = {
+					GER = {
+						OR = {
+							has_government = fascism
+							has_country_flag = GER_imprisoned_fascist_leadership
+						}
+					}
+				}
+				GER = {
+					add_opinion_modifier = {
+						target = LIT
+						modifier = LIT_arrested_party_members
+					}
 				}
 			}
 		}
@@ -1030,7 +1084,7 @@ focus_tree = {
 			}
 			if = {
 				limit = {
-					has_country_flag = soviets_true_enemy_flag
+					has_country_flag = germans_true_enemy_flag
 				}
 				add_popularity = {
 					ideology = SOV
@@ -1042,7 +1096,7 @@ focus_tree = {
 			}
 			if = {
 				limit = {
-					has_country_flag = germans_true_enemy_flag
+					has_country_flag = soviets_true_enemy_flag
 				}
 				add_popularity = {
 					ideology = GER
@@ -1067,6 +1121,23 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 1
+			modifier = {
+				factor = 0
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = LIT_ai_behavior
+							option = DEFAULT
+						}
+					}
+					has_country_flag = LIT_AI_RANDOM_HISTORICAL
+					has_game_rule = {
+						rule = LIT_ai_behavior
+						option = HISTORICAL
+					}
+				}
+			}
 		}
 
 		available = {
@@ -1715,6 +1786,10 @@ focus_tree = {
 				add_claim_by = ROOT
 				set_state_flag = greater_lithuania_flag
 			}
+			834 = {
+				add_claim_by = ROOT
+				set_state_flag = greater_lithuania_flag
+			}
 		}
 	}
 
@@ -2342,35 +2417,59 @@ focus_tree = {
 		available = {
 			242 = {
 				is_controlled_by = ROOT
-				compliance > 80
+				OR = {
+					compliance > 80
+					is_core_of = ROOT
+				}
 			}
 			243 = {
 				is_controlled_by = ROOT
-				compliance > 80
+				OR = {
+					compliance > 80
+					is_core_of = ROOT
+				}
 			}
 			224 = {
 				is_controlled_by = ROOT
-				compliance > 80
+				OR = {
+					compliance > 80
+					is_core_of = ROOT
+				}
 			}
 			205 = {
 				is_controlled_by = ROOT
-				compliance > 80
+				OR = {
+					compliance > 80
+					is_core_of = ROOT
+				}
 			}
 			223 = {
 				is_controlled_by = ROOT
-				compliance > 80
+				OR = {
+					compliance > 80
+					is_core_of = ROOT
+				}
 			}
 			222 = {
 				is_controlled_by = ROOT
-				compliance > 80
+				OR = {
+					compliance > 80
+					is_core_of = ROOT
+				}
 			}
 			220 = {
 				is_controlled_by = ROOT
-				compliance > 80
+				OR = {
+					compliance > 80
+					is_core_of = ROOT
+				}
 			}
 			240 = {
 				is_controlled_by = ROOT
-				compliance > 80
+				OR = {
+					compliance > 80
+					is_core_of = ROOT
+				}
 			}
 		}
 
@@ -2387,6 +2486,9 @@ focus_tree = {
 			every_state = {
 				limit = {
 					has_state_flag = greater_lithuania_flag
+					NOT = {
+						is_core_of = ROOT
+					}
 				}
 				add_core_of = ROOT
 			}
@@ -3092,6 +3194,24 @@ focus_tree = {
 					}
 				} #AI should seek an alliance if they are in immediate danger
 			}
+			modifier = { #Don't mess with history (unless ppl are ignoring you)
+				factor = 0
+				date < 1942.1.1
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = LIT_ai_behavior
+							option = DEFAULT
+						}
+					}
+					has_country_flag = LIT_AI_RANDOM_HISTORICAL
+					has_game_rule = {
+						rule = LIT_ai_behavior
+						option = HISTORICAL
+					}
+				}
+			}
 		}
 
 		available = {
@@ -3179,6 +3299,7 @@ focus_tree = {
 		}
 
 		available = {
+			is_subject = no
 			any_other_country = {
 				NOT = { has_war_with = ROOT }
 				is_faction_leader = yes
@@ -3252,6 +3373,18 @@ focus_tree = {
 				OR = {
 					LAT = { is_ai = no }
 					EST = { is_ai = no } #The AI shouldn't try to lead a Baltic faction if one of the Baltic nations is a player. Would lead to the player having to rush the focus.
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = LIT_ai_behavior
+							option = DEFAULT
+						}
+					}
+					has_country_flag = LIT_AI_RANDOM_HISTORICAL
+					has_game_rule = {
+						rule = LIT_ai_behavior
+						option = HISTORICAL
+					}
 				}
 			}
 			modifier = {
@@ -3272,6 +3405,7 @@ focus_tree = {
 		}
 
 		available = {
+			is_subject = no
 			is_in_faction = no
 			OR = {
 				EST = { exists = yes }
@@ -3400,7 +3534,7 @@ focus_tree = {
 			add_ideas = { BALTIC_economic_union_1 }
 			every_other_country = {
 				limit = {
-					is_baltic_state = yes
+					is_baltic_country = yes
 					is_in_faction_with = ROOT
 				}
 				hidden_effect = { country_event = BALTIC_entente_events.1 }
@@ -3438,7 +3572,7 @@ focus_tree = {
 			add_ideas = { LIT_baltic_defence_army }
 			every_other_country = {
 				limit = {
-					is_baltic_state = yes
+					is_baltic_country = yes
 					is_in_faction_with = ROOT
 				}
 				hidden_effect = { country_event = BALTIC_entente_events.2 }
@@ -3478,7 +3612,7 @@ focus_tree = {
 			}
 			every_other_country = {
 				limit = {
-					is_baltic_state = yes
+					is_baltic_country = yes
 					is_in_faction_with = ROOT
 				}
 				hidden_effect = { country_event = BALTIC_entente_events.3 }
@@ -3523,7 +3657,7 @@ focus_tree = {
 			add_ideas = { BALTIC_union_idea }
 			every_other_country = {
 				limit = {
-					is_baltic_state = yes
+					is_baltic_country = yes
 					is_in_faction_with = ROOT
 				}
 				hidden_effect = { country_event = BALTIC_entente_events.4 }
@@ -3608,7 +3742,7 @@ focus_tree = {
 			}
 			every_other_country = {
 				limit = {
-					is_baltic_state = yes
+					is_baltic_country = yes
 					is_in_faction_with = ROOT
 				}
 				swap_ideas = {
@@ -3662,7 +3796,7 @@ focus_tree = {
 			}
 			every_other_country = {
 				limit = {
-					is_baltic_state = yes
+					is_baltic_country = yes
 					NOT = {
 						is_in_faction_with = ROOT
 					}
@@ -3706,7 +3840,7 @@ focus_tree = {
 		completion_reward = {
 			every_other_country = {
 				limit = {
-					is_baltic_state = yes
+					is_baltic_country = yes
 					is_in_faction_with = ROOT
 				}
 				country_event = {
@@ -3720,14 +3854,14 @@ focus_tree = {
 				if = {
 					limit = {
 						any_other_country = {
-							is_baltic_state = yes
+							is_baltic_country = yes
 							is_in_faction_with = ROOT
 						}
 					}
 					custom_effect_tooltip = if_they_accept_tt
 					every_other_country = {
 						limit = {
-							is_baltic_state = yes
+							is_baltic_country = yes
 							is_in_faction_with = ROOT
 						}
 					}
@@ -3736,7 +3870,7 @@ focus_tree = {
 			}
 			every_other_country = {
 				limit = {
-					is_baltic_state = yes
+					is_baltic_country = yes
 					NOT = {
 						is_in_faction_with = ROOT
 					}
@@ -3838,8 +3972,8 @@ focus_tree = {
 					infantry = { x = 1 y = 2 }
 		
 					infantry = { x = 2 y = 0 }
-					artillery_brigade = { x = 2 y = 1 }
-					artillery_brigade = { x = 2 y = 2 }
+					artillery_brigade = { x = 3 y = 0 }
+					artillery_brigade = { x = 3 y = 1 }
 				}
 				support = {
 					engineer = { x = 0 y = 0 }
@@ -4465,7 +4599,7 @@ focus_tree = {
 				tooltip = control_all_ukrainian_states_tt
 				all_state = {
 					OR = {
-						# NOT = { is_core_of = UKR }
+						NOT = { is_core_of = UKR }
 						controls_or_subject_of = yes
 					}
 				}
@@ -4624,7 +4758,7 @@ focus_tree = {
 			create_wargoal = {
 				type = take_state_focus
 				target = SOV
-				generator = { 96 95 94 207 206 204 241 93 199 201 198 202 203 259 193 225 221 226 197 192 242 243 224 205 223 222 220 240 194 }
+				generator = { 96 95 94 207 206 204 241 93 199 201 198 202 203 259 193 225 221 226 197 192 242 243 224 205 223 222 220 240 194 834 }
 			}
 		}
 	}
@@ -4682,6 +4816,7 @@ focus_tree = {
 			controls_state = 66
 			controls_state = 68
 			controls_state = 63
+			controls_state = 834
 		}
 
 		available_if_capitulated = yes
@@ -4692,8 +4827,8 @@ focus_tree = {
 				limit = {
 					OR = {
 						is_core_of = LIT
-						# is_core_of = KSH
-						# is_core_of = UKR
+						is_core_of = KSH
+						is_core_of = UKR
 						state = 96
 						state = 95
 						state = 94
@@ -4730,6 +4865,7 @@ focus_tree = {
 						state = 66
 						state = 68
 						state = 63
+						state = 834
 					}
 				}
 				add_core_of = ROOT

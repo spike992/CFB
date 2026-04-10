@@ -408,17 +408,17 @@ technologies = {
 			heavy_tank_chassis_1
 		}
 		enable_equipment_modules = {
-			tank_heavy_turret_1
+			#tank_heavy_turret_1
 			tank_heavy_superstructure
 			tank_heavy_open_superstructure
 		}
 
 		path = {
-			leads_to_tech = heavy_turret_2_tech
+			leads_to_tech = gen_heavy_turret_1_tech
 			research_cost_coeff = 1
 		}
 
-		research_cost = 2.5
+		research_cost = 2
 		start_year = 1940
 
 		folder = {
@@ -436,16 +436,43 @@ technologies = {
 		special_project_specialization = { specialization_land }
 	}
 
-	heavy_turret_2_tech = {
+	gen_heavy_turret_1_tech = {
 		enable_equipment_modules = {
-			tank_heavy_turret_2
+			tank_heavy_turret_1
 		}
 
-		research_cost = 2.5
+		research_cost = 1
 		start_year = 1942
 		folder = {
 			name = nsb_armour_folder
 			position = { x = 8 y = 12 }
+		}
+
+		path = {
+			leads_to_tech = gen_heavy_turret_2_tech
+			research_cost_coeff = 1
+		}
+	
+		categories = {
+			mio_cat_tech_all_armor_and_modules
+			cat_heavy_armor
+			mio_cat_tech_heavy_armor_and_modules
+			armor
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	gen_heavy_turret_2_tech = {
+		enable_equipment_modules = {
+			tank_heavy_turret_2
+		}
+
+		research_cost = 1
+		start_year = 1943
+		folder = {
+			name = nsb_armour_folder
+			position = { x = 8 y = 14 }
 		}
 	
 		categories = {
@@ -751,7 +778,7 @@ technologies = {
 		}
 
 
-		research_cost = 1
+		research_cost = 2
 		start_year = 1945
 		folder = {
 			name = nsb_armour_folder
@@ -959,7 +986,7 @@ technologies = {
 			tank_heavy_turret_2
 		}
 
-		research_cost = 2
+		research_cost = 1
 		start_year = 1944
 		folder = {
 			name = nsb_armour_folder
@@ -1043,7 +1070,7 @@ technologies = {
 			research_cost_coeff = 1
 		}
 		
-		research_cost = 1.15
+		research_cost = 1
 		start_year = 1938
 		folder = {
 			name = nsb_armour_folder
@@ -1105,7 +1132,7 @@ technologies = {
 			hidden_effect = { set_technology = { light_3_dup_tech = 1 popup = no } }
 		}
 
-		research_cost = 2
+		research_cost = 1
 		start_year = 1942
 
 		folder = {
@@ -1290,7 +1317,7 @@ technologies = {
 			tank_heavy_turret_2
 		}
 
-		research_cost = 2
+		research_cost = 1
 		start_year	= 1944
 		folder	= {
 			name = nsb_armour_folder
@@ -1376,7 +1403,7 @@ technologies = {
 		}
 		show_effect_as_desc = yes
 
-		research_cost = 2.5
+		research_cost = 1
 		start_year = 1941
 		folder = {
 			name = nsb_armour_folder
@@ -1625,7 +1652,7 @@ technologies = {
 		on_research_complete = {
 			hidden_effect = { set_technology = { light_3_dup_tech = 1 popup = no } }
 		}
-		research_cost = 2
+		research_cost = 1
 		start_year = 1942
 		folder = {
 			name = nsb_armour_folder
@@ -1759,6 +1786,49 @@ technologies = {
 			mio_cat_tech_all_armor_and_modules
 			cat_medium_armor
             mio_cat_tech_medium_armor_and_modules
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	rom_cze_tank_1 = { 
+
+		enable_equipments = {
+			rom_light_tank_chassis_hetzer
+		}
+		
+		research_cost = 2.0
+		start_year = 1943
+		folder = {
+			name = nsb_armour_folder
+			position = { x = 12 y = 14 }
+		}
+
+		allow = {
+			always = no
+		}
+		
+		categories = {
+			armor
+			mio_cat_tech_all_armor_and_modules
+			cat_light_armor
+			mio_cat_tech_light_armor_and_modules
+		}
+
+		allow_branch = {
+			OR = {
+				tag = ROM
+				tag = GER
+			}
+		}
+
+
+		on_research_complete = {
+			custom_effect_tooltip = ger_cze_tank_equipment_2_short_tt
+		}
+		
+		ai_will_do = {
+			factor = 0
 		}
 
 		special_project_specialization = { specialization_land }

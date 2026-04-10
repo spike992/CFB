@@ -1,4 +1,20 @@
 characters={
+	AST_joseph_lyons={
+		name=AST_joseph_lyons
+		portraits={
+			civilian={
+				large=GFX_AST_earle_page
+			}
+		}
+		country_leader={
+			ideology=conservatism
+			traits = { rearmer }
+			expire="1941.7.1.1"
+			id=-1
+		}
+	}
+
+
 	AST_john_curtin={
 		name=AST_john_curtin
 		portraits={
@@ -10,6 +26,25 @@ characters={
 			ideology=socialism
 			expire="1965.1.1.1"
 			id=-1
+		}
+		advisor = {
+			slot = political_advisor #NO PARTY
+			idea_token = AST_john_curtin
+			allowed = {
+				original_tag = AST
+			}
+			available = {
+				has_completed_focus = AST_establish_advisory_war_council
+				NOT = { 
+					has_country_leader = {
+						ruling_only = yes
+						character = AST_john_curtin
+					}
+				}
+			}
+			traits = {
+				master_armorer
+			}
 		}
 	}
 
@@ -70,122 +105,113 @@ characters={
 	}
 
 	AST_leslie_morshead={
-		name="Leslie Morshead"
+		name=AST_leslie_morshead
 		portraits={
 			army={
-				small="GFX_AST_leslie_morshead_small"
-			}
-			army={
 				large="GFX_AST_leslie_morshead"
+				small=GFX_portrait_AST_leslie_morshead_small
 			}
 		}
 		field_marshal={
-			traits={ infantry_leader trait_engineer inflexible_strategist }
-			skill=5
-			attack_skill=2
-			defense_skill=4
-			planning_skill=4
-			logistics_skill=5
-			legacy_id=-1
-		}
-	}
-	AST_thomas_blamey={
-		name="Thomas Blamey"
-		portraits={
-			army={
-				small="GFX_AST_thomas_blamey_small"
-			}
-			army={
-				large="GFX_AST_thomas_blamey"
-			}
-		}
-		corps_commander={
-			traits={ infantry_leader trait_engineer }
+			traits={ infantry_leader desert_fox defensive_doctrine unyielding_defender }
 			skill=4
-			attack_skill=3
-			defense_skill=2
-			planning_skill=2
+			attack_skill=4
+			defense_skill=6
+			planning_skill=5
 			logistics_skill=3
 			legacy_id=-1
 		}
 	}
-	AST_henry_wynter={
-		name="Henry Wynter"
+
+	AST_thomas_blamey={
+		name=AST_thomas_blamey
 		portraits={
 			army={
-				small="GFX_AST_henry_wynter_small"
+				large="GFX_AST_thomas_blamey"
+				small=GFX_portrait_AST_thomas_blamey_small
 			}
+		}
+		corps_commander={
+			skill=4
+			attack_skill=4
+			defense_skill=3
+			planning_skill=3
+			logistics_skill=3
+			legacy_id=-1
+		}
+	}
+
+	AST_henry_wynter={
+		name=AST_henry_wynter
+		portraits={
 			army={
 				large="GFX_AST_henry_wynter"
+				small=GFX_portrait_AST_henry_wynter_small
 			}
 		}
 		corps_commander={
-			traits={ panzer_leader desert_fox }
-			skill=3
-			attack_skill=4
-			defense_skill=2
-			planning_skill=1
-			logistics_skill=2
+			skill=4
+			attack_skill=3
+			defense_skill=4
+			planning_skill=3
+			logistics_skill=3
 			legacy_id=-1
 		}
 	}
+
 	AST_alan_vasey={
-		name="Alan Vasey"
+		name=AST_alan_vasey
 		portraits={
-			army={
-				small="GFX_AST_alan_vasey_small"
-			}
 			army={
 				large="GFX_AST_alan_vasey"
+				small=GFX_portrait_AST_alan_vasey_small
 			}
 		}
 		corps_commander={
-			traits={ infantry_leader naval_invader commando }
-			skill=4
+			traits={ hill_fighter }
+			skill=3
 			attack_skill=2
 			defense_skill=4
-			planning_skill=2
-			logistics_skill=2
+			planning_skill=3
+			logistics_skill=1
 			legacy_id=-1
 		}
 	}
+
 	AST_horace_robertson={
-		name="Horace Robertson"
+		name=AST_horace_robertson
 		portraits={
 			army={
-				small="GFX_AST_horace_robertson_small"
-			}
-			army={
 				large="GFX_AST_horace_robertson"
+				small=GFX_portrait_AST_horace_robertson_small
 			}
 		}
 		corps_commander={
 			traits={ infantry_leader desert_fox }
-			skill=4
-			attack_skill=3
-			defense_skill=4
-			planning_skill=2
-			logistics_skill=3
+			skill=3
+			attack_skill=4
+			defense_skill=2
+			planning_skill=3
+			logistics_skill=5
 			legacy_id=-1
 		}
 	}
+
 	AST_john_northcott={
-		name="John Northcott"
+		name=AST_john_northcott
 		portraits={
 			army={
-				small="GFX_AST_john_northcott_small"
-			}
-			army={
 				large="GFX_AST_john_northcott"
+				small=GFX_portrait_AST_john_northcott_small
 			}
 		}
 		corps_commander={
-			traits={ infantry_leader trickster jungle_rat }
-			skill=5
-			attack_skill=5
-			defense_skill=3
+			traits={ brilliant_strategist cavalry_officer armor_officer }
+			skill=1
+			attack_skill=1
+			defense_skill=1
 			planning_skill=1
-			logistics_skill=5
+			logistics_skill=1
 			legacy_id=-1
 		}
 	}
@@ -227,6 +253,17 @@ characters={
 			legacy_id=-1
 		}
 	}
+
+	AST_iven_mackay = { #Empty character that can become unit leader later
+		name=AST_iven_mackay
+		portraits={
+			army={
+				large="GFX_AST_iven_mackay"
+				small=GFX_portrait_AST_iven_mackay_small
+			}
+		}
+	}
+
 	AST_clive_caldwell={
 		advisor={
 			slot = high_command
@@ -410,12 +447,12 @@ characters={
 				original_tag  = AST
 			}
 			available  = {
-				if  = {
-					limit  = {
-						has_dlc = "Together for Victory"
-					}
-					has_completed_focus  = AST_support_the_policy_of_appeasement 
-				}
+				# if  = {
+				# 	limit  = {
+				# 		has_dlc = "Together for Victory"
+				# 	}
+				# 	has_completed_focus  = AST_announce_elections 
+				# }
 				if  = {
 					limit  = {
 						has_dlc = "Man the Guns"
@@ -445,14 +482,28 @@ characters={
 		}
 	}
 	AST_robert_g_menzies={
+		country_leader={
+			ideology=liberalism
+			expire="1965.1.1.1"
+			id=-1
+		}
 		advisor={
 			slot = political_advisor
 			idea_token = AST_robert_g_menzies
 			allowed  = {
 				original_tag  = AST
 			}
+			available = {
+				has_completed_focus = AST_establish_advisory_war_council
+				NOT = { 
+					has_country_leader = {
+						ruling_only = yes
+						character = AST_robert_g_menzies
+					}
+				}
+			}
 			traits  = {
-				backroom_backstabber 
+				financial_expert 
 			}
 		}
 		name="AST_robert_g_menzies"

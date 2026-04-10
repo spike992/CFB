@@ -21,6 +21,7 @@ defined_text = { # Country
 	}
 }
 
+#MM: UNUSED after WW (replaced by GetKfdWagenNames)
 defined_text = { # Country
 	name = GetKdfWagenName
 	text = {
@@ -45,6 +46,7 @@ defined_text = { # Country
 	}
 }
 
+#MM: UNUSED after WW (replaced by GetReichsWerkeName)
 defined_text = { # Country
 	name = GetHermannGoringWerkeName
 	text = {
@@ -999,4 +1001,870 @@ defined_text = {
 		localization_key = governments_in_exile_exiled_desc
 	}
 
+}
+
+#USSR "Fall of London"
+defined_text = {
+	name = GetSOVIdeologyLondonDesc
+	text = {
+		trigger = {
+			SOV = {
+				has_government = communism
+			}
+		}
+		localization_key = get_SOV_ideology_london_desc
+	}
+	text = {
+		
+		localization_key = get_SOV_ideology_london_desc_alt
+		
+	}
+}
+
+#USSR "Fall of London" Response
+defined_text = {
+	name = GetSOVIdeologyLondonResponse
+	text = {
+		trigger = {
+			SOV = {
+				has_government = communism
+			}
+		}
+		localization_key = get_SOV_ideology_london_response
+	}
+	text = {
+		
+		localization_key = get_SOV_ideology_london_response_alt
+		
+	}
+}
+
+# Handshake event picture (pick Hitler one only if Hitler is in charge, otherwise pick generic handshake tack)
+defined_text = {
+	name = GetHitlerHandshakeEventPicture
+	text = {
+		trigger = {
+			GER = {
+				has_country_leader = {
+				 	ruling_only = yes
+				 	character = GER_adolf_hitler
+				 }
+			}
+		}
+		localization_key = GFX_report_event_hitler_croatia_handshake
+	}
+	text = {
+		localization_key = GFX_report_event_generic_handshake
+	}
+}
+
+# Croatian Handshake event picture (pick Hitler one only if Hitler is in charge, otherwise pick generic croatian handshake tack)
+defined_text = {
+	name = GetHitlerCroatianHandshakeEventPicture
+	text = {
+		trigger = {
+			GER = {
+				has_country_leader = {
+				 	ruling_only = yes
+				 	character = GER_adolf_hitler
+				 }
+			}
+		}
+		localization_key = GFX_report_event_hitler_croatia_handshake
+	}
+	text = {
+		localization_key = GFX_report_event_generic_croatia_handshake
+	}
+}
+
+# German-China event picture (pick Hitler one only if Hitler is in charge, otherwise use picture without Hitler tack)
+defined_text = {
+	name = GetHitlerChinaEventPicture
+	text = {
+		trigger = {
+			GER = {
+				has_country_leader = {
+				 	ruling_only = yes
+				 	character = GER_adolf_hitler
+				 }
+			}
+		}
+		localization_key = GFX_report_event_hitler_china
+	}
+	text = {
+		localization_key = GFX_report_event_generic_china
+	}
+}
+
+# German-China event picture (pick Hitler one only if Hitler is in charge, otherwise use picture without Hitler tack)
+defined_text = {
+	name = GetHitlerHandshakeNewsEventPicture
+	text = {
+		trigger = {
+			GER = {
+				has_country_leader = {
+				 	ruling_only = yes
+				 	character = GER_adolf_hitler
+				 }
+			}
+		}
+		localization_key = GFX_news_event_hitler_handshake
+	}
+	text = {
+		localization_key = GFX_news_event_generic_handshake
+	}
+}
+
+defined_text = {
+	name = GetOppositionPartySupportersName
+	text = {
+		trigger = {
+			check_variable = { opposition_party = 1 }
+		}
+		localization_key = GetOppositionPartySupportersName_democratic
+	}
+	text = {
+		trigger = {
+			check_variable = { opposition_party = 2 }
+		}
+		localization_key = GetOppositionPartySupportersName_communism
+	}
+	text = {
+		trigger = {
+			check_variable = { opposition_party = 3 }
+		}
+		localization_key = GetOppositionPartySupportersName_fascist
+	}
+	text = {
+		trigger = {
+			check_variable = { opposition_party = 4 }
+		}
+		localization_key = GetOppositionPartySupportersName_neutrality
+	}
+	text = {
+		localization_key = GetOppositionPartySupportersName_backup
+	}
+}
+
+defined_text = {
+	name = GetOppositionPartyName
+	text = {
+		trigger = {
+			check_variable = { opposition_party = 1 }
+		}
+		localization_key = GetOppositionPartyName_democratic
+	}
+	text = {
+		trigger = {
+			check_variable = { opposition_party = 2 }
+		}
+		localization_key = GetOppositionPartyName_communism
+	}
+	text = {
+		trigger = {
+			check_variable = { opposition_party = 3 }
+		}
+		localization_key = GetOppositionPartyName_fascist
+	}
+	text = {
+		trigger = {
+			check_variable = { opposition_party = 4 }
+		}
+		localization_key = GetOppositionPartyName_neutrality
+	}
+	text = {
+		localization_key = GetOppositionPartyName_backup
+	}
+}
+
+defined_text = {
+	name = GetOppositionPartyAdjective
+	text = {
+		trigger = {
+			check_variable = { opposition_party = 1 }
+		}
+		localization_key = GetOppositionPartyAdjective_democratic
+	}
+	text = {
+		trigger = {
+			check_variable = { opposition_party = 2 }
+		}
+		localization_key = GetOppositionPartyAdjective_communism
+	}
+	text = {
+		trigger = {
+			check_variable = { opposition_party = 3 }
+		}
+		localization_key = GetOppositionPartyAdjective_fascist
+	}
+	text = {
+		trigger = {
+			check_variable = { opposition_party = 4 }
+		}
+		localization_key = GetOppositionPartyAdjective_neutrality
+	}
+	text = {
+		localization_key = GetOppositionPartyAdjective_backup
+	}
+}
+
+defined_text = {
+	name = GetCountryContinent
+	text = {
+		trigger = {
+			capital_scope = { is_on_continent = europe }
+		}
+		localization_key = europe
+	}
+	text = {
+		trigger = {
+			capital_scope = { is_on_continent = middle_east }
+		}
+		localization_key = middle_east
+	}
+	text = {
+		trigger = {
+			capital_scope = { is_on_continent = africa }
+		}
+		localization_key = africa
+	}
+	text = {
+		trigger = {
+			capital_scope = { is_on_continent = north_america }
+		}
+		localization_key = north_america
+	}
+	text = {
+		trigger = {
+			capital_scope = { is_on_continent = south_america }
+		}
+		localization_key = south_america
+	}
+	text = {
+		trigger = {
+			capital_scope = { is_on_continent = australia }
+		}
+		localization_key = australia
+	}
+	text = {
+		trigger = {
+			capital_scope = { is_on_continent = asia }
+		}
+		localization_key = asia
+	}
+	
+	text = {
+		localization_key = same_continent
+	}
+}
+
+defined_text = { # global
+	name = malay_barrier_spirit_sl
+	text = {
+		trigger = {
+			AST = {
+				has_idea = ASN_ALLIES_the_sun_never_sets_idea_1
+			}
+			NOT = {
+				has_global_flag = AST_NZL_ANNEXED
+			}
+		}
+		localization_key = "ASN_ALLIES_the_sun_never_sets_idea_1_mod_tt" 
+	}
+	text = {
+		trigger = {
+			AST = {
+				has_idea = ASN_ALLIES_the_sun_never_sets_idea_1
+			}
+			has_global_flag = AST_NZL_ANNEXED
+		}
+		localization_key = "ASN_ALLIES_the_sun_never_sets_idea_1_mod_nzla_tt" 
+		
+	}
+	text = {
+		trigger = {
+			AST = {
+				has_idea = ASN_ALLIES_the_sun_never_sets_idea_2
+			}
+			NOT = {
+				has_global_flag = AST_NZL_ANNEXED
+			}
+		}
+		localization_key = "ASN_ALLIES_the_sun_never_sets_idea_2_mod_tt"
+	}
+	text = {
+		trigger = {
+			AST = {
+				has_idea = ASN_ALLIES_the_sun_never_sets_idea_2
+			}
+			has_global_flag = AST_NZL_ANNEXED
+		}
+		localization_key = "ASN_ALLIES_the_sun_never_sets_idea_2_mod_nzla_tt"
+	}
+	text = {
+		trigger = {
+			AST = {
+				has_idea = ASN_ALLIES_the_sun_never_sets_idea_3
+			}
+			NOT = {
+				has_global_flag = AST_NZL_ANNEXED
+			}
+		}
+		localization_key = "ASN_ALLIES_the_sun_never_sets_idea_3_mod_tt"
+	}
+	text = {
+		trigger = {
+			AST = {
+				has_idea = ASN_ALLIES_the_sun_never_sets_idea_3
+			}
+			has_global_flag = AST_NZL_ANNEXED
+		}
+		localization_key = "ASN_ALLIES_the_sun_never_sets_idea_3_mod_nzla_tt"
+	}
+	text = {
+		trigger = {
+			AST = {
+				has_idea = ASN_ALLIES_the_sun_never_sets_idea_4
+			}
+			NOT = {
+				has_global_flag = AST_NZL_ANNEXED
+			}
+		}
+		localization_key = "ASN_ALLIES_the_sun_never_sets_idea_4_mod_tt"
+	}
+	text = {
+		trigger = {
+			AST = {
+				has_idea = ASN_ALLIES_the_sun_never_sets_idea_4
+			}
+			has_global_flag = AST_NZL_ANNEXED
+		}
+		localization_key = "ASN_ALLIES_the_sun_never_sets_idea_4_mod_nzla_tt"
+	}
+	text = {
+		trigger = {
+			AST = {
+				has_idea = ASN_ALLIES_the_sun_never_sets_idea_5
+			}
+			NOT = {
+				has_global_flag = AST_NZL_ANNEXED
+			}
+		}
+		localization_key = "ASN_ALLIES_the_sun_never_sets_idea_5_mod_tt"
+	}
+	text = {
+		trigger = {
+			AST = {
+				has_idea = ASN_ALLIES_the_sun_never_sets_idea_5
+			}
+			has_global_flag = AST_NZL_ANNEXED
+		}
+		localization_key = "ASN_ALLIES_the_sun_never_sets_idea_5_mod_nzla_tt"
+	}
+}
+
+defined_text = { # global
+	name = east_buffer_spirit_sl
+	text = {
+		trigger = {
+			RAJ = {
+				has_idea = RAJ_the_sun_never_sets_idea_1
+			}
+		}
+		localization_key = "RAJ_the_sun_never_sets_idea_1_mod_tt"
+	}
+	text = {
+		trigger = {
+			RAJ = {
+				has_idea = RAJ_the_sun_never_sets_idea_2
+			}
+		}
+		localization_key = "RAJ_the_sun_never_sets_idea_2_mod_tt"
+	}
+	text = {
+		trigger = {
+			RAJ = {
+				has_idea = RAJ_the_sun_never_sets_idea_3
+			}
+		}
+		localization_key = "RAJ_the_sun_never_sets_idea_3_mod_tt"
+	}
+	text = {
+		trigger = {
+			RAJ = {
+				has_idea = RAJ_the_sun_never_sets_idea_4
+			}
+		}
+		localization_key = "RAJ_the_sun_never_sets_idea_4_mod_tt"
+	}
+	text = {
+		trigger = {
+			RAJ = {
+				has_idea = RAJ_the_sun_never_sets_idea_5
+			}
+		}
+		localization_key = "RAJ_the_sun_never_sets_idea_5_mod_tt"
+	}
+}
+
+defined_text = { # global
+	name = sotf_spirit_title_sl
+	text = {
+		trigger = {
+			has_game_rule = {
+				rule = state_of_the_pacific
+				option = DISABLED
+			}
+		}
+		localization_key = ""
+	}
+	text = {
+		trigger = {
+			15 = {
+				has_dynamic_modifier = { modifier = PACIFIC_COMMONWEALTH_controls_original }
+			}
+		}
+		localization_key = "PACIFIC_COMMONWEALTH_controls_original_mod_inactive_tt"
+	}
+	text = {
+		trigger = {
+			NOT = {
+				15 = {
+					has_dynamic_modifier = { modifier = PACIFIC_COMMONWEALTH_controls_original }
+				}
+			}
+		}
+		localization_key = "PACIFIC_COMMONWEALTH_controls_original_mod_active_tt"
+	}
+}
+
+defined_text = { # global
+	name = sotf_allied_locations_sl
+	text = {
+		trigger = {
+			NOT = {
+				has_game_rule = {
+					rule = state_of_the_pacific
+					option = DISABLED
+				}
+			}
+		}
+		localization_key = "SotP Locations: [?global.SOTF_ALLIES_LOCATIONS]/16"
+	}
+	text = {
+		trigger = {
+			has_game_rule = {
+				rule = state_of_the_pacific
+				option = DISABLED
+			}
+		}
+		localization_key = ""
+	}
+}
+
+defined_text = { # global
+	name = sotf_geacps_locations_sl
+	text = {
+		trigger = {
+			NOT = {
+				has_game_rule = {
+					rule = state_of_the_pacific
+					option = DISABLED
+				}
+			}
+		}
+		localization_key = "SotP Locations: [?global.SOTF_GEACPS_LOCATIONS]/16"
+	}
+	text = {
+		trigger = {
+			has_game_rule = {
+				rule = state_of_the_pacific
+				option = DISABLED
+			}
+		}
+		localization_key = ""
+	}
+}
+
+defined_text = { # global
+	name = sotf_spirit_allies_sl
+	text = {
+		trigger = {
+			NOT = {
+				has_game_rule = {
+					rule = state_of_the_pacific
+					option = DISABLED
+				}
+			}
+		}
+		localization_key = "PACIFIC_COMMONWEALTH_controls_idea_allies_mod_tt"
+	}
+	text = {
+		trigger = {
+			has_game_rule = {
+				rule = state_of_the_pacific
+				option = DISABLED
+			}
+		}
+		localization_key = ""
+	}
+}
+
+defined_text = { # global
+	name = sotf_spirit_axis_sl
+	text = {
+		trigger = {
+			NOT = {
+				has_game_rule = {
+					rule = state_of_the_pacific
+					option = DISABLED
+				}
+			}
+		}
+		localization_key = "PACIFIC_COMMONWEALTH_controls_idea_axis_mod_tt"
+	}
+	text = {
+		trigger = {
+			has_game_rule = {
+				rule = state_of_the_pacific
+				option = DISABLED
+			}
+		}
+		localization_key = ""
+	}
+}
+
+defined_text = { # global
+	name = title_islhop_spirit_sl
+	text = {
+		localization_key = "island_hopping_title_tt"
+	}
+}
+
+defined_text = { # global
+	name = allied_islhop_spirit_sl
+	text = {
+		trigger = {
+			USA = {
+				has_idea = USA_island_hopping15
+			}
+		}
+		localization_key = "USA_island_hopping15_mod_tt"
+	}
+	text = {
+		trigger = {
+			USA = {
+				has_idea = USA_island_hopping14
+			}
+		}
+		localization_key = "USA_island_hopping14_mod_tt"
+	}
+	text = {
+		trigger = {
+			USA = {
+				has_idea = USA_island_hopping13
+			}
+		}
+		localization_key = "USA_island_hopping13_mod_tt"
+	}
+	text = {
+		trigger = {
+			USA = {
+				has_idea = USA_island_hopping12
+			}
+		}
+		localization_key = "USA_island_hopping12_mod_tt"
+	}
+	text = {
+		trigger = {
+			USA = {
+				has_idea = USA_island_hopping12
+			}
+		}
+		localization_key = "USA_island_hopping12_mod_tt"
+	}
+	text = {
+		trigger = {
+			USA = {
+				has_idea = USA_island_hopping11
+			}
+		}
+		localization_key = "USA_island_hopping11_mod_tt"
+	}
+	text = {
+		trigger = {
+			USA = {
+				has_idea = USA_island_hopping10
+			}
+		}
+		localization_key = "USA_island_hopping10_mod_tt"
+	}
+	text = {
+		trigger = {
+			USA = {
+				has_idea = USA_island_hopping9
+			}
+		}
+		localization_key = "USA_island_hopping9_mod_tt"
+	}
+	text = {
+		trigger = {
+			USA = {
+				has_idea = USA_island_hopping8
+			}
+		}
+		localization_key = "USA_island_hopping8_mod_tt"
+	}
+	text = {
+		trigger = {
+			USA = {
+				has_idea = USA_island_hopping7
+			}
+		}
+		localization_key = "USA_island_hopping7_mod_tt"
+	}
+	text = {
+		trigger = {
+			USA = {
+				has_idea = USA_island_hopping6
+			}
+		}
+		localization_key = "USA_island_hopping6_mod_tt"
+	}
+	text = {
+		trigger = {
+			USA = {
+				has_idea = USA_island_hopping5
+			}
+		}
+		localization_key = "USA_island_hopping5_mod_tt"
+	}
+	text = {
+		trigger = {
+			USA = {
+				has_idea = USA_island_hopping4
+			}
+		}
+		localization_key = "USA_island_hopping4_mod_tt"
+	}
+	text = {
+		trigger = {
+			USA = {
+				has_idea = USA_island_hopping3
+			}
+		}
+		localization_key = "USA_island_hopping3_mod_tt"
+	}
+	text = {
+		trigger = {
+			USA = {
+				has_idea = USA_island_hopping2
+			}
+		}
+		localization_key = "USA_island_hopping2_mod_tt"
+	}
+	text = {
+		trigger = {
+			USA = {
+				has_idea = USA_island_hopping1
+			}
+		}
+		localization_key = "USA_island_hopping1_mod_tt"
+	}
+}
+
+defined_text = { # global
+	name = geacps_islhop_spirit_sl
+	text = {
+		trigger = {
+			JAP = {
+				has_idea = JAP_island_hopping15
+			}
+		}
+		localization_key = "JAP_island_hopping15_mod_tt"
+	}
+	text = {
+		trigger = {
+			JAP = {
+				has_idea = JAP_island_hopping14
+			}
+		}
+		localization_key = "JAP_island_hopping14_mod_tt"
+	}
+	text = {
+		trigger = {
+			JAP = {
+				has_idea = JAP_island_hopping13
+			}
+		}
+		localization_key = "JAP_island_hopping13_mod_tt"
+	}
+	text = {
+		trigger = {
+			JAP = {
+				has_idea = JAP_island_hopping12
+			}
+		}
+		localization_key = "JAP_island_hopping12_mod_tt"
+	}
+	text = {
+		trigger = {
+			JAP = {
+				has_idea = JAP_island_hopping12
+			}
+		}
+		localization_key = "JAP_island_hopping12_mod_tt"
+	}
+	text = {
+		trigger = {
+			JAP = {
+				has_idea = JAP_island_hopping11
+			}
+		}
+		localization_key = "JAP_island_hopping11_mod_tt"
+	}
+	text = {
+		trigger = {
+			JAP = {
+				has_idea = JAP_island_hopping10
+			}
+		}
+		localization_key = "JAP_island_hopping10_mod_tt"
+	}
+	text = {
+		trigger = {
+			JAP = {
+				has_idea = JAP_island_hopping9
+			}
+		}
+		localization_key = "JAP_island_hopping9_mod_tt"
+	}
+	text = {
+		trigger = {
+			JAP = {
+				has_idea = JAP_island_hopping8
+			}
+		}
+		localization_key = "JAP_island_hopping8_mod_tt"
+	}
+	text = {
+		trigger = {
+			JAP = {
+				has_idea = JAP_island_hopping7
+			}
+		}
+		localization_key = "JAP_island_hopping7_mod_tt"
+	}
+	text = {
+		trigger = {
+			JAP = {
+				has_idea = JAP_island_hopping6
+			}
+		}
+		localization_key = "USA_island_hopping6_mod_tt"
+	}
+	text = {
+		trigger = {
+			JAP = {
+				has_idea = JAP_island_hopping5
+			}
+		}
+		localization_key = "JAP_island_hopping5_mod_tt"
+	}
+	text = {
+		trigger = {
+			JAP = {
+				has_idea = JAP_island_hopping4
+			}
+		}
+		localization_key = "JAP_island_hopping4_mod_tt"
+	}
+	text = {
+		trigger = {
+			JAP = {
+				has_idea = JAP_island_hopping3
+			}
+		}
+		localization_key = "JAP_island_hopping3_mod_tt"
+	}
+	text = {
+		trigger = {
+			JAP = {
+				has_idea = JAP_island_hopping2
+			}
+		}
+		localization_key = "JAP_island_hopping2_mod_tt"
+	}
+	text = {
+		trigger = {
+			JAP = {
+				has_idea = JAP_island_hopping1
+			}
+		}
+		localization_key = "JAP_island_hopping1_mod_tt"
+	}
+}
+
+defined_text = { # global
+	name = consumer_goods_dockyards_sl
+	text = {
+		trigger = {
+			tag = USA
+			has_variable = dockyard_major
+		}
+		localization_key = "dockyard_cg_mod_usa" 
+	}
+	text = {
+		trigger = {
+			NOT = { tag = USA }
+			has_variable = dockyard_major
+		}
+		localization_key = "dockyard_cg_mod_major" 
+	}
+	text = {
+		trigger = {
+			NOT = {	has_variable = dockyard_major }
+		}
+		localization_key = "dockyard_cg_mod_minor"
+	}
+}
+
+defined_text = {
+	name = GetTheUSSRName
+	text = {
+		trigger = {
+			SOV = {
+				has_government = communism
+			}
+		}
+		localization_key = SOV_THE_USSR_NAME_COMMUNIST
+	}
+	text = {
+		trigger = {
+			SOV = {
+				NOT = { has_government = communism }
+			}
+		}
+		localization_key = SOV_THE_USSR_NAME_EXILES
+	}
+}
+
+defined_text = {
+	name = GetMolotovRibbentropName
+	text = {
+		trigger = {
+			SOV = {
+				has_government = communism
+			}
+		}
+		localization_key = SOV_MOLOTOV_RIBBENTROP_NAME_COMMUNIST
+	}
+	text = {
+		trigger = {
+			SOV = {
+				NOT = { has_government = communism }
+			}
+		}
+		localization_key = SOV_MOLOTOV_RIBBENTROP_NAME_EXILES
+	}
 }

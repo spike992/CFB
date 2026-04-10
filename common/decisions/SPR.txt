@@ -1,276 +1,4 @@
 operations = {
-
-	SPA_SCW_ending = {
-
-		name = "The Spanish Civil War"
-
-		icon = generic_operation
-
-		is_good = yes
-
-		allowed = {
-			always = no
-		}
-
-		activation = {
-			# SCW START - custom flag? or just starti t with the event?
-		}
-
-		available = {
-			always = no
-		}
-
-		fire_only_once = yes
-
-		ai_will_do = {
-			factor = 0
-		}
-
-		days_mission_timeout = 240
-
-		timeout_effect = {
-			every_country = {
-				limit = {
-					original_tag = SPR
-				}
-				if = { # Nationalist victory SCW
-					limit = {
-						SPR_scw_in_progress = yes
-					}
-					set_global_flag = nationalist_victory
-					set_global_flag = scw_over
-					country_event = { id = lar_news.1 }
-				}
-			}
-			custom_effect_tooltip = "Ends the Spanish Civil War"
-		}
-	}
-
-	SPA_SCW_republican_spirit_dwindling = {
-
-		icon = generic_operation
-
-		is_good = yes
-
-		allowed = {
-			always = no
-		}
-		activation = {
-			# SCW START - custom flag? or just starti t with the event?
-		}
-
-		available = {
-			has_global_flag = scw_over
-			# scw ended
-		}
-
-		fire_only_once = no
-
-		ai_will_do = {
-			factor = 0
-		}
-
-		# visible = {
-		# }
-
-		days_mission_timeout  = 45
-		
-		complete_effect = {
-			# nothing ig
-		}
-
-		timeout_effect = {
-			activate_mission = SPA_SCW_republican_spirit_dwindling
-			SPD = {
-				SCW_dwindle_republican_spirit = yes
-			}
-			# lower republican surrender limit
-		}
-	}
-
-	SPA_SCW_axis_victory = {
-
-		icon = generic_operation
-
-		is_good = yes
-
-		allowed = {
-			always = no
-		}
-		activation = {
-			# SCW START - custom flag? or just starti t with the event?
-		}
-
-		available = {
-			has_global_flag = scw_over
-			# scw ended
-		}
-
-		fire_only_once = yes
-
-		ai_will_do = {
-			factor = 0
-		}
-
-		# visible = {
-		# }
-
-		days_mission_timeout  = 210
-		
-		complete_effect = {
-			if = {
-				limit = {
-					NOT = {
-						has_global_flag = SCW_ended_by_host
-					}
-				}
-				ITA = {
-					army_experience = 125
-					air_experience = 50
-					add_doctrine_cost_reduction = {
-						name = SPA_SCW_axis_victory
-						cost_reduction = 0.5
-						uses = 2
-						category = land_doctrine
-					}
-				}
-				GER = {
-					army_experience = 125
-					air_experience = 50
-					add_doctrine_cost_reduction = {
-						name = SPA_SCW_axis_victory
-						cost_reduction = 0.5
-						uses = 2
-						category = land_doctrine
-					}
-				}
-				JAP = {
-					army_experience = 125
-					air_experience = 50
-					add_doctrine_cost_reduction = {
-						name = SPA_SCW_axis_victory
-						cost_reduction = 0.5
-						uses = 2
-						category = land_doctrine
-					}
-				}
-				SPA = {
-					add_ideas = SPA_SCW_axis_victory
-				}
-				# good effect
-			}
-		}
-
-		timeout_effect = {
-			activate_mission = SPA_SCW_status_quo
-			# next stage
-		}
-	}
-
-	SPA_SCW_status_quo = {
-
-		icon = generic_operation
-
-		is_good = yes
-
-		allowed = {
-			always = no
-		}
-		available = {
-			has_global_flag = scw_over
-			# scw ended
-		}
-
-		fire_only_once = yes
-
-		ai_will_do = {
-			factor = 0
-		}
-
-		# visible = {
-		# }
-
-		days_mission_timeout  = 180
-		
-		complete_effect = {
-			# good effect
-		}
-
-		timeout_effect = {
-			activate_mission = SPA_SCW_comintern_victory
-			# next stage
-		}
-	}
-
-	SPA_SCW_comintern_victory = {
-
-		icon = generic_operation
-
-		is_good = yes
-
-		allowed = {
-			always = no
-		}
-
-		available = {
-			has_global_flag = scw_over
-			# scw ended
-		}
-
-		fire_only_once = yes
-
-		ai_will_do = {
-			factor = 0
-		}
-
-		# visible = {
-		# }
-
-		days_mission_timeout  = 9999
-		
-		complete_effect = {
-			if = {
-				limit = {
-					NOT = {
-						has_global_flag = SCW_ended_by_host
-					}
-				}
-				SOV = {
-					army_experience = 125
-					air_experience = 50
-					add_doctrine_cost_reduction = {
-						name = SPA_SCW_comintern_victory
-						cost_reduction = 0.5
-						uses = 2
-						category = land_doctrine
-					}
-				}
-				FRA = {
-					army_experience = 125
-					air_experience = 50
-					add_doctrine_cost_reduction = {
-						name = SPA_SCW_comintern_victory
-						cost_reduction = 0.5
-						uses = 2
-						category = land_doctrine
-					}
-					add_war_support = 0.125
-				}
-				ENG = {
-					army_experience = 125
-					air_experience = 50
-					add_doctrine_cost_reduction = {
-						name = SPA_SCW_comintern_victory
-						cost_reduction = 0.5
-						uses = 2
-						category = land_doctrine
-					}
-				}
-			}
-			# good effect
-		}
-	}
-
 	SPA_save_the_alcazar_mission = {
 
 		name = SPA_save_the_alcazar
@@ -327,6 +55,10 @@ foreign_politics = {
 			hidden_trigger = { always = no }
 		}
 
+		allowed = {
+			tag = SPR
+		}
+
 		days_mission_timeout = 171
 
 		fire_only_once = yes
@@ -346,6 +78,39 @@ foreign_politics = {
 
 		timeout_effect = {
 			country_event = lar_spain.2
+		}
+	}
+
+	hold_the_fascist_national_referendum2 = {
+
+		icon = generic_political_discourse
+
+		available = {
+			fascism > 0.5
+		}
+
+		visible = {
+			NOT = { has_government = fascism }
+			tag = SPR
+		}
+		
+		remove_trigger = {
+			has_government = fascism
+		}
+		
+		fire_only_once = yes
+		
+		cost = 100
+		
+		complete_effect = {
+			country_event = { id = political.18 }
+		}
+		
+		ai_will_do = {
+			modifier = {
+				tag = SPR
+				factor = 0
+			}
 		}
 	}
 }
@@ -526,7 +291,7 @@ SPR_expand_resource_extraction = {
 
 		available = {
 			has_tech = excavation4
-			num_of_civilian_factories_available_for_projects > 15
+			num_of_civilian_factories_available_for_projects > 2
 			owns_state = 788
 			controls_state = 788
 		}
@@ -554,7 +319,7 @@ SPR_expand_resource_extraction = {
 		days_remove = 60
 
 		modifier = {
-			civilian_factory_use = 16
+			civilian_factory_use = 3
 		}
 
 		ai_will_do = {
@@ -571,7 +336,7 @@ SPR_expand_resource_extraction = {
 			788 = {
 				add_resource = {
 					type = tungsten
-					amount = 320
+					amount = 190
 				}
 			}
 		}
@@ -587,7 +352,7 @@ SPR_expand_resource_extraction = {
 
 		available = {
 			has_tech = excavation4
-			num_of_civilian_factories_available_for_projects > 15
+			num_of_civilian_factories_available_for_projects > 2
 			owns_state = 791
 			controls_state = 791
 		}
@@ -611,11 +376,11 @@ SPR_expand_resource_extraction = {
 
 		fire_only_once = yes
 
-		cost = 25
+		cost = 35
 		days_remove = 60
 
 		modifier = {
-			civilian_factory_use = 16
+			civilian_factory_use = 3
 		}
 
 		ai_will_do = {
@@ -632,7 +397,7 @@ SPR_expand_resource_extraction = {
 			791 = {
 				add_resource = {
 					type = tungsten
-					amount = 320
+					amount = 250
 				}
 			}
 		}
@@ -648,7 +413,7 @@ SPR_expand_resource_extraction = {
 
 		available = {
 			has_tech = excavation3
-			num_of_civilian_factories_available_for_projects > 12
+			num_of_civilian_factories_available_for_projects > 2
 			owns_state = 171
 			controls_state = 171
 		}
@@ -676,7 +441,7 @@ SPR_expand_resource_extraction = {
 		days_remove = 60
 
 		modifier = {
-			civilian_factory_use = 13
+			civilian_factory_use = 3
 		}
 
 		ai_will_do = {
@@ -693,7 +458,7 @@ SPR_expand_resource_extraction = {
 			171 = {
 				add_resource = {
 					type = tungsten
-					amount = 260
+					amount = 170
 				}
 			}
 		}
@@ -709,7 +474,7 @@ SPR_expand_resource_extraction = {
 
 		available = {
 			has_tech = excavation3
-			num_of_civilian_factories_available_for_projects > 12
+			num_of_civilian_factories_available_for_projects > 2
 			owns_state = 170
 			controls_state = 170
 		}
@@ -733,11 +498,11 @@ SPR_expand_resource_extraction = {
 
 		fire_only_once = yes
 
-		cost = 25
+		cost = 35
 		days_remove = 60
 
 		modifier = {
-			civilian_factory_use = 13
+			civilian_factory_use = 3
 		}
 
 		ai_will_do = {
@@ -754,7 +519,7 @@ SPR_expand_resource_extraction = {
 			170 = {
 				add_resource = {
 					type = tungsten
-					amount = 260
+					amount = 220
 				}
 			}
 		}
@@ -776,7 +541,7 @@ SPR_expand_resource_extraction = {
 
 		available = {
 			has_tech = excavation3
-			num_of_civilian_factories_available_for_projects > 13
+			num_of_civilian_factories_available_for_projects > 2
 			owns_state = 41
 			controls_state = 41
 		}
@@ -798,7 +563,7 @@ SPR_expand_resource_extraction = {
 		days_remove = 60
 
 		modifier = {
-			civilian_factory_use = 14
+			civilian_factory_use = 3
 		}
 
 		ai_will_do = {
@@ -809,7 +574,7 @@ SPR_expand_resource_extraction = {
 			41 = {
 				add_resource = {
 					type = aluminium
-					amount = 280
+					amount = 270
 				}
 			}
 		}

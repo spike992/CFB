@@ -1151,7 +1151,24 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			if = {
+			IF = {
+				limit = {
+					has_dlc = "No Compromise, No Surrender"
+				}
+				add_doctrine_cost_reduction = {
+					name = BEL_resist_and_bite
+					cost_reduction = 0.25
+					uses = 2
+					category = cat_rangers_doctrine
+				}
+				add_tech_bonus = {
+					name = BEL_resist_and_bite
+					bonus = 1
+					uses = 1
+					category = rangers_tech_cat
+				}
+			}
+			ELSE_IF = {
 				limit = {
 					has_dlc = "Arms Against Tyranny"
 				}
@@ -1161,12 +1178,20 @@ focus_tree = {
 					uses = 2
 					category = cat_mountaineers_doctrine
 				}
+				add_tech_bonus = {
+					name = BEL_resist_and_bite
+					bonus = 1
+					uses = 1
+					category = mountaineers_tech
+				}
 			}
-			add_tech_bonus = {
-				name = BEL_resist_and_bite
-				bonus = 0.5
-				uses = 1
-				category = mountaineers_tech
+			ELSE = {
+				add_tech_bonus = {
+					name = BEL_resist_and_bite
+					bonus = 1
+					uses = 1
+					category = mountaineers_tech
+				}
 			}
 		}
 
@@ -1514,6 +1539,16 @@ focus_tree = {
 				category = land_doctrine # optional 
 				# tecnology  = technology_id # optional
 			}
+			add_mastery_bonus = {
+				name = BEL_strategic_doctrine_development
+				bonus = 0.2
+				days = 360
+				folder = land
+			}
+			add_mastery = {
+				amount = 25
+				folder = land
+			}
 		}
 
 	}
@@ -1574,6 +1609,10 @@ focus_tree = {
 				uses = 1
 				category = land_doctrine # optional 
 				# tecnology  = technology_id # optional
+			}
+			add_mastery = {
+				amount = 25
+				folder = land
 			}
 			add_doctrine_cost_reduction = {
 				name = BEL_doctrinal_innovations
@@ -2168,7 +2207,7 @@ focus_tree = {
 
 		relative_position_id = BEL_government_resigns
 
-		search_filters = { FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_COMPLETED_BY_EVENT }
 			
 		x = 2
 		y = 1
@@ -2306,7 +2345,7 @@ focus_tree = {
 
 		relative_position_id = BEL_royal_intervention
 
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_HISTORICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_HISTORICAL FOCUS_FILTER_COMPLETED_BY_EVENT }
 			
 		x = -2
 		y = 1
@@ -2530,11 +2569,19 @@ focus_tree = {
 
 				custom_effect_tooltip = generic_skip_one_line_tt
 
-				create_faction = BEL_benelux_union_faction
+				create_faction_from_template = {
+					template = faction_template_defensive_democratic
+					name = BEL_benelux_union_faction
+					icon = GFX_faction_logo_generic_13
+				}
 			}
 
 			ELSE = {
-				create_faction = BEL_benelux_union_faction
+				create_faction_from_template = {
+					template = faction_template_defensive_democratic
+					name = BEL_benelux_union_faction
+					icon = GFX_faction_logo_generic_13
+				}
 			}
 			
 
@@ -2669,11 +2716,19 @@ focus_tree = {
 
 				custom_effect_tooltip = generic_skip_one_line_tt
 
-				create_faction = BEL_european_union
+				create_faction_from_template = {
+					template = faction_template_european_unity
+					name = BEL_european_union
+					icon = GFX_faction_logo_eu
+				}
 			}
 
 			ELSE = {
-				create_faction = BEL_european_union
+				create_faction_from_template = {
+					template = faction_template_european_unity
+					name = BEL_european_union
+					icon = GFX_faction_logo_eu
+				}
 			}
 
 			custom_effect_tooltip = generic_skip_one_line_tt
@@ -2751,7 +2806,7 @@ focus_tree = {
 
 		mutually_exclusive = { focus = BEL_paul_emile_janson }	
 
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL_CHARACTER }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_COMPLETED_BY_EVENT }
 			
 		x = 3
 		y = 1
@@ -4072,6 +4127,8 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
+		will_lead_to_war_with = FRA
+
 		x = -6
 		y = 1
 	
@@ -4127,7 +4184,11 @@ focus = {
 	
 		completion_reward = {
 			set_rule = { can_create_factions = yes }
-			create_faction = BEL_pride_of_the_golden_lion
+			create_faction_from_template = {
+				template = faction_template_european_dominance
+				name = BEL_pride_of_the_golden_lion
+				icon = GFX_faction_logo_generic_fascist
+			}
 		}
 
 	}
@@ -5338,7 +5399,12 @@ focus = {
 	
 		completion_reward = {
 
-			complete_special_project = sp:sp_land_stronghold_network
+			IF = {
+				limit = {
+					not = { is_special_project_completed = sp:sp_land_stronghold_network }
+				}
+				complete_special_project = sp:sp_land_stronghold_network
+			}
 
 			IF = {
 				limit = {
@@ -5374,7 +5440,7 @@ focus = {
 
 		relative_position_id = BEL_government_resigns	
 
-		search_filters = { FOCUS_FILTER_POLITICAL }		
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_COMPLETED_BY_EVENT }		
 
 		x = 23
 		y = 1
@@ -6110,11 +6176,19 @@ focus = {
 
 				custom_effect_tooltip = generic_skip_one_line_tt
 
-				create_faction = BEL_european_union
+				create_faction_from_template = {
+					template = faction_template_european_unity
+					name = BEL_european_union
+					icon = GFX_faction_logo_eu
+				}
 			}
 
 			ELSE = {
-				create_faction = BEL_european_union
+				create_faction_from_template = {
+					template = faction_template_european_unity
+					name = BEL_european_union
+					icon = GFX_faction_logo_eu
+				}
 			}
 			
 
@@ -7002,18 +7076,30 @@ focus = {
 				}		 
 			}
 			custom_effect_tooltip = generic_skip_one_line_tt
-
+			division_template = {
+				name = "Division d'Infanterie"
+				is_locked = yes
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }	
+				}
+			}
+	
 			IF = {
 				limit = {
 					is_government_in_exile = yes
 				}
 				random_state = {
 					limit = {
-						is_in_home_area = yes
 						OWNER = {
 							is_hosting_exile = ROOT
 							controls_state = PREV
 						}
+						is_in_home_area = yes
 					}
 					create_unit = {
 						division = "name = \"Division d'Infanterie\" division_template = \"Division d'Infanterie\" start_experience_factor = 0.6" 
@@ -7473,7 +7559,11 @@ focus = {
 			34 = {
 				add_resource = {
 					type = steel
-					amount = 120
+					amount = 80
+				}
+				add_resource = {
+					type = coal
+					amount = 180
 				}
 			}
 			add_tech_bonus = {
@@ -8278,6 +8368,16 @@ focus = {
 				uses = 2
 				category = air_doctrine
 			}
+			add_mastery_bonus = {
+				name = BEL_air_doctrine
+				bonus = 0.2
+				days = 360
+				folder = air
+			}
+			add_mastery = {
+				amount = 25
+				folder = air
+			}
 		}
 
 	}
@@ -8606,6 +8706,16 @@ focus = {
 				uses = 2
 				category = naval_doctrine # optional 
 				# tecnology  = technology_id # optional
+			}
+			add_mastery_bonus = {
+				name = BEL_naval_doctrine
+				bonus = 0.2
+				days = 360
+				folder = naval
+			}
+			add_mastery = {
+				amount = 25
+				folder = naval
 			}
 		}
 

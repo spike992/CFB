@@ -6,6 +6,8 @@ autonomy_state = {
 	manpower_influence = 0.2
 	
 	rule = {
+		desc = "RULE_DESC_IS_A_SUBJECT"
+	
 		can_not_declare_war = yes
 		can_decline_call_to_war = no
 		can_be_spymaster = yes
@@ -15,10 +17,19 @@ autonomy_state = {
 		autonomy_manpower_share = 0.0
 		extra_trade_to_overlord_factor = 0.25
 		overlord_trade_cost_factor = -0.25
+		peace_score_ratio_transferred_to_overlord = 0.05
+		lend_lease_tension_with_overlord = -0.1
+		faction_influence_contribution_factor = -0.1
 	}
 	
 	ai_subject_wants_higher = {
 		factor = 0.0
+		modifier = {
+			has_dlc = "Graveyard of Empires"
+			original_tag = RAJ
+			has_completed_focus = RAJ_red_in_the_shadows
+			add = 10
+		}
 	}
 	
 	ai_overlord_wants_lower = {
@@ -34,8 +45,41 @@ autonomy_state = {
 
 		if = {
 			limit = { has_dlc = "Death or Dishonor" }
-			NOT = { has_government = fascism }
-			NOT = { tag = MON }
+			OVERLORD = { NOT = { has_government = fascism } }
+		}
+
+		if = {
+			limit = {
+				has_dlc = "Waking the Tiger"
+			}
+
+			NOT = {
+				AND = {
+					OVERLORD = { has_government = fascism } 
+					OVERLORD = { tag = JAP } 
+				}
+				AND = {
+					OVERLORD = { has_government = neutrality } 
+					OVERLORD = { tag = JAP } 
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				has_dlc = "No Compromise, No Surrender"
+			}
+
+			NOT = {
+				AND = {
+					OVERLORD = { has_government = fascism } 
+					OVERLORD = { tag = CHI } 
+				}
+				AND = {
+					OVERLORD = { has_government = neutrality } 
+					OVERLORD = { tag = CHI } 
+				}
+			}
 		}
 	}
 	
@@ -44,20 +88,69 @@ autonomy_state = {
 			limit = {
 				original_tag = AST
 			}
-			has_completed_focus = AST_adopt_westminster
+			has_completed_focus = AST_announce_elections
 		}
 		if = {
 			limit = {
 				original_tag = RAJ
 			}
-			has_completed_focus = RAJ_start_quit_india_movement
+			if = {
+				limit = {
+					AND = {
+						has_dlc = "Graveyard of Empires"
+						is_using_old_raj = no
+					}
+				}
+				if = {
+					limit = {
+						original_tag = RAJ
+						has_dlc = "Graveyard of Empires"
+						has_completed_focus = RAJ_his_majestys_loyal_government
+					}
+					has_completed_focus = RAJ_the_dominion_of_india
+					has_completed_focus = RAJ_keep_calm_and_carry_on
+					has_completed_focus = RAJ_holding_the_gates_of_india
+				}
+				else_if = {
+					limit = {
+						original_tag = RAJ
+						has_dlc = "Graveyard of Empires"
+						NOT = { has_completed_focus = RAJ_his_majestys_loyal_government }
+					}
+					AND = {
+						OR = {
+							has_completed_focus = RAJ_a_secular_state
+							has_completed_focus = RAJ_united_bengal
+							has_completed_focus = RAJ_eastern_pakistan
+							has_completed_focus = RAJ_red_in_the_shadows
+						}
+						if = {
+							limit = {
+								has_completed_focus = RAJ_united_bengal
+							}
+							430 = { is_fully_controlled_by = RAJ}
+						}
+					}
+				}
+
+			}
+			else = {
+				has_completed_focus = RAJ_quit_india_movement
+			}
+
+			
 		}
 	}
 
 	can_lose_level = {
-		if = {
+		IF = {
 			limit = {
-
+				OVERLORD = { original_tag = BEL } 
+				original_tag = COG
+				has_dlc = "Gotterdammerung"			
+			}
+			NOT = {
+				has_completed_focus = CONGO_dominion_of_congo
 			}
 		}
 	}

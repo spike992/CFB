@@ -88,6 +88,9 @@ script_enum_equipment_stat = {
 	fuel_consumption_factor
 	strategic_attack
 	carrier_size
+	submarine_carrier_size
+	carrier_surface_detection
+	carrier_sub_detection
 	acclimatization_hot_climate_gain_factor			#Cannot be used with MIOS
 	acclimatization_cold_climate_gain_factor		#Cannot be used with MIOS
 	night_penalty				#Cannot be used with MIOS
@@ -129,6 +132,7 @@ script_enum_equipment_category = {
 	ballistic_missile
 	nuclear_missile
 	sam_missile
+	support_ship
 	suicide
 	scout_plane
 	maritime_patrol_plane
@@ -146,6 +150,15 @@ script_enum_equipment_category = {
 }
 
 script_enum_equipment_bonus_type = {
+	## This script enum contains all equipment types that can be used in equipment_bonus
+	## or in game/common/military_industrial_organization scripts.
+
+	## This list contains either equipment category (see script_enum_equipment_category above)
+	## or equipment archetypes & types defined in game/common/units/equipments
+
+	## This enum should be updated every time either of those is updated
+	## (there will be a log error at startup as a reminder)
+
 	# category_strat_bomber
 	# category_tac_bomber
 	# category_nav_bomber
@@ -207,6 +220,7 @@ script_enum_equipment_bonus_type = {
 	ballistic_missile
 	nuclear_missile
 	sam_missile
+	support_ship
 	suicide
 	scout_plane
 	maritime_patrol_plane
@@ -246,7 +260,7 @@ script_enum_equipment_bonus_type = {
 	infantry_equipment
 	squad_equipment
 	radio_equipment
-	horse_equipment
+	#horse_equipment
 	support_equipment
 	sf_equipment
 	artillery_equipment
@@ -302,6 +316,12 @@ script_enum_equipment_bonus_type = {
 	nuclear_missile_equipment_2
 	sam_missile_equipment
 	sam_missile_equipment_1
+	support_ship_hull
+	support_ship_1
+	support_ship_2
+	repair_ship_hull
+	repair_ship_1
+	repair_ship_2
 	infantry_equipment_0
 	infantry_equipment_1
 	infantry_equipment_2
@@ -356,12 +376,14 @@ script_enum_equipment_bonus_type = {
 	ship_hull_carrier_modern
 	ship_hull_carrier_conversion_bb
 	ship_hull_carrier_conversion_ca
+	ship_hull_escort_carrier
 	carrier_1
 	carrier_2
 	carrier_3
 	carrier_4
 	modern_carrier
 	mega_carrier
+	escort_carrier
 	ship_hull_cruiser
 	light_cruiser
 	ship_hull_cruiser_1
@@ -414,6 +436,7 @@ script_enum_equipment_bonus_type = {
 	ship_hull_submarine_2
 	ship_hull_submarine_3
 	ship_hull_submarine_4
+	ship_hull_carrier_submarine
 	cruiser_submarine
 	fleet_submarine
 	midget_submarine
@@ -796,6 +819,7 @@ script_enum_equipment_bonus_type = {
 	# armored_car_assault_gun_chassisarmored_car_chassis_2
 	#armored_car_chassis_4
 	dp_artillery_equipment
+	dp_artillery_equipment_1
 	dp_artillery_equipment_2
 	pack_artillery_equipment_1
 	pack_artillery_equipment_2
@@ -813,7 +837,7 @@ script_enum_equipment_bonus_type = {
 	squad_equipment_1
 	squad_equipment_2
 	squad_equipment_3
-	horse_equipment_0
+	#horse_equipment_0
 	sf_equipment_0
 	radio_equipment_0
 	railway_gun_equipment_2

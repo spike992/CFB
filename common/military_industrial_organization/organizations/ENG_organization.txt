@@ -11,6 +11,7 @@ ENG_vickers_armstrong_eng_organization = {
 	include = generic_medium_tank_organization
 	icon = GFX_idea_vickers_armstrong_eng
 	
+	
 	allowed = {	
 		OR = {
 			tag = ENG
@@ -300,6 +301,7 @@ ENG_cammell_laird_organization = {
 		has_dlc = "Arms Against Tyranny"
 		OR = {
 			tag = ENG
+			tag = CAN # Mod
 			AND = {
 				tag = BRA
 				has_dlc = "Trial of Allegiance"
@@ -323,6 +325,10 @@ ENG_cammell_laird_organization = {
 					has_country_flag = has_cammell_laird_mio_flag
 				}
 			}
+		}
+		IF = {
+			limit = { FROM = { original_tag = CAN } }
+			FROM = { has_completed_focus = CAN_battleship_primacy }
 		}
 	}
 		
@@ -548,7 +554,7 @@ ENG_supermarine_organization = {
 		any_parent = { generic_mio_trait_cantilever_wing_structure }
 
 		equipment_bonus = {
-			air_defence = 0.1	
+			air_defence = 0.05	
 		}
 	}
 
@@ -564,7 +570,7 @@ ENG_supermarine_organization = {
 		all_parents = { generic_mio_trait_fuel_injection_engines generic_mio_trait_high_octane_fuels }
 
 		equipment_bonus = {
-			air_defence = 0.1	
+			air_defence = 0.05
 		}
 	}
 

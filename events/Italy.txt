@@ -37,6 +37,7 @@ country_event = {
 	
 	option = {
 		name = italy.1.a
+
 		annex_country = { target = ALB }
 		add_named_threat = { threat = 2 name = ITA_albania_war_goal }
 		USA = {
@@ -62,7 +63,7 @@ country_event = {
 		create_wargoal = {
 			type = take_state_focus
 			target = ALB
-			generator = { 44 }
+			generator = { 44 805 }
 		}
 		hidden_effect = {
 			country_event = { days = 1 id = news.23 }
@@ -101,8 +102,12 @@ country_event = {
 				factor = 0.5
 				OR = {
 					has_government = communism
-					has_government = fascism #glorious Albania will never yield!
+					has_government = fascism #glorious Albania will never yield! #Actually, there is nothing glorious to be found in fascism ;)
 				}
+			}
+			modifier = {
+				factor = 5
+				is_subject_of = FROM
 			}
 		}
 		ITA = {
@@ -118,20 +123,30 @@ country_event = {
 				factor = 0
 				OR = {
 					AND = {
-						is_in_faction_with = ITA
-						ITA = { is_faction_leader = yes }
+						is_in_faction_with = FROM
+						FROM = { is_faction_leader = yes }
 					}
 					is_historical_focus_on = yes
 					AND = {
 						is_in_faction = no 
 						NOT = {
 							any_other_country = {
-								NOT = { tag = ITA }
-								has_guaranteed = ALB
+								NOT = { tag = FROM }
+								has_guaranteed = ROOT
 							} 
 						}
 					}
 				}
+			}
+			modifier = {
+				add = 100
+				is_in_faction = yes
+				NOT = { is_in_faction_with = FROM }
+			}
+			modifier = {
+				add = 100
+				is_subject = yes
+				NOT = { is_subject_of = FROM }
 			}
 		}
 		ITA = {
@@ -213,11 +228,13 @@ country_event = {
 		}
 		# REVISIT Balance research bonus, also in event below
 		add_tech_bonus = {
+			name = mountaineers2_bonus
 			bonus = 1.0
 			uses = 1
 			technology = tech_mountaineers2
 		}
 		add_doctrine_cost_reduction = {
+			name = naval_doc_bonus
 			cost_reduction = 0.50
 			uses = 2
 			category = naval_doctrine
@@ -341,7 +358,7 @@ country_event = {
 	
 	option = {
 		name = italy.9.a
-		country_event = { id = italy.10 }
+		ITA = { country_event = { id = italy.10 } }
 		effect_tooltip = {
 			ITA = { transfer_state = 177 }
 			remove_opinion_modifier = { target = ITA modifier = ita_supported_spain_civil_war }
@@ -354,7 +371,7 @@ country_event = {
 	option = {
 		name = italy.9.b
 		ai_chance = { factor = 0 }
-		country_event = { id = italy.11 }
+		ITA = { country_event = { id = italy.11 } }
 		effect_tooltip = {
 			ITA = { add_state_claim = 177 }
 		}
@@ -373,7 +390,12 @@ country_event = {
 	option = {
 		name = italy.10.a
 		ITA = { transfer_state = 177 }
-		remove_opinion_modifier = { target = ITA modifier = ita_supported_spain_civil_war }
+		FROM = {
+			if = {
+				limit = { has_opinion_modifier = ita_supported_spain_civil_war }
+				remove_opinion_modifier = { target = ITA modifier = ita_supported_spain_civil_war }
+			}
+		}
 	}
 }
 
@@ -397,7 +419,7 @@ country_event = {
 	id = italy.12
 	title = italy.12.t
 	desc = italy.12.d
-	picture = GFX_report_event_hitler_croatia_handshake
+	picture = GFX_report_event_generic_croatia_handshake
 
 	is_triggered_only = yes
 	
@@ -458,7 +480,7 @@ country_event = {
 	}
 }
 
-# Italy (First Ljubljana Award) from german focus
+# Italy (First Ljubljana Award) from German focus
 country_event = {
 	id = italy.13
 	title = italy.13.t
@@ -497,7 +519,15 @@ country_event = {
 		if = {
 			limit = { owns_state = 44 }
 			ITA = { transfer_state = 105 }
-		}		
+		}
+		if = {
+			limit = { owns_state = 44 }
+			ITA = { transfer_state = 802 }
+		}
+		if = {
+			limit = { owns_state = 44 }
+			ITA = { transfer_state = 970 }
+		}
 	}
 }
 
@@ -599,7 +629,6 @@ country_event = {
 		ai_chance = {
 			base = 100
 		}
-		ITA = { news_event = italy.5001 }
 	}
 	
 	option = {
@@ -608,35 +637,6 @@ country_event = {
 		ai_chance = {
 			base = 0
 		}
-		ITA = { news_event = italy.5002 }
-	}
-}
-
-country_event = {
-	id = italy.5001
-	title = italy.5001.t
-	desc = italy.5001.d
- 
-	picture = GFX_report_event_generic_sign_treaty1
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = italy.5001.a
-	}
-}
-
-country_event = {
-	id = italy.5002
-	title = italy.5002.t
-	desc = italy.5002.d
- 
-	picture = GFX_report_event_generic_sign_treaty1
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = italy.5002.a
 	}
 }
 
@@ -669,7 +669,6 @@ country_event = {
 		ai_chance = {
 			base = 100
 		}
-		ITA = { news_event = italy.5011 }
 	}
 	
 	option = {
@@ -678,35 +677,6 @@ country_event = {
 		ai_chance = {
 			base = 0
 		}
-		ITA = { news_event = italy.5012 }
-	}
-}
-
-country_event = {
-	id = italy.5011
-	title = italy.5011.t
-	desc = italy.5011.d
- 
-	picture = GFX_report_event_generic_sign_treaty1
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = italy.5011.a
-	}
-}
-
-country_event = {
-	id = italy.5012
-	title = italy.5012.t
-	desc = italy.5012.d
- 
-	picture = GFX_report_event_generic_sign_treaty1
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = italy.5012.a
 	}
 }
 

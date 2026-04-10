@@ -656,13 +656,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			add_tech_bonus = {
@@ -704,13 +700,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			if = {
@@ -761,13 +753,9 @@
 		}
 		search_filters = {FOCUS_FILTER_WAR_SUPPORT}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 
@@ -796,6 +784,9 @@
 		x = -5
 		y = 1
 		relative_position_id = SWI_armed_neutrality
+		
+		cancel_if_invalid = no
+		
 		prerequisite = { focus = SWI_armed_neutrality }
 		mutually_exclusive = { focus = SWI_frontier_defense_plan }
 		cost = 10
@@ -809,10 +800,10 @@
 		}
 	
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
-			}					
+				value > 0
+			}
 		}
 	
 		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_SWI_MILITARY_READINESS} 
@@ -844,10 +835,10 @@
 		}
 	
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
-			}			
+				value > 0
+			}		
 		}
 	
 		search_filters = { FOCUS_FILTER_INDUSTRY } 
@@ -927,10 +918,11 @@
 		}
 	
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
-			}			
+				value > 0
+			}
+			NOT = { has_country_flag = SWI_militias_turned_into_regulars }			
 		}
 	
 		search_filters = { FOCUS_FILTER_SWI_MILITARY_READINESS } 
@@ -967,10 +959,10 @@
 		}
 	
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
-			}			
+				value > 0
+			}		
 		}
 	
 		search_filters = {  } 
@@ -1010,10 +1002,10 @@
 		}
 	
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
-			}			
+				value > 0
+			}		
 		}
 	
 		search_filters = { FOCUS_FILTER_INDUSTRY } 
@@ -1050,10 +1042,10 @@
 		}
 	
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
-			}			
+				value > 0
+			}		
 		}
 	
 		search_filters = { FOCUS_FILTER_INDUSTRY } 
@@ -1154,10 +1146,10 @@
 		}
 	
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
-			}				
+				value > 0
+			}			
 		}
 	
 		search_filters = {  } 
@@ -1181,7 +1173,7 @@
 		relative_position_id = SWI_armed_neutrality
 		prerequisite = { focus = SWI_armed_neutrality }
 		mutually_exclusive = { focus = SWI_promote_guisan }
-		cost = 10
+		cost = 5
 	
 		ai_will_do = {
 			factor = 10
@@ -1192,12 +1184,14 @@
 		}
 	
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
-			}			
+				value > 0
+			}		
 		}
-	
+		
+		cancel_if_invalid = no
+			
 		search_filters = {  } 
 
 		completion_reward = {
@@ -1229,23 +1223,20 @@
 		}
 
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
+			NOT = { has_country_flag = SWI_militias_turned_into_regulars }
 		}
 		
 		bypass = {
 
 		}
 		search_filters = {FOCUS_FILTER_SWI_MILITARY_READINESS}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			swap_ideas = {
@@ -1280,9 +1271,9 @@
 		}
 
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
 		}
 		
@@ -1290,13 +1281,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			swap_ideas = {
@@ -1326,9 +1313,9 @@
 		}
 
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
 		}
 		
@@ -1336,13 +1323,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			845 = { # Jura Mountains
@@ -1398,23 +1381,20 @@
 		}
 
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
+			NOT = { has_country_flag = SWI_militias_turned_into_regulars }
 		}
 		
 		bypass = {
 
 		}
 		search_filters = {FOCUS_FILTER_SWI_MILITARY_READINESS}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			add_to_variable = {
@@ -1445,9 +1425,9 @@
 		}
 
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
 		}
 		
@@ -1455,13 +1435,9 @@
 
 		}
 		search_filters = {FOCUS_FILTER_SWI_MILITARY_READINESS}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			SWI_upgrade_template_and_divisions = yes 
@@ -1491,14 +1467,15 @@
 		}
 
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
 			any_other_country = {
 				SWI_is_country_to_balance = yes
 				has_war = yes 
 			}
+			NOT = { has_country_flag = SWI_militias_turned_into_regulars }
 		}
 		
 		bypass = {
@@ -1507,13 +1484,9 @@
 
 		search_filters = { FOCUS_FILTER_MANPOWER} 
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			add_manpower = 30000 
@@ -1540,9 +1513,9 @@
 		}
 
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
 		}
 		
@@ -1551,13 +1524,9 @@
 		}
 
 		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY FOCUS_FILTER_SWI_MILITARY_READINESS} 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			add_manpower = 30000 
@@ -1609,20 +1578,19 @@
 			is_power_balance_in_range = {
 				id = SWI_centralization_bop
 				range = SWI_centralization_bop_fully_cantons
-			}	
+			}
+			NOT = {	has_country_flag = SWI_militias_turned_into_regulars }	
 		}
+		
+		cancel_if_invalid = no
+		
 		
 		bypass = {
 
 		}
 		search_filters = { FOCUS_FILTER_MANPOWER}
-		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			swap_ideas = {
@@ -1663,7 +1631,7 @@
 		}
 		search_filters = { FOCUS_FILTER_ARMY_XP}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
 
@@ -1725,19 +1693,16 @@
 				id = SWI_centralization_bop
 				range = SWI_centralization_bop_fully_cantons
 			}
+			NOT = { has_country_flag = SWI_militias_turned_into_regulars }
 		}
 		
 		bypass = {
 
 		}
 		search_filters = {FOCUS_FILTER_SWI_MILITARY_READINESS}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			# custom_effect_tooltip = SWI_create_anti_tank_template_TT
@@ -1795,23 +1760,20 @@
 				id = SWI_centralization_bop
 				range = SWI_centralization_bop_fully_cantons
 			}
+			NOT = { has_country_flag = SWI_militias_turned_into_regulars }
 		}
 		
 		bypass = {
 
 		}
 		search_filters = {FOCUS_FILTER_MANPOWER}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
 
-		complete_tooltip = {
-
-		}
-
 		completion_reward = {
 			add_ideas = {
-				SWI_increased_training_age
+				SWI_reduced_training_age
 			}
 			SWI_add_suspicious_prep_opinion = yes 		 
 		}
@@ -1841,19 +1803,16 @@
 				id = SWI_centralization_bop
 				range = SWI_centralization_bop_fully_cantons
 			}
+			NOT = { has_country_flag = SWI_militias_turned_into_regulars }
 		}
 		
 		bypass = {
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			every_owned_state = {
@@ -1897,13 +1856,9 @@
 
 		}
 		search_filters = {FOCUS_FILTER_INDUSTRY}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			151 = { #Eastern Swiss Alps
@@ -1912,7 +1867,6 @@
 						free_building_slots = {
 							building = infrastructure 
 							size > 0
-							include_locked = no
 						}
 					}
 					add_building_construction = {
@@ -1928,7 +1882,6 @@
 						free_building_slots = {
 							building = infrastructure 
 							size > 0
-							include_locked = no
 						}
 					}
 					add_building_construction = {
@@ -1944,7 +1897,6 @@
 						free_building_slots = {
 							building = infrastructure 
 							size > 0
-							include_locked = no
 						}
 					}
 					add_building_construction = {
@@ -2021,13 +1973,9 @@
 
 		}
 		search_filters = {FOCUS_FILTER_INDUSTRY}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			846 = { #Ticino
@@ -2088,13 +2036,9 @@
 
 		}
 		search_filters = {FOCUS_FILTER_INDUSTRY}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			847 = { #Western Swiss Alps (St Maurice)
@@ -2183,13 +2127,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			add_ideas = { SWI_expanded_special_forces }
@@ -2209,7 +2149,7 @@
 		y = 1
 		relative_position_id = SWI_fortify_border_with_france
 
-		cost = 10
+		cost = 5
 
 		ai_will_do = {
 			factor = 1
@@ -2224,19 +2164,18 @@
 				id = SWI_centralization_bop
 				range < SWI_centralization_bop_fully_cantons  
 			}
+			has_country_flag = SWI_viable_fascist_in_europe
 		}
 		
 		bypass = {
-
+			NOT = {
+				has_country_flag = SWI_viable_fascist_in_europe
+			}
 		}
 
-		cancel_if_invalid = yes
-		continue_if_invalid = no
+		cancel_if_invalid = no
+		continue_if_invalid = yes
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 
@@ -2312,13 +2251,9 @@
 
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
-		cancel_if_invalid = yes
-		continue_if_invalid = no
+		cancel_if_invalid = no
+		continue_if_invalid = yes
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			add_ideas = { SWI_communist_party_banned_idea }
@@ -2334,23 +2269,28 @@
 						modifier = SWI_banned_countrys_ideology
 					}
 				}
-				every_other_country = {
+				if = {
 					limit = {
-						SWI_is_country_to_balance = yes
+						has_start_date < 1936.01.02
 					}
-					if = {
+					every_other_country = {
 						limit = {
-							has_government = communism 
+							SWI_is_country_to_balance = yes
 						}
-						add_opinion_modifier = {
-							target = ROOT 
-							modifier = SWI_banned_countrys_ideology					
+						if = {
+							limit = {
+								has_government = communism 
+							}
+							add_opinion_modifier = {
+								target = ROOT 
+								modifier = SWI_banned_countrys_ideology					
+							}
 						}
-					}
-					else = {
-						add_opinion_modifier = {
-							target = ROOT 
-							modifier = SWI_banned_communism_good
+						else = {
+							add_opinion_modifier = {
+								target = ROOT 
+								modifier = SWI_banned_communism_good
+							}
 						}
 					}
 				}
@@ -2385,16 +2325,12 @@
 		}
 		
 		bypass = {
-
+			has_global_flag = LoN_disbanded_flag
 		}
 
-		cancel_if_invalid = yes
-		continue_if_invalid = no
+		cancel_if_invalid = no
+		continue_if_invalid = yes
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			every_other_country = {
@@ -2453,13 +2389,9 @@
 
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
-		cancel_if_invalid = yes
-		continue_if_invalid = no
+		cancel_if_invalid = no
+		continue_if_invalid = yes
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 
@@ -2527,13 +2459,9 @@
 
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 
@@ -2577,7 +2505,7 @@
 		y = 1
 		relative_position_id = SWI_withdraw_from_the_league_of_nations
 
-		cost = 10
+		cost = 5
 
 		ai_will_do = {
 			factor = 1
@@ -2597,20 +2525,23 @@
 					target = ROOT 
 					value > 29
 				}
+				NOT = {
+					has_war_with = ROOT 
+				}
 			}
 		}
 		
 		bypass = {
-
+			GER = {
+				NOT = {
+					has_government = fascism
+				}
+			}
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
-		cancel_if_invalid = yes
-		continue_if_invalid = no
+		cancel_if_invalid = no
+		continue_if_invalid = yes
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 
@@ -2649,13 +2580,9 @@
 
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
-		cancel_if_invalid = yes
-		continue_if_invalid = no
+		cancel_if_invalid = no
+		continue_if_invalid = yes
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			unlock_decision_tooltip = {
@@ -2708,6 +2635,9 @@
 				range > SWI_centralization_bop_very_council
 			}			
 		}
+		
+		cancel_if_invalid = no
+		
 	
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_BALANCE_OF_POWER } 
 
@@ -2761,9 +2691,9 @@
 		}
 
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
 		}
 		
@@ -2771,13 +2701,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			if = {
@@ -2803,7 +2729,7 @@
 				}
 				create_operative_leader = {
 					name = "Rudolf Roessler"
-					GFX = GFX_portrait_SWI_franz_riedweg
+					GFX = GFX_portrait_SWI_rudolf_roessler
 					traits = { operative_infiltrator  }
 					bypass_recruitment = no
 					available_to_spy_master = yes
@@ -2834,9 +2760,9 @@
 		}
 
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
 		}
 		
@@ -2844,16 +2770,12 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
 		search_filters = {FOCUS_FILTER_INDUSTRY FOCUS_FILTER_POLITICAL}
-		complete_tooltip = {
-
-		}
-
+		
 		completion_reward = {
-			
 			add_ideas = { SWI_pro_helvetia_idea }
 			SWI_min_mr_low_reduction = yes
 		}
@@ -2874,9 +2796,9 @@
 		}
 
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
 			has_tech = tech_field_hospital
 		}
@@ -2885,13 +2807,9 @@
 
 		}
 		search_filters = {FOCUS_FILTER_RESEARCH FOCUS_FILTER_MANPOWER}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			add_tech_bonus = {
@@ -2934,9 +2852,9 @@
 		}
 
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
 		}
 		
@@ -2944,13 +2862,9 @@
 
 		}
 		search_filters = {FOCUS_FILTER_BALANCE_OF_POWER}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			add_power_balance_value = {
@@ -3006,9 +2920,9 @@
 		}
 
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
 		}
 		
@@ -3016,13 +2930,9 @@
 
 		}
 		search_filters = {FOCUS_FILTER_MANPOWER FOCUS_FILTER_SWI_MILITARY_READINESS}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			add_manpower = 20000 
@@ -3053,9 +2963,9 @@
 		}
 
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
 		}
 		
@@ -3063,13 +2973,9 @@
 
 		}
 		search_filters = {FOCUS_FILTER_MANPOWER FOCUS_FILTER_SWI_MILITARY_READINESS}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			SWI_mr_medium_increase = yes
@@ -3095,9 +3001,9 @@
 		}
 
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
 		}
 		
@@ -3105,13 +3011,9 @@
 
 		}
 		search_filters = {FOCUS_FILTER_SWI_MILITARY_READINESS}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			every_owned_state = {
@@ -3147,23 +3049,20 @@
 		}
 
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
+			NOT = { has_country_flag = SWI_militias_turned_into_regulars }
 		}
 		
 		bypass = {
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			every_owned_state = {
@@ -3197,25 +3096,22 @@
 		}
 
 		available = {
-			has_tech = radio_detection
+			is_special_project_completed = sp:sp_air_radar
 			#has_tech = interwar_antiair
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
+			NOT = { has_country_flag = SWI_militias_turned_into_regulars }
 		}
 		
 		bypass = {
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			847 = {
@@ -3282,9 +3178,9 @@
 		}
 
 		available = {
-			is_power_balance_side_active = {
+			power_balance_value = {
 				id = SWI_centralization_bop
-				side = SWI_centralization_bop_canton
+				value > 0
 			}
 		}
 		
@@ -3292,13 +3188,9 @@
 
 		}
 		search_filters = {FOCUS_FILTER_MANPOWER}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			add_ideas = {
@@ -3311,7 +3203,7 @@
 	
 	focus = {
 		id = SWI_spirit_of_resistance 
-		icon = GFX_focus_generic_the_giant_wakes
+		icon = GFX_focus_SWI_spirit_of_resistance
 		prerequisite = { focus = SWI_luftschutz }
 		prerequisite = { focus = SWI_ortswehren }
 		x = 1
@@ -3332,13 +3224,9 @@
 
 		}
 		search_filters = {FOCUS_FILTER_STABILITY FOCUS_FILTER_INDUSTRY FOCUS_FILTER_SWI_MILITARY_READINESS}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			add_ideas = { SWI_spirit_of_resistance_idea }
@@ -3397,7 +3285,7 @@
 		}
 
 		available = {
-			democratic > 0.70
+			democratic > 0.65
 			is_power_balance_in_range = {
 				id = SWI_centralization_bop
 				range < SWI_centralization_bop_fully_cantons
@@ -3411,10 +3299,6 @@
 		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			hidden_effect = {
@@ -3449,7 +3333,9 @@
 				has_tech = iw_small_airframe
 				NOT = { has_war_with = ROOT }
 			}
-		}
+		}		
+		
+		cancel_if_invalid = no
 		
 		bypass = {
 			NOT = {
@@ -3532,13 +3418,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			if = {
@@ -3629,13 +3511,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			151 = {
@@ -3693,13 +3571,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			SWI_find_best_democratic_ally = yes 
@@ -3738,13 +3612,9 @@
 
 		}
 		search_filters = {FOCUS_FILTER_ANNEXATION}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			unlock_decision_tooltip = { decision = SWI_case_north_decision show_effect_tooltip = yes}
@@ -3786,13 +3656,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			SWI_find_biggest_fascist_neighbor = yes 
@@ -3841,13 +3707,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			unlock_decision_tooltip = { 
@@ -3888,13 +3750,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			every_other_country = {
@@ -4028,13 +3886,9 @@
 			}
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			add_popularity = {
@@ -4087,19 +3941,19 @@
 		}
 		
 		bypass = {
-
+			or = {
+				has_war = yes 
+				is_in_faction = yes 
+			}
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
 
-		complete_tooltip = {
-
-		}
-
 		completion_reward = {
 			add_political_power = 100
+			custom_effect_tooltip = SWI_neutrality_decisions_disabled_TT
 			remove_ideas = { SWI_swiss_neutrality }
 
 			custom_effect_tooltip = SWI_oasis_of_democracy_tt
@@ -4144,16 +3998,12 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
 		search_filters = { FOCUS_FILTER_POLITICAL}
-		complete_tooltip = {
-
-		}
-
+		
 		completion_reward = {
-			remove_ideas = { SWI_swiss_neutrality }
 			FRA = {
 				puppet = PREV	
 			}						
@@ -4184,13 +4034,9 @@
 
 		}
 		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_POLITICAL}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			FRA = {
@@ -4229,13 +4075,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			every_state = {
@@ -4270,6 +4112,7 @@
 						transfer_state_to = ROOT  
 					}
 				}
+				custom_effect_tooltip = SWI_size_and_opinion_chance_tooltip
 			}
 		}
 	}
@@ -4307,13 +4150,9 @@
 
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			
@@ -4421,13 +4260,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			unlock_decision_tooltip = SWI_offer_intel_support
@@ -4466,13 +4301,9 @@
 
 		}
 		search_filters = {FOCUS_FILTER_POLITICAL}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			if = {
@@ -4523,13 +4354,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			add_political_power = 100
@@ -4582,13 +4409,9 @@
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			SWI_find_best_democratic_ally = yes
@@ -4650,13 +4473,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 
@@ -4702,13 +4521,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			set_rule = { can_send_volunteers = yes }
@@ -4742,13 +4557,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			if = {
@@ -4786,13 +4597,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			build_railway = {
@@ -4857,13 +4664,9 @@
 
 		}
 		search_filters =  {FOCUS_FILTER_INDUSTRY}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			847 = { # Eastern Swiss Alps 
@@ -4946,13 +4749,9 @@
 
 		}
 		search_filters =  {FOCUS_FILTER_RESEARCH FOCUS_FILTER_ARMY_XP}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			army_experience = 100 
@@ -4991,13 +4790,9 @@
 
 		}
 		search_filters =  {FOCUS_FILTER_RESEARCH FOCUS_FILTER_ARMY_XP}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			army_experience = 100 
@@ -5049,13 +4844,9 @@
 
 		}
 		search_filters =  {FOCUS_FILTER_RESEARCH FOCUS_FILTER_AIR_XP}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			air_experience = 150 
@@ -5102,28 +4893,24 @@
 
 		}
 		search_filters =  {FOCUS_FILTER_RESEARCH}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
 
-		complete_tooltip = {
-
-		}
-
 		completion_reward = {
 			add_research_slot = 1
+
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 0.75
+			}
+			
 			add_tech_bonus = {
 				name = SWI_weapons_of_democracy
-				bonus = 2
+				bonus = 0.5 # was 1
 				uses = 1
 				category = nuclear  
-			}
-			add_tech_bonus = {
-				name = SWI_weapons_of_democracy
-				ahead_reduction = 1
-				uses = 2 
-				category = nuclear
-			} 			
+			}			
 		}
 	}
 
@@ -5154,15 +4941,12 @@
 
 		}
 		search_filters = {FOCUS_FILTER_MANPOWER FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_INDUSTRY FOCUS_FILTER_SWI_MILITARY_READINESS}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
 
-		complete_tooltip = {
-
-		}
-
 		completion_reward = {
+			custom_effect_tooltip = SWI_neutrality_decisions_disabled_TT
 			remove_ideas = { SWI_swiss_neutrality }
 			SWI_remove_militia_recruitment_law = yes 
 			SWI_turn_militias_into_regulars = yes
@@ -5208,13 +4992,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			faction_leader = {
@@ -5256,13 +5036,9 @@
 
 		}
 
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			SWI_turn_into_alpine = yes
@@ -5274,6 +5050,7 @@
 				OVERLORD = {
 					country_event = { id = BBA_swiss_expansion.16 hours = 5 }
 				}
+				custom_effect_tooltip =  SWI_the_alpine_confederation_chance_TT
 			}
 		}
 	}
@@ -5338,13 +5115,8 @@
 
 		}
 		search_filters = {FOCUS_FILTER_MANPOWER FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_INDUSTRY}
-		cancel_if_invalid = yes
-		continue_if_invalid = no
+		cancel_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			SWI_make_helvetia_aggressive = yes
@@ -5392,13 +5164,10 @@
 			AUS = {	exists = no }
 		}
 		search_filters = {FOCUS_FILTER_ANNEXATION}
-		cancel_if_invalid = yes
-		continue_if_invalid = no
+		
+		cancel_if_invalid = no
+		
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			set_country_flag = SWI_requested_vorarlberg
@@ -5473,13 +5242,9 @@
 
 		}
 		search_filters = {FOCUS_FILTER_MANPOWER FOCUS_FILTER_INDUSTRY}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			add_manpower = 1000
@@ -5534,23 +5299,26 @@
 		available = {
 			democratic < 0.70
 			fascism < 0.15
-			AUS = {	exists = yes }
+			AUS = {
+				exists = yes 
+				is_subject = no
+			}
 			SWI_is_fully_centralized = yes 
+
 		}
 		
 		bypass = {
 			AUS = {
-				exists = no 
+				OR = {
+					exists = no 
+					is_subject = yes
+				}
 			}
 		}
 		search_filters = {FOCUS_FILTER_ANNEXATION}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
-
-		complete_tooltip = {
-
-		}
 
 		completion_reward = {
 			every_state = {
@@ -5601,7 +5369,7 @@
 
 		}
 		search_filters = {FOCUS_FILTER_ANNEXATION}
-		cancel_if_invalid = yes
+		cancel_if_invalid = no
 		continue_if_invalid = no
 		available_if_capitulated = no
 
@@ -6336,7 +6104,7 @@
 	}
 
 	focus = {
-	id = SWI_switzerland_on_the_offense
+		id = SWI_switzerland_on_the_offense
 		icon = GFX_focus_SWI_neutrality_on_the_move
 		prerequisite = { focus = SWI_gotthard_union }
 		mutually_exclusive = { focus = SWI_neutral_entente }
@@ -6421,7 +6189,11 @@
 		}
 
 		completion_reward = {
-			create_faction = SWI_neutral_entente_faction
+			create_faction_from_template = {
+				template = faction_template_industrial_focus
+				name = SWI_neutral_entente_faction
+				icon = GFX_faction_logo_generic_democratic
+			}
 			unlock_decision_tooltip =  SWI_invite_to_entente
 		}
 	}
@@ -7282,18 +7054,18 @@
 						cost_factor = 0.1
 					}
 				}
-				else_if = {
-					limit = {
-						has_tech = basic_small_airframe
-					}
-					create_production_license = {
-						target = ROOT
-						equipment = {
-							type = small_plane_cas_airframe_1
-						}
-						cost_factor = 0.1
-					}
-				}
+				# else_if = {
+				# 	limit = {
+				# 		has_tech = basic_small_airframe
+				# 	}
+				# 	create_production_license = {
+				# 		target = ROOT
+				# 		equipment = {
+				# 			type = small_plane_cas_airframe_1
+				# 		}
+				# 		cost_factor = 0.1
+				# 	}
+				# }
 				if = {
 					limit = {
 						has_tech = advanced_small_airframe
@@ -9328,7 +9100,7 @@ focus = {
 				id = SWI_centralization_bop
 				range < SWI_centralization_bop_balanced  
 			}
-			# has_tech = paratroopers
+			has_tech = paratroopers
 			has_tech = tech_mountaineers
 		}
 		
@@ -9363,18 +9135,18 @@ focus = {
 				uses = 1 
 				category = mountaineers_tech
 			}
-			# add_tech_bonus = {
-			# 	name = SWI_mountaneer_paratroopers
-			# 	ahead_reduction = 2
-			# 	uses = 1 
-			# 	category = para_tech
-			# }
-			# add_tech_bonus = {
-			# 	name = SWI_mountaneer_paratroopers				
-			# 	bonus = 1
-			# 	uses = 2
-			# 	category = para_tech
-			# }
+			add_tech_bonus = {
+				name = SWI_mountaneer_paratroopers
+				ahead_reduction = 2
+				uses = 1 
+				category = para_tech
+			}
+			add_tech_bonus = {
+				name = SWI_mountaneer_paratroopers				
+				bonus = 1
+				uses = 2
+				category = para_tech
+			}
 			add_ideas = { SWI_mountaineer_paratroopers_idea } 
 		}
 	}

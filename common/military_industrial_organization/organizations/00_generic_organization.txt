@@ -92,6 +92,15 @@ generic_tank_organization = {
 				has_dlc = "Graveyard of Empires"
 			}
 		}
+		NOT = {
+			AND = {
+#				OR = {
+					original_tag = PHI
+#				}
+				has_dlc = "No Compromise, No Surrender"
+				
+			}
+		}		
 	}
 
 	equipment_type = { mio_cat_eq_all_light_tank mio_cat_eq_all_medium_tank }
@@ -452,9 +461,9 @@ generic_infantry_tank_organization = {
 		any_parent = { generic_mio_trait_battle_tank_specifications }
 
 		equipment_bonus = {
-			soft_attack = 0.04
-			hard_attack = 0.04
-			ap_attack = 0.04
+			soft_attack = 0.03
+			hard_attack = 0.03
+			ap_attack = 0.03
 		}
 	}
 
@@ -488,7 +497,7 @@ generic_infantry_tank_organization = {
 		mutually_exclusive = { generic_mio_trait_anti_tank_role }
 		
 		equipment_bonus = {
-			soft_attack = 0.1
+			soft_attack = 0.05
 		}
 	}
 
@@ -3808,7 +3817,7 @@ generic_pmfu_variant_tank_organization = {
 #TASK FORCE MANUFACTURER - Based on Harland & Wolff (ENG)
 generic_task_force_ship_organization = {
 	icon = GFX_idea_generic_naval_manufacturer_1
-	task_capacity = 10
+	#task_capacity = 10
 
 	allowed = {
 		always = no # Archetype only - countries using it have their own verisons
@@ -4069,7 +4078,7 @@ generic_task_force_ship_organization = {
 #BATTLE LINE SHIP MANUFACTURER - Based on Cammell Laird (ENG)
 generic_battle_line_ship_organization = {
 	icon = GFX_idea_generic_naval_manufacturer_2
-	task_capacity = 10
+	#task_capacity = 10
 
 	allowed = {
 		always = no # Archetype only - countries using it have their own verisons
@@ -4349,14 +4358,14 @@ generic_battle_line_ship_organization = {
 #ESCORT FLEET MANUFACTURER - Based on Yarrow Shipbuilders (ENG)
 generic_escort_ship_organization = {
 	icon = GFX_idea_generic_naval_manufacturer_1
-	task_capacity = 25
+	#task_capacity = 25
 
 	allowed = {
 		NOT = { OR = { original_tag = GER tag = ENG tag = SOV tag = FRA tag = ITA tag = JAP tag = USA tag = BEL tag = CAN tag = SWE tag = HUN tag = CZE tag = ROM tag = YUG tag = POR tag = GRE tag = TUR tag = LAT tag = EST } }
 		NOT = { OR = { tag = SPR tag = SPA tag = SPB tag = SPC tag = SPD } }
 		NOT = {
 			AND = {
-				tag = POL
+				original_tag = POL
 				OR = {
 					has_dlc = "Poland: United and Ready"
 					has_dlc = "No Step Back"
@@ -4365,7 +4374,7 @@ generic_escort_ship_organization = {
 		}
 		NOT = {
 			AND = {
-				OR = { tag = AST tag = NZL tag = RAJ }
+				OR = { original_tag = AST original_tag = NZL original_tag = RAJ }
 				has_dlc = "Together for Victory"
 			}
 		}
@@ -4377,31 +4386,31 @@ generic_escort_ship_organization = {
 		}
 		NOT = {
 			AND = {
-				OR = { tag = MEX tag = HOL }
+				OR = { original_tag = MEX original_tag = HOL }
 				has_dlc = "Man the Guns"
 			}
 		}
 		NOT = {
 			AND = {
-				tag = BUL
+				original_tag = BUL
 				has_dlc = "Battle for the Bosporus"
 			}
 		}
 		NOT = {
 			AND = {
-				OR = { tag = EST  tag = LAT }
+				OR = { original_tag = EST  original_tag = LAT }
 				has_dlc = "No Step Back"
 			}
 		}
 		NOT = {
 			AND = {
-				OR = { tag = ETH tag = SWI }
+				OR = { original_tag = ETH original_tag = SWI }
 				has_dlc = "By Blood Alone"
 			}
 		}
 		NOT = {
 			AND = {
-				OR = { original_tag = FIN tag = NOR tag = DEN tag = SWE tag = ICE }
+				OR = { original_tag = FIN original_tag = NOR original_tag = DEN original_tag = SWE original_tag = ICE }
 				has_dlc = "Arms Against Tyranny"
 			}
 		}
@@ -4433,6 +4442,23 @@ generic_escort_ship_organization = {
 					original_tag = IRQ
 				}
 				has_dlc = "Graveyard of Empires"
+			}
+		}
+
+		NOT = {
+			AND = {
+				#OR = {
+					original_tag = PHI
+					#original_tag = SND
+					#original_tag = HBC
+					#original_tag = XIC
+					#original_tag = GDC
+					#original_tag = SIC
+					#original_tag = NXM
+					#original_tag = GSM
+					#original_tag = KHM
+				#}
+				has_dlc = "No Compromise, No Surrender"
 			}
 		}
 	}
@@ -4640,7 +4666,7 @@ generic_escort_ship_organization = {
 #RAIDING FLEET MANUFACTURER - Based on John Brown (ENG)
 generic_raider_ship_organization = {
 	icon = GFX_idea_generic_naval_manufacturer_3
-	task_capacity = 10
+	#task_capacity = 10
 
 	allowed = {
 		AND = {
@@ -4678,7 +4704,7 @@ generic_raider_ship_organization = {
 			military_industrial_organization_research_bonus = 0.05
 		}
 		equipment_bonus = {
-			surface_visibility = -0.03
+			sub_visibility = -0.02
 		}
 	}
 
@@ -4780,8 +4806,9 @@ generic_raider_ship_organization = {
 		limit_to_equipment_type = { capital_ship }
 
 		equipment_bonus = {
-			surface_visibility = -0.03
+			surface_detection = 0.10
 			hg_attack = 0.05
+			lg_attack = 0.05
 		}
 	}
 
@@ -4798,7 +4825,8 @@ generic_raider_ship_organization = {
 		limit_to_equipment_type = { capital_ship }
 
 		equipment_bonus = {
-			surface_visibility = -0.03
+			naval_range = 0.10
+			surface_detection = 0.03
 			hg_attack = 0.05
 		}
 	}
@@ -4816,7 +4844,7 @@ generic_raider_ship_organization = {
 		mutually_exclusive = { generic_mio_trait_spotting_tops }
 
 		equipment_bonus = {
-			surface_detection = 0.05
+			surface_detection = 0.08
 		}
 	}
 
@@ -4833,7 +4861,8 @@ generic_raider_ship_organization = {
 		limit_to_equipment_type = { screen_ship }
 
 		equipment_bonus = {
-			naval_range = 0.05
+			surface_detection = 0.05
+			naval_range = 0.10
 			naval_speed = 0.05
 		}
 	}
@@ -4868,7 +4897,8 @@ generic_raider_ship_organization = {
 		limit_to_equipment_type = { ship_hull_cruiser }
 
 		equipment_bonus = {
-			surface_visibility = -0.03
+			naval_range = 0.05
+			surface_detection = 0.05
 		}
 	}
 
@@ -4885,7 +4915,6 @@ generic_raider_ship_organization = {
 		limit_to_equipment_type = { submarine }
 
 		equipment_bonus = {
-			surface_visibility = -0.03
 			sub_visibility = -0.03
 		}
 	}
@@ -4944,7 +4973,7 @@ generic_raider_ship_organization = {
 #SUBMARINE MANUFACTURER - Based on Canteri Navali Tosi (ITA)
 generic_submarine_organization = {
 	icon = GFX_idea_generic_naval_manufacturer_1
-	task_capacity = 10
+	#task_capacity = 10
 
 	allowed = {
 		always = no # Archetype only - countries using it have their own verisons
@@ -5271,7 +5300,7 @@ generic_submarine_organization = {
 #BLACK SEA MANUFACTURER - Based on Black Sea Shipyard (SOV)
 generic_black_sea_fleet_organization = {
 	icon = GFX_idea_generic_naval_manufacturer_2
-	task_capacity = 10
+	#task_capacity = 10
 
 	allowed = {
 		always = no # Archetype only - countries using it have their own verisons
@@ -5581,7 +5610,7 @@ generic_black_sea_fleet_organization = {
 
 generic_refurbishment_repair_organization = {
 	icon = GFX_idea_generic_naval_manufacturer_1
-	 task_capacity = 10
+	#task_capacity = 10
 
 	allowed = {
 		always = no # Archetype only - countries using it have their own verisons
@@ -5961,6 +5990,22 @@ generic_general_aircraft_organization = {
 					original_tag = IRQ
 				}
 				has_dlc = "Graveyard of Empires"
+			}
+		}
+		NOT = {
+			AND = {
+				#OR = {
+					original_tag = PHI
+					#original_tag = SND
+					#original_tag = HBC
+					#original_tag = XIC
+					#original_tag = GDC
+					#original_tag = SIC
+					#original_tag = NXM
+					#original_tag = GSM
+					#original_tag = KHM
+				#}
+				has_dlc = "No Compromise, No Surrender"
 			}
 		}
 	}
@@ -8278,8 +8323,8 @@ generic_high_agility_fighter_aircraft_organization = {
 		mutually_exclusive = { generic_mio_trait_metal_skin }
 
 		production_bonus = {
-			production_resource_penalty_factor = -0.05
-			production_capacity_factor = 0.05
+			production_resource_penalty_factor = -0.075
+			production_capacity_factor = 0.075
 		}
 
 		equipment_bonus = {
@@ -8298,7 +8343,7 @@ generic_high_agility_fighter_aircraft_organization = {
 		mutually_exclusive = { generic_mio_trait_fabric_skin }
 
 		equipment_bonus = {
-			air_defence = 0.10
+			air_defence = 0.075
 			maximum_speed = 0.05
 		}
 	}
@@ -8934,6 +8979,15 @@ generic_artillery_organization = {
 				
 			}
 		}
+		NOT = {
+			AND = {
+#				OR = {
+					original_tag = PHI
+#				}
+				has_dlc = "No Compromise, No Surrender"
+				
+			}
+		}
 	}
 
 
@@ -8941,7 +8995,7 @@ generic_artillery_organization = {
 		artillery_equipment
 		anti_tank_equipment
 		dp_artillery_equipment
-		dp_artillery_equipment_2
+		#dp_artillery_equipment_2
 		pack_artillery_equipment
 		anti_tank_equipment_squeeze
 		anti_air_equipment
@@ -9041,7 +9095,7 @@ generic_artillery_organization = {
 			anti_tank_equipment_squeeze
 			heavy_anti_tank_equipment
 			dp_artillery_equipment
-			dp_artillery_equipment_2			
+			#dp_artillery_equipment_2			
 		}
 
 		equipment_bonus = {
@@ -9100,7 +9154,7 @@ generic_artillery_organization = {
 			pack_artillery_equipment
 			heavy_artillery_equipment
 			dp_artillery_equipment
-			dp_artillery_equipment_2			
+			#dp_artillery_equipment_2			
 		}
 
 		equipment_bonus = {
@@ -9143,7 +9197,7 @@ generic_artillery_organization = {
 			anti_air_equipment
 			heavy_anti_air_equipment			
 			dp_artillery_equipment
-			dp_artillery_equipment_2
+			#dp_artillery_equipment_2
 		}
 
 		equipment_bonus = {
@@ -9180,7 +9234,7 @@ generic_artillery_organization = {
 			pack_artillery_equipment
 			heavy_artillery_equipment
 			dp_artillery_equipment
-			dp_artillery_equipment_2
+			#dp_artillery_equipment_2
 		}
 
 		equipment_bonus = {
@@ -9225,7 +9279,7 @@ generic_artillery_organization = {
 			pack_artillery_equipment
 			heavy_artillery_equipment
 			dp_artillery_equipment
-			dp_artillery_equipment_2
+			#dp_artillery_equipment_2
 		}
 
 		production_bonus = {
@@ -9362,6 +9416,15 @@ generic_infantry_equipment_organization = {
 					original_tag = IRQ				
 				}
 				has_dlc = "Graveyard of Empires"
+				
+			}
+		}
+		NOT = {
+			AND = {
+#				OR = {
+					original_tag = PHI
+#				}
+				has_dlc = "No Compromise, No Surrender"
 				
 			}
 		}
@@ -9928,7 +9991,7 @@ generic_motorized_mechanized_organization = {
 		}
 		NOT = {
 			AND = {
-				tag = POL
+				original_tag = POL
 				OR = {
 					has_dlc = "Poland: United and Ready"
 					has_dlc = "No Step Back"
@@ -9943,37 +10006,37 @@ generic_motorized_mechanized_organization = {
 		}
 		NOT = {
 			AND = {
-				tag = HOL
+				original_tag = HOL
 				has_dlc = "Man the Guns"
 			}
 		}
 		NOT = {
 			AND = {
-				OR = { tag = SPR tag = SPA tag = SPB tag = SPC tag = SPD tag = POR }
+				OR = { original_tag = SPR original_tag = SPA original_tag = SPB original_tag = SPC original_tag = SPD original_tag = POR }
 				has_dlc = "La Resistance"
 			}
 		}
 		NOT = {
 			AND = {
-				OR = { tag = BUL tag = GRE tag = TUR }
+				OR = { original_tag = BUL original_tag = GRE original_tag = TUR }
 				has_dlc = "Battle for the Bosporus"
 			}
 		}
 		NOT = {
 			AND = {
-				OR = { tag = EST tag = LAT tag = LIT }
+				OR = { original_tag = EST original_tag = LAT original_tag = LIT }
 				has_dlc = "No Step Back"
 			}
 		}
 		NOT = {
 			AND = {
-				OR = { tag = ETH tag = SWI }
+				OR = { original_tag = ETH original_tag = SWI }
 				has_dlc = "By Blood Alone"
 			}
 		}
 		NOT = {
 			AND = {
-				OR = { original_tag = FIN tag = NOR tag = DEN tag = SWE }
+				OR = { original_tag = FIN original_tag = NOR original_tag = DEN original_tag = SWE }
 				has_dlc = "Arms Against Tyranny"
 			}
 		}
@@ -10010,9 +10073,23 @@ generic_motorized_mechanized_organization = {
 				
 			}
 		}
-	}
-
-	visible = {	
+		NOT = {
+			AND = {
+				#OR = {
+					original_tag = PHI
+					#original_tag = SND
+					#original_tag = HBC
+					#original_tag = XIC
+					#original_tag = GDC
+					#original_tag = SIC
+					#original_tag = NXM
+					#original_tag = GSM
+					#original_tag = KHM
+					#original_tag = KUM
+				#}
+				has_dlc = "No Compromise, No Surrender"
+			}
+		}
 	}
 
 	equipment_type = {
@@ -10739,7 +10816,7 @@ generic_helicopter_organization = {
 #fuel_consumption
 #build_cost_ic
 #manpower
-#naval_supremacy_factor
+#naval_dominance_factor
 #naval_torpedo_enemy_critical_chance_factor (if you have modules adding it)
 #naval_torpedo_damage_reduction_factor (if you have modules adding it)
 #carrier_size (this will get very bad for you I promise, equipment modifiers are a mistake)

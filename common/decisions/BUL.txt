@@ -2076,6 +2076,10 @@ BUL_internal_factions = {
 					BUL_is_fascist_axis_ai = yes
 					BUL_is_monarchist_ferdinand_ai = yes
 					BUL_is_democratic_liberal_ai = yes
+					#AND = { #MM: Check how the AI performs without this. Might be necessary to not add it to help the FF coup.
+					#	BUL_is_historical_ai = yes
+					#	date > 1940.6.1
+					#}
 				}
 			}
 		}
@@ -4562,6 +4566,10 @@ BUL_macedonian_revolutionary_organizations = {
 
 		icon = GFX_decision_generic_military
 
+		ai_will_do = { #AI should use the IMRO as garrison instead
+			base = 0
+		}
+
 		allowed = { 
 			original_tag = BUL
 		}
@@ -4569,9 +4577,8 @@ BUL_macedonian_revolutionary_organizations = {
 		available = {
 			NOT = { has_country_flag = BUL_macedonian_affairs_ongoing_flag }
 			has_war = yes
-			any_state = {
+			any_controlled_state = {
 				BUL_is_macedonian_state = yes
-				is_fully_controlled_by = ROOT
 			}
 		}
 
@@ -4699,13 +4706,17 @@ BUL_macedonian_revolutionary_organizations = {
 
 		icon = GFX_decision_generic_prepare_civil_war
 
+		ai_will_do = {
+			base = 1
+		}
+
 		allowed = { 
 			original_tag = BUL
 		}
 
 		available = {
 			NOT = { has_country_flag = BUL_macedonian_affairs_ongoing_flag }
-			any_state = {
+			any_controlled_state = {
 				BUL_is_macedonian_state = yes
 				is_fully_controlled_by = ROOT
 			}
@@ -6176,7 +6187,7 @@ BUL_purchase_equipment = {
 
 		priority = 8
 
-		icon = generic_decision
+		icon = generic_trucks
 
 		allowed = { always = no } #Activated from effect
 
@@ -6645,15 +6656,15 @@ BUL_purchase_equipment = {
 					num_of_civilian_factories < 10
 					AND = {
 						stockpile_ratio = { 
-			  				archetype = small_plane_airframe
+			  				archetype = fighter_equipment
 			  				ratio > 0.75
 			  			}
 			  			stockpile_ratio = { 
-			  				archetype = small_plane_naval_bomber_airframe
+			  				archetype = nav_bomber_equipment
 			  				ratio > 0.75
 			  			}
 			  			stockpile_ratio = { 
-			  				archetype = medium_plane_airframe
+			  				archetype = tac_bomber_equipment
 			  				ratio > 0.75
 			  			}
 					}
@@ -7005,7 +7016,7 @@ prospect_for_resources = {
 			212 = {
 				add_resource = {
 					type = chromium
-					amount = 130
+					amount = 50
 				}
 			}
 		}
@@ -7019,6 +7030,7 @@ prospect_for_resources = {
 		icon = eng_trade_unions_support
 
 		allowed = {
+			always = no
 			has_dlc = "Battle for the Bosporus"
 		}
 
@@ -7138,21 +7150,24 @@ BUL_negotiate_claims_in_the_balkans = {
 
 		on_map_mode = map_and_decisions_view
 
-		state_target = yes
-
+		state_target = europe
+		target_root_trigger = {
+			has_completed_focus = BUL_peaceful_development
+			is_in_faction = yes
+		}
 		target_trigger = {
 			FROM = {
 				BUL_is_balkan_state = yes
 				NOT = { is_controlled_by = BUL }
-				any_neighbor_state = {
-					is_fully_controlled_by = BUL
-				}
 				controller = {
 					PREV = {
 						NOT = { is_core_of = PREV }
 						is_fully_controlled_by = PREV
 					}
 					is_in_faction_with = ROOT
+				}
+				any_neighbor_state = {
+					is_fully_controlled_by = BUL
 				}
 			}
 		}
@@ -7210,6 +7225,8 @@ BUL_negotiate_claims_in_the_balkans = {
 		}
 
 		cost = 25
+
+		fire_only_once = yes
 		
 		complete_effect = {
 			FROM = {
@@ -7330,7 +7347,7 @@ BUL_align_bulgaria = {
 
 		available = {
 			has_equipment = {
-				small_plane_airframe > 11
+				fighter_equipment > 11
 			}
 		}
 
@@ -8019,7 +8036,7 @@ BUL_the_balkan_federation_dream = {
 		days_remove = 90
 
 		modifier = {
-			consumer_goods_expected_value = 0.05
+			consumer_goods_factor = 0.1
 		}
 		
 		complete_effect = {
@@ -9060,54 +9077,54 @@ BUL_dominance_in_the_seas = {
 
 
 political_actions = {
-	BUL_appoint_tsankov = {
-		priority = 100
+	# BUL_appoint_tsankov = {
+	# 	priority = 100
 
-		icon = GFX_decision_generic_speech
+	# 	icon = GFX_decision_generic_speech
 
-		ai_will_do = {
-			base = 0
-		}
+	# 	ai_will_do = {
+	# 		base = 0
+	# 	}
 
-		allowed = {
-			original_tag = BUL
-			has_dlc = "Battle for the Bosporus"
-		}
+	# 	allowed = {
+	# 		original_tag = BUL
+	# 		has_dlc = "Battle for the Bosporus"
+	# 	}
 
-		available = {
-			has_country_flag = BUL_nsm_integrated_flag
-		}
+	# 	available = {
+	# 		has_country_flag = BUL_nsm_integrated_flag
+	# 	}
 		
-		visible = {
-			has_government = fascism
-			NOT = {
-				has_country_leader = { name = "Aleksandar Tsankov" }
-			}
-		}
+	# 	visible = {
+	# 		has_government = fascism
+	# 		NOT = {
+	# 			has_country_leader = { name = "Aleksandar Tsankov" }
+	# 		}
+	# 	}
 
-		fire_only_once = yes
+	# 	fire_only_once = yes
 		
-		cost = 50
+	# 	cost = 50
 		
-		complete_effect = {
-			retire_ideology_leader = fascism
-			set_party_name = {
-				ideology = fascism
-				long_name = BUL_national_social_movement_party_long
-				name = BUL_national_social_movement_party
-			}
-			create_country_leader = {
-				name = "Aleksandar Tsankov"
-				desc = "POLITICS_BOGDAN_FILOV_DESC"
-				picture = GFX_portrait_bul_aleksandar_tsankov
-				expire = "1965.1.1"
-				ideology = nazism
-				traits = {
-					the_bloody_professor
-				}
-			}
-		}
-	}
+	# 	complete_effect = {
+	# 		retire_ideology_leader = fascism
+	# 		set_party_name = {
+	# 			ideology = fascism
+	# 			long_name = BUL_national_social_movement_party_long
+	# 			name = BUL_national_social_movement_party
+	# 		}
+	# 		create_country_leader = {
+	# 			name = "Aleksandar Tsankov"
+	# 			desc = "POLITICS_BOGDAN_FILOV_DESC"
+	# 			picture = GFX_portrait_bul_aleksandar_tsankov
+	# 			expire = "1965.1.1"
+	# 			ideology = nazism
+	# 			traits = {
+	# 				the_bloody_professor
+	# 			}
+	# 		}
+	# 	}
+	# }
 
 	BUL_appoint_georgiev = {
 		priority = 100
@@ -9405,7 +9422,7 @@ BUL_balkan_confederation = {
 		days_remove = 120	
 
 		modifier = {
-			consumer_goods_expected_value = 0.05
+			consumer_goods_factor = 0.1
 		}
 		
 		complete_effect = {

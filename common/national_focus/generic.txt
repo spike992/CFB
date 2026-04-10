@@ -1,16 +1,19 @@
-#!gfx:interface\lw_goals.gfx
-#!gfx:interface\KR_goals.gfx
-#!gfx:interface\cic_goals.gfx
-#!gfx:interface\snek_teleport.gfx
-#!gfx:interface\replace\bruh_interface.gfx
-#!gfx:interface\replace\bruh_bra_interface.gfx
-#!gfx:interface\replace\bruh_eng_interface.gfx
-#!gfx:interface\replace\bruh_ger_interface.gfx
-#!gfx:interface\replace\bruh_hol_interface.gfx
-#!gfx:interface\replace\bruh_ita_interface.gfx
-#!gfx:interface\replace\bruh_jap_interface.gfx
-#!gfx:interface\replace\bruh_nsb_interface.gfx
-#!gfx:interface\replace\bruh_sov_interface.gfx
+search_filter_prios = {
+	FOCUS_FILTER_POLITICAL = 1010
+	
+	FOCUS_FILTER_RESEARCH = 522
+	
+	FOCUS_FILTER_INDUSTRY = 509
+
+	FOCUS_FILTER_BALANCE_OF_POWER = 200
+	FOCUS_FILTER_SOV_POLITICAL_PARANOIA = 111
+	FOCUS_FILTER_PROPAGANDA = 110
+	FOCUS_FILTER_MISSIOLINI = 110
+	FOCUS_FILTER_ARMY_XP = 103
+	FOCUS_FILTER_NAVY_XP = 102
+	FOCUS_FILTER_AIR_XP = 101
+
+}
 
 focus_tree = {
 	id = generic_focus
@@ -22,18 +25,26 @@ focus_tree = {
 	default = yes
 	reset_on_civilwar = no
 
+	initial_show_position = {
+		focus = industrial_effort
+	}
+
+	#shared_focus = HABSBURG_part_of_something_bigger
+
 	focus = {
 		id = army_effort
 		icon = GFX_goal_generic_allies_build_infantry
 		x = 1
 		y = 0
 		cost = 10
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
 		ai_will_do = {
 			factor = 1
 		}
 		completion_reward = {
-			army_experience = 5
+			army_experience = 25
 			add_doctrine_cost_reduction = {
 				name = land_doc_bonus
 				cost_reduction = 0.5
@@ -50,11 +61,20 @@ focus_tree = {
 		x = 0
 		y = 1
 		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
 		ai_will_do = {
 			factor = 1
 		}
 		completion_reward = {
+
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.1
+			}
+
 			add_tech_bonus = {
 				name = infantry_weapons_bonus
 				bonus = 0.35
@@ -62,6 +82,7 @@ focus_tree = {
 				category = infantry_weapons
 				category = artillery
 			}
+
 		}
 	}
 
@@ -76,7 +97,11 @@ focus_tree = {
 		x = 2
 		y = 1
 		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = motorized_bonus
@@ -94,12 +119,15 @@ focus_tree = {
 		x = 1
 		y = 2
 		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
 				ai_will_do = {
 			factor = 1
 		}
 		completion_reward = {
-			army_experience = 5
+			army_experience = 25
 			add_doctrine_cost_reduction = {
 				name = land_doc_bonus
 				cost_reduction = 0.5
@@ -116,12 +144,21 @@ focus_tree = {
 		x = 0
 		y = 3
 		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
 		
 		ai_will_do = {
 			factor = 1
 		}
 		completion_reward = {
+
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.1
+			}
+
 			add_tech_bonus = {
 				name = infantry_artillery_bonus
 				bonus = 0.5
@@ -129,6 +166,7 @@ focus_tree = {
 				category = infantry_weapons
 				category = artillery
 			}
+
 		}
 	}
 
@@ -139,6 +177,9 @@ focus_tree = {
 		x = 2
 		y = 3
 		cost = 10
+		
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+
 		available_if_capitulated = yes
 				ai_will_do = {
 			factor = 1
@@ -150,6 +191,15 @@ focus_tree = {
 				uses = 1
 				category = cat_mechanized_equipment
 			}
+			IF = {
+				limit = {
+					has_tech = motorised_infantry
+				}
+				add_equipment_to_stockpile = { 
+					type = motorized_equipment
+					amount = 1
+				}
+			}
 		}
 	}
 
@@ -160,12 +210,15 @@ focus_tree = {
 		x = 1
 		y = 4
 		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
 				ai_will_do = {
 			factor = 1
 		}
 		completion_reward = {
-			army_experience = 5
+			army_experience = 25
 			add_doctrine_cost_reduction = {
 				name = land_doc_bonus
 				cost_reduction = 0.5
@@ -182,11 +235,20 @@ focus_tree = {
 		x = 0
 		y = 5
 		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
 		ai_will_do = {
 			factor = 1
 		}
 		completion_reward = {
+
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.1
+			}
+
 			add_tech_bonus = {
 				name = infantry_artillery_bonus
 				bonus = 0.5
@@ -194,6 +256,7 @@ focus_tree = {
 				category = infantry_weapons
 				category = artillery
 			}
+
 		}
 	}
 
@@ -204,6 +267,9 @@ focus_tree = {
 		x = 2
 		y = 5
 		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
 				ai_will_do = {
 			factor = 1
@@ -227,17 +293,21 @@ focus_tree = {
 		x = 1
 		y = 6
 		cost = 10
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
 				ai_will_do = {
 			factor = 1
 		}
 		completion_reward = {
+			add_ideas = special_forces
 			add_tech_bonus = {
 				name = special_forces_bonus
 				bonus = 0.5
 				uses = 1
-				# technology = paratroopers
-				# technology = paratroopers2
+				technology = paratroopers
+				technology = paratroopers2
 				technology = marines
 				technology = marines2
 				technology = tech_mountaineers
@@ -252,6 +322,8 @@ focus_tree = {
 		x = 5
 		y = 0
 		cost = 10
+		
+		search_filters = {   FOCUS_FILTER_RESEARCH }
 
 		available_if_capitulated = yes
 				ai_will_do = {
@@ -338,6 +410,9 @@ focus_tree = {
 		x = 4
 		y = 1
 		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
 		ai_will_do = {
 			factor = 1
@@ -366,6 +441,9 @@ focus_tree = {
 		x = 6
 		y = 1
 		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
 				ai_will_do = {
 			factor = 1
@@ -478,6 +556,9 @@ focus_tree = {
 		x = 4
 		y = 3
 		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
 				ai_will_do = {
 			factor = 1
@@ -500,6 +581,9 @@ focus_tree = {
 		x = 5
 		y = 4
 		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
 				ai_will_do = {
 			factor = 1
@@ -531,6 +615,9 @@ focus_tree = {
 		x = 6
 		y = 3
 		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
 				ai_will_do = {
 			factor = 1
@@ -552,14 +639,15 @@ focus_tree = {
 		y = 0
 		cost = 13
 
+		search_filters = {  FOCUS_FILTER_INDUSTRY }
+		
 		available_if_capitulated = yes
 				ai_will_do = {
 			factor = 1
 		}
 		available = {
-			any_state = {
+			any_controlled_state = {
 				is_coastal = yes
-				is_controlled_by = ROOT
 			}
 		}
 
@@ -652,7 +740,7 @@ focus_tree = {
 						}
 					}
 				}
-				random_state = {
+				random_owned_controlled_state = {
 					limit = {
 						controller = { tag = ROOT }
 						free_building_slots = {
@@ -680,9 +768,11 @@ focus_tree = {
 		x = 8
 		y = 1
 		cost = 10
+		
+		search_filters = {  FOCUS_FILTER_RESEARCH }
 
 		available_if_capitulated = yes
-				ai_will_do = {
+		ai_will_do = {
 			factor = 1
 		}
 		ai_will_do = {
@@ -699,22 +789,26 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			add_tech_bonus = {
-				name = sub_op_bonus
-				bonus = 0.5
-				uses = 2
-				technology = convoy_interdiction_ti
-				technology = unrestricted_submarine_warfare
-				technology = wolfpacks
-				technology = advanced_submarine_warfare
-				technology = combined_operations_raiding
+
+			add_mastery_bonus = {
+				name = flexible_navy
+				bonus = 0.1
+				days = 240
+				grand_doctrine = new_convoy_raiding
 			}
-			add_tech_bonus = {
-				name = ships_bonus
-				bonus = 0.5
-				uses = 1
-				category = naval_equipment
-			}	
+			add_mastery_bonus = {
+				name = flexible_navy
+				bonus = 0.1
+				days = 240
+				grand_doctrine = new_base_strike
+			}
+
+			add_doctrine_cost_reduction = {
+				name = flexible_navy
+				cost_reduction = 0.5
+				uses = 2
+				category = naval_doctrine
+			}
 		}
 	}
 
@@ -726,8 +820,12 @@ focus_tree = {
 		x = 10
 		y = 1
 		cost = 10
+		
+		search_filters = {   FOCUS_FILTER_RESEARCH }
 
 		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 1
 			modifier = {
@@ -740,19 +838,27 @@ focus_tree = {
 				}
 			}
 		}
+		
 
 		completion_reward = {
-			add_doctrine_cost_reduction = {
-				name = fleet_in_being_bonus
-				cost_reduction = 0.5
-				uses = 2
-				category = fleet_in_being_tree
+
+			add_mastery_bonus = {
+				name = large_navy
+				bonus = 0.1
+				days = 240
+				grand_doctrine = new_fleet_in_being
 			}
-			add_tech_bonus = {
-				name = ships_bonus
-				bonus = 0.5
-				uses = 1
-				category = naval_equipment
+			add_mastery_bonus = {
+				name = large_navy
+				bonus = 0.1
+				days = 240
+				grand_doctrine = new_base_strike
+			}
+			add_doctrine_cost_reduction = {
+				name = large_navy
+				cost_reduction = 0.25
+				uses = 2
+				category = naval_doctrine
 			}
 		}
 	}
@@ -798,6 +904,8 @@ focus_tree = {
 		cost = 9
 
 		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 1
 			modifier = {
@@ -816,7 +924,6 @@ focus_tree = {
 				name = cr_bonus
 				bonus = 0.5
 				uses = 1
-				category = cl_tech
 				category = ca_tech
 			}
 		}
@@ -830,7 +937,11 @@ focus_tree = {
 		y = 3
 		cost = 8
 
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 1
 			modifier = {
@@ -862,7 +973,10 @@ focus_tree = {
 		y = 3
 		cost = 12
 
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
+
 		ai_will_do = {
 			factor = 1
 			modifier = {
@@ -894,7 +1008,11 @@ focus_tree = {
 		x = 13
 		y = 0
 		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
+		
 		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = industrial_bonus
@@ -912,6 +1030,42 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 200
+			modifier = {
+				factor = 6
+				original_tag = SIA
+			}
+			modifier = {
+				factor = 6
+				is_in_array = {
+					array = RAJ.raj_releasables
+					value = THIS
+				}
+				is_subject_of = RAJ
+			}
+			modifier = {
+				factor = 0
+				date < 1939.1.1
+				OR = { 
+					# we dont want chinese minors to go crazy on slots early since they get eaten
+					# tag = GXC 
+					# tag = YUN
+					# tag = SHX
+					# tag = XSM
+					tag = BEL
+					tag = LUX
+					tag = HOL
+					tag = DEN
+
+					# we also dont want tiny nations to go crazy with slots right away
+					num_of_controlled_states < 2
+				}	
+				NOT = {
+					is_in_array = {
+						array = RAJ.raj_releasables
+						value = THIS
+					}
+				}			
+			}
 		}
 	}
 
@@ -923,10 +1077,22 @@ focus_tree = {
 		y = 1
 		cost = 10
 
+		search_filters = { FOCUS_FILTER_INDUSTRY  }
+		
 		available_if_capitulated = yes
+
+
 		
 		ai_will_do = {
 			factor = 200
+			modifier = {
+				factor = 6
+				is_in_array = {
+					array = RAJ.raj_releasables
+					value = THIS
+				}
+				is_subject_of = RAJ
+			}
 		}
 
 		bypass = {
@@ -1005,9 +1171,25 @@ focus_tree = {
 		y = 1
 		cost = 10
 
+		search_filters = { FOCUS_FILTER_INDUSTRY  }
+		
 		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 150			
+			modifier = {
+				factor = 6
+				original_tag = SIA
+			}
+			modifier = {
+				factor = 5
+				is_in_array = {
+					array = RAJ.raj_releasables
+					value = THIS
+				}
+				is_subject_of = RAJ
+			}	
 		}
 
 		bypass = {
@@ -1074,9 +1256,25 @@ focus_tree = {
 		y = 2
 		cost = 10
 
+		search_filters = { FOCUS_FILTER_INDUSTRY  }
+		
 		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 200
+			modifier = {
+				factor = 6
+				original_tag = SIA
+			}
+			modifier = {
+				factor = 5
+				is_in_array = {
+					array = RAJ.raj_releasables
+					value = THIS
+				}
+				is_subject_of = RAJ
+			}
 		}
 
 		bypass = {
@@ -1142,10 +1340,26 @@ focus_tree = {
 		x = 14
 		y = 2
 		cost = 10
+		
+		search_filters = { FOCUS_FILTER_INDUSTRY  }
 
 		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 150
+			modifier = {
+				factor = 6
+				original_tag = SIA
+			}
+			modifier = {
+				factor = 5
+				is_in_array = {
+					array = RAJ.raj_releasables
+					value = THIS
+				}
+				is_subject_of = RAJ
+			}
 		}
 
 		bypass = {
@@ -1211,9 +1425,16 @@ focus_tree = {
 		x = 12
 		y = 3
 		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
 		available_if_capitulated = yes
 		ai_will_do = {
 			factor = 200
+			modifier = {
+				factor = 6
+				original_tag = SIA
+			}
 		}
 		bypass = {
 			custom_trigger_tooltip = {
@@ -1306,9 +1527,25 @@ focus_tree = {
 		y = 3
 		cost = 10
 
+		search_filters = { FOCUS_FILTER_INDUSTRY  }
+		
 		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 150
+			modifier = {
+				factor = 6
+				original_tag = SIA
+			}
+			modifier = {
+				factor = 5
+				is_in_array = {
+					array = RAJ.raj_releasables
+					value = THIS
+				}
+				is_subject_of = RAJ
+			}
 		}
 
 		bypass = {
@@ -1374,9 +1611,16 @@ focus_tree = {
 		x = 12
 		y = 4
 		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
 		available_if_capitulated = yes
 		ai_will_do = {
 			factor = 50
+			modifier = {
+				factor = 6
+				original_tag = SIA
+			}
 		}
 		bypass = {
 			custom_trigger_tooltip = {
@@ -1469,9 +1713,24 @@ focus_tree = {
 		y = 4
 		cost = 10
 
+		search_filters = { FOCUS_FILTER_INDUSTRY  }
+		
 		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 200
+			modifier = {
+				factor = 6
+				original_tag = SIA
+			}
+			modifier = {
+				add = 5
+				is_in_array = {
+					array = RAJ.raj_releasables
+					value = THIS
+				}
+			}
 		}
 
 		bypass = {
@@ -1537,14 +1796,24 @@ focus_tree = {
 		x = 11
 		y = 5
 		cost = 10
+		
+		search_filters = { FOCUS_FILTER_RESEARCH } 
+
 		available_if_capitulated = yes
+
 		completion_reward = {
+
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 0.75
+			}
+
 			add_tech_bonus = {
 				name = nuclear_bonus
-				bonus = 0.5
-				uses = 2
+				ahead_reduction = 1 # was 2
 				category = nuclear
 			}
+
 		}
 
 		ai_will_do = {
@@ -1563,16 +1832,24 @@ focus_tree = {
 		x = 13
 		y = 5
 		cost = 10
+
+		search_filters = { FOCUS_FILTER_RESEARCH } 
+		
 		available_if_capitulated = yes
+
 		completion_reward = {
-			add_tech_bonus = {
-				name = secret_bonus
-				bonus = 0.5
-				uses = 4
-				category = electronics
-				category = nuclear
-				category = rocketry
-			}
+
+			add_ideas = generic_secret_weapons_ns
+
+			#add_tech_bonus = {
+			#	name = secret_bonus
+			#	bonus = 0.5
+			#	uses = 4
+			#	category = electronics
+			#	category = nuclear
+			#	category = rocketry
+			#}
+
 		}
 
 		ai_will_do = {
@@ -1590,7 +1867,11 @@ focus_tree = {
 		x = 19
 		y = 0
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL }
+	
 		available_if_capitulated = yes
+
 		completion_reward = {
 			add_political_power = 120
 		}
@@ -1611,8 +1892,12 @@ focus_tree = {
 		x = 18
 		y = 1
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL   }
 
 		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 2
 			modifier = {
@@ -1637,10 +1922,10 @@ focus_tree = {
 				factor = 0
 			    tag = BUL
 			}
-			modifier = {
-				factor = 0
-			    tag = SAU
-			}
+			# modifier = {
+			# 	factor = 0
+			#     tag = SAU
+			# }
 		}
 
 		completion_reward = {
@@ -1662,8 +1947,12 @@ focus_tree = {
 		x = 16
 		y = 2
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL  }
 
 		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 5
 			modifier = {
@@ -1698,8 +1987,12 @@ focus_tree = {
 		x = 18
 		y = 2
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL  }
 
 		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 3
 			modifier = {
@@ -1730,10 +2023,27 @@ focus_tree = {
 		x = 20
 		y = 1
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 55
+			modifier = {
+				factor = 0.05
+				is_historical_focus_on = yes
+				original_tag = SIA
+			}
+			modifier = {
+				factor = 0.05
+				is_in_array = {
+					array = RAJ.raj_releasables
+					value = THIS
+				}
+				is_subject_of = RAJ
+			}
 			modifier = {
 				factor = 2
 				any_neighbor_country = {
@@ -1779,7 +2089,11 @@ focus_tree = {
 		x = 16
 		y = 3
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL  }
+
 		available_if_capitulated = yes
+
 		completion_reward = {
 			if = {
 				limit = { has_idea = neutrality_idea }
@@ -1798,7 +2112,11 @@ focus_tree = {
 		x = 18
 		y = 3
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL  }
+
 		available_if_capitulated = yes
+
 		completion_reward = {
 			if = {
 				limit = { has_idea = neutrality_idea }
@@ -1817,6 +2135,9 @@ focus_tree = {
 		x = 20
 		y = 2
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available_if_capitulated = yes
 		completion_reward = {
 			if = {
@@ -1835,8 +2156,12 @@ focus_tree = {
 		x = 22
 		y = 2
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 0
 			modifier = {
@@ -1862,7 +2187,11 @@ focus_tree = {
 		x = 16
 		y = 4
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL  }
+
 		available_if_capitulated = yes
+
 		completion_reward = {
 			add_ideas = military_youth_focus
 			if = {
@@ -1889,7 +2218,11 @@ focus_tree = {
 		x = 20
 		y = 3
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+
 		available_if_capitulated = yes
+
 		completion_reward = {
 			add_ideas = deterrence
 		}
@@ -1902,7 +2235,11 @@ focus_tree = {
 		x = 22
 		y = 3
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available_if_capitulated = yes
+
 		completion_reward = {
 			add_ideas = volunteer_corps_focus
 		}
@@ -1915,7 +2252,11 @@ focus_tree = {
 		x = 16
 		y = 5
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL  }
+
 		available_if_capitulated = yes
+
 		completion_reward = {
 			add_ideas = paramilitarism_focus
 		}
@@ -1928,7 +2269,11 @@ focus_tree = {
 		x = 18
 		y = 4
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL  }
+
 		available_if_capitulated = yes
+
 		completion_reward = {
 			add_ideas = indoctrination_focus
 			add_political_power = 150
@@ -1942,7 +2287,11 @@ focus_tree = {
 		x = 22
 		y = 4
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available_if_capitulated = yes
+
 		completion_reward = {
 			add_ideas = foreign_expeditions_focus
 		}
@@ -1964,7 +2313,11 @@ focus_tree = {
 		x = 20
 		y = 5
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available_if_capitulated = yes
+
 		completion_reward = {
 			if = {
 				limit = { NOT = { has_idea = neutrality_idea } }
@@ -1983,7 +2336,11 @@ focus_tree = {
 		x = 18
 		y = 5
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL  }
+
 		available_if_capitulated = yes
+
 		completion_reward = {
 			add_ideas = political_commissars_focus
 			if = {
@@ -2011,7 +2368,11 @@ focus_tree = {
 		x = 17
 		y = 6
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available_if_capitulated = yes
+
 		completion_reward = {
 			add_ideas = ideological_fanaticism_focus
 			set_rule = {
@@ -2042,16 +2403,53 @@ focus_tree = {
 		x = 19
 		y = 7
 		cost = 10
+	
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_RESEARCH }
+
 		available_if_capitulated = yes
+
 		completion_reward = {
+
 			if = {
 				limit = {
 					original_research_slots < 6
 				}
 				add_research_slot = 1
-			}	
+			}
+
+			if = {
+				limit = {
+					original_research_slots > 2
+				}
+				add_breakthrough_progress = {
+					specialization = specialization_air
+					value = 0.25
+				}
+				add_breakthrough_progress = {
+					specialization = specialization_nuclear
+					value = 0.25
+				}
+				add_tech_bonus = {
+					name = electronics_bonus
+					bonus = 1.0
+					uses = 1
+					category = electronics
+				}
+				add_tech_bonus = {
+					name = industrial_bonus
+					bonus = 1.0
+					uses = 1
+					category = industry
+				}	
+				add_tech_bonus = {
+					name = infantry_artillery_bonus #@#
+					bonus = 1.0
+					uses = 1
+					category = infantry_weapons
+					category = artillery
+				}				
+			}			
 		}
 	}	
-	#######################################################
-	
+
 }

@@ -2329,7 +2329,21 @@ focus_tree = {
 		#will_lead_to_war_with = var:DEN.DEN_overlord_nation
 
 		ai_will_do = {
-			factor  = 0
+			base  = 0
+			modifier = {
+				factor = 0 
+				any_country = {
+					has_subject = ROOT
+					surrender_progress < 0.1
+				}
+			}
+			modifier = {
+				factor = 10 
+				any_country = {
+					has_subject = ROOT
+					surrender_progress > 0.5
+				}
+			}
 		}
 	
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_INTERNATIONAL_TRADE FOCUS_FILTER_MANPOWER }
@@ -2373,13 +2387,13 @@ focus_tree = {
 				custom_effect_tooltip = if_they_refuse_tt
 				
 				# Make peace with enemies of Overlord 
-				every_other_country = {
-					limit = {
-						has_war_with = DEN.DEN_overlord_nation
-						has_war_with = DEN
-					}
-					white_peace = DEN
-				}
+				# every_other_country = {	#will only be in these wars when having sided with Germany
+				# 	limit = {
+				# 		has_war_with = DEN.DEN_overlord_nation
+				# 		has_war_with = DEN
+				# 	}
+				# 	white_peace = DEN
+				# }
 
 				DEN_independence_war_effects = yes
 			}
@@ -8377,13 +8391,17 @@ focus_tree = {
 
 			DEN_bop_low_increase_effect = yes
 
-			if = {
-				limit = {
-					NOT = { has_rule = can_create_factions }
-				}
-				set_rule = { can_create_factions = yes }
-			}
-			create_faction = DEN_northern_national_front
+			# if = {
+			# 	limit = {
+			# 		NOT = { has_rule = can_create_factions }
+			# 	}
+			# 	set_rule = { can_create_factions = yes }
+			# }
+			# create_faction_from_template = {
+			# 	template = faction_template_DEN_nordic_cooperation_alliance
+			# 	name = DEN_northern_national_front
+			# 	icon = GFX_faction_logo_generic_fascist
+			# }
 
 			custom_effect_tooltip = DEN_remove_declaration_of_neutrality_tt
 
@@ -8831,6 +8849,10 @@ focus_tree = {
 				uses = 1
 				category = naval_doctrine
 			}
+			add_mastery = {
+				amount = 25
+				folder = naval
+			}
 		}
 	}
 
@@ -8873,6 +8895,10 @@ focus_tree = {
 				cost_reduction = 0.5
 				uses = 1
 				category = land_doctrine
+			}
+			add_mastery = {
+				amount = 25
+				folder = land
 			}
 		}
 	}
@@ -10102,6 +10128,10 @@ focus_tree = {
 				uses = 2
 				category = land_doctrine
 			}
+			add_mastery = {
+				amount = 50
+				folder = land
+			}
 
 			DEN_improve_haeren_NS = yes
 			
@@ -10684,7 +10714,7 @@ focus_tree = {
 					name = DEN_modernize_the_navy
 					bonus = 0.5
 					uses = 2
-					category = cl_tech
+					category = ca_tech
 					category = dd_tech
 				}
 			}
@@ -10696,7 +10726,7 @@ focus_tree = {
 					name = DEN_modernize_the_navy
 					bonus = 0.75
 					uses = 2
-					category = cl_tech
+					category = ca_tech
 					category = dd_tech
 				}
 			}
@@ -10793,6 +10823,12 @@ focus_tree = {
 				uses = 2
 				category = naval_doctrine
 			}
+			add_mastery_bonus = {
+				name = DEN_sovaernets_operative_kommando
+				bonus = 0.2
+				days = 360
+				folder = naval
+			}
 
 			every_unit_leader = {
 				limit = {
@@ -10861,6 +10897,10 @@ focus_tree = {
 				cost_reduction = 0.5
 				uses = 1
 				category = naval_doctrine
+			}
+			add_mastery = {
+				amount = 50
+				folder = naval
 			}
 
 			every_unit_leader = {
@@ -11044,7 +11084,6 @@ focus_tree = {
 				bonus = 0.75
 				uses = 3
 				category = dd_tech
-				category = cl_tech
 				category = ca_tech
 			}
 
@@ -11245,6 +11284,16 @@ focus_tree = {
 				cost_reduction = 0.5
 				uses = 2
 				category = naval_doctrine
+			}
+			add_mastery_bonus = {
+				name = DEN_naval_power_projection
+				bonus = 0.2
+				days = 360
+				folder = naval
+			}
+			add_mastery = {
+				amount = 25
+				folder = naval
 			}
 
 			if = { #Bornholm
@@ -11900,6 +11949,10 @@ focus_tree = {
 				uses = 2
 				category = air_doctrine
 			}
+			add_mastery = {
+				amount = 25
+				folder = air
+			}
 
 		}
 	}
@@ -11950,6 +12003,12 @@ focus_tree = {
 				cost_reduction = 0.25
 				uses = 2
 				category = air_doctrine
+			}
+			add_mastery_bonus = {
+				name = DEN_flyvertaktisk_kommando
+				bonus = 0.2
+				days = 360
+				folder = air
 			}
 		}
 	}

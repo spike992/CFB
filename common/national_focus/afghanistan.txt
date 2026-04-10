@@ -278,7 +278,7 @@ focus_tree = {
 					level = 1
 					instant_build = yes
 					province = {
-						id = 12769
+						id = 10852
 					}
 				}
 			}
@@ -836,6 +836,12 @@ focus_tree = {
 				#custom_effect_tooltip = AFG_ideology_on_the_rise_tt
 				set_country_flag = AFG_requested_our_aid
 			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = AFG_nisar_muhammad_yousafzai
+			
 		}
 	}
 
@@ -1958,8 +1964,8 @@ focus_tree = {
 				custom_effect_tooltip = AFG_quami_intro_tt
 			}
 			add_to_variable = { 
-				AFG_army_supply_factor = 0.05 
-				tooltip = supply_factor_tt
+				AFG_army_supply_consumption_factor = -0.05 
+				tooltip = supply_consumption_factor_tt
 			}
 			add_to_variable = { 
 				AFG_army_supply_combat_penalties_on_core_factor = -0.15 
@@ -2807,7 +2813,7 @@ focus_tree = {
 				name = AFG_research_bonus_1
 				bonus = 1.0
 				uses = 2
-				category = cl_tech
+				category = ca_tech
 				category = dd_tech
 			}
 		}
@@ -3335,6 +3341,7 @@ focus_tree = {
 		}
 		available = {
 			is_subject = no
+			has_civil_war = no
 		}
 		
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -3848,11 +3855,18 @@ focus_tree = {
 
 		completion_reward = {
 
-			set_rule = { 
-				can_create_factions = yes 
+			IF = {
+				limit = {
+					has_dlc = "No Compromise, No Surrender"
+				}
+				set_rule = { can_create_factions = yes }
+				create_faction_from_template = faction_template_AFG_united_islamic_world_faction
+				add_faction_initiative = 1
 			}
-
-			create_faction = AFG_united_islamic_world_faction
+			ELSE = {
+				set_rule = { can_create_factions = yes }
+				create_faction = AFG_united_islamic_world_faction
+			}
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -4516,9 +4530,16 @@ focus_tree = {
 
 	        custom_effect_tooltip = generic_skip_one_line_tt
 
-	        set_technology = {
-	            tech_mountaineers = 1
-	            popup = no
+	        IF = {
+	        	limit = {
+	        		NOT = {
+	        			has_tech = tech_mountaineers
+	        		}
+	        	}
+	        	set_technology = {
+	        	    tech_mountaineers = 1
+	        	    popup = no
+	        	}
 	        }
 
 	        division_template = {
@@ -4776,6 +4797,7 @@ focus_tree = {
 					set_state_flag = AFG_empire_can_core_this_state_flag
 				}
 			}
+			custom_effect_tooltip = AFG_can_core_once_controlled_tt
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -5276,6 +5298,13 @@ focus_tree = {
 					set_state_flag = AFG_mughals_can_integrate_flag
 				}
 			}
+			# KHM = {
+			# 	every_core_state = {
+			# 		add_claim_by = ROOT
+			# 		set_state_flag = AFG_mughals_can_integrate_flag
+			# 	}
+			# }
+			custom_effect_tooltip = AFG_can_core_once_controlled_tt
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -5315,6 +5344,7 @@ focus_tree = {
             IF = {
                 limit = {
                     SIK = {
+                    	exists = yes
                         all_core_state = {
                             is_fully_controlled_by = PREV
                         }
@@ -5324,6 +5354,7 @@ focus_tree = {
                 create_wargoal = {
                     type = annex_everything
                     target = SIK
+                    expire = 0
                 }
             }
             ELSE = {
@@ -5340,12 +5371,26 @@ focus_tree = {
                                 create_wargoal = {
                                     type = annex_everything
                                     target = PREV.controller
+                                    expire = 0
                                 }
                             }
                         }
                     }
                 }
             }
+
+            # IF = {
+            # 	limit = {
+            # 		KHM = {
+            # 			exists = yes
+            # 		}
+            # 	}
+            # 	create_wargoal = {
+            # 	    type = annex_everything
+            # 	    target = KHM
+            # 	    expire = 0
+            # 	}
+            # }
 			
 		}
 
@@ -5533,6 +5578,7 @@ focus_tree = {
         			}
         		}
         	}
+        	custom_effect_tooltip = AFG_can_core_once_controlled_tt
 			
 		}
 
@@ -6282,6 +6328,7 @@ focus_tree = {
 		}
 		available = {
 			is_subject = no
+			has_civil_war = no
 			fascism > 0.2
 		}
 
@@ -6506,6 +6553,11 @@ focus_tree = {
 			remove_dynamic_modifier = {
 				modifier = AFG_amanullah_insurection_modifier
 			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = AFG_abdul_hadi_dawi 
 
 		}
 
@@ -7050,9 +7102,14 @@ focus_tree = {
 		available = {
 			is_subject = no
 		}
-		
 		bypass = {
-			is_subject = yes
+			OR = {
+				is_subject = yes
+				any_country_with_original_tag = {
+					original_tag_to_check = SOU
+					exists = no 
+				}
+			}
 		}
 		search_filters = { FOCUS_FILTER_ANNEXATION } 
 		completion_reward = {
@@ -7168,6 +7225,16 @@ focus_tree = {
 			is_subject = no
 			RAJ = {
 				exists = yes
+			}
+		}
+
+		bypass = {
+			OR = {
+				is_subject = yes
+				any_country_with_original_tag = {
+					original_tag_to_check = RAJ
+					exists = no 
+				}
 			}
 		}
 		
@@ -7403,7 +7470,10 @@ focus_tree = {
 				limit = {
 					is_in_faction = no
 				}
-				create_faction = AFG_turko_persian_union
+				create_faction_from_template = {
+					template = faction_template_AFG_united_islamic_world_faction
+					name = AFG_turko_persian_union
+				}
 			}
 		}
 	}
@@ -8389,7 +8459,10 @@ focus_tree = {
 			}
 		}
 		available = {
-			is_in_faction = no
+			OR = {
+				is_in_faction = no
+				is_in_faction_with = GER
+			}
 			is_subject = no
 			OR = {
 				has_government = fascism
@@ -8532,8 +8605,10 @@ focus_tree = {
 			factor = 10
 		}
 		bypass = { 
-			is_in_faction_with = GER 
-			is_subject = yes
+			OR = {
+				is_in_faction_with = GER 
+				is_subject = yes
+			}
 		}
 		available = {
 			is_subject = no
@@ -9084,6 +9159,12 @@ focus_tree = {
 		}
 
 		available = {
+			OR = {
+				NOT = {
+					has_completed_focus = AFG_seek_british_investment
+				}
+				has_completed_focus = AFG_expel_allied_nationals
+			}
 			GER = {
 				exists = yes
 				NOT = {
@@ -9140,6 +9221,12 @@ focus_tree = {
 		}
 
 		available = {
+			OR = {
+				NOT = {
+					has_completed_focus = AFG_placeholder_1
+				}
+				has_completed_focus = AFG_expel_axis_nationals
+			}
 			ENG = {
 				exists = yes
 				NOT = {
@@ -9241,7 +9328,8 @@ focus_tree = {
 		#}
 		search_filters = { FOCUS_FILTER_POLITICAL_CHARACTER }
 		completion_reward = {
-			#custom_effect_tooltip = "TODO_ASD: Decision system for changing country leader"
+			unlock_decision_tooltip = AFG_a_royal_successor_decision 
+			custom_effect_tooltip = generic_skip_one_line_tt
 			custom_effect_tooltip = AFG_promote_the_counter_elite_tt
 			IF = {
 				limit = { has_character = AFG_shah_mahmud_khan }
@@ -9315,6 +9403,10 @@ focus_tree = {
 			factor = 10
 		}
 		available = {
+			has_completed_focus = AFG_placeholder_1
+			NOT = {
+				has_government = fascism
+			}
 			NOT = {
 				is_ally_with = GER
 			}
@@ -9341,6 +9433,13 @@ focus_tree = {
 			}
 			add_stability = 0.05
 
+			IF = {
+				limit = {
+					has_idea = AFG_fascist_influence
+				}
+				remove_ideas = AFG_fascist_influence
+			}
+
 		}
 
 	}
@@ -9362,6 +9461,10 @@ focus_tree = {
 			}
 		}
 		available = {
+			has_completed_focus = AFG_seek_british_investment
+			NOT = {
+				has_government = democratic
+			}
 			NOT = {
 				is_ally_with = ENG
 				is_ally_with = USA
@@ -9414,6 +9517,12 @@ focus_tree = {
 				}
 				#custom_effect_tooltip = AFG_ideology_on_the_rise_tt
 			}
+			IF = {
+				limit = {
+					has_idea = AFG_democratic_influence_2
+				}
+				remove_ideas = AFG_democratic_influence_2
+			}
 		}
 
 	}
@@ -9431,7 +9540,10 @@ focus_tree = {
 			factor = 10
 		}
 		available = {
-			is_in_faction = no
+			OR = {
+				is_in_faction = no
+				is_faction_leader = yes
+			}
 			has_army_manpower = { size > 120000 }
 			has_war_support > 0.40
 		}
@@ -9462,7 +9574,10 @@ focus_tree = {
 			}
 		}
 		available = {
-			is_in_faction = no
+			OR = {
+				is_in_faction = no
+				is_in_faction_with = ENG
+			}
 			is_subject = no
 			OR = {
 				has_government = democratic
@@ -10607,6 +10722,47 @@ focus_tree = {
 	}
 
 	focus = {
+		id = AFG_ally_the_young_afghans
+		icon = GFX_focus_AFG_revive_the_1923_constitution 
+		prerequisite = { focus = AFG_promote_the_counter_elite }
+		x = -4
+		y = 1
+		relative_position_id = AFG_promote_the_counter_elite
+		
+		cost = 5
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		available = {
+			OR = {
+				has_government = neutrality
+				has_government = democratic
+			}
+		}
+		
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_POLITICAL_CHARACTER }
+
+		completion_reward = {
+			
+			add_timed_idea = {
+				idea = AFG_new_young_afghan_movement
+				days = 480
+			}	
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = AFG_abdul_hadi_dawi
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = AFG_soraya_tarzi
+
+		}
+
+	}
+
+	focus = {
 		id = AFG_parliamentary_democracy
 		icon = GFX_focus_AFG_parliamentary_democracy 
 		prerequisite = { focus = AFG_promote_the_counter_elite }
@@ -10620,6 +10776,7 @@ focus_tree = {
 		}
 
 		available = {
+			has_civil_war = no
 			democratic > 0.2
 			OR = {
 				is_subject = no
@@ -10687,6 +10844,9 @@ focus_tree = {
 					    		}
 					    	}
 					    }
+					    PREV.PREV = {
+					    	remove_ideas = AFG_counter_elite_on_the_rise
+					    }
 					}
 				}
 	
@@ -10696,6 +10856,11 @@ focus_tree = {
 						fascism = 0
 						communism = 0
 						democratic = 100
+					}
+					set_party_name = {
+						ideology = democratic
+						name = BRA_provisional_government
+						long_name = BRA_provisional_government_long
 					}
 					division_template = {
 						name = "Loyalist Militia"		
@@ -10804,6 +10969,12 @@ focus_tree = {
 				has_government = communism
 			}
 			has_civil_war = no
+			NOT = {
+				has_country_leader = {
+					ruling_only = yes 
+					character = AFG_provisional_government
+				}	
+			}
 		}
 		#allow_branch = {
 		#}
@@ -11291,6 +11462,7 @@ focus_tree = {
 		}
 
 		available = {
+			has_civil_war = no
 			communism > 0.2
 			OR = {
 				is_subject = no

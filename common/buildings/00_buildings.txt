@@ -39,6 +39,7 @@ buildings = {
 
 		show_modifier = yes
 		allied_build = yes
+		affects_energy = yes
 
 		infrastructure_construction_effect = yes
 		level_cap = {
@@ -95,7 +96,7 @@ buildings = {
 		icon_frame = 5
 		air_base = yes
 		value = 1
-		damage_factor = 0.1
+		damage_factor = 0.05
 		allied_build = yes
 		infrastructure_construction_effect = yes
 		level_cap = {
@@ -118,6 +119,7 @@ buildings = {
 		level_cap = {
 			province_max = 1
 		}
+		tags = { supply_building }
 	}	
 	
 	rail_way = {
@@ -167,6 +169,7 @@ buildings = {
 		is_port = yes
 		icon_frame = 6
 		value = 1
+		tags = { naval_buildings_tag }
 		allied_build = yes
 		infrastructure_construction_effect = yes
 		level_cap = {
@@ -197,7 +200,7 @@ buildings = {
 		base_cost = 3000
 		per_level_extra_cost = 1000
 		disabled_in_dmz = yes
-		icon_frame = 30
+		icon_frame = 34
 		land_fort = 1 # Maybe get rid of?
 		level_cap = {
 			province_max = 5
@@ -233,7 +236,7 @@ buildings = {
 		per_level_extra_cost = 800
 		disabled_in_dmz = yes
 		only_costal = yes
-		icon_frame = 31
+		icon_frame = 35
 		naval_fort = 1 # Maybe get rid of?
 		level_cap = {
 			province_max = 5
@@ -290,17 +293,20 @@ buildings = {
 	dockyard = {
 		show_on_map = 1
 		show_on_map_meshes = 3
-		base_cost = 6000
+		base_cost = 6500
 		only_costal = yes
 		naval_production = 1
 		icon_frame = 4
 		only_costal = yes
 		value = 5
-		# damage_factor = 2
+		tags = { naval_buildings_tag } 
 		infrastructure_construction_effect = yes
 		level_cap = {
 			shares_slots = yes
 			state_max = 99
+		}
+		state_modifiers = {
+			local_factory_energy_consumption = 0.06			
 		}
 	}
 
@@ -312,7 +318,7 @@ buildings = {
 		anti_air = yes
 		disabled_in_dmz = yes
 		air_defence = 1
-		damage_factor = 0.1
+		damage_factor = 0.05
 		value = 1
 		allied_build = yes
 		infrastructure_construction_effect = yes
@@ -348,7 +354,7 @@ buildings = {
 	synthetic_rubber_refinery = {
 		show_on_map = 1
 		base_cost = 14000
-		icon_frame = 28
+		icon_frame = 32
 		local_resources_rubber = 25
 		per_level_extra_cost = -2000
 		refinery = yes
@@ -369,7 +375,7 @@ buildings = {
 		base_cost = 12000
 		#base_cost = 14000
 		#per_level_extra_cost = -2000
-		icon_frame = 29
+		icon_frame = 33
 		local_resources_steel = 100
 		local_resources_aluminium = 10
         local_resources_chromium = 5
@@ -463,6 +469,52 @@ buildings = {
 		}
 	}
 	
+	naval_supply_hub = {
+		show_on_map = 1
+		base_cost = 12500
+		icon_frame = 28
+		disabled_in_dmz = yes
+		naval_supply_hub = yes
+		infrastructure_construction_effect = yes
+		only_costal = yes
+		tags = { naval_buildings_tag }
+		building_prerequisite = {
+			building_dependency = {
+				building = naval_base
+				level = 8
+			}
+		}
+		level_cap = {
+			province_max = 1
+		}
+	}
+	
+	naval_headquarters = {
+		dlc_allowed = { has_dlc = "No Compromise, No Surrender" }
+		show_on_map = 1
+		base_cost = 10000
+		per_controlled_building_extra_cost = 5000
+		icon_frame = 29
+		value = 1
+		naval_headquarter = yes
+		disabled_in_dmz = yes
+		infrastructure_construction_effect = yes
+		only_costal = yes
+		tags = { naval_buildings_tag }
+		building_prerequisite = {
+			building_dependency = {
+				building = naval_base
+				level = 8
+			}
+		}
+		level_cap = {
+			province_max = 1
+		}
+		modules = {
+			naval_leader_module
+		}
+	}
+	
 	nuclear_reactor = {
 		#hide_if_missing_tech = yes
 		missing_tech_loc = { 
@@ -543,14 +595,15 @@ buildings = {
 			modifiers = {
 				nuclear_production_factor = 2
 				thermonuclear_production_factor = 1
-				#consumer_goods_expected_value = -0.05
+				#consumer_goods_factor = -0.05
 			}
 		}
 
 		state_modifiers = {
 			state_production_speed_buildings_factor = 0.15
 			local_building_slots_factor = 0.15
-			state_resources_factor = 0.1			
+			state_resources_factor = 0.1
+			local_factory_energy_consumption = -0.25			
 		}
 
 		level_cap = {
@@ -663,6 +716,7 @@ buildings = {
 			state_production_speed_buildings_factor = 0.1
 			local_building_slots_factor = 0.1
 			state_resources_factor = 0.1
+			local_factory_energy_consumption = -0.15
 		}
 	}
 	dam_mountain = {
@@ -688,6 +742,7 @@ buildings = {
 			state_production_speed_buildings_factor = 0.1
 			local_building_slots_factor = 0.1
 			state_resources_factor = 0.1
+			local_factory_energy_consumption = -0.15
 		}
 	}
 
@@ -734,6 +789,46 @@ buildings = {
 		show_modifier = yes
 		state_modifiers = {
 			
+		}
+	}
+	
+	#### Energy
+	
+	energy_infrastructure = {
+		base_cost = 16000
+		icon_frame = 30
+		value = 1
+
+		show_modifier = yes
+		affects_energy = yes
+
+		infrastructure_construction_effect = yes
+		level_cap = {
+			state_max = 1
+			shares_slots = yes
+			group_by = infrastructure_keystone
+		}
+		state_modifiers = {
+			local_factory_energy_consumption_per_infrastructure = -0.05
+		}
+	}
+	
+	industrial_infrastructure = {
+		base_cost = 16000
+		icon_frame = 31
+		value = 1
+
+		show_modifier = yes
+
+
+		infrastructure_construction_effect = yes
+		level_cap = {
+			state_max = 1
+			shares_slots = yes
+			group_by = infrastructure_keystone
+		}
+		state_modifiers = {
+			local_resource_gain_efficiency_per_infrastructure = 0.05
 		}
 	}
 }
