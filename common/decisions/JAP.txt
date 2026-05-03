@@ -961,6 +961,40 @@ JAP_intervene_in_china = {
 
 foreign_politics = {
 
+JAP_annex_sia = {
+
+		allowed = {
+			original_tag = JAP
+		}
+
+		available = {
+			SAI = {is_ai = yes}
+			OR = {
+				JAP = { has_war_with = ENG }
+				GER = { has_war_with = SOV }
+				
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			always = yes
+		}
+		fire_only_once = yes
+		complete_effect = {
+			annex_country = { target = SIA transfer_troops = yes }
+			every_owned_state = {
+				limit = {
+					is_core_of = SIA
+				}
+				set_compliance = 60				
+			}
+		}
+	}
+
 	# Offer Surrender Terms to China
 	JAP_sue_for_peace_CHI = {
 
