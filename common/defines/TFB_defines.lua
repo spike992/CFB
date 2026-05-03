@@ -847,7 +847,7 @@ NDefines.NFactions.FACTION_MANPOWER_RECIEVE_CONTRIBUTION_SCALAR = 0.2 -- a scala
 NDefines.NFactions.FACTION_INFLUENCE_SCIENTIST_CONTRIBUTION_VALUE = 1 --how much contribution one scientists gives to you if it is working for somebody else.
 
 
-NDefines.NDoctrines.TRAINING_MASTERY_GAIN_FACTOR = 0.02				-- How much training contributes to doctrine mastery relative to combat/missions
+NDefines.NDoctrines.TRAINING_MASTERY_GAIN_FACTOR = 0.06				-- How much training contributes to doctrine mastery relative to combat/missions
 NDefines.NDoctrines.MASTERY_BANK_CONVERSION_RATE = 0.5 				-- The rate at which mastery gained when a track is finished or empty is "banked"
 NDefines.NDoctrines.DOCTRINE_SHARING_BASE_MASTERY_GAIN_MONTHLY = 10        -- When doctrine sharing is enabled, this is the base amount of mastery gained monthly
 NDefines.NDoctrines.DOCTRINE_SHARING_MONTHLY_MASTERY_GAIN_PER_COMMANDER = 2 -- When doctrine sharing is enabled, each theater commander increases the montly mastery gain by this much
