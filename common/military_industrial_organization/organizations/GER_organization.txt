@@ -728,6 +728,7 @@ GER_daimler_benz_organization = {
 			tag = GER
 			tag = ROM
 			tag = HUN
+			tag = SPR
 		}
 			
 		# 	AND = {
@@ -752,6 +753,16 @@ GER_daimler_benz_organization = {
 			}
 			FROM = {
 				has_completed_focus = ROM_learn_from_the_germans
+			}
+		}
+		IF = {
+			limit = {
+				FROM = {
+					original_tag = SPR
+				}
+			}
+			FROM = {
+				has_completed_focus = SPA_learn_from_the_germans
 			}
 		}
 		IF = {
@@ -974,6 +985,33 @@ GER_daimler_benz_organization = {
 		available = {
             FROM = {
                 has_completed_focus = ROM_independent_operations
+            }
+        }
+		
+		equipment_bonus = {
+			maximum_speed = 0.1
+			breakthrough = 0.05
+		}
+
+	}
+
+	add_trait = {  
+		token = GER_mio_trait_independent_operations
+		name = GER_mio_trait_independent_operations
+		icon = GFX_generic_mio_department_icon_tank_general_at
+		special_trait_background = yes
+		
+		position = { x=9 y=1 } 
+
+		visible = {
+			FROM = { tag = SPR }
+		}
+
+		limit_to_equipment_type = { mio_cat_eq_all_medium_tank }
+
+		available = {
+            FROM = {
+                has_completed_focus = SPA_independent_operations
             }
         }
 		
@@ -3263,6 +3301,10 @@ GER_opel_organization = {
 				has_dlc = "Battle for the Bosporus"
 			}
 		}
+		AND = {
+				original_tag = SPA
+				has_dlc = "Death or Dishonor"
+			}
 	}
 	
 	available = {
@@ -3296,6 +3338,11 @@ GER_opel_organization = {
 			limit = { FROM = { original_tag = ROM } }
 			FROM = { has_country_flag = GER_mot_chosen }
 		}	
+		
+		IF = {
+			limit = { FROM = { original_tag = SPR } }
+			FROM = { has_country_flag = GER_mot_chosen }
+		}
 	}
 
 	add_trait = {

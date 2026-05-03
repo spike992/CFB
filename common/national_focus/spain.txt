@@ -2483,7 +2483,7 @@ focus_tree = {
 		prerequisite = { focus = SPA_the_national_syndicalist_state focus = SPA_fuse_the_parties }
 		
 		icon = GFX_goal_generic_army_doctrines
-		x = 3
+		x = 4
 		y = 0
 		relative_position_id = SPA_the_national_syndicalist_state
 		cost = 10
@@ -2521,6 +2521,1160 @@ focus_tree = {
 			}
 		}
 	}
+#######ROM MIL TREE##############
+
+############################
+######## ARMY BRANCH #######
+############################
+   # Upper Section
+	focus = {
+		id = SPA_army_maneuvers
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = { focus = SPA_the_national_and_popular_army_of_spain}
+		x = 4
+		y = 1
+		relative_position_id = SPA_the_national_syndicalist_state
+		cost = 5
+
+		ai_will_do = {
+			factor = 9
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 55
+		}
+	}
+
+	focus = {
+		id = SPA_army_war_college
+		icon = GFX_focus_generic_military_academy
+		prerequisite = { focus = SPA_army_maneuvers }
+		x = -6
+		y = 1
+		relative_position_id = SPA_army_maneuvers
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			if = { 
+				limit = { is_ai = no } 
+				add_ideas = ROM_army_war_college
+			}
+			custom_effect_tooltip = ROM_war_college_tt
+			hidden_effect = {
+				create_corps_commander = { 
+					name = "Barbu Paraianu"
+					gfx = GFX_Portrait_romania_barbu_paraianu
+					traits = { trickster }
+					skill = 2
+					attack_skill = 1
+					defense_skill = 2
+					planning_skill = 2
+					logistics_skill = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SPA_invite_german_advisors
+		icon = GFX_focus_ger_oppose_hitler
+		prerequisite = { focus = SPA_army_maneuvers }
+		x = -1
+		y = 1
+		relative_position_id = SPA_army_maneuvers
+		cost = 7
+		ai_will_do = {}
+		available = {
+			is_in_faction_with = GER
+		}
+		completion_reward = {
+			custom_effect_tooltip = ROM_invite_german_advisors_tt
+			hidden_effect = {
+				diplomatic_relation = {
+					country = GER
+					relation = military_access
+					active = yes
+				}
+			}
+			add_ideas = german_cooperation_focus
+		}
+	}
+
+	focus = {
+		id = SPA_license_german_equipment
+		icon = GFX_focus_generic_license_production
+		prerequisite = { focus = SPA_army_maneuvers }
+		x = 1
+		y = 1
+		relative_position_id = SPA_army_maneuvers
+		cost = 7
+		ai_will_do = {}
+		available = {
+			is_in_faction_with = GER
+		}
+		completion_reward = {
+			add_relation_modifier = {
+				target = GER
+				modifier = ROM_license_german_equipment
+			}
+			add_to_tech_sharing_group = axis_research
+		}
+	}
+
+	focus = {
+		id = SPA_towards_romanian_armoured_force
+		icon = GFX_focus_generic_tankette
+		prerequisite = { focus = SPA_army_maneuvers }
+		x = 4
+		y = 1
+		relative_position_id = SPA_army_maneuvers
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			add_tech_bonus = {
+				name = ROM_the_armored_division
+				bonus = 0.5
+				uses = 1
+				category = armor
+			}
+			army_experience = 20
+			# Not quite the same 2x -30% cost for mobile warfare, gdp assault, and deep battle
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.3
+				uses = 2
+				category = cat_mobile_warfare
+				category = cat_mass_assault
+			}
+			add_mastery_bonus = {
+				name = ROM_the_armored_division
+				bonus = 0.2
+				days = 360
+				track = armor
+			}
+			add_mastery = {
+				amount = 50
+				track = armor
+			}
+		}
+	}
+
+   # Infantry Side
+	focus = {
+		id = SPA_reserve_divisions
+		icon = GFX_focus_SOV_mobilization_plan
+		prerequisite = { focus = SPA_army_war_college }
+		mutually_exclusive = { focus = SPA_royal_guard_divisions }
+		x = -3
+		y = 1
+		relative_position_id = SPA_army_war_college
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			add_ideas = ROM_reserve_divisions
+		}
+	}
+
+	focus = {
+		id = SPA_royal_guard_divisions
+		icon = GFX_goal_generic_special_forces
+		prerequisite = { focus = SPA_army_war_college }
+		mutually_exclusive = { focus = SPA_reserve_divisions }
+		x = -1
+		y = 1
+		relative_position_id = SPA_army_war_college
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			add_ideas = ROM_royal_guards
+			custom_effect_tooltip = ROM_royal_guards_divisions_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_tech = tech_recon
+					}
+					division_template = {
+						name = "Royal Guards Division"
+						priority = 2
+						division_names_group = ROM_INF_01
+						regiments = {
+							infantry = { x = 0 y = 0 }
+							infantry = { x = 0 y = 1 }
+							infantry = { x = 0 y = 2 }
+							infantry = { x = 0 y = 3 }				
+							infantry = { x = 1 y = 0 }
+							infantry = { x = 1 y = 1 }
+							infantry = { x = 1 y = 2 }
+							infantry = { x = 1 y = 3 }
+				
+							artillery_brigade = { x = 2 y = 0 }
+							artillery_brigade = { x = 2 y = 1 }
+							artillery_brigade = { x = 2 y = 2 }
+							artillery_brigade = { x = 2 y = 3 }							
+						}
+						support = {
+							engineer = { x = 0 y = 0 }
+							recon = { x = 0 y = 1 }
+						}
+					}
+					else = {
+						division_template = {
+							name = "Royal Guards Division"
+							priority = 2
+							division_names_group = ROM_INF_01
+							regiments = {
+								infantry = { x = 0 y = 0 }
+								infantry = { x = 0 y = 1 }
+								infantry = { x = 0 y = 2 }
+								infantry = { x = 0 y = 3 }				
+								infantry = { x = 1 y = 0 }
+								infantry = { x = 1 y = 1 }
+								infantry = { x = 1 y = 2 }
+								infantry = { x = 1 y = 3 }
+					
+								artillery_brigade = { x = 2 y = 0 }
+								artillery_brigade = { x = 2 y = 1 }
+								artillery_brigade = { x = 2 y = 2 }
+								artillery_brigade = { x = 2 y = 3 }		
+							}
+							support = {
+								engineer = { x = 0 y = 0 }
+							}
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					limit = { ROOT = { has_full_control_of_state = PREV } }
+					prioritize = { 46 }
+					create_unit = {
+						division = "name = \"Royal Guards Division\" division_template = \"Royal Guards Division\" start_experience_factor = 1.0" 
+						owner = ROM
+					}
+				}
+			}	
+		}
+	}
+
+	focus = {
+		id = SPA_mountain_artillery
+		icon = GFX_focus_SMB_mountain_guns
+		prerequisite = { focus = SPA_army_war_college }
+		mutually_exclusive = { focus = SPA_heavy_fortress_guns }
+		x = 1
+		y = 1
+		relative_position_id = SPA_army_war_college
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			mio:ROM_resita_works_organization = {
+				complete_mio_trait = generic_mountain_gun_rom
+			}
+			add_tech_bonus = {
+				name = ROM_modern_at_guns
+				ahead_reduction = 0.5
+				bonus = 0.75
+				uses = 1
+				category = artillery
+			}
+		}
+	}
+
+	focus = {
+		id = SPA_heavy_fortress_guns
+		icon = GFX_goal_generic_army_artillery2
+		prerequisite = { focus = SPA_army_war_college }
+		mutually_exclusive = { focus = SPA_mountain_artillery }
+		x = 3
+		y = 1
+		relative_position_id = SPA_army_war_college
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			add_tech_bonus = {
+				name = ROM_artillery_modernization
+				bonus = 0.75
+				uses = 2
+				category = heavy_artillery
+			}
+		}
+	}
+
+	focus = {
+		id = SPA_recruitment_by_talent
+		icon = GFX_focus_generic_military_dictatorship
+		prerequisite = { focus = SPA_reserve_divisions }
+		x = -1
+		y = 1
+		relative_position_id = SPA_reserve_divisions
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			custom_effect_tooltip = unlocks_spirit_of_the_academy_TT
+			show_ideas_tooltip = ROM_army_academy
+		}
+	}
+	focus = {
+		id = SPA_the_zb_53
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = SPA_reserve_divisions focus = SPA_royal_guard_divisions }
+		x = -1
+		y = 1
+		relative_position_id = SPA_royal_guard_divisions
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			add_tech_bonus = {
+				name = ROM_the_zb_53
+				bonus = 0.75
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+	}
+	focus = {
+		id = SPA_vanatori_de_munte
+		icon = GFX_focus_GRE_a_land_of_mountains
+		prerequisite = { focus = SPA_mountain_artillery }
+		prerequisite = { focus = SPA_royal_guard_divisions }
+		x = -1
+		y = 1
+		relative_position_id = SPA_mountain_artillery
+		cost = 7
+		available = {
+			has_tech = tech_mountaineers
+		}
+		ai_will_do = {}
+		completion_reward = {
+			swap_ideas = {
+				add_idea = ROM_royal_guards2
+				remove_idea = ROM_royal_guards
+			}
+			mio:ROM_resita_works_organization = {
+				complete_mio_trait = generic_carpatian_gun
+			}
+			custom_effect_tooltip = ROM_vanatori_de_munte_unit_tt
+			hidden_effect = {
+				division_template = {
+					name = "Vanatori de munte"
+					priority = 2
+					division_names_group = ROM_MTN_01
+					regiments = {
+						mountaineers = { x = 0 y = 0 }
+						mountaineers = { x = 0 y = 1 }
+						mountaineers = { x = 0 y = 2 }
+						mountaineers = { x = 0 y = 3 }
+			
+						mountaineers = { x = 1 y = 0 }
+						mountaineers = { x = 1 y = 1 }
+						mountaineers = { x = 1 y = 2 }
+						mountaineers = { x = 1 y = 3 }
+			
+						mountaineers = { x = 2 y = 0 }
+						mountaineers = { x = 2 y = 1 }
+						mountaineers = { x = 2 y = 2 }
+						mountaineers = { x = 2 y = 3 }
+						
+						pack_artillery_brigade = { x = 3 y = 0 }
+						pack_artillery_brigade = { x = 3 y = 1 }
+						pack_artillery_brigade = { x = 3 y = 2 }
+						pack_artillery_brigade = { x = 4 y = 0 }
+						pack_artillery_brigade = { x = 4 y = 1 }
+						pack_artillery_brigade = { x = 4 y = 2 }
+					}
+					support = {
+						engineer = { x = 0 y = 0 }
+						hq_company = { x = 0 y = 1 }
+						recon = { x = 0 y = 2 }
+						logistics_company = { x = 0 y = 3 }
+					}
+				}
+				random_owned_controlled_state = {
+					limit = { ROOT = { has_full_control_of_state = PREV } }
+					prioritize = { 46 }
+					create_unit = {
+						division = "name = \"Vanatori de munte\" division_template = \"Vanatori de munte\" start_experience_factor = 1.0" 
+						owner = ROM
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPA_modern_at_guns
+		icon = GFX_goal_generic_army_artillery
+		prerequisite = { focus = SPA_mountain_artillery focus = SPA_heavy_fortress_guns }
+		x = -1
+		y = 1
+		relative_position_id = SPA_heavy_fortress_guns
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			add_tech_bonus = {
+				name = ROM_modern_at_guns
+				bonus = 0.75
+				uses = 2
+				category = cat_anti_tank
+			}
+		}
+	}
+	focus = {
+		id = SPA_great_war_tactics
+		icon = GFX_focus_generic_provoke_border_clashes
+		prerequisite = { focus = SPA_heavy_fortress_guns }
+		x = 1
+		y = 1
+		relative_position_id = SPA_heavy_fortress_guns
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			mio:ROM_resita_works_organization = {
+				complete_mio_trait = generic_bucharest_blast
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.3
+				uses = 2
+				category = cat_superior_firepower
+				category = cat_grand_battle_plan
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_mastery_bonus = {
+				name = ROM_great_war_tactics
+				bonus = 0.2
+				days = 360
+				grand_doctrine = grand_battleplan
+			}
+			add_mastery_bonus = {
+				name = ROM_great_war_tactics
+				bonus = 0.2
+				days = 360
+				grand_doctrine = superior_firepower
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_mastery = {
+				amount = 50
+				grand_doctrine = grand_battleplan
+			}
+			add_mastery = {
+				amount = 50
+				grand_doctrine = superior_firepower
+			}
+		}
+	}
+	focus = {
+		id = SPA_the_orita_m1941
+		icon = GFX_focus_secret_rearmament
+		prerequisite = { focus = SPA_the_zb_53 }
+		x = -1
+		y = 1
+		relative_position_id = SPA_the_zb_53
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			mio:ROM_cugir_organization = {
+				complete_mio_trait = generic_orita_submachine
+			}
+			add_tech_bonus = {
+				name = ROM_the_zb_53
+				bonus = 0.75
+				uses = 2
+				category = infantry_weapons
+			}
+		}
+	}
+	focus = {
+		id = SPA_modernise_the_army
+		icon = GFX_focus_chi_army_reform
+		prerequisite = { focus = SPA_the_zb_53 }
+		prerequisite = { focus = SPA_modern_at_guns }
+		mutually_exclusive = { focus = SPA_utilise_scavenging_tactics }
+		x = 1
+		y = 1
+		relative_position_id = SPA_the_zb_53
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			add_timed_idea = { idea = ROM_modernise_the_army days = 200}
+		}
+	}
+	focus = {
+		id = SPA_utilise_scavenging_tactics
+		icon = GFX_focus_AFG_scavenging
+		prerequisite = { focus = SPA_the_zb_53 }
+		prerequisite = { focus = SPA_modern_at_guns }
+		mutually_exclusive = { focus = SPA_modernise_the_army }
+		x = 3
+		y = 1
+		relative_position_id = SPA_the_zb_53
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+		   add_ideas = ROM_utilise_scavenging_tactics
+		}
+	}
+	focus = {
+		id = SPA_resita_75mm
+		icon = GFX_focus_generic_anti_tank_guns
+		prerequisite = { focus = SPA_modern_at_guns }
+		x = 1
+		y = 1
+		relative_position_id = SPA_modern_at_guns
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			mio:ROM_resita_works_organization = {
+				complete_mio_trait = generic_resita_75mm
+			}
+		}
+	}
+
+   # Cavalry branch
+	focus = {
+		id = SPA_elite_cavalry
+		icon = GFX_goal_generic_cavalry
+		prerequisite = { focus = SPA_army_war_college }
+		x = 5
+		y = 1
+		relative_position_id = SPA_army_war_college
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			add_ideas = ROM_elite_cavalry
+			custom_effect_tooltip = ROM_elite_cavalry_unit_tt
+			hidden_effect = {
+				division_template = {
+					name = "Brigada de Cavalerie Elită"
+					priority = 2
+					division_names_group = ROM_CAV_01
+					regiments = {
+						cavalry = { x = 0 y = 0 }
+						cavalry = { x = 0 y = 1 }
+						cavalry = { x = 0 y = 2 }
+						cavalry = { x = 0 y = 3 }
+			
+						cavalry = { x = 1 y = 0 }
+						cavalry = { x = 1 y = 1 }
+						cavalry = { x = 1 y = 2 }
+						cavalry = { x = 1 y = 3 }
+			
+						cavalry = { x = 2 y = 0 }
+						cavalry = { x = 2 y = 1 }
+						cavalry = { x = 2 y = 2 }
+						cavalry = { x = 2 y = 3 }
+			
+						cavalry = { x = 3 y = 0 }
+						cavalry = { x = 3 y = 1 }
+						cavalry = { x = 3 y = 2 }
+						
+					}
+					support = {
+						engineer = { x = 0 y = 0 }
+						hq_company = { x = 0 y = 1 }
+						recon = { x = 0 y = 2 }
+						logistics_company_horse = { x = 0 y = 3 }
+					}
+				}
+				random_owned_controlled_state = {
+					limit = { ROOT = { has_full_control_of_state = PREV } }
+					prioritize = { 46 }
+					create_unit = {
+						division = "name = \"Brigada de Cavalerie Elită I\" division_template = \"Brigada de Cavalerie Elită\" start_experience_factor = 1.0" 
+						owner = ROM
+					}
+					create_unit = {
+						division = "name = \"Brigada de Cavalerie Elită II\" division_template = \"Brigada de Cavalerie Elită\" start_experience_factor = 1.0" 
+						owner = ROM
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SPA_invite_foreign_motor_companies
+		icon = GFX_focus_generic_truck
+		x = -3
+		y = 1
+		relative_position_id = SPA_towards_romanian_armoured_force
+		prerequisite = { focus = SPA_towards_romanian_armoured_force }
+
+		cost = 7
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+
+		completion_reward = {
+			country_event = DOD_romania.120
+		}
+	}
+
+	focus = {
+		id = SPA_fund_mechanised_research
+		icon = GFX_focus_generic_purchase_mechanized_equipment
+		prerequisite = { focus = SPA_elite_cavalry }
+		prerequisite = { focus = SPA_invite_foreign_motor_companies }
+		x = 1
+		y = 1
+		relative_position_id = SPA_elite_cavalry
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			mio:ROM_malaxa_organization = {
+				complete_mio_trait = generic_dacia_king_cab
+			}
+			add_tech_bonus = {
+				name = ROM_fund_mechanised_research
+				bonus = 0.75
+				uses = 1
+				category = cat_mechanized_equipment
+			}
+		}
+	}
+   # Armoured branch
+	focus = {
+		id = SPA_learn_from_the_french
+		icon = GFX_focus_chi_reach_out_to_france
+		prerequisite = { focus = SPA_towards_romanian_armoured_force }
+		mutually_exclusive = { focus = SPA_learn_from_the_germans }
+		x = -1
+		y = 1
+		relative_position_id = SPA_towards_romanian_armoured_force
+		cost = 7
+		ai_will_do = {}
+		available = {
+			FRA = {
+				has_opinion	= {
+					target = ROM
+					value > 74
+				}
+			}
+			NOT = { has_war_with = FRA }
+			NOT = { has_war_with = SOV }
+			NOT = { has_completed_focus = SPA_goga_codreanu_pact }
+			NOT = { has_idea = ROM_armor_purchases_CZE }
+			NOT = { has_idea = ROM_armor_purchases_FRA }
+			NOT = { has_idea = ROM_armor_purchases_GER }
+		}
+		completion_reward = {
+			add_timed_idea = { idea = ROM_armor_purchases_FRA days = 100 }
+			FRA = {
+				mio:FRA_renault_organization = {
+					add_mio_funds = 500
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			set_technology = { fra_light_tank_export_rom = 1 }
+			create_equipment_variant = {
+				name = "Renault R35"
+				type = fra_light_tank_chassis_r35
+				parent_version = 0
+				modules = {
+					main_armament_slot = tank_small_gun_1
+					turret_type_slot = tank_light_turret_1
+					suspension_type_slot = tank_bogie_suspension
+					armor_type_slot = tank_riveted_armor
+					engine_type_slot = tank_gasoline_engine
+				}
+				icon = "gfx/interface/technologies/tanks/fra/fra_light_tank_3.dds"
+			}
+			add_equipment_to_stockpile = {
+				type = fra_light_tank_chassis_r35
+				amount = 50
+				producer = "FRA"
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = available_mio_tt
+			show_mio_tooltip = FRA_renault_organization
+		}
+	}
+
+	focus = {
+		id = SPA_learn_from_the_germans
+		icon = GFX_focus_BRA_acquire_german_tanks
+		prerequisite = { focus = SPA_towards_romanian_armoured_force }
+		mutually_exclusive = { focus = SPA_learn_from_the_french }
+		x = 1
+		y = 1
+		relative_position_id = SPA_towards_romanian_armoured_force
+		cost = 7
+		ai_will_do = {}
+		available = {
+			GER = {
+				has_opinion	= {
+					target = ROM
+					value > 74
+				}
+			}
+			NOT = { has_idea = ROM_armor_purchases_CZE }
+			NOT = { has_idea = ROM_armor_purchases_FRA }
+			NOT = { has_idea = ROM_armor_purchases_GER }
+		}
+		completion_reward = {
+			add_timed_idea = { idea = ROM_armor_purchases_GER days = 100 }
+			GER = {
+				mio:GER_daimler_benz_organization = {
+					add_mio_funds = 500
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			set_technology = { ger_light_tank_1 = 1 }
+			set_technology = { ger_light_tank_2 = 1 }
+			create_equipment_variant = {
+				name = "PzKpfw I A"
+				type = ger_light_tank_chassis_p1
+				parent_version = 0
+				modules = {
+					main_armament_slot = tank_heavy_machine_gun
+					turret_type_slot = tank_light_turret_1
+					suspension_type_slot = tank_bogie_suspension
+					armor_type_slot = tank_welded_armor
+					engine_type_slot = tank_gasoline_engine
+				}
+				icon = "gfx/interface/technologies/tanks/ger/ger_light_tank_1.dds"
+				obsolete = yes
+			}
+			add_equipment_to_stockpile = {
+				type = ger_light_tank_chassis_p1
+				amount = 50
+				producer = "GER"
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = available_mio_tt
+			show_mio_tooltip = GER_daimler_benz_organization
+		}
+	}
+
+	focus = {
+		id = SPA_acquire_czech_tanks
+		icon = GFX_focus_PER_czech_tanks
+		prerequisite = { focus = SPA_towards_romanian_armoured_force }
+		x = 3
+		y = 1
+		relative_position_id = SPA_towards_romanian_armoured_force
+		cost = 7
+		ai_will_do = {}
+		available = {
+			CZE = {
+				has_opinion	= {
+					target = ROM
+					value > 74
+				}
+			}
+			NOT = { has_idea = ROM_armor_purchases_CZE }
+			NOT = { has_idea = ROM_armor_purchases_FRA }
+			NOT = { has_idea = ROM_armor_purchases_GER }
+		}
+		completion_reward = {
+			add_timed_idea = { idea = ROM_armor_purchases_CZE days = 100 }
+			custom_effect_tooltip = generic_skip_one_line_tt
+			CZE = {
+				mio:CZE_skoda_armor_organization = {
+					add_mio_funds = 500
+				}
+			}
+			set_technology = { ger_cze_tank_1 = 1 }
+			set_technology = { ger_cze_tank_2 = 1 }
+			create_equipment_variant = {
+				name = "LT-35"
+				type = ger_light_tank_chassis_p35
+				parent_version = 0
+				modules = {
+					main_armament_slot = tank_small_gun_1
+					turret_type_slot = tank_light_turret_1
+					suspension_type_slot = tank_bogie_suspension
+					armor_type_slot = tank_riveted_armor
+					engine_type_slot = tank_gasoline_engine
+				}
+				icon = "gfx/interface/technologies/tanks/ger/ger_cze_tank_1.dds"
+			}
+			add_equipment_to_stockpile = {
+				type = ger_light_tank_chassis_p35
+				amount = 50
+				producer = CZE
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = available_mio_tt
+			show_mio_tooltip = CZE_skoda_armor_organization
+		}
+	}
+
+	focus = {
+		id = SPA_infantry_tanks
+		icon = GFX_goal_generic_army_tanks
+		prerequisite = { focus = SPA_learn_from_the_french }
+		x = -1
+		y = 1
+		relative_position_id = SPA_learn_from_the_french
+		cost = 7
+		ai_will_do = {}
+		available = {
+			FRA = {
+				has_opinion	= {
+					target = ROM
+					value > 74
+				}
+			}
+			NOT = { has_completed_focus = SPA_goga_codreanu_pact }
+			NOT = { has_idea = ROM_armor_purchases_CZE }
+			NOT = { has_idea = ROM_armor_purchases_FRA }
+			NOT = { has_idea = ROM_armor_purchases_GER }
+		}
+		completion_reward = {
+			add_timed_idea = { idea = ROM_armor_purchases_FRA days = 100 }
+			FRA = {
+				mio:FRA_renault_organization = {
+					add_mio_funds = 500
+				}
+			}
+			# I didn't do Infantry Tanks but did b1 biss instead for now
+			# Unlocks and activates MIO upgrade for Renault designer: Infantry Tanks (+15% amour, -10% speed, only applies to heavy tanks).
+			custom_effect_tooltip = generic_skip_one_line_tt
+			set_technology = { fra_heavy_tank_1 = 1 }
+			mio:FRA_renault_organization = {
+				complete_mio_trait = FRA_mio_trait_b1_bis_suspension
+			}
+		}
+	}
+
+	focus = {
+		id = SPA_invite_technical_experts
+		icon = GFX_focus_SOV_organize_wreckers
+		prerequisite = { focus = SPA_learn_from_the_french focus = SPA_learn_from_the_germans }
+		x = -1
+		y = 1
+		relative_position_id = SPA_learn_from_the_germans
+		cost = 7
+		ai_will_do = {}
+		available = {
+			NOT = { has_idea = ROM_armor_purchases_CZE }
+			NOT = { has_idea = ROM_armor_purchases_FRA }
+			NOT = { has_idea = ROM_armor_purchases_GER }
+		}
+		completion_reward = {
+			custom_effect_tooltip = ROM_current_bonus_tt
+			if = {
+				limit = { has_completed_focus = SPA_learn_from_the_french }
+				add_timed_idea = { idea = ROM_armor_purchases_FRA days = 100 }
+				# France gets Foreign Amour Demand for 100 days (25% mio fund gain for armour MIO, if possible).
+				mio:FRA_renault_organization = {
+					add_mio_funds_gain_factor = 0.25
+					add_mio_research_bonus = 0.05
+				}
+				FRA = {
+					mio:FRA_renault_organization = {
+						add_mio_funds = 500
+					}
+				}
+			}
+			else_if = {
+				limit = { has_completed_focus = SPA_learn_from_the_germans }
+				add_timed_idea = { idea = ROM_armor_purchases_GER days = 100 }
+				# Germany gets Foreign Amour Demand for 100 days (25% mio fund gain for armour MIO, if possible).
+				mio:GER_daimler_benz_organization = {
+					add_mio_funds_gain_factor = 0.25
+					add_mio_research_bonus = 0.05
+				}
+				GER = {
+					mio:GER_daimler_benz_organization = {
+						add_mio_funds = 500
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_completed_focus = SPA_acquire_czech_tanks
+				}
+				mio:CZE_skoda_armor_organization = {
+					complete_mio_trait = CZE_mio_trait_cemented_armor
+					add_mio_funds_gain_factor = 0.25
+					add_mio_research_bonus = 0.05
+				}
+				CZE = {
+					mio:CZE_skoda_armor_organization = {
+						add_mio_funds = 500
+					}
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = ROM_potential_bonus_tt
+			custom_effect_tooltip = ROM_has_completed_learn_from_french
+			effect_tooltip = {
+				add_timed_idea = { idea = ROM_armor_purchases_FRA days = 100 }
+				FRA = {
+					mio:FRA_renault_organization = {
+						add_mio_funds = 500
+					}
+				}
+				mio:FRA_renault_organization = {
+					add_mio_funds_gain_factor = 0.25
+					add_mio_research_bonus = 0.05
+				}
+			}
+			custom_effect_tooltip = ROM_has_completed_learn_from_germans
+			effect_tooltip = {
+				add_timed_idea = { idea = ROM_armor_purchases_GER days = 100 }
+				mio:GER_daimler_benz_organization = {
+					add_mio_funds_gain_factor = 0.25
+					add_mio_research_bonus = 0.05
+				}
+				GER = {
+					mio:GER_daimler_benz_organization = {
+						add_mio_funds = 500
+					}
+				}
+			}
+			custom_effect_tooltip = ROM_has_completed_acquire_czech_tanks
+			effect_tooltip = {
+				mio:CZE_skoda_armor_organization = {
+					complete_mio_trait = CZE_mio_trait_cemented_armor
+					add_mio_funds_gain_factor = 0.25
+					add_mio_research_bonus = 0.05
+				}
+				CZE = {
+					mio:CZE_skoda_armor_organization = {
+						add_mio_funds = 500
+					}
+				}
+			}
+			
+		}
+	}
+
+	focus = {
+		id = SPA_independent_operations
+		icon = GFX_doctrine_tank_warfare
+		prerequisite = { focus = SPA_learn_from_the_germans }
+		x = 1
+		y = 1
+		relative_position_id = SPA_learn_from_the_germans
+		cost = 7
+		ai_will_do = {}
+		available = {
+			GER = {
+				has_opinion	= {
+					target = ROM
+					value > 74
+				}
+			}
+			NOT = { has_idea = ROM_armor_purchases_CZE }
+			NOT = { has_idea = ROM_armor_purchases_FRA }
+			NOT = { has_idea = ROM_armor_purchases_GER }
+		}
+		completion_reward = {
+			add_timed_idea = { idea = ROM_armor_purchases_GER days = 100 }
+			GER = {
+				mio:GER_daimler_benz_organization = {
+					add_mio_funds = 500
+				}
+			}
+			mio:GER_daimler_benz_organization = {
+				complete_mio_trait = GER_mio_trait_independent_operations
+			}
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.3
+				uses = 2
+				category = cat_mobile_warfare
+				category = cat_mass_assault
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_mastery_bonus = {
+				name = ROM_independent_operations
+				bonus = 0.2
+				days = 360
+				grand_doctrine = mass_assault
+			}
+			add_mastery_bonus = {
+				name = ROM_independent_operations
+				bonus = 0.2
+				days = 360
+				grand_doctrine = new_mobile_warfare
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_mastery = {
+				amount = 50
+				grand_doctrine = mass_assault
+			}
+			add_mastery = {
+				amount = 50
+				grand_doctrine = new_mobile_warfare
+			}
+		}
+	}
+
+	focus = {
+		id = SPA_mobile_tank_destroyers
+		icon = GFX_focus_FIN_salvaged_and_retooled
+		prerequisite = { focus = SPA_invite_technical_experts }
+		x = -1
+		y = 1
+		relative_position_id = SPA_invite_technical_experts
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			IF = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				custom_effect_tooltip = available_mio_tt
+				show_mio_tooltip = ROM_leonidas_works_organization
+				mio:ROM_leonidas_works_organization = {
+					add_mio_funds = 2500
+					complete_mio_trait = generic_tank_destroyer_conversion
+				}
+			}
+			else = {
+				custom_effect_tooltip = available_designer
+				show_ideas_tooltip = ROM_leonidas_works
+			}
+		}
+	}
+
+	focus = {
+		id = SPA_main_battle_tank
+		icon = GFX_focus_SOV_the_glory_of_the_red_army_communism
+		prerequisite = { focus = SPA_invite_technical_experts }
+		x = 1
+		y = 1
+		relative_position_id = SPA_invite_technical_experts
+		cost = 7
+		ai_will_do = {}
+		completion_reward = {
+			add_tech_bonus = {
+				name = ROM_main_battle_tank
+				bonus = 0.5
+				uses = 2
+				category = armor
+			}
+			custom_effect_tooltip = ROM_current_bonus_tt
+			if = {
+				limit = { has_completed_focus = SPA_learn_from_the_french }
+				mio:FRA_renault_organization = {
+					add_mio_funds = 3000
+				}
+			}
+			else_if = {
+				limit = { has_completed_focus = SPA_learn_from_the_germans }
+				mio:GER_daimler_benz_organization = {
+					add_mio_funds = 3000
+				}
+			}
+			if = {
+				limit = {
+					has_completed_focus = SPA_acquire_czech_tanks
+				}
+				mio:CZE_skoda_armor_organization = {
+					add_mio_funds = 3000
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = ROM_potential_bonus_tt
+			custom_effect_tooltip = ROM_has_completed_learn_from_french
+			effect_tooltip = {
+				mio:FRA_renault_organization = {
+					add_mio_funds = 3000
+				}
+			}
+			custom_effect_tooltip = ROM_has_completed_learn_from_germans
+			effect_tooltip = {
+				mio:GER_daimler_benz_organization = {
+					add_mio_funds = 3000
+				}
+			}
+			custom_effect_tooltip = ROM_has_completed_acquire_czech_tanks
+			effect_tooltip = {
+				mio:CZE_skoda_armor_organization = {
+					add_mio_funds = 3000
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SPA_the_maresal
+		icon = GFX_focus_generic_army_tanks2
+		prerequisite = { focus = SPA_mobile_tank_destroyers }
+		prerequisite = { focus = SPA_main_battle_tank }
+		x = 1
+		y = 1
+		relative_position_id = SPA_mobile_tank_destroyers
+		cost = 7
+		ai_will_do = {}
+		available = {
+			has_war_with = SOV
+		}
+		completion_reward = {
+			custom_effect_tooltip = ROM_unlock_maresal_tt
+			set_technology = { rom_cze_tank_1 = 1 }
+			custom_effect_tooltip = generic_skip_one_line_tt
+			GER = {
+				add_tech_bonus = {
+					name = ROM_main_battle_tank
+					uses = 1
+					ahead_reduction = 1
+					technology = ger_cze_tank_3
+				}
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	focus = {
 		id = SPA_mandatory_pre_military_training
@@ -2569,229 +3723,7 @@ focus_tree = {
 		}
 	}
 
-	focus = {
-		id = SPA_the_army_of_africa_model
-		available = {
-		}
-		bypass = {
-		}
-		prerequisite = { focus = SPA_the_national_and_popular_army_of_spain }
-		
-		icon = GFX_goal_generic_army_artillery
-		x = 0
-		y = 1
-		relative_position_id = SPA_the_national_and_popular_army_of_spain
-		cost = 10
-
-		available_if_capitulated = yes
-		search_filters = {FOCUS_FILTER_RESEARCH}
-		completion_reward = {
-			army_experience = 25
-			add_doctrine_cost_reduction = {
-				name = SPA_the_army_of_africa_model
-				cost_reduction = 0.25
-				uses = 2
-				category = land_doctrine
-			}
-			add_mastery_bonus = {
-				name = SPA_the_army_of_africa_model
-				bonus = 0.1
-				days = 360
-				folder = land
-			}
-			add_mastery = {
-				amount = 50
-				folder = land
-			}
-		}
-	}
-
-	focus = {
-		id = SPA_equipment_modernization
-		available = {
-		}
-		bypass = {
-		}
-		prerequisite = { focus = SPA_the_army_of_africa_model }
-		
-		icon = GFX_goal_generic_small_arms
-		x = -1
-		y = 2
-		relative_position_id = SPA_the_army_of_africa_model
-		cost = 10
-
-		available_if_capitulated = yes
-		search_filters = {FOCUS_FILTER_RESEARCH}
-		completion_reward = {
-			add_tech_bonus = {
-				name = SPA_equipment_modernization
-				bonus = 0.5
-				uses = 2
-				category = infantry_weapons
-			}
-		}
-	}
-
-	focus = {
-		id = SPA_artillery_modernization
-		available = {
-		}
-		bypass = {
-		}
-		prerequisite = { focus = SPA_equipment_modernization }
-		
-		icon = GFX_goal_generic_army_artillery2
-		x = -1
-		y = 1
-		relative_position_id = SPA_equipment_modernization
-		cost = 10
-
-		available_if_capitulated = yes
-		search_filters = {FOCUS_FILTER_RESEARCH}
-		completion_reward = {
-			add_tech_bonus = {
-				name = SPA_artillery_modernization
-				bonus = 0.5
-				uses = 2
-				category = artillery
-			}
-		}
-	}
-
-	focus = {
-		id = SPA_expand_the_air_branch
-		available = {
-		}
-		bypass = {
-		}
-		prerequisite = { focus = SPA_equipment_modernization }
-		
-		icon = GFX_goal_generic_air_doctrine
-		x = 0
-		y = 2
-		relative_position_id = SPA_equipment_modernization
-		cost = 10
-
-		available_if_capitulated = yes
-		search_filters = {FOCUS_FILTER_RESEARCH}
-		completion_reward = {
-			air_experience = 50
-			add_doctrine_cost_reduction = {
-				name = SPA_expand_the_air_branch
-				cost_reduction = 0.25
-				uses = 1
-				category = air_doctrine
-			}
-			add_mastery_bonus = {
-				name = SPA_expand_the_air_branch
-				bonus = 0.2
-				days = 360
-				folder = air
-			}
-			add_mastery = {
-				amount = 50
-				folder = air
-			}
-			add_tech_bonus = {
-				name = SPA_expand_the_air_branch
-				bonus = 0.5
-				uses = 1
-				category = light_fighter
-				category = cas_bomber
-			}
-		}
-	}
-
-	focus = {
-		id = SPA_expand_the_special_forces
-		available = {
-		}
-		bypass = {
-		}
-		prerequisite = { focus = SPA_equipment_modernization }
-		
-		icon = GFX_goal_generic_special_forces
-		x = 1
-		y = 1
-		relative_position_id = SPA_equipment_modernization
-		cost = 10
-
-		available_if_capitulated = yes
-		search_filters = {FOCUS_FILTER_RESEARCH}
-		completion_reward = {
-			add_tech_bonus = {
-				name = SPA_expand_the_special_forces
-				bonus = 0.5
-				uses = 1
-				category = marine_tech
-			}
-			add_tech_bonus = {
-				name = SPA_expand_the_special_forces
-				bonus = 0.5
-				uses = 1
-				category = mountaineers_tech
-			}
-		}
-	}
-
-	focus = {
-		id = SPA_motorization
-		available = {
-		}
-		bypass = {
-		}
-		prerequisite = { focus = SPA_the_army_of_africa_model }
-		
-		icon = GFX_goal_generic_army_motorized
-		x = 0
-		y = 1
-		relative_position_id = SPA_the_army_of_africa_model
-		cost = 10
-
-		available_if_capitulated = yes
-		search_filters = {FOCUS_FILTER_RESEARCH}
-		completion_reward = {
-			add_tech_bonus = {
-				name = SPA_equipment_modernization
-				bonus = 0.5
-				uses = 1
-				category = motorized_equipment
-			}
-		}
-	}
-
-	focus = {
-		id = SPA_an_armored_corps
-		available = {
-			any_country = {
-				is_in_faction_with = ROOT
-				has_government = fascism
-				is_major = yes
-			}
-		}
-		bypass = {
-		}
-		prerequisite = { focus = SPA_motorization }
-		#prerequisite = { focus = SPA_join_the_axis }
-		
-		icon = GFX_goal_generic_army_tanks
-		x = 1
-		y = 1
-		relative_position_id = SPA_motorization
-		cost = 10
-
-		available_if_capitulated = yes
-		search_filters = {FOCUS_FILTER_RESEARCH}
-		completion_reward = {
-			add_tech_bonus = {
-				name = SPA_an_armored_corps
-				bonus = 1.0
-				uses = 1
-				category = armor
-			}
-		}
-	}
-
+	
 	focus = {
 		id = SPA_join_the_axis
 		available = {
@@ -2876,7 +3808,7 @@ focus_tree = {
 		mutually_exclusive = { focus = SPA_autarky }
 		
 		icon = GFX_goal_generic_construction
-		x = 6
+		x = 13
 		y = 1
 		relative_position_id = SPA_the_national_syndicalist_state
 		cost = 10
@@ -3255,7 +4187,7 @@ focus_tree = {
 		prerequisite = { focus = SPA_the_national_syndicalist_state focus = SPA_fuse_the_parties }
 		
 		icon = GFX_goal_generic_consumer_goods
-		x = 6
+		x = 13
 		y = 0
 		relative_position_id = SPA_the_national_syndicalist_state
 		cost = 10
@@ -4790,7 +5722,7 @@ focus_tree = {
 		prerequisite = { focus = SPA_fuse_the_parties }
 		
 		icon = GFX_focus_generic_treaty
-		x = 3
+		x = 10
 		y = 1
 		relative_position_id = SPA_fuse_the_parties
 		cost = 10
