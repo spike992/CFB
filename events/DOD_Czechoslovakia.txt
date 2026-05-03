@@ -487,6 +487,35 @@ country_event = {
 		puppet = CZE
 		CZE = {
 			country_event = { id = czech.20 hours = 6 }
+			if = {
+				limit = {
+					has_dlc = "Peace For Our Time"
+				}
+				# transfer_units_fraction= {
+				# 	target = GER
+				# 	stockpile_ratio = 0.75
+				# 	army_ratio = 0.75
+				# 	navy_ratio = 0.75
+				# 	air_ratio = 0.75
+				# }
+				promote_character = CZE_jaroslav_krejchi	#replace Gadja
+				if = {
+					limit = {
+						has_power_balance = {
+							id = CZE_bop_army_readiness
+						}
+					}
+					effect_tooltip = {
+						remove_power_balance = {
+							id = CZE_bop_army_readiness
+						}
+					}
+					hidden_effect = {
+						CZE_bop_stop_the_bop_and_give_final_idea = yes
+						remove_ideas = CZE_ready_for_anything_idea	#normally you get this as a reward for removing, but nu uh, you don't deserve it
+					}
+				}
+			}
 		}
 		
 		hidden_effect = {
@@ -522,6 +551,12 @@ country_event = {
 		effect_tooltip = {
 			GER = {
 				puppet = CZE
+			}
+			if = {
+				limit = {
+					has_dlc = "Peace For Our Time"
+				}
+				promote_character = CZE_jaroslav_krejchi	#replace Gadja
 			}
 		}
 		hidden_effect = {
@@ -897,6 +932,19 @@ country_event = {
 		}
 		NOT = { has_war_with = SLO }
 		NOT = { has_global_flag = CZE_became_czech }
+		NOT = {
+			AND = {
+				OR = {
+					has_cosmetic_tag = CZE_union
+					has_cosmetic_tag = CZE_second_republic
+					has_cosmetic_tag = UBF_united_balkan_federation
+					has_cosmetic_tag = CZE_fall_of_the_republic
+				}
+				SLO = {
+					is_subject_of = ROOT
+				}
+			}
+		}
 	}
 	
 	mean_time_to_happen = { days = 2 }

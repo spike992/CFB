@@ -51,9 +51,9 @@ ability = {
 		}
 		
 		unit_modifiers = {
-			paratrooper_weight_factor = -0.20
-			paradrop_organization_factor = 2.5
-			paratrooper_aa_defense = 0.25
+			paratrooper_weight_factor = -0.25
+			paradrop_organization_factor = 1.0
+			paratrooper_aa_defense = 0.15
 		}
 		
 		one_time_effect = {
@@ -88,17 +88,26 @@ ability = {
 		type = army_leader
 		
 		allowed = {
-			always = no
+			FROM = {
+				has_doctrine = infiltration_tactics
+				has_mastery = {
+					amount = 500
+					track = operations
+				}
+			}
 			is_border_war = no
+			NOT = {
+				has_trait = panzer_leader
+			}
 		}
 		
 		unit_modifiers = {
 			dont_lose_dig_in_on_attack = 1.0
-			offence = -0.2
+			offence = -0.5
 		}
 		
 		cancelable = yes
-		cost = 0.1
+		cost = 0.3
 		duration = -1
 	}
 	

@@ -239,7 +239,16 @@ faction_goal_unlock_research = {
 	category = short_term
 	group = FOCUS_FILTER_INTERNAL_AFFAIRS
 	available = {
-		FROM = { num_faction_members > 1 }
+		OR = {
+			FROM = { num_faction_members > 1 }
+			AND = {
+				OR = {
+					original_tag = SOV
+					original_tag = JAP
+				}
+				has_global_flag = meta_game_flag
+			}
+		}
 	}
 	visible = {
 		FROM = { has_faction_research_unlocked = no }
@@ -440,7 +449,16 @@ faction_goal_unlock_military = {
 	category = short_term
 	group = FOCUS_FILTER_INTERNAL_AFFAIRS
 	available = {
-		FROM = { num_faction_members > 1 }
+		OR = {
+			FROM = { num_faction_members > 1 }
+			AND = {
+				OR = {
+					TAG = SOV
+					TAG = JAP
+				}
+				has_global_flag = meta_game_flag
+			}
+		}
 	}
 	visible = {
 		FROM = { has_faction_military_unlocked = no }

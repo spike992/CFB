@@ -1244,46 +1244,37 @@ operations = {
 		allowed = {
 			has_dlc = "Waking the Tiger"
 		}
+		state_target = any_controlled_state
+		on_map_mode = map_and_decisions_view
+		targets = {
+			446
+    	}
 		available = {
-			controls_state = 446
-			controls_state = 1057
-			OR = {
-				NOT = {
-					owns_state = 446
-					owns_state = 1057
-				}
-				any_enemy_country = {
-					OR = {
-						controls_state = 452
-						controls_state = 447
-						controls_state = 456
-						controls_state = 457
-						controls_state = 454
-						controls_state = 455
-						controls_state = 453
-						controls_state = 1047
-					}
-				}
-			}
+			has_full_control_of_state = 446
+			has_full_control_of_state = 1057
 		}
 	
 		visible = {
 			has_war = yes
 			NOT = { has_global_flag = SUEZ_CANAL_BLOCKED }
-			any_controlled_state = {
-				OR = {
-					region = 28
-					region = 128
-					region = 232
-					region = 300
-					region = 225
+			controls_state = 446
+			controls_state = 1057
+		}
+
+		cancel_trigger = {
+			OR = {
+				NOT = {
+					has_full_control_of_state = 446
+				}
+				NOT = {
+					has_full_control_of_state = 1057
 				}
 			}
 		}
 	
 		fire_only_once = no
 	
-		days_remove = 30
+		days_remove = 14
 	
 		cost = 75
 	
@@ -1297,13 +1288,13 @@ operations = {
 					limit = {
 						NOT = {
 							owns_state = 446
-							owns_state = 453
+							owns_state = 1057
 						}
 					}
 					random_country = {
 						limit = {
 							owns_state = 446
-							owns_state = 453
+							owns_state = 1057
 						}
 						country_event = { id = generic.12 days = 1 }
 					}
@@ -1314,21 +1305,287 @@ operations = {
 		remove_effect = {
 			if = {
 				limit = {
-					OR = {
-						has_full_control_of_state = 446
-						has_full_control_of_state = 453
-					}
+					has_full_control_of_state = 446
+					has_full_control_of_state = 1057
 				}
 				set_country_flag = blew_up_suez
 				set_global_flag = SUEZ_CANAL_BLOCKED
 				country_event = { id = wtt_news.40 hours = 6}
+				446 = {
+					remove_building = {
+						type = industrial_complex
+						level = 5
+					}
+				}
 			}
 			effect_tooltip = {
 				if = {
 					limit = {
 						ENG = {
 							owns_state = 446
-							owns_state = 453
+							owns_state = 1057
+						}
+					}
+					add_war_support = -0.05
+					add_stability = -0.05
+				}
+			}
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 200 # Try to cut the enemy off from the mediterranean if you also occupy Gibraltar
+				OR = {
+					has_full_control_of_state = 118
+					any_allied_country = {
+						has_full_control_of_state = 118
+					}
+				}
+				has_war = yes
+				NOT = { tag = ENG }
+			}
+			modifier = {
+				add = 51 # Somewhat important if the baddies are coming
+				446 = {
+					OWNER = {
+						OR = {
+							tag = ROOT
+							is_in_faction_with = ROOT
+						}
+					}
+				}
+				OR = {
+					454 = {
+						NOT = { controller = { tag = ROOT } }
+						controller = { has_war_with = ROOT }
+					}
+					907 = {
+						NOT = { controller = { tag = ROOT } }
+						controller = { has_war_with = ROOT }
+					}
+					447 = {
+						NOT = { controller = { tag = ROOT } }
+						controller = { has_war_with = ROOT }
+					}
+				}
+				has_war = yes
+				is_in_faction_with = ENG
+			}
+		}
+	}
+
+	flood_the_nile_delta = {
+
+		icon = GFX_decision_generic_ignite_civil_war
+		allowed = {
+			has_dlc = "Waking the Tiger"
+		}
+		state_target = any_controlled_state
+		on_map_mode = map_and_decisions_view
+		targets = {
+			447
+    	}
+		highlight_states = {
+			highlight_state_targets = { state = 447 state = 907 }
+			highlight_provinces = {
+				1068
+				4055
+				3996
+				7164
+				4076
+				7011
+				10073
+				7091
+				11964
+				10005
+			}
+			highlight_only_provinces = yes
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = nile_delta_flood_tt
+				OR = {
+					AND = {
+						date > 1936.6.1
+						date < 1936.11.1
+					}
+					AND = {
+						date > 1937.6.1
+						date < 1937.11.1
+					}
+					AND = {
+						date > 1938.6.1
+						date < 1938.11.1
+					}
+					AND = {
+						date > 1939.6.1
+						date < 1939.11.1
+					}
+					AND = {
+						date > 1940.6.1
+						date < 1940.11.1
+					}
+					AND = {
+						date > 1941.6.1
+						date < 1941.11.1
+					}
+					AND = {
+						date > 1942.6.1
+						date < 1942.11.1
+					}
+					AND = {
+						date > 1943.6.1
+						date < 1943.11.1
+					}
+					AND = {
+						date > 1944.6.1
+						date < 1944.11.1
+					}
+					AND = {
+						date > 1945.6.1
+						date < 1945.11.1
+					}
+					AND = {
+						date > 1946.6.1
+						date < 1946.11.1
+					}
+					AND = {
+						date > 1947.6.1
+						date < 1947.11.1
+					}
+					AND = {
+						date > 1948.6.1
+						date < 1948.11.1
+					}
+					AND = {
+						date > 1949.6.1
+						date < 1949.11.1
+					}
+					AND = {
+						date > 1950.6.1
+						date < 1950.11.1
+					}
+				}
+			}
+			
+			controls_state = 447
+			controls_state = 907
+		}
+	
+		visible = {
+			has_war = yes
+			controls_state = 447
+			controls_state = 907
+			NOT = {
+				has_global_flag = NILE_DELTA_FLOODED
+			}
+		}
+
+		cancel_trigger = {
+			OR = {
+				NOT = {
+					controls_state = 447
+				}
+				NOT = {
+					controls_state = 907
+				}
+			}
+		}
+	
+		fire_only_once = no
+	
+		days_remove = 3
+	
+		cost = 75
+	
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		complete_effect = {
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = {
+							owns_state = 447
+							owns_state = 907
+						}
+					}
+					random_country = {
+						limit = {
+							owns_state = 447
+							owns_state = 907
+						}
+					}
+				}
+			}
+		}
+	
+		remove_effect = {
+			if = {
+				limit = {
+					has_full_control_of_state = 447
+					has_full_control_of_state = 907
+				}
+				447 = {
+					damage_building = {
+						type = industrial_complex
+						damage = 5
+						repair_speed_modifier = -0.5
+					}
+					damage_building = {
+						type = infrastructure
+						damage = 10
+						repair_speed_modifier = -0.5
+					}
+					add_province_modifier = {
+						static_modifiers = { flooded }
+						province = {
+							id = 7164
+							id = 4076
+							id = 10073
+							id = 7091
+							id = 11964
+							id = 10005
+						}
+						days = 120
+					}
+				}
+				907 = {
+					damage_building = {
+						type = industrial_complex
+						damage = 10
+						repair_speed_modifier = -0.5
+					}
+					damage_building = {
+						type = infrastructure
+						damage = 10
+						repair_speed_modifier = -0.5
+					}
+					add_province_modifier = {
+						static_modifiers = { flooded }
+						province = {
+							id = 1068
+							id = 4055
+							id = 3996
+						}
+						days = 120
+					}
+				}
+				set_global_flag = {
+					flag = NILE_DELTA_FLOODED
+					days = 120
+					value = 1
+				}
+
+				
+			}
+			effect_tooltip = {
+				if = {
+					limit = {
+						ENG = {
+							owns_state = 447
+							owns_state = 907
 						}
 					}
 					add_war_support = -0.05

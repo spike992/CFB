@@ -121,6 +121,7 @@ ideas = {
 			picture = great_depression
 				
 			modifier = {
+				political_power_factor = -0.30
 				consumer_goods_factor = 0.15
 				industrial_capacity_factory = -0.15
 				industrial_capacity_dockyard = -0.15
@@ -142,6 +143,7 @@ ideas = {
 			picture = great_depression
 				
 			modifier = {
+				political_power_factor = -0.15
 				consumer_goods_factor = 0.1
 				industrial_capacity_factory = -0.1
 				industrial_capacity_dockyard = -0.1
@@ -1149,14 +1151,7 @@ ideas = {
 				
 			modifier = {
 				air_ace_generation_chance_factor = 0.15
-			}
-				
-			equipment_bonus = {
-				fighter_equipment = {
-					maximum_speed = 0.1
-					air_defence = 0.05
-					air_attack = 0.05
-				}
+				air_untrained_pilots_penalty_factor = -0.25
 			}
 		}
 		
@@ -1173,16 +1168,9 @@ ideas = {
 			removal_cost = -1
 				
 			modifier = {
-				air_superiority_efficiency = 0.075
 				air_ace_generation_chance_factor = 0.15
-			}
-				
-			equipment_bonus = {
-				fighter_equipment = {
-					maximum_speed = 0.1
-					air_defence = 0.05
-					air_attack = 0.05
-				}
+				air_untrained_pilots_penalty_factor = -0.5
+				air_wing_xp_loss_when_killed_factor = -0.25
 			}
 		}
 		
@@ -1199,17 +1187,10 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				air_mission_efficiency = 0.05
-				air_superiority_efficiency = 0.1
 				air_ace_generation_chance_factor = 0.25
-			}
-				
-			equipment_bonus = {
-				fighter_equipment = {
-					maximum_speed = 0.1
-					air_defence = 0.05
-					air_attack = 0.1
-				}
+				air_untrained_pilots_penalty_factor = -0.5
+				air_wing_xp_loss_when_killed_factor = -0.25
+				air_home_defence_factor = 0.15
 			}
 		}
 		
@@ -1227,13 +1208,7 @@ ideas = {
 				
 			modifier = {
 				air_ace_generation_chance_factor = 0.05
-			}
-				
-			equipment_bonus = {
-				fighter_equipment = {
-					maximum_speed = 0.05
-					air_attack = 0.05
-				}
+				air_untrained_pilots_penalty_factor = -0.1
 			}
 		}
 		
@@ -1250,16 +1225,10 @@ ideas = {
 			removal_cost = -1
 				
 			modifier = {
-				air_superiority_efficiency = 0.05
 				air_ace_generation_chance_factor = 0.1
+				air_untrained_pilots_penalty_factor = -0.25
+				air_wing_xp_loss_when_killed_factor = -0.15
 				
-			}
-				
-			equipment_bonus = {
-				fighter_equipment = {
-					maximum_speed = 0.05
-					air_attack = 0.05
-				}
 			}
 		}
 		
@@ -1276,17 +1245,10 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				air_mission_efficiency = 0.025
-				air_superiority_efficiency = 0.05
 				air_ace_generation_chance_factor = 0.15
-			}
-				
-			equipment_bonus = {
-				fighter_equipment = {
-					maximum_speed = 0.05
-					air_defence = 0.05
-					air_attack = 0.05
-				}
+				air_untrained_pilots_penalty_factor = -0.25
+				air_wing_xp_loss_when_killed_factor = -0.15
+				air_home_defence_factor = 0.1
 			}
 		}
 		
@@ -3975,6 +3937,45 @@ ideas = {
 			traits = { artillery_manufacturer }
 			
 			modifier = {
+			}
+		}
+
+		ENG_crewe_works_manufacturer = {
+
+			name = "ENG_crewe_works_organization"
+
+			picture = ENG_crewe
+
+			allowed = {
+				original_tag = ENG
+			}
+
+			available = {
+			}
+
+			visible = {
+			}
+
+			research_bonus = {
+				train_tech = 0.15
+				support_tech = 0.07
+			}
+
+			equipment_bonus = {
+				train_equipment = {
+					build_cost_ic = -0.10
+					armor_value = 0.10
+					air_attack = 0.10
+					instant = yes
+				}
+			}
+
+			cost = 150
+
+			traits = { train_equipment_manufacturer }
+
+			ai_will_do = {
+				factor = 0
 			}
 		}
 	}

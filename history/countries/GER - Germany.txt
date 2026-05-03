@@ -25,14 +25,14 @@ set_grand_doctrine = new_battlefield_support
 starting_train_buffer = 2
 set_fuel_ratio = 0.8
 
-add_timed_idea = { idea = GER_mefo_air days = 1340 }
+#add_timed_idea = { idea = GER_mefo_air days = 1340 }
 
 # Starting tech
 set_technology = {
 	infantry_weapons = 1
 	infantry_weapons1 = 1
 	support_weapons = 1
-	hq_1 = 1
+	#hq_1 = 1
 	tech_recon = 1
 	tech_support = 1		
 	tech_engineers = 1
@@ -44,6 +44,7 @@ set_technology = {
 	tech_mountaineers = 1
 	marines = 1
 	paratroopers = 1
+	tech_trucks = 1
 	motorised_infantry = 1
 	gw_artillery = 1
 	
@@ -51,7 +52,7 @@ set_technology = {
 	ger_light_tank_1 = 1
 	ger_light_tank_2 = 1
 	ger_p3_tank_1 = 1
-	ger_p4_tank_1 = 1
+	#ger_p4_tank_1 = 1
 	ger_heavy_tank_0 = 1
 	basic_train = 1
 
@@ -642,7 +643,7 @@ if = {
 }
 
 create_equipment_variant = {
-	name = "PzKpfw I A"
+	name = "PzKpfw I"
 	type = ger_light_tank_chassis_p1
 	parent_version = 0
 	modules = {
@@ -656,7 +657,7 @@ create_equipment_variant = {
 	obsolete = yes
 }
 create_equipment_variant = {
-	name = "PzKpfw II A"
+	name = "PzKpfw II"
 	type = ger_light_tank_chassis_p2
 	parent_version = 0
 	modules = {
@@ -669,31 +670,32 @@ create_equipment_variant = {
 	icon = "gfx/interface/technologies/tanks/ger/ger_light_tank_2.dds"
 }
 create_equipment_variant = {
-	name = "PzKpfw III A"
+	name = "PzKpfw III"
 	type = ger_medium_tank_chassis_p3
 	parent_version = 0
+	design_team = mio:GER_daimler_benz_organization
 	modules = {
 		main_armament_slot = tank_small_gun_1
-		turret_type_slot = tank_light_turret_1
+		turret_type_slot = tank_light_turret_2
 		suspension_type_slot = tank_bogie_suspension
 		armor_type_slot = tank_welded_armor
 		engine_type_slot = tank_gasoline_engine
 	}
 	icon = "gfx/interface/technologies/tanks/ger/ger_p3_tank_1.dds"
 }
-create_equipment_variant = {
-	name = "PzKpfw IV A"
-	type = medium_assault_gun_chassisger_medium_tank_chassis_p4
-	parent_version = 0
-	modules = {
-		main_armament_slot = tank_small_cs_gun
-		turret_type_slot = tank_medium_turret_1
-		suspension_type_slot = tank_bogie_suspension
-		armor_type_slot = tank_welded_armor
-		engine_type_slot = tank_gasoline_engine
-	}
-	icon = "gfx/interface/technologies/tanks/ger/ger_p4_tank_1.dds"
-}
+# create_equipment_variant = {
+# 	name = "PzKpfw IV"
+# 	type = medium_assault_gun_chassisger_medium_tank_chassis_p4
+# 	parent_version = 0
+# 	modules = {
+# 		main_armament_slot = tank_small_cs_gun
+# 		turret_type_slot = tank_medium_turret_1
+# 		suspension_type_slot = tank_bogie_suspension
+# 		armor_type_slot = tank_welded_armor
+# 		engine_type_slot = tank_gasoline_engine
+# 	}
+# 	icon = "gfx/interface/technologies/tanks/ger/ger_p4_tank_1.dds"
+# }
 
 if = {
 	limit = {
@@ -737,7 +739,7 @@ if = {
         	fixed_ship_anti_air_slot = ship_anti_air_2
 			fixed_ship_battery_slot = ship_heavy_battery_2
 			fixed_ship_secondaries_slot = ship_secondaries_1
-			fixed_ship_armor_slot = ship_armor_cruiser_2
+			fixed_ship_armor_slot = ship_armor_cruiser_heavy_2
 			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
 			fixed_ship_engine_slot = cruiser_ship_engine_2
 			front_1_custom_slot = ship_heavy_battery_2
@@ -907,7 +909,7 @@ if = {
 			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
 			fixed_ship_radar_slot = empty
 			fixed_ship_engine_slot = cruiser_ship_engine_2
-			fixed_ship_armor_slot = ship_armor_cruiser_2
+			fixed_ship_armor_slot = ship_armor_cruiser_heavy_2
 			front_1_custom_slot = ship_anti_air_1
 			mid_1_custom_slot = ship_torpedo_1
 			mid_2_custom_slot = ship_airplane_launcher_1

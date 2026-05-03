@@ -1609,7 +1609,62 @@ country_event = { #Denmark Declares Independence
 	picture = GFX_report_event_DEN_danish_troops
 
 	is_triggered_only = yes
-
+	
+	option = { #Let them leave
+		name = denmark_occupation_event.6.b
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 5
+				FROM = {
+					has_completed_focus = DEN_pledge_allegiance
+				}
+			}
+			modifier = {
+				factor = 10
+				has_government = FROM
+			}
+			modifier = {
+				factor = 2
+				has_opinion = {
+					target = FROM
+					value > 24
+				} 
+			}
+			modifier = {
+				factor = 2
+				has_opinion = {
+					target = FROM
+					value > 49
+				} 
+			}
+			modifier = {
+				factor = 10
+				is_major = no
+				has_war_with_major = yes
+			}
+			modifier = { #You're ain't goin' nowhere! Unless we really hurtin' :,(
+				factor = 0.5
+				surrender_progress < 0.5
+			}
+			modifier = { #Don't accept if installed the plenipotentiary
+				factor = 0.5
+				FROM = {
+					has_country_leader_with_trait = DEN_plenipotentiary
+				}
+			}
+		}
+		effect_tooltip = {
+			ROOT = { end_puppet = FROM }
+		}	
+		if = {
+			limit = {
+				has_idea = DEN_sahnefront_ns
+			}
+			remove_ideas = DEN_sahnefront_ns
+		}
+		FROM = { country_event = { id = denmark_occupation_event.8 hours = 1 }}
+	}
 	option = { #War
 		name = denmark_occupation_event.6.a
 		ai_chance = {
@@ -1666,61 +1721,6 @@ country_event = { #Denmark Declares Independence
 			remove_ideas = DEN_sahnefront_ns
 		}
 		FROM = { country_event = { id = denmark_occupation_event.7 hours = 1 }}
-	}
-	option = { #Let them leave
-		name = denmark_occupation_event.6.b
-		ai_chance = {
-			base = 1
-			modifier = {
-				factor = 5
-				FROM = {
-					has_completed_focus = DEN_pledge_allegiance
-				}
-			}
-			modifier = {
-				factor = 10
-				has_government = FROM
-			}
-			modifier = {
-				factor = 2
-				has_opinion = {
-					target = FROM
-					value > 24
-				} 
-			}
-			modifier = {
-				factor = 2
-				has_opinion = {
-					target = FROM
-					value > 49
-				} 
-			}
-			modifier = {
-				factor = 10
-				is_major = no
-				has_war_with_major = yes
-			}
-			modifier = { #You're ain't goin' nowhere! Unless we really hurtin' :,(
-				factor = 0.5
-				surrender_progress < 0.5
-			}
-			modifier = { #Don't accept if installed the plenipotentiary
-				factor = 0.5
-				FROM = {
-					has_country_leader_with_trait = DEN_plenipotentiary
-				}
-			}
-		}
-		effect_tooltip = {
-			ROOT = { end_puppet = FROM }
-		}	
-		if = {
-			limit = {
-				has_idea = DEN_sahnefront_ns
-			}
-			remove_ideas = DEN_sahnefront_ns
-		}
-		FROM = { country_event = { id = denmark_occupation_event.8 hours = 1 }}
 	}
 }
 country_event = { #Danish Liberation War

@@ -1252,6 +1252,7 @@ focus_tree = {
 
 		available = {
 			has_army_manpower = { size > 100000 }
+			has_completed_focus = IRQ_revoke_anglo_iraq_treaty
 			NOT = { has_country_flag = IRQ_is_kurdistan }
 
 			NOT = {
@@ -1500,19 +1501,19 @@ focus_tree = {
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
-			set_rule = { 
-				can_create_factions = yes 
-			}	
-			IF = {
-				limit = {
-					is_in_faction = no
-				}
-				create_faction_from_template = {
-					template = faction_template_regional
-					name = PER_opec
-					icon = GFX_faction_logo_generic_15
-				}
-			}
+			# set_rule = { 
+			# 	can_create_factions = yes 
+			# }	
+			# IF = {
+			# 	limit = {
+			# 		is_in_faction = no
+			# 	}
+			# 	create_faction_from_template = {
+			# 		template = faction_template_regional
+			# 		name = PER_opec
+			# 		icon = GFX_faction_logo_generic_15
+			# 	}
+			# }
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -4549,6 +4550,7 @@ focus_tree = {
 		}
 
 		available = {
+			is_ai = no
 			OR = {
 				is_in_faction = no
 				AND = {
@@ -5923,74 +5925,74 @@ focus_tree = {
 		}
 	}
 
-	focus = {
-		id = IRQ_restore_al_andalus
-		icon = GFX_focus_generic_attack_nationalist_spain_focus
-		prerequisite = { focus = IRQ_unite_maghreb }
-		#mutually_exclusive = { focus = IRQ_hashemite_arab_federation }
-		x = 0
-		y = 1
-		relative_position_id = IRQ_unite_maghreb
+	# focus = {
+	# 	id = IRQ_restore_al_andalus
+	# 	icon = GFX_focus_generic_attack_nationalist_spain_focus
+	# 	prerequisite = { focus = IRQ_unite_maghreb }
+	# 	#mutually_exclusive = { focus = IRQ_hashemite_arab_federation }
+	# 	x = 0
+	# 	y = 1
+	# 	relative_position_id = IRQ_unite_maghreb
 
-		#will_lead_to_war_with = RIF
-		will_lead_to_war_with = MOR
-		will_lead_to_war_with = SPR
-		will_lead_to_war_with = POR
+	# 	#will_lead_to_war_with = RIF
+	# 	will_lead_to_war_with = MOR
+	# 	will_lead_to_war_with = SPR
+	# 	will_lead_to_war_with = POR
 
-		cost = 10
+	# 	cost = 10
 
-		ai_will_do = {
-			base = 1
-		}
+	# 	ai_will_do = {
+	# 		base = 1
+	# 	}
 
-		available = {
-			is_subject = no
-			any_other_country = {
-				original_tag = SPR
-				NOT = {
-					is_in_faction_with = ROOT
-				}	
-			}
-		}
+	# 	available = {
+	# 		is_subject = no
+	# 		any_other_country = {
+	# 			original_tag = SPR
+	# 			NOT = {
+	# 				is_in_faction_with = ROOT
+	# 			}	
+	# 		}
+	# 	}
 
-		bypass = {
+	# 	bypass = {
 
-		}
+	# 	}
 
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		search_filters = { FOCUS_FILTER_ANNEXATION }
+	# 	search_filters = { FOCUS_FILTER_POLITICAL }
+	# 	search_filters = { FOCUS_FILTER_ANNEXATION }
 
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
+	# 	cancel_if_invalid = yes
+	# 	continue_if_invalid = no
+	# 	available_if_capitulated = no
 
-		completion_reward = {
-			every_state = {
-				limit = {
-					NOT = { is_core_of = ROOT }
-					OR = {
-						region = 210
-						region = 41
-						region = 209
-					}
-				}
-				add_core_of = ROOT
-				hidden_effect = {
-					OWNER = {
-						ROOT = {
-							create_wargoal = {
-								target = PREV
-								type = take_core_state
-							}
-						}
-					}
-				}
-				ROOT = {
-					custom_effect_tooltip = IRQ_unite_maghreb_tt
-				}
-			}
-		}
-	}
+	# 	completion_reward = {
+	# 		every_state = {
+	# 			limit = {
+	# 				NOT = { is_core_of = ROOT }
+	# 				OR = {
+	# 					region = 210
+	# 					region = 41
+	# 					region = 209
+	# 				}
+	# 			}
+	# 			add_core_of = ROOT
+	# 			hidden_effect = {
+	# 				OWNER = {
+	# 					ROOT = {
+	# 						create_wargoal = {
+	# 							target = PREV
+	# 							type = take_core_state
+	# 						}
+	# 					}
+	# 				}
+	# 			}
+	# 			ROOT = {
+	# 				custom_effect_tooltip = IRQ_unite_maghreb_tt
+	# 			}
+	# 		}
+	# 	}
+	# }
 	
 	
 	focus = {
@@ -6538,14 +6540,14 @@ focus_tree = {
 
 		completion_reward = {
 
-			set_rule = {
-				can_create_factions = yes
-			}
-			create_faction_from_template = {
-				template = faction_template_regional
-				name = IRQ_meto
-				icon = GFX_faction_logo_generic_15
-			}
+			# set_rule = {
+			# 	can_create_factions = yes
+			# }
+			# create_faction_from_template = {
+			# 	template = faction_template_regional
+			# 	name = IRQ_meto
+			# 	icon = GFX_faction_logo_generic_15
+			# }
 
 			IF = {
 				limit = {
@@ -7626,6 +7628,7 @@ focus_tree = {
 		}
 
 		available = {
+			is_ai = no
 			has_government = fascism
 			GER = {
 				has_government = fascism

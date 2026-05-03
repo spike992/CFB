@@ -232,10 +232,10 @@ focus_tree = {
 					}
 				}
 				random_select_amount = 4
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
-					level = 2
+					level = 1
 					instant_build = yes
 				}
 			}
@@ -285,10 +285,10 @@ focus_tree = {
 						include_locked = yes
 					}
 				}
-				add_extra_state_shared_building_slots = 6
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
-					level = 6
+					level = 2
 					instant_build = yes
 				}
 			}
@@ -331,10 +331,10 @@ focus_tree = {
 						include_locked = yes
 					}
 				}
-				add_extra_state_shared_building_slots = 6
+				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
-					level = 6
+					level = 1
 					instant_build = yes
 				}
 			}
@@ -597,7 +597,7 @@ focus_tree = {
 				is_fully_controlled_by = ROOT
 				is_demilitarized_zone = no
 			}
-			has_tech = excavation2
+			has_tech = excavation3
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
@@ -677,7 +677,7 @@ focus_tree = {
 		relative_position_id = GER_industrial_expansion
 		cost = 5
 		available = {
-			has_tech = improved_machine_tools
+			has_tech = advanced_machine_tools
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
@@ -818,10 +818,10 @@ focus_tree = {
 					}
 				}
 				random_select_amount = 4
-				add_extra_state_shared_building_slots = 3
+				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
-					level = 3
+					level = 1
 					instant_build = yes
 				}
 			}
@@ -2976,10 +2976,10 @@ focus_tree = {
 				GER_industrial_industrial_capacity_dockyard = 0.05
 				tooltip = industrial_capacity_dockyard_tt
 			}
-			 add_to_variable = { 
-			 	GER_industrial_production_factory_max_efficiency_factor = 0.05
-			 	tooltip = production_factory_max_efficiency_factor_tt
-			 }
+			# add_to_variable = { 
+			# 	GER_industrial_production_factory_max_efficiency_factor = 0.05
+			# 	tooltip = production_factory_max_efficiency_factor_tt
+			# }
 			add_to_variable = { 
 				GER_industrial_production_factory_efficiency_gain_factor = 0.05
 				tooltip = production_factory_efficiency_gain_factor_tt
@@ -5149,7 +5149,20 @@ focus_tree = {
 				limit = { has_dlc = "Gotterdammerung" }
 				custom_effect_tooltip = generic_skip_one_line_tt
 				custom_effect_tooltip = GER_unlocks_eben_emael_raid_tt
-
+				if = {
+					limit = {
+						NOT = {
+							has_dlc = "Peace For Our Time"
+						}
+					}
+					custom_effect_tooltip = generic_skip_one_line_tt
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Peace For Our Time"
+				}
+				custom_effect_tooltip = CZE_unlocks_sokolov_raid_pfot_tt
 				custom_effect_tooltip = generic_skip_one_line_tt
 			}
 
@@ -6165,7 +6178,7 @@ focus_tree = {
 		completion_reward = {
 			add_timed_idea = {
 				idea = GER_defense_of_the_reich_ns
-				days = 730
+				days = 365
 			}
 		}
 	}
@@ -8099,7 +8112,7 @@ focus_tree = {
 			# 			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
 			# 			fixed_ship_radar_slot = ship_radar_1
 			# 			fixed_ship_engine_slot= cruiser_ship_engine_3
-			# 			fixed_ship_armor_slot = ship_armor_cruiser_2
+			# 			fixed_ship_armor_slot = ship_armor_cruiser_heavy_2
 			# 			fixed_ship_secondaries_slot = ship_secondaries_1
 			# 			front_1_custom_slot = ship_anti_air_1
 			# 			mid_1_custom_slot = ship_anti_air_1
@@ -8900,7 +8913,10 @@ focus_tree = {
 			modifier = {
 				factor = 4
 				CZE = {
-					has_completed_focus = CZE_deliver_sudetenland
+					OR = {
+						has_completed_focus = CZE_deliver_sudetenland
+						has_completed_focus = CZE_feeding_the_alligator
+					}
 				}
 			}
 			modifier = {
@@ -8922,56 +8938,69 @@ focus_tree = {
 
 		completion_reward = {
 			add_named_threat = { threat = 2 name = GER_befriend_czechoslovakia }
-
-			CZE = {
-				country_event = { id = wuw_GER_diplomacy.10 hours = 6 }
-			}
-
-			custom_effect_tooltip = if_they_accept_tt
-
-			CZE = {
-				effect_tooltip = {
-					IF = {
-						limit = {
-							PREV = {
-								has_government = fascism
-							}
-						}
-						add_timed_idea = {
-							idea = GER_fascism_influence
-							days = 730
-						}
-					}		
-					ELSE_IF = {
-						limit = {
-							PREV = {
-								has_government = democratic
-							}
-						}
-						add_timed_idea = {
-							idea = GER_democratic_influence
-							days = 730
+			if = {
+				limit = {
+					CZE = {
+						NOT = {
+							has_completed_focus = CZE_unify_the_fascist_parties
 						}
 					}
-					ELSE_IF = {
-						limit = {
-							PREV = {
-								has_government = neutrality
-							}
-						}
-						add_timed_idea = {
-							idea = GER_neutrality_influence
-							days = 730
-						}
-					}
-					add_opinion_modifier = { target = GER modifier = ger_cze_diplomatic_focus }
 				}
-			}
-			hidden_effect = {
 				CZE = {
-					set_country_flag = GER_influencing_CZE_flag
+					country_event = { id = wuw_GER_diplomacy.10 hours = 6 }
 				}
-				news_event = { hours = 6 id = news.200 }
+	
+				custom_effect_tooltip = if_they_accept_tt
+	
+				CZE = {
+					effect_tooltip = {
+						IF = {
+							limit = {
+								PREV = {
+									has_government = fascism
+								}
+							}
+							add_timed_idea = {
+								idea = GER_fascism_influence
+								days = 730
+							}
+						}		
+						ELSE_IF = {
+							limit = {
+								PREV = {
+									has_government = democratic
+								}
+							}
+							add_timed_idea = {
+								idea = GER_democratic_influence
+								days = 730
+							}
+						}
+						ELSE_IF = {
+							limit = {
+								PREV = {
+									has_government = neutrality
+								}
+							}
+							add_timed_idea = {
+								idea = GER_neutrality_influence
+								days = 730
+							}
+						}
+						add_opinion_modifier = { target = GER modifier = ger_cze_diplomatic_focus }
+					}
+				}
+				hidden_effect = {
+					CZE = {
+						set_country_flag = GER_influencing_CZE_flag
+					}
+					news_event = { hours = 6 id = news.200 }
+				}
+			}
+			else = {
+				CZE = {
+					country_event = generic.5
+				}
 			}
 		}
 	}
@@ -9031,7 +9060,12 @@ focus_tree = {
 					OR = {
 						has_completed_focus = CZE_german_minor_ally
 						has_completed_focus = CZE_german_puppet
+						has_completed_focus = CZE_complete_capitulation
 					}
+				}
+				CZE = {
+					has_completed_focus = CZE_work_with_germany
+					is_in_faction_with = ROOT
 				}
 			}
 		}
@@ -10239,6 +10273,23 @@ focus_tree = {
 					has_government = communism
 				}
 			}
+			modifier = {	#PfoT: if CZE has strong allies, and we dont, dont try it
+				factor = 0
+				CZE = {
+					any_allied_country = {
+						is_neighbor_of = ROOT
+						strength_ratio = {
+							tag = ROOT
+							ratio > 0.7
+						}
+					}
+				}
+				NOT = {
+					any_allied_country = {
+						is_major = yes
+					}
+				}
+			}
 		}
 
 		search_filters = { FOCUS_FILTER_ANNEXATION FOCUS_FILTER_HISTORICAL }
@@ -10382,6 +10433,35 @@ focus_tree = {
 						overlord = { country_event = { id = germany.122 } }
 					}
 				}
+				if = { #Romania gets a chance to bail on the Czechs
+					limit = {
+						ROM = {
+							exists = yes
+							has_guaranteed = CZE
+							NOT = { has_war_with = GER }
+							If = {
+								limit = {
+									ENG = {
+										exists = yes
+										is_subject = no
+										#NOT = { has_completed_focus = ENG_a_change_in_course }
+									}
+								}
+								NOT = {
+									is_in_faction_with = ENG
+								}
+							}
+						}
+						CZE = {
+							NOT = {
+								is_subject_of = ROM
+							}
+						}
+					}
+					ROM = {
+						country_event = { id = MUN_czech.7 }
+					}
+				}
 			}
 
 			### EVENT CHAIN - ALT-HIST SOME ONE ELSE CONTROLS SUDETENLAND STATES ###
@@ -10426,6 +10506,7 @@ focus_tree = {
 					}
 				}
 			}
+			
 
 			add_named_threat = { threat = 4 name = GER_demand_sudetenland_threat }
 		}
@@ -10445,6 +10526,7 @@ focus_tree = {
 			OR = {
 				AND = {
 					NOT = { CZE = { controls_state = 664 } }
+					NOT = { SLO = { controls_state = 664 is_subject_of = CZE } }
 					NOT = { owns_state = 664 }
 				}
 				HUN = { 
@@ -10541,6 +10623,7 @@ focus_tree = {
 					OR = {
 						has_completed_focus = CZE_german_minor_ally
 						has_completed_focus = CZE_german_puppet
+						has_completed_focus = CZE_complete_capitulation
 					}
 				}
 				NOT = {
@@ -11044,6 +11127,115 @@ focus_tree = {
 			}
 		}
 	}
+	#Peace For Our Time#
+	focus = { #All related content and local will be in Czech related files and local locations
+		id = GER_integrate_czech_manufacturers
+		icon = GFX_focus_PER_czech_tanks
+		prerequisite = { focus = GER_integrate_czechoslovakia  focus = GER_fate_of_czechoslovakia }
+
+		x = -3
+		y = 1
+		relative_position_id = GER_fate_of_czechoslovakia
+		cost = 5
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				is_historical_focus_on = no
+				add = 1
+			}
+		}
+
+		allow_branch = {
+			has_dlc = "Peace For Our Time"
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				NOT = {
+					has_completed_focus = GER_oppose_hitler
+					has_completed_focus = GER_oppose_hitler_ww
+				}
+			}
+		}
+
+		available = {
+			9 = {
+				state_is_fully_controlled_by_ROOT_or_subject = yes
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			GER_modify_industrial_modifier = yes
+			add_to_variable = { 
+				GER_industrial_equipment_conversion_speed = 0.05
+				tooltip = equipment_conversion_speed_tt
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				unlock_military_industrial_organization_tooltip = mio:CZE_skoda_works_german_organization
+				mio:CZE_skoda_works_german_organization = {
+					add_mio_size = 2
+					add_mio_funds_gain_factor = 0.25
+				}
+
+				custom_effect_tooltip = generic_skip_one_line_tt
+
+				unlock_military_industrial_organization_tooltip = mio:CZE_ceska_zbrojovka_uhersky_brod_organization
+				mio:CZE_ceska_zbrojovka_uhersky_brod_organization = {
+					add_mio_size = 2
+					add_mio_funds_gain_factor = 0.25
+				}
+
+				custom_effect_tooltip = generic_skip_one_line_tt
+
+				unlock_military_industrial_organization_tooltip = mio:CZE_bohmische_mahrische_maschinenfabrik_ag_german_organization
+				mio:CZE_bohmische_mahrische_maschinenfabrik_ag_german_organization = {
+					add_mio_size = 2
+					add_mio_funds_gain_factor = 0.25
+				}
+
+				custom_effect_tooltip = generic_skip_one_line_tt
+
+				unlock_military_industrial_organization_tooltip = mio:CZE_avia_german_organization
+				mio:CZE_avia_german_organization = {
+					add_mio_size = 2
+					add_mio_funds_gain_factor = 0.25
+				}
+
+				custom_effect_tooltip = generic_skip_one_line_tt
+
+				add_timed_idea = { idea = CZE_integrate_czech_manufacturers_GER_idea_aat days = 180 }
+			}
+			else = {
+				custom_effect_tooltip = GER_integrate_czech_manufacturers_no_aat_tt
+
+				custom_effect_tooltip = generic_skip_one_line_tt
+
+				# custom_effect_tooltip = available_industrial_concern
+				# show_ideas_tooltip = CZE_skoda_works_german_manufacturer
+				# custom_effect_tooltip = available_industrial_concern
+				# show_ideas_tooltip = CZE_ceska_zbrojovka_uhersky_brod
+				# custom_effect_tooltip = available_industrial_concern
+				# show_ideas_tooltip = CZE_zlin_aircraft
+				# custom_effect_tooltip = available_industrial_concern
+				# show_ideas_tooltip = CZE_bohmische_mahrische_maschinenfabrik_ag_german_manufacturer
+
+				add_timed_idea = { idea = CZE_integrate_czech_manufacturers_GER_idea_no_aat days = 180 }
+			}
+		}
+	}
+	#End Peace For Our Time#
 
 	focus = {
 		id = GER_demonstration_of_military_achievements
@@ -14274,10 +14466,14 @@ focus_tree = {
 			else = {
 				GER_add_or_modify_military_intelligence_service = yes
 			}
-			add_to_variable = {
-				GER_military_intelligence_service_consumer_goods_factor = -0.05
-				tooltip =  consumer_goods_expected_value_tt
+			add_timed_idea = {
+				idea = GER_swiss_gold
+				days = 365
 			}
+			# add_to_variable = {
+			# 	GER_military_intelligence_service_consumer_goods_factor = -0.05
+			# 	tooltip =  consumer_goods_expected_value_tt
+			# }
 			if = {
 				limit = {
 					has_dlc = "La Resistance"
@@ -27260,7 +27456,7 @@ focus_tree = {
 				}
 				OR = {
 					controls_state = 155
-					controls_state = 174
+					controls_state = 974
 					controls_state = 973
 					controls_state = 43
 					controls_state = 154
@@ -27293,7 +27489,7 @@ focus_tree = {
 					}
 					AND = {
 						NOT = { controls_state = 155 }
-						NOT = { controls_state = 174 }
+						NOT = { controls_state = 974 }
 						NOT = { controls_state = 973 }
 						NOT = { controls_state = 43 }
 						NOT = { controls_state = 154 }

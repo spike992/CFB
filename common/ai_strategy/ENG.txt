@@ -1514,6 +1514,20 @@ ENG_lifeline_of_the_empire = {
 	}
 }
 
+ENG_commit_to_the_lifeline = {
+	allowed = { original_tag = ENG }
+	enable = {
+		is_historical_focus_on = yes
+		date < 1943.1.1 #We either won or we can't realistically win now
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = front_unit_request
+		area = suez
+		value = 10
+	}
+}
+
 ENG_USA_focus_on_europe = {
 	allowed = {
 		OR = {
@@ -1971,6 +1985,65 @@ ENG_defend_mediterranean = {
 		type = theatre_distribution_demand_increase
 		id = 116
 		value = 4
+	}
+}
+
+ENG_defend_alexandria = {
+	allowed = { original_tag = ENG }
+	enable = {
+		is_historical_focus_on = yes
+		has_war_with = ITA
+		NOT = {
+			controls_state = 448 # Tripoli
+			controls_state = 451 # Tobruk
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = front_unit_request
+		area = north_east_africa
+		value = 25
+	}
+	ai_strategy = {
+		type = theatre_distribution_demand_increase
+		id = 447 # Alexandria
+		value = 10
+	}
+	ai_strategy = {
+		type = put_unit_buffers
+		ratio = 0.07
+		states = {
+			447 # Alexandria
+		}
+		subtract_invasions_from_need = no
+		subtract_fronts_from_need = no
+	}
+}
+
+ENG_defend_alexandria_reduced = {
+	allowed = { original_tag = ENG }
+	enable = {
+		is_historical_focus_on = yes
+		has_war_with = ITA
+		controls_state = 448 # Tripoli
+		controls_state = 451 # Tobruk
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = front_unit_request
+		area = north_east_africa
+		value = 10
+	}
+	ai_strategy = {
+		type = put_unit_buffers
+		ratio = 0.02
+		states = {
+			447 # Alexandria
+		}
+		subtract_invasions_from_need = no
+		subtract_fronts_from_need = no
 	}
 }
 
@@ -2691,7 +2764,6 @@ ENG_chill_on_the_pacific = {
 		id = JAP
 		value = -500
 	}
-	
 }
 
 ENG_no_naval_landings_in_libya_yet = {
@@ -2954,5 +3026,99 @@ ENG_i_like_raj = {
 		type = alliance
 		id = "RAJ"
 		value = 200
+	}
+}
+
+ENG_become_head_of_crypto = {
+	allowed = {	
+		original_tag = ENG 
+		has_dlc = "No Compromise, No Surrender"
+		has_dlc = "La Resistance"
+	}
+	enable = {
+		has_done_agency_upgrade  = upgrade_form_department
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = become_head_of_crypto
+		value = 8
+	}
+}
+
+ENG_become_supreme_commander = {
+	allowed = {	
+		original_tag = ENG 
+		has_dlc = "No Compromise, No Surrender"
+	}
+	enable = {
+		date > 1938.1.1
+		date < 1940.1.1 
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = spent_faction_initiative_priority
+		id = unlock_faction_commander
+		value = 5
+	}
+}
+
+ENG_dominate_the_home_islands = {
+	allowed = {
+		original_tag = ENG
+	}
+	
+	enable = {
+		has_war_with = JAP
+		date > 1943.8.1
+		NOT = { has_war_with = GER }
+	}
+	
+	abort_when_not_enabled = yes
+	
+	ai_strategy = {
+		type = naval_dominance
+		id = home_islands_control_zone
+		value = 100
+	}
+	
+	ai_strategy = {
+		type = naval_dominance
+		id = micronesia_pacific_control_zone
+		value = 80
+	}
+	
+	ai_strategy = {
+		type = naval_dominance
+		id = mariana_pacific_control_zone
+		value = 80
+	}
+	
+}
+
+ENG_develop_mediterranean_supremacy = {
+	allowed = {
+		original_tag = ENG
+	}
+	
+	enable = {
+		OR = {
+			has_war_with = ITA
+			has_war_with = SOU
+		}
+		date > 1940.1.1
+	}
+	
+	abort_when_not_enabled = yes
+	
+	ai_strategy = {
+		type = naval_dominance
+		id = western_med_control_zone
+		value = 30
+	}
+	
+	ai_strategy = {
+		type = naval_dominance
+		id = eastern_med_control_zone
+		value = 80
 	}
 }

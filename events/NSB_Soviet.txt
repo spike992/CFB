@@ -2326,6 +2326,11 @@ country_event = {
 
 	option = { #Join Faction - Keep government
 		name = NSB_soviet_foreign_politics_events.1.a
+		trigger = {
+			FROM = {
+				is_faction_leader = yes
+			}
+		}
 
 		ai_chance = {
 			base = 10
@@ -6575,7 +6580,7 @@ country_event = {
 								fixed_ship_radar_slot = empty
 								fixed_ship_engine_slot = cruiser_ship_engine_1
 								fixed_ship_secondaries_slot = empty
-								fixed_ship_armor_slot = ship_armor_cruiser_2
+								fixed_ship_armor_slot = ship_armor_cruiser_heavy_2
 								front_1_custom_slot = ship_anti_air_1
 								mid_1_custom_slot = ship_torpedo_1
 								rear_1_custom_slot = empty
@@ -6595,7 +6600,7 @@ country_event = {
 								fixed_ship_radar_slot = empty
 								fixed_ship_engine_slot = cruiser_ship_engine_1
 								fixed_ship_secondaries_slot = empty
-								fixed_ship_armor_slot = ship_armor_cruiser_2
+								fixed_ship_armor_slot = ship_armor_cruiser_heavy_2
 								front_1_custom_slot = ship_anti_air_1
 								mid_1_custom_slot = ship_torpedo_1
 								rear_1_custom_slot = empty
@@ -6747,47 +6752,45 @@ country_event = {
 				limit = {
 					has_tech = basic_heavy_battery
 				}
-				create_equipment_variant = {
-					name = "Hipper Class"
-					type = ship_hull_cruiser_2
-					name_group = SOV_CA_HISTORICAL
-					parent_version = 0
-					modules = {
-						fixed_ship_battery_slot = ship_medium_battery_2
-						fixed_ship_anti_air_slot = ship_anti_air_1
-						fixed_ship_fire_control_system_slot = ship_fire_control_system_0
-						fixed_ship_radar_slot = empty
-						fixed_ship_engine_slot = cruiser_ship_engine_1
-						fixed_ship_secondaries_slot = empty
-						fixed_ship_armor_slot = ship_armor_cruiser_2
-						front_1_custom_slot = ship_anti_air_1
-						mid_1_custom_slot = ship_torpedo_1
-						rear_1_custom_slot = empty
-					}
+			create_equipment_variant = {
+				name = "Hipper Class"
+				type = ship_hull_cruiser_2
+				name_group = SOV_CA_HISTORICAL
+				parent_version = 0
+				modules = {
+					fixed_ship_battery_slot = ship_medium_battery_2
+					fixed_ship_anti_air_slot = ship_anti_air_1
+					fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+					fixed_ship_radar_slot = empty
+					fixed_ship_engine_slot = cruiser_ship_engine_1
+					fixed_ship_secondaries_slot = empty
+					fixed_ship_armor_slot = ship_armor_cruiser_heavy_2
+					front_1_custom_slot = ship_anti_air_1
+					mid_1_custom_slot = ship_torpedo_1
+					rear_1_custom_slot = empty
 				}
 			}
-			else = {
-				create_equipment_variant = {
-					name = "Hipper Class"
-					type = ship_hull_cruiser_2
-					name_group = SOV_CA_HISTORICAL
-					parent_version = 0
-					modules = {
-						fixed_ship_battery_slot = ship_medium_battery_1
-						fixed_ship_anti_air_slot = ship_anti_air_1
-						fixed_ship_fire_control_system_slot = ship_fire_control_system_0
-						fixed_ship_radar_slot = empty
-						fixed_ship_engine_slot = cruiser_ship_engine_1
-						fixed_ship_secondaries_slot = empty
-						fixed_ship_armor_slot = ship_armor_cruiser_2
-						front_1_custom_slot = ship_anti_air_1
-						mid_1_custom_slot = ship_torpedo_1
-						rear_1_custom_slot = empty
-					}
+		}
+		else = {
+			create_equipment_variant = {
+				name = "Hipper Class"
+				type = ship_hull_cruiser_2
+				name_group = SOV_CA_HISTORICAL
+				parent_version = 0
+				modules = {
+					fixed_ship_battery_slot = ship_medium_battery_1
+					fixed_ship_anti_air_slot = ship_anti_air_1
+					fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+					fixed_ship_radar_slot = empty
+					fixed_ship_engine_slot = cruiser_ship_engine_1
+					fixed_ship_secondaries_slot = empty
+					fixed_ship_armor_slot = ship_armor_cruiser_heavy_2
+					front_1_custom_slot = ship_anti_air_1
+					mid_1_custom_slot = ship_torpedo_1
+					rear_1_custom_slot = empty
 				}
 			}
-			
-			# CA: Lützow -> Petropavlovsk
+		}			# CA: Lützow -> Petropavlovsk
 			add_equipment_production = {
 				equipment = {
 					type = ship_hull_cruiser_2

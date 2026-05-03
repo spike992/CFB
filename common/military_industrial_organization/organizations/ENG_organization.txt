@@ -490,7 +490,8 @@ ENG_supermarine_organization = {
 	}
 
 	equipment_type = {
-		mio_cat_eq_all_small_plane
+		#mio_cat_eq_all_small_plane
+		fighter_equipment
 		flying_boat_equipment
 		#maritime_patrol_plane
 	}	
@@ -499,6 +500,21 @@ ENG_supermarine_organization = {
 		mio_cat_all_light_fighter_and_modules 
 #		mio_cat_all_naval_bomber_and_modules 
 			#Could be used to allow Supermarine to research naval bombs, but this could overpower English fighter MIO trait gain early on.
+	}
+
+	initial_trait = {
+		name = ENG_mio_trait_supermarine
+
+		equipment_bonus = {
+			air_agility = 0.15
+			air_defence = 0.05
+			air_range = -0.10
+		}
+
+		production_bonus = {
+			production_efficiency_cap_factor = -0.25
+		}
+
 	}
 
 	override_trait = {
@@ -574,6 +590,35 @@ ENG_supermarine_organization = {
 		}
 	}
 
+	add_trait = { 
+		token = ENG_mio_trait_supermarine_prod_cap
+		name = ENG_mio_trait_supermarine_prod_cap
+		icon = GFX_generic_mio_trait_icon_production_capacity
+		special_trait_background = yes
+
+		available = {
+			OR = {
+				ENG = {
+					OR = {
+						has_completed_focus = ENG_subsidies_supermarine
+						has_completed_focus = shadow_scheme
+						has_completed_focus = ENG_military_buildup
+					}
+				}
+				has_mio_size > 4
+			}
+		}
+
+		position = { x=2 y=1 }
+		relative_position_id = generic_mio_trait_gunboat
+
+		all_parents = {  }
+
+		production_bonus = {
+			production_efficiency_cap_factor = 0.25
+		}
+	}
+
 	# add_trait = { 
 	# 	token = ENG_mio_trait_research_funding
 	# 	name = ENG_mio_trait_research_funding
@@ -620,7 +665,8 @@ ENG_supermarine_organization = {
 }
 
 ENG_hawker_organization = {
-	include = generic_cas_aircraft_organization
+	name = ENG_hawker_organization
+	include = generic_light_aircraft_organization
 	icon = GFX_idea_hawker
 	allowed = {	
 		OR = {
@@ -629,6 +675,149 @@ ENG_hawker_organization = {
 		}
 		has_dlc = "Arms Against Tyranny"
 	}
+
+	equipment_type = {
+		mio_cat_eq_all_small_plane
+	}
+	initial_trait = {
+		name = AUS_mio_robust_light_aircraft
+
+		equipment_bonus = {
+			reliability = 0.05
+			maximum_speed = 0.05
+			air_attack = 0.05
+		}
+	}
+
+	override_trait = {
+		token = generic_mio_trait_liquid_cooled_engines
+		
+		position = { x=2 y=0 }
+		
+	}
+
+	override_trait = {
+		token = generic_mio_trait_advanced_aerodynamics
+		
+		position = { x=2 y=0 }
+		
+	}
+
+	override_trait = {
+		token = generic_mio_trait_ongoing_developmental_upgrades
+		
+		position = { x=1 y=1 }
+		
+	}
+
+	override_trait = {
+		token = generic_mio_trait_expanded_production_facilities
+		
+		position = { x=1 y=0 }
+		
+	}
+
+	override_trait = {
+		token = generic_mio_trait_fixed_tailwheels
+		
+		position = { x=0 y=1 }
+		
+	}
+
+	override_trait = {
+		token = generic_mio_trait_gun_pods
+		
+		position = { x=3 y=1 }
+		
+	}
+
+	override_trait = {
+		token = generic_mio_trait_maximum_wing_loads
+		
+		position = { x=1 y=1 }
+		
+	}
+
+	override_trait = {
+		token =  generic_mio_trait_heavier_airframe
+		
+		position = { x=-1 y=1 }
+		
+	}
+
+
+	override_trait = {
+		token = generic_mio_trait_removable_wings
+		
+		position = { x=-1 y=2 }
+		relative_position_id = generic_mio_trait_fixed_tailwheels
+
+		mutually_exclusive = { AUS_mio_trait_static_wings } 
+	}
+
+
+	add_trait = { 
+		token = AUS_mio_trait_static_wings
+		name = AUS_mio_trait_static_wings
+		icon = GFX_generic_mio_department_icon_plane_fighter_production
+		special_trait_background = yes
+
+		position = { x=1 y=2 }
+		relative_position_id = generic_mio_trait_fixed_tailwheels
+
+		any_parent = { generic_mio_trait_fixed_tailwheels }
+
+		mutually_exclusive = { generic_mio_trait_removable_wings }
+
+		equipment_bonus = {
+			air_agility = 0.05
+		}
+
+		production_bonus = {
+			production_efficiency_gain_factor = 0.05
+		}
+	}
+
+	add_trait = { 
+		token = AUS_mio_trait_weight_optimization
+		name = AUS_mio_trait_weight_optimization
+		icon = GFX_generic_mio_trait_icon_air_agility
+		special_trait_background = yes
+
+		position = { x=0 y=1 }
+		relative_position_id = AUS_mio_trait_static_wings
+
+		any_parent = { AUS_mio_trait_static_wings }
+
+
+		equipment_bonus = {
+			air_agility = 0.05
+			air_attack = 0.05
+			maximum_speed = 0.03
+		}
+	}
+
+
+	add_trait = { 
+		token = AUS_mio_trait_structural_integrity
+		name = AUS_mio_trait_structural_integrity
+		icon = GFX_generic_mio_trait_icon_reliability
+		special_trait_background = yes
+
+		position = { x=0 y=1 }
+		relative_position_id = generic_mio_trait_removable_wings
+
+		any_parent = { generic_mio_trait_removable_wings }
+
+
+		equipment_bonus = {
+			reliability = 0.1
+			air_defence = 0.1
+		}
+	}
+
+	remove_trait = { generic_mio_trait_maritime_duties generic_mio_trait_fuselage_ordinance_rack }
+
 }
 
 ENG_de_havilland_organization = {
@@ -1039,3 +1228,363 @@ ENG_crossley_motors_organization = {
 		}
 	}
 }
+
+ENG_crewe_works_organization = {
+	include = generic_train_organization
+	icon = GFX_idea_ENG_crewe
+	allowed = {
+		original_tag = ENG
+	}
+
+	equipment_type = { train_equipment railway_gun_equipment support_equipment mio_cat_eq_all_medium_tank }
+	research_categories = { train_tech support_tech }
+
+	tree_header_text = {
+		text = mio_header_tank_production
+		x = 0.11
+	}
+
+	tree_header_text = {
+		text = mio_header_design_and_production
+		x = 6
+	}
+
+	tree_header_text = {
+		text = mio_header_support
+		x = 3
+	}
+
+	tree_header_text = {
+		text = mio_header_weapons
+		x = 8.97
+	}
+
+	initial_trait = {
+		name = generic_mio_initial_trait_generic_train_manufacturer
+		limit_to_equipment_type = { 
+			train_equipment 
+			#support_equipment
+		}
+
+		production_bonus = {
+			production_efficiency_cap_factor = 0.03
+		}
+
+		organization_modifier = {
+			military_industrial_organization_research_bonus = 0 #5% from MIO base
+		}
+	}
+
+	override_trait = {
+		token = generic_mio_trait_material_improvements
+
+		position = { x=5 y=0 }
+	}
+
+	override_trait = {
+		token = generic_mio_trait_joint_stock_scheme
+
+		position = { x=7 y=0 }
+	}
+
+	override_trait = {
+		token = generic_mio_trait_improved_axle_fitting
+
+		any_parent = { generic_mio_trait_material_improvements ENG_mio_trait_experienced_manufacturer_crewe_works generic_mio_trait_joint_stock_scheme }
+	}
+
+	override_trait = {
+		token = generic_mio_trait_improved_wagon_design
+
+		position = { x=-3 y=1 }
+		relative_position_id = generic_mio_trait_improved_axle_fitting
+
+		all_parents = { ENG_mio_trait_lms_logistical_expertise }
+	}
+
+	override_trait = {
+		token = generic_mio_trait_improved_loading
+
+		position = { x=0 y=1 }
+		relative_position_id = generic_mio_trait_improved_wagon_design
+	}
+
+	override_trait = {
+		token = generic_mio_trait_ugly_ducklings
+
+		any_parent = { generic_mio_trait_improved_axle_fitting ENG_mio_trait_lms_class_stanier_class_5_black_five }
+	}
+
+	add_trait = {
+		token = generic_mio_trait_compulsory_tank_designer
+		name = generic_mio_trait_compulsory_tank_designer
+		icon = GFX_generic_mio_department_icon_tank_medium_tank_production
+		special_trait_background = yes
+
+		position = { x=0 y=0 }
+
+		visible = {
+			FROM = { 
+				original_tag = ENG
+			}
+		}
+
+		available = {
+			FROM = {
+				has_completed_focus = shadow_scheme
+			}
+		}
+
+		limit_to_equipment_type = { mio_cat_eq_all_medium_tank }
+
+		equipment_bonus = {
+			maximum_speed = 0.05
+			reliability = -0.05
+			armor_value = 0.05
+		}
+
+		production_bonus = {
+			production_efficiency_gain_factor = 0.02
+		}
+	}
+
+	add_trait = {
+		token = generic_mio_trait_off_the_board_designs
+		name = generic_mio_trait_off_the_board_designs
+		icon = GFX_generic_mio_department_icon_tank_medium_tank_line_efficiency
+		special_trait_background = yes
+
+		position = { x=0 y=1 }
+		relative_position_id = generic_mio_trait_compulsory_tank_designer
+
+		visible = {
+			FROM = { 
+				original_tag = ENG
+			}
+		}
+
+		all_parents = { generic_mio_trait_compulsory_tank_designer }
+
+		limit_to_equipment_type = { mio_cat_eq_all_medium_tank }
+
+		production_bonus = {
+			production_capacity_factor = 0.03
+			production_efficiency_gain_factor = 0.03
+		}
+	}
+
+	add_trait = {
+		token = ENG_mio_trait_vickers_armstrong_knowledge_sharing 
+		name = ENG_mio_trait_vickers_armstrong_knowledge_sharing
+		icon = GFX_generic_mio_department_icon_facilities
+		special_trait_background = yes
+
+		position = { x=1 y=1 }
+		relative_position_id = generic_mio_trait_compulsory_tank_designer
+
+		visible = {
+			FROM = { 
+				original_tag = ENG
+			}
+		}
+
+		available = {
+			FROM = {
+				has_completed_focus = ENG_rearmament
+
+			}
+		}
+
+		all_parents = { generic_mio_trait_compulsory_tank_designer }
+
+		limit_to_equipment_type = { mio_cat_eq_all_medium_tank }
+
+		equipment_bonus = {
+			maximum_speed = 0.05
+		}
+
+		organization_modifier = {
+			military_industrial_organization_research_bonus = 0.05
+		}
+
+		ai_will_do = {
+			base = 2
+		}
+	}
+
+	add_trait = {
+		token = generic_mio_trait_armor_improvements
+		name = generic_mio_trait_armor_improvements
+		icon = GFX_generic_mio_department_icon_tank_medium_tank_armor
+		special_trait_background = yes
+
+		position = { x=0 y=1 }
+		relative_position_id = generic_mio_trait_off_the_board_designs
+
+		visible = {
+			FROM = { 
+				original_tag = ENG
+			}
+		}
+
+		all_parents = { generic_mio_trait_off_the_board_designs }
+
+		limit_to_equipment_type = { mio_cat_eq_all_medium_tank }
+
+		equipment_bonus = {
+			defense = 0.05
+			armor_value = 0.05
+		}
+	}
+
+	add_trait = {
+		token = generic_mio_trait_cruiser_tank_production
+		name = generic_mio_trait_cruiser_tank_production
+		icon = GFX_generic_mio_department_icon_tank_medium_tank_engine
+		special_trait_background = yes
+
+		position = { x=0 y=1 }
+		relative_position_id = generic_mio_trait_armor_improvements
+
+		visible = {
+			FROM = { 
+				original_tag = ENG
+			}
+		}
+
+		all_parents = { generic_mio_trait_armor_improvements }
+
+		limit_to_equipment_type = { mio_cat_eq_all_medium_tank }
+
+		equipment_bonus = {
+			maximum_speed = 0.05
+		}
+
+		production_bonus = {
+			production_capacity_factor = 0.02
+		}
+	}
+
+	add_trait = {
+		token = generic_mio_trait_additional_anti_aircraft_machine_guns
+		name =  generic_mio_trait_additional_anti_aircraft_machine_guns
+		icon = GFX_generic_mio_department_icon_tank_medium_tank_aa
+		special_trait_background = yes
+
+		position = { x=0 y=1 }
+		relative_position_id = generic_mio_trait_cruiser_tank_production
+
+		visible = {
+			FROM = { 
+				original_tag = ENG
+			}
+		}
+
+		all_parents = { generic_mio_trait_cruiser_tank_production }
+
+		limit_to_equipment_type = { mio_cat_eq_all_medium_tank }
+
+		equipment_bonus = {
+			defense = 0.05
+			air_attack = 0.10
+		}
+	}
+
+	add_trait = {
+		token = ENG_mio_trait_lms_logistical_expertise 
+		name = ENG_mio_trait_lms_logistical_expertise
+		icon = GFX_generic_mio_department_icon_support_equipment
+		special_trait_background = yes
+
+		position = { x=3 y=0 }
+		relative_position_id = generic_mio_trait_compulsory_tank_designer
+
+		visible = {
+			FROM = { 
+				original_tag = ENG
+			}
+		}
+
+		available = {
+			FROM = {
+				has_completed_focus = shadow_scheme
+			}
+		}
+
+		limit_to_equipment_type = { support_equipment }
+
+		production_bonus = {
+			production_resource_need_factor = -0.05
+		}
+
+		production_bonus = {
+			production_efficiency_gain_factor = 0.02
+		}
+
+		# organization_modifier = {
+		# 	military_industrial_organization_research_bonus = 0.05
+		# }
+
+		ai_will_do = {
+			base = 2
+		}
+	}
+
+	add_trait = {
+		token = ENG_mio_trait_lms_class_stanier_class_5_black_five
+		name = ENG_mio_trait_lms_class_stanier_class_5_black_five
+		icon = GFX_military_industrial_organization_train_equipment
+		special_trait_background = yes
+
+		position = { x=1 y=1 }
+		relative_position_id = ENG_mio_trait_lms_logistical_expertise 
+
+		visible = {
+			FROM = { 
+				original_tag = ENG
+			}
+		}
+
+		all_parents = { ENG_mio_trait_lms_logistical_expertise }
+
+		limit_to_equipment_type = { train_equipment }
+
+		production_bonus = {
+			production_resource_penalty_factor = -0.05
+			production_efficiency_cap_factor = 0.02
+		}
+
+		ai_will_do = {
+			base = 2
+		}
+	}
+
+	add_trait = {
+		token = ENG_mio_trait_experienced_manufacturer_crewe_works
+		name = GER_mio_trait_experienced_manufacturer
+		icon = GFX_generic_mio_trait_icon_reliability
+		special_trait_background = yes
+
+		position = { x=1 y=0 }
+		relative_position_id = generic_mio_trait_material_improvements
+
+		visible = {
+			FROM = { 
+				original_tag = ENG
+			}
+		}
+
+		limit_to_equipment_type = { 
+		 	train_equipment 
+		}
+
+		equipment_bonus = {
+			reliability = 0.05
+		}
+
+		ai_will_do = {
+			base = 2
+		}
+	}
+}
+

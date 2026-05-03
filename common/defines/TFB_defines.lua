@@ -30,12 +30,12 @@ NDefines.NDiplomacy.PEACE_SCORE_DISTRIBUTION = { 3.0, 3.0, 3.0, 3.0, 3.0 } -- Ho
 NDefines.NDiplomacy.PEACE_ACTION_MAX_COST = 500					-- Max value for a peace action cost (after all modifiers)
 NDefines.NDiplomacy.CAPITAL_CAPITULATE_BONUS_SCORE	= 300			-- extra bonus when deciding who to capitulate to (applied to capital holder)
 NDefines.NDiplomacy.VICTORY_POINT_WORTH_FACTOR_WARSCORE = 0.5		-- multiplier for each victory points when calculating province worth for warscore
-NDefines.NDiplomacy.EMBARGO_THREAT_THRESHOLD = 35						-- Target-generated threat threshold to allow embargo (affected by modifiers)
+NDefines.NDiplomacy.EMBARGO_THREAT_THRESHOLD = -1						-- Target-generated threat threshold to allow embargo (affected by modifiers)
 NDefines.NDiplomacy.EMBARGO_DIFFERENT_IDEOLOGY_AI_WEIGHT = 5			-- AI weight for different ideology
 NDefines.NDiplomacy.EMBARGO_NEIGHBOUR_AI_WEIGHT = -25					-- AI weight for different ideology
--- NDefines.NDiplomacy.NAVAL_BLOCKADE_BASE_COST = 150						-- Base PP cost for issuing a naval blockade
--- NDefines.NDiplomacy.NAVAL_BLOCKADE_DAILY_COST = 0.25					-- Daily PP cost for one naval blockade
--- NDefines.NDiplomacy.NAVAL_BLOCKADE_THREAT_THRESHOLD = 20				-- Target-generated threat threshold to allow naval blockade
+NDefines.NDiplomacy.NAVAL_BLOCKADE_BASE_COST = 150						-- Base PP cost for issuing a naval blockade
+NDefines.NDiplomacy.NAVAL_BLOCKADE_DAILY_COST = 0.25					-- Daily PP cost for one naval blockade
+NDefines.NDiplomacy.NAVAL_BLOCKADE_THREAT_THRESHOLD = -1				-- Target-generated threat threshold to allow naval blockade
 
 NDefines.NCountry.EVENT_PROCESS_OFFSET = 40						-- Events are checked every X day per country or state (1 is ideal but CPU heavy)
 NDefines.NCountry.BASE_RESEARCH_SLOTS = 4						-- Base number of research slots per country.
@@ -193,7 +193,7 @@ NDefines.NMilitary.MIN_SUPPLY_CONSUMPTION = 0.1					-- minimum value of supply c
 NDefines.NMilitary.LAND_COMBAT_STR_DAMAGE_MODIFIER = 0.03        -- global damage modifier... but some equipment is returned at end of battles see : EQUIPMENT_COMBAT_LOSS_FACTOR
 NDefines.NMilitary.LAND_COMBAT_ORG_DAMAGE_MODIFIER = 0.045        -- global damage modifier
 NDefines.NMilitary.LAND_COMBAT_ORG_ARMOR_ON_SOFT_DICE_SIZE = 5
-NDefines.NMilitary.LAND_AIR_COMBAT_STR_DAMAGE_MODIFIER = 0.025    -- air global damage modifier
+NDefines.NMilitary.LAND_AIR_COMBAT_STR_DAMAGE_MODIFIER = 0.020    -- air global damage modifier
 NDefines.NMilitary.LAND_AIR_COMBAT_ORG_DAMAGE_MODIFIER = 0.025    -- global damage modifier
 NDefines.NMilitary.LAND_AIR_COMBAT_MAX_PLANES_PER_ENEMY_WIDTH = 2 -- how many CAS/TAC can enter a combat depending on enemy width there
 NDefines.NMilitary.LAND_COMBAT_COLLATERAL_FACTOR = 0.0025		   -- Factor to scale collateral damage to infra and forts with.
@@ -242,15 +242,17 @@ NDefines.NMilitary.PARACHUTE_PENALTY_RANDOMNESS = 0.05			   -- Random factor for
 NDefines.NMilitary.PARACHUTE_DISRUPTED_AA_PENALTY = 0.8            -- How much the Air defence in the state (from AA buildings level * air_defence) is scaled to affect overall disruption (equipmentmanpowerstr).
 NDefines.NMilitary.PARACHUTE_COMPLETE_ORG = 0.4				   -- Organisation value (in %) after unit being dropped regardless if failed disrupted or successful.
 NDefines.NMilitary.EXPERIENCE_LOSS_FACTOR = 0.9                 -- percentage of experienced solders who die when manpower is removed
-NDefines.NMilitary.EQUIPMENT_COMBAT_LOSS_FACTOR = 0.6	 	   -- % of equipment lost to strength ratio in combat so some % is returned if below 1
-NDefines.NMilitary.OUT_OF_SUPPLY_ATTRITION = 0.3                 -- max attrition when out of supply
+NDefines.NMilitary.EQUIPMENT_COMBAT_LOSS_FACTOR = 0.45	 	   -- % of equipment lost to strength ratio in combat so some % is returned if below 1
+NDefines.NMilitary.OUT_OF_SUPPLY_ATTRITION = 0.2                 -- max attrition when out of supply
+NDefines.NMilitary.RELIABILITY_WEATHER = 1.5                     -- how much reliability is afffecting weather impact (vanilla 3.0)
+NDefines.NMilitary.RELIABILTY_RECOVERY = 0.40                     -- factor affecting how much equipment is returned "from the dead" (vanilla 0.40)
 NDefines.NMilitary.OUT_OF_SUPPLY_SPEED = -0.4                    -- max speed reduction from supply
 NDefines.NMilitary.NON_CORE_SUPPLY_SPEED = -0.4				   -- we are not running on our own VP supply so need to steal stuff along the way
 NDefines.NMilitary.NON_CORE_SUPPLY_AIR_SPEED = -0.15			   -- we are not running on our own VP supply so need to steal stuff along the way a bit less due to air supply
 NDefines.NMilitary.OUT_OF_SUPPLY_MORALE = -0.3                   -- max org regain reduction from supply
-NDefines.NMilitary.TRAINING_ATTRITION = 0.02		  			   -- amount of extra attrition from being in training
-NDefines.NMilitary.TRAINING_MIN_STRENGTH = 0.5					-- if strength is less than this the unit will pause training until it's been reinforced
-NDefines.NMilitary.AIR_SUPPORT_BASE = 0.15                        -- CAS bonus factor for air support moddifier for land unit in combat
+NDefines.NMilitary.TRAINING_ATTRITION = 0.05		  			   -- amount of extra attrition from being in training
+NDefines.NMilitary.TRAINING_MIN_STRENGTH = 0.9					-- if strength is less than this the unit will pause training until it's been reinforced
+NDefines.NMilitary.AIR_SUPPORT_BASE = 0.20                        -- CAS bonus factor for air support moddifier for land unit in combat
 NDefines.NMilitary.LOW_SUPPLY = 0.95							   -- When the supply status of an unit becomes low.
 NDefines.NMilitary.SPEED_REINFORCEMENT_BONUS = 0.02              -- chance to join combat bonus by each 100% larger than infantry base (up to 200%)
 NDefines.NMilitary.OVERSEAS_LOSE_EQUIPMENT_FACTOR = 0.8		   -- percentage of equipment lost disbanded overseas
@@ -278,7 +280,7 @@ NDefines.NMilitary.STRATEGIC_SPEED_INFRA_BASE = 4
 NDefines.NMilitary.STRATEGIC_SPEED_INFRA_MAX = 10
 NDefines.NMilitary.STRATEGIC_SPEED_RAIL_BASE = 10
 NDefines.NMilitary.BATALION_CHANGED_EXPERIENCE_DROP = 0.75			-- Division experience drop if unit has different batalion
-NDefines.NMilitary.ARMOR_VS_AVERAGE = 0.25			                -- how to weight in highest armor & pen vs the division average
+NDefines.NMilitary.ARMOR_VS_AVERAGE = 0.3			                -- how to weight in highest armor & pen vs the division average
 NDefines.NMilitary.PEN_VS_AVERAGE = 0.35
 NDefines.NMilitary.PIERCING_THRESHOLDS = {					-- Our piercing / their armor must be this value to deal damage fraction equal to the index in the array below [higher number = higher penetration]. If armor is 0, 1.00 will be returned.
 	1.00,
@@ -536,17 +538,17 @@ NDefines.NNavy.SCREEN_RATIO_FOR_FULL_SCREENING_FOR_CAPITALS 					= 3.0	-- this s
 NDefines.NNavy.LIGHT_GUN_ATTACK_TO_SHORE_BOMBARDMENT							= 0.02 -- light gun attack value is divided by this value * 100 and added to shore bombardment modifier 
 NDefines.NNavy.GUN_HIT_PROFILES = { -- hit profiles for guns if target ih profile is lower the gun will have lower accuracy
 	95.0,	-- big guns
-	130.0,	-- torpedos
+	260.0,	-- torpedos
 	60.0	-- small guns
 }
 NDefines.NNavy.DEPTH_CHARGES_HIT_PROFILE 										= 80	-- hit profile for depth charges
 NDefines.NNavy.BASE_GUN_COOLDOWNS = { -- number of hours for a gun to be ready after shooting
 	3.0,	-- big guns
-	5.0,	-- torpedoes
+	12.0,	-- torpedoes
 	2.0,	-- small guns
 }
-NDefines.NNavy.COMBAT_TORPEDO_CRITICAL_CHANCE 									= 0.25		-- chance for critical hit from torpedo.
-NDefines.NNavy.COMBAT_TORPEDO_CRITICAL_DAMAGE_MULT								= 3.75		-- multiplier to damage when got critical hit from torpedo. (Critical hits are devastating as usually torpedo_attack are pretty high base values)
+NDefines.NNavy.COMBAT_TORPEDO_CRITICAL_CHANCE 									= 0.8		-- chance for critical hit from torpedo.
+NDefines.NNavy.COMBAT_TORPEDO_CRITICAL_DAMAGE_MULT								= 64		-- multiplier to damage when got critical hit from torpedo. (Critical hits are devastating as usually torpedo_attack are pretty high base values)
 NDefines.NNavy.COMBAT_EVASION_TO_HIT_CHANCE_TORPEDO_MULT						= 24		-- the above evasion hit chance is multiplied by 400% if shooting with torpedoes. Torpedoes are slow, so evasion matters more.
 NDefines.NNavy.DEPTH_CHARGES_HIT_CHANCE_MULT 									= 1.25 		-- multiplies hit chance of small guns
 NDefines.NNavy.COMBAT_ARMOR_PIERCING_CRITICAL_BONUS = 2.0						-- Bonus to critical chance when shooter armor piercing is higher then target armor.
@@ -845,8 +847,10 @@ NDefines.NFactions.FACTION_MANPOWER_RECIEVE_CONTRIBUTION_SCALAR = 0.2 -- a scala
 NDefines.NFactions.FACTION_INFLUENCE_SCIENTIST_CONTRIBUTION_VALUE = 1 --how much contribution one scientists gives to you if it is working for somebody else.
 
 
-NDefines.NDoctrines.TRAINING_MASTERY_GAIN_FACTOR = 0				-- How much training contributes to doctrine mastery relative to combat/missions
-NDefines.NDoctrines.MASTERY_BANK_CONVERSION_RATE = 0.8 				-- The rate at which mastery gained when a track is finished or empty is "banked"
+NDefines.NDoctrines.TRAINING_MASTERY_GAIN_FACTOR = 0.02				-- How much training contributes to doctrine mastery relative to combat/missions
+NDefines.NDoctrines.MASTERY_BANK_CONVERSION_RATE = 0.5 				-- The rate at which mastery gained when a track is finished or empty is "banked"
+NDefines.NDoctrines.DOCTRINE_SHARING_BASE_MASTERY_GAIN_MONTHLY = 10        -- When doctrine sharing is enabled, this is the base amount of mastery gained monthly
+NDefines.NDoctrines.DOCTRINE_SHARING_MONTHLY_MASTERY_GAIN_PER_COMMANDER = 2 -- When doctrine sharing is enabled, each theater commander increases the montly mastery gain by this much
 NDefines.NDoctrines.MASTERY_BANK_MAX = 300							-- The maximum amount of mastery that can be banked
 NDefines.NDoctrines.MAX_MONTHLY_MASTERY_GAIN = 50
 NDefines.NDoctrines.MILITARY_ATTACHE_MASTERY_TRANSFER_FACTOR = 0.1	-- For each mastery track, military attaches will add this fraction of their visiting country's mastery gain (from units only) in that track

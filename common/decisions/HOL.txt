@@ -360,199 +360,228 @@ HOL_obtain_foreign_colonial_investments = {
 	}
 }
 
-# HOL_prepare_the_inundation_lines = {
+HOL_prepare_the_inundation_lines = {
 	
-# 	HOL_inundate_the_water_lines = {
+	HOL_inundate_the_water_lines = {
 
-# 		icon = hol_inundate_water_lines
+		icon = hol_inundate_water_lines
 
-# 		allowed = {
-# 			tag = HOL
-# 		}
+		allowed = {
+			NOT = { original_tag = HOL }
+		}
 
-# 		available = {
-# 			has_war = yes
-# 			7 = { is_fully_controlled_by = ROOT }
-# 		}
+		available = {
+			has_war = yes
+			7 = { 
+				controller = {
+					OR = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+					has_full_control_of_state = PREV
+				}
+			}
+			HOL = { has_capitulated = yes }
+			
+		}
 
-# 		cost = 25
+		cost = 25
 
-# 		fire_only_once = no
+		fire_only_once = no
 
-# 		days_remove = 14
+		days_remove = 14
 
-# 		highlight_states = {
-# 			highlight_state_targets = { state = 7 }
-# 			highlight_provinces = {
-# 				9498
-# 				391
-# 				11456
-# 				6241
-# 			}
-# 		}
+		highlight_states = {
+			highlight_state_targets = { state = 7 }
+			highlight_provinces = {
+				9498
+				391
+				11456
+				6241
+			}
+		}
 
-# 		modifier = {
-# 		}
+		modifier = {
+		}
 
-# 		visible = {
-# 			HOL = { has_completed_focus = HOL_prepare_the_inundation_lines }
-# 			7 = { is_fully_controlled_by = ROOT }
-# 			NOT = { has_global_flag = HOL_inundation_lines_flooded }
-# 		}
+		visible = {
+			#HOL = { has_completed_focus = HOL_prepare_the_inundation_lines }
+			7 = { 
+				controller = {
+					OR = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+					has_full_control_of_state = PREV
+				}
+			}
+			HOL = { has_capitulated = yes}
+			NOT = { has_global_flag = HOL_inundation_lines_flooded }
+		}
 
-# 		remove_effect = {
-# 			if = {
-# 				limit = {
-# 					7 = { is_fully_controlled_by = ROOT }
-# 				}
-# 				7 = {
-# 					add_province_modifier = {
-# 						static_modifiers = { flooded }
-# 						province = {
-# 							id = 9498
-# 							id = 391
-# 						}
-# 					}
-# 					damage_building = {
-# 					    type = infrastructure
-# 					    damage = 2
-# 					}
-# 					damage_building = {
-# 					    type = industrial_complex
-# 					    damage = 0.5
-# 					}
-# 					damage_building = {
-# 					    type = arms_factory
-# 					    damage = 0.5
-# 					}
-# 				}
-# 				35 = {
-# 					add_province_modifier = {
-# 						static_modifiers = { flooded }
-# 						province = {
-# 							id = 11456
-# 						}
-# 					}
-# 					damage_building = {
-# 					    type = infrastructure
-# 					    damage = 3
-# 					}
-# 					damage_building = {
-# 					    type = industrial_complex
-# 					    damage = 1.5
-# 					}
-# 					damage_building = {
-# 					    type = arms_factory
-# 					    damage = 1.5
-# 					}
-# 				}
-# 				36 = {
-# 					add_province_modifier = {
-# 						static_modifiers = { flooded }
-# 						province = {
-# 							id = 6241
-# 						}
-# 					}
-# 					damage_building = {
-# 					    type = infrastructure
-# 					    damage = 3
-# 					}
-# 					damage_building = {
-# 					    type = industrial_complex
-# 					    damage = 1.5
-# 					}
-# 					damage_building = {
-# 					    type = arms_factory
-# 					    damage = 1.5
-# 					}
-# 				}
-# 			}
-# 			set_global_flag = HOL_inundation_lines_flooded
-# 			set_global_flag = { flag = HOL_inundation_lines_flooded_unhappiness_timer value = 1 days = 180 }
-# 		}
+		remove_effect = {
+			if = {
+				limit = {
+					7 = { is_fully_controlled_by = ROOT }
+				}
+				7 = {
+					add_province_modifier = {
+						static_modifiers = { flooded }
+						province = {
+							id = 9498
+							id = 391
+						}
+					}
+					damage_building = {
+					    type = infrastructure
+					    damage = 2
+					}
+					damage_building = {
+					    type = industrial_complex
+					    damage = 0.5
+					}
+					damage_building = {
+					    type = arms_factory
+					    damage = 0.5
+					}
+				}
+				35 = {
+					add_province_modifier = {
+						static_modifiers = { flooded }
+						province = {
+							id = 11456
+						}
+					}
+					damage_building = {
+					    type = infrastructure
+					    damage = 3
+					}
+					damage_building = {
+					    type = industrial_complex
+					    damage = 1.5
+					}
+					damage_building = {
+					    type = arms_factory
+					    damage = 1.5
+					}
+				}
+				36 = {
+					add_province_modifier = {
+						static_modifiers = { flooded }
+						province = {
+							id = 6241
+						}
+					}
+					damage_building = {
+					    type = infrastructure
+					    damage = 3
+					}
+					damage_building = {
+					    type = industrial_complex
+					    damage = 1.5
+					}
+					damage_building = {
+					    type = arms_factory
+					    damage = 1.5
+					}
+				}
+			}
+			set_global_flag = HOL_inundation_lines_flooded
+			set_global_flag = { flag = HOL_inundation_lines_flooded_unhappiness_timer value = 1 days = 180 }
+		}
 
-# 		complete_effect = {
-# 		}
+		complete_effect = {
+		}
 
-# 	}
+	}
 
-# 	HOL_drain_the_water_lines = {
+	HOL_drain_the_water_lines = {
 
-# 		icon = hol_drain_water_lines
+		icon = hol_drain_water_lines
 
-# 		allowed = {
-# 			tag = HOL
-# 		}
+		allowed = {
+			NOT = { original_tag = HOL }
+		}
 
-# 		available = {
-# 			7 = { is_fully_controlled_by = ROOT }
-# 		}
+		available = {
+			7 = { 
+				controller = {
+					OR = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+					has_full_control_of_state = PREV
+				}
+			}
+			HOL = { has_capitulated = yes }
+		}
 
-# 		cost = 25
+		cost = 25
 
-# 		fire_only_once = no
+		fire_only_once = no
 
-# 		days_remove = 14
+		days_remove = 14
 
-# 		highlight_states = {
-# 			highlight_state_targets = { state = 7 }
-# 			highlight_provinces = {
-# 				9498
-# 				391
-# 				11456
-# 				6241
-# 			}
-# 		}
+		highlight_states = {
+			highlight_state_targets = { state = 7 }
+			highlight_provinces = {
+				9498
+				391
+				11456
+				6241
+			}
+		}
 		
-# 		modifier = {
-# 		}
+		modifier = {
+		}
 
-# 		visible = {
-# 			HOL = { has_completed_focus = HOL_prepare_the_inundation_lines }
-# 			7 = { is_fully_controlled_by = ROOT }
-# 			has_global_flag = HOL_inundation_lines_flooded
-# 		}
+		visible = {
+			#HOL = { has_completed_focus = HOL_prepare_the_inundation_lines }
+			HOL = { has_capitulated = yes}
+			7 = { is_fully_controlled_by = ROOT }
+			has_global_flag = HOL_inundation_lines_flooded
+		}
 
-# 		remove_effect = {
-# 			7 = {
-# 				remove_province_modifier = {
-# 					static_modifiers = { flooded }
-# 					province = {
-# 						id = 9498
-# 						id = 391
-# 					}
-# 				}
-# 			}
-# 			35 = {
-# 				remove_province_modifier = {
-# 					static_modifiers = { flooded }
-# 					province = {
-# 						id = 11456
-# 					}
-# 				}
-# 			}
-# 			36 = {
-# 				remove_province_modifier = {
-# 					static_modifiers = { flooded }
-# 					province = {
-# 						id = 6241
-# 					}
-# 				}
-# 			}
-# 			clr_global_flag = HOL_inundation_lines_flooded
-# 			set_variable = {
-# 				var = HOL_inundation_lines_flooding_unhappiness_var
-# 				value = 0
-# 			}
-# 		}
+		remove_effect = {
+			7 = {
+				remove_province_modifier = {
+					static_modifiers = { flooded }
+					province = {
+						id = 9498
+						id = 391
+					}
+				}
+			}
+			35 = {
+				remove_province_modifier = {
+					static_modifiers = { flooded }
+					province = {
+						id = 11456
+					}
+				}
+			}
+			36 = {
+				remove_province_modifier = {
+					static_modifiers = { flooded }
+					province = {
+						id = 6241
+					}
+				}
+			}
+			clr_global_flag = HOL_inundation_lines_flooded
+			set_variable = {
+				var = HOL_inundation_lines_flooding_unhappiness_var
+				value = 0
+			}
+		}
 
-# 		complete_effect = {
-# 			set_country_flag = { flag = HOL_draining_in_progress value = 1 days = 14 }
-# 		}
+		complete_effect = {
+			set_country_flag = { flag = HOL_draining_in_progress value = 1 days = 14 }
+		}
 
-# 	}
+	}
 
-# }
+}
 
 HOL_war_on_pacifism = {
 	

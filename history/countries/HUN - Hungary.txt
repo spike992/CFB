@@ -81,12 +81,13 @@ set_technology = {
 	infantry_weapons = 1
 	infantry_weapons1 = 1
 	support_weapons = 1
-	hq_1 = 1
+	#hq_1 = 1
 	motorised_infantry = 1
 	tech_support = 1		
 	tech_engineers = 1
 	tech_recon = 1
 	gw_artillery = 1
+	tech_trucks = 1
 
 	fuel_silos = 1
 	basic_train = 1
@@ -454,6 +455,20 @@ recruit_character = HUN_john_von_neumann
 recruit_character = HUN_edward_teller
 recruit_character = HUN_laszlo_varga
 
+if = {
+	limit = {
+		has_dlc = "La Resistance"
+	}
+	create_operative_leader = {
+		name = "Earl Burrows"
+		GFX = "gfx\\leaders\\HUN\\Earl_Burrows.dds"
+		traits = { operative_seducer operative_well_groomed }
+		bypass_recruitment = no
+		available_to_spy_master = yes
+		nationalities = { HUN IRE }
+	}
+}
+
 
 # HIRES THE STARTING PM
 IF = {
@@ -654,7 +669,7 @@ add_breakthrough_progress = {
 # 		infantry_weapons1 = 1
 # 		tech_support = 1		
 # 		tech_recon = 1
-# 		#tech_trucks = 1
+# 		tech_trucks = 1
 # 		gw_artillery = 1
 
 # 		fuel_silos = 1

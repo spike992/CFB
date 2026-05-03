@@ -526,7 +526,31 @@ DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER = {
 		OR = {
 			NOT = { tag = FRA }
 			NOT = { has_idea = FRA_protected_by_the_maginot_line }
-			
+		}
+		OR = {
+			NOT = { tag = SPR }
+			NOT = { has_idea = SPA_neutrality_idea }
+		}
+		OR = {
+			NOT = { original_tag = FRA }
+			NOT = { has_government = fascism }
+			has_war = yes
+		}
+		OR = {
+			NOT = { original_tag = DEN }
+			OR = {
+				NOT = { has_government = fascism }
+				NOT = { is_in_faction_with = GER }
+			}
+			has_war = yes
+		}
+		OR = {
+			NOT = { tag = USA }
+			NOT = { has_idea = USA_neutrality_act }
+		}
+		OR = {
+			NOT = { tag = FIN }
+			NOT = { has_idea = FIN_the_lone_wolf }
 		}
 	}
 	if = {
@@ -541,6 +565,31 @@ DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER = {
 			NOT = { tag = FRA }
 			NOT = { has_idea = FRA_protected_by_the_maginot_line }
 			
+		}
+		OR = {
+			NOT = { tag = SPR }
+			NOT = { has_idea = SPA_neutrality_idea }
+		}
+		OR = {
+			NOT = { original_tag = FRA }
+			NOT = { has_government = fascism }
+			has_war = yes
+		}
+		OR = {
+			NOT = { original_tag = DEN }
+			OR = {
+				NOT = { has_government = fascism }
+				NOT = { is_in_faction_with = GER }
+			}
+			has_war = yes
+		}
+		OR = {
+			NOT = { tag = USA }
+			NOT = { has_idea = USA_neutrality_act }
+		}
+		OR = {
+			NOT = { tag = FIN }
+			NOT = { has_idea = FIN_the_lone_wolf }
 		}
 	}
 	if = {
@@ -592,8 +641,36 @@ DIPLOMACY_INCOMING_LEND_LEASE_ENABLE_TRIGGER = {
 		OR = {
 			NOT = { tag = FRA }
 			NOT = { has_idea = FRA_protected_by_the_maginot_line }
-			
 		}
+		FROM = {
+			OR = {
+				NOT = { tag = SPR }
+				NOT = { has_idea = SPA_neutrality_idea }
+			}
+			OR = {
+				NOT = { original_tag = FRA }
+				NOT = { has_government = fascism }
+				has_war = yes
+			}
+			OR = {
+				NOT = { original_tag = DEN }
+				OR = {
+					NOT = { has_government = fascism }
+					NOT = { is_in_faction_with = GER }
+				}
+				has_war = yes
+			}
+			OR = {
+				NOT = { tag = USA }
+				NOT = { has_idea = USA_neutrality_act }
+			}
+			OR = {
+				NOT = { tag = FIN }
+				NOT = { has_idea = FIN_the_lone_wolf }
+			}
+		}
+		
+		
 	}
 	if = {
 		limit = {
@@ -606,7 +683,33 @@ DIPLOMACY_INCOMING_LEND_LEASE_ENABLE_TRIGGER = {
 		OR = {
 			NOT = { tag = FRA }
 			NOT = { has_idea = FRA_protected_by_the_maginot_line }
-			
+		}
+		FROM = {
+			OR = {
+				NOT = { tag = SPR }
+				NOT = { has_idea = SPA_neutrality_idea }
+			}
+			OR = {
+				NOT = { original_tag = FRA }
+				NOT = { has_government = fascism }
+				has_war = yes
+			}
+			OR = {
+				NOT = { original_tag = DEN }
+				OR = {
+					NOT = { has_government = fascism }
+					NOT = { is_in_faction_with = GER }
+				}
+				has_war = yes
+			}
+			OR = {
+				NOT = { tag = USA }
+				NOT = { has_idea = USA_neutrality_act }
+			}
+			OR = {
+				NOT = { tag = FIN }
+				NOT = { has_idea = FIN_the_lone_wolf }
+			}
 		}
 	}
 	if = {
@@ -1304,6 +1407,30 @@ DIPLOMACY_OFFER_JOIN_FACTION_ENABLE_TRIGGER = {
 		}
 		custom_trigger_tooltip = {
 			tooltip = DENMARK_IS_A_PUPPET_FACTION
+			always = no
+		}
+	}
+}
+
+DIPLOMACY_NAVAL_BLOCKADE_ENABLE_TRIGGER = {
+	if = {
+		limit = {
+			date < 1940.1.1
+		}
+		custom_trigger_tooltip = {
+			tooltip = Embargo_not_available_before_1940
+			always = no
+		}
+	}
+}
+
+DIPLOMACY_EMBARGO_ENABLE_TRIGGER = {
+	if = {
+		limit = {
+			date < 1940.1.1
+		}
+		custom_trigger_tooltip = {
+			tooltip = Embargo_not_available_before_1940
 			always = no
 		}
 	}

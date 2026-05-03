@@ -892,7 +892,7 @@ focus_tree = {
 				limit = {
 					37 = { #Sjaelland
 						is_fully_controlled_by = ROOT
-						infrastructure < 5
+						infrastructure < 10
 					}
 				}
 				37 = { 
@@ -908,7 +908,7 @@ focus_tree = {
 				limit = {
 					911 = { #Fyn
 						is_fully_controlled_by = ROOT
-						infrastructure < 5
+						infrastructure < 10
 					}
 				}
 				911 = { 
@@ -924,7 +924,7 @@ focus_tree = {
 				limit = {
 					99 = { #Norrejylland
 						is_fully_controlled_by = ROOT
-						infrastructure < 5
+						infrastructure < 10
 					}
 				}
 				99 = { 
@@ -940,7 +940,7 @@ focus_tree = {
 				limit = {
 					912 = { #Sondrejylland
 						is_fully_controlled_by = ROOT
-						infrastructure < 5
+						infrastructure < 10
 					}
 				}
 				912 = { 
@@ -2622,7 +2622,7 @@ focus_tree = {
 
 			add_equipment_subsidy = {
 				cic = 20000
-				equipment_type = small_plane_airframe
+				equipment_type = fighter_equipment
 				seller_tags = { DEN.hosts_danish_brigades } 
 			}
 		}
@@ -3116,12 +3116,12 @@ focus_tree = {
 		completion_reward = {
 			add_equipment_subsidy = {
 				cic = 5000
-				equipment_type = small_plane_airframe
+				equipment_type = fighter_equipment
 				seller_trigger = DEN_allied_weapons_seller_trigger
 			}
 			add_equipment_subsidy = {
 				cic = 5000
-				equipment_type = small_plane_cas_airframe
+				equipment_type = CAS_equipment
 				seller_trigger = DEN_allied_weapons_seller_trigger
 			}
 			add_equipment_subsidy = {
@@ -3449,6 +3449,7 @@ focus_tree = {
 				id = DEN_occupation_balance
 				value < 0
 			}
+			has_completed_focus = DEN_contribute_to_the_war
 		}
 	
 		ai_will_do = {
@@ -3795,12 +3796,12 @@ focus_tree = {
 
 			add_equipment_subsidy = {
 				cic = 5000
-				equipment_type = small_plane_airframe
+				equipment_type = fighter_equipment
 				seller_trigger = DEN_allied_weapons_seller_trigger
 			}
 			add_equipment_subsidy = {
 				cic = 5000
-				equipment_type = small_plane_cas_airframe
+				equipment_type = CAS_equipment
 				seller_trigger = DEN_allied_weapons_seller_trigger
 			}
 			add_equipment_subsidy = {
@@ -4342,7 +4343,8 @@ focus_tree = {
 					rule = obsolete_focus_branches_visibility
 					option = HIDE
 				}
-				has_completed_focus = DEN_political_unity
+				#has_completed_focus = DEN_political_unity
+				always = yes
 			}
 		}
 
@@ -4445,25 +4447,15 @@ focus_tree = {
 		}
 
 		offset = {
-			x = 10
+			x = 6 #10
 			y = 0
 			trigger = {
 				has_game_rule = {
 					rule = obsolete_focus_branches_visibility
 					option = HIDE
 				}
-				has_completed_focus = DEN_political_unity
-			}
-		}
-		offset = {
-			x = -4
-			y = 0
-			trigger = {
-				has_game_rule = {
-					rule = obsolete_focus_branches_visibility
-					option = HIDE
-				}
-				has_completed_focus = DEN_political_unity
+				#has_completed_focus = DEN_political_unity
+				always = yes
 			}
 		}
 	
@@ -5246,11 +5238,52 @@ focus_tree = {
 					NOT = {	has_full_control_of_state = 912 }
 				}
 				AND = {
-					37 = { infrastructure > 4 }
-					911 = { infrastructure > 4 }
-					99 = { infrastructure > 4 }
-					912 = { infrastructure > 4 }
+					37 = { infrastructure > 9 }
+					911 = { infrastructure > 9 }
+					99 = { infrastructure > 9 }
+					912 = { infrastructure > 9 }
 				}
+			}
+		}
+
+		enable_automatic_bypass = no
+
+		bypass_effect = {
+			if = {
+				limit = {
+					37 = { #Sjaelland
+						is_fully_controlled_by = ROOT
+						infrastructure > 9
+					}
+				}
+				add_cic = 2000
+			}
+			if = {
+				limit = {
+					911 = { #Fyn
+						is_fully_controlled_by = ROOT
+						infrastructure > 9
+					}
+				}
+				add_cic = 2000
+			}
+			if = {
+				limit = {
+					99 = { #Norrejylland
+						is_fully_controlled_by = ROOT
+						infrastructure > 9
+					}
+				}
+				add_cic = 2000
+			}
+			if = {
+				limit = {
+					912 = { #Sondrejylland
+						is_fully_controlled_by = ROOT
+						infrastructure > 9
+					}
+				}
+				add_cic = 2000
 			}
 		}
 	
@@ -5275,7 +5308,7 @@ focus_tree = {
 				limit = {
 					37 = { #Sjaelland
 						is_fully_controlled_by = ROOT
-						infrastructure < 5
+						infrastructure < 10
 					}
 				}
 				37 = { 
@@ -5291,7 +5324,7 @@ focus_tree = {
 				limit = {
 					911 = { #Fyn
 						is_fully_controlled_by = ROOT
-						infrastructure < 5
+						infrastructure < 10
 					}
 				}
 				911 = { 
@@ -5307,7 +5340,7 @@ focus_tree = {
 				limit = {
 					99 = { #Norrejylland
 						is_fully_controlled_by = ROOT
-						infrastructure < 5
+						infrastructure < 10
 					}
 				}
 				99 = { 
@@ -5323,7 +5356,7 @@ focus_tree = {
 				limit = {
 					912 = { #Sondrejylland
 						is_fully_controlled_by = ROOT
-						infrastructure < 5
+						infrastructure < 10
 					}
 				}
 				912 = { 
@@ -6429,7 +6462,7 @@ focus_tree = {
 
 			add_equipment_subsidy = {
 				cic = 5000
-				equipment_type = small_plane_airframe
+				equipment_type = fighter_equipment
 				seller_trigger = DEN_guarantor_seller_trigger
 			}
 			add_equipment_subsidy = {
@@ -6744,12 +6777,12 @@ focus_tree = {
 
 			add_equipment_subsidy = {
 				cic = 10000
-				equipment_type = small_plane_airframe
+				equipment_type = fighter_equipment
 				seller_trigger = DEN_allied_weapons_seller_trigger
 			}
 			add_equipment_subsidy = {
 				cic = 10000
-				equipment_type = small_plane_cas_airframe
+				equipment_type = CAS_equipment
 				seller_trigger = DEN_allied_weapons_seller_trigger
 			}
 			add_equipment_subsidy = {
@@ -6878,8 +6911,6 @@ focus_tree = {
 		}
 	}
 
-
-
 	#### MONARCHIST ####
 
 	focus = {
@@ -6896,16 +6927,17 @@ focus_tree = {
 		cost = 5
 
 		allow_branch = {
-			if = {
-				limit = {
-					has_game_rule = {
-						rule = obsolete_focus_branches_visibility
-						option = HIDE
-					}
-				}
-				NOT = { has_completed_focus = DEN_political_unity }
-				is_subject = no
-			}
+			# if = {
+			# 	limit = {
+			# 		has_game_rule = {
+			# 			rule = obsolete_focus_branches_visibility
+			# 			option = HIDE
+			# 		}
+			# 	}
+			# 	NOT = { has_completed_focus = DEN_political_unity }
+			# 	is_subject = no
+			# }
+			always = no
 		}
 
 		offset = {
@@ -7972,6 +8004,10 @@ focus_tree = {
 
 		cost = 10
 		will_lead_to_war_with = NOR
+		
+		allow_branch = {
+			always = no
+		}
 
 		available = {
 			OR = {
@@ -8515,12 +8551,12 @@ focus_tree = {
 
 			add_equipment_subsidy = {
 				cic = 5000
-				equipment_type = small_plane_cas_airframe
+				equipment_type = CAS_equipment
 				seller_tags = { GER } 
 			}
 			add_equipment_subsidy = {
 				cic = 5000
-				equipment_type = small_plane_airframe
+				equipment_type = fighter_equipment
 				seller_tags = { GER } 
 			}
 			add_equipment_subsidy = {
@@ -8564,11 +8600,11 @@ focus_tree = {
 	focus = {
 		id = DEN_rally_the_nation
 		icon = GFX_focus_ITA_generic_fascist_workers
-		prerequisite = { focus = DEN_seize_power focus = DEN_ask_for_support }
+		prerequisite = { focus = DEN_petition_for_independence } #focus = DEN_seize_power focus = DEN_ask_for_support
 
-		relative_position_id = DEN_march_on_the_capital
+		relative_position_id = DEN_petition_for_independence #DEN_march_on_the_capital
 		x = 0
-		y = 2
+		y = 1 #2
 
 		cost = 10
 
@@ -8647,9 +8683,9 @@ focus_tree = {
 		icon = GFX_focus_ICE_state_corporatism
 		prerequisite = { focus = DEN_rally_the_nation }
 
-		relative_position_id = DEN_march_on_the_capital
-		x = -2
-		y = 3
+		relative_position_id = DEN_rally_the_nation #DEN_march_on_the_capital
+		x = 1 #-2
+		y = 1 #3
 
 		cost = 10
 
@@ -8733,9 +8769,9 @@ focus_tree = {
 		icon = GFX_focus_research
 		prerequisite = { focus = DEN_rally_the_nation }
 
-		relative_position_id = DEN_march_on_the_capital
-		x = 0
-		y = 3
+		relative_position_id = DEN_rally_the_nation #DEN_march_on_the_capital
+		x = -1 #0
+		y = 1 #3
 
 		cost = 10
 
@@ -8761,30 +8797,30 @@ focus_tree = {
 	focus = {
 		id = DEN_assault_troops
 		icon = GFX_focus_generic_fascist_troops
-		prerequisite = { focus = DEN_rally_the_nation }
+		prerequisite = { focus = DEN_contribute_to_the_war } #focus = DEN_rally_the_nation
 
-		relative_position_id = DEN_march_on_the_capital
-		x = 2
-		y = 3
+		relative_position_id = DEN_contribute_to_the_war #DEN_march_on_the_capital
+		x = 0 #2
+		y = 1 #3
 
 		cost = 10
 
-		allow_branch = {
-			if = {
-				limit = {
-					has_game_rule = {
-						rule = obsolete_focus_branches_visibility
-						option = HIDE
-					}
-				}
-				NOT = { has_completed_focus = DEN_political_unity }
-				is_subject = no
-			}
-		}
+		# allow_branch = {
+		# 	if = {
+		# 		limit = {
+		# 			has_game_rule = {
+		# 				rule = obsolete_focus_branches_visibility
+		# 				option = HIDE
+		# 			}
+		# 		}
+		# 		NOT = { has_completed_focus = DEN_political_unity }
+		# 		is_subject = no
+		# 	}
+		# }
 
-		available = {
-			is_subject = no
-		}
+		# available = {
+		# 	is_subject = no
+		# }
 
 		search_filters = { FOCUS_FILTER_RESEARCH }
 
@@ -8812,17 +8848,17 @@ focus_tree = {
 	focus = {
 		id = DEN_prioritize_navy
 		icon = GFX_goal_generic_navy_battleship
-		prerequisite = { focus = DEN_institute_corporatism focus = DEN_experimental_technology focus = DEN_assault_troops }
+		prerequisite = { focus = DEN_assault_troops } #focus = DEN_institute_corporatism focus = DEN_experimental_technology focus = DEN_assault_troops
 		mutually_exclusive = { focus = DEN_prioritize_army }
 
-		relative_position_id = DEN_march_on_the_capital
+		relative_position_id = DEN_assault_troops #DEN_march_on_the_capital
 		x = -1
-		y = 4
+		y = 1 #4
 
 		cost = 10
 
 		available = {
-			is_subject = no
+			#is_subject = no
 		}
 
 		search_filters = { FOCUS_FILTER_RESEARCH }
@@ -8842,6 +8878,10 @@ focus_tree = {
 				DEN_sovaernet_naval_morale = 0.05
 				tooltip = naval_morale_factor_tt
 			}
+			add_to_variable = { 
+				DEN_sovaernet_naval_detection = 0.05
+				tooltip = naval_detection_tt
+			}
 			
 			add_doctrine_cost_reduction = {
 				name = DEN_prioritize_navy
@@ -8859,17 +8899,17 @@ focus_tree = {
 	focus = {
 		id = DEN_prioritize_army
 		icon = GFX_focus_generic_combined_arms
-		prerequisite = { focus = DEN_institute_corporatism focus = DEN_experimental_technology focus = DEN_assault_troops }
+		prerequisite = { focus = DEN_assault_troops } #focus = DEN_institute_corporatism focus = DEN_experimental_technology focus = DEN_assault_troops
 		mutually_exclusive = { focus = DEN_prioritize_navy }
 
-		relative_position_id = DEN_march_on_the_capital
+		relative_position_id = DEN_assault_troops #DEN_march_on_the_capital
 		x = 1
-		y = 4
+		y = 1 #4
 
 		cost = 10
 
 		available = {
-			is_subject = no
+			#is_subject = no
 		}
 
 		search_filters = { FOCUS_FILTER_RESEARCH }
@@ -8906,11 +8946,13 @@ focus_tree = {
 	focus = {
 		id = DEN_total_war
 		icon = GFX_focus_generic_total_war
-		prerequisite = { focus = DEN_prioritize_navy focus = DEN_prioritize_army }
+		#prerequisite = { focus = DEN_prioritize_navy focus = DEN_prioritize_army }
+		prerequisite = { focus = DEN_institute_corporatism }
+		prerequisite = { focus = DEN_military_might }
 
-		relative_position_id = DEN_march_on_the_capital
-		x = 0
-		y = 5
+		relative_position_id = DEN_institute_corporatism #DEN_march_on_the_capital
+		x = 3 #0
+		y = 1 #5
 
 		cost = 5
 
@@ -9009,11 +9051,11 @@ focus_tree = {
 		id = DEN_military_might
 		icon = GFX_focus_generic_tank_air_support
 		prerequisite = { focus = DEN_prioritize_navy focus = DEN_prioritize_army }
-		prerequisite = { focus = DEN_reclaim_norway }
+		#prerequisite = { focus = DEN_reclaim_norway }
 
-		relative_position_id = DEN_march_on_the_capital
-		x = -3
-		y = 5
+		relative_position_id = DEN_assault_troops #DEN_march_on_the_capital
+		x = 0 #-3
+		y = 2 #5
 
 		cost = 5
 
@@ -9034,6 +9076,10 @@ focus_tree = {
 			add_to_variable = { 
 				DEN_flyvevabnet_mission_efficiency = 0.05 
 				tooltip = air_mission_efficiency_tt
+			}
+			add_to_variable = { 
+				DEN_flyvevabnet_air_weather_penalty = -0.05 
+				tooltip = air_weather_penalty_tt
 			}
 		}
 	}
@@ -9320,14 +9366,15 @@ focus_tree = {
 		}
 
 		offset = {
-			x = 3
+			x = -3 #-7
 			y = 0
 			trigger = {
 				has_game_rule = {
 					rule = obsolete_focus_branches_visibility
 					option = HIDE
 				}
-				has_completed_focus = DEN_political_unity
+				#has_completed_focus = DEN_political_unity
+				always = yes
 			}
 		}
 
@@ -9797,7 +9844,7 @@ focus_tree = {
 						include_locked = yes
 					}
 				}
-				#prioritize = { 99 911 912 37 } 
+				prioritize = { 99 911 912 37 } 
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = arms_factory
@@ -9902,7 +9949,7 @@ focus_tree = {
 						include_locked = yes
 					}
 				}
-				#prioritize = { 99 911 912 37 } 
+				prioritize = { 99 911 912 37 } 
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = arms_factory
@@ -10032,7 +10079,7 @@ focus_tree = {
 						include_locked = yes
 					}
 				}
-				#prioritize = { 99 911 912 37 } 
+				prioritize = { 99 911 912 37 } 
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = arms_factory
@@ -10220,7 +10267,7 @@ focus_tree = {
 						include_locked = yes
 					}
 				}
-				#prioritize = { 99 911 912 37 } 
+				prioritize = { 99 911 912 37 } 
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = arms_factory
@@ -10587,7 +10634,7 @@ focus_tree = {
 							fixed_ship_fire_control_system_slot = ship_fire_control_system_0
 							fixed_ship_radar_slot = empty
 							fixed_ship_engine_slot = cruiser_ship_engine_2
-							fixed_ship_armor_slot = ship_armor_cruiser_2
+							fixed_ship_armor_slot = ship_armor_cruiser_heavy_2
 							fixed_ship_secondaries_slot = ship_secondaries_1
 							mid_1_custom_slot = ship_secondaries_1
 							mid_2_custom_slot = empty
@@ -10621,7 +10668,7 @@ focus_tree = {
 							fixed_ship_fire_control_system_slot = ship_fire_control_system_0
 							fixed_ship_radar_slot = empty
 							fixed_ship_engine_slot = cruiser_ship_engine_2
-							fixed_ship_armor_slot = ship_armor_cruiser_2
+							fixed_ship_armor_slot = ship_armor_cruiser_heavy_2
 							fixed_ship_secondaries_slot = dp_ship_secondaries_1
 							mid_1_custom_slot = ship_torpedo_1
 							mid_2_custom_slot = ship_torpedo_1
@@ -11681,55 +11728,55 @@ focus_tree = {
 				add_mio_funds_gain_factor = 0.1
 			}
 
-			if = {
-				limit = {
-					has_dlc = "By Blood Alone"
-				}
-				create_equipment_variant = { 
-					name = "Marinejager" 
-					type = small_plane_airframe_1
-					allow_without_tech = no
-					modules = {
-						fixed_main_weapon_slot = light_mg_4x
-						engine_type_slot = engine_1_1x
-						special_type_slot_1 = empty
-					}
-					icon = "GFX_DEN_basic_small_fighter_2"
-					model = "DEN_light_plane_1_entity"
-				}
-				create_equipment_variant = {
-					name = "Marinebomber"
-					type = small_plane_cas_airframe_1
-					allow_without_tech = no
-					modules = {
-						fixed_main_weapon_slot = bomb_locks
-						fixed_auxiliary_weapon_slot_1 = light_mg_2x
-						engine_type_slot = engine_1_1x
-						special_type_slot_1 = dive_brakes_small
-						special_type_slot_2 = empty 
-					}
-					icon = "GFX_DEN_basic_small_cas_2"
-					model = "DEN_light_plane_1_var_1_entity"
-				}
-			}
-			else = {
-				create_equipment_variant = {
-					name = "Marinejager"
-					type = fighter_equipment_1
-					allow_without_tech = no
-					upgrades = {
-						plane_gun_upgrade = 1
-					}
-				}
-				create_equipment_variant = {
-					name = "Marinebomber"
-					type = cas_equipment_1
-					allow_without_tech = no
-					upgrades = {
-						plane_cas_upgrade = 1
-					}
-				}
-			}
+			#if = {
+			#	limit = {
+			#		has_dlc = "By Blood Alone"
+			#	}
+			#	create_equipment_variant = { 
+			#		name = "Marinejager" 
+			#		type = small_plane_airframe_1
+			#		allow_without_tech = no
+			#		modules = {
+			#			fixed_main_weapon_slot = light_mg_4x
+			#			engine_type_slot = engine_1_1x
+			#			special_type_slot_1 = empty
+			#		}
+			#		icon = "GFX_DEN_basic_small_fighter_2"
+			#		model = "DEN_light_plane_1_entity"
+			#	}
+			#	create_equipment_variant = {
+			#		name = "Marinebomber"
+			#		type = small_plane_cas_airframe_1
+			#		allow_without_tech = no
+			#		modules = {
+			#			fixed_main_weapon_slot = bomb_locks
+			#			fixed_auxiliary_weapon_slot_1 = light_mg_2x
+			#			engine_type_slot = engine_1_1x
+			#			special_type_slot_1 = dive_brakes_small
+			#			special_type_slot_2 = empty 
+			#		}
+			#		icon = "GFX_DEN_basic_small_cas_2"
+			#		model = "DEN_light_plane_1_var_1_entity"
+			#	}
+			#}
+			#else = {
+			#	create_equipment_variant = {
+			#		name = "Marinejager"
+			#		type = fighter_equipment_1
+			#		allow_without_tech = no
+			#		upgrades = {
+			#			plane_gun_upgrade = 1
+			#		}
+			#	}
+			#	create_equipment_variant = {
+			#		name = "Marinebomber"
+			#		type = cas_equipment_1
+			#		allow_without_tech = no
+			#		upgrades = {
+			#			plane_cas_upgrade = 1
+			#		}
+			#	}
+			#}
 
 			add_tech_bonus = {
 				name = DEN_domestic_designs
@@ -11737,6 +11784,30 @@ focus_tree = {
 				uses = 1
 				category = air_equipment
 			}	
+			
+			if = {
+				limit = {
+					NOT = { has_tech = fighter1 }
+				}
+				add_tech_bonus = {
+					name = DEN_domestic_designs
+					bonus = 1
+					uses = 1
+					technology = fighter1
+				}
+			}
+
+			if = {
+				limit = {
+					NOT = { has_tech = CAS1 }
+				}
+				add_tech_bonus = {
+					name = DEN_domestic_designs
+					bonus = 1
+					uses = 1
+					technology = CAS1
+				}
+			}
 
 			random_core_state = {
 				limit = {
@@ -11747,7 +11818,7 @@ focus_tree = {
 						include_locked = yes
 					}
 				}
-				#prioritize = { 99 911 912 37 } 
+				prioritize = { 99 911 912 37 } 
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = arms_factory
@@ -11799,12 +11870,12 @@ focus_tree = {
 
 			add_equipment_subsidy = {
 				cic = 10000
-				equipment_type = small_plane_cas_airframe
+				equipment_type = CAS_equipment
 				seller_tags = { HOL ENG GER SWE } 
 			}
 			add_equipment_subsidy = {
 				cic = 10000
-				equipment_type = small_plane_airframe
+				equipment_type = fighter_equipment
 				seller_tags = { HOL ENG GER SWE } 
 			}
 
@@ -11817,7 +11888,7 @@ focus_tree = {
 						include_locked = yes
 					}
 				}
-				#prioritize = { 99 911 912 37 } 
+				prioritize = { 99 911 912 37 } 
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = arms_factory
