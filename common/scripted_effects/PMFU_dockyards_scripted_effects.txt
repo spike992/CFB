@@ -4,26 +4,86 @@ dockyard_cg_calculation = {
         array = owned_controlled_states
         add_to_variable = { PREV.dockcount1 = building_level@dockyard}
     }
-	# USA could be 60 or 85
+	# USA could be 80 or 120
     if = {
-		limit = {
-			has_variable = dockyard_major
-			tag = USA
-			has_completed_focus = USA_war_production_board
-		}
-		if = {
 			limit = {
-				check_variable = {
-					var = dockcount1 
-					value = 85
-					compare = greater_than
-				}
+				has_variable = dockyard_major
+				tag = USA
+				has_completed_focus = USA_war_production_board
 			}
-			subtract_from_variable = { dockcount1 = 85 } # This and the value above determine when to start counting dockyards
-		}
-		else = {
-        	set_variable = { dockcount1 = 0 }
-		}
+			if = {
+				limit = {
+					check_variable = {
+						var = dockcount1 
+						value = 120
+						compare = greater_than
+					}
+				}
+				subtract_from_variable = { dockcount1 = 120 } # This and the value above determine when to start counting dockyards
+			}
+			else = {
+						set_variable = { dockcount1 = 0 }
+			}
+    }
+		else_if = {
+			limit = {
+				has_variable = dockyard_major
+				tag = USA
+				has_completed_focus = USA_maritime_commission
+			}
+			if = {
+				limit = {
+					check_variable = {
+						var = dockcount1 
+						value = 80
+						compare = greater_than
+					}
+				}
+				subtract_from_variable = { dockcount1 = 80 } # This and the value above determine when to start counting dockyards
+			}
+			else = {
+						set_variable = { dockcount1 = 0 }
+			}
+    }
+		else_if = {
+			limit = {
+				has_variable = dockyard_major
+				tag = JAP
+				JAP_naval_faction_is_tier_4 = yes
+			}
+			if = {
+				limit = {
+					check_variable = {
+						var = dockcount1 
+						value = 100
+						compare = greater_than
+					}
+				}
+				subtract_from_variable = { dockcount1 = 100 } # This and the value above determine when to start counting dockyards
+			}
+			else = {
+						set_variable = { dockcount1 = 0 }
+			}
+    }
+		else_if = {
+			limit = {
+				has_variable = dockyard_major
+				tag = JAP
+				JAP_naval_faction_is_tier_3 = yes
+			}
+			if = {
+				limit = {
+					check_variable = {
+						var = dockcount1 
+						value = 80
+						compare = greater_than
+					}
+				}
+				subtract_from_variable = { dockcount1 = 80 } # This and the value above determine when to start counting dockyards
+			}
+			else = {
+						set_variable = { dockcount1 = 0 }
+			}
     }
 	# For majors cap starts at 60
     else_if = {
@@ -97,27 +157,88 @@ dockyard_build_speed_calculation = {
         array = owned_controlled_states
         add_to_variable = { PREV.dockcount1 = building_level@dockyard}
     }
-	# USA could be 60 or 85
-    if = {
-		limit = {
-			has_variable = dockyard_major
-			tag = USA
-			has_completed_focus = USA_war_production_board
-		}
-		if = {
+	# USA could be 80 or 120
+   	if = {
 			limit = {
-				check_variable = {
-					var = dockcount1 
-					value = 85
-					compare = greater_than
-				}
+				has_variable = dockyard_major
+				tag = USA
+				has_completed_focus = USA_war_production_board
 			}
-			subtract_from_variable = { dockcount1 = 86 } # This and the value above determine when to start counting dockyards
-		}
-		else = {
-        	set_variable = { dockcount1 = 0 }
-		}
+			if = {
+				limit = {
+					check_variable = {
+						var = dockcount1 
+						value = 120
+						compare = greater_than
+					}
+				}
+				subtract_from_variable = { dockcount1 = 121 } # This and the value above determine when to start counting dockyards
+			}
+			else = {
+						set_variable = { dockcount1 = 0 }
+			}
     }
+		else_if = {
+			limit = {
+				has_variable = dockyard_major
+				tag = USA
+				has_completed_focus = USA_maritime_commission
+			}
+			if = {
+				limit = {
+					check_variable = {
+						var = dockcount1 
+						value = 80
+						compare = greater_than
+					}
+				}
+				subtract_from_variable = { dockcount1 = 81 } # This and the value above determine when to start counting dockyards
+			}
+			else = {
+						set_variable = { dockcount1 = 0 }
+			}
+    }
+	# For Japan, the cap is 100 if they are tier 4, 80 if they are tier 3
+		else_if = {
+			limit = {
+				has_variable = dockyard_major
+				tag = JAP
+				JAP_naval_faction_is_tier_4 = yes
+			}
+			if = {
+				limit = {
+					check_variable = {
+						var = dockcount1 
+						value = 100
+						compare = greater_than
+					}
+				}
+				subtract_from_variable = { dockcount1 = 101 } # This and the value above determine when to start counting dockyards
+			}
+			else = {
+						set_variable = { dockcount1 = 0 }
+			}
+    }
+		else_if = {
+			limit = {
+				has_variable = dockyard_major
+				tag = JAP
+				JAP_naval_faction_is_tier_3 = yes
+			}
+			if = {
+				limit = {
+					check_variable = {
+						var = dockcount1 
+						value = 80
+						compare = greater_than
+					}
+				}
+				subtract_from_variable = { dockcount1 = 81 } # This and the value above determine when to start counting dockyards
+			}
+			else = {
+						set_variable = { dockcount1 = 0 }
+			}
+		}
 	# For majors cap starts at 60
     else_if = {
 		limit = {

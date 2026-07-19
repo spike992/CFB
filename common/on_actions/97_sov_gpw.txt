@@ -19,6 +19,10 @@ on_actions = {
 				 	set_state_flag = GER_controls
 				 	clr_state_flag = SOV_controls
 				}
+				if = {
+					limit = { FROM.FROM = { has_dynamic_modifier = { modifier = SOV_defend_city } } }
+					FROM.FROM = { remove_dynamic_modifier = { modifier = SOV_defend_city } }
+				}
 		 		SOV = {
 		 			SOV_great_patriotic_increase = yes 
 		 		}
@@ -47,6 +51,10 @@ on_actions = {
 		 		SOV = {
 		 			SOV_great_patriotic_decrease = yes 
 		 		}
+				if = { limit = { state = 195 } add_to_variable = { global.leningrad_fall_count = 1 } }
+				if = { limit = { state = 202 } add_to_variable = { global.kiev_fall_count = 1 } }
+				if = { limit = { state = 217 } add_to_variable = { global.stalingrad_fall_count = 1 } }
+				if = { limit = { state = 219 } add_to_variable = { global.moscow_fall_count = 1 } }
 			}
 		}
 	}

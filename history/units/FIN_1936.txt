@@ -2,6 +2,7 @@
 division_template = {
 	name = "Jalkaväkidivisioona"		# Infantry Division
 
+	template_counter = 33 #Only 1 Finnish Unit had skull helmets but larp @Swimmyswag gaming
 	division_names_group = FIN_INF_01
 
 	regiments = {
@@ -11,22 +12,28 @@ division_template = {
 		infantry = { x = 1 y = 0 }
 		infantry = { x = 1 y = 1 }
 		infantry = { x = 1 y = 2 }
+		infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
 	}
 	support = {
 		engineer = { x = 0 y = 0 }  
+		recon = { x = 0 y = 1 }  
 	}
 }
 division_template = {
 	name = "Erillinen Prikaati" 	# Separate Brigade - Represents groups of separate battalions (Erillinen Pataljoona) and various garrison units
 
 	division_names_group = FIN_GAR_01
-	template_counter = 7
+	template_counter = 12
 	override_model = FIN_infantry_alt_1_entity
 
 	regiments = {
-		infantry = { x = 0 y = 0 }
-		infantry = { x = 0 y = 1 }
-		infantry = { x = 0 y = 2 }
+		garrison = { x = 0 y = 0 }
+		garrison = { x = 0 y = 1 }
+		garrison = { x = 0 y = 2 }
+		garrison = { x = 1 y = 0 }
+		garrison = { x = 1 y = 1 }
+		garrison = { x = 1 y = 2 }
 	}
 	support = {
 		engineer = { x = 0 y = 0 }  
@@ -40,7 +47,11 @@ division_template = {
 
 	regiments = {
 		cavalry = { x = 0 y = 0 }
+		cavalry = { x = 0 y = 1 }
+		cavalry = { x = 0 y = 2 }
 		cavalry = { x = 1 y = 0 }
+		cavalry = { x = 1 y = 1 }
+		cavalry = { x = 1 y = 2 }
 	}
 	support = {
 		recon = { x = 0 y = 0 }   
@@ -61,7 +72,7 @@ units = {
 		location = 3137 # Tampere
 		division_template = "Jalkaväkidivisioona"
 		start_experience_factor = 0.3
-		start_equipment_factor = 0.8
+		start_equipment_factor = 0.95
 
 	}
 	division = {
@@ -73,7 +84,7 @@ units = {
 		location = 158 # Oulu
 		division_template = "Jalkaväkidivisioona"
 		start_experience_factor = 0.3
-		start_equipment_factor = 0.8
+		start_equipment_factor = 0.9
 
 	}
 	division = {
@@ -86,6 +97,9 @@ units = {
 		division_template = "Erillinen Prikaati"
 		start_experience_factor = 0.2
 		start_equipment_factor = 0.8
+		force_equipment_variants = {
+            infantry_equipment_0 = { owner = "FIN" }
+        }
 
 	}
 	division = {
@@ -98,6 +112,9 @@ units = {
 		division_template = "Erillinen Prikaati"
 		start_experience_factor = 0.2
 		start_equipment_factor = 0.8
+		force_equipment_variants = {
+            infantry_equipment_0 = { owner = "FIN" }
+        }
 
 	}
 	
@@ -111,7 +128,7 @@ units = {
 		location = 9061 # Joensuu
 		division_template = "Jalkaväkidivisioona"
 		start_experience_factor = 0.3
-		start_equipment_factor = 0.8
+		start_equipment_factor = 0.9
 
 	}
 	division = {
@@ -123,7 +140,7 @@ units = {
 		location = 11141 # Kuopio
 		division_template = "Jalkaväkidivisioona"
 		start_experience_factor = 0.3
-		start_equipment_factor = 0.8
+		start_equipment_factor = 0.9
 
 	}
 	division = {
@@ -136,6 +153,9 @@ units = {
 		division_template = "Erillinen Prikaati"
 		start_experience_factor = 0.2
 		start_equipment_factor = 0.8
+		force_equipment_variants = {
+            infantry_equipment_0 = { owner = "FIN" }
+        }
 
 	}
 
@@ -150,7 +170,7 @@ units = {
 		location = 9206 # Viipuri
 		division_template = "Jalkaväkidivisioona"
 		start_experience_factor = 0.3
-		start_equipment_factor = 0.8
+		start_equipment_factor = 0.85
 
 	}
 	division = {
@@ -162,7 +182,7 @@ units = {
 		location = 11105 # Helsinki
 		division_template = "Jalkaväkidivisioona"
 		start_experience_factor = 0.3
-		start_equipment_factor = 0.8
+		start_equipment_factor = 0.85
 
 	}
 	division = {
@@ -174,7 +194,7 @@ units = {
 		location = 3083 # Turku
 		division_template = "Jalkaväkidivisioona"
 		start_experience_factor = 0.3
-		start_equipment_factor = 0.8
+		start_equipment_factor = 0.85
 
 	}
 	division = {
@@ -186,7 +206,7 @@ units = {
 		location = 3061 # Kotka
 		division_template = "Jalkaväkidivisioona"
 		start_experience_factor = 0.3
-		start_equipment_factor = 0.8
+		start_equipment_factor = 0.9
 
 	}
 	division = {
@@ -199,6 +219,9 @@ units = {
 		division_template = "Ratsuväkiprikaati" 
 		start_experience_factor = 0.2
 		start_equipment_factor = 0.8
+		force_equipment_variants = {
+            infantry_equipment_0 = { owner = "FIN" }
+        }
 
 	}
 	division = {
@@ -210,7 +233,10 @@ units = {
 		location = 9176 # Salmi
 		division_template = "Erillinen Prikaati"
 		start_experience_factor = 0.2
-		start_equipment_factor = 0.8
+		start_equipment_factor = 0.9
+		force_equipment_variants = {
+            infantry_equipment_0 = { owner = "FIN" }
+        }
 
 	}
 	division = {
@@ -222,7 +248,10 @@ units = {
 		location = 3061 # Kotka
 		division_template = "Erillinen Prikaati"
 		start_experience_factor = 0.2
-		start_equipment_factor = 0.8
+		start_equipment_factor = 0.9
+		force_equipment_variants = {
+            infantry_equipment_0 = { owner = "FIN" }
+        }
 
 	}
 	division = {
@@ -234,7 +263,10 @@ units = {
 		location = 9176 # Salmi
 		division_template = "Erillinen Prikaati"
 		start_experience_factor = 0.2
-		start_equipment_factor = 0.8
+		start_equipment_factor = 0.9
+		force_equipment_variants = {
+            infantry_equipment_0 = { owner = "FIN" }
+        }
 
 	}
 	# III Corps
@@ -247,7 +279,7 @@ units = {
 		location = 3122
 		division_template = "Jalkaväkidivisioona"
 		start_experience_factor = 0.3
-		start_equipment_factor = 0.8
+		start_equipment_factor = 0.9
 
 	}
 	division = {
@@ -259,7 +291,7 @@ units = {
 		location = 9056 # Jyväskylä
 		division_template = "Jalkaväkidivisioona"
 		start_experience_factor = 0.3
-		start_equipment_factor = 0.8
+		start_equipment_factor = 0.9
 
 	}
 	division = {
@@ -271,7 +303,10 @@ units = {
 		location = 9181 # Ilomantsi
 		division_template = "Erillinen Prikaati"
 		start_experience_factor = 0.2
-		start_equipment_factor = 0.8
+		start_equipment_factor = 0.9
+		force_equipment_variants = {
+            infantry_equipment_0 = { owner = "FIN" }
+        }
 
 	}
 }
@@ -288,6 +323,27 @@ instant_effect = {
 		requested_factories = 1
 		progress = 0.66
 		efficiency = 100
+		industrial_manufacturer = mio:FIN_valtion_kivaaritehdas_organization
+	}
+	add_equipment_production = {
+		equipment = {
+			type = squad_equipment_0
+			creator = "FIN" 
+		}
+		requested_factories = 1
+		progress = 0.3
+		efficiency = 50
+		industrial_manufacturer = mio:FIN_valtion_kivaaritehdas_organization
+	}
+	add_equipment_production = {
+		equipment = {
+			type = artillery_equipment_1
+			creator = "FIN" 
+		}
+		requested_factories = 1
+		progress = 0.3
+		efficiency = 50
+		industrial_manufacturer = mio:FIN_valtion_tykkitehdas_organization
 	}
 	add_equipment_production = {
 		equipment = {
@@ -298,15 +354,24 @@ instant_effect = {
 		progress = 0.35
 		efficiency = 100
 	}
-	# add_equipment_production = {
-	# 	equipment = {
-	# 		type = horse_equipment_0
-	# 		creator = "FIN" 
-	# 	}
-	# 	requested_factories = 1
-	# 	progress = 0.3
-	# 	efficiency = 50
-	# }	
+	add_equipment_production = {
+		equipment = {
+			type = sf_equipment_0
+			creator = "FIN" 
+		}
+		requested_factories = 1
+		progress = 0.1
+		efficiency = 50
+	}
+	#add_equipment_production = {
+	#	equipment = {
+	#		type = horse_equipment_0
+	#		creator = "FIN" 
+	#	}
+	#	requested_factories = 1
+	#	progress = 0.3
+	#	efficiency = 50
+	#}	
 	add_equipment_production = {
 		equipment = {
 			type = radio_equipment_0
@@ -318,25 +383,6 @@ instant_effect = {
 	}
 	add_equipment_production = {
 		equipment = {
-			type = squad_equipment_0
-			creator = "FIN" 
-		}
-		requested_factories = 1
-		progress = 0.3
-		efficiency = 50
-	}
-	add_equipment_production = {
-		equipment = {
-			type = artillery_equipment_1
-			creator = "FIN" 
-		}
-		requested_factories = 1
-		progress = 0.3
-		efficiency = 50
-	}
-
-	add_equipment_production = {
-		equipment = {
 			type = train_equipment_1
 			creator = "FIN" 
 		}
@@ -344,7 +390,6 @@ instant_effect = {
 		progress = 0.3
 		efficiency = 50
 	}
-
 	add_equipment_production = { 
 		equipment = { 
 			type = motorized_equipment_1 
@@ -354,15 +399,11 @@ instant_effect = {
 		requested_factories = 1 
 		progress = 0.1 
 		efficiency = 50 
-	} 
-	
-	add_equipment_production = {
-		equipment = {
-			type = sf_equipment_0
-			creator = "FIN" 
-		}
-		requested_factories = 1
-		progress = 0.1
-		efficiency = 50
+		industrial_manufacturer = mio:FIN_sisu_auto_organization
 	}
+	#add_equipment_to_stockpile = {
+	#	type = fra_light_tank_chassis_ft
+	#	amount = 34
+	#	producer = FRA
+	#}
 }

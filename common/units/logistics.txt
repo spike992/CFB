@@ -17,9 +17,11 @@ sub_units = {
 		
 		categories = {
 			category_support_battalions
+			category_divisional_support_battalions
 			category_army
 		}
 
+		regimental = no
 	
 		combat_width = 0
 	
@@ -73,8 +75,11 @@ sub_units = {
 		
 		categories = {
 			category_support_battalions
+			category_divisional_support_battalions
 			category_army
 		}
+
+		regimental = no
 	
 		combat_width = 0
 	
@@ -126,8 +131,11 @@ sub_units = {
 		
 		categories = {
 			category_support_battalions
+			category_divisional_support_battalions
 			category_army
 		}
+
+		regimental = no
 	
 		combat_width = 0
 	
@@ -186,9 +194,12 @@ sub_units = {
 		
 		categories = {
 			category_support_battalions
+			category_divisional_support_battalions
 			category_army
 			category_helicopter_support_companies
 		}
+
+		regimental = no
 	
 		combat_width = 0
 	
@@ -246,6 +257,74 @@ sub_units = {
 
 		same_support_type = logistics_company
 		same_support_type = helicopter_transport
+	}
+
+	# used in stalingrad (not joking) could also be given to uk and italy for larp :3
+	logistics_company_camel = {
+		sprite = camelry
+		map_icon_category = other
+		priority = 0
+		ai_priority = 0
+		active = no
+		affects_speed = no
+
+		type = {
+			infantry
+			support
+		}
+		
+		group = support
+		
+		categories = {
+			category_support_battalions
+			category_divisional_support_battalions
+			category_army
+		}
+
+		regimental = no
+	
+		combat_width = 0
+	
+		#Size Definitions
+		max_strength = 1
+		max_organisation = 10	
+		default_morale = 0.3
+		manpower = 400
+		training_time = 120
+		
+		#maximum_speed = 2.0
+
+		#Misc Abilities
+		weight = 0.1
+		can_be_parachuted = yes
+
+		# Important Ability
+		supply_consumption_factor = -0.15
+		fuel_consumption_factor = -0.05
+
+		own_equipment_fuel_consumption_mult = 0.0 # no fuel use
+		
+		essential = {
+			support_equipment
+			#horse_equipment
+		}
+
+		need = {
+			support_equipment = 45
+			#horse_equipment = 60
+		}
+		
+		same_support_type = logistics_company
+
+		desert = {
+			movement = 0.05
+		}
+
+		battalion_mult = {
+			category = category_cavalry
+			supply_consumption = -0.05
+			breakthrough = 0.01
+		}
 	}
 
 }

@@ -370,3 +370,89 @@ news_event = {
 
 	}
 }
+
+#Finland Takes Moscow
+news_event = {
+	id = aat_news.1001
+	title = aat_news.1001.t
+	desc = aat_news.1001.desc
+	picture = GFX_news_event_FIN_continuation_war_murmansk
+	
+	major = yes
+	
+	trigger = {
+		219 = { is_controlled_by = FIN }
+		219 = { is_owned_by = SOV }
+		SOV = { has_war_with = FIN }
+		NOT = { has_global_flag = fall_of_moscow }
+	}
+	
+	immediate = {
+		set_global_flag = fall_of_moscow
+	}
+	
+	mean_time_to_happen = {
+		days = 2
+	}
+	
+	option = {
+		name = aat_news.1001.a
+		trigger = {
+			NOT = {
+				TAG = FIN
+				TAG = SOV
+			}
+		}
+	}
+	option = {
+		name = aat_news.1001.b
+		trigger = { TAG = FIN }
+	}
+	option = {
+		name = aat_news.1001.c
+		trigger = { TAG = SOV }
+	}
+}
+
+#Soviets Take Helsinki
+news_event = {
+	id = aat_news.1002
+	title = aat_news.1002.t
+	desc = aat_news.1002.desc
+	picture = GFX_news_event_generic_soviet_occupation_of_budapest
+	
+	major = yes
+	
+	trigger = {
+		111 = { is_controlled_by = SOV }
+		111 = { is_owned_by = FIN }
+		FIN = { has_war_with = SOV }
+		NOT = { has_global_flag = fall_of_helsinki }
+	}
+	
+	immediate = {
+		set_global_flag = fall_of_helsinki
+	}
+	
+	mean_time_to_happen = {
+		days = 2
+	}
+	
+	option = {
+		name = aat_news.1002.a
+		trigger = {
+			NOT = {
+				TAG = SOV
+				TAG = FIN
+			}
+		}
+	}
+	option = {
+		name = aat_news.1002.b
+		trigger = { TAG = SOV }
+	}
+	option = {
+		name = aat_news.1002.c
+		trigger = { TAG = FIN }
+	}
+}

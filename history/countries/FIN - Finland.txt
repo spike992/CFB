@@ -31,6 +31,7 @@ set_variable = { FIN_finnish_army_recon_factor_while_entrenched = 0 }
 set_variable = { FIN_finnish_army_army_attack_speed_factor = 0 }
 set_variable = { FIN_finnish_army_intel_from_combat_factor = 0 }
 set_variable = { FIN_finnish_army_initiative_factor = 0 }
+set_variable = { FIN_finnish_army_army_retreat_speed_factor = 0 }
 set_variable = { FIN_finnish_army_modifier_army_sub_unit_long_range_patrol_support_attack_factor = 0 }
 set_variable = { FIN_finnish_army_modifier_army_sub_unit_long_range_patrol_support_defence_factor = 0 }
 
@@ -173,6 +174,22 @@ set_research_slots = 5
 ### CHARACTERS ###
 ##################
 
+### SPIES ###
+if = {
+	limit = {
+		has_dlc = "La Resistance"
+	}
+	create_operative_leader = {
+		name = "Vilho Tahvanainen"
+		GFX = "gfx\\leaders\\FIN\\portrait_FIN_vilho_pentikainen.dds" #This isnt him but i dont really care
+		traits = { operative_infiltrator operative_well_groomed }
+		bypass_recruitment = no
+		available_to_spy_master = yes
+		nationalities = { FIN KAR }
+		gender = male
+	}
+}
+
 ### COUNTRY LEADERS ###
 store_core_states_on_game_start = yes
 #Set Kokoomus as Non-Aligned party
@@ -311,6 +328,11 @@ if = {
 	recruit_character = FIN_arvo_tuominen
 }
 
+#Mannerheim Winter Expert Trait Slot Compensation
+FIN_carl_mannerheim = {
+	add_max_trait = 1
+}
+
 #Set up flags for Civil Wars
 if = {
 	limit = {
@@ -432,7 +454,9 @@ set_technology = {
 	basic_train = 1
 	support_weapons = 1
 	early_fighter = 1
+	early_bomber = 1
 	#hq_1 = 1
+
 	motorised_infantry = 1
 	rangers_tech = 1
 }

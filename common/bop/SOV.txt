@@ -1,0 +1,435 @@
+SOV_purge_bop = {
+    initial_value = -1
+    left_side = SOV_BOP_purge_left
+    right_side = SOV_BOP_purge_right
+    decision_category = SOV_purge_bop_decisions
+
+    # my_bop_modifier = {
+    #     power_balance_weekly = 0.01 # Changes by 1% each week to the left
+    # }
+
+    side = {
+        id = SOV_BOP_purge_right
+        icon = GFX_SOV_BOP_stalin
+
+        range = {
+            id = SOV_purge_bop_1
+            min = 0.75
+            max = 1
+            modifier = {
+                stability_factor = -0.5
+                political_advisor_cost_factor = 0.5
+                political_power_factor = -0.25
+                power_balance_daily = 0.005
+            }
+        }
+
+
+
+        range = {
+            id = SOV_purge_bop_2
+            min = 0.5
+            max = 0.75
+            modifier = {
+                stability_factor = -0.3
+                political_advisor_cost_factor = 0.4
+                political_power_factor = -0.2
+                power_balance_daily = 0.002
+            }
+        }
+
+        range = {
+            id = SOV_purge_bop_3
+            min = 0.25
+            max = 0.5
+            modifier = {
+                stability_factor = -0.2
+                political_advisor_cost_factor = 0.25
+                political_power_factor = -0.15
+                power_balance_daily = 0.002
+            }
+        }
+
+        range = {
+            id = SOV_purge_bop_4
+            min = 0
+            max = 0.25
+            modifier = {
+                stability_factor = -0.15
+                political_advisor_cost_factor = 0.2
+                political_power_factor = -0.125
+                power_balance_daily = 0.002
+            }
+        }
+    }
+
+    side = {
+        id = SOV_BOP_purge_left
+        icon = GFX_SOV_BOP_stalin
+
+        range = {
+            id = SOV_purge_bop_5
+            min = -0.25
+            max = 0
+            modifier = {
+                stability_factor = -0.1
+                political_advisor_cost_factor = 0.15
+                political_power_factor = -0.1
+                power_balance_daily = 0.002
+            }
+        }
+
+        range = {
+            id = SOV_purge_bop_6
+            min = -0.5
+            max = -0.25
+            modifier = {
+                stability_factor = -0.05
+                political_advisor_cost_factor = 0.1
+                political_power_factor = -0.075
+                power_balance_daily = 0.002
+            }
+        }
+
+        range = {
+            id = SOV_purge_bop_7
+            min = -0.75
+            max = -0.5
+            modifier = {
+                #stability_factor = -0.05
+                political_advisor_cost_factor = 0.05
+                political_power_factor = -0.05
+                power_balance_daily = 0.002
+            }
+        }
+
+        range = {
+            id = SOV_purge_bop_8
+            min = -1
+            max = -0.75
+            modifier = {
+                stability_factor = -0.025
+                power_balance_daily = 0.002
+            }
+        }
+    }
+}
+
+SOV_army_bop = {
+    initial_value = 0
+    left_side = SOV_BOP_army_left
+    right_side = SOV_BOP_army_right
+    decision_category = SOV_army_bop_decisions
+
+    # my_bop_modifier = {
+    #     power_balance_weekly = 0.01 # Changes by 1% each week to the left
+    # }
+
+    side = {
+        id = SOV_BOP_army_right
+        icon = GFX_SOV_BOP_mech
+
+        range = {
+            id = SOV_army_bop_5
+            min = 0.6
+            max = 1
+            modifier = {
+                
+            }
+
+            on_activate = {
+                custom_effect_tooltip = SOV_generic_modify_red_army_tt
+
+                custom_effect_tooltip = SOV_red_army_army_org_factor_-025_tt
+                add_to_variable = { SOV_red_army_army_org_factor_var = -0.025}
+
+                custom_effect_tooltip = SOV_red_army_cavalry_attack_factor_-10_tt
+                add_to_variable = { SOV_red_army_cavalry_attack_factor_var = -0.10 }
+
+                custom_effect_tooltip = SOV_red_army_cavalry_defence_factor_-10_tt
+                add_to_variable = { SOV_red_army_cavalry_defence_factor_var = -0.10 }
+                
+                custom_effect_tooltip = SOV_red_army_armor_attack_factor_5_tt
+                add_to_variable = { SOV_red_army_armor_attack_factor_var = 0.05 }
+                custom_effect_tooltip = SOV_red_army_armor_defence_5_tt
+                add_to_variable = { SOV_red_army_armor_defence_var = 0.05 }
+
+
+                custom_effect_tooltip = SOV_red_army_infantry_attack_factor_-10_tt
+                add_to_variable = { SOV_red_army_infantry_attack_factor_var = -0.10 }
+                custom_effect_tooltip = SOV_red_army_infantry_defence_factor_-10_tt
+                add_to_variable = { SOV_red_army_infantry_defence_factor_var = -0.10 }
+
+                
+
+                custom_effect_tooltip = SOV_red_army_leader_experience_gain_factor_15_tt
+                add_to_variable = { SOV_red_army_experience_gain_factor_var = 0.15 }
+            }
+
+            on_deactivate = { 
+                hidden_effect = {
+                    
+                    custom_effect_tooltip = SOV_generic_modify_red_army_tt
+
+                    add_to_variable = { SOV_red_army_army_org_factor_var = 0.025}
+
+                    add_to_variable = { SOV_red_army_cavalry_attack_factor_var = -0.10 }
+
+                    add_to_variable = { SOV_red_army_cavalry_defence_factor_var = -0.10 }
+                    
+                    add_to_variable = { SOV_red_army_armor_attack_factor_var = 0.05 }
+
+                    add_to_variable = { SOV_red_army_armor_defence_var = 0.05 }
+
+
+
+                    add_to_variable = { SOV_red_army_infantry_attack_factor_var = 0.10 }
+
+                    add_to_variable = { SOV_red_army_infantry_defence_factor_var = 0.10 }
+
+                    
+
+                    add_to_variable = { SOV_red_army_experience_gain_factor_var = -0.15 }
+
+                
+                }
+            }
+
+        }
+        range = {
+            id = SOV_army_bop_4
+            min = 0.2
+            max = 0.6
+            modifier = {
+                
+            }
+
+            on_activate = {
+                custom_effect_tooltip = SOV_generic_modify_red_army_tt
+
+                custom_effect_tooltip = SOV_red_army_army_org_factor_025_tt
+                add_to_variable = { SOV_red_army_army_org_factor_var = 0.025}
+
+                custom_effect_tooltip = SOV_red_army_cavalry_attack_factor_-5_tt
+                add_to_variable = { SOV_red_army_cavalry_attack_factor_var = -0.05 }
+
+                custom_effect_tooltip = SOV_red_army_cavalry_defence_factor_-5_tt
+                add_to_variable = { SOV_red_army_cavalry_defence_factor_var = -0.05 }
+                
+                custom_effect_tooltip = SOV_red_army_armor_attack_factor_025_tt
+                add_to_variable = { SOV_red_army_armor_attack_factor_var = 0.025 }
+                custom_effect_tooltip = SOV_red_army_armor_defence_025_tt
+                add_to_variable = { SOV_red_army_armor_defence_var = 0.025 }
+
+
+                custom_effect_tooltip = SOV_red_army_infantry_attack_factor_-5_tt
+                add_to_variable = { SOV_red_army_infantry_attack_factor_var = -0.05 }
+                custom_effect_tooltip = SOV_red_army_infantry_defence_factor_-5_tt
+                add_to_variable = { SOV_red_army_infantry_defence_factor_var = -0.05 }
+
+                
+
+                custom_effect_tooltip = SOV_red_army_leader_experience_gain_factor_10_tt
+                add_to_variable = { SOV_red_army_experience_gain_factor_var = 0.1 }
+
+            }
+
+            on_deactivate = { 
+                hidden_effect = {
+                    
+                    custom_effect_tooltip = SOV_generic_modify_red_army_tt
+
+                    add_to_variable = { SOV_red_army_army_org_factor_var = -0.025}
+
+                    add_to_variable = { SOV_red_army_cavalry_attack_factor_var = 0.05 }
+
+                    add_to_variable = { SOV_red_army_cavalry_defence_factor_var = 0.05 }
+                    
+                    add_to_variable = { SOV_red_army_armor_attack_factor_var = -0.025 }
+
+                    add_to_variable = { SOV_red_army_armor_defence_var = -0.025 }
+
+
+
+                    add_to_variable = { SOV_red_army_infantry_attack_factor_var = 0.05 }
+
+                    add_to_variable = { SOV_red_army_infantry_defence_factor_var = 0.05 }
+
+                    
+
+                    add_to_variable = { SOV_red_army_experience_gain_factor_var = -0.1 }
+
+                
+                }
+
+            }
+        }
+    }
+
+    side = {
+        id = SOV_BOP_army_left
+        icon = GFX_SOV_BOP_cav
+
+        range = {
+            id = SOV_army_bop_3
+            min = -0.2
+            max = 0.2
+            modifier = {
+            }
+            on_activate = {
+                custom_effect_tooltip = SOV_red_army_experience_gain_army_factor_025_tt
+                add_to_variable = { SOV_red_army_experience_gain_army_factor_var = 0.025 }
+                custom_effect_tooltip = SOV_red_army_army_org_factor_5_tt
+                add_to_variable = { SOV_red_army_army_org_factor_var = 0.05}
+                custom_effect_tooltip = SOV_red_army_leader_experience_gain_factor_5_tt
+                add_to_variable = { SOV_red_army_experience_gain_factor_var = 0.05 }
+            }
+            on_deactivate = { 
+                add_to_variable = { SOV_red_army_experience_gain_army_factor_var = -0.025 }
+                add_to_variable = { SOV_red_army_experience_gain_factor_var = -0.05 }
+                add_to_variable = { SOV_red_army_army_org_factor_var = -0.05}
+            }
+        }
+
+        range = {
+            id = SOV_army_bop_2
+            min = -0.6
+            max = -0.2
+            modifier = {
+                
+            }
+
+            on_activate = {
+                custom_effect_tooltip = SOV_generic_modify_red_army_tt
+
+                custom_effect_tooltip = SOV_red_army_army_org_factor_025_tt
+                add_to_variable = { SOV_red_army_army_org_factor_var = 0.025}
+
+                custom_effect_tooltip = SOV_red_army_cavalry_attack_factor_5_tt
+                add_to_variable = { SOV_red_army_cavalry_attack_factor_var = 0.05 }
+
+                custom_effect_tooltip = SOV_red_army_cavalry_defence_factor_5_tt
+                add_to_variable = { SOV_red_army_cavalry_defence_factor_var = 0.05 }
+                
+                custom_effect_tooltip = SOV_red_army_armor_attack_factor_-5_tt
+                add_to_variable = { SOV_red_army_armor_attack_factor_var = -0.05 }
+                custom_effect_tooltip = SOV_red_army_armor_defence_-5_tt
+                add_to_variable = { SOV_red_army_armor_defence_var = -0.05 }
+
+
+                custom_effect_tooltip = SOV_red_army_infantry_attack_factor_5_tt
+                add_to_variable = { SOV_red_army_infantry_attack_factor_var = 0.05 }
+                custom_effect_tooltip = SOV_red_army_infantry_defence_factor_5_tt
+                add_to_variable = { SOV_red_army_infantry_defence_factor_var = 0.05 }
+
+                
+
+                custom_effect_tooltip = SOV_red_army_experience_gain_army_factor_5_tt
+                add_to_variable = { SOV_red_army_experience_gain_army_factor_var = 0.05 }
+
+                custom_effect_tooltip = SOV_generic_modify_command_economy_tt
+                custom_effect_tooltip = SOV_stability_3_tt
+                add_to_variable = { SOV_command_economy_stability_factor_var = 0.03 }
+            }
+
+            on_deactivate = { 
+                hidden_effect = {
+                    custom_effect_tooltip = SOV_generic_modify_red_army_tt
+
+                    add_to_variable = { SOV_red_army_army_org_factor_var = -0.025}
+
+                    custom_effect_tooltip = SOV_red_army_cavalry_attack_factor_-5_tt
+                    add_to_variable = { SOV_red_army_cavalry_attack_factor_var = -0.05 }
+
+                    custom_effect_tooltip = SOV_red_army_cavalry_defence_factor_-5_tt
+                    add_to_variable = { SOV_red_army_cavalry_defence_factor_var = -0.05 }
+                    
+                    custom_effect_tooltip = SOV_red_army_armor_attack_factor_05_tt
+                    add_to_variable = { SOV_red_army_armor_attack_factor_var = 0.05 }
+                    custom_effect_tooltip = SOV_red_army_armor_defence_05_tt
+                    add_to_variable = { SOV_red_army_armor_defence_var = 0.05 }
+
+
+                    custom_effect_tooltip = SOV_red_army_infantry_attack_factor_-5_tt
+                    add_to_variable = { SOV_red_army_infantry_attack_factor_var = -0.05 }
+                    custom_effect_tooltip = SOV_red_army_infantry_defence_factor_-5_tt
+                    add_to_variable = { SOV_red_army_infantry_defence_factor_var = -0.05 }
+
+                    custom_effect_tooltip = SOV_stability_-3_tt
+                    add_to_variable = { SOV_command_economy_stability_factor_var = -0.03 }
+
+                    custom_effect_tooltip = SOV_red_army_experience_gain_army_factor_-5_tt
+                    add_to_variable = { SOV_red_army_experience_gain_army_factor_var = -0.05 }
+                }
+            }
+        }
+
+        range = {
+            id = SOV_army_bop_1
+            min = -1
+            max = -0.6
+            modifier = {
+            }
+
+            on_activate = {
+                custom_effect_tooltip = SOV_generic_modify_red_army_tt
+
+                custom_effect_tooltip = SOV_red_army_cavalry_attack_factor_10_tt
+                add_to_variable = { SOV_red_army_cavalry_attack_factor_var = 0.1 }
+
+                custom_effect_tooltip = SOV_red_army_cavalry_defence_factor_10_tt
+                add_to_variable = { SOV_red_army_cavalry_defence_factor_var = 0.1 }
+                
+                custom_effect_tooltip = SOV_red_army_armor_attack_factor_-10_tt
+                add_to_variable = { SOV_red_army_armor_attack_factor_var = -0.1 }
+                custom_effect_tooltip = SOV_red_army_armor_defence_-10_tt
+                add_to_variable = { SOV_red_army_armor_defence_var = -0.1 }
+
+
+                custom_effect_tooltip = SOV_red_army_infantry_attack_factor_10_tt
+                add_to_variable = { SOV_red_army_infantry_attack_factor_var = 0.1 }
+                custom_effect_tooltip = SOV_red_army_infantry_defence_factor_10_tt
+                add_to_variable = { SOV_red_army_infantry_defence_factor_var = 0.10 }
+
+                
+
+                custom_effect_tooltip = SOV_red_army_experience_gain_army_factor_10_tt
+                add_to_variable = { SOV_red_army_experience_gain_army_factor_var = 0.1 }
+
+                custom_effect_tooltip = SOV_generic_modify_command_economy_tt
+                custom_effect_tooltip = SOV_stability_6_tt
+                add_to_variable = { SOV_command_economy_stability_factor_var = 0.06 }
+            }
+
+            on_deactivate = { 
+                hidden_effect = {
+                    custom_effect_tooltip = SOV_generic_modify_red_army_tt
+
+                    custom_effect_tooltip = SOV_red_army_cavalry_attack_factor_-5_tt
+                    add_to_variable = { SOV_red_army_cavalry_attack_factor_var = -0.05 }
+
+                    custom_effect_tooltip = SOV_red_army_cavalry_defence_factor_-5_tt
+                    add_to_variable = { SOV_red_army_cavalry_defence_factor_var = -0.05 }
+                    
+                    custom_effect_tooltip = SOV_red_army_armor_attack_factor_05_tt
+                    add_to_variable = { SOV_red_army_armor_attack_factor_var = 0.05 }
+                    custom_effect_tooltip = SOV_red_army_armor_defence_05_tt
+                    add_to_variable = { SOV_red_army_armor_defence_var = 0.05 }
+
+
+                    custom_effect_tooltip = SOV_red_army_infantry_attack_factor_-5_tt
+                    add_to_variable = { SOV_red_army_infantry_attack_factor_var = -0.05 }
+                    custom_effect_tooltip = SOV_red_army_infantry_defence_factor_-5_tt
+                    add_to_variable = { SOV_red_army_infantry_defence_factor_var = -0.05 }
+
+                    custom_effect_tooltip = SOV_stability_-3_tt
+                    add_to_variable = { SOV_command_economy_stability_factor_var = -0.03 }
+
+                    custom_effect_tooltip = SOV_red_army_experience_gain_army_factor_-5_tt
+                    add_to_variable = { SOV_red_army_experience_gain_army_factor_var = -0.05 }
+                }
+            }
+
+        }
+    }
+}

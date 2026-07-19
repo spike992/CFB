@@ -398,6 +398,17 @@ on_actions = {
 				}
 			}
 		}
+
+		effect = {
+			SPR = {
+				every_core_state = {
+					limit = {
+						is_on_continent = europe
+					}
+					add_to_array = { global.starting_SPR_european_core_states = THIS }
+				}
+			}
+		}
 	}
 
 	#	ROOT is new controller, FROM is old controller, FROM.FROM is state ID.
@@ -1519,6 +1530,30 @@ on_actions = {
 
 						CHI = {
 							CHI_reduce_nine_power_malus = yes
+						}
+					}
+					IF = {
+						limit = {
+							has_country_leader = {
+								ruling_only = yes
+								character = CHI_chiang_kaishek
+							}
+						}
+						every_other_country = {
+							limit = {
+								is_in_array = {
+									array = CHI.nine_power_treaty_signatories
+									value = THIS
+								}
+								NOT = {
+									has_war_with = CHI
+								}
+							}
+							country_event = {
+								id = SEA_china.19
+								days = 2
+								random_hours = 36
+							}
 						}
 					}
 				}

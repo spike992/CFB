@@ -1,0 +1,145 @@
+IRQ_historical_plan = {
+	name = "Iraq Historical Plan"
+	desc = ""
+
+	allowed = {
+		original_tag = IRQ
+		has_dlc = "Graveyard of Empires"
+	}
+	enable = {
+		OR = {
+			AND = {
+				is_historical_focus_on = yes 
+				has_game_rule = {
+					rule = IRQ_AI_BEHAVIOR
+					option = DEFAULT
+				}
+			}
+			has_country_flag = IRQ_AI_RANDOM_HISTORICAL
+			has_game_rule = {
+				rule = IRQ_ai_behavior
+				option = HISTORICAL
+			}
+		}	
+	}
+	abort = {
+		OR = {
+			AND = {
+				is_subject = yes 
+				has_war = no
+			}
+			AND = {
+				any_other_country = {
+					OR = {
+						is_ally_with = GER
+						is_ally_with = JAP
+					}
+					has_war_with = ROOT
+				}
+				NOT = { has_completed_focus = IRQ_strengthen_the_golden_square }
+			}
+		}
+	}
+
+	ai_national_focuses = {
+
+		# Do this when possible
+		#SSB_expand_iraqs_military_infrastructure
+
+		#SSB_combined_arms
+		#SSB_saadabad_research_cooperation
+		# the numbers after the focuses mean days it takes to do and the date it should be finished
+		#1936
+		IRQ_ensure_sunni_dominance # 35 5.2.1936
+		IRQ_party_of_national_brotherhood # 70 15.4.1936
+		IRQ_royal_iraqi_army # 70 24.6.1936
+		IRQ_invest_in_ordnance_mountain_howitzers # 35 29.7.1936
+		IRQ_bakr_sidqi_coup # 70 7.10.1936
+		IRQ_decouple_from_the_pound # 70 16.12.1936
+		
+		#1937
+		IRQ_increase_italian_business_relations # 35 20.1.1937
+		IRQ_expand_habbaniya_airbase # 35 24.2.1937
+		IRQ_found_the_iraqi_state_railways # 35 31.3.1937
+		IRQ_purchase_foreign_equipment # 35 5.5.1937
+		IRQ_approach_tribes_for_support # 35 9.6.1937
+		IRQ_assasination_of_sidqi # 63 11.8.1937 actual date of his death
+		IRQ_infantry_focus # 70 20.10.1937
+		IRQ_independent_flight_schools # 35 24.11.1937
+
+		#1938
+		IRQ_purchase_alternative_aricraft # 70 2.2.1938 not misspelled
+		IRQ_strengthen_the_iraqi_dinar # 35 9.3.1938
+		IRQ_heavy_industry_investments # 70 18.5.1938
+		IRQ_local_arms_industry # 70 27.7.1938
+		IRQ_baghdad_colleges_of_engineering_and_education # 70 5.10.1938
+		IRQ_al_muthanna_club # 70 14.12.1938
+
+		#1939
+		IRQ_found_southern_steel_plants # 70 22.2.1939
+		IRQ_construct_the_kut_barrage # 70 3.5.1939
+		IRQ_extensive_irrigation_projects # 70 12.7.1939
+		IRQ_modernization # 35 16.8.1939
+		IRQ_purchase_armored_equipment # 70 25.10.1939
+
+		#1940
+		IRQ_fighter_training # 70 3.1.1940
+		IRQ_strengthen_mesopotamian_farming # 35 7.2.1940
+		IRQ_strengthen_the_golden_square # 70 17.4.1940
+		IRQ_cavalry_integration # 35 22.5.1940
+		IRQ_scavenging # 70 31.7.1940
+		IRQ_rural_electrification # 70 9.10.1940
+		IRQ_refuge_for_the_grand_mufti # 70 18.12.1940
+
+		#1941
+		IRQ_suppress_tribal_revolts # 35 22.1.1941
+		IRQ_establish_iraqi_coastal_defense_force # 70 2.4.1941
+		IRQ_revoke_anglo_iraq_treaty # 14 if everything goes right: 16.4.1941
+		IRQ_fligerfuhrer_irak # 14 30.4.1941
+		IRQ_restore_regent # 14 14.5.1941 next focuses depends if this one gets done as quickly as possible
+		IRQ_anglo_iraqi_oil_expansion
+		IRQ_support_the_allied_war_effort
+
+		#1942
+		IRQ_allied_training
+		#IRQ_renegotiate_treaty
+		IRQ_training
+		IRQ_found_company_for_cement
+		IRQ_construct_the_dukan_dam
+		IRQ_expand_the_cotton_industries
+		IRQ_forceful_industrialization
+		
+		#1943
+		IRQ_create_repair_yards
+		IRQ_form_the_independent_mechanized_brigade
+		IRQ_army_research_bonus
+		IRQ_expand_oil_production
+		IRQ_basra_military_port_focus
+		IRQ_invest_in_ordnance_mountain_howitzers
+		
+		#1944
+
+	}
+
+	focus_factors = {
+		
+	}
+
+	research = {
+
+	}
+
+	ideas = {
+
+	}
+
+	# Keep small, as it is used as a factor for some things (such as research needs)
+	# Recommended around 1.0. Useful for relation between plans
+	weight = {
+		factor = 1.0
+		modifier = {
+			factor = 1.0
+		}
+	}
+
+}

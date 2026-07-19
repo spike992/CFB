@@ -571,15 +571,20 @@ colonial_police = {
 				has_completed_focus = CONGO_force_publique
 				FROM = { capital_scope = { is_on_continent = africa } }
 			}
+			AND = {
+				original_tag = ITA
+				has_completed_focus = ITA_colonial_conference
+				FROM = { capital_scope = { is_on_continent = africa } }
+			}
 		}
 		
 	}
 
 	state_modifier = { #CHANGES HERE NEED TO BE APPLIED ALSO IN ITA_fake_colonial_police_law idea
-		resistance_target 				= -0.3
-		compliance_gain 				= -0.02
-		required_garrison_factor 		= -0.30
-		resistance_damage_to_garrison	= -0.4
+		resistance_target 				= -0.1
+		compliance_gain 				=  0.0125
+		required_garrison_factor 		= -0.10
+		resistance_damage_to_garrison	= -0.10
 	}
 
 
@@ -763,27 +768,61 @@ independent_rule = {
 
 	visible = {
 		original_tag = RAJ
-		has_completed_focus = RAJ_princely_states_policy
+		has_dlc = "Graveyard of Empires"
+		OR = {
+			AND = {
+				has_focus_tree = indian_focus_goe
+				has_completed_focus = RAJ_princely_states_policy
+			}
+			AND = {
+				NOT = {
+					has_focus_tree = indian_focus_goe
+				}
+				any_controlled_state = {
+					OR = {
+						#is_core_of = MYS
+						#is_core_of = HYD
+						#is_core_of = MYS
+						#is_core_of = RJP
+						#is_core_of = CIP
+						#is_core_of = WIS
+						#is_core_of = SIN
+						#is_core_of = KAS
+						#is_core_of = KOL
+						#is_core_of = KAS
+						#is_core_of = WIS
+						#is_core_of = NWF
+						#is_core_of = MPU
+						#is_core_of = KHL
+						#is_core_of = FSS
+						#is_core_of = SKK
+						#is_core_of = RAS
+						#is_core_of = KLT
+					}
+				}	
+			}
+		}
+
 		FROM = {
 			OR = {
-				original_tag = MYS
-				original_tag = HYD
-				original_tag = MYS
-				original_tag = RJP
-				original_tag = CIP
-				original_tag = WIS
-				original_tag = SIN
-				original_tag = KAS
-				original_tag = KOL
-				original_tag = KAS
-				original_tag = WIS
-				original_tag = NWF
-				original_tag = MPU
-				original_tag = KHL
-				original_tag = FSS
-				original_tag = SKK
-				original_tag = RAS
-				original_tag = KLT
+				#original_tag = MYS
+				#original_tag = HYD
+				#original_tag = MYS
+				#original_tag = RJP
+				#original_tag = CIP
+				#original_tag = WIS
+				#original_tag = SIN
+				#original_tag = KAS
+				#original_tag = KOL
+				#original_tag = KAS
+				#original_tag = WIS
+				#original_tag = NWF
+				#original_tag = MPU
+				#original_tag = KHL
+				#original_tag = FSS
+				#original_tag = SKK
+				#original_tag = RAS
+				#original_tag = KLT
 			}
 		}
 	}
@@ -815,7 +854,7 @@ independent_rule = {
 }
 
 # The idea for this law is that we exploit the people to get us extra resources fast, but builds up resistance much quicker
-princely_subjugation= {
+princely_subjugation = {
 	icon = 14
 	sound_effect = "Martial_Law_Interface_Autonomous_Occupation_Unique_DEM"
 
@@ -823,7 +862,41 @@ princely_subjugation= {
 
 	visible = {
 		original_tag = RAJ
-		has_completed_focus = RAJ_princely_states_policy
+		has_dlc = "Graveyard of Empires"
+		OR = {
+			AND = {
+				has_focus_tree = indian_focus_goe
+				has_completed_focus = RAJ_princely_states_policy
+			}
+			AND = {
+				NOT = {
+					has_focus_tree = indian_focus_goe
+				}
+				any_controlled_state = {
+					OR = {
+						is_core_of = MYS
+						is_core_of = HYD
+						is_core_of = MYS
+						is_core_of = RJP
+						is_core_of = CIP
+						is_core_of = WIS
+						is_core_of = SIN
+						is_core_of = KAS
+						is_core_of = KOL
+						is_core_of = KAS
+						is_core_of = WIS
+						is_core_of = NWF
+						is_core_of = MPU
+						is_core_of = KHL
+						is_core_of = FSS
+						is_core_of = SKK
+						is_core_of = RAS
+						is_core_of = KLT
+					}
+				}	
+			}	
+		}
+		
 		FROM = {
 			OR = {
 				original_tag = MYS
@@ -1046,7 +1119,3 @@ GEACPS_prosperity_occupation_law = {
 		}
 	}
 }
-
-
-
-

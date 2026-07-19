@@ -1217,6 +1217,7 @@ USA_home_land_is_safe = {
 				has_civil_war = yes
 				has_war_with = CAN
 				has_war_with = MEX
+				USA_homeland_threatened = yes
 			}
 		}
 	}
@@ -1226,6 +1227,151 @@ USA_home_land_is_safe = {
 	ai_strategy = {
 		type = garrison
 		value = -60
+	}
+}
+
+# Hold a graduated reserve on the West Coast once an enemy has a Pacific launchpad.
+USA_home_guard_pacific = {
+	allowed = { original_tag = USA }
+	enable = {
+		has_war = yes
+		USA_pacific_foothold_threatened = yes
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = garrison
+		value = 150
+	}
+
+	ai_strategy = {
+		type = put_unit_buffers
+		ratio = 0.15
+		states = {
+			378 # California
+			385 # Oregon
+			386 # Washington
+		}
+		area = north_america
+		subtract_invasions_from_need = yes
+		subtract_fronts_from_need = no
+	}
+}
+
+# Hold a graduated reserve on the East and Gulf coasts when threatened from the Atlantic,
+# or when the allies shielding the USA have collapsed.
+USA_home_guard_atlantic = {
+	allowed = { original_tag = USA }
+	enable = {
+		has_war = yes
+		OR = {
+			USA_atlantic_foothold_threatened = yes
+			USA_strategic_shield_cracked = yes
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = garrison
+		value = 150
+	}
+
+	ai_strategy = {
+		type = put_unit_buffers
+		ratio = 0.15
+		states = {
+			357 # New England
+			358 # New York
+			359 # New Jersey
+			361 # Maryland
+			362 # Virginia
+			363 # North Carolina
+			364 # South Carolina
+			365 # Georgia
+			366 # Florida
+			367 # Alabama
+			370 # Mississippi
+			371 # Louisiana
+			375 # Texas
+		}
+		area = north_america
+		subtract_invasions_from_need = yes
+		subtract_fronts_from_need = no
+	}
+}
+
+USA_home_guard_invaded = {
+	allowed = { original_tag = USA }
+	enable = {
+		surrender_progress > 0
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = front_control
+		state_trigger = {
+			is_core_of = USA
+		}
+		area = north_america
+		priority = 250
+		ratio = 0
+		ordertype = front
+		execution_type = rush
+		execute_order = yes
+		manual_attack = yes
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = north_america
+		value = 60
+	}
+
+	ai_strategy = {
+		type = front_unit_request
+		state_trigger = {
+			is_core_of = USA
+		}
+		area = north_america
+		value = 250
+	}
+}
+
+# Modest standing synthetic capacity: the USA is rubber-poor regardless of the war.
+USA_synthetic_industry_baseline = {
+	allowed = { original_tag = USA }
+	enable = { date > 1939.1.1 }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = research_weight_factor
+		id = synth_oil_experiments
+		value = 100
+	}
+	ai_strategy = {
+		type = research_weight_factor
+		id = rubber_processing
+		value = 100
+	}
+	ai_strategy = {
+		type = building_target
+		id = synthetic_refinery
+		value = 5
+	}
+}
+
+# Pacific war cuts off natural rubber from SE Asia, so prioritise synthetics hard.
+USA_synthetic_industry_pacific_war = {
+	allowed = { original_tag = USA }
+	enable = {
+		has_war_with = JAP
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = building_target
+		id = synthetic_refinery
+		value = 12
 	}
 }
 
@@ -1451,6 +1597,26 @@ USA_stay_away_from_my_pacific = {
 	}
 }
 
+USA_prioritize_navy_chief = {
+	allowed = { original_tag = USA }
+	enable = {
+		date > 1937.1.1
+		NOT = {
+			any_character = {
+				has_advisor_role = navy_chief
+				is_hired_as_advisor = yes
+			}
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = pp_spend_priority
+		id = navy_chief
+		value = 200 
+	}
+}
+
 USA_lets_do_a_navy = {
 	allowed = { original_tag = USA }
 	enable = {
@@ -1534,15 +1700,12 @@ USA_think_about_retaliation = {
 
 USA_go_time = {
 	allowed = {
-		OR = {
-			original_tag = USA
-			original_tag = ENG
-		}
+		original_tag = USA
 		is_historical_focus_on = yes
 	}
 	enable = {
 		has_war_with = JAP
-		date > 1943.6.1
+		date > 1943.2.1
 		surrender_progress < 0.20
 	}
 	abort_when_not_enabled = yes

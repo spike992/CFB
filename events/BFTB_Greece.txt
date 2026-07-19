@@ -129,30 +129,30 @@ country_event = {
 
 	is_triggered_only = yes
 	
-	option = {
-		name = bftb_greece.6.a #ally
-		ai_chance = {
-			base = 15
-			modifier = {
-				OR = {
-					has_country_flag = GRE_AI_RANDOM_FASCISM_ALTERNATE
-					has_game_rule = {
-						rule = GRE_ai_behavior
-						option = FASCISM_ALTERNATE
-					}
-				}
-				factor = 100
-			}
-		}
-		add_war_support = 0.1
-		add_ideas = GRE_eee_in_government
-		custom_effect_tooltip = GRE_ally_the_anatolian_fascists_tt
-		hidden_effect = { 
-			set_variable = { var = GRE_fascist_loyalty value = 1 }  
-			GRE_political_instability_update_effect = yes
-			clr_country_flag = onassis_arrived
-		}	
-	}
+#	option = {
+#		name = bftb_greece.6.a #ally
+#		ai_chance = {
+#			base = 15
+#			modifier = {
+#				OR = {
+#					has_country_flag = GRE_AI_RANDOM_FASCISM_ALTERNATE
+#					has_game_rule = {
+#						rule = GRE_ai_behavior
+#						option = FASCISM_ALTERNATE
+#					}
+#				}
+#				factor = 100
+#			}
+#		}
+#		add_war_support = 0.1
+#		add_ideas = GRE_eee_in_government
+#		custom_effect_tooltip = GRE_ally_the_anatolian_fascists_tt
+#		hidden_effect = { 
+#			set_variable = { var = GRE_fascist_loyalty value = 1 }  
+#			GRE_political_instability_update_effect = yes
+#			clr_country_flag = onassis_arrived
+#		}	
+#	}
 	option = {
 		name = bftb_greece.6.b #reject
 		ai_chance = {
@@ -184,9 +184,9 @@ country_event = {
 					}
 				}
 				add_ideas = GRE_aristotle_onassis
-				else = { 
-					add_political_power = 150
-				}
+			}
+			else = { 
+				add_political_power = 150
 			}
 		}	
 	}
@@ -1472,7 +1472,7 @@ country_event = {
 	option = {
 		name = bftb_greece.24.a #Aye!
 		ai_chance = {
-			factor = 80
+			base = 80
 			modifier = {
 				factor = 0
 				NOT = { original_tag = GRE }
@@ -3674,7 +3674,7 @@ country_event = {
 				traits = { divisive_absolute_monarch }
 			}
 		}
-		custom_effect_tooltip = GRE_absolute_monarch_hostile_factions_tt
+#		custom_effect_tooltip = GRE_absolute_monarch_hostile_factions_tt
 		hidden_effect = { 
 			set_party_name = { ideology = neutrality long_name = GRE_monarchist_party_long name = GRE_monarchist_party }
 			set_politics = { ruling_party = neutrality elections_allowed = no }
@@ -3776,7 +3776,7 @@ country_event = {
 			add_equipment_to_stockpile = { 
 				type = infantry_equipment
 				amount = 1250
-				producer = GRE
+				producer = FROM
 			}
 		}
 	}
@@ -3802,7 +3802,7 @@ country_event = {
 			add_equipment_to_stockpile = { 
 				type = support_equipment
 				amount = 150
-				producer = GRE
+				producer = FROM
 			}
 		}
 	}
@@ -3903,21 +3903,29 @@ country_event = {
 	
 	is_triggered_only = yes
 
-	option = {
-		name = bftb_greece.58.a #for an alliance
-		GRE = { country_event = { id = bftb_greece.59 days = 1 } }
-	}
+#	option = {
+#		name = bftb_greece.58.a #for an alliance
+#		GRE = { country_event = { id = bftb_greece.59 days = 1 } }
+#	}
 	option = {
 		name = bftb_greece.58.b #for nothing
-		GRE = { country_event = { id = bftb_greece.220 days = 1 } }
+		GRE = {
+			country_event = { id = bftb_greece.220 days = 1 }
+			add_state_core = 183
+			transfer_state = 183
+		}
 	}
-	option = {
-		name = bftb_greece.58.c #for a compromise
-		GRE = { country_event = { id = bftb_greece.60 days = 1 } }
-	}
+#	option = {
+#		name = bftb_greece.58.c #for a compromise
+#		GRE = { country_event = { id = bftb_greece.60 days = 1 } }
+#	}
 	option = {
 		name = bftb_greece.58.d #no
-		GRE = { country_event = { id = bftb_greece.61 days = 1 } }
+		GRE = {
+			country_event = { id = bftb_greece.61 days = 1 }
+			add_state_core = 183
+		}
+		custom_effect_tooltip = return_cyprus_later_uk_tt
 	}
 }
 #Enosis - British accept full Enosis
@@ -3975,13 +3983,15 @@ country_event = {
 
 	option = {
 		name = bftb_greece.220.a 
-		183 = {
-			if = {
-				limit = { is_owned_by = ENG }
-				add_core_of = GRE
+		effect_tooltip = {
+			183 = {
+				#if = {
+					#limit = { is_owned_by = ENG }
+					add_core_of = GRE
+					transfer_state_to = GRE
+				#}
 			}
 		}
-		GRE = { transfer_state = 183 }
 		add_stability = 0.1
 		add_war_support = 0.05
 	}
@@ -4036,8 +4046,11 @@ country_event = {
 
 	option = {
 		name = bftb_greece.61.a
-		GRE = { add_state_claim = 183 }
+		effect_tooltip = {
+			183 = { add_core_of = GRE }
+		}
 		add_stability = -0.1
+		custom_effect_tooltip = return_cyprus_later_greece_tt
 	}
 }
 #Hellenoturkism events
@@ -4903,13 +4916,19 @@ country_event = {
 		original_tag = GRE
 		always = no
 		GER = { 
-			AND = {
-				#has_completed_focus = GER_oppose_hitler
-				NOT = {  
-					has_country_leader = {
-						character = GER_adolf_hitler
-						ruling_only = yes
-					}
+			if = {
+				limit = {
+					NOT = { has_dlc = "Gotterdammerung" }
+				}
+				has_completed_focus = GER_oppose_hitler
+			}
+			else = {
+				has_completed_focus = GER_oppose_hitler_ww
+			}
+			NOT = {  
+				has_country_leader = {
+					character = GER_adolf_hitler
+					ruling_only = yes
 				}
 			}
 		}
@@ -5798,9 +5817,9 @@ country_event = {
 					value = 25
 				}
 			}
-			GRE = {
-				country_event = { id = bftb_greece.176 days = 2 }
-			}
+		}
+		GRE = {
+			country_event = { id = bftb_greece.176 days = 2 }
 		}
 	}
 	option = {
@@ -6527,9 +6546,9 @@ country_event = {
 					value = 25
 				}
 			}
-			GRE = {
-				country_event = { id = bftb_greece.187 days = 2 }
-			}
+		}
+		GRE = {
+			country_event = { id = bftb_greece.187 days = 2 }
 		}
 	}
 	option = { #No investment at this time
@@ -6580,21 +6599,22 @@ country_event = {
 		random_state = {
 			limit = { 
 				OR = { 
-					region = 147 
-					region = 263 
-					region = 151 
-					region = 261 
-					region = 262 
-					region = 149 
-					region = 148 
+					#region = 147 #impassable
+					#region = 263 #impassable
+					region = 151
+					region = 261
+					region = 262
+					region = 149
+					region = 148
 					region = 255
 					region = 256
 					region = 257
 					region = 258
-					region = 259
-					region = 260
+					#region = 259 #impassable
+					region = 260 #half impassable
 				}
-				infrastructure < 5
+				impassable = no
+				infrastructure < 10
 			}
 			add_building_construction = { 
 				type = infrastructure
@@ -6605,21 +6625,22 @@ country_event = {
 		random_state = {
 			limit = { 
 				OR = { 
-					region = 147 
-					region = 263
-					region = 151 
-					region = 261 
-					region = 262 
+					#region = 147 #impassable
+					#region = 263 #impassable
+					region = 151
+					region = 261
+					region = 262
 					region = 149
 					region = 256
 					region = 257
 					region = 258
-					region = 259
-					region = 260 
-					region = 148 
+					#region = 259 #impassable
+					region = 260 #half impassable
+					region = 148
 					region = 255
 				}
-				infrastructure < 5
+				impassable = no
+				infrastructure < 10
 			}
 			add_building_construction = { 
 				type = infrastructure
@@ -6630,21 +6651,22 @@ country_event = {
 		random_state = {
 			limit = {
 				OR = {
-					region = 147 
-					region = 263
-					region = 151 
+					#region = 147 #impassable
+					#region = 263 #impassable
+					region = 151
 					region = 261 
 					region = 262 
 					region = 149
 					region = 256
 					region = 257
 					region = 258
-					region = 259
-					region = 260 
+					#region = 259 #impassable
+					region = 260 #half impassable
 					region = 148 
 					region = 255
 				}
-				infrastructure < 5
+				impassable = no
+				infrastructure < 10
 			}
 			add_building_construction = { 
 				type = infrastructure
@@ -6652,22 +6674,22 @@ country_event = {
 				instant_build = yes
 			}
 		}
+		GRE = { 
+			add_timed_idea = {
+				idea = GRE_economic_fluctuations
+				days = 75
+			}	
+		}
 		hidden_effect = {
-			GRE = { 
-				add_timed_idea = {
-					idea = GRE_economic_fluctuations
-					days = 75
-				}	
-			}
 			GRE = { 
 				subtract_from_variable = {
 					var = GRE_soviet_influence_over_greek_government
 					value = 30
 				}
 			}
-			GRE = {  #there is no reason for bftb_greece_193 to occur at this point
-				country_event = { id = bftb_greece.193 days = 2 }
-			}
+#			GRE = {  #there is no reason for bftb_greece_193 to occur at this point
+#				country_event = { id = bftb_greece.193 days = 2 }
+#			}
 		}
 	}
 	option = {

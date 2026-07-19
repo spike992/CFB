@@ -1,0 +1,66 @@
+scripted_gui = {
+	SOV_Gosplan_GUI = {
+        window_name = "SOV_Gosplan_GUI"
+        context_type = decision_category
+        dirty = SOV_gosplan_gui_dirty_var
+        
+        effects = {
+            gosplan_help_industry_button_click = {
+				set_variable = {
+					var = gosplan_help_industry
+				}
+			
+				clear_variable = gosplan_light_industry
+				clear_variable = gosplan_heavy_industry
+				clear_variable = gosplan_defense_industry
+				clear_variable = gosplan_evac_industry
+			}
+
+            gosplan_light_industry_button_click = {
+				set_variable = {
+					var = gosplan_light_industry
+				}
+				clear_variable = gosplan_help_industry	
+				clear_variable = gosplan_heavy_industry
+				clear_variable = gosplan_defense_industry
+				clear_variable = gosplan_evac_industry
+			}
+
+            gosplan_heavy_industry_button_click = {
+				set_variable = {
+					var = gosplan_heavy_industry
+				}
+
+				clear_variable = gosplan_help_industry		
+				clear_variable = gosplan_light_industry
+				clear_variable = gosplan_defense_industry
+				clear_variable = gosplan_evac_industry
+			}
+			
+            gosplan_defense_industry_button_click = {
+				set_variable = {
+					var = gosplan_defense_industry
+				}
+				clear_variable = gosplan_help_industry
+				clear_variable = gosplan_light_industry
+				clear_variable = gosplan_heavy_industry
+				clear_variable = gosplan_evac_industry
+			}
+
+            gosplan_evac_industry_button_click = {
+				set_variable = {
+					var = gosplan_evac_industry
+				}
+				clear_variable = gosplan_help_industry
+				clear_variable = gosplan_light_industry
+				clear_variable = gosplan_heavy_industry
+				clear_variable = gosplan_defense_industry
+			}
+
+        }
+        
+        properties = {
+			SOV_5_year_plan_progress_bar = { frame = var_SOV_second_5_year_plan_progress_bar_counter }
+        }
+    } 
+}

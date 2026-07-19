@@ -1237,7 +1237,7 @@ focus_tree = {
 			is_subject = no
 			has_war_with = SOV
 			surrender_progress > 0.05
-			NOT = { GER = { has_idea = GER_barbarossa } }
+			#NOT = { GER = { has_idea = GER_barbarossa } }
 			is_in_faction_with = GER
 		}
 
@@ -1332,7 +1332,7 @@ focus_tree = {
 	# 	x = 4
 	# 	y = 2
 	# 	relative_position_id = ROM_flexible_foreign_policy
-	# 	cost = 5
+	# 	cost = 10
 	# 	ai_will_do = {}
 	# 	completion_reward = {}
 	# }
@@ -1708,7 +1708,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = ROM_land_reform
-		cost = 5
+		cost = 10
 		ai_will_do = {}
 		continue_if_invalid = yes
 		available = {
@@ -1773,7 +1773,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = ROM_carols_personality_cult
-		cost = 5
+		cost = 10
 		ai_will_do = {}
 		continue_if_invalid = yes
 		available = {
@@ -1973,7 +1973,7 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = ROM_roman_dacian_ties
-		cost = 5
+		cost = 10
 		ai_will_do = {}
 		continue_if_invalid = yes
 		available = { NOT = { has_completed_focus = ROM_national_humiliation } }
@@ -2004,7 +2004,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = ROM_roman_dacian_ties
-		cost = 5
+		cost = 10
 		ai_will_do = {}
 		continue_if_invalid = yes
 		available = { NOT = { has_completed_focus = ROM_national_humiliation } }
@@ -2056,16 +2056,16 @@ focus_tree = {
 		relative_position_id = ROM_the_national_renaissance_front
 		x = -2
 		y = 1
-		cost = 5
+		cost = 10
 		ai_will_do = {}
 		completion_reward = {
 			add_ideas = ROM_end_greater_romania
 			custom_effect_tooltip = generic_skip_one_line_tt
 			custom_effect_tooltip = ROM_national_humiliation_popularity_tt
-			if = { limit = { has_government = fascism } add_popularity = { ideology = fascism popularity = -0.5 } }
-			if = { limit = { has_government = democratic } add_popularity = { ideology = democratic popularity = -0.5 } }
-			if = { limit = { has_government = communism } add_popularity = { ideology = communism popularity = -0.5 } }
-			if = { limit = { has_government = neutrality } add_popularity = { ideology = neutrality popularity = -0.5 } }
+			if = { limit = { has_government = fascism } add_popularity = { ideology = fascism popularity = -0.3 } }
+			if = { limit = { has_government = democratic } add_popularity = { ideology = democratic popularity = -0.3 } }
+			if = { limit = { has_government = communism } add_popularity = { ideology = communism popularity = -0.3 } }
+			if = { limit = { has_government = neutrality } add_popularity = { ideology = neutrality popularity = -0.3 } }
 		}
 	}
 
@@ -2082,7 +2082,7 @@ focus_tree = {
 		relative_position_id = ROM_the_national_renaissance_front
 		x = 2
 		y = 1
-		cost = 5
+		cost = 10
 		ai_will_do = {}
 		available = {
 			76 = {
@@ -2112,68 +2112,65 @@ focus_tree = {
 		x = -3
 		y = 1
 		relative_position_id = ROM_national_humiliation
-		cost = 5
+		cost = 10
 		ai_will_do = {}
 		completion_reward = {
-			swap_ideas = {
-				add_idea = ROM_end_greater_romania2
-				remove_idea = ROM_end_greater_romania
-			}
+			remove_ideas = ROM_end_greater_romania
 			custom_effect_tooltip = generic_skip_one_line_tt
 
-			# Constiutional
-			if = {
-				limit = {
-					has_idea = ROM_constitutional_guarantees
-				}
-				remove_ideas = ROM_constitutional_guarantees
-			}
-			else_if = {
-				limit = {
-					has_idea = ROM_constitutional_guarantees2
-				}
-				remove_ideas = ROM_constitutional_guarantees2
-			}
-			else_if = {
-				limit = {
-					has_idea = ROM_constitutional_guarantees3
-				}
-				remove_ideas = ROM_constitutional_guarantees3
-			}
-			else = {
-				custom_effect_tooltip = ROM_constituion_none_tt
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
+			# # Constiutional
+			# if = {
+			# 	limit = {
+			# 		has_idea = ROM_constitutional_guarantees
+			# 	}
+			# 	remove_ideas = ROM_constitutional_guarantees
+			# }
+			# else_if = {
+			# 	limit = {
+			# 		has_idea = ROM_constitutional_guarantees2
+			# 	}
+			# 	remove_ideas = ROM_constitutional_guarantees2
+			# }
+			# else_if = {
+			# 	limit = {
+			# 		has_idea = ROM_constitutional_guarantees3
+			# 	}
+			# 	remove_ideas = ROM_constitutional_guarantees3
+			# }
+			# else = {
+			# 	custom_effect_tooltip = ROM_constituion_none_tt
+			# }
+			# custom_effect_tooltip = generic_skip_one_line_tt
 
-			# Christian
-			if = {
-				limit = {
-					has_idea = ROM_national_christian_party_in_power
-				}
-				remove_ideas = ROM_national_christian_party_in_power
-			}
-			else_if = {
-				limit = {
-					has_idea = ROM_national_christian_party_in_power2
-				}
-				remove_ideas = ROM_national_christian_party_in_power2
-			}
-			else = {
-				custom_effect_tooltip = ROM_christian_none_tt
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
+			# # Christian
+			# if = {
+			# 	limit = {
+			# 		has_idea = ROM_national_christian_party_in_power
+			# 	}
+			# 	remove_ideas = ROM_national_christian_party_in_power
+			# }
+			# else_if = {
+			# 	limit = {
+			# 		has_idea = ROM_national_christian_party_in_power2
+			# 	}
+			# 	remove_ideas = ROM_national_christian_party_in_power2
+			# }
+			# else = {
+			# 	custom_effect_tooltip = ROM_christian_none_tt
+			# }
+			# custom_effect_tooltip = generic_skip_one_line_tt
 
-			# Cult
-			if = {
-				limit = {
-					has_idea = ROM_archangel_michaels_cult
-				}
-				remove_ideas = ROM_archangel_michaels_cult
-			}
-			else = {
-				custom_effect_tooltip = ROM_cult_none_tt
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
+			# # Cult
+			# if = {
+			# 	limit = {
+			# 		has_idea = ROM_archangel_michaels_cult
+			# 	}
+			# 	remove_ideas = ROM_archangel_michaels_cult
+			# }
+			# else = {
+			# 	custom_effect_tooltip = ROM_cult_none_tt
+			# }
+			# custom_effect_tooltip = generic_skip_one_line_tt
 
 
 			# King Carol
@@ -2189,16 +2186,19 @@ focus_tree = {
 			}
 			custom_effect_tooltip = generic_skip_one_line_tt
 
-			# Iron Guard
-			if = {
-				limit = { has_country_leader = { character = ROM_corneliu_codreanu ruling_only = yes } }
-				remove_dynamic_modifier = { modifier = ROM_iron_guard }
-			}
-			else = {
-				custom_effect_tooltip = ROM_corneliu_none_tt
-			}
+			# # Iron Guard
+			# if = {
+			# 	limit = { has_country_leader = { character = ROM_corneliu_codreanu ruling_only = yes } }
+			# 	remove_dynamic_modifier = { modifier = ROM_iron_guard }
+			# }
+			# else = {
+			# 	custom_effect_tooltip = ROM_corneliu_none_tt
+			# }
 
-			custom_effect_tooltip = generic_skip_one_line_tt
+			# custom_effect_tooltip = generic_skip_one_line_tt
+
+
+			# Get rid of Sentinel if Royal Dictatorship
 
 			ROM_ion_antonescu = { #Making Antonescu into a Country leader and removing him from his other roles. 
 				add_country_leader_role = {
@@ -2223,8 +2223,8 @@ focus_tree = {
 			}
 			add_ideas = ROM_figurehead_king_michael
 			custom_effect_tooltip = generic_skip_one_line_tt
-			activate_mission = ROM_iron_guard_coup
-			custom_effect_tooltip = ROM_iron_guard_coup_explainer_tt
+			# activate_mission = ROM_iron_guard_coup
+			# custom_effect_tooltip = ROM_iron_guard_coup_explainer_tt
 
 		}
 	}
@@ -2235,7 +2235,7 @@ focus_tree = {
 		prerequisite = { focus = ROM_national_humiliation focus = ROM_preserve_greater_romania }
 		x = 0
 		y = 2
-		cost = 5
+		cost = 10
 		relative_position_id = ROM_the_national_renaissance_front
 		ai_will_do = {}
 		completion_reward = {
@@ -2254,7 +2254,7 @@ focus_tree = {
 		x = 2
 		y = 1
 		relative_position_id = ROM_preserve_greater_romania
-		cost = 5
+		cost = 10
 		ai_will_do = {}
 		completion_reward = {
 			add_stability = 0.2
@@ -2266,11 +2266,11 @@ focus_tree = {
 		id = ROM_crush_legionnaires
 		icon = GFX_focus_eng_move_to_secure_the_dominions
 		prerequisite = { focus = ROM_force_abdication }
-		mutually_exclusive = { focus = ROM_execute_the_coup }
-		x = -1
+		#mutually_exclusive = { focus = ROM_execute_the_coup }
+		x = 0
 		y = 1
 		relative_position_id = ROM_force_abdication
-		cost = 5
+		cost = 10
 		ai_will_do = { base = 1000000}
 		completion_reward = {
 			add_war_support = 0.05
@@ -2281,44 +2281,46 @@ focus_tree = {
 		}
 	}
 
-	focus = {
-		id = ROM_execute_the_coup
-		icon = GFX_focus_generic_conspiracy
-		prerequisite = { focus = ROM_force_abdication }
-		mutually_exclusive = { focus = ROM_crush_legionnaires }
-		x = 1
-		y = 1
-		relative_position_id = ROM_force_abdication
-		cost = 5
-		ai_will_do = {}
-		available = { NOT = { has_country_leader = { character = ROM_corneliu_codreanu ruling_only = yes } } }
-		completion_reward = {
-			retire_character = ROM_ion_antonescu
-			custom_effect_tooltip = ROM_modify_iron_guard_dynamic_modifier
-			add_to_variable = {
-				ROM_iron_guard_stability_weekly = 0.001
-				tooltip = ROM_weekly_stab_1percent_tt
-			}
-			add_to_variable = {
-				ROM_iron_guard_war_support_weekly = 0.001
-				tooltip = ROM_weekly_ws_1percent_tt
-			}
+	# focus = {
+	# 	id = ROM_execute_the_coup
+	# 	icon = GFX_focus_generic_conspiracy
+	# 	prerequisite = { focus = ROM_force_abdication }
+	# 	mutually_exclusive = { focus = ROM_crush_legionnaires }
+	# 	x = 1
+	# 	y = 1
+	# 	relative_position_id = ROM_force_abdication
+	# 	cost = 10
+	# 	ai_will_do = {}
+	# 	available = { NOT = { has_country_leader = { character = ROM_corneliu_codreanu ruling_only = yes } } }
+	# 	completion_reward = {
+	# 		retire_character = ROM_ion_antonescu
+	# 		custom_effect_tooltip = ROM_modify_iron_guard_dynamic_modifier
+	# 		add_to_variable = {
+	# 			ROM_iron_guard_stability_weekly = 0.001
+	# 			tooltip = ROM_weekly_stab_1percent_tt
+	# 		}
+	# 		add_to_variable = {
+	# 			ROM_iron_guard_war_support_weekly = 0.001
+	# 			tooltip = ROM_weekly_ws_1percent_tt
+	# 		}
 			
-		}
-	}
+	# 	}
+	# }
 
 	focus = {
 		id = ROM_recover_our_strengths
 		icon = GFX_focus_invite_romania
-		prerequisite = { focus = ROM_crush_legionnaires focus = ROM_execute_the_coup }
-		x = 1
+		prerequisite = { focus = ROM_crush_legionnaires }
+		x = 0
 		y = 1
 		relative_position_id = ROM_crush_legionnaires
-		cost = 5
+		cost = 10
 		ai_will_do = {}
-		available = {}
+		available = {
+			has_country_flag = ROM_lost_bessarabia
+		}
 		completion_reward = {
-			remove_ideas = ROM_end_greater_romania2
+			#remove_ideas = ROM_end_greater_romania2
 			custom_effect_tooltip = ROM_current_bonus_tt
 			if = {
 				limit = { has_completed_focus = ROM_all_parties_must_end }
@@ -2365,7 +2367,7 @@ focus_tree = {
 		x = 0
 		y = 2
 		relative_position_id = ROM_national_humiliation
-		cost = 5
+		cost = 10
 		ai_will_do = {}
 		available = {
 			has_war_with = SOV
@@ -2384,7 +2386,7 @@ focus_tree = {
 		x = 0
 		y = 2
 		relative_position_id = ROM_preserve_greater_romania
-		cost = 5
+		cost = 10
 		ai_will_do = {}
 		completion_reward = {
 			add_ideas = ROM_preserve_greater_romania
@@ -2398,7 +2400,7 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = ROM_the_transnistria_compromise
-		cost = 5
+		cost = 10
 		ai_will_do = {}
 		available = {
 			192 = { is_controlled_by = ROM }
@@ -2522,7 +2524,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = ROM_the_transnistria_compromise
-		cost = 5
+		cost = 10
 		ai_will_do = {}
 		available = {
 			192 = { is_controlled_by = ROM }
@@ -2561,7 +2563,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = ROM_industrialise_transnistria
-		cost = 5
+		cost = 10
 		ai_will_do = {}
 		available = {
 			192 = { is_controlled_by = ROM }
@@ -2605,7 +2607,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = ROM_dreams_even_greater_romania
-		cost = 5
+		cost = 10
 		ai_will_do = {}
 		available = {
 			controls_state = 192
@@ -3019,7 +3021,7 @@ focus_tree = {
 					}
 					support = {
 						engineer = { x = 0 y = 0 }
-						hq_company = { x = 0 y = 1 }
+						#hq_company = { x = 0 y = 1 }
 						recon = { x = 0 y = 2 }
 						logistics_company = { x = 0 y = 3 }
 					}
@@ -3205,7 +3207,7 @@ focus_tree = {
 					}
 					support = {
 						engineer = { x = 0 y = 0 }
-						hq_company = { x = 0 y = 1 }
+						#hq_company = { x = 0 y = 1 }
 						recon = { x = 0 y = 2 }
 						logistics_company_horse = { x = 0 y = 3 }
 					}

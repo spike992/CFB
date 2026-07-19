@@ -226,6 +226,28 @@ political_actions = {
         }
     }
 
+	allow_leaving_the_comintern = {
+		priority = 200
+		icon = GFX_decision_SOV_socialism_in_one_country
+		allowed = { }
+		visible = {
+			has_country_flag = hosttool_enabled
+		}
+		cost = 0
+		days_remove = 30
+
+		complete_effect = {
+			set_global_flag = allow_leaving_com
+		}
+
+		remove_effect = {
+			clr_global_flag = allow_leaving_com
+		}
+
+		ai_will_do = {
+			base = 0
+		}
+	}
 }
 
 economy_decisions = {
@@ -1244,21 +1266,21 @@ operations = {
 		allowed = {
 			has_dlc = "Waking the Tiger"
 		}
-		state_target = any_controlled_state
+		state_target = yes
 		on_map_mode = map_and_decisions_view
 		targets = {
 			446
     	}
 		available = {
 			has_full_control_of_state = 446
-			has_full_control_of_state = 1057
+			has_full_control_of_state = 1091
 		}
 	
 		visible = {
 			has_war = yes
 			NOT = { has_global_flag = SUEZ_CANAL_BLOCKED }
 			controls_state = 446
-			controls_state = 1057
+			controls_state = 1091
 		}
 
 		cancel_trigger = {
@@ -1267,7 +1289,7 @@ operations = {
 					has_full_control_of_state = 446
 				}
 				NOT = {
-					has_full_control_of_state = 1057
+					has_full_control_of_state = 1091
 				}
 			}
 		}
@@ -1288,13 +1310,13 @@ operations = {
 					limit = {
 						NOT = {
 							owns_state = 446
-							owns_state = 1057
+							owns_state = 1091
 						}
 					}
 					random_country = {
 						limit = {
 							owns_state = 446
-							owns_state = 1057
+							owns_state = 1091
 						}
 						country_event = { id = generic.12 days = 1 }
 					}
@@ -1306,7 +1328,7 @@ operations = {
 			if = {
 				limit = {
 					has_full_control_of_state = 446
-					has_full_control_of_state = 1057
+					has_full_control_of_state = 1091
 				}
 				set_country_flag = blew_up_suez
 				set_global_flag = SUEZ_CANAL_BLOCKED
@@ -1323,7 +1345,7 @@ operations = {
 					limit = {
 						ENG = {
 							owns_state = 446
-							owns_state = 1057
+							owns_state = 1091
 						}
 					}
 					add_war_support = -0.05
@@ -1380,7 +1402,7 @@ operations = {
 		allowed = {
 			has_dlc = "Waking the Tiger"
 		}
-		state_target = any_controlled_state
+		state_target = yes
 		on_map_mode = map_and_decisions_view
 		targets = {
 			447
@@ -1747,7 +1769,7 @@ special_projects = {
 
 		available = {
 			has_full_control_of_state = 446
-			has_full_control_of_state = 1057
+			has_full_control_of_state = 1091
 			num_of_civilian_factories > 15
 		}
 	
@@ -1769,7 +1791,7 @@ special_projects = {
 			if = {
 				limit = {
 					has_full_control_of_state = 446
-					has_full_control_of_state = 1057
+					has_full_control_of_state = 1091
 				}
 				set_country_flag = rebuilt_suez
 				clr_global_flag = SUEZ_CANAL_BLOCKED
@@ -2221,15 +2243,13 @@ war_measures = {
 		allowed = {
 			has_dlc = "Arms Against Tyranny"
 			NOT = {
-				OR = {
-					tag = ENG #has a focus
-					tag = USA #has a focus
-					tag = SOV #has a focus
-					tag = JAP #has a focus
-					tag = AST #has a focus
-					tag = FRA #has a focus
-					tag = GER #has a focus
-				}
+				tag = ENG #has a focus
+				tag = USA #has a focus
+				tag = SOV #has a focus
+				tag = JAP #has a focus
+				tag = AST #has a focus
+				tag = FRA #has a focus
+				tag = GER #has a focus
 			}
 		}
 
@@ -2238,7 +2258,7 @@ war_measures = {
 
 		visible = {
 			is_major = yes
-			date > 1940.7.1
+			date > 1940.1.1
 			IF = {
 				limit = {
 					has_dlc = "Trial of Allegiance"
@@ -2270,13 +2290,26 @@ war_measures = {
 					has_dlc = "Gotterdammerung"
 				}
 				NOT = {
-					OR = {
-						tag = BEL #has a focus
-						tag = COG #has a focus
-					}
+					tag = BEL #has a focus
+					tag = COG #has a focus
 				}
 			}
-			PHI_SEA = no
+			IF = {
+				limit = {
+					has_dlc = "No Compromise, No Surrender"
+				}
+				NOT = {
+					tag = PHI #has a focus
+				}
+			}
+			IF = {
+				limit = {
+					has_dlc = "Thunder at Our Gates"
+				}
+				NOT = {
+					tag = INS #has a focus
+				}
+			}
 		}
 
 		fire_only_once = yes
@@ -2311,10 +2344,14 @@ war_measures = {
 			modifier = {
 				factor = 0
 				NOT = {
-					has_tech = special_forces_mountaineers
-					has_tech = special_forces_marines
-					has_tech = special_forces_paratroopers
-					has_tech = special_forces_rangers
+					has_doctrine = mountaineers_1
+					has_doctrine = mountaineers_2
+					has_doctrine = marines_1
+					has_doctrine = marines_2
+					has_doctrine = paratroopers_1
+					has_doctrine = paratroopers_2
+					has_doctrine = rangers_1
+					has_doctrine = rangers_2
 				}
 			}
 		}
@@ -2373,12 +2410,12 @@ foreign_politics = {
         	any_enemy_country = {
 				has_attache_from = FROM
 			}
-			NOT = {
-				AND = {
-					original_tag = SPR
-					has_completed_focus = SPR_regional_defense_council_of_aragon
-				}
-			}
+			# NOT = {
+			# 	AND = {
+			# 		original_tag = SPR
+			# 		has_completed_focus = SPR_regional_defense_council_of_aragon
+			# 	}
+			# }
 		}
 
 		target_root_trigger = {

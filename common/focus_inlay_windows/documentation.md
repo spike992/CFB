@@ -31,12 +31,9 @@ inlay_window_id = {
             }
         }
     }
-    scripted_buttons = { # List of scriptable buttons
-        button_name = { # Name of a button. The same name can be defined in scripted_images to select gfx. If the name does not exist in scripted_iamges, it will use the default gfx set in the .gui file
-            available = { # Trigger effect if the button should be clickable or not
-            }
-            click_effect = { # The effect that should be executed on click. Country scope
-            }
+    scripted_progressbars = { # list of progressbars that should fill up based on a variable
+        icon_name = { # Name of the progressbar (must be an icon that is a a subcomponent of "gui_component_name" or a button, with a "progressbartype" as its spriteType)
+            progress = <variable_name>
         }
     }
 }

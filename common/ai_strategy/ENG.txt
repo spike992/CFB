@@ -2663,6 +2663,35 @@ ENG_disregard_france_a_bit = {
 	}
 }
 
+ENG_air_support_north_africa = {
+	allowed = {
+		original_tag = ENG
+	}
+	enable = {
+		is_historical_focus_on = yes
+		has_war_with = ITA
+		date > 1941.6.1
+		ITA = { controls_state = 448 } # Italy still holds Tripoli
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = strategic_air_importance
+		id = 128 # Egypt
+		value = 5000
+	}
+	ai_strategy = {
+		type = strategic_air_importance
+		id = 225 # Tripoli
+		value = 3000
+	}
+	ai_strategy = {
+		type = strategic_air_importance
+		id = 29 # Central Mediterranean Sea
+		value = 2000
+	}
+}
+
 # ENG_dont_kick_russia_out_from_triple_entente_due_to_gobbling_up_breakaway_states = {
 # 	allowed = {
 # 		original_tag = ENG
@@ -2763,6 +2792,91 @@ ENG_chill_on_the_pacific = {
 		type = invade
 		id = JAP
 		value = -500
+	}
+
+	# Let USA handle the Pacific — deprioritize naval dominance in deep Pacific
+	# Keep Malacca (72) and Gulf of Thailand (73) untouched for Singapore defense
+	ai_strategy = {
+		type = naval_dominance
+		id = 78 #Philippine Sea
+		value = -100
+	}
+	ai_strategy = {
+		type = naval_dominance
+		id = 79 #Sea of Japan
+		value = -100
+	}
+	ai_strategy = {
+		type = naval_dominance
+		id = 80 #Celebes Sea
+		value = -100
+	}
+	ai_strategy = {
+		type = naval_dominance
+		id = 84 #Bismarck Sea
+		value = -100
+	}
+	ai_strategy = {
+		type = naval_dominance
+		id = 90 #Coast of Japan
+		value = -100
+	}
+	ai_strategy = {
+		type = naval_dominance
+		id = 93 #Banda Sea
+		value = -100
+	}
+	ai_strategy = {
+		type = naval_dominance
+		id = 94 #Western Pacific
+		value = -100
+	}
+	ai_strategy = {
+		type = naval_dominance
+		id = 95 #Western Pacific 2
+		value = -100
+	}
+	ai_strategy = {
+		type = naval_dominance
+		id = 96 #North West Pacific
+		value = -100
+	}
+	ai_strategy = {
+		type = naval_dominance
+		id = 97 #South West Pacific
+		value = -100
+	}
+	ai_strategy = {
+		type = naval_dominance
+		id = 160 #Philippines
+		value = -100
+	}
+	ai_strategy = {
+		type = naval_dominance
+		id = 77 #Yellow Sea
+		value = -100
+	}
+	ai_strategy = {
+		type = naval_dominance
+		id = 75 #South China Sea
+		value = -100
+	}
+	ai_strategy = {
+		type = naval_dominance
+		id = 81 #Coral Sea
+		value = -100
+	}
+	ai_strategy = {
+		type = naval_dominance
+		id = 83 #Solomon Sea
+		value = -100
+	}
+
+	# Zero-out Bismarck so ENG won't commit invasion support to Pacific corridors.
+	ai_strategy = {
+		type = naval_invasion_support_priority
+		id = 84 # Bismarck Sea
+		value = -100
 	}
 }
 
@@ -2882,6 +2996,36 @@ ENG_supply_for_tobruk_push = {
 		target = 10061  # Marsa Matruh
 		# target = 9989  # Sidi Barrani
 		value = 500
+	}
+}
+
+# Continued naval-base buildup at Matrouh to sustain the wider Africa campaign once the initial push is underway.
+ENG_upgrade_matrouh_naval_base = {
+	allowed = { original_tag = ENG }
+	enable = {
+		is_historical_focus_on = yes
+		date > 1941.3.1
+		date < 1943.6.1
+		has_war_with = ITA
+		ITA = { is_ai = yes }
+
+		452 = {  # Matrouh
+			any_province_building_level = {
+				province = {
+					id = 10061  # Marsa Matruh
+				}
+				building = naval_base
+				level < 3
+			}
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = build_building
+		id = naval_base
+		target = 10061  # Marsa Matruh
+		value = 300
 	}
 }
 
@@ -3099,26 +3243,92 @@ ENG_develop_mediterranean_supremacy = {
 	allowed = {
 		original_tag = ENG
 	}
-	
+
+	# Phase 1: Italy still contests North Africa — supremacy along the supply lanes that feed it.
 	enable = {
-		OR = {
-			has_war_with = ITA
-			has_war_with = SOU
+		has_war_with = ITA
+		ITA = {
+			OR = {
+				controls_state = 448 # Tripoli
+				controls_state = 450 # Benghazi
+				controls_state = 451 # Tobruk
+			}
 		}
-		date > 1940.1.1
 	}
-	
+
 	abort_when_not_enabled = yes
-	
+
 	ai_strategy = {
 		type = naval_dominance
 		id = western_med_control_zone
-		value = 30
+		value = 80
 	}
-	
+
 	ai_strategy = {
 		type = naval_dominance
-		id = eastern_med_control_zone
-		value = 80
+		id = italy_med_control_zone
+		value = 150
+	}
+}
+
+ENG_med_invasion_phase = {
+	allowed = {
+		original_tag = ENG
+	}
+
+	# Phase 2: N. Africa cleared — pivot to the Med invasion corridor for landings on Italy itself.
+	enable = {
+		has_war_with = ITA
+		ENG = {
+			controls_state = 448 # Tripoli
+			controls_state = 450 # Benghazi
+			controls_state = 451 # Tobruk
+		}
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = naval_dominance
+		id = med_invasion_zone
+		value = 150
+	}
+}
+
+# Modest standing synthetic capacity: Britain depends on imported rubber.
+ENG_synthetic_industry_baseline = {
+	allowed = { original_tag = ENG }
+	enable = { date > 1940.1.1 }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = research_weight_factor
+		id = synth_oil_experiments
+		value = 100
+	}
+	ai_strategy = {
+		type = research_weight_factor
+		id = rubber_processing
+		value = 100
+	}
+	ai_strategy = {
+		type = building_target
+		id = synthetic_refinery
+		value = 5
+	}
+}
+
+# Pacific war cuts off Malayan and East Indies rubber, so prioritise synthetics hard.
+ENG_synthetic_industry_pacific_war = {
+	allowed = { original_tag = ENG }
+	enable = {
+		has_war_with = JAP
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = building_target
+		id = synthetic_refinery
+		value = 12
 	}
 }

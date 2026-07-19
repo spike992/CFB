@@ -20,7 +20,7 @@ convoy_escort = {
     }
 
     # EFFECTS
-	convoy_escort_efficiency = 0.05
+	convoy_escort_efficiency = 0.1
 	convoy_retreat_speed = 0.05
 
     rewards = {
@@ -36,16 +36,20 @@ convoy_escort = {
 		}
 		sweeping_duty = {
 			mines_sweeping_by_fleets_factor = 0.075
+			destroyer = {
+				naval_speed = 0.05
+			}
 		}
 		creeping_attack = {
 			destroyer = {
 				sub_detection = 0.05
-				lg_attack = 0.05
+				sub_attack = 0.05
 			}
 		}
 		as_below_so_above = {
 			destroyer = {
 				anti_air_attack = 0.075
+				lg_attack = 0.05
 			}
 		}
     }
@@ -100,6 +104,15 @@ support_integrated_operations = {
             }
 		}
 		fleet_coordination = {
+			battleship ={
+				surface_visibility = -0.05
+				max_organisation = 2.5
+				naval_heavy_gun_hit_chance_factor = 0.05
+			}
+			sh_battleship ={
+				max_organisation = 2.5
+				naval_heavy_gun_hit_chance_factor = 0.05
+			}
 			screening_efficiency = 0.05
 		}
 		early_warning = {
@@ -243,6 +256,7 @@ torpedo_primacy = {
     		heavy_cruiser = {
     			max_organisation = 10
     			sub_detection = 0.1
+					torpedo_attack = 0.05
     		}
     	}
     }
@@ -477,7 +491,10 @@ patrol_boats = {
     		}
     	}
     	home_waters_defense = {
-    		industrial_capacity_dockyard = 0.05
+				heavy_cruiser = {
+					lg_attack = 0.05
+					max_organisation = 5
+				}
 		}
 	}
 }

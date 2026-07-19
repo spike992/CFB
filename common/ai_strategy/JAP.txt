@@ -485,8 +485,226 @@ chinese_war = {
 
 	ai_strategy = {
 		type = antagonize
-		id = "CHI"
+		id = CHI
 		value = 200
+	}
+
+	ai_strategy = {
+	    type = front_unit_request
+	    tag = CHI
+	    value = 50
+	}
+
+}
+
+# chinese_war_dont_push_mas = {
+# 	allowed = {
+# 		original_tag = JAP
+# 	}
+# 	enable = {
+# 		has_war_with = CHI
+# 		OR = {
+# 			has_war_with = XSM
+# 			has_war_with = NXM
+# 			has_war_with = GSM
+# 		}
+# 		country_exists = CHI
+# 		CHI = {
+# 			has_capitulated = no
+# 		}
+# 	}
+# 	abort = {
+# 		CHI = {
+# 			OR = {
+# 				is_ally_with = JAP
+# 				exists = no
+# 			}
+# 		}
+# 	}
+
+# 	ai_strategy = {
+# 	    type = front_unit_request
+# 	    tag = XSM
+# 	    value = -30
+# 	}
+
+# 	ai_strategy = {
+# 	    type = front_unit_request
+# 	    tag = NXM
+# 	    value = -30
+# 	}
+
+# 	ai_strategy = {
+# 	    type = front_unit_request
+# 	    tag = GSM
+# 	    value = -30
+# 	}
+
+# }
+
+# # Make sure Japan tries to take down SND aggressively 
+# JAP_push_snd_hard_initially = {
+# 	allowed = {
+# 		original_tag = JAP
+# 	}
+# 	enable = {
+# 		#is_historical_focus_on = yes
+		
+# 		has_war_with = SND
+# 		date < 1939.1.1
+# 	}
+
+# 	abort_when_not_enabled = yes
+
+# 	abort = {
+# 		SND = {
+# 			OR = {
+# 				has_capitulated = yes
+# 				exists = no
+# 			}
+# 		}
+# 	}
+
+# 	ai_strategy = {
+# 		type = conquer
+# 		id = SND
+# 		value = 100
+# 	}
+
+# 	ai_strategy = {
+# 		type = front_control
+
+# 		tag = SND
+
+# 		ratio = 0.2
+
+# 		priority = 100
+# 		ordertype = front
+# 		execution_type = rush
+# 		execute_order = yes
+# 	}
+# }
+
+# Make sure Japan tries to take down HBC aggressively 
+# JAP_push_hbc_hard_initially = {
+# 	allowed = {
+# 		original_tag = JAP
+# 	}
+# 	enable = {
+# 		OR = {
+# 			AND = {
+# 				is_historical_focus_on = yes
+# 				date > 1937.1.1
+# 			}
+# 			has_war_with = HBC
+# 		}
+# 		date < 1939.1.1
+# 	}
+
+# 	abort_when_not_enabled = yes
+
+# 	abort = {
+# 		1039 = {
+# 			state_is_fully_controlled_by_ROOT_or_subject = yes
+# 		}
+# 		608 = {
+# 			state_is_fully_controlled_by_ROOT_or_subject = yes
+# 		}
+# 	}
+
+# 	ai_strategy = {
+# 		type = conquer
+# 		id = HBC
+# 		value = 500
+# 	}
+
+# 	ai_strategy = {
+# 		type = front_control
+# 		state = 1039
+# 		ratio = 0.3
+# 		priority = 1000
+# 		ordertype = front
+# 		execution_type = rush
+# 		execute_order = yes
+# 	}
+# 	ai_strategy = {
+# 		type = front_control
+# 		state = 608
+# 		ratio = 0.3
+# 		priority = 1000
+# 		ordertype = front
+# 		execution_type = rush
+# 		execute_order = yes
+# 	}
+# }
+
+JAP_needs_some_supply_hubs = {
+	allowed = {
+		original_tag = JAP
+	}
+	enable = {
+		has_war_with = CHI
+		1039 = {
+			state_is_fully_controlled_by_ROOT_or_subject = yes
+		}
+		608 = {
+			state_is_fully_controlled_by_ROOT_or_subject = yes
+		}
+		614 = {
+			state_is_fully_controlled_by_ROOT_or_subject = no
+		}
+		615 = {
+			state_is_fully_controlled_by_ROOT_or_subject = no
+		}
+		date < 1939.1.1 #If we didn't manage this by now, it ain't happening
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = front_unit_request
+		state = 614
+		value = 100
+	}
+	ai_strategy = {
+		type = front_unit_request
+		state = 615
+		value = 100
+	}
+}
+
+# Make sure Japan tries to naval invade Shanghai 
+JAP_get_shanghaid_in_shanghai = {
+	allowed = {
+		original_tag = JAP
+	}
+	enable = {
+		#is_historical_focus_on = yes
+		
+		has_war_with = CHI
+		date < 1939.1.1
+		date > 1937.10.1
+
+		OR = {
+			597 = {
+				state_is_fully_controlled_by_ROOT_or_subject = no
+			}
+			1038 = {
+				state_is_fully_controlled_by_ROOT_or_subject = no
+			}
+		}
+
+		613 = {
+			state_is_fully_controlled_by_ROOT_or_subject = no
+		}
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 613
+		value = 100
 	}
 }
 
@@ -506,15 +724,74 @@ strike_usa = {
 
 	ai_strategy = {
 		type = antagonize
-		id = "USA"
+		id = USA
 		value = 200
 	}
 
 	ai_strategy = {
 		type = antagonize
-		id = "PHI"
+		id = PHI
 		value = 200
 	}
+}
+
+strike_phi = {
+	allowed = {
+		original_tag = JAP
+	}
+	enable = {
+		is_historical_focus_on = yes
+		OR = {
+			OR = {
+				has_war_with = PHI
+				623 = { controller = { has_war_with = JAP } }
+			}
+
+			AND = {
+				has_completed_focus = JAP_strike_the_southern_road
+				date > 1941.10.27 
+			}
+		}
+	}
+	
+	abort_when_not_enabled = yes
+
+	abort = {
+		OR = {
+			623 = { is_controlled_by = JAP }
+			623 = { 
+				controller = { 
+					is_ally_with = JAP 
+				} 
+			}
+			PHI = { has_capitulated = yes }
+		}
+	}
+
+	ai_strategy = {
+		type = strike_force_home_base
+		id = 78 # Philippine Sea 
+	}
+
+	ai_strategy = {
+		type = strike_force_home_base
+		id = 75 # South China Sea 
+	}
+
+	ai_strategy = {
+		type = invade
+		id = PHI
+		value = 300
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = just_philippines
+		value = 250 
+	}
+
+	
+
 }
 
 # "I can run wild for six months… after that, I have no expectation of success"
@@ -571,6 +848,9 @@ JAP_philippines_and_garrison = {
 			625
 			628
 			627
+			1027
+			1026
+			1025
 		}
 
 		# ai areas that the orders will use these buffers in
@@ -620,22 +900,19 @@ JAP_leave_raj_a_bit = {
 
 	ai_strategy = {
 		type = invade
-		id = "RAJ"
-		value = -200
+		id = RAJ
+		value = -250
 	}
 }
 
-JAP_dei = {
+# Stage 1: Borneo oil + eastern airfields (Manado, Moluccas). Runs in parallel with the Philippines, no PHI gate.
+JAP_dei_stage_1_borneo = {
 	allowed = {
 		original_tag = JAP
 	}
 	enable = {
 		is_historical_focus_on = yes
 		has_war_with = INS
-		OR = {
-			PHI = { has_capitulated = yes }
-			date > 1942.3.1
-		}
 		date > 1941.1.1
 	}
 	abort_when_not_enabled = yes
@@ -648,8 +925,105 @@ JAP_dei = {
 
 	ai_strategy = {
 		type = invade
-		id = "INS"
+		id = INS
+		value = 300
+	}
+
+	ai_strategy = {
+		type = naval_invasion_focus
+		value = 400
+	}
+
+	# Borneo oil region + eastern airfields first
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 1055 # Eastern Kalimantan (Balikpapan oil)
+		value = 150
+	}
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 1056 # Manado
+		value = 100
+	}
+
+	# Skip less desirable
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 738 # Aru Islands
+		value = -100
+	}
+	
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 668 # The Moluccas
+		value = -100
+	}
+}
+
+# Stage 2: once the Borneo region is in hand, close on the heartland (Java, Sumatra) and mop up the rest.
+JAP_dei_stage_2_core = {
+	allowed = {
+		original_tag = JAP
+	}
+	enable = {
+		is_historical_focus_on = yes
+		has_war_with = INS
+		date > 1941.1.1
+		# Wait for the Borneo region
+		1055 = { state_is_fully_controlled_by_ROOT_or_subject = yes }
+	}
+	abort_when_not_enabled = yes
+
+	# Java heartland
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 1058 # Batavia
+		value = 200
+	}
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 335 # West Java
+		value = 150
+	}
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 1051 # East Java (Surabaya)
 		value = 120
+	}
+	# Sumatra
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 672 # South Sumatra (Palembang oil)
+		value = 150
+	}
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 1049 # Medan and Riouw
+		value = 80
+	}
+	# Remaining islands
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 673 # Sulawesi
+		value = 80
+	}
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 1054 # Dutch Timor
+		value = 60
+	}
+
+	# Aru Islands now fair game
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 738 # Aru Islands
+		value = 100
+	}
+	# The Moluccas can are good to take down now
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 668 # The Moluccas
+		value = 150
 	}
 }
 
@@ -765,7 +1139,6 @@ JAP_template_design = {
 	}
 }
 
-
 # hey dynamic targets would be swole as f*
 all_china_must_prosper_in_my_prosperity_sphere_SIK = {
 	allowed = {
@@ -776,7 +1149,7 @@ all_china_must_prosper_in_my_prosperity_sphere_SIK = {
 			NOT = { country_exists = CHI }
 			CHI = {
 				is_in_faction_with = JAP
-				is_puppet_of = JAP
+				is_subject_of = JAP
 			}
 		}
 		country_exists = SIK
@@ -784,7 +1157,7 @@ all_china_must_prosper_in_my_prosperity_sphere_SIK = {
 			SIK = {
 				OR = {
 					is_in_faction_with = JAP
-					is_puppet_of = JAP
+					is_subject_of = JAP
 				}
 			}
 			AND = {
@@ -799,7 +1172,7 @@ all_china_must_prosper_in_my_prosperity_sphere_SIK = {
 				SIK = {
 					OR = {
 						is_in_faction_with = SOU
-						is_puppet_of = SOU
+						is_subject_of = SOU
 					}
 				}
 			}
@@ -812,7 +1185,7 @@ all_china_must_prosper_in_my_prosperity_sphere_SIK = {
 			SIK = {
 				OR = {
 					is_in_faction_with = JAP
-					is_puppet_of = JAP
+					is_subject_of = JAP
 				}
 			}
 			AND = {
@@ -827,7 +1200,7 @@ all_china_must_prosper_in_my_prosperity_sphere_SIK = {
 				SIK = {
 					OR = {
 						is_in_faction_with = SOU
-						is_puppet_of = SOU
+						is_subject_of = SOU
 					}
 				}
 			}
@@ -1370,8 +1743,29 @@ jap_early_invasions_are_risky_and_best_wait_for_later = {
 
 	ai_strategy = {
 		type = invade
-		id = "CHI"
+		id = CHI
 		value = -500
+	}
+}
+
+JAP_prepare_for_naval_invasion_capability = {
+	allowed = {
+		original_tag = JAP
+	}
+	enable = {
+		is_historical_focus_on = yes
+		date > 1939.10.1
+	}
+	abort = {
+		JAP = {
+			exists = no 
+		}
+	}
+
+	ai_strategy = {
+		type = research_weight_factor
+		id = mtg_landing_craft  # Make sure we can do larger invasions
+		value = 100
 	}
 }
 
@@ -1423,28 +1817,38 @@ jap_early_part_beware_allies = {
 
 	ai_strategy = {
 		type = prepare_for_war
-		id = "ENG"
+		id = ENG
 		value = 100
 	}
 	ai_strategy = {
 		type = prepare_for_war
-		id = "FRA"
+		id = FRA
 		value = 100
 	}
 	ai_strategy = {
 		type = prepare_for_war
-		id = "PHI"
+		id = PHI
 		value = 100
 	}
 	ai_strategy = {
 		type = prepare_for_war
-		id = "USA"
+		id = USA
+		value = 100
+	}
+	ai_strategy = {
+		type = prepare_for_war
+		id = RAJ
 		value = 100
 	}
 	ai_strategy = {
 		type = prepare_for_war
 		id = "RAJ"
 		value = 100
+	}
+	ai_strategy = {
+		type = prepare_for_war
+		id = MAL
+		value = 50
 	}
 }
 
@@ -1571,6 +1975,9 @@ JAP_unit_buffer_for_home_islands_invasion_force = {
 			282
 			533
 			536
+			1018
+			1020
+			1019
 		}
 
 		# ai areas that the orders will use these buffers in
@@ -1599,8 +2006,18 @@ JAP_hold_up_in_china = { #We got this far but there are bigger targets to worry 
 		}
 
 		OR = {
-			INS = { has_capitulated = no }
-			PHI = { has_capitulated = no }
+			AND = {
+				has_war_with = INS
+				INS = { has_capitulated = no }
+			}
+			AND = {
+				has_war_with = PHI
+				PHI = { has_capitulated = no }
+			}
+			AND = {
+				has_war_with = MAL
+				MAL = { has_capitulated = no }
+			}
 		}
 	}
 	abort_when_not_enabled = yes
@@ -1643,19 +2060,77 @@ JAP_hold_up_in_china = { #We got this far but there are bigger targets to worry 
 
 }
 
+JAP_invade_guam = {
+	allowed = {
+		original_tag = JAP
+	}
+
+	enable = {
+		is_historical_focus_on = yes
+		OR = {
+			has_war_with = USA
+			638 = { controller = { has_war_with = JAP } }
+		}
+		OR = {
+			has_completed_focus = JAP_strike_the_southern_road
+			date > 1941.10.21 #should give ~50 inavsion time window to dec 8 historical
+		}
+		date > 1941.1.1
+	}
+
+	abort_when_not_enabled = yes
+
+	abort = {
+		638 = { 
+			controller = {
+				OR = {
+					original_tag = JAP
+					is_ally_with = JAP
+				}
+			}
+		}
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = guam_area
+		value = 280
+	}
+
+	ai_strategy = {
+		type = invade
+		id = USA
+		value = 220
+	}
+
+	ai_strategy = {
+		type = invasion_unit_request
+		area = guam_area
+		state = 638
+		value = 400
+	}
+
+
+	ai_strategy = {
+		type = naval_invasion_focus
+		value = 400
+	}
+
+}
+
 JAP_invade_andaman = {
 	allowed = {
 		original_tag = JAP
 	}
 	abort_when_not_enabled = yes
 	enable = {
-		 has_country_flag = agreed_to_help_bose
-		 NOT = {
-		 	OR = {
-		 		has_full_control_of_state = 733
-		 		RAJ = { has_full_control_of_state = 733 }
-		 	}
-		 }	
+		has_country_flag = agreed_to_help_bose
+		NOT = {
+			OR = {
+				has_full_control_of_state = 733
+				RAJ = { has_full_control_of_state = 733 }
+			}
+		}	
 	}
 
 	ai_strategy = {
@@ -1700,7 +2175,7 @@ JAP_invade_andaman = {
 
 	ai_strategy = {
 		type = invade
-		id = "ENG"
+		id = ENG
 		value = 120
 	}
 }
@@ -1718,9 +2193,10 @@ JAP_get_the_rubber_islands = {
 	}
 
 	abort_when_not_enabled = yes
+
 	ai_strategy = {
 		type = invade
-		id = "MAL"
+		id = MAL
 		value = 500
 	}
 
@@ -1729,19 +2205,21 @@ JAP_get_the_rubber_islands = {
 	    state = 336
 	    value = 350
 	}
+	
 	ai_strategy = {
 		type = naval_invasion_focus
 		value = 400
 	}
+
 }
 
 JAP_invade_burma = {
 	enable = {
-		SIA = { is_in_faction_with = JAP }
+		SIA = { is_ally_with = JAP }
 		336 = {
 			controller = {
 				OR = {
-					is_in_faction_with = JAP
+					is_ally_with = JAP
 					original_tag = JAP
 				}
 			}
@@ -1767,9 +2245,194 @@ JAP_invade_burma = {
 	}
 
 	ai_strategy = {
+	    type = invasion_unit_request
+	    state = 997
+	    value = 60
+	}
+
+	ai_strategy = {
+	    type = invasion_unit_request
+	    state = 995 
+	    value = 50 
+	}
+
+	ai_strategy = {
 		type = naval_invasion_focus
 		value = 200
 	}
 	abort_when_not_enabled = yes
 
 }
+
+JAP_avoid_hong_kong_invasion_if_no_need = {
+
+	allowed = {
+		original_tag = JAP
+	}
+	enable = {
+		# IF at peace with ENG 
+		NOT = { has_war_with = ENG }
+	}
+	
+	abort = {
+		OR = {
+			focus_progress = {
+				focus = JAP_strike_the_southern_road
+				progress > 0 
+			}	
+			has_war_with = ENG
+		}
+	}
+
+	ai_strategy = {
+		type = force_concentration_target_weight
+		state = 326 #  Hong Kong
+		value = -100 # 
+	}
+	ai_strategy = {
+		type = force_concentration_target_weight
+		state = 326 #  Hong Kong
+		value = -100 # 
+	}
+
+	ai_strategy = {
+		type = invade
+		id = ENG
+		value = -220
+	}
+
+}
+
+JAP_avoid_macau_invasion_if_no_need = {
+
+	allowed = {
+		original_tag = JAP
+	}
+	enable = {
+		# IF at peace with POR 
+		NOT = { has_war_with = POR }
+	}
+	
+	abort = {
+		OR = {
+			focus_progress = {
+				focus = JAP_occupy_macau
+				progress > 0 
+			}	
+			has_war_with = POR
+		}
+	}
+
+	ai_strategy = {
+		type = force_concentration_target_weight
+		state = 729 #  Macau
+		value = -100 
+	}
+	ai_strategy = {
+		type = force_concentration_target_weight
+		state = 729 #  Macau
+		value = -100 
+	}
+
+	ai_strategy = {
+		type = invade
+		id = POR
+		value = -220
+	}
+
+}
+
+
+JAP_how_about_some_more_cv_planes = {
+	allowed = {
+		original_tag = JAP
+	}
+	enable = {
+		date > 1939.1.1
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = cv_fighter
+		value = 3
+	}
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = cv_cas
+		value = 1
+	}
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = cv_naval_bomber
+		value = 1
+	}
+}
+
+#### IMPERIAL INFLUENCE MISSIONS AI STRATS #### 
+
+JAP_satisfy_army_factories_construction = {
+	allowed = {
+		original_tag = JAP
+	}
+	enable = {
+		has_active_mission = JAP_army_faction_demands_military_factories
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+	    type = build_building
+	    id = arms_factory
+	    value = 100
+	}
+}
+
+JAP_satisfy_navy_dockyards_construction = {
+	allowed = {
+		original_tag = JAP
+	}
+	enable = {
+		has_active_mission = JAP_naval_faction_demands_dockyards
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+	    type = build_building
+	    id = dockyard
+	    value = 100
+	}
+}
+
+JAP_satisfy_zaibatsus_factories_construction = {
+	allowed = {
+		original_tag = JAP
+	}
+	enable = {
+		has_active_mission = JAP_zaibatsu_faction_demands_factories
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+	    type = build_building
+	    id = industrial_complex
+	    value = 100
+	}
+}
+
+JAP_prioritize_navy_chief = {
+	allowed = { original_tag = JAP }
+	enable = {
+		date > 1936.7.1
+		NOT = {
+			any_character = {
+				has_advisor_role = navy_chief
+				is_hired_as_advisor = yes
+			}
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = pp_spend_priority
+		id = navy_chief
+		value = 200
+	}
+}
+

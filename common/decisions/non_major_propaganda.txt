@@ -7,7 +7,6 @@ AXIS_propaganda_campaigns = {
 
 		allowed = {
 			OR = {
-				original_tag = FIN
 				original_tag = ROM
 				original_tag = HUN
 				original_tag = BUL
@@ -15,7 +14,9 @@ AXIS_propaganda_campaigns = {
 				original_tag = SPR
 				#original_tag = VIC
 				#original_tag = SIA
+				#original_tag = FIN
 				original_tag = AUS
+				original_tag = IRQ
 			}
 		}
 
@@ -58,7 +59,6 @@ AXIS_propaganda_campaigns = {
 
 		allowed = {
 			OR = {
-				original_tag = FIN
 				original_tag = ROM
 				original_tag = HUN
 				original_tag = BUL
@@ -66,7 +66,9 @@ AXIS_propaganda_campaigns = {
 				original_tag = SPR
 				#original_tag = VIC
 				#original_tag = SIA
+				#original_tag = FIN
 				original_tag = AUS
+				original_tag = IRQ
 			}
 		}
 
@@ -107,7 +109,6 @@ AXIS_propaganda_campaigns = {
 
 		allowed = {
 			OR = {
-				original_tag = FIN
 				original_tag = ROM
 				original_tag = HUN
 				original_tag = BUL
@@ -115,7 +116,9 @@ AXIS_propaganda_campaigns = {
 				original_tag = SPR
 				#original_tag = VIC
 				#original_tag = SIA
+				#original_tag = FIN
 				original_tag = AUS
+				original_tag = IRQ
 			}
 		}
 
@@ -160,7 +163,6 @@ AXIS_propaganda_campaigns = {
 
 		allowed = {
 			OR = {
-				original_tag = FIN
 				original_tag = ROM
 				original_tag = HUN
 				original_tag = BUL
@@ -168,7 +170,9 @@ AXIS_propaganda_campaigns = {
 				original_tag = SPR
 				#original_tag = VIC
 				#original_tag = SIA
+				#original_tag = FIN
 				original_tag = AUS
+				original_tag = IRQ
 			}
 		}
 
@@ -208,7 +212,6 @@ AXIS_propaganda_campaigns = {
 
 		allowed = {
 			OR = {
-				original_tag = FIN
 				original_tag = ROM
 				original_tag = HUN
 				original_tag = BUL
@@ -216,7 +219,9 @@ AXIS_propaganda_campaigns = {
 				original_tag = SPR
 				#original_tag = VIC
 				#original_tag = SIA
+				#original_tag = FIN
 				original_tag = AUS
+				original_tag = IRQ
 			}
 		}
 
@@ -255,7 +260,6 @@ AXIS_propaganda_campaigns = {
 
 		allowed = {
 			OR = {
-				original_tag = FIN
 				original_tag = ROM
 				original_tag = HUN
 				original_tag = BUL
@@ -263,7 +267,9 @@ AXIS_propaganda_campaigns = {
 				original_tag = SPR
 				#original_tag = VIC
 				#original_tag = SIA
+				#original_tag = FIN
 				original_tag = AUS
+				original_tag = IRQ
 			}
 		}
 
@@ -305,6 +311,419 @@ AXIS_propaganda_campaigns = {
 		}
 	}
 
+}
+
+FIN_propaganda_campaigns = {
+	FIN_political_prop = { # ID = 2
+		priority = 10
+
+		icon = GFX_decision_generic_political_rally
+
+		allowed = {
+			original_tag = FIN
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = FIN_running_prop
+				has_government = communism
+			}
+		}
+
+		days_remove = 365
+
+		days_re_enable = 360
+
+		cost = 50
+
+		modifier = {
+            research_speed_factor = 0.075
+			communism_acceptance = -50
+			communism_drift = -0.1
+		}
+
+		complete_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 2 }
+			set_country_flag = FIN_running_prop
+		}
+
+		remove_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 1 }
+			clr_country_flag = FIN_running_prop
+			hidden_effect = { FROM = { country_event = { id = generic.26 hours = 1} } }
+		}
+	}
+
+	FIN_war_bond_prop = { # ID = 3
+		priority = 9
+
+		icon = GFX_decision_generic_wreckers
+
+		allowed = {
+			original_tag = FIN
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = FIN_running_prop
+			}
+			has_war = yes
+		}
+
+		days_remove = 365
+
+		days_re_enable = 360
+
+		cost = 50
+
+		modifier = {
+            industrial_capacity_factory = 0.05
+            production_lack_of_resource_penalty_factor = -0.2
+		}
+
+		complete_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 3 }
+			set_country_flag = FIN_running_prop
+		}
+
+		remove_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 1 }
+			clr_country_flag = FIN_running_prop
+			hidden_effect = { FROM = { country_event = { id = generic.26 hours = 1} } }
+		}
+	}
+
+	FIN_usa_bonds_prop = { # ID = 4
+		priority = 8
+
+		icon = GFX_decision_generic_fundraising
+
+		allowed = {
+			original_tag = FIN
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = FIN_running_prop
+			}
+			NOT = { has_government = fascism }
+			has_war = yes
+			NOT = {
+				has_war_with = USA
+			}
+		}
+
+		days_remove = 365
+
+		days_re_enable = 360
+
+		cost = 50
+
+		modifier = {
+			consumer_goods_factor = -0.1
+			political_power_gain = 0.10
+		}
+
+		complete_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 4 }
+			set_country_flag = FIN_running_prop
+		}
+
+		remove_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 1 }
+			clr_country_flag = FIN_running_prop
+			hidden_effect = { FROM = { country_event = { id = generic.26 hours = 1} } }
+		}
+	}
+
+	FIN_bombing_prop = { # ID = 5
+		priority = 7
+
+		icon = GFX_decision_generic_fortification
+
+		allowed = {
+			original_tag = FIN
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = FIN_running_prop
+			}
+			#has_war = yes
+		}
+
+		days_remove = 365
+
+		days_re_enable = 360
+
+		cost = 50
+
+		modifier = {
+			industry_air_damage_factor = -0.2
+			industry_free_repair_factor = 0.25
+			#industry_repair_factor = 0.25
+			static_anti_air_damage_factor = 0.05
+			production_speed_anti_air_building_factor = 0.1
+		}
+
+		complete_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 5 }
+			set_country_flag = FIN_running_prop
+		}
+
+		remove_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 1 }
+			clr_country_flag = FIN_running_prop
+			hidden_effect = { FROM = { country_event = { id = generic.26 hours = 1} } }
+		}
+	}
+
+	FIN_anti_spy_prop = { # ID = 6
+		priority = 6
+
+		icon = GFX_decision_SWI_expand_covert_operations
+
+		allowed = {
+			original_tag = FIN
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = FIN_running_prop
+			}
+			has_intelligence_agency = yes
+		}
+
+		days_remove = 365
+
+		days_re_enable = 360
+
+		cost = 50
+
+		modifier = {
+			enemy_operative_capture_chance_factor = 0.1
+			enemy_operative_detection_chance_factor = 0.1
+			intelligence_agency_defense = 0.25
+			agency_upgrade_time = -0.15
+		}
+
+		complete_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 6 }
+			set_country_flag = FIN_running_prop
+		}
+
+		remove_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 1 }
+			clr_country_flag = FIN_running_prop
+			hidden_effect = { FROM = { country_event = { id = generic.26 hours = 1} } }
+		}
+	}
+
+	FIN_greater_finland_prop = { # ID = 7
+		priority = 5
+
+		icon = GFX_decision_eng_blackshirt_march
+
+		allowed = {
+			original_tag = FIN
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = FIN_running_prop
+			}
+			has_war_together_with = GER
+			has_war_with = SOV
+		}
+
+		days_remove = 365
+
+		days_re_enable = 360
+
+		cost = 50
+
+		modifier = {
+			root_out_resistance_effectiveness_factor = 0.2
+			compliance_gain = 0.01
+			resistance_damage_to_garrison = -0.1
+			resistance_growth = -0.1
+			resistance_target = -0.05
+		}
+
+		complete_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 7 }
+			set_country_flag = FIN_running_prop
+		}
+
+		remove_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 1 }
+			clr_country_flag = FIN_running_prop
+			hidden_effect = { FROM = { country_event = { id = generic.26 hours = 1} } }
+		}
+	}
+
+	FIN_veterans_prop = { # ID = 8
+		priority = 4
+
+		icon = GFX_decision_SWI_guisan_speech
+
+		allowed = {
+			original_tag = FIN
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = FIN_running_prop
+				has_war_with = SWE
+			}
+		}
+
+		days_remove = 365
+
+		days_re_enable = 360
+
+		cost = 50
+
+		modifier = {
+			experience_gain_army_factor = 0.1
+			mobilization_speed = 0.15
+		}
+
+		complete_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 8 }
+			set_country_flag = FIN_running_prop
+		}
+
+		remove_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 1 }
+			clr_country_flag = FIN_running_prop
+			hidden_effect = { FROM = { country_event = { id = generic.26 hours = 1} } }
+		}
+	}
+
+	FIN_path_of_battle_prop = { # ID = 9
+		priority = 3
+
+		icon = GFX_decision_generic_reorganize_irregulars
+
+		allowed = {
+			original_tag = FIN
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = FIN_running_prop
+			}
+			has_war = yes
+		}
+
+		days_remove = 365
+
+		days_re_enable = 360
+
+		cost = 50
+
+		modifier = {
+			war_support_factor = 0.1
+			experience_loss_factor = -0.15
+		}
+
+		complete_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 9 }
+			set_country_flag = FIN_running_prop
+		}
+
+		remove_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 1 }
+			clr_country_flag = FIN_running_prop
+			hidden_effect = { FROM = { country_event = { id = generic.26 hours = 1} } }
+		}
+	}
+
+	FIN_arms_against_tyranny_prop = { # ID = 10
+		priority = 2
+
+		icon = GFX_decision_generic_prepare_civil_war
+
+		allowed = {
+			original_tag = FIN
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = FIN_running_prop
+			}
+			has_defensive_war = yes
+			NOT = { has_government = fascism }
+		}
+
+		days_remove = 365
+
+		days_re_enable = 360
+
+		cost = 50
+
+		modifier = {
+			winter_attrition = -0.1
+			dig_in_speed_factor = 0.15
+			recon_factor_while_entrenched = 0.05
+		}
+
+		complete_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 10 }
+			set_country_flag = FIN_running_prop
+		}
+
+		remove_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 1 }
+			clr_country_flag = FIN_running_prop
+			hidden_effect = { FROM = { country_event = { id = generic.26 hours = 1} } }
+		}
+	}
+
+	FIN_finland_invicta_prop = { # ID = 11
+		priority = 1
+
+		icon = GFX_decision_generic_protection
+
+		allowed = {
+			original_tag = FIN
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = FIN_running_prop
+				is_subject = yes
+			}
+			#surrender_progress > 0.80
+			has_capitulated = yes
+		}
+
+		days_remove = 365
+
+		days_re_enable = 360
+
+		cost = 50
+
+		modifier = {
+			army_core_defence_factor = 0.15
+			army_core_attack_factor = 0.15
+			supply_combat_penalties_on_core_factor = -0.25
+			naval_invasion_penalty = -0.1
+			weekly_manpower = 500
+		}
+
+		complete_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 11 }
+			set_country_flag = FIN_running_prop
+		}
+
+		remove_effect = {
+			set_variable = { FIN_poster_center_icon_frame = 1 }
+			clr_country_flag = FIN_running_prop
+			hidden_effect = { FROM = { country_event = { id = generic.26 hours = 1} } }
+		}
+	}
 }
 
 MAN_propaganda_campaigns = {
@@ -586,7 +1005,7 @@ MON_propaganda_campaigns = {
 				has_country_flag = MON_running_prop
 			}
 			SOV = {
-				has_completed_focus = SOV_expand_the_agitprop
+				has_completed_focus = SOV_pol_purge4
 			}
 		}
 
@@ -630,7 +1049,7 @@ MON_propaganda_campaigns = {
 				has_country_flag = MON_running_prop
 			}
 			SOV = {
-				has_completed_focus = SOV_expand_the_agitprop
+				has_completed_focus = SOV_pol_purge4
 			}
 		}
 
@@ -676,7 +1095,7 @@ MON_propaganda_campaigns = {
 			}
 			surrender_progress < 0.15
 			SOV = {
-				has_completed_focus = SOV_expand_the_agitprop
+				has_completed_focus = SOV_pol_purge4
 			}
 		}
 
@@ -723,7 +1142,7 @@ MON_propaganda_campaigns = {
 				is_major = yes
 			}
 			SOV = {
-				has_completed_focus = SOV_collectivist_propaganda
+				has_completed_focus = SOV_pol_purge9
 			}
 		}
 
@@ -768,7 +1187,9 @@ MON_propaganda_campaigns = {
 				has_country_flag = MON_running_prop
 			}
 			SOV = {
-				has_completed_focus = SOV_progress_cult
+				has_completed_focus = SOV_share10
+				has_completed_focus = SOV_light_broad_research_efforts
+				has_completed_focus = SOV_military_research
 			}
 		}
 
@@ -811,7 +1232,7 @@ MON_propaganda_campaigns = {
 				has_country_flag = MON_running_prop
 			}
 			SOV = {
-				has_completed_focus = SOV_stalins_cult_of_personality
+				has_completed_focus = SOV_pol_purge14
 			}
 		}
 
@@ -861,6 +1282,7 @@ ALLIES_propaganda_campaigns = {
 				original_tag = COG
 				original_tag = GRE
 				#original_tag = INS
+				original_tag = IRQ
 			}
 		}
 
@@ -912,6 +1334,7 @@ ALLIES_propaganda_campaigns = {
 				original_tag = COG
 				original_tag = GRE
 				#original_tag = INS
+				original_tag = IRQ
 			}
 		}
 
@@ -963,6 +1386,7 @@ ALLIES_propaganda_campaigns = {
 				original_tag = COG
 				original_tag = GRE
 				#original_tag = INS
+				original_tag = IRQ
 			}
 		}
 
@@ -1014,6 +1438,7 @@ ALLIES_propaganda_campaigns = {
 				original_tag = COG
 				original_tag = GRE
 				#original_tag = INS
+				original_tag = IRQ
 			}
 		}
 
@@ -1065,6 +1490,7 @@ ALLIES_propaganda_campaigns = {
 				original_tag = COG
 				original_tag = GRE
 				#original_tag = INS
+				original_tag = IRQ
 			}
 		}
 
@@ -1120,6 +1546,7 @@ ALLIES_propaganda_campaigns = {
 				original_tag = COG
 				original_tag = GRE
 				#original_tag = INS
+				original_tag = IRQ
 			}
 		}
 

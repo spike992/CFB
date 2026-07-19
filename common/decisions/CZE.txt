@@ -1393,7 +1393,7 @@ CZE_bop_army_readiness_category = {
 			base = 100
 		}
 
-		cost = 150
+		cost = 100
 
 		available = {
 			#OR = {
@@ -1403,23 +1403,33 @@ CZE_bop_army_readiness_category = {
 						value > 0.75
 					}
 					OR = {
+						has_completed_focus = CZE_lessons_of_war
 						is_major = yes
 						any_allied_country = {
 							is_major = yes
 						}
 					}
 					has_army_manpower = { size > 424999 }
-					has_deployed_air_force_size = {
-						size > 199
-						type = fighter
+					OR = {
+						has_deployed_air_force_size = {
+							size > 199
+							type = fighter
+						}
+						has_equipment = { #I guess if you forgot about planes...
+    						train_equipment > 199
+						}
 					}
 					# has_deployed_air_force_size = {
 					# 	size > 49
 					# 	type = cas
 					# }
-					#num_of_factories > 49
-					num_of_military_factories > 24
-					num_of_civilian_factories > 24
+					OR = {
+						num_of_factories > 75
+						AND = {
+							num_of_military_factories > 24
+							num_of_civilian_factories > 24
+						}
+					}
 					custom_trigger_tooltip = {
 						tooltip = CZE_bop_no_divided_nation_tt
 						NOT = {
@@ -1525,7 +1535,7 @@ CZE_bop_army_readiness_category = {
 
 		days_remove = 30
 
-		days_re_enable = 40
+		days_re_enable = 45
 
 		modifier = {
 			experience_gain_army = 0.1
@@ -1744,7 +1754,7 @@ CZE_bop_army_readiness_category = {
 
 		days_remove = 30
 
-		days_re_enable = 40
+		days_re_enable = 45
 
 		modifier = {
 			training_time_factor = -0.10
@@ -1866,7 +1876,7 @@ CZE_bop_army_readiness_category = {
 
 		days_remove = 90
 
-		days_re_enable = 270
+		days_re_enable = 275
 
 		modifier = {
 			coordination_bonus = 0.01
@@ -1907,9 +1917,9 @@ CZE_bop_army_readiness_category = {
 
 		cost = 25
 
-		days_remove = 40
+		days_remove = 90
 
-		days_re_enable = 140
+		days_re_enable = 90
 
 		modifier = {
 			consumer_goods_factor = -0.10
@@ -1982,7 +1992,7 @@ CZE_bop_army_readiness_category = {
 
 		cost = 25
 
-		days_remove = 60
+		days_remove = 90
 
 		days_re_enable = 90
 
@@ -2067,9 +2077,9 @@ CZE_bop_army_readiness_category = {
 
 		cost = 25
 
-		days_remove = 40
+		days_remove = 90
 
-		days_re_enable = 330
+		days_re_enable = 90
 
 		modifier = {
 			equipment_upgrade_xp_cost = -0.50
@@ -2131,7 +2141,7 @@ CZE_bop_army_readiness_category = {
 
 		days_remove = 180
 
-		days_re_enable = 60
+		days_re_enable = 65
 
 		modifier = {
 			equipment_conversion_speed = -0.25
@@ -2171,7 +2181,7 @@ CZE_bop_army_readiness_category = {
 
 		days_remove = 60
 
-		days_re_enable = 180
+		days_re_enable = 185
 
 		modifier = {
 			army_leader_cost_factor = -0.5
@@ -2219,7 +2229,7 @@ CZE_bop_army_readiness_category = {
 
 		days_remove = 90
 
-		days_re_enable = 270
+		days_re_enable = 275
 
 		modifier = {
 			experience_gain_army_factor = 0.05
@@ -2326,7 +2336,7 @@ CZE_bop_army_readiness_category = {
 			has_completed_focus = CZE_national_defense_act
 		}
 
-		cost = 150
+		cost = 100
 
 		days_remove = 180
 
@@ -2364,7 +2374,7 @@ CZE_bop_army_readiness_category = {
 
 		cost = 25
 
-		days_remove = 30
+		days_remove = 60
 
 		modifier = {
 			truck_attrition_factor = -0.10
@@ -2402,7 +2412,7 @@ CZE_bop_army_readiness_category = {
 
 		cost = 25
 
-		days_remove = 30
+		days_remove = 40
 
 		modifier = {
 			production_speed_rail_way_factor = 0.1
@@ -3546,7 +3556,7 @@ CZE_crisis_in_the_sudentenland = {
 			base = 100
 		}
 	
-		days_remove = 30
+		days_remove = 35
 	
 		ai_hint_pp_cost = 25
 		custom_cost_trigger = {
@@ -3573,6 +3583,7 @@ CZE_crisis_in_the_sudentenland = {
 
 		modifier = {
 			planning_speed = -0.1
+			resistance_damage_to_garrison = 0.1 #here for flavor
 		}
 
 		complete_effect = {
@@ -4730,9 +4741,7 @@ CZE_the_second_fortification_program_category = {
 					}
 				}
 				70 = {
-					NOT = {
-						is_fully_controlled_by = ROOT
-					}
+					controls_or_subject_of = no
 				}
 			}
 		}
@@ -6719,10 +6728,19 @@ CZE_spread_the_revolution_category = {
 						BUL_is_balkan_nation = yes
 					}
 					NOT = {
-						has_cosmetic_tag = UBF_united_balkan_federation
+						has_cosmetic_tag = CZE_union_expanded
 					}
 				}
-				set_cosmetic_tag = UBF_united_balkan_federation
+				set_cosmetic_tag = CZE_union_expanded
+				hidden_effect = {
+					every_subject_country = {
+						limit = {
+							has_cosmetic_tag = CZE_puppet
+						}
+						set_cosmetic_tag = CZE_union_expanded_puppet
+					}
+				}
+				custom_effect_tooltip = generic_skip_one_line_tt
 			}
 			FROM = {
 				add_ideas = CZE_integration_efforts_communism
@@ -6760,7 +6778,7 @@ CZE_autonomous_sentiment = {
 			add_stability = -0.10
 			add_war_support = -0.10
 
-			every_state = {
+			every_owned_state = {
 				limit = {
 					is_owned_and_controlled_by = ROOT
 					is_core_of = SLO
@@ -6778,6 +6796,7 @@ CZE_autonomous_sentiment = {
 					days = 1095
 				}
 			}
+			set_country_flag = CZE_failed_SLO_demands
 		}
 	}
 
@@ -6821,6 +6840,7 @@ CZE_autonomous_sentiment = {
 					days = 1095
 				}	
 			}
+			set_country_flag = CZE_failed_RUT_demands
 		}
 	}
 }

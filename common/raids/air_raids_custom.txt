@@ -2917,10 +2917,8 @@ types = {
 		}
 
 		launchable = {
-			OR = {
-				has_completed_focus = JAP_strike_the_southern_road
-				has_war_with = USA
-			}
+			has_completed_focus = JAP_strike_the_southern_road
+			has_war = no
 		}
 
 		target_type = { 
@@ -2953,7 +2951,23 @@ types = {
 
 		success_factors = {
 			success = {
-				base = 0.85
+				base = 0.75
+
+				completed_kido_butai_focus = {
+				    
+			        # MTTH block
+			        formula = {
+			            base = 0
+			            modifier = {
+			                has_completed_focus = JAP_form_the_kido_butai
+			                add = 1
+			            }
+			        }
+				    
+				    weight = 0.1
+				    can_actor_affect = yes # If true, this modifier will be included in the list of measures the actor country can take to increase the success chance of the raid
+				    can_target_affect = no # If true, this modifier will be included in the list of countermeasures the target country can take to decreases the success chance of the raid
+				}
 
 				# Raiding unit modifiers
 				experience = {
@@ -3002,6 +3016,22 @@ types = {
 
 			critical = {
 				base = 0.1
+
+					completed_kido_butai_focus = {
+					    
+				        # MTTH block
+				        formula = {
+				            base = 0
+				            modifier = {
+				                has_completed_focus = JAP_form_the_kido_butai
+				                add = 1
+				            }
+				        }
+					    
+					    weight = 0.05 
+					    can_actor_affect = yes # If true, this modifier will be included in the list of measures the actor country can take to increase the success chance of the raid
+					    can_target_affect = no # If true, this modifier will be included in the list of countermeasures the target country can take to decreases the success chance of the raid
+					}
 
 			}
 		}

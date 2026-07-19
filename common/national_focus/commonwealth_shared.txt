@@ -18,7 +18,7 @@
 		}
 	}
 	offset = {
-		x = -5
+		x = 6
 		y = 0
 		trigger = {
 			tag = NZL
@@ -764,7 +764,7 @@ joint_focus = {
 			limit = {
 				tag = AST
 			}
-			mio:AST_lithgow_saf_organization = {
+			mio:AST_lithgow_arms_organization = {
 				add_mio_size = 2
 			}
 		}
@@ -865,8 +865,18 @@ joint_focus = {
 			limit = {
 				tag = AST
 			}
-			mio:AST_lysaghts_works_organization = {
-				add_mio_size = 2
+			if = {
+				limit = {
+					NOT = { has_country_flag = AST_tfb_focus_tree }
+				}
+				mio:AST_lysaghts_works_organization = {
+					add_mio_size = 2
+				}
+			} 
+			else = {
+				mio:AST_lysaghts_works_organization = {
+					add_mio_size = 2
+				}
 			}
 		}
 		else = {

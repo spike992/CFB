@@ -1,0 +1,535 @@
+palantir_log = {
+    log = "Log Date: [?global.date.GetDateStringNoHourLong] - Game HASH [?global.game_hash]"
+    # Date localised in a multitude of different ways, using the localisation functions beginning with GetDateString. One game hour is 0.00001, with 0 of the variable corresponding to the date 1st January -5000, 1:00.
+
+  # Spain
+    if = { limit = { has_global_flag = nationalist_victory } log = "SCW: Nationalist Victory" } else = { log = "SCW: Republican Victory" }
+    if = { limit = { SPR = { has_completed_focus = SPA_unify_the_nationalist_front } log = "Spanish Path: Franco" } } else = { log = "Spanish Path: Carlist" }
+    log = "SCW End Date: [?global.end_of_scw.GetDateStringNoHourLong]"
+
+  # Poland
+    log = "Germany Decs on Poland: [?global.danzig_date.GetDateStringNoHourLong]"
+    log = "Poland Falls: [?global.poland_fall_date.GetDateStringNoHourLong]"
+
+  # France Falling
+    log = "France Falls: [?global.france_fall_date.GetDateStringNoHourLong]"
+    set_temp_variable = { france_falls = global.france_fall_date }
+    subtract_from_temp_variable = { france_falls = global.poland_fall_date }
+    divide_temp_variable = { france_falls = 24 } # Multiply hours to days
+    multiply_temp_variable = { france_falls = 100000 } # Convert this to an integer instead of a decimal
+    log = "Danzig to France Capitulation: [?france_falls]"
+
+  # Italy Join Date
+    log = "Italy Joins: [?global.italy_war_start.GetDateStringNoHourLong]"
+
+  # Track Winter War Winner, and How they Won
+    log = "Winter War Ends: [?global.winter_war_end_date.GetDateStringNoHourLong]"
+    set_temp_variable = { winter_war = global.winter_war_end_date }
+    subtract_from_temp_variable = { winter_war = global.winter_war_start_date }
+    divide_temp_variable = { winter_war = 24 } # Multiply hours to days
+    multiply_temp_variable = { winter_war = 100000 } # Convert this to an integer instead of a decimal
+    if = { limit = { has_global_flag = SOV_winter_war_win } log = "Winter War: SOV win in [?winter_war] days" } else = { log = "Winter War: FIN win in [?winter_war] days" }
+
+    if = { limit = { ROM = { has_country_flag = bessarabia_ceded } } log = "SOV: Bessarabia Ceeded Peacefully" }
+    else_if = { limit = { ROM = { has_country_flag = ROM_lost_bessarabia } } log = "SOV: Gained Bessarabia through War" }
+    else_if = { limit = { ROM = { has_country_flag = ROM_won_bessarabia } } log = "SOV: Failed to gain Bessarabia through War" }
+    else = { log = "No Besserabia Resolution" }
+
+  # Africa
+    if = { limit = { check_variable = { global.gibraltar_fall_count > 0 } } log = "Gibraltar Fell: [?global.gibraltar_fall_date.GetDateStringNoHourLong] - Times Swapped: [?global.gibraltar_fall_count]" } else = { log = "Gibraltar Stands" }
+    if = { limit = { check_variable = { global.el_alemain_fall_count > 0 } } log = "El-Alemain Fell: [?global.el_alemain_fall_date.GetDateStringNoHourLong] - Times Swapped: [?global.el_alemain_fall_count]" } else = { log = "El Alemain Stands" }
+    if = { limit = { check_variable = { global.east_suez_fall_count > 0 } } log = "Suez Fell: [?global.east_suez_fall_date.GetDateStringNoHourLong] - Times Swapped: [?global.east_suez_fall_count]" } else = { log = "Suez Stands" }
+    if = { limit = { check_variable = { global.khartoum_fall_count > 0 } } log = "Khartoum (Sudan) Fell: [?global.khartoum_fall_date.GetDateStringNoHourLong] - Times Swapped: [?global.khartoum_fall_count]" } else = { log = "Khartoum Stands" }
+    if = { limit = { check_variable = { global.lagos_fall_count > 0 } }  log = "Lagos Fell: [?global.lagos_fall_date.GetDateStringNoHourLong] - Times Swapped: [?global.lagos_fall_count]" } else = { log = "Lagos Stands" }
+    if = { limit = { check_variable = { global.cape_town_fall_count > 0 } }  log = "Cape Town Fell: [?global.cape_town_fall_date.GetDateStringNoHourLong] - Times Swapped: [?global.cape_town_fall_count]" } else = { log = "Cape Town Stands" }
+   # El to Suez
+    if = {
+        limit = { check_variable = { global.el_alemain_fall_count > 0 } check_variable = { global.east_suez_fall_count > 0 } }
+        set_temp_variable = { el_to_suez = global.east_suez_fall_date }
+        subtract_from_temp_variable = { el_to_suez = global.el_alemain_fall_date }
+        divide_temp_variable = { el_to_suez = 24 } # Multiply hours to days
+        multiply_temp_variable = { el_to_suez = 100000 } # Convert this to an integer instead of a decimal
+        log = "El Alemain to Suez: [?el_to_suez]"
+    }
+
+   # El to Khartoum
+    if = {
+        limit = { check_variable = { global.el_alemain_fall_count > 0 } check_variable = { global.khartoum_fall_count > 0 } }
+        set_temp_variable = { el_to_khartoum = global.khartoum_fall_count }
+        subtract_from_temp_variable = { el_to_khartoum = global.el_alemain_fall_date }
+        divide_temp_variable = { el_to_khartoum = 24 } # Multiply hours to days
+        multiply_temp_variable = { el_to_khartoum = 100000 } # Convert this to an integer instead of a decimal
+        log = "El Alemain to Khartoum: [?el_to_khartoum]"
+    }
+   # Khartoum to Cape Town
+    if = {
+        limit = { check_variable = { global.khartoum_fall_count > 0 } check_variable = { global.cape_town_fall_count > 0 } }
+        set_temp_variable = { khartoum_to_cape = global.cape_town_fall_count }
+        subtract_from_temp_variable = { khartoum_to_cape = global.khartoum_fall_count }
+        divide_temp_variable = { khartoum_to_cape = 24 } # Multiply hours to days
+        multiply_temp_variable = { khartoum_to_cape = 100000 } # Convert this to an integer instead of a decimal
+        log = "Khartoum to Cape Town: [?khartoum_to_cape]"
+    }
+
+    # Rome formed, and if so what date
+    if = { limit = { ITA = { has_country_flag = ITA_mare_nostrum_complete } } log = "Rome Formed: [?global.rome_formed_date.GetDateStringNoHourLong]" }
+
+
+    # Sealion Occured
+    if = { limit = { check_variable = { global.sealion_naval_invasion_date > 0 } } log = "Sealion: [?global.sealion_naval_invasion_date.GetDateStringNoHourLong]" }
+    if = { limit = { check_variable = { global.ENG_capitulated > 0 } } log = "UK Capitulation: [?global.ENG_capitulated.GetDateStringNoHourLong]" } else = { log = "UK Stood" }
+    if = { limit = { check_variable = { global.ireland_naval_invasion_date > 0 } } log = "Sealion: [?global.ireland_naval_invasion_date.GetDateStringNoHourLong]" }
+    if = { limit = { check_variable = { global.IRE_capitulated > 0 } } log = "Ireland Capitulation: [?global.IRE_capitulated.GetDateStringNoHourLong]" } else = { log = "Ireland Stood" }
+
+    #Norway stuff?
+    # Too Lazy for this for now
+
+  # China End Date
+    log = "China War End Date: [?global.china_cap_date.GetDateStringNoHourLong]"
+
+  # Japan Declare Date
+    log = "Japan Decs on allies: [?global.japan_war_start.GetDateStringNoHourLong]"
+
+  # Barb Date
+    if = { limit = { GER = { has_completed_focus = GER_war_with_the_ussr } }
+        log = "Barbarossa Start Date: [?global.barb_start_date.GetDateStringNoHourLong] - Via Operation Barbarossa"
+    } else = {
+        log = "Barbarossa Start Date: [?global.barb_start_date.GetDateStringNoHourLong] - Manual"
+    }
+
+  # Kyiv/Lenningrad/Moscow/Stalingrad Taken and Date
+    if = { limit = { check_variable = { global.kiev_fall_count > 0 } } log = "Kyiv: [?global.kiev_fall.GetDateStringNoHourLong] - Times Swapped:[?global.kiev_fall_count]" } else = { log = "Kyiv Stands" }
+    if = { limit = { check_variable = { global.leningrad_fall_count > 0 } } log = "Lenningrad: [?global.leningrad_fall.GetDateStringNoHourLong] - Times Swapped:[?global.leningrad_fall_count]" } else = { log = "Lenningrad Stands" }
+    if = { limit = { check_variable = { global.stalingrad_fall_count > 0 } } log = "Moscow: [?global.stalingrad_fall.GetDateStringNoHourLong] - Times Swapped:[?global.stalingrad_fall_count]" } else = { log = "Stalingrad Stands" }
+    if = { limit = { check_variable = { global.moscow_fall_count > 0 } } log = "Stalingrad: [?global.moscow_fall.GetDateStringNoHourLong] - Times Swapped:[?global.moscow_fall_count]" } else = { log = "Moscow Stands" }
+
+  # Soviet Capitulation
+    if = {
+        limit = { SOV = { has_capitulated = yes } }
+        log = "Soviet Capitulation: [?global.soviet_cap_date.GetDateStringNoHourLong]"
+        set_temp_variable = { soviets_fall = global.soviet_cap_date }
+        subtract_from_temp_variable = { soviets_fall = global.barb_start_date }
+        divide_temp_variable = { soviets_fall = 24 } # Multiply hours to days
+        multiply_temp_variable = { soviets_fall = 100000 } # Convert this to an integer instead of a decimal
+        log = "Time to Capitulation: [?soviets_fall]"
+    } else = {
+        set_temp_variable = { soviets_fall_percent = global.sov_surrender_progress_max }
+        multiply_temp_variable = { soviets_fall_percent = 100 }
+        log = "Max Soviet Surrender Progress: [?soviets_fall_percent]%"
+    }
+    # Did the USSR make it to Germany?
+    if = {
+        limit = { check_variable = { global.sov_surrender_progress_at_ger_cap > 0 } }
+        log = "Soviets surrender progress:"
+        set_temp_variable = { soviets_fall_percent = global.sov_surrender_progress_max }
+        multiply_temp_variable = { soviets_fall_percent = 100 }
+        log = "Max Soviet Surrender Progress: [?soviets_fall_percent]%"
+    }
+    # Did Finland Capitulate and date
+    if = { limit = { check_variable = { global.finland_cap_date > 0 } } log = "Finland Capitulation: [?global.finland_cap_date.GetDateStringNoHourLong]" } else = { log = "Finland Stands" }
+    # Italy Invaded, and Date
+    if = { limit = { check_variable = { global.ita_naval_invasion_date > 0 } } log = "Italy Invaded: [?global.ita_naval_invasion_date.GetDateStringNoHourLong]" } else = { log = "Italy: No Soft Underbelly" }
+    if = { limit = { check_variable = { global.ita_capitulate_date > 0 } } log = "Italy Capitulated: [?global.ita_capitulate_date.GetDateStringNoHourLong]" } else = { log = "Italy Capitulation: Italia Stands" }
+    # D-Day checking?
+    # Too lazy for this today
+
+    # Date Spain Declares war on the allies
+    if = { limit = { check_variable = { global.spain_war_join > 0 } } log = "Spain Joined War: [?global.spain_war_join.GetDateStringNoHourLong]" } else = { log = "Spain did not Join" }
+
+    # Date Japan Decs on the Soviets
+    if = { limit = { check_variable = { global.japan_sov_war_start > 0 } } log = "Japan Decced on the Soviets: [?global.japan_sov_war_start.GetDateStringNoHourLong]" } else = { log = "Japan did not go to war with the Soviets" }
+
+  # Asia
+    if = { limit = { check_variable = { global.ins_capitulate_date > 0 } } log = "Dutch East Indies Capitulation: [?global.ins_capitulate_date.GetDateStringNoHourLong]" } else = { log = "Dutch East Indies Stands" }
+    if = { limit = { check_variable = { global.ast_capitulate_date > 0 } } log = "Australia Capitulation: [?global.ast_capitulate_date.GetDateStringNoHourLong]" } else = { log = "Australia Stands" }
+    if = { limit = { check_variable = { global.nzl_capitulate_date > 0 } } log = "New Zealand Capitulation: [?global.nzl_capitulate_date.GetDateStringNoHourLong]" } else = { log = "New Zeeland Stands" }
+    if = { limit = { check_variable = { global.raj_capitulate_date > 0 } } log = "Raj Capitulation: [?global.raj_capitulate_date.GetDateStringNoHourLong]" } else = { log = "India Stands" }
+    if = { limit = { check_variable = { global.phi_capitulate_date > 0 } } log = "Phillipines Capitulation: [?global.phi_capitulate_date.GetDateStringNoHourLong]" } else = { log = "Phillipines Stands" }
+
+
+    # India Naval Invaded?
+    if = { limit = { check_variable = { global.raj_naval_invasion_date > 0 } }  log = "Raj Naval Invaded: [?global.raj_naval_invasion_date.GetDateStringNoHourLong]" }
+
+    # Japan Naval Invaded?
+    if = { limit = { check_variable = { global.jap_naval_invasion_date > 0 } }  log = "Japan First Naval Invaded: [?global.jap_naval_invasion_date.GetDateStringNoHourLong]" }
+    if = { limit = { check_variable = { global.jap_capitulate_date > 0 } }  log = "Japan Capitulated: [?global.jap_capitulate_date.GetDateStringNoHourLong]" }
+
+  # Location Specifics
+    if = { limit = { check_variable = { global.singapore_fall_count > 0 } }     log = "Singapore: [?global.singapore_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.singapore_fall_count]" } else = { log = "Singapore Stands" }
+    if = { limit = { check_variable = { global.batavia_fall_count > 0 } }       log = "Batavia: [?global.batavia_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.batavia_fall_count]" } else = { log = "Batavia Stands" }
+    if = { limit = { check_variable = { global.south_sumatra_fall_count > 0 } } log = "South Sumatra: [?global.south_sumatra_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.south_sumatra_fall_count]" } else = { log = "South Sumatra Stands" }
+    if = { limit = { check_variable = { global.sulawesi_fall_count > 0 } }      log = "Sulawesi: [?global.sulawesi_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.sulawesi_fall_count]" } else = { log = "Sulawesi Stands" }
+    if = { limit = { check_variable = { global.east_kalimantan_fall_count > 0 } } log = "East Kalimantan: [?global.east_kalimantan_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.east_kalimantan_fall_count]" } else = { log = "East Kalimantan Stands" }
+    if = { limit = { check_variable = { global.papua_fall_count > 0 } }         log = "Papua: [?global.papua_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.papua_fall_count]" } else = { log = "Papua Stands" }
+    if = { limit = { check_variable = { global.solomon_islands_fall_count > 0 } } log = "Solomon Islands: [?global.solomon_islands_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.solomon_islands_fall_count]" } else = { log = "Solomon Islands Stands" }
+    if = { limit = { check_variable = { global.new_caledonia_fall_count > 0 } } log = "New Caledonia: [?global.new_caledonia_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.new_caledonia_fall_count]" } else = { log = "New Caledonia Stands" }
+    if = { limit = { check_variable = { global.manilla_fall_count > 0 } }       log = "Manilla: [?global.manilla_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.manilla_fall_count]" } else = { log = "Manilla Stands" }
+    if = { limit = { check_variable = { global.formosa_fall_count > 0 } }       log = "Formosa: [?global.formosa_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.formosa_fall_count]" } else = { log = "Formosa Stands" }
+    if = { limit = { check_variable = { global.bangkok_fall_count > 0 } }       log = "Bangkok: [?global.bangkok_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.bangkok_fall_count]" } else = { log = "Bangkok Stands" }
+    if = { limit = { check_variable = { global.okinowa_fall_count > 0 } }       log = "Okinowa: [?global.okinowa_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.okinowa_fall_count]" } else = { log = "Okinowa Stands" }
+    if = { limit = { check_variable = { global.iwo_jima_fall_count > 0 } }      log = "Iwo Jima: [?global.iwo_jima_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.iwo_jima_fall_count]" } else = { log = "Iwo Jima Stands" }
+    if = { limit = { check_variable = { global.saipan_fall_count > 0 } }        log = "Saipan: [?global.saipan_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.saipan_fall_count]" } else = { log = "Saipan Stands" }
+    if = { limit = { check_variable = { global.palau_fall_count > 0 } }         log = "Palau: [?global.palau_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.palau_fall_count]" } else = { log = "Palau Stands" }
+    if = { limit = { check_variable = { global.wake_island_fall_count > 0 } }   log = "Wake Island: [?global.wake_island_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.wake_island_fall_count]" } else = { log = "Wake Island Stands" }
+    if = { limit = { check_variable = { global.midway_fall_count > 0 } }        log = "Midway: [?global.midway_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.midway_fall_count]" } else = { log = "Midway Stands" }
+    if = { limit = { check_variable = { global.guam_fall_count > 0 } }          log = "Guam: [?global.guam_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.guam_fall_count]" } else = { log = "Guam Stands" }
+    if = { limit = { check_variable = { global.hawaii_fall_count > 0 } }        log = "Hawaii: [?global.hawaii_fall_date.GetDateStringNoHourLong] - Times Swapped:[?global.hawaii_fall_count]" } else = { log = "Hawaii Stands" }
+
+  # Country Paths
+
+   # GER
+    if = { limit = { GER = { has_completed_focus = GER_the_prussian_legacy } } log = "GER: Prussian Legacy Army" } else = { log = "GER: Panzer Doctrine Army" }
+    if = { limit = { GER = { has_completed_focus = GER_prioritize_economic_growth } } log = "GER: Left Side Eco" } else = { log = "GER: Right Side Eco" }
+    if = { limit = { GER = { has_completed_focus = GER_heed_von_neuraths_concerns } } log = "GER: Heed Von Neuraths Concern" } else = { log = "GER: Reorganize the Wehrmacht" }
+    if = { limit = { GER = { has_completed_focus = GER_befriend_czechoslovakia } } log = "GER: Befriend Czechs" } else = { log = "GER: Demand Sudetenland" }
+    if = { limit = { GER = { has_completed_focus = GER_operation_tannenbaum } } log = "GER: Kill Swiss" } else = { log = "GER: Swiss Gold" }
+    if = { limit = { GER = { has_completed_focus = GER_a_strong_successor } } log = "GER: A Strong Successor" } else = { log = "GER: Loyalty to the Fuhrer" }
+    if = { limit = { GER = { has_completed_focus = GER_high_seas_fleet } } log = "GER: Big Navy" } else_if = { limit = { GER = { has_completed_focus = GER_unrestricted_convoy_raiding } } log = "GER: Sub Navy" } else = { log = "GER: No navy" }
+
+    if = { limit = { check_variable = { global.ger_rhineland_date > 0 } } log = "GER: Rhineland [?global.ger_rhineland_date.GetDateStringNoHourLong]" } else = { log = "No Rhineland" }
+    if = { limit = { check_variable = { global.ger_anschluss_date > 0 } } log = "GER: Anschluss [?global.ger_anschluss_date.GetDateStringNoHourLong]" } else = { log = "No Anschluss" }
+    if = { limit = { check_variable = { global.ger_demand_sudetenland_date > 0 } } log = "GER: Demand Sudetenland [?global.ger_demand_sudetenland_date.GetDateStringNoHourLong]" } else_if = { limit = { check_variable = { global.ger_befriend_sudetenland_date > 0 } } log = "GER: Befriend Czechs [?global.ger_befriend_sudetenland_date.GetDateStringNoHourLong]" } else = { log = "No Czech Focus" }
+    if = { limit = { check_variable = { global.ger_autarky_achieved > 0 } } log = "GER: Full Autarky [?global.ger_autarky_achieved.GetDateStringNoHourLong]" } else_if = { limit = { check_variable = { global.ger_partial_autarky_achieved > 0 } } log = "GER: Partial Autarky [?global.ger_partial_autarky_achieved.GetDateStringNoHourLong]" } else = { log = "No Autarky" }
+
+   # ITA
+    if = { limit = { ITA = { NOT = { has_country_flag = cuck_italy_flag } } } log = "ITA: Took Ethiopia" } else = { log = "ITA: Cuck Italy" }
+    if = { limit = { ITA = { has_completed_focus = ITA_seize_balearics } } log = "ITA: Sieze Balerarics" } else = { log = "ITA: Didn't Sieze Balerarics" }
+    if = { limit = { ITA = { has_completed_focus = ITA_supremacy_of_the_north } } log = "ITA: North Eco" } else = { log = "ITA: South Eco" }
+    if = { limit = { ITA = { has_completed_focus = ITA_the_fourth_shore } } log = "ITA: Super Libya" } else = { log = "ITA: Mean Libya" }
+    if = { limit = { ITA = { has_completed_focus = ITA_green_water_navy } } log = "ITA: Green Water Navy" } else = { log = "ITA: Escape the Cage Navy" }
+    if = { limit = { ITA = { has_completed_focus = ITA_old_guard } } log = "ITA: Left Side Army" } else_if = { limit = { ITA = { has_completed_focus = ITA_drain_the_swamp } } log = "ITA: Right Side Army" } else = { log = "ITA: Middle Army" }
+
+   # JAP
+    if = { limit = { JAP = { has_completed_focus = JAP_sea_purge_the_kodoha_faction } } log = "JAP: Fascist Path" } else = { log = "JAP: Emperor Path" }
+    if = { limit = { JAP = { has_completed_focus = JAP_tojos_premiership } } log = "JAP: Tojo" }
+    else_if = { limit = { JAP = { has_completed_focus = JAP_yamamotos_premiership } } log = "JAP: Yamamoto" }
+    else_if = { limit = { JAP = { has_completed_focus = JAP_the_crysanthemum_throne } } log = "JAP: Crysanthemum Throne" }
+
+  # ENG
+    if = { limit = { ENG = { has_completed_focus = ENG_appeasement } } log = "UK: Appeasement" } else = { log = "UK: Containment" }
+    if = { limit = { ENG = { has_completed_focus = ENG_focus_empire } } log = "UK: Left Side Eco (generous)" } else = { log = "UK: Right Side Eco (selfish)" }
+    if = { limit = { ENG = { has_completed_focus = ENG_stick_our_guns } } log = "UK: Left Side Navy" } else = { log = "UK: Right Side Navy" }
+    if = { limit = { ENG = { has_completed_focus = ENG_operation_countenance } } log = "UK: Iran Invasion" }
+    if = { limit = { ENG = { has_country_flag = ENG_strategic_bombing_path_strong } } log = "UK: Strat Bombing Primary" }
+    else_if = { limit = { ENG = { has_country_flag = ENG_tactical_bombing_path_strong } } log = "UK: Tactical Bombing Primary" }
+    else_if = { limit = { ENG = { has_country_flag = ENG_production_path_strong } } log = "UK: Fighter Production Primary" }
+    else_if = { limit = { ENG = { has_country_flag = ENG_research_path_strong } } log = "UK: Fighter Research Primary" }
+    else_if = { limit = { ENG = { has_country_flag = ENG_quality_path_strong } } log = "UK: Fighter Quality Primary" }
+    else_if = { limit = { ENG = { has_country_flag = ENG_cas_path_strong } } log = "UK: Cas Bombing Primary" }
+    else_if = { limit = { ENG = { has_country_flag = ENG_faa_path_strong } } log = "UK: Naval Bombing Primary" }
+
+    if = { limit = { ENG = { has_idea = ENG_bomber_command_weak2 } } log = "UK: Strat Bombing Secondary" }
+    if = { limit = { ENG = { has_idea = ENG_tactical_bomber_command_weak2 } } log = "UK: Tactical Bombing Secondary" }
+    if = { limit = { ENG = { has_idea = ENG_fighter_production_weak2 } } log = "UK: Fighter Production Secondary" }
+    if = { limit = { ENG = { has_idea = ENG_fighter_research_weak2 } } log = "UK: Fighter Research Secondary" }
+    if = { limit = { ENG = { has_idea = ENG_fighter_design_weak3 } } log = "UK: Fighter Quality Secondary" }
+    if = { limit = { ENG = { has_idea = ENG_cas_command_weak2 } } log = "UK: Cas Bombing Secondary" }
+    if = { limit = { ENG = { has_idea = ENG_naval_aviation_weak2 } } log = "UK: Naval Bombing Secondary" }
+
+   # FRA
+    if = { limit = { check_variable = { global.FRA_socialist_date > 0 } } log = "FRA: Right Side Political" }
+    else_if = { limit = { check_variable = { global.FRA_nationalize_industry_date > 0 } } log = "FRA: Left Side Political" }
+    else = { log = "No French Political Path Picked" }
+    if = { limit = { check_variable = { global.FRA_defensive_date > 0 } } log = "FRA: Defensive Focus" }
+    else_if = { limit = { check_variable = { global.FRA_aggresive_date > 0 } } log = "FRA: Aggresive Focus" }
+    else = { log = "No French Army Path Picked" }
+    if = { limit = { FRA = { has_completed_focus = FRA_defensive_focus2 } } log = "Free France: Defensive Focus" } else = { log = "Free France: Aggresive Focus" }
+
+   # USA
+    if = { limit = { USA = { has_completed_focus = USA_new_deal_2 } } log = "USA: New Deal" } else = { log = "USA: Landon" }
+    if = { limit = { USA = { has_completed_focus = USA_fdr_again } } log = "USA: FDR Round 2" } else_if = { limit = { USA = { has_completed_focus = USA_wilkies_deal } } log = "USA: Wilkies" } else = { log = "USA: No 1940 Election" }
+    if = { limit = { USA = { has_completed_focus = USA_all_in } } log = "USA: All-In" }
+    else_if = { limit = { USA = { has_completed_focus = USA_final_table } } log = "USA: Final Table" }
+    else_if = { limit = { USA = { has_completed_focus = USA_third_man_walking } } log = "USA: Third Man Walking" }
+    if = { limit = { USA = { has_completed_focus = USA_battleship_primacy } } log = "USA: Battleship Primacy" } else_if = { limit = { USA = { has_completed_focus = USA_carrier_primacy } }  log = "USA: Carrier Primacy" }  else = { log = "USA: No naval Primacy Picked" }
+    if = { limit = { USA = { has_completed_focus = USA_air_support } } log = "USA: CAS/Tac Primacy" } else_if = { limit = { USA = { has_completed_focus = USA_combined_bomber_offensive } }  log = "USA: Strat Bomber Primacy" }  else = { log = "USA: No air Primacy Picked" }
+
+   # SOV
+    if = { limit = { SOV = { has_completed_focus = SOV_spain_small } } log = "SOV: Spain Small" } else = { log = "SOV: Spain Large" }
+    if = { limit = { SOV = { has_completed_focus = SOV_spanish_gold } } log = "SOV: Spainish Gold Taken" }
+
+    if = { limit = { SOV = { has_completed_focus = SOV_china_small } } log = "SOV: China Small" } else = { log = "SOV: China Large" }
+
+    if = { limit = { SOV = { has_completed_focus = SOV_pol_triple_alliance } } log = "SOV: Tripple Alliance" } else = { log = "SOV: Molotov" }
+    if = { limit = { SOV = { has_completed_focus = SOV_pol_purge12 } } log = "SOV: Purge High Command" } else = { log = "SOV: Saved the Marshalls" }
+    if = { limit = { SOV = { has_completed_focus = SOV_light_narrow_research_efforts } } log = "SOV: Narrow Research" } else_if = { limit = { SOV = { has_completed_focus = SOV_light_broad_research_efforts } } log = "SOV: Broad Research" } else = { log = "SOV: No Research Picked" }
+
+    if = { limit = { SOV = { has_completed_focus = SOV_yak1 } } log = "SOV: Fighter Path [?global.fighter_research_date.GetDateStringNoHourLong]" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_il1 } } log = "SOV: CAS Path [?global.cas_research_date.GetDateStringNoHourLong]" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_pe1 } } log = "SOV: TAC Path [?global.tac_research_date.GetDateStringNoHourLong]" }
+    else = { log = "SOV: No Air Focus" }
+
+    if = { limit = { SOV = { has_completed_focus = SOV_small_navy1 } } log = "SOV: Small Fleet [?global.small_navy_date.GetDateStringNoHourLong]" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_big_fleet1 } } log = "SOV: Big Fleet [?global.big_navy_date.GetDateStringNoHourLong]" }
+    else = { log = "SOV: No Fleet" }
+
+    if = { limit = { SOV = { has_completed_focus = SOV_mil4 } } log = "SOV: Khulik Artillery [?global.khulik_artillery_date.GetDateStringNoHourLong]" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_mil5 } } log = "SOV: Stalin Artillery [?global.stalin_artillery_date.GetDateStringNoHourLong]" }
+    else = { log = "SOV: No Artillery Specialization" }
+
+    if = { limit = { SOV = { has_completed_focus = SOV_mil28 } } log = "SOV: Light Tank Path [?global.light_tank_date.GetDateStringNoHourLong]" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_mil26 } } log = "SOV: Medium Tank Path [?global.medium_tank_date.GetDateStringNoHourLong]" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_mil27 } } log = "SOV: Heavy Tank Path [?global.heavy_tank_date.GetDateStringNoHourLong]" }
+    else = { log = "SOV: No Tank Focus" }
+
+    if = { limit = { SOV = { has_completed_focus = SOV_pol_nkvd6 } } log = "SOV: Trotsky Dead Date [?global.sov_trotsky_dead_date.GetDateStringNoHourLong]" }
+    if = { limit = { SOV = { has_completed_focus = SOV_pol_PURGE4 } } log = "SOV: Purge Finished Date [?global.sov_purge_finish_date.GetDateStringNoHourLong]" }
+    if = { limit = { SOV = { has_completed_focus = SOV_light_new_soviet_man } } log = "SOV: Light New Soviet Man Date [?global.sov_light_new_soviet_man_date.GetDateStringNoHourLong]" }
+    if = { limit = { SOV = { has_completed_focus = SOV_heavy_architects_of_communism } } log = "SOV: Architects of Communism Date [?global.sov_architects_date.GetDateStringNoHourLong]" }
+    if = { limit = { check_variable = { global.SOV_siberian_colonization_date > 0 } } log = "SOV: Siberian Colonization [?global.SOV_siberian_colonization_date.GetDateStringNoHourLong]" }
+    else_if = { limit = { check_variable = { global.SOV_heavy_model_cities_date > 0 } } log = "SOV: Heavy Model Cities [?global.SOV_heavy_model_cities_date.GetDateStringNoHourLong]" }
+    else = { log = "No Siberia Path Choice Taken" }
+
+    if = { 
+        limit = { SOV = { has_completed_focus = SOV_start_the_third_five_year_plan } } 
+        log = "SOV: Start Third Five Year Plan Date [?global.sov_trotsky_dead_date.GetDateStringNoHourLong]"
+        if = { limit = { SOV = { has_country_flag = SOV_second_5_year_plan_achieved }} log = "SOV: Second Five Year Plan Achieved - [?global.sov_second_five_year_plan_achieved_date.GetDateStringNoHourLong]" }
+    }
+
+    if = { 
+        limit = { SOV = { has_completed_focus = SOV_finish_the_third_five_year_plan } } 
+        log = "SOV: Complete Third Five Year Plan Date [?global.sov_third_five_year_plan_achieved_date.GetDateStringNoHourLong]"
+        if = { limit = { SOV = { has_country_flag = SOV_third_5_year_plan_achieved } } log = "SOV: Third Five Year Plan Achieved - [?global.sov_third_five_year_plan_achieved_date.GetDateStringNoHourLong]" }
+    }
+
+    if = { limit = { SOV = { has_completed_focus = SOV_budyonny } } log = "SOV: Kulik-Budyonny" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_yegorov } } log = "SOV: Kulik-Yegerov" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_kulik2 } } log = "SOV: Voroshilov-Kulik" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_budyonny2 } } log = "SOV: Voroshilov-Budyonny" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_timoshenko_voroshilov } } log = "SOV: Voroshilov-Timoshenko" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_voroshilov2 } } log = "SOV: Timoshenko-Voroshilov" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_shaposhnikovfocus } } log = "SOV: Timoshenko-Shaposhnikov" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_blucher2 } } log = "SOV: Timoshenko-Blucher" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_timoshenko2 } } log = "SOV: Blucher-Timoshenko" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_tukachevsky } } log = "SOV: Blucher-Tukachevsky" }
+    else = { log = "No Marshal Path Selected" }
+
+    if = { limit = { SOV = { has_completed_focus = SOV_army_budy } } log = "SOV: Budyonny Capstone" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_army_yego } } log = "SOV: Yegerov Capstone" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_army_voro } } log = "SOV: Voroshilov Capstone" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_army_timo } } log = "SOV: Timoshenko Capstone" }
+    else_if = { limit = { SOV = { has_completed_focus = SOV_army_tuka } } log = "SOV: Tukhachevsky Capstone" }
+    else = { log = "No Marshal Capstone Path Selected" }
+
+    if = { limit = { check_variable = { global.order_270_date > 0 } } log = "SOV: Order 270 (20%) [?global.order_270_date.GetDateStringNoHourLong]" } else = { log = "No Order 270" }
+    if = { limit = { check_variable = { global.sov_coordinate_industry_date > 0 } } log = "SOV: Coordinate Industry (25%) [?global.sov_coordinate_industry_date.GetDateStringNoHourLong]" } else = { log = "No Coordinate Industry" }
+    if = { limit = { check_variable = { global.sov_forced_labour_date > 0 } } log = "SOV: Forced Labor (35%) [?global.sov_forced_labour_date.GetDateStringNoHourLong]" } else = { log = "No Forced Labour" }
+    if = { limit = { check_variable = { global.sov_first_wave_date > 0 } } log = "SOV: Coordinate Industry (30%) [?global.sov_first_wave_date.GetDateStringNoHourLong]" } else = { log = "No First Wave" }
+    if = { limit = { check_variable = { global.sov_second_wave_date > 0 } } log = "SOV: Coordinate Industry (50%) [?global.sov_second_wave_date.GetDateStringNoHourLong]" } else = { log = "No Second Wave" }
+
+   # POL - Gonna have to add real flags
+    if = { limit = { check_variable = { global.POL_dissolve_the_bbwr > 0 } } log = "POL: Left Side Political Capstone [?global.sov_forced_labour_date.POL_dissolve_the_bbwr]" }
+    else_if = { limit = { check_variable = { global.POL_ozon > 0 } } log = "POL: Center Political Capstone [?global.sov_forced_labour_date.POL_ozon]" }
+    else_if = { limit = { check_variable = { global.POL_national_unity_date > 0 } } log = "POL: Right Side Political Capstone [?global.sov_forced_labour_date.POL_national_unity_date]" }
+    else = { log = "No Polish Political capstone Path Picked" }
+
+    if = { limit = { POL = { has_country_flag = POL_capitulated } } log = "Poland Gained Eco:  Civs:[?POL.POL_num_of_war_civs] Mills:[?POL.POL_num_of_war_mils] Docks:[?POL.POL_num_of_war_docs]" }
+
+   # CAN
+    if = { limit = { CAN = { has_completed_focus = CAN_over_the_edge } } log = "CAN: Infantry Army" } else_if = { limit = { CAN = { has_completed_focus = CAN_steel_not_blood } } log = "CAN: Tank Army" } else = { log = "CAN: No Army Capstone" }
+    if = { limit = { CAN = { has_completed_focus = CAN_bring_the_fight } } log = "CAN: Left Side Navy (Big)" } else_if = { limit = { CAN = { has_completed_focus = CAN_winning_the_battle_of_the_alantic } } log = "CAN: Right Side Navy (Convoy)" } else = { log = "CAN: No Navy" }
+
+   # MEX
+    if = { limit = { MEX = { has_completed_focus = MEX_focus_agricultural_credit_bank } } log = "MEX: Left Side Eco" } else = { log = "MEX: Right Side Eco" }
+    if = { limit = { MEX = { has_completed_focus = MEX_focus_royal_dutch_shell } } log = "MEX: Royal Dutch Oil" } else_if = { limit = { MEX = { has_completed_focus = MEX_focus_nationalize_the_oil_fields } }  log = "MEX: American Oil" }  else = { log = "MEX: No oil Picked" }
+    if = { limit = { MEX = { has_completed_focus = MEX_focus_state_education } } log = "MEX: State Education" } else_if = { limit = { MEX = { has_completed_focus = MEX_focus_knights_of_columbus } }  log = "MEX: Knigts of Columbus" }  else = { log = "MEX: No Center Path Fixed" }
+    if = { limit = { MEX = { has_completed_focus = MEX_focus_legacy_of_revolution } } log = "MEX: Communist Path" } else = { log = "MEX: Not Communist Path" }
+
+   # BRA
+    if = { limit = { BRA = { has_completed_focus = BRA_greater_federalism } } log = "BRA: Federalism" } else_if = { limit = { MEX = { has_completed_focus = BRA_continue_centralization } }  log = "BRA: Centralization" }  else = { log = "BRA: Monarchy" }
+   # SAF
+    if = { limit = { SAF = { has_completed_focus = SAF_improve_the_three_oh_three } } log = "SAF: Infantry Path" } else = { log = "SAF: Tank Path" }
+   # RAJ
+    if = { limit = { RAJ = { has_completed_focus = RAJ_two_nation_theory_dlc } } log = "RAJ: Two Nation Theory" }
+    else_if = { limit = { RAJ = { has_completed_focus = RAJ_india_united } } log = "RAJ: India United" }
+    else_if = { limit = { RAJ = { has_completed_focus = RAJ_curtail_the_zamindars } } log = "RAJ: Curtail Zamindars" }
+    else_if = { limit = { RAJ = { has_completed_focus = RAJ_expand_the_zamindari_system } } log = "RAJ: Expand Zamindari" }
+    else = { log = "RAJ: Uknown Path" }
+   # AST
+    if = {
+        limit = { AST = { has_completed_focus = AST_support_the_policy_of_appeasement } }
+
+        if = { limit = { AST = { has_completed_focus = AST_united_australia } } log = "AST: United Australia (Left)" } 
+        else_if = { limit = { AST = { has_completed_focus = AST_labor_party_of_australia } }  log = "AST: Labor Party of Australia (Right)" }  
+        else = { log = "AST: First Political Choice not Picked" }
+
+        if = { limit = { AST = { has_completed_focus = AST_menzies_war_plans } } log = "AST: Menzies War Plans (Left)" } 
+        else_if = { limit = { AST = { has_completed_focus = AST_labor_party_of_australia } }  log = "AST: Curtins War Plan (Right)" }  
+        else = { log = "AST: Second Political Choice not Picked" }
+
+        if = { limit = { AST = { has_completed_focus = AST_this_is_the_enemy } } log = "AST: This is the Enemy (Left)" } 
+        else_if = { limit = { AST = { has_completed_focus = AST_hes_coming_south } }  log = "AST: He's Coming South (Right)" }  
+        else = { log = "AST: Third Political Choice not Picked" }
+
+        if = { limit = { AST = { has_completed_focus = AST_perpetual_union_with_papua } } log = "AST: Papau Path" } 
+        else_if = { limit = { AST = { has_completed_focus = AST_hes_coming_south } }  log = "AST: Annex New Zealand Path" }  
+        else = { log = "AST: New Zealand Selection not made" }
+
+        if = { limit = { AST = { has_completed_focus = AST_expand_our_role } } log = "AST: Big Navy" } 
+        else_if = { limit = { AST = { has_completed_focus = AST_hes_coming_south } }  log = "AST: Support Navy" }  
+        else = { log = "AST: No navy choice made" }
+    } else = {
+        if = { limit = { AST = { has_completed_focus = AST_lang_plan } } log = "AST: Lang Plan (Left)" } 
+        else_if = { limit = { AST = { has_completed_focus = AST_exports_for_economic_recovery } }  log = "AST: Exports for Recovery (Right)" }  
+        else = { log = "AST: Eco Choice not Picked" }
+
+        if = { limit = { AST = { has_completed_focus = AST_the_ultimate_overseas_duty } } log = "AST: Ultimate Overseas Duty" }
+        else_if = { limit = { AST = { has_completed_focus = AST_pleading_britain } } log = "AST: Pleading Britain" }
+        else_if = { limit = { AST = { has_completed_focus = AST_inevitably_independent } } log = "AST: Inevitably Independent" }
+        else_if = { limit = { AST = { has_completed_focus = AST_bring_on_the_giant } } log = "AST: Bring on the Giant (USA)" }
+    }
+
+
+   # MON
+    if = { limit = { MON = { has_completed_focus = MON_buddhist_prosecution } } log = "MON: Left Side Political" } else = { log = "MON: Right Side Political" }
+    if = { limit = { MON = { has_completed_focus = MON_industrial_development } } log = "MON: Left Side Eco" } else = { log = "MON: Right Side Eco" }
+
+   # YUG
+    if = { limit = { YUG = { has_completed_focus = YUG_yugoslavia_first } } log = "YUG: Big Euro" } else_if = { limit = { YUG = { has_completed_focus = YUG_the_experiment_has_failed } } log = "YUG: Cuck Yugo" } else = { log = "YUG: Democratic Yugo" }
+    if = { limit = { YUG = { has_completed_focus = YUG_ustase_military } } log = "YUG: Ustase Military" } else_if = { limit = { YUG = { has_completed_focus = YUG_a_mechanised_army } } log = "YUG: Mechanized Army" } else = { log = "YUG: Elite Army" }
+
+   # ROM
+    if = { limit = { ROM = { has_completed_focus = ROM_expand_oil_production } } log = "ROM: Oil Eco" } else = { log = "ROM: Industry Eco" }
+    if = { limit = { ROM = { has_completed_focus = ROM_appoint_pro_allied_government } } log = "ROM: Pro Allied Government" } else = { log = "ROM: Pro Axis Government" }
+    if = { limit = { ROM = { has_completed_focus = ROM_compromise_with_liberals } } log = "ROM: Liberal" } else_if = { limit = { ROM = { has_completed_focus = ROM_the_royal_dictatorship } } log = "ROM: Royal Dictatorship" } else = { log = "ROM: Goga Codreanu" }
+
+   # BUL
+    if = { limit = { BUL = { has_completed_focus = BUL_the_tsars_regime } } log = "BUL: Tsar Path" } else = { log = "BUL: Fascist Path" }
+
+   # FIN
+    if = { limit = { FIN = { has_completed_focus = FIN_finnish_neutrality } } log = "FIN: Non Aligned Finland" } else = { log = "FIN: Fascist Finland" }
+
+   # HUN - TODO
+    if = { limit = { HUN = { has_completed_focus = wuw_HUN_reinstate_the_pragmatic_sanction } } log = "HUN: Hapsburgs" }
+    else_if = { limit = { HUN = { has_completed_focus = wuw_HUN_establishing_a_new_dynasty } } log = "HUN: New Dynasty" }
+    else_if = { limit = { HUN = { has_completed_focus = wuw_HUN_strengthen_horthys_reign } } log = "HUN: Strengthen Horthy" }
+    else = { log = "HUN: Undermine Horthy" }
+
+   # SIA
+    if = { limit = { SIA = { has_completed_focus = SIA_shuffle_pridi_to_the_minister_of_interior } } log = "SIA: Monarchist Path" } else_if = { limit = { SIA = { has_completed_focus = SIA_for_the_preservation_of_siamese_independence } }  log = "SIA: Fascist Path" }
+    if = { limit = { SIA = { has_completed_focus = SIA_return_of_the_king } } log = "SIA: Player Path (old)" } else_if = { limit = { SIA = { has_completed_focus = SIA_khana_ratsadon } }  log = "SIA: AI Path (old)" }
+    if = { limit = { SIA = { has_completed_focus = SIA_the_bank_of_siam } } log = "SIA: Left Side Eco" } else_if = { limit = { SIA = { has_completed_focus = SIA_thai_rice_company } }  log = "SIA: Right side Eco" }
+    if = { limit = { SIA = { has_completed_focus = SIA_western_military } } log = "SIA: Western Military (old)" } else_if = { limit = { SIA = { has_completed_focus = SIA_japanese_military } }  log = "SIA: Japanese Military (old)" }
+
+   # MAN
+    if = { limit = { MAN = { has_completed_focus = MAN_tsr_national_cooperation_government } } log = "MAN: National Cooperation (Cores)" } else_if = { limit = { MAN = { has_completed_focus = MAN_tsr_empire_of_manchukuo } }  log = "MAN: Empire of Manchu" } else = { log = "MAN: Right Side Manchu" }
+
+    log = "Game Rules different from standard TFB:"
+    # Log Rules
+    if = { limit = { has_global_flag = meta_game_flag } log = "Meta Player Start - Countries Merged" }
+    if = { limit = { NOT = { has_global_flag = fatherless_spirit_flag } } log = "Fatherless disabled" }
+    if = { limit = { NOT = { has_global_flag = tension_game_flag } } log = "UK Can't be permanently tension locked by Germany" }
+    if = { limit = { NOT = { has_global_flag = coastal_raiders_flag } } log = "Coastal Raiders Disabled" }
+    if = { limit = { NOT = { has_global_flag = tfb_australia_flag } } log = "Using Vanilla Australia" }
+    if = { limit = { NOT = { has_global_flag = vanilla_siam_flag } } log = "Using TFB Siam" }
+    if = { limit = { NOT = { has_global_flag = capped_volunteers_flag } } log = "Not using capped Spanish Volunteers" }
+    if = { limit = { has_global_flag = vp_system_flag } log = "Using VP System" }
+    if = { limit = { NOT = { has_global_flag = china_waves_style_flag } } log = "China Waves 1 and 2 are an OR instead of an AND for Casualties and Surrender Progress" }
+    if = { limit = { has_global_flag = belgium_forts_allowed } log = "Belgium can do its fort path" }
+    if = { limit = { has_global_flag = rhineland_first_flag } log = "Germany MUST do Rhineland first" }
+    if = { limit = { NOT = { has_global_flag = axis_manpower_flag } } log = "Germany and Hungary don't need manpower requirements for their early focuses" }
+    if = { limit = { NOT = { has_global_flag = deny_sudetenland_flag } } log = "Allies are NOT ALLOWED to deny sudetenland" }
+    if = { limit = { NOT = { has_global_flag = deny_anschluss_flag } } log = "Austria is NOT ALLOWED to deny anschlus" }
+    if = { limit = { has_global_flag = danzig_autodeclare } log = "Danzig or War will auto declare against Poland" }
+    if = { limit = { NOT = { has_global_flag = soviet_volunteer_flag } } log = "Soviets may not send Volunteers" }
+    if = { limit = { NOT = { has_global_flag = intel_share_time_flag } } log = "Factions share intel at game start instead of historical times" }
+    if = { limit = { NOT = { has_global_flag = naval_treaty_status_flag } } log = "Naval Treaty Challenge Decisions are Disabled" }
+    if = { limit = { has_global_flag = deny_tangiers } log = "UK is not allowed to Deny Tangiers" }
+    if = { limit = { NOT = { has_global_flag = allow_voice_lines_flag } } log = "Voicelines Disabled" }
+    if = { limit = { has_global_flag = navy_cap_150_flag } }
+    else_if = { limit = { has_global_flag = navy_cap_100_flag } log = "Naval Cap is 100"}
+    else_if = { limit = { has_global_flag = navy_cap_disabled_flag } log = "Naval Cap is disabled"}
+    if = { limit = { has_global_flag = dockyard_cg_enabled_flag } }
+    else_if = { limit = { has_global_flag = dockyard_cg_build_speed_flag } log = "Increased Consumer Goods for Dockyards is changed to Dockyard build speed"}
+    else_if = { limit = { has_global_flag = dockyard_cg_disabled_flag } log = "Increased Consumer Goods for Dockyards is disabled"}
+    if = { limit = { has_global_flag = allow_china_waves_3_flag } }
+    else_if = { limit = { has_global_flag = allow_china_waves_2_flag } log = "AI China will only spawn 2 waves"}
+    else_if = { limit = { has_global_flag = allow_china_waves_1_flag } log = "AI China will only spawn 1 wave"}
+    else_if = { limit = { has_global_flag = allow_china_waves_disabled_flag } log = "AI China will spawn 0 waves"}
+    if = { limit = { has_global_flag = italy_dynamic_join_flag } }
+    else_if = { limit = { has_global_flag = italy_quick_join_flag } log = "Italy will join in 90 days" }
+    else_if = { limit = { has_global_flag = italy_long_join_flag } log = "Italy will join in 270 days"}
+    else_if = { limit = { has_global_flag = italy_standard_join_flag } log = "Italy will join in 180 days"}
+    if = { limit = { has_global_flag = using_old_raj } log = "Using old Raj" }
+
+  # Log Factory Counts
+    eco_log = yes
+}
+
+
+eco_log = {
+    log = "Eco Log Date: [?global.date.GetDateStringNoHourLong]"
+    log = "TAG - CIV/MIL/DOC"
+    for_each_scope_loop = {
+        array = global.countries
+        if = { 
+            limit = { 
+                exists = yes
+                num_of_factories > 24
+            } 
+            log = "[THIS.getTAG] - [?THIS.num_of_civilian_factories]/[?THIS.num_of_military_factories]/[?THIS.num_of_naval_factories]"
+        } 
+    }
+
+    log = "IN FACTION - CIV/MIL/DOC (Only counts CURRENTLY in faction)"
+    GER = {
+        set_temp_variable = { faction_temp_civs = 0 }
+        set_temp_variable = { faction_temp_mills = 0 }
+        set_temp_variable = { faction_temp_docs = 0 }
+        for_each_scope_loop = {
+            array = faction_members
+            if = { 
+                limit = { exists = yes } 
+                add_to_temp_variable = { faction_temp_civs = THIS.num_of_civilian_factories }
+                add_to_temp_variable = { faction_temp_mills = THIS.num_of_military_factories }
+                add_to_temp_variable = { faction_temp_docs = THIS.num_of_naval_factories }
+            } 
+        }
+        log = "Axis Eco - [?faction_temp_civs]/[?faction_temp_mills]/[?faction_temp_docs]"
+    }
+    ENG = {
+        set_temp_variable = { faction_temp_civs = 0 }
+        set_temp_variable = { faction_temp_mills = 0 }
+        set_temp_variable = { faction_temp_docs = 0 }
+        for_each_scope_loop = {
+            array = faction_members
+            if = { 
+                limit = { exists = yes } 
+                add_to_temp_variable = { faction_temp_civs = THIS.num_of_civilian_factories }
+                add_to_temp_variable = { faction_temp_mills = THIS.num_of_military_factories }
+                add_to_temp_variable = { faction_temp_docs = THIS.num_of_naval_factories }
+            } 
+        }
+        log = "Allies Eco - [?faction_temp_civs]/[?faction_temp_mills]/[?faction_temp_docs]"
+    }
+    JAP = {
+        set_temp_variable = { faction_temp_civs = 0 }
+        set_temp_variable = { faction_temp_mills = 0 }
+        set_temp_variable = { faction_temp_docs = 0 }
+        for_each_scope_loop = {
+            array = faction_members
+            if = { 
+                limit = { exists = yes } 
+                add_to_temp_variable = { faction_temp_civs = THIS.num_of_civilian_factories }
+                add_to_temp_variable = { faction_temp_mills = THIS.num_of_military_factories }
+                add_to_temp_variable = { faction_temp_docs = THIS.num_of_naval_factories }
+            } 
+        }
+        log = "Copro Eco - [?faction_temp_civs]/[?faction_temp_mills]/[?faction_temp_docs]"
+    }
+    SOV = {
+        set_temp_variable = { faction_temp_civs = 0 }
+        set_temp_variable = { faction_temp_mills = 0 }
+        set_temp_variable = { faction_temp_docs = 0 }
+        for_each_scope_loop = {
+            array = faction_members
+            if = { 
+                limit = { exists = yes } 
+                add_to_temp_variable = { faction_temp_civs = THIS.num_of_civilian_factories }
+                add_to_temp_variable = { faction_temp_mills = THIS.num_of_military_factories }
+                add_to_temp_variable = { faction_temp_docs = THIS.num_of_naval_factories }
+            } 
+        }
+        log = "Commintern Eco - [?faction_temp_civs]/[?faction_temp_mills]/[?faction_temp_docs]"
+    }
+}

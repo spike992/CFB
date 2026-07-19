@@ -354,8 +354,8 @@ island_defences = {
 
 	icon = GFX_modifiers_SOV_armored_battery
 	
-	army_defence_factor = 0.15
-	cas_damage_reduction = 0.5
+	#army_defence_factor = 0.15
+	#cas_damage_reduction = 0.5
 	dig_in_speed_factor = 1.0
 	max_dig_in_factor = 0.15
 	local_supplies_for_controller = 1
@@ -599,7 +599,7 @@ SOV_seraya_loshad_battery = { #STATE MODIFIER
 	cas_damage_reduction = 0.1
 	dig_in_speed_factor = 0.25
 	max_dig_in_factor = 0.1
-	pocket_penalty = -0.15
+	#pocket_penalty = -0.15
 }
 
 SOV_krasnaya_gorka_battery = { #STATE MODIFIER
@@ -611,7 +611,7 @@ SOV_krasnaya_gorka_battery = { #STATE MODIFIER
 	cas_damage_reduction = 0.1
 	dig_in_speed_factor = 0.25
 	max_dig_in_factor = 0.1
-	pocket_penalty = -0.15
+	#pocket_penalty = -0.15
 }
 
 SOV_armored_battery_35 = { #STATE MODIFIER #German designation Maksim Gorky
@@ -623,8 +623,8 @@ SOV_armored_battery_35 = { #STATE MODIFIER #German designation Maksim Gorky
 	cas_damage_reduction = 0.1
 	dig_in_speed_factor = 0.25
 	max_dig_in_factor = 0.1
-	pocket_penalty = -0.15
-	supply_factor = 1
+	#pocket_penalty = -0.15
+	supply_consumption_factor = 1
 }
 
 SOV_factory_worker_militias_raised = { #STATE MODIFIER
@@ -1437,28 +1437,10 @@ NO_PORTS_CAN_BE_BUILT = {
 	state_production_speed_naval_base_factor = -9999
 }
 
-PACIFIC_stats_modifier_hidden = { 
-	enable = { always = yes }
-	#icon = GFX_war_of_survival
-
-	army_attack_factor = global.test_army_attack_factor
-	army_defence_factor  = global.test_army_defence_factor
-}
-
-
-PACIFIC_stats_modifier_tooltip = {
-	enable = { always = yes }
-
-	icon = GFX_idea_jap_militarism_shogun
-
-	custom_modifier_tooltip = PACIFIC_MODIFIER_TOOLTIP_tt
-	custom_modifier_tooltip = PACIFIC_MODIFIER_STAT
-}
-
 PACIFIC_COMMONWEALTH_controls_original = {
 	enable = { always = yes }
 
-	icon = GFX_idea_jap_militarism_shogun_faded
+	icon = GFX_idea_jap_militarism_shogun_faded_small
 
 	custom_modifier_tooltip = PACIFIC_DESCRIPTOR_tt
 }
@@ -1466,7 +1448,7 @@ PACIFIC_COMMONWEALTH_controls_original = {
 PACIFIC_COMMONWEALTH_axis_controlled = {
 	enable = { always = yes }
 
-	icon = GFX_idea_jap_militarism_shogun
+	icon = GFX_idea_jap_militarism_shogun_small
 
 	custom_modifier_tooltip = PACIFIC_DESCRIPTOR_tt
 	naval_invasion_penalty = global.PACIFIC_DEBUFF_INVASION_PENALTY
@@ -1475,7 +1457,7 @@ PACIFIC_COMMONWEALTH_axis_controlled = {
 PACIFIC_COMMONWEALTH_allied_controlled = {
 	enable = { always = yes }
 
-	icon = GFX_idea_jap_militarism_shogun
+	icon = GFX_idea_jap_militarism_shogun_small
 
 	custom_modifier_tooltip = PACIFIC_DESCRIPTOR_tt
 	army_speed_factor_for_controller = global.PACIFIC_DEBUFF_SPEED_PENALTY
@@ -1552,4 +1534,34 @@ ROM_king_carol_ii = {
 	consumer_goods_expected_value = ROM_king_carol_ii_consumer_goods_expected_value
 	consumer_goods_factor = ROM_king_carol_ii_consumer_goods_factor
 	industrial_capacity_factory = ROM_king_carol_ii_industrial_capacity_factory
+}
+
+ITA_libyan_local_construction = {
+	enable = { always = yes }
+	remove_trigger = {
+		NOT = {
+			is_controlled_by = ITA
+		}
+	}
+	icon = GFX_modifiers_generic_military_plans
+
+	state_production_speed_buildings_factor = 0.25
+}
+
+ITA_libyan_evac = {
+	enable = { always = yes }
+	remove_trigger = {
+		NOT = {
+			is_controlled_by = ITA
+		}
+	}
+	icon = GFX_modifiers_generic_military_plans
+	
+	state_production_speed_buildings_factor = -0.75
+}
+
+SPR_appeasement_modifier = {
+	icon = GFX_goal_generic_forceful_treaty
+	enable = { always = yes }
+	power_balance_daily = SPR_power_balance_daily
 }

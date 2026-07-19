@@ -1380,7 +1380,7 @@ news_event = {
 				retire_character = SOV_lev_trotsky
 				swap_ideas = {
 					remove_idea = trotskyite_plot_nsb
-					add_idea = trotskyite_plot_purged
+					add_idea = trotskyite_plot_purged3
 				}
 			}
 		}
@@ -3055,6 +3055,7 @@ news_event = {
 	major = yes
 	
 	trigger = {
+		always = no
 		446 = { is_controlled_by = GER }
 		446 = { is_owned_by = ENG }
 		GER = { has_war_with = ENG }
@@ -3229,12 +3230,18 @@ news_event = {
 	trigger = {
 		446 = { is_controlled_by = ITA }
 		446 = { is_owned_by = ENG }
-		ITA = { has_war_with = ENG }
+		OR = {
+			ITA = { has_war_with = ENG }
+			GER = { has_war_with = ENG }
+		}
 		NOT = { has_global_flag = fall_of_cairo_ita }
 	}
 	
 	immediate = {
 		set_global_flag = fall_of_cairo_ita
+		if = { limit = { ITA = { has_country_flag = cuck_italy_flag } }
+			ENG = { add_to_faction = ETH }
+		}
 	}
 	
 	mean_time_to_happen = {

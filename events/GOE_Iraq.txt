@@ -441,11 +441,11 @@ country_event = {
 		# 	}
 			
 		# }
-		# ELSE = {
+		effect_tooltip = {
 			455 = {
 				transfer_state_to = IRQ
 			}
-		# }
+		}
 	}
 }
 
@@ -648,11 +648,13 @@ country_event = {
 		# 	}
 			
 		# }
-		# ELSE = {
+		effect_tooltip = {
 			455 = {
 				transfer_state_to = IRQ
 			}
-		# }
+		}
+		hidden_effect = { drop_cosmetic_tag = yes }
+		set_cosmetic_tag = IRQ_hashemite_arab_federation
 	}
 }
 
@@ -896,12 +898,12 @@ country_event = {
 					hours = 1
 				}
 			}
-			effect_tooltip = {
+			# effect_tooltip = {
 				every_owned_state = {
 					limit = { is_core_of = SYR }
 					transfer_state_to = FROM
 				}
-			}
+			# }
 		}
 	}
 	# No
@@ -985,47 +987,47 @@ country_event = {
 			base = 5
 		}
 	}
-	option = {
-		name = IRQ_political_events.42.b
-		ai_chance = {
-			base = 1
-			modifier = {
-				factor = 5
-				is_in_faction = yes
-			}
-			modifier = {
-				factor = 10
-				any_allied_country = {
-					is_major = yes
-				}
-			}
-		}
-		IF = { 
-			limit = { 
-				FROM = { tag = SYR }
-			} 
-			ROOT = { 
-				create_wargoal = {
-					target = FROM
-					type = puppet_wargoal_focus
-				}
-			}
-		}
-		ELSE = {
-			every_owned_state = {
-				limit = {
-					is_core_of = SYR
-				}
-				add_claim_by = ROOT
-			}
-			ROOT = {
-				create_wargoal = {
-					target = FROM
-					type = take_claimed_state
-				}
-			}
-		}
-	}
+	# option = {
+	# 	name = IRQ_political_events.42.b
+	# 	ai_chance = {
+	# 		base = 1
+	# 		modifier = {
+	# 			factor = 5
+	# 			is_in_faction = yes
+	# 		}
+	# 		modifier = {
+	# 			factor = 10
+	# 			any_allied_country = {
+	# 				is_major = yes
+	# 			}
+	# 		}
+	# 	}
+	# 	IF = { 
+	# 		limit = { 
+	# 			FROM = { tag = SYR }
+	# 		} 
+	# 		ROOT = { 
+	# 			create_wargoal = {
+	# 				target = FROM
+	# 				type = puppet_wargoal_focus
+	# 			}
+	# 		}
+	# 	}
+	# 	ELSE = {
+	# 		every_owned_state = {
+	# 			limit = {
+	# 				is_core_of = SYR
+	# 			}
+	# 			add_claim_by = ROOT
+	# 		}
+	# 		ROOT = {
+	# 			create_wargoal = {
+	# 				target = FROM
+	# 				type = take_claimed_state
+	# 			}
+	# 		}
+	# 	}
+	# }
 }
 
 ## FRA accepts transfer of SYR
@@ -1055,12 +1057,66 @@ country_event = {
 				drop_cosmetic_tag = yes
 			}
 			ELSE = {
-				every_owned_state = {
-					limit = {
-						is_core_of = SYR
+				effect_tooltip = {
+					every_owned_state = {
+						limit = {
+							is_core_of = SYR
+						}
+						transfer_state_to = ROOT
 					}
-					transfer_state_to = ROOT
 				}
+			}
+		}
+	}
+}
+
+## IRQ reuests our annexation
+country_event = {
+	id = IRQ_political_events.44
+	title = IRQ_political_events.44.t
+	desc = IRQ_political_events.44.desc
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	# Ok
+	option = {
+		name = IRQ_political_events.44.a
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = 0
+				has_war_with = IRQ
+			}
+		}
+		effect_tooltip = {
+			FROM = {
+				annex_country = {
+				 	target = ROOT
+				 	transfer_troops = yes
+				} 
+			}
+		}
+		custom_effect_tooltip = GAME_OVER_TT
+		IRQ = {
+			country_event = {
+				id = IRQ_political_events.43
+				hours = 1
+			}
+		}
+	}
+	# No
+	option = {
+		name = IRQ_political_events.44.b
+		ai_chance = {
+			base = 0
+			modifier = {
+				add = 1
+				has_war_with = IRQ
+			}
+		}
+		IRQ = {
+			country_event = {
+				id = IRQ_political_events.42
+				hours = 1
 			}
 		}
 	}
@@ -1124,12 +1180,9 @@ country_event = {
 					hours = 1
 				}
 			}
-		# 	effect_tooltip = {
-		# 		every_owned_state = {
-		# 			limit = { is_core_of = KUW }
-		# 			transfer_state_to = FROM
-		# 		}
-		# 	}
+			656 = {
+				transfer_state_to = FROM
+			}
 		# }
 	}
 	# No
@@ -1202,47 +1255,47 @@ country_event = {
 			base = 5
 		}
 	}
-	option = {
-		name = IRQ_political_events.52.b
-		ai_chance = {
-			base = 1
-			modifier = {
-				factor = 5
-				is_in_faction = yes
-			}
-			modifier = {
-				factor = 10
-				any_allied_country = {
-					is_major = yes
-				}
-			}
-		}
-		# FROM = {
-		# 	IF = { 
-		# 		limit = { 
-		# 			tag = KUW 
-		# 		} 
-		# 		ROOT = { 
-		# 			create_wargoal = {
-		# 				target = PREV
-		# 				type = puppet_wargoal_focus
-		# 			}
-		# 		}
-		# 	}
-		# 	ELSE = {
-		# 		every_owned_state = {
-		# 			limit = {
-		# 				is_core_of = KUW
-		# 			}
-		# 			add_claim_by = ROOT
-		# 		}
-		# 		create_wargoal = {
-		# 			target = PREV
-		# 			type = take_claimed_state
-		# 		}
-		# 	}
-		# }
-	}
+	# option = {
+	# 	name = IRQ_political_events.52.b
+	# 	ai_chance = {
+	# 		base = 1
+	# 		modifier = {
+	# 			factor = 5
+	# 			is_in_faction = yes
+	# 		}
+	# 		modifier = {
+	# 			factor = 10
+	# 			any_allied_country = {
+	# 				is_major = yes
+	# 			}
+	# 		}
+	# 	}
+	# 	FROM = {
+	# 		IF = { 
+	# 			limit = { 
+	# 				tag = KUW 
+	# 			} 
+	# 			ROOT = { 
+	# 				create_wargoal = {
+	# 					target = PREV
+	# 					type = puppet_wargoal_focus
+	# 				}
+	# 			}
+	# 		}
+	# 		ELSE = {
+	# 			every_owned_state = {
+	# 				limit = {
+	# 					is_core_of = KUW
+	# 				}
+	# 				add_claim_by = ROOT
+	# 			}
+	# 			create_wargoal = {
+	# 				target = PREV
+	# 				type = take_claimed_state
+	# 			}
+	# 		}
+	# 	}
+	# }
 }
 
 ## ENG accepts transfer of KUW
@@ -1258,7 +1311,7 @@ country_event = {
 		ai_chance = {
 			base = 10
 		}
-		# FROM = {
+		FROM = {
 		# 	IF = { 
 		# 		limit = { 
 		# 			tag = KUW 
@@ -1266,15 +1319,12 @@ country_event = {
 		# 		ROOT = { puppet = KUW }
 		# 		drop_cosmetic_tag = yes
 		# 	}
-		# 	ELSE = {
-		# 		every_owned_state = {
-		# 			limit = {
-		# 				is_core_of = KUW
-		# 			}
-		# 			transfer_state_to = ROOT
-		# 		}
-		# 	}
-		# }
+			effect_tooltip = {
+				656 = {
+					transfer_state_to = ROOT
+				}
+			}
+		}
 	}
 }
 
@@ -1343,6 +1393,49 @@ country_event = {
 	title = IRQ_political_events.61.t
 	desc = IRQ_political_events.61.desc
 	picture = GFX_report_event_generic_troops_at_rivier_in_iraq
+
+	immediate = { #Iraq keeps it's Government form
+		set_variable = { IRQ_democratic_popularity = IRQ.party_popularity_100@democratic }
+		clamp_variable = {
+			var = IRQ_democratic_popularity
+			min = 0
+			max = 100
+		}
+		set_variable = { IRQ_communism_popularity = IRQ.party_popularity_100@communism }
+		clamp_variable = {
+			var = IRQ_communism_popularity
+			min = 0
+			max = 100
+		}
+		set_variable = { IRQ_neutrality_popularity = IRQ.party_popularity_100@neutrality }
+		clamp_variable = {
+			var = IRQ_neutrality_popularity
+			min = 0
+			max = 100
+		}
+		set_variable = { IRQ_fascism_popularity = IRQ.party_popularity_100@fascism }
+		clamp_variable = {
+			var = IRQ_fascism_popularity
+			min = 0
+			max = 100
+		}
+		if = {
+			limit = {
+				has_government = democratic
+			}
+			set_country_flag = IRQ_is_democratic_flag
+		}
+		if = {
+			limit = {
+				OR = {
+					has_government = neutrality
+					has_government = fascism
+				}
+			}
+			set_country_flag = IRQ_is_neutral_or_fascist_flag
+		}
+	}
+
 	is_triggered_only = yes
 	# Ok
 	option = {
@@ -1364,7 +1457,37 @@ country_event = {
 			every_owned_state = {
 				transfer_state_to = ROOT
 			}
+			set_popularities = { #Iraq keeps it's Government form
+				democratic = IRQ_democratic_popularity
+				fascism = IRQ_fascism_popularity
+				communism = IRQ_communism_popularity
+				neutrality = IRQ_neutrality_popularity
+			}
+			if = {
+				limit = {
+					has_country_flag = IRQ_is_democratic_flag
+				}
+				set_politics = { ruling_party = democratic }
+			}
+			if = {
+				limit = {
+					has_country_flag = IRQ_is_neutral_or_fascist_flag
+				}
+				set_politics = { ruling_party = neutrality }
+			}
 		}
+
+		IRQ_nuri_as_said = {
+			add_country_leader_role = {
+				country_leader = {
+					ideology = despotism
+					expire = "1965.1.1.1"
+					traits = { IRQ_british_lackey }
+				}
+				promote_leader = yes
+			} 
+		}
+
 		add_ideas = IRQ_anglo_iraqi_treaty
 		IF = {
 			limit = {
@@ -1396,6 +1519,10 @@ country_event = {
 				has_idea = IRQ_sharaf_bin_rajeh
 			}
 			remove_ideas = IRQ_sharaf_bin_rajeh
+			set_can_be_fired_in_advisor_role = {
+				character = IRQ_sharaf_bin_rajeh
+				value = yes
+			}
 		}
 		IF = {
 			limit = {
@@ -1721,7 +1848,7 @@ country_event = {
 	option = {
 		name = IRQ_political_events.73.a
 		ai_chance = {
-			base = 10
+			base = 0
 		}
 
 		IF = {
@@ -1766,7 +1893,7 @@ country_event = {
 	option = {
 		name = IRQ_political_events.73.b
 		ai_chance = {
-			base = 0
+			base = 10
 		}
 
 		add_popularity = {
@@ -1811,6 +1938,7 @@ country_event = {
 				give_resource_rights = {
 					receiver = GER
 					state = 676
+					resources = { oil }
 				}
 			}
 		}
@@ -1879,6 +2007,7 @@ country_event = {
 		give_resource_rights = {
 			receiver = GER
 			state = 676
+			resources = { oil }
 		}
 	}
 }

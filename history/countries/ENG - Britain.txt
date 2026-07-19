@@ -51,8 +51,19 @@ IF = {
 		has_dlc = "Graveyard of Empires"
 	}
 	give_guarantee = IRQ
-	IRQ = {
-		give_military_access = ENG
+}
+
+IRQ = {
+	give_military_access = ENG
+	IF = {
+		limit = {
+			has_dlc = "No Compromise, No Surrender"
+		}
+		diplomatic_relation = { 
+			country = ENG
+			relation = OFFER_AIR_BASE_ACCESS 
+			active = yes
+		}
 	}
 }
 
@@ -107,6 +118,7 @@ set_technology = {
 	basic_train = 1
 	early_transport_plane = 1
 	camelry = 1
+	camel_logistics_support_tech = 1
 }
 
 set_grand_doctrine = grand_battleplan
@@ -417,6 +429,13 @@ recruit_character = ENG_john_cockcroft
 recruit_character = ENG_charles_goodeve
 recruit_character = ENG_nevil_shute
 recruit_character = ENG_robert_watson_watt
+
+if = { 
+	limit = {
+		has_dlc = "Thunder at Our Gates"
+	}
+	recruit_character = ENG_robert_menzies #Through AST focus tree, Australian PM Menzies can become leader in ENG
+}
 
 if = {
 	limit = {

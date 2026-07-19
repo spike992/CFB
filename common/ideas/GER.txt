@@ -1,6 +1,26 @@
 ideas = {
 
 	country = {
+
+		GER_good_weather_army = {
+			allowed = {
+				original_tag = GER
+			}
+
+			available = {
+				date < 1942.3.1
+			}
+
+			removal_cost = 1
+
+			picture = JAP_ainu_expertise
+			
+			modifier = {
+				acclimatization_cold_climate_gain_factor = -9.99
+			}
+		
+		}	
+
 		sour_loser = {
 			
 			allowed = {
@@ -1113,6 +1133,7 @@ ideas = {
 			}
 		}
 
+		# Defunct
 		GER_barbarossa = {
 			allowed = {
 				always = no
@@ -1128,7 +1149,7 @@ ideas = {
 
 			targeted_modifier = {
 				tag = SOV
-				breakthrough_bonus_against = 0.15
+				attack_bonus_against = 0.10
 				defense_bonus_against = 0.05
 			}
 
@@ -2315,8 +2336,8 @@ ideas = {
 			removal_cost = -1
 
 			modifier = {
-				air_intercept_efficiency = 0.1
-			 	air_superiority_efficiency = 0.1
+				air_intercept_efficiency = 0.05
+			 	air_superiority_efficiency = 0.05
 			 	air_night_penalty = -0.1
 			}
 		}
@@ -3219,7 +3240,7 @@ ideas = {
 			modifier = {
 				weekly_manpower = 50
 				conscription_factor = 0.05
-				democratic_drift = 0.04
+				democratic_drift = 0.05
 			}
 		}
 
@@ -4609,19 +4630,24 @@ ideas = {
 				}
 			}
 		}
-		GER_good_weather_army = {
+		### Germany Barb Debuff
+		GER_barb_winter_debuff = {
+			name = GER_barb_winter_debuff
+			picture = generic_production_bonus
+
 			allowed = {
-				original_tag = GER
+				always = no
 			}
-	
+
 			removal_cost = -1
-	
-			picture = can_wartime_prices_and_trade_board
-			
-			modifier = {
-				acclimatization_cold_climate_gain_factor = -9.99
+
+			modifier = { 
+				out_of_supply_factor = 0.3
+				supply_node_range = -0.2
+				army_speed_factor = -0.2
+				army_morale_factor = -0.15
+				acclimatization_cold_climate_gain_factor = -0.25
 			}
-			
 		}
 	}
 

@@ -17,6 +17,7 @@
 	continuous_focus_position = { x = 50 y = 700 }
 	
 	default = no
+	shared_focus = ABDA_abdacom
 	focus = {
 		id = FRA_devalue_the_franc
 		icon = GFX_focus_fra_devalue_the_franc
@@ -1336,6 +1337,7 @@
 			show_ideas_tooltip = maxime_weygand
 			set_global_flag = FRA_DEFENSIVE
 			army_experience = 10
+			set_variable = { global.FRA_defensive_date = global.date }
 		}
 	}
 	focus = {
@@ -1357,6 +1359,7 @@
 			show_ideas_tooltip = maurice_gamelin
 			set_global_flag = FRA_AGGRESSIVE
 			army_experience = 10
+			set_variable = { global.FRA_aggresive_date = global.date }
 		}
 	}
 	focus = {
@@ -2155,6 +2158,7 @@
 				uses = 2
 				bonus = 0.75
 			}
+			set_variable = { global.FRA_socialist_date = global.date }
 		}
 	}
 	focus = {
@@ -2197,8 +2201,9 @@
 			swap_ideas = {
 				remove_idea = FRA_inefficient_economy_2
 				add_idea = FRA_inefficient_economy_1
-				}
+			}
 			set_global_flag = FRA_mainland
+			set_variable = { global.FRA_nationalize_industry_date = global.date }
 		}
 	}
 	focus = {
@@ -3735,6 +3740,31 @@
 					has_war_with = ITA
 				}
 				exists = yes
+				is_subject = no 
+			}
+			ITA = {
+				exists = yes
+				is_subject = no 
+			}
+			AND = {
+				OR = {
+					ITA = { 
+						controls_state = 550 
+					}					
+					any_country = {
+						is_subject_of = ITA
+						controls_state = 550 
+					}
+				}
+				OR = {
+					ITA = { 
+						controls_state = 559 
+					}					
+					any_country = {
+						is_subject_of = ITA
+						controls_state = 559 
+					}
+				}
 			}
 			has_country_flag = lar_france_stresa_front_italy_agreed
 		}

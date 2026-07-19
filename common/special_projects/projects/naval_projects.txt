@@ -2395,6 +2395,260 @@ sp_naval_super_heavy_battleship = {
 	
 }
 
+#Super Heavy Carrier
+sp_naval_super_heavy_carrier = {
+	specialization = specialization_naval
+
+	project_tags = sp_tag_surface_ship
+
+	ai_will_do = {
+		base = 1
+		modifier = {
+			factor = 0
+			AND = {
+				ROOT = { is_major = no } # Pointless unless we are big enough to do this
+				ROOT = { has_government = democratic }# Don't spend the tax payers' money on this, then they won't vote for you again
+			}
+		}
+		modifier = {
+			factor = 0.3
+			AND = {
+				ROOT = { is_major = no } # Pointless unless we are big enough to do this
+			}
+		}
+		modifier = {
+			factor = 3
+			ROOT = {
+				OR = {
+					original_tag = JAP
+					original_tag = USA
+					original_tag = ENG
+				}
+			}
+		}
+	}
+
+	allowed = {
+		#FREE
+	}
+
+	available = {
+		FROM = {
+			if = {
+				limit = {
+					has_dlc = "Man the Guns"
+					}
+			has_tech = basic_ship_hull_carrier
+
+			}
+			else = {
+				has_tech = basic_carrier
+			}
+		}
+	}
+
+	complexity = sp_complexity.medium
+	prototype_time = sp_time.prototype.medium
+
+
+	resource_cost = {
+		resources = {
+			steel = 120
+			chromium = 80
+		 }
+	}
+
+	breakthrough_cost = {
+		specialization_naval = 1
+	}
+	project_output = {
+		country_effects = {
+			if = {
+				limit = {
+					has_dlc = "Man the Guns"
+				}
+				add_design_template_bonus = {
+					name = sp_naval_super_heavy_carrier_free_design
+					uses = 1
+					cost_factor = 1
+					equipment = ship_hull_carrier_super_1
+				}
+			}
+		}
+
+		enable_equipments = {
+			ship_hull_carrier_super_1
+		}
+
+		enable_equipment_modules = {
+			limit = { has_dlc = "Man the Guns" }
+			ship_armor_shbb
+		}
+
+	}
+	generic_prototype_rewards = {
+		sp_naval_generic_reward_scientist_xp_1
+		sp_naval_generic_reward_scientist_xp_2
+		sp_naval_generic_reward_scientist_xp_3
+		sp_naval_generic_reward_navy_xp_1
+		sp_naval_generic_reward_navy_xp_2
+		sp_naval_generic_reward_navy_xp_3
+		sp_naval_generic_reward_major_progress_1
+		sp_naval_generic_reward_major_progress_2
+		sp_naval_generic_reward_major_progress_3
+		sp_naval_generic_reward_test_failure_1
+		sp_naval_generic_reward_test_failure_2
+		sp_naval_generic_reward_test_failure_3
+		sp_naval_generic_reward_armor_tech_1
+		sp_naval_generic_reward_armor_tech_2
+		sp_naval_generic_reward_armor_tech_3
+	}
+
+	unique_prototype_rewards = {
+		sp_naval_super_heavy_carrier_unique_reward_a = {
+			fire_only_once = yes
+
+			threshold = {
+				min = 10
+				max = 50
+			}
+
+			weight = {
+				base = 100
+			}
+
+			option = {
+				token = sp_naval_super_heavy_carrier_preference_a_a
+
+				iteration_output = {
+					country_effects = {
+						add_equipment_bonus = {
+							name = sp_super_heavy_carrier_eq_bonus_detection
+							bonus = {
+								ship_hull_carrier_super_1 = {
+									surface_detection = 0.1
+									sub_detection = 0.1
+								}
+							}
+						}
+					}
+
+				}
+			}
+
+			option = {
+				token = sp_naval_super_heavy_carrier_preference_b_a
+				default = yes
+				iteration_output = {
+					country_effects = {
+						add_equipment_bonus = {
+							name = sp_super_heavy_carrier_eq_bonus_speed
+							bonus = {
+								ship_hull_carrier_super_1 = {
+									naval_speed = 0.05
+									naval_weather_penalty_factor = -0.1
+								}
+							}
+						}
+					}
+				}
+			}
+
+			option = {
+				token = sp_naval_super_heavy_carrier_preference_c_a
+
+				iteration_output = {
+					country_effects = {
+						add_equipment_bonus = {
+							name = sp_super_heavy_carrier_eq_bonus_light_attack
+							bonus = {
+								ship_hull_carrier_super_1 = {
+									naval_light_gun_hit_chance_factor = 0.05
+									lg_attack = 0.05
+									lg_armor_piercing = 0.05
+								}
+							}
+						}
+					}
+				}
+			}
+
+		}
+
+		sp_naval_super_heavy_carrier_unique_reward_b = {
+			fire_only_once = yes
+
+			threshold = {
+				min = 55
+				max = 95
+			}
+
+			weight = {
+				base = 100
+			}
+
+			option = {
+				token = sp_naval_super_heavy_carrier_preference_a_b
+
+				iteration_output = {
+					country_effects = {
+						add_equipment_bonus = {
+							name = sp_super_heavy_carrier_eq_bonus_armor
+							bonus = {
+								ship_hull_carrier_super_1 = {
+									armor_value = 0.05
+									max_strength = 0.1
+									build_cost_ic = 0.05
+								}
+							}
+						}
+					}
+
+				}
+			}
+
+			option = {
+				token = sp_naval_super_heavy_carrier_preference_b_b
+
+				iteration_output = {
+					country_effects = {
+						add_equipment_bonus = {
+							name = sp_super_heavy_carrier_eq_bonus_anti_air
+							bonus = {
+								ship_hull_carrier_super_1 = {
+									anti_air_attack = 0.125
+									reliability = 0.025
+								}
+							}
+						}
+					}
+				}
+			}
+
+			option = {
+				token = sp_naval_super_heavy_carrier_preference_c_b
+
+				iteration_output = {
+					country_effects = {
+						add_equipment_bonus = {
+							name = sp_super_heavy_carrier_eq_bonus_cheap_construction
+							bonus = {
+								ship_hull_carrier_super_1 = {
+									reliability = -0.15
+									build_cost_ic = -0.05
+								}
+							}
+						}
+					}
+				}
+			}
+
+		}
+
+	}
+
+}
+
 #Advanced Modern Super Battleship
 sp_naval_modern_battleship = {
 	specialization = specialization_naval 

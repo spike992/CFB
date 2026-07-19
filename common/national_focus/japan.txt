@@ -5481,7 +5481,11 @@ focus_tree = {
 		}
 
 		bypass = {
-
+			524 = {
+				NOT = {
+					is_owned_and_controlled_by = ROOT
+				}
+			}
 		}
 
 		cancel_if_invalid = yes
@@ -6207,7 +6211,7 @@ focus_tree = {
 		}
 
 		available = {
-			is_in_faction = no
+			#is_in_faction = no
 			is_subject = no
 		}
 
@@ -6822,9 +6826,9 @@ focus_tree = {
 		#mutually_exclusive = { focus = JAP_utilize_our_polish_friendship }
 		x = 0
 		y = 2
-		relative_position_id = JAP_the_jeweled_spear_has_struck
+		relative_position_id = JAP_children_of_the_sun
 
-		prerequisite = { focus = JAP_the_jeweled_spear_has_struck }
+		prerequisite = { focus = JAP_children_of_the_sun }
 
 		cost = 5
 
@@ -7636,6 +7640,10 @@ focus_tree = {
 
 		bypass = {
 
+		}
+
+		allow_branch = {
+			always = no
 		}
 
 		cancel_if_invalid = yes
@@ -13012,6 +13020,9 @@ focus_tree = {
 				635 = {
 					state_is_fully_controlled_by_ROOT_or_subject = yes
 				}
+				1071 = {
+					state_is_fully_controlled_by_ROOT_or_subject = yes
+				}
 				#726 = {
 				#	state_is_fully_controlled_by_ROOT_or_subject = yes
 				#}
@@ -13053,6 +13064,7 @@ focus_tree = {
 						state = 726
 						state = 648
 						state = 645
+						state = 1071
 					}
 					state_is_fully_controlled_by_ROOT_or_subject = yes
 					air_base < 2 
@@ -13083,6 +13095,7 @@ focus_tree = {
 						state = 726
 						state = 648
 						state = 645
+						state = 1071
 					}
 					state_is_fully_controlled_by_ROOT_or_subject = yes
 					any_province_building_level = {
@@ -13130,6 +13143,7 @@ focus_tree = {
 							state = 726
 							state = 648
 							state = 645
+							state = 1071
 						}
 						state_is_fully_controlled_by_ROOT_or_subject = yes
 						radar_station < 1
@@ -13218,6 +13232,7 @@ focus_tree = {
 						state = 737
 						state = 634
 						state = 669
+						state = 1070
 						state = 734
 						state = 635
 					}
@@ -13563,6 +13578,8 @@ focus_tree = {
 					amount = 60
 				}
 			}
+
+			INS_cancel_hol_ally_strategy_entirely_effect = yes
 			
 			unlock_decision_category_tooltip = prospect_for_resources
 				
@@ -13833,6 +13850,70 @@ focus_tree = {
 					}
 				}
 			}
+
+			hidden_trigger = {
+				IF = {
+					limit = {
+						is_ai = yes 
+					}
+
+					OR = {
+						# Either Siam doesn't hold it 
+						NOT = {
+							286 = { 
+								CONTROLLER = { 
+									original_tag = SIA
+								} 
+							}
+							670 = { 
+								CONTROLLER = { 
+									original_tag = SIA
+								} 
+							}
+							1017 = { 
+								CONTROLLER = { 
+									original_tag = SIA
+								} 
+							}
+							741 = { 
+								CONTROLLER = { 
+									original_tag = SIA
+								} 
+							}
+						}
+
+						# Siam holds it and we have decided on our approach tpwards them first 
+						AND = {
+							OR = {
+								286 = { 
+									CONTROLLER = { 
+										original_tag = SIA
+									} 
+								}
+								670 = { 
+									CONTROLLER = { 
+										original_tag = SIA
+									} 
+								}
+								1017 = { 
+									CONTROLLER = { 
+										original_tag = SIA
+									} 
+								}
+								741 = { 
+									CONTROLLER = { 
+										original_tag = SIA
+									} 
+								}
+							}
+							OR = {
+								has_completed_focus = JAP_sea_pressure_siam
+								has_completed_focus = JAP_occupy_siam
+							}
+						}
+					}
+				}
+			}	
 			
 		}
 
@@ -13990,6 +14071,14 @@ focus_tree = {
 		}
 
 		available = {
+			if = {
+				limit = {
+					has_dlc = "Thunder at Our Gates"
+				}
+				is_ai = no #I am not AI
+			}
+
+
 			is_subject = no
 			is_faction_leader = yes
 			SIA = {
@@ -13998,7 +14087,9 @@ focus_tree = {
 				is_in_faction = no
 				NOT = {
 					has_war_with = ROOT
+					
 				}
+				has_rule = can_join_factions
 			}
 		}
 
@@ -14015,7 +14106,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_HISTORICAL }
 
 		completion_reward = {
-			SIA = { add_ideas = SIA_rubber_extortion }
+
 			SIA = {
 				country_event = {
 					id = SEA_japan_foreign_policy.4
@@ -14060,13 +14151,9 @@ focus_tree = {
 		}
 
 		bypass = {
-			OR = {
-				SIA = {
-					has_war_with = ROOT
-				}
-				SIA = { exists = no }
+			SIA = {
+				has_war_with = ROOT
 			}
-			
 		}
 
 		will_lead_to_war_with = SIA
@@ -14092,12 +14179,35 @@ focus_tree = {
 			}
 
 			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_non_aggression_pact_with = SIA
+				}
 
-			create_wargoal = {
-				type = annex_everything
-				target = SIA
-				expire = 0
-			}	
+				diplomatic_relation = { 
+					country = SIA
+					relation = non_aggression_pact 
+					active = no 
+				}
+			}
+
+			if = {
+				limit = {
+					is_ai = yes
+					is_historical_focus_on = yes
+				}
+				declare_war_on = {
+					target = SIA
+					type = annex_everything
+				}
+			}
+			else = {
+				create_wargoal = {
+					type = annex_everything
+					target = SIA
+					expire = 0
+				}	
+			}
 
 		}
 	}
@@ -14173,7 +14283,7 @@ focus_tree = {
 		will_lead_to_war_with = MAL
 		will_lead_to_war_with = ENG
 		will_lead_to_war_with = FRA
-		will_lead_to_war_with = USA
+		# will_lead_to_war_with = SNG
 		will_lead_to_war_with = INS
 		will_lead_to_war_with = HOL
 		# will_lead_to_war_with = SAR
@@ -14309,6 +14419,7 @@ focus_tree = {
 						}
 					}
 				}
+				INS_cancel_hol_ally_strategy_entirely_effect = yes
 			}
 			IF = {
 				limit = {
@@ -18861,10 +18972,13 @@ focus_tree = {
 		}
 
 		available = {
-			has_country_leader = {
-				ruling_only = yes
-				character = JAP_yamakawa_kikue
-			}	
+			OR = {
+				has_idea = JAP_yamakawa_kikue
+				has_country_leader = {
+					ruling_only = yes
+					character = JAP_yamakawa_kikue
+				}
+			}
 		}
 
 		bypass = {
@@ -18909,10 +19023,13 @@ focus_tree = {
 		}
 
 		available = {
-			has_country_leader = {
-				ruling_only = yes
-				character = JAP_yamakawa_kikue
-			}	
+			OR = {
+				has_idea = JAP_yamakawa_kikue
+				has_country_leader = {
+					ruling_only = yes
+					character = JAP_yamakawa_kikue
+				}
+			}
 		}
 
 		bypass = {
@@ -26764,6 +26881,34 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
+			IF = {
+				limit = {
+					has_dlc = "No Compromise, No Surrender"
+				}
+				add_faction_initiative = 1
+				custom_effect_tooltip = generic_skip_one_line_tt
+			}
+
+			every_subject_country = {
+				limit = {
+					NOT = {
+						has_idea = JAP_new_order_in_east_asia_idea
+					}
+					capital_scope = {
+						is_on_continent = asia
+					}
+				}
+				add_ideas = JAP_new_order_in_east_asia_idea
+			}
+
+			IF = {
+				limit = {
+					has_dlc = "La Resistance"
+				}
+				custom_effect_tooltip = generic_skip_one_line_tt
+				JAP_create_ignatius_lincoln_operative = yes
+			}
+
 			if = {
 				limit = {
 					OR = {
@@ -29484,8 +29629,23 @@ focus_tree = {
 					name = JAP_sea_mountaineers
 					cost_reduction = 0.25
 					uses = 2
-					category = cat_mountaineers_doctrine
+					category = special_forces_doctrine
 				}
+				custom_effect_tooltip = mountaineer_subdoctrines_default_add_mastery_bonus_effect_tooltip
+				hidden_effect = {
+					add_mastery_bonus = {
+						name = JAP_sea_mountaineers
+						bonus = 0.1
+						days = 240
+						sub_doctrine = mountaineers_1
+					}
+					add_mastery_bonus = {
+						name = JAP_sea_mountaineers
+						bonus = 0.1
+						days = 240
+						sub_doctrine = mountaineers_2
+					}
+				}				
 				custom_effect_tooltip = generic_skip_one_line_tt
 			}
 
@@ -29555,8 +29715,23 @@ focus_tree = {
 					name = JAP_jungle_adaptation
 					cost_reduction = 0.25
 					uses = 2
-					category = cat_rangers_doctrine
+					category = special_forces_doctrine
 				}
+				custom_effect_tooltip = ranger_subdoctrines_default_add_mastery_bonus_effect_tooltip
+				hidden_effect = {
+					add_mastery_bonus = {
+						name = JAP_jungle_adaptation
+						bonus = 0.1
+						days = 240
+						sub_doctrine = rangers_1
+					}
+					add_mastery_bonus = {
+						name = JAP_jungle_adaptation
+						bonus = 0.1
+						days = 240
+						sub_doctrine = rangers_2
+					}
+				}				
 				custom_effect_tooltip = generic_skip_one_line_tt
 			}
 
@@ -31375,9 +31550,24 @@ focus_tree = {
 				add_potential_special_forces_tree = yes
 				add_doctrine_cost_reduction = {
 					name = JAP_expand_the_snlf
-					cost_reduction = 0.5
+					cost_reduction = 0.25
 					uses = 1
-					category = cat_marines_doctrine
+					category = special_forces_doctrine
+				}
+				custom_effect_tooltip = marine_subdoctrines_default_add_mastery_bonus_effect_tooltip
+				hidden_effect = {
+					add_mastery_bonus = {
+						name = JAP_expand_the_snlf
+						bonus = 0.1
+						days = 240
+						sub_doctrine = marines_1
+					}
+					add_mastery_bonus = {
+						name = JAP_expand_the_snlf
+						bonus = 0.1
+						days = 240
+						sub_doctrine = marines_2
+					}
 				}
 			}
 			
@@ -32036,6 +32226,10 @@ focus_tree = {
 			
 			JAP_add_or_modify_army_and_naval_air_services = yes
 			add_to_variable = { JAP_airforce_sortie_efficiency = 0.1 tooltip = sortie_efficiency_tt }
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = JAP_form_the_kido_butai_tt
 
 		}
 

@@ -6,32 +6,28 @@ joint_focus = {
 	y = 0
 
 	offset = {
-		x = 63
+		x = 49
 		y = 0
 		trigger = {
 			tag = IRQ
-			AND = {
-				NOT = { has_completed_focus = IRQ_promote_kurdish_culture }
-				NOT = { has_completed_focus = IRQ_ensure_sunni_dominance }
-			}
 		}
 	}
 
 	offset = {
-		x = 37
+		x = -26
 		y = 0
 		trigger = {
 			tag = IRQ
-			AND = {
-				has_completed_focus = IRQ_promote_kurdish_culture
-				NOT = { has_completed_focus = IRQ_ensure_sunni_dominance }
+			has_game_rule = {
+				rule = obsolete_focus_branches_visibility
+				option = HIDE
 			}
+			has_completed_focus = IRQ_promote_kurdish_culture
 		}
 	}
 
-
 	offset = {
-		x = 57
+		x = 49
 		y = 0
 		trigger = {
 			tag = IRQ
@@ -305,6 +301,10 @@ joint_focus = {
 	icon = GFX_focus_AFG_sugar_factory
 	prerequisite = { focus = SSB_economic_cooperation }
 	relative_position_id = SSB_economic_cooperation
+
+	allow_branch = {
+		country_exists = AFG
+	}
 
 	x = 2
 	y = 1
@@ -684,6 +684,10 @@ joint_focus = {
 	prerequisite = { focus = SSB_military_cooperation }
 	relative_position_id = SSB_military_cooperation
 
+	allow_branch = {
+		always = no
+	}
+
 	x = -3
 	y = 1
 
@@ -806,6 +810,12 @@ joint_focus = {
 	prerequisite = { focus = SSB_joint_military_exercises focus = SSB_integration_of_our_infrastructure }
 	relative_position_id = SSB_joint_military_exercises
 
+	allow_branch = {
+		TUR = {
+			has_dynamic_modifier = { modifier = SSB_saadabad_pact }
+		}
+	}
+
 	x = -2
 	y = 2
 
@@ -879,6 +889,10 @@ joint_focus = {
 	icon = GFX_focus_PER_desert_training
 	prerequisite = { focus = SSB_joint_military_exercises focus = SSB_integration_of_our_infrastructure }
 	relative_position_id = SSB_joint_military_exercises
+
+	allow_branch = {
+		country_exists = AFG
+	}
 
 	x = 0
 	y = 2

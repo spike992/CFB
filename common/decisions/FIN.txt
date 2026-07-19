@@ -290,12 +290,18 @@ FIN_motti_tactics_category = {
 			}
 
 			#Trigger event only once per country
-			every_enemy_country = {
-				limit = {
-					NOT = { has_country_flag = FIN_aware_about_motti_tactics_flag }
-				}
-				country_event = { id = AAT_finland_motti.01 hours = 1 }
-			}
+			#every_enemy_country = {
+			#	limit = {
+			#		NOT = { has_country_flag = FIN_aware_about_motti_tactics_flag }
+			#	}
+			#	country_event = { id = AAT_finland_motti.01 hours = 1 }
+			#}
+			#every_enemy_country = {
+			#	limit = {
+			#		NOT = { has_country_flag = FIN_aware_about_motti_tactics_flag }
+			#	}
+			#	country_event = { id = AAT_finland_motti.01 hours = 1 }
+			#}
 		}
 
 		ai_will_do = {
@@ -403,7 +409,7 @@ FIN_motti_tactics_category = {
 ##  ##  ## ##       ######### ##        ##     ## ##  ####    ##       ######### ##       ##     ## ##             ## 
 ##  ##  ## ##       ##     ## ##        ##     ## ##   ###    ##    ## ##     ## ##    ## ##     ## ##       ##    ## 
  ###  ###  ######## ##     ## ##         #######  ##    ##     ######  ##     ##  ######  ##     ## ########  ######  
-
+ 
 
 FIN_national_defense_category = {
 	FIN_set_up_weapon_caches_in_state = {
@@ -527,15 +533,19 @@ FIN_national_defense_category = {
 			}
 		}
 	}
+	
 
-	FIN_surrender_to_the_soviet_union = {
-		priority = 20
+##      ## #### ##    ## ######## ######## ########     ##      ##    ###    ######## 
+##  ##  ##  ##  ###   ##    ##    ##       ##     ##    ##  ##  ##   ## ##   ##     ##
+##  ##  ##  ##  ####  ##    ##    ##       ##     ##    ##  ##  ##  ##   ##  ##     ##
+##  ##  ##  ##  ## ## ##    ##    ######   ########     ##  ##  ## ##     ## ######## 
+##  ##  ##  ##  ##  ####    ##    ##       ##   ##      ##  ##  ## ######### ##   ##  
+##  ##  ##  ##  ##   ###    ##    ##       ##    ##     ##  ##  ## ##     ## ##    ## 
+ ###  ###  #### ##    ##    ##    ######## ##     ##     ###  ###  ##     ## ##     ## 
 
-		icon = GFX_decision_generic_form_nation
+	FIN_reclaim_territory = {
 
-		ai_will_do = { #AI should just start peace negotiations via event
-			base = 0.01
-		}
+		icon = generic_nationalism
 
 		state_target = yes
 		on_map_mode = map_and_decisions_view
@@ -547,247 +557,619 @@ FIN_national_defense_category = {
 			original_tag = FIN
 		}
 
+		fire_only_once = yes
+		
+
+		fire_only_once = yes
+		
 		available = {
-			has_war_with = SOV
-			surrender_progress > 0.25
-			has_civil_war = no
-			OR = {
-				is_in_faction = no
-				is_faction_leader = yes
+			SOV = {
+				owns_state = 146
+				owns_state = 147
 			}
-			NOT = { has_country_flag = FIN_reached_out_to_soviets_to_surrender_flag } #Tooltip purposes
+			has_full_control_of_state = 146
+			has_full_control_of_state = 147
+			has_full_control_of_state = 146
+			has_full_control_of_state = 147
 		}
 
 		visible = {
-			has_war_with = SOV
-			has_civil_war = no
-			OR = {
-				is_in_faction = no
-				is_faction_leader = yes
-			}
-			NOT = { has_country_flag = FIN_reached_out_to_soviets_to_surrender_flag }
-			has_country_flag = FIN_available_decision_to_surrender_to_soviets_flag
-		}
-
-		cost = 35
-
-		complete_effect = {
-			clr_country_flag = FIN_available_decision_to_surrender_to_soviets_flag
-			set_country_flag = FIN_reached_out_to_soviets_to_surrender_flag
-
 			SOV = {
-				country_event = { id = finland.8 hours = 1 }
+				owns_state = 146
+				owns_state = 147
 			}
-
-			custom_effect_tooltip = if_they_accept_tt
-			event_option_tooltip = finland.7.a
+		}
+		
+		complete_effect = {
+			add_political_power = 100
+			add_stability = 0.1
+			transfer_state = 147
+			transfer_state = 146
+		}
+		
+		ai_will_do = {
+			factor = 100
 		}
 	}
-
-	FIN_demand_peace_negotiations = {
-		priority = 21
-
-		icon = GFX_decision_eng_trade_unions_support
-
-		ai_will_do = {
-			base = 0.5
-		}
-
-		fire_only_once = yes
-
-		state_target = any_controlled_state
-		on_map_mode = map_and_decisions_view
-		targets = {
-			195
-    	}
+	
+	FIN_restore_mannerheim_line = {
+		icon = generic_protection
 
 		allowed = {
 			original_tag = FIN
 		}
+		
+		cost = 50
+		#fire_only_once = yes
+		
+		available = {
+			has_full_control_of_state = 146
+			owns_state = 146
+		}
+		
+		cancel_trigger = {
+			NOT = { controls_state = 146 }
+		}
+		
+		visible = {
+			has_completed_focus = FIN_mannerheim_line
+			#has_global_flag = SOV_winter_war_win
+			#has_country_flag = winter_war_finished
+			#NOT = { has_country_flag = VT_line_built }
+			controls_state = 146
+			146 = {
+				NOT = {
+					has_dynamic_modifier = {
+						modifier = FIN_mannerheim_line_expansion_modifier
+						scope = FIN
+					}
+				}
+			}
+		}
+		modifier = {
+			civilian_factory_use = 5
+        }
+		days_remove = 90
+		remove_effect = {
+			146 = {
+				custom_effect_tooltip = FIN_mannerheim_replace_tt
+				if = {
+					limit = {
+						any_province_building_level = {
+							province = {
+								id = 9100
+								id = 9105
+							}
+							building = fortress
+							level < 1
+						}
+					}
+					set_building_level = {
+						type = fortress
+						level = 2
+						instant_build = yes
+						province = 9100
+					}
+					set_building_level = {
+						type = fortress
+						level = 2
+						instant_build = yes
+						province = 9105
+					}
+				}
+				hidden_effect = {
+					remove_dynamic_modifier = {
+						modifier = FIN_mannerheim_line_crumbling_modifier
+					}
+					add_dynamic_modifier = {
+						modifier = FIN_mannerheim_line_expansion_modifier
+						scope = FIN
+					}
+				}
+			}
+			set_country_flag = VT_line_built
+		}
+		
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	
+	FIN_evacuate_karjala = {
+		icon = GFX_decision_hol_war_on_pacifism
+		priority = 2
+		
+		allowed = {
+			always = no
+		}
+		
+		available = {
+			OR = {
+				146 = {
+					arms_factory < 1
+					industrial_complex <1
+				}
+				custom_trigger_tooltip = {
+					tooltip = FIN_won_winter_war_evacuation
+					has_global_flag = SOV_winter_war_loss
+				}
+			}
+		}
+		
+		highlight_states = {
+			highlight_state_targets = {
+				state = 146
+			}
+		}
+
+		cancel_trigger = {
+			OR = {
+				NOT = { controls_state = 927 }
+				NOT = { controls_state = 146 }
+			}
+		}
+		
+		cancel_effect = {
+			add_stability = -0.15
+		}
+		
+		complete_effect = {
+			add_war_support = 0.05
+			#add_stability = 0.05
+		}
+		
+		days_mission_timeout = 7
+		is_good = no
+		
+		timeout_effect = {
+			if = {
+				limit = { 
+					146 = {
+						arms_factory > 0
+					}
+				}
+				146 = {
+					remove_building = { 
+						type = arms_factory 
+						level = 1 
+					}
+				}
+				927 = {
+					add_building_construction = { 
+						type = arms_factory 
+						level = 1 
+						instant_build = yes 
+					}
+					add_extra_state_shared_building_slots = 1
+				}
+				add_stability = 0.01
+			}
+			else_if = {
+				limit = { 
+					146 = {
+						industrial_complex > 0
+					}
+				}
+				146 = {
+					remove_building = { 
+						type = industrial_complex 
+						level = 1 
+					}
+				}
+				927 = {
+					add_building_construction = { 
+						type = industrial_complex 
+						level = 1 
+						instant_build = yes 
+					}
+					add_extra_state_shared_building_slots = 1
+				}
+				add_stability = 0.01
+			}
+			activate_mission = FIN_evacuate_karjala
+		}
+	}
+
+	FIN_winter_war_timer_fake = { #Timer for Finland so they see how much until war is over
+		icon = generic_operation
+		priority = 1
+
+		allowed = {
+			always = no
+		}
+
+		available = {
+			OR = {
+				has_war = no
+				GER = { has_war_with = SOV }
+			}
+		}
+		
+		days_mission_timeout = 180
+		fire_only_once = yes
+
+		timeout_effect = {
+			effect_tooltip = {
+				white_peace = SOV
+				FIN = { country_event = finland.508 }
+			}
+		}
+	}
+	
+	FIN_surrender_soviets = {
+		icon = GFX_decision_eng_trade_unions_support
+		priority = 50
+
+		allowed ={
+			original_tag = FIN
+		}
+
+		fire_only_once = yes
+		
+		visible = {
+			has_war_with = SOV
+			NOT = { has_country_flag = winter_war_finished  }
+			NOT = { GER = { has_war_with = SOV } } #Maybe this prevents weird winter war buggy stuff
+		}
+
+		cancel_trigger = {
+			NOT = { has_war_with = SOV }
+		}
+
+		days_remove = 5
 
 		available = {
 			has_war_with = SOV
-			controls_state = 195 #LENINGRAD
-			has_country_flag = FIN_can_demand_peace_negotiations_flag
-			has_country_flag = FIN_winter_war_ongoing_flag
 			has_civil_war = no
+			is_in_faction = no
 			OR = {
-				is_in_faction = no
-				is_faction_leader = yes
+				casualties > 40000
+				surrender_progress > 0.20
+				OR = {
+					NOT = {
+						controls_state = 146
+					}
+					NOT = {
+						controls_state = 927
+					}
+				}
 			}
 		}
 
+		remove_effect = {
+			set_global_flag = SOV_winter_war_win
+			set_country_flag = winter_war_finished
+			SOV = {
+				white_peace = FIN
+			}
+			country_event = finland.507
+			hidden_effect = {
+				if = { #Event to transfer mils
+					limit = { 
+						146 = {
+							arms_factory > 0
+						}
+					}
+					SOV = {
+						country_event = finland.505
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	
+	FIN_victory_soviets = {
+		icon = GFX_decision_eng_trade_unions_demand
+		priority = 50
+		allowed = {
+			original_tag = FIN
+		}
+		fire_only_once = yes
 		visible = {
 			has_war_with = SOV
-			has_civil_war = no
-			OR = {
-				is_in_faction = no
-				is_faction_leader = yes
-			}
-			has_country_flag = FIN_winter_war_ongoing_flag
-			NOT = { has_country_flag = FIN_winter_war_peace_demanded_flag }
+			NOT = { has_country_flag = winter_war_finished  }
+			NOT = { GER = { has_war_with = SOV } } #Maybe this prevents weird winter war buggy stuff
+		}
+		
+		cancel_trigger = {
+			NOT = { has_war_with = SOV }
 		}
 
-		complete_effect = {
-			#Controlling states in Kola or East Karelia allows for territorial demands
-			if = {
-				limit = {
-					OR = {
-						213 = { #MURMANSK
-							is_owned_by = SOV
-							is_controlled_by = FIN
-						}
-						215 = { #ONEGA
-							is_owned_by = SOV
-							is_controlled_by = FIN
-						}
-						216 = { #OLONETS
-							is_owned_by = SOV
-							is_controlled_by = FIN
-						}
-					}
-				}
-				#Apply state flags to keep track of the states that should be included (any state control hange after activating the decision will not count)
-				#Done like this for tooltip purposes, otherwise it's problematic (adding flags and checking for them in the same decision)
-				#MURMANSK
-				if = {
-					limit = {
-						213 = {
-							is_owned_by = SOV
-							is_controlled_by = FIN
-						}
-					}
-					213 = { set_state_flag = FIN_demanded_by_finland_in_winter_war_flag }
-				}
-				#ONEGA
-				if = {
-					limit = {
-						215 = {
-							is_owned_by = SOV
-							is_controlled_by = FIN
-						}
-					}
-					215 = { set_state_flag = FIN_demanded_by_finland_in_winter_war_flag }
-				}
-				#OLONETS
-				if = {
-					limit = {
-						216 = {
-							is_owned_by = SOV
-							is_controlled_by = FIN
-						}
-					}
-					216 = { set_state_flag = FIN_demanded_by_finland_in_winter_war_flag }
-				}
-
+		available = {
+			has_war_with = SOV
+			#NOT = { has_war_with = GER } #why was this here?
+			OR = {
 				SOV = {
-					country_event = { id = AAT_finland_winter_war.06 hours = 1 } #Territorial demands event
+					casualties > 275000
 				}
-				custom_effect_tooltip = if_they_accept_tt
-				event_option_tooltip = AAT_finland_winter_war.06.a
+				controls_state = 195
+				#195 = {
+				#	CONTROLLER = {
+				#		OR = {
+				#			tag = FIN
+				#			is_subject_of = FIN
+				#		}
+				#	}
+				#}
 			}
-			else = {
-				SOV = {
-					country_event = { id = AAT_finland_winter_war.03 hours = 1 } #White peace event
-				}
-				custom_effect_tooltip = if_they_accept_tt
-				event_option_tooltip = AAT_finland_winter_war.03.a
-
-				custom_effect_tooltip = FIN_can_demand_territory_if_occupying_tt
-			}
-
+		}
+		days_remove = 5
+		remove_effect = {
 			set_global_flag = SOV_winter_war_loss
 			hidden_effect = {
-				MON = {
-					remove_ideas = MON_brothers_war
-				}
-				# if = {
-				# 	limit = {
-				# 		country_exists = KSR
-				# 	}
-				# 	KSR = {
-				# 		remove_ideas = MON_brothers_war
-				# 	}
-				# }
 				SOV = {
 					add_days_mission_timeout = {
 						mission = SOV_winter_war
 						days = -300
 					}
 				}
+				MON = { #Technically double dipping effects here but whatever
+					remove_ideas = MON_brothers_war
+				}
 			}
 			effect_tooltip = {
-				SOV = {
-					white_peace = FIN
-				}
+				white_peace = SOV
 				FIN = { set_country_flag = winter_war_finished }
-				diplomatic_relation = {
-					country = SOV
-					relation = non_aggression_pact
-				}
 				set_global_flag =  FIN_winter_victory
-
+				country_event = finland.508
 			}
-
-			#Manage flags
-			clr_country_flag = FIN_can_demand_peace_negotiations_flag
-			set_country_flag = FIN_winter_war_peace_demanded_flag
+		}
+		ai_will_do = {
+			factor = 50
 		}
 	}
 
-	FIN_hold_leningrad_mission = { #MISSION FOR FIN
-		priority = 30
-		icon = GFX_decision_hol_draw_up_staff_plans
-		allowed = {
-			tag = FIN
-		}
-
-		available = { #FAIL
-			NOT = { controls_state = 195 }
-		}
-
-		activation = {
-			has_country_flag = FIN_winter_war_ongoing_flag
-			has_war_with = SOV
-			controls_state = 195
-			195 = { is_owned_by = SOV }
-			NOT = { has_country_flag = FIN_winter_war_peace_demanded_flag }
-			NOT = { has_country_flag = FIN_can_demand_peace_negotiations_flag }
-			OR = {
-				is_in_faction = no
-				is_faction_leader = yes
-			}
-		}
-
-		#cancel_if_not_visible = yes
-		is_good = yes
-		fire_only_once = no
-		selectable_mission = no
-		days_mission_timeout = 30
-
-		cancel_trigger = {
-			hidden_trigger = {
-				OR = {
-					NOT = { has_country_flag = FIN_winter_war_ongoing_flag }
-					NOT = { has_war_with = SOV }
-					has_capitulated = yes
-				}
-			}
-		}
-
-		cancel_effect = {
-
-		}
-
-		timeout_effect = { #MISSION SUCCEEDED
-			set_country_flag = FIN_can_demand_peace_negotiations_flag
-			country_event = AAT_finland_winter_war.02
-		}
-
-		complete_effect = { #MISSION FAILED
-			
-		}
-	}
+#	FIN_surrender_to_the_soviet_union = {
+#		priority = 20
+#
+#		icon = GFX_decision_generic_form_nation
+#
+#		ai_will_do = { #AI should just start peace negotiations via event
+#			base = 0.01
+#		}
+#
+#		allowed = {
+#			original_tag = FIN
+#		}
+#
+#		available = {
+#			has_war_with = SOV
+#			surrender_progress > 0.25
+#			has_civil_war = no
+#			OR = {
+#				is_in_faction = no
+#				is_faction_leader = yes
+#			}
+#			NOT = { has_country_flag = FIN_reached_out_to_soviets_to_surrender_flag } #Tooltip purposes
+#		}
+#
+#		visible = {
+#			has_war_with = SOV
+#			has_civil_war = no
+#			OR = {
+#				is_in_faction = no
+#				is_faction_leader = yes
+#			}
+#			NOT = { has_country_flag = FIN_reached_out_to_soviets_to_surrender_flag }
+#			has_country_flag = FIN_available_decision_to_surrender_to_soviets_flag
+#		}
+#
+#		cost = 35
+#
+#		complete_effect = {
+#			clr_country_flag = FIN_available_decision_to_surrender_to_soviets_flag
+#			set_country_flag = FIN_reached_out_to_soviets_to_surrender_flag
+#
+#			SOV = {
+#				country_event = { id = finland.8 hours = 1 }
+#			}
+#
+#			custom_effect_tooltip = if_they_accept_tt
+#			event_option_tooltip = finland.7.a
+#		}
+#	}
+#
+#	FIN_demand_peace_negotiations = {
+#		priority = 21
+#
+#		icon = GFX_decision_eng_trade_unions_support
+#
+#		ai_will_do = {
+#			base = 0.5
+#		}
+#
+#		fire_only_once = yes
+#
+#		allowed = {
+#			original_tag = FIN
+#		}
+#
+#		available = {
+#			has_war_with = SOV
+#			controls_state = 195 #LENINGRAD
+#			has_country_flag = FIN_can_demand_peace_negotiations_flag
+#			has_country_flag = FIN_winter_war_ongoing_flag
+#			has_civil_war = no
+#			OR = {
+#				is_in_faction = no
+#				is_faction_leader = yes
+#			}
+#		}
+#
+#		visible = {
+#			has_war_with = SOV
+#			has_civil_war = no
+#			OR = {
+#				is_in_faction = no
+#				is_faction_leader = yes
+#			}
+#			has_country_flag = FIN_winter_war_ongoing_flag
+#			NOT = { has_country_flag = FIN_winter_war_peace_demanded_flag }
+#		}
+#
+#		complete_effect = {
+#			#Controlling states in Kola or East Karelia allows for territorial demands
+#			if = {
+#				limit = {
+#					OR = {
+#						213 = { #MURMANSK
+#							is_owned_by = SOV
+#							is_controlled_by = FIN
+#						}
+#						215 = { #ONEGA
+#							is_owned_by = SOV
+#							is_controlled_by = FIN
+#						}
+#						216 = { #OLONETS
+#							is_owned_by = SOV
+#							is_controlled_by = FIN
+#						}
+#					}
+#				}
+#				#Apply state flags to keep track of the states that should be included (any state control hange after activating the decision will not count)
+#				#Done like this for tooltip purposes, otherwise it's problematic (adding flags and checking for them in the same decision)
+#				#MURMANSK
+#				if = {
+#					limit = {
+#						213 = {
+#							is_owned_by = SOV
+#							is_controlled_by = FIN
+#						}
+#					}
+#					213 = { set_state_flag = FIN_demanded_by_finland_in_winter_war_flag }
+#				}
+#				#ONEGA
+#				if = {
+#					limit = {
+#						215 = {
+#							is_owned_by = SOV
+#							is_controlled_by = FIN
+#						}
+#					}
+#					215 = { set_state_flag = FIN_demanded_by_finland_in_winter_war_flag }
+#				}
+#				#OLONETS
+#				if = {
+#					limit = {
+#						216 = {
+#							is_owned_by = SOV
+#							is_controlled_by = FIN
+#						}
+#					}
+#					216 = { set_state_flag = FIN_demanded_by_finland_in_winter_war_flag }
+#				}
+#
+#				SOV = {
+#					country_event = { id = AAT_finland_winter_war.06 hours = 1 } #Territorial demands event
+#				}
+#				custom_effect_tooltip = if_they_accept_tt
+#				event_option_tooltip = AAT_finland_winter_war.06.a
+#			}
+#			else = {
+#				SOV = {
+#					country_event = { id = AAT_finland_winter_war.03 hours = 1 } #White peace event
+#				}
+#				custom_effect_tooltip = if_they_accept_tt
+#				event_option_tooltip = AAT_finland_winter_war.03.a
+#
+#				custom_effect_tooltip = FIN_can_demand_territory_if_occupying_tt
+#			}
+#
+#			set_global_flag = SOV_winter_war_loss
+#			hidden_effect = {
+#				MON = {
+#					remove_ideas = MON_brothers_war
+#				}
+#				# if = {
+#				# 	limit = {
+#				# 		country_exists = KSR
+#				# 	}
+#				# 	KSR = {
+#				# 		remove_ideas = MON_brothers_war
+#				# 	}
+#				# }
+#				SOV = {
+#					add_days_mission_timeout = {
+#						mission = SOV_winter_war
+#						days = -300
+#					}
+#				}
+#			}
+#			effect_tooltip = {
+#				SOV = {
+#					white_peace = FIN
+#				}
+#				FIN = { set_country_flag = winter_war_finished }
+#				diplomatic_relation = {
+#					country = SOV
+#					relation = non_aggression_pact
+#				}
+#				set_global_flag =  FIN_winter_victory
+#
+#			}
+#
+#			#Manage flags
+#			clr_country_flag = FIN_can_demand_peace_negotiations_flag
+#			set_country_flag = FIN_winter_war_peace_demanded_flag
+#		}
+#	}
+#
+#	FIN_hold_leningrad_mission = { #MISSION FOR FIN
+#		priority = 30
+#		icon = GFX_decision_hol_draw_up_staff_plans
+#		allowed = {
+#			tag = FIN
+#		}
+#
+#		available = { #FAIL
+#			NOT = { controls_state = 195 }
+#		}
+#
+#		activation = {
+#			has_country_flag = FIN_winter_war_ongoing_flag
+#			has_war_with = SOV
+#			controls_state = 195
+#			195 = { is_owned_by = SOV }
+#			NOT = { has_country_flag = FIN_winter_war_peace_demanded_flag }
+#			NOT = { has_country_flag = FIN_can_demand_peace_negotiations_flag }
+#			OR = {
+#				is_in_faction = no
+#				is_faction_leader = yes
+#			}
+#		}
+#
+#		#cancel_if_not_visible = yes
+#		is_good = yes
+#		fire_only_once = no
+#		selectable_mission = no
+#		days_mission_timeout = 30
+#
+#		cancel_trigger = {
+#			hidden_trigger = {
+#				OR = {
+#					NOT = { has_country_flag = FIN_winter_war_ongoing_flag }
+#					NOT = { has_war_with = SOV }
+#					has_capitulated = yes
+#				}
+#			}
+#		}
+#
+#		cancel_effect = {
+#
+#		}
+#
+#		timeout_effect = { #MISSION SUCCEEDED
+#			set_country_flag = FIN_can_demand_peace_negotiations_flag
+#			country_event = AAT_finland_winter_war.02
+#		}
+#
+#		complete_effect = { #MISSION FAILED
+#			
+#		}
+#	}
 
 	FIN_coastal_garrisons = {
 		priority = 6
@@ -866,31 +1248,31 @@ FIN_national_defense_category = {
 				}
 				division_template = {
 					name = "Rannikkorykmentti"
-					is_locked = yes
+					#is_locked = yes
 					priority = 0
 					template_counter = 6
 					regiments = {
-						infantry = { x = 0 y = 0 }
-						infantry = { x = 0 y = 1 }
-						infantry = { x = 0 y = 2 }					
+						garrison = { x = 0 y = 0 }
+						garrison = { x = 0 y = 1 }
+						garrison = { x = 0 y = 2 }					
 					}
 					support = {
 						engineer = { x = 0 y = 0 }
 						#artillery = { x = 0 y = 1 }
-						winter_logistics_support = { x = 0 y = 2 }
+						winter_logistics_support = { x = 0 y = 1 }
 					}
 				}
 			}
 			else = {
 				division_template = {
 					name = "Rannikkorykmentti"
-					is_locked = yes
+					#is_locked = yes
 					priority = 0
 					template_counter = 6
 					regiments = {
-						infantry = { x = 0 y = 0 }
-						infantry = { x = 0 y = 1 }
-						infantry = { x = 0 y = 2 }					
+						garrison = { x = 0 y = 0 }
+						garrison = { x = 0 y = 1 }
+						garrison = { x = 0 y = 2 }					
 					}
 					support = {
 						engineer = { x = 0 y = 0 }
@@ -1102,6 +1484,85 @@ FIN_national_defense_category = {
 			}
 		}
 	}
+	
+	FIN_seize_finnmark_decision = { #Take core state of Finnmark if RKG exists
+		priority = 50
+
+		icon = GFX_decision_generic_operation
+
+		ai_will_do = {
+			base = 200
+		}
+
+		allowed = {
+			original_tag = FIN
+		}
+
+		visible = {
+			has_completed_focus = FIN_keepers_of_the_north
+			RKG = { 
+				owns_state = 925
+				controls_state = 925
+			}
+		}
+
+		available = {
+		}
+
+		fire_only_once = yes
+
+		custom_cost_trigger = {
+			command_power > 29
+			has_political_power > 29
+		}
+		
+		custom_cost_text = FIN_seize_finnmark_decision_cost_cp_pp
+		
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -30
+				add_political_power = -30
+			}
+			transfer_state = 925
+		}
+	}
+	
+	FIN_black_mannerheim_decision = { #The Funny
+		priority = 50
+
+		icon = GFX_decision_hol_draw_up_staff_plans
+
+		ai_will_do = {
+			base = 200
+		}
+
+		allowed = {
+			original_tag = FIN
+		}
+
+		visible = {
+			date < 1936.01.03
+		}
+
+		fire_only_once = yes
+
+		#cost = 50
+
+		complete_effect = {
+			set_portraits = {
+				character = FIN_carl_mannerheim
+				army = { 
+					large ="GFX_portrait_FIN_carl_mannerheim_2" 
+					small ="GFX_idea_carl_mannerheim_2" 
+				}
+				civilian = { 
+					large ="GFX_portrait_FIN_carl_mannerheim_2"
+					small ="GFX_idea_carl_mannerheim_2" 
+				}
+			}
+			custom_effect_tooltip = FIN_black_mannerheim_decision_tt
+		}
+	}
 }
 
 FIN_finnish_resistance_category = {
@@ -1200,247 +1661,52 @@ FIN_finnish_resistance_category = {
 }
 
 war_measures = {
-	FIN_retake_leningrad_mission = { #MISSION FOR SOV
-		icon = GFX_decision_hol_draw_up_staff_plans
-		allowed = {
-			tag = SOV
-		}
-
-		available = { #SUCCEED
-			controls_state = 195
-		}
-
-		activation = {
-			FIN = { has_country_flag = FIN_winter_war_ongoing_flag }
-			has_war_with = FIN
-			FIN = { controls_state = 195 }
-			owns_state = 195
-			FIN = { NOT = { has_country_flag = FIN_winter_war_peace_demanded_flag } }
-		}
-
-		#cancel_if_not_visible = yes
-		is_good = no
-		fire_only_once = no
-		selectable_mission = no
-		days_mission_timeout = 30
-
-		cancel_trigger = {
-			hidden_trigger = {
-				FIN = {
-					OR = {
-						NOT = { has_country_flag = FIN_winter_war_ongoing_flag }
-						NOT = { has_war_with = SOV }
-						has_capitulated = yes
-					}
-				}
-			}
-		}
-
-		cancel_effect = {
-		}
-
-		timeout_effect = { #MISSION SUCCEEDED
-		}
-
-		complete_effect = { #MISSION FAILED
-			custom_effect_tooltip = FIN_finland_can_send_peace_demands_tt
-		}
-	}
-
-	FIN_reclaim_territory = {
-
-		icon = generic_nationalism
-
-		allowed = {
-			original_tag = FIN
-		}
-
-		fire_only_once = yes
-		
-		available = {
-			SOV = {
-				owns_state = 146
-				owns_state = 147
-			}
-			has_full_control_of_state = 146
-			has_full_control_of_state = 147
-		}
-
-		visible = {
-			SOV = {
-				owns_state = 146
-				owns_state = 147
-			}
-		}
-		
-		complete_effect = {
-			add_political_power = 100
-			add_stability = 0.1
-			transfer_state = 147
-			transfer_state = 146
-		}
-		
-		ai_will_do = {
-			factor = 100
-		}
-	}
-
-	FIN_surrender_soviets = {
-		icon = generic_nationalism
-
-		allowed ={
-			original_tag = FIN
-
-		}
-
-		fire_only_once = yes
-
-		state_target = yes
-		on_map_mode = map_and_decisions_view
-		targets = {
-			111
-    	}
-		
-		visible = {
-			has_war_with = SOV
-			NOT = { has_country_flag = winter_war_finished  }
-		}
-
-		cancel_trigger = {
-			NOT = { has_war_with = SOV }
-		}
-
-		days_remove = 7
-
-		available = {
-			has_war_with = SOV
-			has_civil_war = no
-			is_in_faction = no
-			OR = {
-				casualties > 65000
-				surrender_progress > 0.20
-				NOT = {
-					146 = {
-						CONTROLLER = {
-							OR = {
-								tag = FIN
-								is_subject_of = FIN
-							}
-						}
-					}
-				}
-			}
-		}
-
-		remove_effect = {
-			set_global_flag = SOV_winter_war_win
-			SOV = {
-				white_peace = FIN
-				transfer_state = 146
-				transfer_state = 147
-			}
-			FIN = { set_country_flag = winter_war_finished }
-			diplomatic_relation = {
-				country = SOV
-				relation = non_aggression_pact
-			}
-			hidden_effect = {
-				MON = {
-					remove_ideas = MON_brothers_war
-				}
-				# if = {
-				# 	limit = {
-				# 		country_exists = KSR
-				# 	}
-				# 	KSR = {
-				# 		remove_ideas = MON_brothers_war
-				# 	}
-				# }
-			}
-		}
-		ai_will_do = {
-			factor = 20
-		}
-	}
-	
-	FIN_victory_soviets = {
-		icon = generic_nationalism
-		allowed = {
-			original_tag = FIN
-		}
-		fire_only_once = yes
-		state_target = yes
-		on_map_mode = map_and_decisions_view
-		targets = {
-			195
-    	}
-		visible = {
-			has_war_with = SOV
-			NOT = { has_country_flag = winter_war_finished  }
-			
-		}
-		
-		cancel_trigger = {
-			NOT = { has_war_with = SOV }
-		}
-
-		available = {		
-			has_war_with = SOV
-			NOT = { has_war_with = GER }
-			OR = {
-				SOV = {
-					casualties > 350000
-				}
-				
-				195 = {
-					CONTROLLER = {
-						OR = {
-							tag = FIN
-							is_subject_of = FIN
-						}
-					}
-				}
-			}
-		}
-		days_remove = 7
-		remove_effect = {
-			set_global_flag = SOV_winter_war_loss
-			hidden_effect = {
-				MON = {
-					remove_ideas = MON_brothers_war
-				}
-				# if = {
-				# 	limit = {
-				# 		country_exists = KSR
-				# 	}
-				# 	KSR = {
-				# 		remove_ideas = MON_brothers_war
-				# 	}
-				# }
-				SOV = {
-					add_days_mission_timeout = {
-						mission = SOV_winter_war
-						days = -300
-					}
-				}
-			}
-			effect_tooltip = {
-				SOV = {
-					white_peace = FIN
-				}
-				FIN = { set_country_flag = winter_war_finished }
-				diplomatic_relation = {
-					country = SOV
-					relation = non_aggression_pact
-				}
-				set_global_flag =  FIN_winter_victory
-
-			}
-		}
-		ai_will_do = {
-			factor = 50
-		}
-	}
+	#FIN_retake_leningrad_mission = { #MISSION FOR SOV
+	#	icon = GFX_decision_hol_draw_up_staff_plans
+	#	allowed = {
+	#		tag = SOV
+	#	}
+	#
+	#	available = { #SUCCEED
+	#		controls_state = 195
+	#	}
+	#
+	#	activation = {
+	#	#	FIN = { has_country_flag = FIN_winter_war_ongoing_flag }
+	#	#	has_war_with = FIN
+	#	#	FIN = { controls_state = 195 }
+	#	#	owns_state = 195
+	#	#	FIN = { NOT = { has_country_flag = FIN_winter_war_peace_demanded_flag } }
+	#	}
+	#
+	#	#cancel_if_not_visible = yes
+	#	is_good = no
+	#	fire_only_once = no
+	#	selectable_mission = no
+	#	days_mission_timeout = 30
+	#
+	#	cancel_trigger = {
+	#		hidden_trigger = {
+	#			FIN = {
+	#				OR = {
+	#					NOT = { has_country_flag = FIN_winter_war_ongoing_flag }
+	#					NOT = { has_war_with = SOV }
+	#					has_capitulated = yes
+	#				}
+	#			}
+	#		}
+	#	}
+	#
+	#	cancel_effect = {
+	#	}
+	#
+	#	timeout_effect = { #MISSION SUCCEEDED
+	#	}
+	#
+	#	complete_effect = { #MISSION FAILED
+	#		custom_effect_tooltip = FIN_finland_can_send_peace_demands_tt
+	#	}
+	#}
 }
 
 FIN_balance_of_power_category = {
@@ -2403,7 +2669,7 @@ political_actions = {
 
 		activation = {
 			GER = { has_war_with = SOV }
-			NOT = { FIN = { has_idea = FIN_lone_wolf } }
+			#NOT = { FIN = { has_idea = FIN_lone_wolf } }
 		}
 		
 		timeout_effect = {
@@ -2482,7 +2748,7 @@ political_actions = {
 
 		activation = {
 			GER = { has_war_with = SOV }
-			NOT = { FIN = { has_idea = FIN_lone_wolf } }
+			#NOT = { FIN = { has_idea = FIN_lone_wolf } }
 		}
 		
 		timeout_effect = {
@@ -3932,59 +4198,59 @@ FIN_coup_preparations = {
 
 
 FIN_the_last_kinship_war = {
-	FIN_stir_anti_soviet_sentiment_in_karelia = {
-		priority = 50
-
-		icon = GFX_decision_POL_organize_strike_two
-
-		ai_will_do = {
-			base = 0.01
-		}
-
-		allowed = {
-			original_tag = FIN
-		}
-
-		visible = {
-		}
-
-		available = {
-			KAR = {
-				any_core_state = {
-					controller = {
-						original_tag = SOV
-						NOT = { is_in_faction_with = ROOT }
-					}
-				}
-			}
-		}
-
-		fire_only_once = yes
-
-		cost = 50
-
-		days_remove = 30
-
-		remove_effect = {
-			KAR = {
-				every_core_state = {
-					limit = {
-						controller = {
-							original_tag = SOV
-							NOT = { is_in_faction_with = ROOT }
-						}
-					}
-					add_dynamic_modifier = { modifier = FIN_anti_soviet_sentiment days = 365 }
-					hidden_effect = {
-						controller = {
-							set_country_flag = FIN_heimosodat_event_sent_flag
-							country_event = { id = AAT_finland_kinship_war.01 hours = 1 } #Event has a fire_only_once = yes
-						}
-					}
-				}
-			}
-		}
-	}
+	#FIN_stir_anti_soviet_sentiment_in_karelia = {
+	#	priority = 50
+	#
+	#	icon = GFX_decision_POL_organize_strike_two
+	#
+	#	ai_will_do = {
+	#		base = 0.01
+	#	}
+	#
+	#	allowed = {
+	#		original_tag = FIN
+	#	}
+	#
+	#	visible = {
+	#	}
+	#
+	#	available = {
+	#		KAR = {
+	#			any_core_state = {
+	#				controller = {
+	#					original_tag = SOV
+	#					NOT = { is_in_faction_with = ROOT }
+	#				}
+	#			}
+	#		}
+	#	}
+	#
+	#	fire_only_once = yes
+	#
+	#	cost = 50
+	#
+	#	days_remove = 30
+	#
+	#	remove_effect = {
+	#		KAR = {
+	#			every_core_state = {
+	#				limit = {
+	#					controller = {
+	#						original_tag = SOV
+	#						NOT = { is_in_faction_with = ROOT }
+	#					}
+	#				}
+	#				add_dynamic_modifier = { modifier = FIN_anti_soviet_sentiment days = 365 }
+	#				hidden_effect = {
+	#					controller = {
+	#						set_country_flag = FIN_heimosodat_event_sent_flag
+	#						country_event = { id = AAT_finland_kinship_war.01 hours = 1 } #Event has a fire_only_once = yes
+	#					}
+	#				}
+	#			}
+	#		}
+	#	}
+	#}
 
 	FIN_instigate_a_new_karelian_uprising = {
 		priority = 50

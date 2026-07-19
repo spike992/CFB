@@ -178,6 +178,11 @@ technologies = {
 			research_cost_coeff = 1
 		}
 
+		path = {
+			leads_to_tech = fin_bt_tank_1
+			research_cost_coeff = 1
+		}
+
 		research_cost = 2
 		start_year = 1936
 		folder = {
@@ -189,6 +194,7 @@ technologies = {
 			NOT = {
 				OR = {
 					# Nations with Custom Trees/Re-use trees
+					tag = SPR
 					tag = FRA
 					tag = ITA
 					tag = JAP
@@ -1033,6 +1039,10 @@ technologies = {
 			leads_to_tech = ita_medium_tank_1
 			research_cost_coeff = 1
 		}
+		path = {
+			leads_to_tech = spr_light_tank_1
+			research_cost_coeff = 1
+		}
 
 		research_cost = 2
 		start_year = 1936
@@ -1042,7 +1052,10 @@ technologies = {
 		}
 		
 		allow_branch = {
-			tag = ITA
+			OR = {
+				tag = ITA
+				tag = SPR
+			}
 		}
 
 		categories = {
@@ -1070,11 +1083,11 @@ technologies = {
 			research_cost_coeff = 1
 		}
 		
-		research_cost = 1
-		start_year = 1938
+		research_cost = 1.5
+		start_year = 1937
 		folder = {
 			name = nsb_armour_folder
-			position = { x = -2 y = 4 }
+			position = { x = -2 y = 3 }
 		}
 		
 		categories = {
@@ -1169,6 +1182,15 @@ technologies = {
 		path = {
 			leads_to_tech = ita_medium_tank_2
 			research_cost_coeff = 1
+		}
+
+		allow = {
+			if = {
+				limit = {
+					tag = SPR
+				}
+				always = no
+			}
 		}
 
 		research_cost = 2
@@ -1301,6 +1323,12 @@ technologies = {
 			research_cost_coeff = 1
 		}
 
+		allow_branch = {
+			NOT = {
+				tag = SPR
+			}
+		}
+
 		research_cost = 2
 		start_year	= 1942
 		folder	= {
@@ -1326,6 +1354,96 @@ technologies = {
 
 		special_project_specialization = { specialization_land }
 	}
+
+
+	### SPAIN TECHS ###
+
+	spr_light_tank_1 = {
+
+		enable_equipments = {
+			spr_light_tank_chassis_verdeja1
+		}
+		enable_equipment_modules = {
+			tank_light_turret_2
+		}
+
+		on_research_complete = {
+			hidden_effect = { set_technology = { light_basic_dup_tech = 1 popup = no } }
+			hidden_effect = { set_technology = { light_2_dup_tech = 1 popup = no } }
+			custom_effect_tooltip = spr_light_tank_chassis_verdeja1_unlock_tt
+		}
+
+		path = {
+			leads_to_tech = spr_light_tank_upgrade_2
+			research_cost_coeff = 1
+		}
+		
+		allow = {
+			always = no
+		}
+
+		research_cost = 2
+		start_year = 1940
+		folder = {
+			name = nsb_armour_folder
+			position = { x = -2 y = 8 }
+		}
+		
+		allow_branch = {
+			tag = SPR
+		}
+
+		categories = {
+			armor
+			mio_cat_tech_all_armor_and_modules
+			cat_light_armor
+			mio_cat_tech_light_armor_and_modules
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	spr_light_tank_upgrade_2 = {
+
+		enable_equipment_modules = {
+			tank_light_turret_3
+		}
+
+		on_research_complete = {
+			custom_effect_tooltip = spr_light_tank_chassis_upgrade_unlock_tt
+			custom_effect_tooltip = spr_light_tank_chassis_upgrade_tt
+		}
+
+		path = {
+			research_cost_coeff = 1
+		}
+		
+		allow = {
+			always = no
+		}
+
+		research_cost = 2
+		start_year = 1942
+		folder = {
+			name = nsb_armour_folder
+			position = { x = -2 y = 12 }
+		}
+		
+		allow_branch = {
+			tag = SPR
+		}
+
+		categories = {
+			armor
+			mio_cat_tech_all_armor_and_modules
+			cat_light_armor
+			mio_cat_tech_light_armor_and_modules
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	###########
 
 	
 	hun_light_tank_1 = {
@@ -1825,6 +1943,64 @@ technologies = {
 
 		on_research_complete = {
 			custom_effect_tooltip = ger_cze_tank_equipment_2_short_tt
+		}
+		
+		ai_will_do = {
+			factor = 0
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	fin_bt_tank_1 = {
+
+		enable_equipments = {
+			fin_light_tank_chassis_bt42
+		}
+		
+		research_cost = 2
+		start_year = 1939
+		folder = {
+			name = nsb_armour_folder
+			position = { x = -1 y = 5 }
+		}
+
+		#allow = {
+		#	always = no
+		#}
+		
+		categories = {
+			armor
+			mio_cat_tech_all_armor_and_modules
+			cat_light_armor
+			mio_cat_tech_light_armor_and_modules
+		}
+
+		allow_branch = {
+			tag = FIN
+		}
+		
+		enable_equipment_modules = {
+			tank_welded_armor
+		}
+		
+		on_research_complete = {
+			#custom_effect_tooltip = fin_bt_tank_equipment_2_short_tt
+			hidden_effect = {
+				create_equipment_variant = {
+					name = "BT-42"
+					type = light_assault_gun_chassisfin_light_tank_chassis_bt42
+					parent_version = 0
+					modules = {
+						main_armament_slot = tank_small_cs_gun
+						turret_type_slot = tank_light_superstructure
+						suspension_type_slot = tank_christie_suspension
+						armor_type_slot = tank_welded_armor
+						engine_type_slot = tank_gasoline_engine
+					}
+					design_team = mio:FIN_valtion_panssaritehdas_organization
+				}
+			}
 		}
 		
 		ai_will_do = {

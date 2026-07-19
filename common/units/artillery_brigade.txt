@@ -14,7 +14,7 @@ sub_units = {
 			artillery
 		}
 
-		group = artillery
+		group = combat_support
 		
 		categories = {
 			category_army
@@ -31,8 +31,8 @@ sub_units = {
 			#horse_equipment = 20
 		}
 		
-		max_strength = -1
-		max_organisation = -2
+		#max_strength = -1
+		#max_organisation = -2
 		default_morale = 0.1
 		training_time = 120
 		weight = 0.5
@@ -108,7 +108,7 @@ sub_units = {
 			artillery
 		}
 
-		group = artillery
+		group = mobile_combat_support
 		
 		categories = {
 			category_army
@@ -126,8 +126,8 @@ sub_units = {
 			motorized_equipment = 15
 		}
 		
-		max_strength = -1
-		max_organisation = -2
+		#max_strength = -1
+		#max_organisation = -2
 		default_morale = 0.1
 		training_time = 120
 		weight = 0.5
@@ -204,7 +204,7 @@ sub_units = {
 			artillery
 		}
 
-		group = artillery
+		group = combat_support
 		
 		categories = {
 			category_army
@@ -219,8 +219,8 @@ sub_units = {
 			pack_artillery_equipment = 12
 		}
 		
-		max_strength = -1
-		max_organisation = -2
+		#max_strength = -1
+		#max_organisation = -2
 		default_morale = 0.1
 		training_time = 120
 		weight = 0.5
@@ -270,7 +270,94 @@ sub_units = {
 			attack = 0.1
 		}
 	}
-	
+
+	pack_artillery_support = {
+		sprite = artillery
+		map_icon_category = infantry
+		priority = 100
+		ai_priority = 100
+		active = yes
+		is_artillery_brigade = yes
+		
+		type = {
+			support
+			infantry
+		}
+
+		group = support
+		allowed_battalion_groups = { infantry combat_support }
+		
+		categories = {
+			category_army
+			category_line_artillery
+			category_artillery
+			category_support_battalions
+			category_regimental_support_battalions
+			category_regimental_support_battalions_combat_width
+		}
+
+		divisional = no
+
+		manpower = 250
+		need = {
+			pack_artillery_equipment = 6
+		}
+		
+		default_morale = 0.05
+		training_time = 100
+		weight = 0.25
+
+		soft_attack = -0.5
+		
+		can_be_parachuted = yes
+		
+		supply_consumption = 0.07
+		supply_consumption_factor = 0.01
+
+		# Need to think about this. Would give them a better niche
+		# but I like the design space of just not having terrain mods here 
+		# # forest = {
+		# # 	attack = 0.075
+		# # }
+
+		# # hills = {
+		# # 	attack = 0.075
+		# # }
+
+		# mountain = {
+		# 	attack = 0.075
+		# }
+
+		# rock = {
+		# 	attack = 0.075
+		# }
+
+		# jungle = {
+		# 	attack = 0.05			
+		# }
+
+		# marsh = {
+		# 	attack = 0.05
+		# }
+
+		# fort = {
+		# 	attack = 0.1
+		# }
+
+		# # amphibious = {
+		# # 	attack = -0.05
+		# # }
+		
+		# # urban = {
+		# # 	attack = 0.05
+		# # }
+		
+		# dense_urban = {
+		# 	attack = 0.05
+		# }
+
+	}
+
 	heavy_artillery_brigade = {
 		sprite = artillery
 		map_icon_category = infantry
@@ -284,7 +371,7 @@ sub_units = {
 			artillery
 		}
 
-		group = artillery
+		group = combat_support
 		
 		categories = {
 			category_army
@@ -300,8 +387,8 @@ sub_units = {
 			#horse_equipment = 35
 		}
 		
-		max_strength = -1
-		max_organisation = -2
+		#max_strength = -1
+		#max_organisation = -2
 		default_morale = 0.1
 		training_time = 120
 		weight = 0.5
@@ -364,6 +451,50 @@ sub_units = {
 			attack = 0.1
 		}
 	}
+	
+	heavy_artillery_support = {
+		sprite = artillery
+		map_icon_category = infantry
+		priority = 100
+		ai_priority = 100
+		active = yes
+		is_artillery_brigade = yes
+		
+		type = {
+			support
+			motorized
+		}
+
+		group = support
+		allowed_battalion_groups = { combat_support }
+		
+		categories = {
+			category_army
+			category_line_artillery
+			category_artillery
+			category_support_battalions
+			category_regimental_support_battalions
+			category_regimental_support_battalions_combat_width
+		}
+
+		divisional = no
+
+		manpower = 250
+		need = {
+			heavy_artillery_equipment = 6
+			support_equipment = 3
+			#horse_equipment = 35
+		}
+		
+		default_morale = 0.05
+		training_time = 120
+		weight = 0.25
+		supply_consumption = 0.02
+		supply_consumption_factor = 0.03
+
+		soft_attack = -0.5
+		
+	}
 
 	mot_heavy_artillery_brigade = {
 		sprite = artillery
@@ -378,7 +509,7 @@ sub_units = {
 			artillery
 		}
 
-		group = artillery
+		group = mobile_combat_support
 		
 		categories = {
 			category_army
@@ -396,8 +527,8 @@ sub_units = {
 			motorized_equipment = 20
 		}
 		
-		max_strength = -1
-		max_organisation = -2
+		#max_strength = -1
+		#max_organisation = -2
 		default_morale = 0.1
 		training_time = 120
 		weight = 0.5
@@ -462,6 +593,52 @@ sub_units = {
 			attack = 0.1
 		}
 	}
+
+	mot_heavy_artillery_support = {
+		sprite = artillery
+		map_icon_category = infantry
+		priority = 100
+		ai_priority = 100
+		active = yes
+		is_artillery_brigade = yes
+		
+		type = {
+			motorized
+			artillery
+			support
+		}
+
+		group = support
+		allowed_battalion_groups = { combat_support mobile_combat_support }
+		
+		categories = {
+			category_army
+			category_line_artillery
+			category_artillery
+			category_mobile
+			category_mobile_and_mobile_combat_sup
+			category_support_battalions
+			category_regimental_support_battalions
+			category_regimental_support_battalions_combat_width
+		}
+
+		divisional = no
+
+		transport = motorized_equipment
+		manpower = 250
+		need = {
+			heavy_artillery_equipment = 6
+			motorized_equipment = 10
+		}
+		
+		default_morale = 0.05
+		training_time = 100
+		weight = 0.25
+		supply_consumption = 0.21
+		supply_consumption_factor = 0.03
+		soft_attack = -0.5
+
+	}
 	
 	rocket_artillery_brigade = {
 		sprite = "artillery"
@@ -477,7 +654,7 @@ sub_units = {
 			rocket
 		}
 
-		group = artillery
+		group = combat_support
 		
 		categories = {
 			category_army
@@ -496,9 +673,9 @@ sub_units = {
 		}
 		
 		manpower = 500
-		max_organisation = -2
+		#max_organisation = -2
 		default_morale = 0.1
-		max_strength = -1
+		#max_strength = -1
 		training_time = 120
 		weight = 0.5
 
@@ -553,6 +730,55 @@ sub_units = {
 			attack = 0.1
 		}
 	}
+
+	rocket_artillery_support = {
+		sprite = "artillery"
+		map_icon_category = infantry
+		priority = 100
+		ai_priority = 100
+		active = yes
+		is_artillery_brigade = yes
+		
+		type = {
+			infantry
+			artillery
+			rocket
+			support
+		}
+
+		group = support
+		allowed_battalion_groups = { combat_support }
+		
+		categories = {
+			category_army
+			category_line_artillery
+			category_artillery
+			category_mobile
+			category_mobile_and_mobile_combat_sup
+			category_support_battalions
+			category_regimental_support_battalions
+			category_regimental_support_battalions_combat_width
+		}
+
+		divisional = no	
+
+		need = {
+			rocket_artillery_equipment = 6
+			support_equipment = 3
+			#horse_equipment = 20
+		}
+		
+		manpower = 250
+		default_morale = 0.05
+		training_time = 100
+		weight = 0.25
+
+		supply_consumption = 0.12
+		supply_consumption_factor = 0.02
+
+		soft_attack = -0.5
+
+	}
 	
 	motorized_rocket_brigade = {
 		abbreviation = "MRA"
@@ -569,7 +795,7 @@ sub_units = {
 			rocket
 		}
 
-		group = artillery
+		group = mobile_combat_support
 		
 		categories = {
 			category_army
@@ -587,9 +813,9 @@ sub_units = {
 		}
 		
 		manpower = 500
-		max_organisation = -2
+		#max_organisation = -2
 		default_morale = 0.1
-		max_strength = -1
+		#max_strength = -1
 		training_time = 120
 		weight = 0.5
 		
@@ -645,6 +871,53 @@ sub_units = {
 		}
 	}
 	
+	motorized_rocket_support = {
+		abbreviation = "MRA"
+		sprite = motorized
+		map_icon_category = infantry
+		priority = 1199
+		ai_priority = 100
+		active = no
+		is_artillery_brigade = yes
+		
+		type = {
+			artillery
+			motorized
+			rocket
+			support
+		}
+
+		group = support
+		allowed_battalion_groups = { combat_support mobile_combat_support }
+		
+		categories = {
+			category_army
+			category_line_artillery
+			category_artillery
+			category_rocket_artillery
+			category_mobile
+			category_mobile_and_mobile_combat_sup
+			category_support_battalions
+			category_regimental_support_battalions
+			category_regimental_support_battalions_combat_width
+		}	
+
+		divisional = no
+
+		need = {
+			motorized_rocket_equipment = 6
+		}
+		
+		manpower = 250
+		default_morale = 0.05
+		training_time = 100
+		weight = 0.25
+		
+		supply_consumption = 0.18
+		supply_consumption_factor = 0.03
+
+	}
+	
 	siege_artillery = {
 		sprite = artillery
 		map_icon_category = infantry
@@ -659,6 +932,7 @@ sub_units = {
 		}
 		
 		group = support
+		regimental = no
 		
 		categories = {
 			category_army
@@ -673,9 +947,9 @@ sub_units = {
 		
 		manpower = 1000
 		training_time = 200
-		max_organisation = -2
+		#max_organisation = -2
 		default_morale = 0
-		max_strength = -1
+		#max_strength = -1
 		weight = 60
 		
 		maximum_speed = -1.0
@@ -722,9 +996,11 @@ sub_units = {
 		maximum_speed = -0.5
 		
 		group = support
+		regimental = no
 		
 		categories = {
 			category_support_battalions
+			category_divisional_support_battalions
 			category_army
 			category_artillery
 			category_support_artillery
@@ -744,7 +1020,7 @@ sub_units = {
 		}
 		manpower = 1000
 		training_time = 180
-		max_organisation = -2
+		#max_organisation = -2
 		default_morale = 0.1
 		max_strength = 0.2
 		weight = 0.1
@@ -772,9 +1048,12 @@ sub_units = {
 		}
 		
 		group = support
+
+		regimental = no
 		
 		categories = {
 			category_support_battalions
+			category_divisional_support_battalions
 			category_army
 			category_artillery
 			category_support_artillery
@@ -793,7 +1072,7 @@ sub_units = {
 
 		manpower = 1000
 		training_time = 180
-		max_organisation = -2
+		#max_organisation = -2
 		default_morale = 0.1
 		max_strength = 0.2
 		weight = 0.1

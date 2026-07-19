@@ -949,6 +949,7 @@ focus_tree = {
                             is_character = RAJ_mughal_industrialist
                             is_character = RAJ_silent_mughal
                             is_character = RAJ_backroom_mughal
+                            is_character = RAJ_GOE_muhammad_musa
                         }
                     }
                     set_nationality = event_target:UK_INDIA
@@ -965,6 +966,16 @@ focus_tree = {
                 }
 
                 retire_country_leader = yes
+
+                add_country_leader_role = {
+                    character = RAJ_abdul_ghaffar_khan
+                    promote_leader = yes
+                    country_leader = {
+                        ideology = despotism
+                        expire = "1988.1.1.1"
+                        traits = { RAJ_khudai_khidmatgar_leader } 
+                    }
+                }  
 				
                 division_template = {
                     name = "Princely Personal Guard"
@@ -1183,17 +1194,12 @@ focus_tree = {
                 name = RAJ_forging_the_mughal_arsenal
                 bonus = 0.35
                 uses = 1
-                category = artillery # optional 
-                # technology  = technology_id # optional
+                category = artillery 
             }
 
             army_experience = 30
         }
     }
-
-#RAJ_reform_the_agricultural_system
-
-#RAJ_forging_the_mughal_arsenal
 
    focus = {
         id = RAJ_the_legacy_of_babur
@@ -4422,8 +4428,7 @@ focus_tree = {
                 name = RAJ_privatized_healthcare
                 bonus = 0.5
                 uses = 2
-                category = hospital_tech  # optional 
-                # technology  = technology_id # optional
+                category = hospital_tech  
             }
 
 
@@ -4441,8 +4446,7 @@ focus_tree = {
                     name = RAJ_privatized_healthcare
                     bonus = 0.35
                     uses = 1
-                    category = helicopter_tech # optional 
-                    # technology  = technology_id # optional
+                    category = helicopter_tech
                 }
             }
 
@@ -4712,8 +4716,7 @@ focus_tree = {
                     name = RAJ_take_in_british_naval_experts
                     bonus = 0.4
                     uses = 2
-                    category = ship_modules_tech # optional 
-                    # technology  = technology_id # optional
+                    category = ship_modules_tech 
                 }
             }
             else = {
@@ -4814,10 +4817,10 @@ focus_tree = {
         completion_reward = {
             add_stability = 0.03
             add_tech_bonus = {
+                name = RAJ_trade_protection
                 bonus = 1
                 uses = 1
-                category = dd_tech # optional 
-                # technology  = technology_id # optional
+                category = dd_tech
             }
 
             if = {
@@ -4826,10 +4829,10 @@ focus_tree = {
                 }
 
                 add_tech_bonus = {
+                    name = RAJ_trade_protection
                     bonus = 0.5
                     uses = 2
-                    category = asw_tech # optional 
-                # technology  = technology_id # optional
+                    category = asw_tech 
                 }
             }
 
@@ -5027,10 +5030,10 @@ focus_tree = {
 
         completion_reward = {
             add_tech_bonus = {
+                name = RAJ_procure_the_armor
                 bonus = 0.65
                 uses = 1
-                category = armor # optional
-                # technology  = technology_id # optional
+                category = armor 
             }
 
             if = {
@@ -6858,8 +6861,7 @@ focus_tree = {
                 name = RAJ_land_grab
                 bonus = 2
                 uses = 2
-                category = excavation_tech  # optional 
-                # technology  = technology_id # optional
+                category = excavation_tech  
             }
 
             try_build_infra_in_core_otherwise_build_in_controlled = yes
@@ -7201,7 +7203,25 @@ focus_tree = {
         search_filters = {FOCUS_FILTER_POLITICAL}
 
         completion_reward = {
-              custom_effect_tooltip = RAJ_provincial_autonomy_occupation_law_tt
+
+            custom_effect_tooltip = RAJ_provincial_autonomy_occupation_law_tt
+
+            custom_effect_tooltip = generic_skip_one_line_tt
+
+            show_ideas_tooltip = independent_rule_occupation_law_fake_idea
+
+            custom_effect_tooltip = generic_skip_one_line_tt
+
+            show_ideas_tooltip = princely_subjugation_occupation_law_fake_idea
+
+            hidden_effect = {
+                IF = {
+                    limit = {
+                        is_ai = yes 
+                    }
+                    RAJ = { set_occupation_law_where_available = independent_rule } # Set law in all countries/states where it's available.
+                }
+            }
         }
     }
 
@@ -9514,7 +9534,7 @@ focus_tree = {
         continue_if_invalid = no
         available_if_capitulated = no
 
-        search_filters = {FOCUS_FILTER_POLITICAL}
+        search_filters = {FOCUS_FILTER_POLITICAL FOCUS_FILTER_POLITICAL_CHARACTER }
 
         completion_reward = {
             if = {
@@ -9775,6 +9795,7 @@ focus_tree = {
                     }
                 }
            }
+
         }
     }
 
@@ -9871,6 +9892,9 @@ focus_tree = {
 
         completion_reward = {
             every_core_state = {
+                limit = {
+                    is_owned_by = ROOT
+                }
                 random_select_amount = 3
                 add_extra_state_shared_building_slots = 1
             }
@@ -9937,7 +9961,9 @@ focus_tree = {
         }
 
         available = {
-
+            has_dynamic_modifier = {
+                modifier = idea_RAJ_five_year_plan
+            }
         }
 
         bypass = {
@@ -9948,7 +9974,7 @@ focus_tree = {
         continue_if_invalid = no
         available_if_capitulated = no
 
-        search_filters = {FOCUS_FILTER_RESEARCH}
+        search_filters = {FOCUS_FILTER_INDUSTRY}
 
         completion_reward = {
             set_rule = { 
@@ -9981,23 +10007,31 @@ focus_tree = {
         }
 
         available = {
-
+            has_dynamic_modifier = {
+                modifier = idea_RAJ_five_year_plan
+            }
         }
 
         bypass = {
 
         }
 
-        search_filters = {FOCUS_FILTER_INDUSTRY}
-
         cancel_if_invalid = yes
         continue_if_invalid = no
         available_if_capitulated = no
 
+        search_filters = {FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH}
+
         completion_reward = {
             custom_effect_tooltip = RAJ_five_year_plan_modify_tt
-            add_to_variable = { RAJ_fyp_stability_factor = 0.05 tooltip = stability_factor_tt }
-            add_to_variable = { RAJ_fyp_consumer_goods_factor = -0.1 tooltip = consumer_goods_factor_tt }
+            add_to_variable = { RAJ_fyp_local_resources_factor = 0.1 tooltip = local_resources_factor_tt }
+            add_tech_bonus = {
+                name = RAJ_invite_soviet_industrial_experts
+                bonus = 0.5
+                uses = 1
+                category = construction_tech # optional 
+                ahead_reduction = 1
+            }
         }
     }
 
@@ -10017,22 +10051,33 @@ focus_tree = {
 
         available = {
             is_subject = no
+            any_other_country = {
+                    has_government = communism
+                    is_faction_leader = yes
+                    exists = yes
+            }
         }
 
         bypass = {
-
+            all_other_country = {
+                OR = {
+                    NOT = { has_government = communism }
+                    is_faction_leader = no
+                    exists = no
+                }
+            }
         }
 
         cancel_if_invalid = yes
         continue_if_invalid = no
         available_if_capitulated = no
 
-        search_filters = {FOCUS_FILTER_INDUSTRY}
+        search_filters = {FOCUS_FILTER_INDUSTRY FOCUS_FILTER_POLITICAL }
 
         completion_reward = {
             add_offsite_building = {
                 type = industrial_complex
-                level = 3
+                level = 2
             }
 
             if = {
@@ -10060,6 +10105,7 @@ focus_tree = {
             }
         }
     }
+
 
     focus = {
         id = RAJ_expand_industry_in_hyderabad
@@ -14494,26 +14540,14 @@ focus_tree = {
     focus = {
         id = RAJ_tryst_with_destiny
         icon = {
-            trigger = {
+            GFX_focus_RAJ_tryst_with_destiny_BAN = {
                 tag = BAN
             }
-            value = GFX_focus_RAJ_tryst_with_destiny_BAN
-        }
-        icon = {
-            trigger = {
+            GFX_focus_RAJ_tryst_with_destiny_PAK = {
                 tag = PAK
             }
-            value = GFX_focus_RAJ_tryst_with_destiny_PAK
+            GFX_focus_RAJ_tryst_with_destiny = yes
         }
-        icon = {
-            trigger = {
-                NOT = {
-                    tag = PAK
-                    tag = BAN
-                }
-            }
-            value = GFX_focus_RAJ_tryst_with_destiny
-        } 
         prerequisite = { focus = RAJ_united_bengal focus = RAJ_eastern_pakistan focus = RAJ_a_secular_state }
         x = 1
         y = 1
@@ -14732,7 +14766,7 @@ focus_tree = {
         }
         
         bypass = {
-
+ 
         }
 
         cancel_if_invalid = yes
@@ -14744,7 +14778,47 @@ focus_tree = {
         }
 
         completion_reward = {
+            unlock_decision_tooltip = {
+                decision = anti_democratic_raids
+                show_effect_tooltip = no # default is no
+                show_modifiers = no # default is no
+            }
+            unlock_decision_tooltip = {
+                decision = anti_neutrality_raids
+                show_effect_tooltip = no # default is no
+                show_modifiers = no # default is no
+            }
+
+            set_rule = { can_join_factions = yes }
+            set_rule = { can_guarantee_other_ideologies = yes }
+            set_rule = { CAN_DECLARE_WAR_ON_SAME_IDEOLOGY = yes }
+            set_rule = { can_only_justify_war_on_threat_country = no }
+
+            custom_effect_tooltip = generic_skip_one_line_tt
+            
             add_ideas = idea_RAJ_kingmaker
+
+            hidden_effect = {
+                every_country = {
+                    limit = {
+                        NOT = {
+                            has_war_with = ROOT
+                        }
+                    }
+
+                    add_ai_strategy = {
+                        type = alliance
+                        id = ROOT
+                        value = 1800
+                    }
+
+                    add_ai_strategy = {
+                        type = befriend
+                        id = ROOT
+                        value = 1800
+                    }
+                }  
+            }
         }
     }
 
@@ -16286,7 +16360,7 @@ focus_tree = {
         x = -1
         y = 1
         relative_position_id = RAJ_confer_with_the_congress 
-        cost = 5
+        cost = 10
 
         mutually_exclusive = { focus = RAJ_court_the_princes }
 
@@ -16320,7 +16394,7 @@ focus_tree = {
         x = 0
         y = 1
         relative_position_id = RAJ_favor_the_muslim_league 
-        cost = 5
+        cost = 10
 
         mutually_exclusive = { focus = RAJ_the_integrity_of_india_act }
 
@@ -16397,7 +16471,7 @@ focus_tree = {
         x = 2
         y = 1
         relative_position_id = RAJ_favor_the_muslim_league 
-        cost = 5
+        cost = 10
 
         mutually_exclusive = { focus = RAJ_the_indian_parliament }
 
@@ -16552,7 +16626,7 @@ focus_tree = {
         x = -1
         y = 1
         relative_position_id = RAJ_the_indian_parliament 
-        cost = 5
+        cost = 10
 
         available = {
             ENG = {
@@ -16619,7 +16693,7 @@ focus_tree = {
         x = 1
         y = 1
         relative_position_id = RAJ_the_indian_parliament 
-        cost = 5
+        cost = 10
 
         search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_TFV_AUTONOMY FOCUS_FILTER_MILITARY_CHARACTER FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_MANPOWER }
 
@@ -16660,7 +16734,7 @@ focus_tree = {
         x = 0
         y = 1
         relative_position_id = RAJ_the_punjab_accord 
-        cost = 5
+        cost = 10
 
         available = {
             is_subject_of = ENG
@@ -16779,7 +16853,7 @@ focus_tree = {
         x = -1
         y = 1
         relative_position_id = RAJ_raise_import_duties 
-        cost = 5
+        cost = 10
 
         available = {
             OR = {
@@ -16843,7 +16917,7 @@ focus_tree = {
         x = 1
         y = 1
         relative_position_id = RAJ_imperial_industry_initiative 
-        cost = 5
+        cost = 10
 
         available = {
             industrial_complex > 59
@@ -16977,7 +17051,7 @@ focus_tree = {
         x = -1
         y = 1
         relative_position_id = RAJ_expand_the_zamindari_system 
-        cost = 5
+        cost = 10
 
         search_filters = { FOCUS_FILTER_TFV_AUTONOMY FOCUS_FILTER_INDUSTRY FOCUS_FILTER_STABILITY }
 
@@ -17104,7 +17178,7 @@ focus_tree = {
         x = 1
         y = 1
         relative_position_id = RAJ_expand_the_zamindari_system 
-        cost = 5
+        cost = 10
 
         search_filters = { FOCUS_FILTER_INDUSTRY }
 
@@ -17332,7 +17406,7 @@ focus_tree = {
         x = 1
         y = 1
         relative_position_id = RAJ_the_riches_of_the_raj 
-        cost = 5
+        cost = 10
 
         search_filters = { FOCUS_FILTER_INDUSTRY }
 
@@ -17560,7 +17634,7 @@ focus_tree = {
         x = -1
         y = 1
         relative_position_id = RAJ_strengthen_ties_with_british_investors_GOE 
-        cost = 5
+        cost = 10
 
         search_filters = { FOCUS_FILTER_TFV_AUTONOMY FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY }
 
@@ -17657,7 +17731,7 @@ focus_tree = {
         x = 1
         y = 1
         relative_position_id = RAJ_territorial_development_scheme 
-        cost = 5
+        cost = 10
 
         search_filters = { FOCUS_FILTER_RESEARCH }
 
@@ -17724,7 +17798,7 @@ focus_tree = {
         x = 0
         y = 1
         relative_position_id = RAJ_institute_of_fundamental_research_GOE 
-        cost = 5
+        cost = 10
 
         available = {
             has_war = yes
@@ -17828,7 +17902,7 @@ focus_tree = {
         x = -2
         y = 2
         relative_position_id = RAJ_indian_gentleman_officers 
-        cost = 5
+        cost = 10
 
         available = {
             992 = { is_fully_controlled_by = ROOT }
@@ -18211,7 +18285,7 @@ focus_tree = {
         x = 2
         y = 2
         relative_position_id = RAJ_indian_gentleman_officers 
-        cost = 5
+        cost = 10
 
         allow_branch = {
             always = no
@@ -18263,7 +18337,7 @@ focus_tree = {
         x = 1
         y = 1
         relative_position_id = RAJ_linlithgows_declaration_of_war 
-        cost = 5
+        cost = 10
 
         search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_WAR_SUPPORT }
 
@@ -18301,7 +18375,7 @@ focus_tree = {
         x = -1
         y = 1
         relative_position_id = RAJ_mobilization_of_the_indian_army 
-        cost = 5
+        cost = 10
 
         available = {
             NOT = { has_idea = RAJ_mobilization_of_the_indian_army }
@@ -18442,7 +18516,7 @@ focus_tree = {
         x = 1
         y = 1
         relative_position_id = RAJ_mobilization_of_the_indian_army 
-        cost = 5
+        cost = 10
 
         available = {
             NOT = { has_idea = RAJ_mobilization_of_the_indian_army }
@@ -18731,7 +18805,7 @@ focus_tree = {
         x = 0
         y = 2
         relative_position_id = RAJ_mobilization_of_the_indian_army 
-        cost = 5
+        cost = 10
 
         available = {
             NOT = { has_idea = RAJ_mobilization_of_the_indian_army }
@@ -18806,7 +18880,7 @@ focus_tree = {
         x = 0
         y = 1
         relative_position_id = RAJ_desert_training 
-        cost = 5
+        cost = 10
 
         available = {
             447 = {
@@ -18830,7 +18904,7 @@ focus_tree = {
                     #exclude = {  }
                 }
             }
-            1047 = {
+            1082 = {
                 controller = {
                     OR = {
                         original_tag = ROOT
@@ -18843,11 +18917,11 @@ focus_tree = {
                 tooltip = {
                     localization_key = generic_requires_divs_in_state_tt
                     NUM_DIVISIONS = 0 #Needs to match "count" in num_divisions_in_states
-                    STATE = [1047.GetName] #Needs to match "states" in num_divisions_in_states
+                    STATE = [1082.GetName] #Needs to match "states" in num_divisions_in_states
                 }
                 num_divisions_in_states = {
                     count > 0
-                    states = { 1047 }
+                    states = { 1082 }
                     #exclude = {  }
                 }
             }
@@ -18862,7 +18936,7 @@ focus_tree = {
             }
             custom_effect_tooltip = generic_skip_one_line_tt
 
-            1047 = { #ALEXANDRIA
+            1082 = { #ALEXANDRIA
                 # #Air base
                 # add_building_construction = {
                 #     type = air_base
@@ -19016,7 +19090,7 @@ focus_tree = {
         x = -1
         y = 1
         relative_position_id = RAJ_jungle_training_GOE 
-        cost = 5
+        cost = 10
 
         available = {
             336 = {
@@ -19256,7 +19330,7 @@ focus_tree = {
         x = 1
         y = 1
         relative_position_id = RAJ_jungle_training_GOE 
-        cost = 5
+        cost = 10
 
         available = {
             995 = {
@@ -19693,7 +19767,7 @@ focus_tree = {
         x = 0
         y = 1
         relative_position_id = RAJ_defense_of_burma 
-        cost = 5
+        cost = 10
 
         available = {
             990 = { #MANIPUR (Imphal)
@@ -19840,7 +19914,7 @@ focus_tree = {
                 ####
             if = {
                 limit = {
-                    1058 = { #EAST BENGAL (Bangladesh)
+                    1092 = { #EAST BENGAL (Bangladesh)
                         controller = {
                             is_ally_with = ROOT
                             controls_province = 9991
@@ -19848,7 +19922,7 @@ focus_tree = {
                     }
                 }
                 custom_effect_tooltip = generic_skip_one_line_tt
-                1058 = {
+                1092 = {
                     add_building_construction = {
                         type = bunker
                         level = 4
@@ -19891,7 +19965,7 @@ focus_tree = {
         x = 1
         y = 1
         relative_position_id = RAJ_hill_training 
-        cost = 5
+        cost = 10
 
         available = {
             has_tech = marines
@@ -19909,20 +19983,35 @@ focus_tree = {
             add_to_variable = { RAJ_south_east_asia_command_dm_extra_marine_supply_grace = 48 tooltip = extra_marine_supply_grace_tt }
             add_to_variable = { RAJ_south_east_asia_command_dm_shore_bombardment_bonus = 0.2 tooltip = shore_bombardment_bonus_tt }
             add_to_variable = { RAJ_south_east_asia_command_dm_modifier_army_sub_unit_marine_attack_factor = 0.1 tooltip = modifier_army_sub_unit_marine_attack_factor_tt }
-            add_to_variable = { RAJ_south_east_asia_command_dm_special_forces_cap = 0.1 tooltip = special_forces_cap_tt }
+            #add_to_variable = { RAJ_south_east_asia_command_dm_special_forces_cap = 0.1 tooltip = special_forces_cap_tt }
             custom_effect_tooltip = generic_skip_one_line_tt
 
-            if = {
-                limit = {
-                    has_dlc = "Arms Against Tyranny"
-                }
-                add_doctrine_cost_reduction = {
-                    name = RAJ_free_abyssinia
-                    cost_reduction = 0.75
-                    uses = 2
-                    category = cat_marines_doctrine
-                }
-            }
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				add_doctrine_cost_reduction = {
+					name = RAJ_free_abyssinia
+					cost_reduction = 0.25
+					uses = 2
+					category = special_forces_doctrine
+				}
+          	  	custom_effect_tooltip = marine_subdoctrines_default_add_mastery_bonus_effect_tooltip
+          	 	hidden_effect = {
+          	      	add_mastery_bonus = {
+          	         	name = RAJ_free_abyssinia
+           	         	bonus = 0.1
+           	         	days = 240
+           	         	sub_doctrine = marines_1
+           	     	}
+           	     	add_mastery_bonus = {
+           	        	name = RAJ_free_abyssinia
+            	        bonus = 0.1
+            	        days = 240
+            	        sub_doctrine = marines_2
+            	    }
+            	}            
+			}
 
             custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -20023,7 +20112,7 @@ focus_tree = {
         x = 0
         y = 1
         relative_position_id = RAJ_urban_training 
-        cost = 5
+        cost = 10
 
         available = {
             326 = {

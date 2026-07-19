@@ -2,11 +2,10 @@
 #### SOVIET ####
 ################
 
-####### NO STEP BACK! #######
 
-SOV_marshal_system = {
+SOV_purge_bop_decisions = {
 
-	priority = 102
+	priority = 999
 
 	icon = SOV_paranoia
 
@@ -14,11 +13,6 @@ SOV_marshal_system = {
 		original_tag = SOV
 	}
 
-	visible = {
-		NOT = { has_country_flag = dance_of_marshals_disabled }
-	}
-
-	visible_when_empty = yes
 }
 
 SOV_paranoia_system = {
@@ -34,21 +28,203 @@ SOV_paranoia_system = {
 	}
 
 	visible = {
-		OR = {
-			has_country_flag = SOV_paranoia_system_active_flag
-			has_country_flag = SOV_third_moscow_trial_flag
-			has_country_flag = SOV_debug_show_paranoia_system_flag #Debug
+		always = no
+		# OR = {
+		# 	has_country_flag = SOV_paranoia_system_active_flag
+		# 	has_country_flag = SOV_third_moscow_trial_flag
+		# 	has_country_flag = SOV_debug_show_paranoia_system_flag #Debug
 
-			# So Opposition can get rid of the Anti-Soviet Military Thinking NS
-			has_idea = SOV_anti_soviet_military_thinking_banned_army
-			has_idea = SOV_anti_soviet_military_thinking_banned_navy
-			has_idea = SOV_anti_soviet_military_thinking_banned_airforce
-			SOV_is_stalinist = yes
-			has_country_flag = SOV_assassinated_stalin_flag
-		}
+		# 	# So Opposition can get rid of the Anti-Soviet Military Thinking NS
+		# 	has_idea = SOV_anti_soviet_military_thinking_banned_army
+		# 	has_idea = SOV_anti_soviet_military_thinking_banned_navy
+		# 	has_idea = SOV_anti_soviet_military_thinking_banned_airforce
+		# 	# So Opposition can get rid of the Junior Army/Navy Officers Purged NS
+		# 	has_idea = SOV_purged_junior_army_officers_1
+		# 	has_idea = SOV_purged_junior_army_officers_2
+		# 	has_idea = SOV_purged_junior_army_officers_3
+		# 	has_idea = SOV_purged_junior_navy_officers_1
+		# 	has_idea = SOV_purged_junior_navy_officers_2
+		# 	has_idea = SOV_purged_junior_navy_officers_3
+		# 	SOV_is_stalinist = yes
+		# 	has_country_flag = SOV_assassinated_stalin_flag
+		# }
 	}
 
 	visible_when_empty = yes
+}
+
+# SOV_merge_designers_dec_cat = {
+# 	priority = 28
+
+# 	icon = SOV_merge_designers
+
+# 	allowed = {
+# 		original_tag = SOV
+# 		NOT = { has_dlc = "Arms Against Tyranny" } #Decisions became actual traits in MIOs
+# 	}
+
+# 	visible = {
+# 		always = no
+# 		has_civil_war = no
+# 	}
+# }
+
+SOV_fon_decisions = {
+
+	priority = 999
+
+	icon = SOV_propaganda
+
+	allowed = {
+		original_tag = SOV
+	}
+
+	visible = {
+		has_completed_focus = SOV_pol_purge14
+	}
+
+}
+
+SOV_gosplan_decisions_category = {
+	icon = GFX_category_icon
+	scripted_gui = SOV_Gosplan_GUI
+	
+	allowed = {
+		original_tag = SOV
+	}
+	
+	visible = {
+		AND = {
+			original_tag = SOV
+			#NOT = { has_country_flag = SOV_great_patriotic_war_start }
+		}
+	}
+
+	on_map_area = {
+		target_array = SOV.northwest_states
+		name = "Northwest"
+		zoom = 800
+		target_root_trigger = {
+			has_variable = gosplan_help_industry
+		}
+	}
+	on_map_area = {
+		target_array = SOV.moscow_states
+		name = "Moscow"
+		zoom = 800
+		target_root_trigger = {
+			has_variable = gosplan_help_industry
+		}
+	}
+	on_map_area = {
+		target_array = SOV.leningrad_states
+		name = "Lenningrad"
+		zoom = 800
+		target_root_trigger = {
+			has_variable = gosplan_help_industry
+		}
+	}
+	on_map_area = {
+		target_array = SOV.belarus_states
+		name = "Belarus"
+		zoom = 800
+		target_root_trigger = {
+			has_variable = gosplan_help_industry
+		}
+	}
+	on_map_area = {
+		target_array = SOV.ukraine_west_states
+		name = "Ukraine West"
+		zoom = 800
+		target_root_trigger = {
+			has_variable = gosplan_help_industry
+		}
+	}
+	on_map_area = {
+		target_array = SOV.ukraine_east_states
+		name = "Ukraine East"
+		zoom = 800
+		target_root_trigger = {
+			has_variable = gosplan_help_industry
+		}
+	}
+	on_map_area = {
+		target_array = SOV.caucasus_states
+		name = "Caucasus"
+		zoom = 800
+		target_root_trigger = {
+			has_variable = gosplan_help_industry
+		}
+	}
+	on_map_area = {
+		target_array = SOV.volga_states
+		name = "Volga"
+		zoom = 800
+		target_root_trigger = {
+			has_variable = gosplan_help_industry
+		}
+	}
+	on_map_area = {
+		target_array = SOV.urals_states
+		name = "Urals"
+		zoom = 800
+		target_root_trigger = {
+			has_variable = gosplan_help_industry
+		}
+	}
+	# on_map_area = {
+	# 	target_array = SOV.central_asia_states
+	# 	name = "Central Asia"
+	# 	zoom = 800
+	# 	target_root_trigger = {
+	# 		has_variable = gosplan_help_industry
+	# 	}
+	# }
+	# on_map_area = {
+	# 	target_array = SOV.siberia_west_states
+	# 	name = "Siberia West"
+	# 	zoom = 800
+	# 	target_root_trigger = {
+	# 		has_variable = gosplan_help_industry
+	# 	}
+	# }
+	# on_map_area = {
+	# 	target_array = SOV.siberia_east_states
+	# 	name = "Siberia East"
+	# 	zoom = 800
+	# 	target_root_trigger = {
+	# 		has_variable = gosplan_help_industry
+	# 	}
+	# }
+	on_map_area = {
+		target_array = SOV.siberia_states
+		name = "Siberia"
+		zoom = 800
+		target_root_trigger = {
+			has_variable = gosplan_help_industry
+		}
+	}
+	
+	priority = 103
+	
+	visible_when_empty = yes
+}
+
+
+SOV_great_patriotic_war = {
+	priority = 999
+
+	icon = sov_great_patriotic_war
+	
+	allowed = {
+		original_tag = SOV
+	}
+	
+	visible = {
+		any_enemy_country = {
+			SOV_is_major_not_original_sov = yes
+		}
+	}
 }
 
 SOV_propaganda_campaigns = {
@@ -64,31 +240,26 @@ SOV_propaganda_campaigns = {
 
 	visible = {
 		OR = {
-			has_completed_focus = SOV_expand_the_agitprop
+			has_completed_focus = SOV_pol_purge4
 			has_country_flag = SOV_debug_show_propaganda_system_flag #Debug
 		}
 	}
 }
 
-# SOV_gosproyektstroy_decision_category = {
-# 	priority = 29
 
-# 	icon = generic_industry
+SOV_organise_partisans = {
+	priority = 99
 
-# 	picture = SOV_civil_puppet_interaction 
+	icon = generic_ignite_civil_war
 
-# 	allowed = {
-# 		original_tag = SOV
-# 	}
+	allowed = {
+		original_tag = SOV
+	}
 
-# 	visible = {
-# 		OR = {
-# 			has_idea = SOV_gosproyektstroy_1
-# 			has_country_flag = SOV_gosproyektstroy_level_2_flag
-# 			has_country_flag = SOV_gosproyektstroy_level_3_flag
-# 		}
-# 	}
-# }
+	visible = {
+		has_completed_focus = SOV_partisan_organisation
+	}
+}
 
 SOV_industry_relocation = {
 	priority = 12
@@ -100,91 +271,7 @@ SOV_industry_relocation = {
 	}
 
 	visible = {
-		has_completed_focus = SOV_ural_factories
-	}
-}
-
-# SOV_soviet_aid_to_poum_decision_category = { #Dec cat for aiding the POUM
-# 	priority = 31
-
-# 	icon = SOV_support_the_poum
-
-# 	picture = GFX_decision_cat_picture_spr_the_inevitable_civil_war
-
-# 	allowed = {
-# 		original_tag = SOV
-# 	}
-
-# 	visible = {
-# 		# has_completed_focus = SOV_covert_support_for_spanish_poum
-# 		# NOT = { has_global_flag = scw_over }
-# 		# NOT = {
-# 		# 	AND = {
-# 		# 		has_global_flag = SPR_anarchist_uprising_flag
-# 		# 		OR = {
-# 		# 			#NOT = { SPC = { has_completed_focus = SPR_the_anti_fascist_workers_revolution } }
-# 		# 			NOT = { country_exists = SPC }
-# 		# 		}
-# 		# 	}
-# 		# }
-# 		always = no
-# 	}
-# }
-
-SOV_great_patriotic_war = {
-	priority = 200
-
-	icon = sov_great_patriotic_war
-	
-	allowed = {
-		original_tag = SOV
-	}
-	visible = {
-		any_enemy_country = {
-			SOV_is_major_not_original_sov = yes
-		}
-	}	
-}
-
-# SOV_diplomacy_middle_east_decision_category = {
-# 	priority = 23
-
-# 	icon = generic_foreign_policy
-
-# 	allowed = {
-# 		original_tag = SOV
-# 	}
-
-# 	visible = {
-# 		has_completed_focus = SOV_preemptive_invasion_of_iran
-# 		OR = {
-# 			country_exists = IRQ
-# 			country_exists = PER
-# 		}
-# 		is_subject = no
-# 	}
-# }
-
-# SOV_soviet_aid_decision_category = { #Dec cat for Sinkiang (mission dummies go here)
-# 	icon = decision_category_generic_communism
-
-# 	allowed = {
-# 		original_tag = SIK
-# 	}
-# }
-
-SOV_merge_designers_dec_cat = {
-	priority = 28
-
-	icon = SOV_merge_designers
-
-	allowed = {
-		original_tag = SOV
-		NOT = { has_dlc = "Arms Against Tyranny" } #Decisions became actual traits in MIOs
-	}
-
-	visible = {
-		has_civil_war = no
+		has_completed_focus = SOV_war_mobilisation
 	}
 }
 
@@ -199,20 +286,6 @@ SOV_kill_trotsky_dec_cat = {
 	}
 
 	visible = {
-		has_completed_focus = SOV_behead_the_snake
-	}
-}
-
-SOV_organise_partisans = {
-	priority = 100
-
-	icon = generic_ignite_civil_war
-
-	allowed = {
-		original_tag = SOV
-	}
-
-	visible = {
-		has_completed_focus = SOV_order_270
+		has_completed_focus = SOV_pol_nkvd6
 	}
 }

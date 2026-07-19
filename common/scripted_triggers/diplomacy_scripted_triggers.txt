@@ -995,6 +995,16 @@ DIPLOMACY_LEAVE_FACTION_ENABLE_TRIGGER = {
 			always = no
 		}
 	}
+	if = {
+		limit = {
+			original_tag = MON
+			NOT = { has_global_flag = allow_leaving_com }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ANTI_COMINTERN_TROLL_TT
+			always = no
+		}
+	}
 }
  DIPLOMACY_ASSUME_FACTION_LEADERSHIP_ENABLE_TRIGGER = {
 	if = {
@@ -1023,6 +1033,18 @@ DIPLOMACY_KICK_FROM_FACTION_ENABLE_TRIGGER = {
 			always = no
 		}
 	}
+	if = {
+		limit = {
+			FROM = {
+				original_tag = MON
+				NOT = { has_global_flag = allow_leaving_com }
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ANTI_COMINTERN_TROLL_KICK_TT
+			always = no
+		}
+	}
 }
 DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 	if = {
@@ -1040,9 +1062,12 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 					limit = {
 						NOT = { has_global_flag = soviet_volunteer_flag }
 					}
-					NOT = { SOV = { has_completed_focus = SOV_father_of_nations } }
+					OR = {
+						NOT = { SOV = { has_completed_focus = SOV_china_big } }
+						NOT = { SOV = { has_completed_focus = SOV_china_small } }
+					}
 				} else = {
-					NOT = { SOV = { has_completed_focus = SOV_the_military_conspiracy } }
+					NOT = { SOV = { has_completed_focus = SOV_pol_PURGE3 } }
 				}
 				
 			}

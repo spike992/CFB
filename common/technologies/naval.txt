@@ -1029,12 +1029,22 @@ technologies = {
 	
 	basic_carrier = {
 
-		enable_equipments = { 
+		enable_equipments = {
 			carrier_2
 		}
-		
+
+		on_research_complete = {
+			if = {
+				limit = {has_dlc = "Gotterdammerung"}
+				custom_effect_tooltip = {
+					localization_key = SP_UNLOCK_PROJECT
+					PROJECT = sp_naval_super_heavy_carrier
+				}
+			}
+		}
+
 		path = {
-			leads_to_tech = improved_carrier 
+			leads_to_tech = improved_carrier
 			research_cost_coeff = 1
 		}
 		
@@ -1084,25 +1094,22 @@ technologies = {
 				set_country_flag = PHI_did_carrier_tech
 				mark_focus_tree_layout_dirty = yes
 			}
-		}
-		
-		path = {
-			leads_to_tech = advanced_carrier 
-			research_cost_coeff = 1
-		}
-		
-		research_cost = 2
-		start_year = 1940
-
-		on_research_complete = {
-			if = { 
+			if = {
 				limit = { has_dlc = "Gotterdammerung"}
 				custom_effect_tooltip = {
 					localization_key = SP_UNLOCK_PROJECT
-					PROJECT = sp_naval_ice_carrier	
+					PROJECT = sp_naval_ice_carrier
 				}
 			}
 		}
+
+		path = {
+			leads_to_tech = advanced_carrier
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		start_year = 1940
 		
 		folder = {
 			name = naval_folder

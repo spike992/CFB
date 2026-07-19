@@ -376,7 +376,7 @@ focus_tree = {
 
 			random_owned_controlled_state = {
 				limit = {
-					infrastructure < 4
+					infrastructure < 9
 				}
 				prioritize = { 676 1011 } 
 				add_building_construction = {
@@ -387,7 +387,7 @@ focus_tree = {
 			}	
 			random_owned_controlled_state = {
 				limit = {
-					infrastructure < 4
+					infrastructure < 9
 				}
 				prioritize = { 1010 } 
 				add_building_construction = {
@@ -398,7 +398,7 @@ focus_tree = {
 			}	
 			random_owned_controlled_state = {
 				limit = {
-					infrastructure < 5
+					infrastructure < 10
 				}
 				prioritize = { 291 } 
 				add_building_construction = {
@@ -418,16 +418,13 @@ focus_tree = {
 	focus = {
 		id = IRQ_found_the_iraqi_state_railways
 		icon = {
-		    trigger = { 
+		    GFX_focus_IRQ_found_the_iraqi_state_railways_alt = { 
 		    	OR = {
 		    		has_cosmetic_tag = IRQ_kurdistan_tag 
 		    		has_cosmetic_tag = greater_kurdistan 
 		    	}
 		    }
-		    value = GFX_focus_IRQ_found_the_iraqi_state_railways_alt
-		}
-		icon = {
-		    value = GFX_focus_IRQ_found_the_iraqi_state_railways
+		    GFX_focus_IRQ_found_the_iraqi_state_railways = yes
 		}
 		prerequisite = { focus = IRQ_decouple_from_the_pound }
 		#mutually_exclusive = { focus = }
@@ -522,7 +519,7 @@ focus_tree = {
 			IF = {
 				limit = {
 					1010 = {
-						infrastructure < 5
+						infrastructure < 10
 					}
 				}
 				1010 = {
@@ -685,16 +682,13 @@ focus_tree = {
 	focus = {
 		id = IRQ_found_the_state_company_for_iron_and_steel
 		icon = {
-		    trigger = { 
+		    GFX_focus_IRQ_found_the_state_company_for_iron_and_steel_alt = { 
 		    	OR = {
 		    		has_cosmetic_tag = IRQ_kurdistan_tag 
 		    		has_cosmetic_tag = greater_kurdistan 
 		    	}
 		    }
-		    value = GFX_focus_IRQ_found_the_state_company_for_iron_and_steel_alt
-		}
-		icon = {
-		    value = GFX_focus_IRQ_found_the_state_company_for_iron_and_steel
+			GFX_focus_IRQ_found_the_state_company_for_iron_and_steel = yes
 		}
 		dynamic = yes
 		prerequisite = { focus = IRQ_found_southern_steel_plants }
@@ -745,16 +739,13 @@ focus_tree = {
 	focus = {
 		id = IRQ_baghdad_colleges_of_engineering_and_education
 		icon = {
-		    trigger = { 
+		    GFX_focus_IRQ_baghdad_colleges_of_engineering_and_education_alt = { 
 		    	OR = {
 		    		has_cosmetic_tag = IRQ_kurdistan_tag 
 		    		has_cosmetic_tag = greater_kurdistan 
 		    	}
 		    }
-		    value = GFX_focus_IRQ_baghdad_colleges_of_engineering_and_education_alt
-		}
-		icon = {
-		    value = GFX_focus_IRQ_baghdad_colleges_of_engineering_and_education
+		    GFX_focus_IRQ_baghdad_colleges_of_engineering_and_education = yes
 		}
 		dynamic = yes
 		prerequisite = { focus = IRQ_decouple_from_the_pound }
@@ -796,7 +787,7 @@ focus_tree = {
 		icon = GFX_focus_IRQ_strengthen_the_iraqi_dinar
 		prerequisite = { focus = IRQ_decouple_from_the_pound }
 		#mutually_exclusive = { focus = }
-		x = 4
+		x = 5
 		y = 1
 		relative_position_id = IRQ_decouple_from_the_pound
 
@@ -1253,7 +1244,7 @@ focus_tree = {
 		available = {
 			has_army_manpower = { size > 100000 }
 			has_completed_focus = IRQ_revoke_anglo_iraq_treaty
-			NOT = { has_country_flag = IRQ_is_kurdistan }
+			#NOT = { has_country_flag = IRQ_is_kurdistan }
 
 			NOT = {
 				ENG = { is_subject = yes }
@@ -1335,6 +1326,9 @@ focus_tree = {
 			show_ideas_tooltip = IRQ_iraq_petrolium_company
 			
 		}
+		bypass_effect = {
+			add_political_power = 50
+		}
 	}
 
 	focus = {
@@ -1353,8 +1347,8 @@ focus_tree = {
 		}
 
 		available = {
-			NOT = { has_completed_focus = IRQ_revoke_anglo_iraq_treaty }
-			NOT = { has_country_flag = IRQ_is_kurdistan }
+			#NOT = { has_completed_focus = IRQ_revoke_anglo_iraq_treaty }
+			#NOT = { has_country_flag = IRQ_is_kurdistan }
 			291 = {
 				is_owned_and_controlled_by = ROOT
 			}
@@ -1369,7 +1363,8 @@ focus_tree = {
 		}
 
 		bypass = {
-
+			has_completed_focus = IRQ_revoke_anglo_iraq_treaty
+			has_completed_focus = IRQ_restore_regent
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
@@ -1515,7 +1510,7 @@ focus_tree = {
 			# 	}
 			# }
 
-			custom_effect_tooltip = generic_skip_one_line_tt
+			# custom_effect_tooltip = generic_skip_one_line_tt
 
 			custom_effect_tooltip = available_political_advisor
 			show_ideas_tooltip = ARM_calouste_gulbenkian
@@ -1539,7 +1534,8 @@ focus_tree = {
 		}
 
 		available = {
-			NOT = { has_country_flag = IRQ_is_kurdistan }
+			#NOT = { has_country_flag = IRQ_is_kurdistan }
+			NOT = { has_completed_focus = IRQ_revoke_anglo_iraq_treaty }
 		}
 
 		bypass = {
@@ -1597,7 +1593,7 @@ focus_tree = {
 		}
 
 		available = {
-			NOT = { has_country_flag = IRQ_is_kurdistan }
+			#NOT = { has_country_flag = IRQ_is_kurdistan }
 		}
 
 		bypass = {
@@ -1662,7 +1658,7 @@ focus_tree = {
 		}
 
 		available = {
-			NOT = { has_country_flag = IRQ_is_kurdistan }
+			#NOT = { has_country_flag = IRQ_is_kurdistan }
 		}
 
 		bypass = {
@@ -1683,7 +1679,7 @@ focus_tree = {
 
 			every_owned_state = {   
 				limit = {
-					infrastructure < 5
+					infrastructure < 10
 					is_controlled_by = ROOT 
 				}
 				random_select_amount = 3
@@ -1704,16 +1700,13 @@ focus_tree = {
 	focus = {
 		id = IRQ_royal_iraqi_army
 		icon = {
-		    trigger = { 
+		    GFX_focus_IRQ_royal_iraqi_army_alt = { 
 		    	OR = {
 		    		has_cosmetic_tag = IRQ_kurdistan_tag 
 		    		has_cosmetic_tag = greater_kurdistan 
 		    	}
 		    }
-		    value = GFX_focus_IRQ_royal_iraqi_army_alt
-		}
-		icon = {
-		    value = GFX_focus_IRQ_royal_iraqi_army
+		    GFX_focus_IRQ_royal_iraqi_army = yes
 		}
 		#prerequisite = { focus = }
 		#mutually_exclusive = { focus = }
@@ -2069,7 +2062,10 @@ focus_tree = {
 			}
 			IF = {
 				limit = {
-					has_idea = IRQ_anglo_iraqi_treaty
+					OR = {
+						has_idea = IRQ_anglo_iraqi_treaty
+						has_idea = IRQ_anglo_iraqi_mutual_defense_agreement
+					}
 				}
 				IF = {
 					limit = {
@@ -2157,19 +2153,30 @@ focus_tree = {
 		completion_reward = {
 			IF = {
 				limit = {
+					ITA = {
+						NOT = { has_design_based_on = ita_light_tank_chassis_l6 }
+					}
+				}
+				custom_effect_tooltip = IRQ_ITA_tanks_tt
+			}
+			IF = {
+				limit = {
 					has_dlc = "Arms Against Tyranny"
 				}
 				add_equipment_subsidy = {
-					cic = 500
+					cic = 5000
 					equipment_type = light_tank_chassis
 					seller_tags = { ITA ENG } 
 				}
 				IF = {
 					limit = {
 						has_dlc = "No Step Back"
+						ITA = {
+							has_design_based_on = ita_light_tank_chassis_l6
+						}
 					}
 					add_equipment_to_stockpile = { 
-						type = light_tank_chassis_1
+						type = ita_light_tank_chassis_l6
 						amount = 400
 						producer = ITA
 					}
@@ -2185,9 +2192,12 @@ focus_tree = {
 			ELSE_IF = {
 				limit = {
 					has_dlc = "No Step Back"
+					ITA = {
+						has_design_based_on = ita_light_tank_chassis_l6
+					}
 				}
 				add_equipment_to_stockpile = { 
-					type = light_tank_chassis_1
+					type = ita_light_tank_chassis_l6
 					amount = 700
 					producer = ITA
 				}
@@ -2211,7 +2221,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = IRQ_royal_iraqi_army
 
-		cost = 10
+		cost = 5
 
 		ai_will_do = {
 			base = 1
@@ -2280,10 +2290,13 @@ focus_tree = {
 			#         popup = no
 			#     }
 			# }
-			add_equipment_to_stockpile = { 
-				type = artillery_equipment
-				amount = 50
-				producer = IRQ
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				technology = antitank_squeeze_1
+				technology = antitank_squeeze_2
+				technology = pack_artillery_2
+				technology = pack_artillery_3
 			}	
 
 			IF = {
@@ -2428,12 +2441,12 @@ focus_tree = {
 		}
 
 		available = {
-			any_owned_state = {
-				nuclear_facility < 1
-				air_facility < 1
-				land_facility < 1
-				naval_facility < 1
-			}
+		# 	any_owned_state = {
+		# 		nuclear_facility < 1
+		# 		air_facility < 1
+		# 		land_facility < 1
+		# 		naval_facility < 1
+		# 	}
 		}
 
 		bypass = {
@@ -2448,20 +2461,20 @@ focus_tree = {
 
 		completion_reward = {
 			
-			random_owned_controlled_state = {
-				limit = {
-					land_facility < 1
-					air_facility < 1
-					nuclear_facility < 1
-					naval_facility < 1
-				}
-				prioritize = { 1011 }
-				construct_building_in_random_province = {
-					land_facility = 1
-				}
-			}
+		# 	random_owned_controlled_state = {
+		# 		limit = {
+		# 			land_facility < 1
+		# 			air_facility < 1
+		# 			nuclear_facility < 1
+		# 			naval_facility < 1
+		# 		}
+		# 		prioritize = { 1011 }
+		# 		construct_building_in_random_province = {
+		# 			land_facility = 1
+		# 		}
+		# 	}
 
-			custom_effect_tooltip = generic_skip_one_line_tt
+		# 	custom_effect_tooltip = generic_skip_one_line_tt
 
 			add_tech_bonus = {
 				name = IRQ_project_babylon_focus
@@ -2474,6 +2487,11 @@ focus_tree = {
 				value = 0.5
 			}
 
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			sp:sp_land_super_heavy_howitzer = {
+				add_project_progress_ratio = 0.2
+			}
 		}
 	}
 
@@ -2508,6 +2526,12 @@ focus_tree = {
 
 		completion_reward = {
 
+			IRQ_modify_army_modifier_version = yes
+			add_to_variable = { 
+				IRQ_mechanized_attack_factor = 0.05
+				tooltip = mechanized_attack_factor_tt
+			}			
+			custom_effect_tooltip = generic_skip_one_line_tt
 			add_tech_bonus = {
 				name = IRQ_form_the_independent_mechanized_brigade
 				ahead_reduction = 1
@@ -2516,12 +2540,6 @@ focus_tree = {
 				category = cat_mechanized_equipment
 			}
 
-			custom_effect_tooltip = generic_skip_one_line_tt
-			IRQ_modify_army_modifier_version = yes
-			add_to_variable = { 
-				IRQ_mechanized_attack_factor = 0.05
-				tooltip = mechanized_attack_factor_tt
-			}			
 			custom_effect_tooltip = generic_skip_one_line_tt
 			custom_effect_tooltip = IRQ_form_the_independent_mechanized_brigade_tt
 			division_template = {
@@ -2698,7 +2716,15 @@ focus_tree = {
 		}
 
 		available = {
-			
+		    country_exists = ENG
+		    NOT = { has_war_with = ENG }
+		    ENG = {
+		        has_capitulated = no
+		    #   OR = {
+		    #   	has_design_based_on = small_plane_airframe
+		        	has_tech = fighter1
+		    #   }
+		    }
 		}
 
 		bypass = {
@@ -2728,18 +2754,21 @@ focus_tree = {
 				###
 				IF = {
 					limit = {
-						has_idea = IRQ_anglo_iraqi_treaty
+						OR = {
+							has_idea = IRQ_anglo_iraqi_treaty
+							has_idea = IRQ_anglo_iraqi_mutual_defense_agreement
+						}
 					}
 					add_equipment_subsidy = {
-						cic = 1000
-						equipment_type = small_plane_airframe
+						cic = 10000
+						equipment_type = fighter_equipment
 						seller_tags = { ENG } 
 					}
 				}
 				ELSE = {
 					add_equipment_subsidy = {
-						cic = 500
-						equipment_type = small_plane_airframe
+						cic = 5000
+						equipment_type = fighter_equipment
 						seller_tags = { ENG } 
 					}
 				}
@@ -2747,144 +2776,150 @@ focus_tree = {
 				###
 				IF = {
 					limit = {
-						has_idea = IRQ_anglo_iraqi_treaty
-					}
-					IF = {
-						limit = {
-							has_dlc = "By Blood Alone"
-						}
-						IF = {
-							limit = {
-								has_equipment = {
-									small_plane_airframe_1 > 0
-								}
-							}
-							add_equipment_to_stockpile = { 
-								type = small_plane_airframe_1
-								amount = 50
-								producer = ENG
-							}
-						}
-						ELSE = {
-							add_equipment_to_stockpile = { 
-								type = small_plane_airframe_0
-								amount = 50
-								producer = ENG
-							}
+						OR = {
+							has_idea = IRQ_anglo_iraqi_treaty
+							has_idea = IRQ_anglo_iraqi_mutual_defense_agreement
 						}
 					}
-					ELSE = {
+					# IF = {
+					# 	limit = {
+					# 		has_dlc = "By Blood Alone"
+					# 	}
+					# 	IF = {
+					# 		limit = {
+					# 			has_equipment = {
+					# 				small_plane_airframe_1 > 0
+					# 			}
+					# 		}
+					# 		add_equipment_to_stockpile = { 
+					# 			type = small_plane_airframe_1
+					# 			amount = 50
+					# 			producer = ENG
+					# 		}
+					# 	}
+					# 	ELSE = {
+					# 		add_equipment_to_stockpile = { 
+					# 			type = small_plane_airframe_0
+					# 			amount = 50
+					# 			producer = ENG
+					# 		}
+					# 	}
+					# }
+					# ELSE = {
 						add_equipment_to_stockpile = { 
 							type = fighter_equipment_1
 							amount = 50
 							producer = ENG
 						}
-					}
+					# }
 				}
 				ELSE = {
-					IF = {
-						limit = {
-							has_dlc = "By Blood Alone"
-						}
-						IF = {
-							limit = {
-								has_equipment = {
-									small_plane_airframe_1 > 0
-								}
-							}
-							add_equipment_to_stockpile = { 
-								type = small_plane_airframe_1
-								amount = 50
-								producer = ENG
-							}
-						}
-						ELSE = {
-							add_equipment_to_stockpile = { 
-								type = small_plane_airframe_0
-								amount = 50
-								producer = ENG
-							}
-						}
-					}
-					ELSE = {
+					# IF = {
+					# 	limit = {
+					# 		has_dlc = "By Blood Alone"
+					# 	}
+					# 	IF = {
+					# 		limit = {
+					# 			has_equipment = {
+					# 				small_plane_airframe_1 > 0
+					# 			}
+					# 		}
+					# 		add_equipment_to_stockpile = { 
+					# 			type = small_plane_airframe_1
+					# 			amount = 50
+					# 			producer = ENG
+					# 		}
+					# 	}
+					# 	ELSE = {
+					# 		add_equipment_to_stockpile = { 
+					# 			type = small_plane_airframe_0
+					# 			amount = 50
+					# 			producer = ENG
+					# 		}
+					# 	}
+					# }
+					# ELSE = {
 						add_equipment_to_stockpile = { 
 							type = fighter_equipment_1
 							amount = 25
 							producer = ENG
 						}
-					}
+					# }
 				}
 
 			}
 			ELSE_IF = {
 				limit = {
-					has_idea = IRQ_anglo_iraqi_treaty
+					OR = {
+						has_idea = IRQ_anglo_iraqi_treaty
+						has_idea = IRQ_anglo_iraqi_mutual_defense_agreement
+					}
 				}
 				custom_effect_tooltip = IRQ_purchase_british_aircraft_treaty_tt
-				IF = {
-					limit = {
-						has_dlc = "By Blood Alone"
-					}
-					IF = {
-						limit = {
-							has_equipment = {
-								small_plane_airframe_1 > 0
-							}
-						}
-						add_equipment_to_stockpile = { 
-							type = small_plane_airframe_1
-							amount = 100
-							producer = ENG
-						}
-					}
-					ELSE = {
-						add_equipment_to_stockpile = { 
-							type = small_plane_airframe_0
-							amount = 100
-							producer = ENG
-						}
-					}
-				}
-				ELSE = {
+				# IF = {
+				# 	limit = {
+				# 		has_dlc = "By Blood Alone"
+				# 	}
+				# 	IF = {
+				# 		limit = {
+				# 			has_equipment = {
+				# 				small_plane_airframe_1 > 0
+				# 			}
+				# 		}
+				# 		add_equipment_to_stockpile = { 
+				# 			type = small_plane_airframe_1
+				# 			amount = 100
+				# 			producer = ENG
+				# 		}
+				# 	}
+				# 	ELSE = {
+				# 		add_equipment_to_stockpile = { 
+				# 			type = small_plane_airframe_0
+				# 			amount = 100
+				# 			producer = ENG
+				# 		}
+				# 	}
+				# }
+				# ELSE = {
 					add_equipment_to_stockpile = { 
 						type = fighter_equipment_1
 						amount = 100
 						producer = ENG
 					}
-				}
+				# }
 			}
 			ELSE = {
-				IF = {
-					limit = {
-						has_dlc = "By Blood Alone"
-					}
-					IF = {
-						limit = {
-							has_equipment = {
-								small_plane_airframe_1 > 0
-							}
-						}
-						add_equipment_to_stockpile = { 
-							type = small_plane_airframe_1
-							amount = 50
-							producer = ENG
-						}
-					}
-					ELSE = {
-						add_equipment_to_stockpile = { 
-							type = small_plane_airframe_0
-							amount = 50
-							producer = ENG
-						}
-					}
-				}
-				ELSE = {
+				# IF = {
+				# 	limit = {
+				# 		has_dlc = "By Blood Alone"
+				# 	}
+				# 	IF = {
+				# 		limit = {
+				# 			has_equipment = {
+				# 				small_plane_airframe_1 > 0
+				# 			}
+				# 		}
+				# 		add_equipment_to_stockpile = { 
+				# 			type = small_plane_airframe_1
+				# 			amount = 50
+				# 			producer = ENG
+				# 		}
+				# 	}
+				# 	ELSE = {
+				# 		add_equipment_to_stockpile = { 
+				# 			type = small_plane_airframe_0
+				# 			amount = 50
+				# 			producer = ENG
+				# 		}
+				# 	}
+				# }
+				# ELSE = {
 					add_equipment_to_stockpile = { 
 						type = fighter_equipment_1
 						amount = 50
 						producer = ENG
 					}
-				}
+				# }
 			}
 			ENG = {
 				add_opinion_modifier = {
@@ -2941,38 +2976,38 @@ focus_tree = {
 					has_dlc = "Arms Against Tyranny"
 				}
 				add_equipment_subsidy = {
-					cic = 500
-					equipment_type = small_plane_airframe
+					cic = 5000
+					equipment_type = fighter_equipment #small_plane_airframe
 					seller_tags = { ITA } 
 				}
-				IF = {
-					limit = {
-						has_dlc = "By Blood Alone"
-					}
-					add_equipment_to_stockpile = { 
-						type = small_plane_airframe_0
-						amount = 30
-						producer = ITA
-					}
-				}
-				ELSE = {
+				# IF = {
+				# 	limit = {
+				# 		has_dlc = "By Blood Alone"
+				# 	}
+				# 	add_equipment_to_stockpile = { 
+				# 		type = small_plane_airframe_0
+				# 		amount = 30
+				# 		producer = ITA
+				# 	}
+				# }
+				# ELSE = {
 					add_equipment_to_stockpile = { 
 						type = fighter_equipment_0
 						amount = 30
 						producer = ITA
 					}
-				}
+				# }
 			}
-			ELSE_IF = {
-				limit = {
-					has_dlc = "By Blood Alone"
-				}
-				add_equipment_to_stockpile = { 
-					type = small_plane_airframe_0
-					amount = 55
-					producer = ITA
-				}
-			}
+			# ELSE_IF = {
+			# 	limit = {
+			# 		has_dlc = "By Blood Alone"
+			# 	}
+			# 	add_equipment_to_stockpile = { 
+			# 		type = small_plane_airframe_0
+			# 		amount = 55
+			# 		producer = ITA
+			# 	}
+			# }
 			ELSE = {
 				add_equipment_to_stockpile = { 
 					type = fighter_equipment_0
@@ -3135,7 +3170,7 @@ focus_tree = {
 						popup = yes
 					}
 				}
-			#}	
+			# }	
 
 		}
 	}
@@ -3211,6 +3246,7 @@ focus_tree = {
 				air_facility < 1
 				land_facility < 1
 				naval_facility < 1
+				NOT = { state = 1011 }
 			}
 		}
 
@@ -3230,8 +3266,9 @@ focus_tree = {
 			random_owned_controlled_state = {
 				limit = {
 					can_construct_building = air_facility
+					NOT = { state = 1011 }
 				}
-				prioritize = { 1010 }
+				prioritize = { 676 }
 				construct_building_in_random_province = {
 					air_facility = 1
 				}
@@ -3287,12 +3324,16 @@ focus_tree = {
 		}
 
 		available = {
-			any_owned_state = {
-				nuclear_facility < 1
-				air_facility < 1
-				land_facility < 1
-				naval_facility < 1
-			}
+		# 	any_owned_state = {
+		# 		nuclear_facility < 1
+		# 		air_facility < 1
+		# 		land_facility < 1
+		# 		naval_facility < 1
+		# 	}
+		}
+
+		allow_branch = {
+			always = no
 		}
 
 		bypass = {
@@ -3307,17 +3348,17 @@ focus_tree = {
 
 		completion_reward = {
 			
-			random_owned_controlled_state = {
-				limit = {
-					can_construct_building = nuclear_facility
-				}
-				prioritize = { 291 }
-				construct_building_in_random_province = {
-					nuclear_facility = 1
-				}
-			}
+		# 	random_owned_controlled_state = {
+		# 		limit = {
+		# 			can_construct_building = nuclear_facility
+		# 		}
+		# 		prioritize = { 291 }
+		# 		construct_building_in_random_province = {
+		# 			nuclear_facility = 1
+		# 		}
+		# 	}
 
-			custom_effect_tooltip = generic_skip_one_line_tt
+		# 	custom_effect_tooltip = generic_skip_one_line_tt
 
 			if = {
 				limit = {
@@ -3411,16 +3452,13 @@ focus_tree = {
 	focus = {
 		id = IRQ_establish_iraqi_coastal_defense_force
 		icon = {
-		    trigger = { 
+		    GFX_focus_IRQ_navy_alt = { 
 		    	OR = {
 		    		has_cosmetic_tag = IRQ_kurdistan_tag 
 		    		has_cosmetic_tag = greater_kurdistan 
 		    	}
 		    }
-		    value = GFX_focus_IRQ_navy_alt
-		}
-		icon = {
-		    value = GFX_focus_IRQ_navy
+		    GFX_focus_IRQ_navy = yes
 		}
 		prerequisite = { focus = IRQ_royal_iraqi_army }
 		#mutually_exclusive = { focus = }
@@ -3645,15 +3683,20 @@ focus_tree = {
 
 			1011 = {
 				IF = {
-					limit = { naval_base < 8 }
+					limit = { 
+						any_province_building_level = {
+							province = {
+								id = 2089
+							}
+							building = naval_base
+							level < 8
+						}
+					}
 					add_building_construction = {
 						type = naval_base
 						level = 1
 						instant_build = yes
-						province = {
-							all_provinces = yes
-							limit_to_coastal = yes
-					    }
+						province = 2089
 					}
 				}
 				IF = {
@@ -3862,19 +3905,24 @@ focus_tree = {
 
 			656 = {
 				IF = {
-					limit = { naval_base < 8 }
-					hidden_effect = {
+					limit = { 
+						any_province_building_level = {
+							province = {
+								id = 8085
+							}
+							building = naval_base
+							level < 8
+						}
+					}
+					# hidden_effect = {
 						add_building_construction = {
 							type = naval_base
 							level = 1
 							instant_build = yes
-							province = {
-								all_provinces = yes
-								limit_to_coastal = yes
-						    }
+							province = 8085
 						}
-					}
-					custom_effect_tooltip = IRQ_develop_the_kuwaiti_port_tt
+					# }
+					# custom_effect_tooltip = IRQ_develop_the_kuwaiti_port_tt
 				}
 				IF = {
 					limit = { 
@@ -3972,7 +4020,7 @@ focus_tree = {
 
 			add_popularity = {
 				ideology = neutrality
-				popularity = 0.1
+				popularity = 0.15
 			}	
 
 			add_stability = 0.1
@@ -3984,7 +4032,7 @@ focus_tree = {
 						option = HIDE
 					}
 				}
-				mark_focus_tree_layout_dirty = yes 
+				#mark_focus_tree_layout_dirty = yes 
 			}
 		}
 	}
@@ -4023,7 +4071,7 @@ focus_tree = {
 
 			add_stability = 0.1
 			add_political_power = 100
-
+			custom_effect_tooltip = IRQ_abd_al_ilah_leader_tt
 			if = {
 				limit = {
 					has_game_rule = {
@@ -4031,7 +4079,7 @@ focus_tree = {
 						option = HIDE
 					}
 				}
-				mark_focus_tree_layout_dirty = yes 
+				#mark_focus_tree_layout_dirty = yes 
 			}
 		}
 	}
@@ -4082,7 +4130,7 @@ focus_tree = {
 	focus = {
 		id = IRQ_raf_levies_focus
 		icon = GFX_focus_generic_air_bases
-		prerequisite = { focus = IRQ_increase_anglo_iraqi_economic_ties focus = IRQ_bakr_sidqi_coup }
+		prerequisite = { focus = IRQ_increase_anglo_iraqi_economic_ties }
 		#mutually_exclusive = { focus =  }
 		x = 0
 		y = 1
@@ -4124,12 +4172,12 @@ focus_tree = {
 				custom_effect_tooltip = generic_skip_one_line_tt
 			}
 
-			add_tech_bonus = {
-				name = IRQ_raf_levies_focus
-				bonus = 0.5
-				uses = 1
-				category = para_tech
-			}	
+			# add_tech_bonus = {
+			# 	name = IRQ_raf_levies_focus
+			# 	bonus = 0.5
+			# 	uses = 1
+			# 	category = para_tech
+			# }	
 
 			air_experience = 15
 
@@ -4264,7 +4312,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = IRQ_raf_levies_focus
 
-		cost = 10
+		cost = 9
 
 		ai_will_do = {
 			base = 1
@@ -4339,7 +4387,7 @@ focus_tree = {
 		id = IRQ_eliminate_the_golden_square
 		icon = GFX_focus_generic_anti_fascist_diplomacy
 		prerequisite = { focus = IRQ_assasination_of_sidqi focus = IRQ_attempted_assasination_of_sidqi }
-		#mutually_exclusive = { focus =  }
+		mutually_exclusive = { focus = IRQ_strengthen_the_golden_square }
 		x = 0
 		y = 1
 		relative_position_id = IRQ_assasination_of_sidqi
@@ -4351,9 +4399,7 @@ focus_tree = {
 		}
 
 		available = {
-			NOT = {
-				has_completed_focus = IRQ_strengthen_the_golden_square
-			}
+
 		}
 
 		bypass = {
@@ -4364,11 +4410,57 @@ focus_tree = {
 
 		cancel_if_invalid = yes
 		continue_if_invalid = no
-		available_if_capitulated = no
+		available_if_capitulated = yes
 
 		completion_reward = {
 
 			remove_ideas = IRQ_golden_square
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			if = {
+				limit = {
+					has_completed_focus = IRQ_attempted_assasination_of_sidqi
+				}
+
+				set_can_be_fired_in_advisor_role = {
+					character = IRQ_bakr_sidqi
+					value = yes
+				}
+
+				custom_effect_tooltip = generic_skip_one_line_tt
+
+				IF = {
+					limit = {
+						NOT = {
+							has_country_leader = {
+								ruling_only = yes
+								character = IRQ_nuri_as_said
+							}
+							has_country_leader = {
+								ruling_only = yes
+								character = IRQ_abd_al_ilah 
+							}	
+						}
+					}
+					IRQ_nuri_as_said = {
+						add_country_leader_role = {
+							country_leader = {
+								ideology = despotism
+								expire = "1965.1.1.1"
+								traits = { IRQ_british_lackey }
+							}
+							promote_leader = yes
+						} 
+					}
+				}
+			}
+
+			add_trait = {
+				character = IRQ_nuri_as_said
+				ideology = despotism
+				trait = IRQ_pro_western_iraqi_nationalist
+			}
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -4418,7 +4510,8 @@ focus_tree = {
 		bypass = {
 			OR = {
 				has_war_with = GER
-				is_in_faction_with = ENG 
+				# is_in_faction_with = ENG 
+				is_embargoing = GER
 			}
 		}
 
@@ -4426,7 +4519,7 @@ focus_tree = {
 
 		cancel_if_invalid = yes
 		continue_if_invalid = no
-		available_if_capitulated = no
+		available_if_capitulated = yes
 
 		completion_reward = {
 
@@ -4452,6 +4545,14 @@ focus_tree = {
 			}	
 
 		}
+
+		bypass_effect = {
+			add_equipment_to_stockpile = { 
+				type = convoy_1
+				amount = 50 
+				producer = ENG
+			}
+		}
 	}
 
 	focus = {
@@ -4472,7 +4573,7 @@ focus_tree = {
 		available = {
 			is_in_faction = no
 			is_subject = no
-			NOT = { has_government = fascism}
+			NOT = { has_government = fascism }
 		}
 
 		bypass = {
@@ -4522,15 +4623,15 @@ focus_tree = {
 					country_event = { id = generic.2 hours = 4 }
 				} 
 			}	
-			ELSE = {
-				set_rule = {
-					can_create_factions = yes
-				}
-				set_rule = {
-					can_send_volunteers = yes
-				}
-			}
-
+			# ELSE = {
+			# 	set_rule = {
+			# 		can_create_factions = yes
+			# 	}
+			# 	set_rule = {
+			# 		can_send_volunteers = yes
+			# 	}
+			# }
+			unlock_decision_category_tooltip = ALLIES_propaganda_campaigns
 		}
 	}
 
@@ -4543,6 +4644,11 @@ focus_tree = {
 		y = 1
 		relative_position_id = IRQ_embargo_the_axis_powers
 		mutually_exclusive = { focus = IRQ_join_axis focus = IRQ_restore_regent }
+
+		allow_branch = {
+			always = no
+		}
+
 		cost = 5
 
 		ai_will_do = {
@@ -4550,7 +4656,6 @@ focus_tree = {
 		}
 
 		available = {
-			is_ai = no
 			OR = {
 				is_in_faction = no
 				AND = {
@@ -4810,6 +4915,7 @@ focus_tree = {
 
 		available = {
 			is_subject = no
+			is_ai = no
 			NOT = {
 				656 = {
 					OWNER = {
@@ -4861,15 +4967,12 @@ focus_tree = {
 						}
 					}
 				}
-				# custom_effect_tooltip = if_they_accept_tt
-				# effect_tooltip = {
-				# 	every_state = {
-				# 		limit = {
-				# 			is_core_of = KUW
-				# 		}
-				# 		transfer_state_to = ROOT
-				# 	}
-				# }
+				custom_effect_tooltip = if_they_accept_tt
+				effect_tooltip = {
+					656 = {
+						transfer_state_to = FROM
+					}
+				}
 			# }			
 		}
 	}
@@ -4894,6 +4997,7 @@ focus_tree = {
 				has_war_with = ENG
 			}
 			has_idea = IRQ_anglo_iraqi_treaty
+			NOT = { has_completed_focus = IRQ_revoke_anglo_iraq_treaty }
 		}
 
 		bypass = {
@@ -5027,7 +5131,7 @@ focus_tree = {
 		id = IRQ_reach_out_to_jordan
 		icon = GFX_focus_IRQ_reach_out_to_jordan
 		prerequisite = { focus = IRQ_increase_anglo_iraqi_economic_ties }
-		#mutually_exclusive = { focus =  }
+		mutually_exclusive = { focus = IRQ_increase_prime_ministers_powers }
 		x = -5
 		y = 1
 		relative_position_id = IRQ_increase_anglo_iraqi_economic_ties
@@ -5041,19 +5145,26 @@ focus_tree = {
 		available = {
 			is_subject = no
 			has_army_manpower = { size > 30000 }
-			OR = {
+			# OR = {
 				455 = { is_owned_and_controlled_by = ENG }
-				#JOR = { is_subject_of = ENG }
-			}
+			# 	JOR = { is_subject_of = ENG }
+			# }
 			has_idea = IRQ_anglo_iraqi_treaty
+			has_country_leader = {
+				ruling_only = yes
+				character = IRQ_abd_al_ilah
+			}
+			# NOT = {
+			# 	has_completed_focus = IRQ_increase_prime_ministers_powers
+			# }
 		}
 
 		bypass = {
 			NOT = {
-				OR = {
+				# OR = {
 					455 = { is_owned_and_controlled_by = ENG }
-					#JOR = { is_subject_of = ENG }
-				}
+				# 	JOR = { is_subject_of = ENG }
+				# }
 			}
 		}
 
@@ -5072,8 +5183,9 @@ focus_tree = {
 				}
 			}	
 
-			#set_cosmetic_tag = IRQ_kingdom_of_iraq_tag
-
+			hidden_effect = {
+				set_cosmetic_tag = IRQ_kingdom_of_iraq_tag
+			}
 		}
 	}
 
@@ -5143,7 +5255,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = IRQ_reach_out_to_jordan
 
-		cost = 10
+		cost = 5
 
 		ai_will_do = {
 			base = 1
@@ -5171,12 +5283,12 @@ focus_tree = {
 			ETH_add_random_mil_factory_effect = yes
 			IF = { 
 				limit = {
-					OR = {
+				# 	OR = {
 						455 = {
 							is_owned_and_controlled_by = ROOT
 						}
-						#JOR = { is_subject_of = ROOT }
-					}
+				# 		JOR = { is_subject_of = ROOT }
+				# 	}
 				}
 				455 = {
 					add_extra_state_shared_building_slots = 2
@@ -5211,26 +5323,24 @@ focus_tree = {
 		}
 
 		#will_lead_to_war_with = PAL
-		will_lead_to_war_with = ENG
+		#will_lead_to_war_with = ENG
 
 		available = {
 			is_subject = no
 			has_army_manpower = { size > 45000 }
-			OR = {
+		# 	OR = {
 				454 = { is_owned_and_controlled_by = ENG }
-				AND = {
-					always = no
-					#PAL = { is_subject_of = ENG }
-					#454 = { is_owned_and_controlled_by = PAL }
-				}
-			}
+		# 		AND = {
+		# 			PAL = { is_subject_of = ENG }
+		# 			454 = { is_owned_and_controlled_by = PAL }
+		# 		}
+		# 	}
 		}
 
 		bypass = {
 			NOT = {
 				454 = { is_owned_and_controlled_by = ENG }
-				always = yes
-				#PAL = { is_subject_of = ENG }
+			# 	PAL = { is_subject_of = ENG }
 			}
 		}
 
@@ -5261,7 +5371,7 @@ focus_tree = {
 		icon = GFX_focus_TUR_loosen_the_laws_on_secularism
 		prerequisite = { focus = IRQ_demand_palestine }
 		#mutually_exclusive = { focus =  }
-		x = -3
+		x = 0
 		y = 1
 		relative_position_id = IRQ_demand_palestine
 
@@ -5302,11 +5412,11 @@ focus_tree = {
 	focus = {
 		id = IRQ_increase_prime_ministers_powers
 		icon = GFX_focus_ARG_defense_and_democracy
-		prerequisite = { focus = IRQ_demand_palestine }
-		#mutually_exclusive = { focus =  }
-		x = 3
+		prerequisite = { focus = IRQ_embargo_the_axis_powers }
+		mutually_exclusive = { focus = IRQ_reach_out_to_jordan }
+		x = -1
 		y = 1
-		relative_position_id = IRQ_demand_palestine
+		relative_position_id = IRQ_embargo_the_axis_powers
 
 		cost = 10
 
@@ -5315,18 +5425,17 @@ focus_tree = {
 		}
 
 		available = {
-			is_subject = no
 			has_country_flag = IRQ_regent_turned_down_absolute_powers
 			NOT = {
 				has_country_leader = {
 					ruling_only = yes
 					character = IRQ_abd_al_ilah
-				}	
-				has_government = democratic
+				}
 			}
 		}
 
 		bypass = {
+			has_government = democratic
 		}
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -5360,21 +5469,38 @@ focus_tree = {
 			custom_effect_tooltip = available_political_advisor
 			show_ideas_tooltip = IRQ_mohamed_mahdi_kubba	
 
-			hidden_effect = {
+			#hidden_effect = {
 				drop_cosmetic_tag = yes
 				set_cosmetic_tag = IRQ_constitutional_monarchy_iraq
-			}
+			#}
 
+		}
+
+		bypass_effect = {
+			
+			add_stability = 0.15
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			add_popularity = {
+				ideology = democratic 
+				popularity = 0.25
+			}	
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = IRQ_constitutional_monarchy_iraq
 		}
 	}
 
 	focus = {
 		id = IRQ_demand_syria_hashemite
 		icon = GFX_focus_IRQ_IRQ_demand_syria_hashemite
-		prerequisite = { focus = IRQ_demand_palestine }
+		prerequisite = { focus = IRQ_commander_of_the_faithful }
 		#mutually_exclusive = { focus =  }
-		x = 1
-		y = 1
+		x = 0
+		y = 2
 		relative_position_id = IRQ_demand_palestine
 
 		cost = 10
@@ -5385,53 +5511,27 @@ focus_tree = {
 
 		available = {
 			is_subject = no
-			680 = {
-				is_controlled_by = OWNER
-				NOT = {
-					OR = {
-						is_owned_by = ROOT
-						OWNER = { is_subject_of = ROOT }
-					}
-				}
+			any_country = {
+				original_tag = FRA
+				has_government = democratic
 				OR = {
-					any_country = {
-						original_tag = FRA
+					owns_state = 680
+					any_subject_country = {
 						owns_state = 680
 					}
-					owner = {
-						is_subject = yes
-						overlord = {
-							original_tag = FRA
-						}
-					}
 				}
+			}
+			680 = {
+				is_fully_controlled_by = OWNER
 			} 
 			554 = {
-				is_controlled_by = OWNER
-				NOT = {
-					OR = {
-						is_owned_by = ROOT
-						OWNER = { is_subject_of = ROOT }
-					}
-				}
+				is_fully_controlled_by = OWNER
 			}
 			677 = {
-				is_controlled_by = OWNER
-				NOT = {
-					OR = {
-						is_owned_by = ROOT
-						OWNER = { is_subject_of = ROOT }
-					}
-				}
+				is_fully_controlled_by = OWNER
 			}
-			799 = {
-				is_controlled_by = OWNER
-				NOT = {
-					OR = {
-						is_owned_by = ROOT
-						OWNER = { is_subject_of = ROOT }
-					}
-				}
+			553 = {
+				is_fully_controlled_by = OWNER
 			}
 		}
 
@@ -5450,6 +5550,12 @@ focus_tree = {
 					}
 				}
 				677 = {
+					OR = {
+						is_owned_by = ROOT
+						OWNER = { is_subject_of = ROOT }
+					}
+				}
+				553 = {
 					OR = {
 						is_owned_by = ROOT
 						OWNER = { is_subject_of = ROOT }
@@ -5480,13 +5586,6 @@ focus_tree = {
 						}
 					}
 				}
-				custom_effect_tooltip = if_they_accept_tt
-				effect_tooltip = {
-					annex_country = {
-						target = SYR 
-						transfer_troops = yes
-					}	
-				}
 			}
 			ELSE = {
 				554 = {
@@ -5502,6 +5601,7 @@ focus_tree = {
 					every_state = {
 						limit = {
 							is_core_of = SYR
+							NOT = { state = 799 }
 						}
 						transfer_state_to = ROOT
 					}
@@ -5513,8 +5613,8 @@ focus_tree = {
 		id = IRQ_hashemite_arab_federation
 		icon = GFX_focus_IRQ_hashemite_arab_federation
 		prerequisite = { focus = IRQ_demand_syria_hashemite }
-		mutually_exclusive = { focus = IRQ_a_new_caliph }
-		x = 0
+		#mutually_exclusive = { focus =  }
+		x = 1
 		y = 1
 		relative_position_id = IRQ_demand_syria_hashemite
 
@@ -5525,10 +5625,10 @@ focus_tree = {
 		}
 
 		available = {
-			291 = { 
-				is_owned_by = ROOT
-			}
-			856 = {
+			#291 = { 
+				#is_owned_by = ROOT
+			#}
+			454 = {
 				OR = {
 					is_owned_by = ROOT
 					OWNER = { is_subject_of = ROOT }
@@ -5540,7 +5640,25 @@ focus_tree = {
 					OWNER = { is_subject_of = ROOT }
 				}
 			}
+			553 = { 
+				OR = {
+					is_owned_by = ROOT
+					OWNER = { is_subject_of = ROOT }
+				}
+			}
 			554 = {
+				OR = {
+					is_owned_by = ROOT
+					OWNER = { is_subject_of = ROOT }
+				}
+			}
+			677 = { 
+				OR = {
+					is_owned_by = ROOT
+					OWNER = { is_subject_of = ROOT }
+				}
+			}
+			680 = { 
 				OR = {
 					is_owned_by = ROOT
 					OWNER = { is_subject_of = ROOT }
@@ -5560,18 +5678,18 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			hidden_effect = { drop_cosmetic_tag = yes }
-			set_cosmetic_tag = IRQ_hashemite_arab_federation
-			custom_effect_tooltip = generic_skip_one_line_tt
-			679 = { add_core_of = ROOT }
-			855 = { add_core_of = ROOT }
-			856 = { add_core_of = ROOT }
+			# hidden_effect = { drop_cosmetic_tag = yes }
+			# set_cosmetic_tag = IRQ_hashemite_arab_federation
+			# custom_effect_tooltip = generic_skip_one_line_tt
+			# 679 = { add_core_of = ROOT }
+			# 855 = { add_core_of = ROOT }
+			# 856 = { add_core_of = ROOT }
 			454 = { add_core_of = ROOT }
 			455 = { add_core_of = ROOT }
-			680 = { add_core_of = ROOT }
-			677 = { add_core_of = ROOT }
+			553 = { add_core_of = ROOT }
 			554 = { add_core_of = ROOT }
-			799 = { add_core_of = ROOT }
+			677 = { add_core_of = ROOT }
+			680 = { add_core_of = ROOT }
 		}
 	}
 
@@ -5583,6 +5701,10 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = IRQ_hashemite_arab_federation
+		
+		allow_branch = {
+			always = no
+		}
 
 		cost = 10
 
@@ -5614,9 +5736,13 @@ focus_tree = {
 		icon = GFX_focus_IRQ_restoration_of_hejaz
 		prerequisite = { focus = IRQ_demand_palestine }
 		#mutually_exclusive = { focus =  }
-		x = -1
+		x = -3
 		y = 1
 		relative_position_id = IRQ_demand_palestine
+
+		allow_branch = {
+			always = no
+		}
 
 		cost = 10
 
@@ -5686,11 +5812,11 @@ focus_tree = {
 	focus = {
 		id = IRQ_a_new_caliph
 		icon = GFX_focus_IRQ_a_new_caliph
-		prerequisite = { focus = IRQ_restoration_of_hejaz }
-		mutually_exclusive = { focus = IRQ_hashemite_arab_federation }
-		x = 0
+		prerequisite = { focus = IRQ_demand_syria_hashemite }
+		#mutually_exclusive = { focus = IRQ_hashemite_arab_federation }
+		x = -1
 		y = 1
-		relative_position_id = IRQ_restoration_of_hejaz
+		relative_position_id = IRQ_demand_syria_hashemite
 
 		cost = 10
 
@@ -5719,8 +5845,12 @@ focus_tree = {
 		completion_reward = {
 			hidden_effect = { drop_cosmetic_tag = yes }
 			set_cosmetic_tag = IRQ_hashemite_caliphate
-			add_country_leader_trait = IRQ_hashemite_caliph
 			add_political_power = 100
+			add_trait = {
+				character = IRQ_abd_al_ilah
+				ideology = despotism
+				trait = IRQ_hashemite_caliph
+			}
 			every_other_country = {
 				limit = {
 					is_subject_of = ROOT
@@ -5749,6 +5879,10 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = IRQ_a_new_caliph
+
+		allow_branch = {
+			always = no
+		}
 
 		#will_lead_to_war_with = PAL
 		will_lead_to_war_with = ENG
@@ -5869,6 +6003,10 @@ focus_tree = {
 		y = 1
 		relative_position_id = IRQ_a_new_caliph
 
+		allow_branch = {
+			always = no
+		}
+
 		will_lead_to_war_with = ENG
 		will_lead_to_war_with = EGY
 		will_lead_to_war_with = LBA
@@ -5925,74 +6063,74 @@ focus_tree = {
 		}
 	}
 
-	# focus = {
-	# 	id = IRQ_restore_al_andalus
-	# 	icon = GFX_focus_generic_attack_nationalist_spain_focus
-	# 	prerequisite = { focus = IRQ_unite_maghreb }
-	# 	#mutually_exclusive = { focus = IRQ_hashemite_arab_federation }
-	# 	x = 0
-	# 	y = 1
-	# 	relative_position_id = IRQ_unite_maghreb
+	focus = {
+		id = IRQ_restore_al_andalus
+		icon = GFX_focus_generic_attack_nationalist_spain_focus
+		prerequisite = { focus = IRQ_unite_maghreb }
+		#mutually_exclusive = { focus = IRQ_hashemite_arab_federation }
+		x = 0
+		y = 1
+		relative_position_id = IRQ_unite_maghreb
 
-	# 	#will_lead_to_war_with = RIF
-	# 	will_lead_to_war_with = MOR
-	# 	will_lead_to_war_with = SPR
-	# 	will_lead_to_war_with = POR
+		#will_lead_to_war_with = RIF
+		will_lead_to_war_with = MOR
+		will_lead_to_war_with = SPR
+		will_lead_to_war_with = POR
 
-	# 	cost = 10
+		cost = 10
 
-	# 	ai_will_do = {
-	# 		base = 1
-	# 	}
+		ai_will_do = {
+			base = 1
+		}
 
-	# 	available = {
-	# 		is_subject = no
-	# 		any_other_country = {
-	# 			original_tag = SPR
-	# 			NOT = {
-	# 				is_in_faction_with = ROOT
-	# 			}	
-	# 		}
-	# 	}
+		available = {
+			is_subject = no
+			any_other_country = {
+				original_tag = SPR
+				NOT = {
+					is_in_faction_with = ROOT
+				}	
+			}
+		}
 
-	# 	bypass = {
+		bypass = {
 
-	# 	}
+		}
 
-	# 	search_filters = { FOCUS_FILTER_POLITICAL }
-	# 	search_filters = { FOCUS_FILTER_ANNEXATION }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_ANNEXATION }
 
-	# 	cancel_if_invalid = yes
-	# 	continue_if_invalid = no
-	# 	available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
 
-	# 	completion_reward = {
-	# 		every_state = {
-	# 			limit = {
-	# 				NOT = { is_core_of = ROOT }
-	# 				OR = {
-	# 					region = 210
-	# 					region = 41
-	# 					region = 209
-	# 				}
-	# 			}
-	# 			add_core_of = ROOT
-	# 			hidden_effect = {
-	# 				OWNER = {
-	# 					ROOT = {
-	# 						create_wargoal = {
-	# 							target = PREV
-	# 							type = take_core_state
-	# 						}
-	# 					}
-	# 				}
-	# 			}
-	# 			ROOT = {
-	# 				custom_effect_tooltip = IRQ_unite_maghreb_tt
-	# 			}
-	# 		}
-	# 	}
-	# }
+		completion_reward = {
+			every_state = {
+				limit = {
+					NOT = { is_core_of = ROOT }
+					OR = {
+						region = 210
+						region = 41
+						region = 209
+					}
+				}
+				add_core_of = ROOT
+				hidden_effect = {
+					OWNER = {
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_core_state
+							}
+						}
+					}
+				}
+				ROOT = {
+					custom_effect_tooltip = IRQ_unite_maghreb_tt
+				}
+			}
+		}
+	}
 	
 	
 	focus = {
@@ -6053,7 +6191,7 @@ focus_tree = {
 						option = HIDE
 					}
 				}
-				mark_focus_tree_layout_dirty = yes 
+				#mark_focus_tree_layout_dirty = yes 
 			}
 
 		}
@@ -6150,6 +6288,16 @@ focus_tree = {
 					modifier = IRQ_purchased_our_equipment
 				}
 			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			set_technology = { 
+				motorised_infantry = 1 
+				popup = no
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
 			add_equipment_to_stockpile = {
 				type = motorized_equipment_1
 				amount = 200
@@ -6159,14 +6307,34 @@ focus_tree = {
 				limit = {
 						has_dlc = "La Resistance"
 				}
-				set_technology = { 
-					armored_car1 = 1 
-					popup = no
+
+				custom_effect_tooltip = generic_skip_one_line_tt
+
+				IF = {
+					limit = {
+						NOT = {
+							ITA = { has_design_based_on = gw_armored_car_chassis }
+						}
+					}
+					custom_effect_tooltip = IRQ_ITA_cars_tt
 				}
-				add_equipment_to_stockpile = { 
-					type = gw_armored_car_chassis
-					amount = 200 
-					producer = ITA
+				IF = {
+					limit = {
+						ITA = { has_design_based_on = gw_armored_car_chassis }
+					}
+
+					set_technology = { 
+						armored_car1 = 1 
+						popup = no
+					}
+
+					custom_effect_tooltip = generic_skip_one_line_tt
+
+					add_equipment_to_stockpile = { 
+						type = gw_armored_car_chassis 
+						amount = 200 
+						producer = ITA
+					}
 				}
 			}
 		}
@@ -6247,6 +6415,11 @@ focus_tree = {
 
 		completion_reward = {
 
+			reduce_focus_completion_cost = {
+				focus = IRQ_revoke_anglo_iraq_treaty
+				cost = 7
+			}
+
 			add_popularity = {
 				ideology = fascism
 				popularity = 0.1
@@ -6269,6 +6442,10 @@ focus_tree = {
 		x = 11
 		y = 1
 		relative_position_id = IRQ_attempted_assasination_of_sidqi
+
+		allow_branch = {
+			always = no
+		}
 
 		cost = 10
 
@@ -6540,14 +6717,14 @@ focus_tree = {
 
 		completion_reward = {
 
-			# set_rule = {
-			# 	can_create_factions = yes
-			# }
-			# create_faction_from_template = {
-			# 	template = faction_template_regional
-			# 	name = IRQ_meto
-			# 	icon = GFX_faction_logo_generic_15
-			# }
+			set_rule = {
+				can_create_factions = yes
+			}
+			create_faction_from_template = {
+				template = faction_template_regional
+				name = IRQ_meto
+				icon = GFX_faction_logo_generic_15
+			}
 
 			IF = {
 				limit = {
@@ -6655,7 +6832,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = IRQ_carve_up_syria
 
-		cost = 10
+		cost = 5 
 
 		ai_will_do = {
 			base = 1
@@ -6847,6 +7024,7 @@ focus_tree = {
 		icon = GFX_focus_TUR_support_the_golden_square
 		prerequisite = { focus = IRQ_attempted_assasination_of_sidqi focus = IRQ_assasination_of_sidqi }
 		mutually_exclusive = { focus = IRQ_curtail_arabism }
+		mutually_exclusive = { focus = IRQ_eliminate_the_golden_square }
 		x = 0
 		y = 1
 		relative_position_id = IRQ_attempted_assasination_of_sidqi
@@ -6859,9 +7037,6 @@ focus_tree = {
 
 		available = {
 			fascism > 0.25
-			NOT = {
-				has_completed_focus = IRQ_eliminate_the_golden_square
-			}
 		}
 
 		bypass = {
@@ -6880,7 +7055,11 @@ focus_tree = {
 				add_idea = IRQ_golden_square_strong
 			}
 
-			custom_effect_tooltip = generic_skip_one_line_tt
+			set_rule = {
+				can_join_factions = no
+			}
+
+			#custom_effect_tooltip = generic_skip_one_line_tt
 
 			IF = {
 				limit = {
@@ -6902,7 +7081,7 @@ focus_tree = {
 				add_trait = { trait = politically_connected }
 			}		
 
-			custom_effect_tooltip = generic_skip_one_line_tt
+			#custom_effect_tooltip = generic_skip_one_line_tt
 
 			country_event = {
 				id = IRQ_political_events.71
@@ -6927,7 +7106,7 @@ focus_tree = {
 		}
 
 		available = {
-			
+			has_government = fascism
 		}
 
 		bypass = {
@@ -6993,23 +7172,28 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			IF = {
-				limit = {
-					has_dlc = "By Blood Alone"
-				}
-				add_equipment_to_stockpile = { 
-					type = small_plane_airframe_1
-					amount = 100
-					producer = GER
-				}
-			}
-			ELSE = {
+		# 	IF = {
+		# 		limit = {
+		# 			has_dlc = "By Blood Alone"
+		# 		}
+		# 		add_equipment_to_stockpile = { 
+		# 			type = small_plane_airframe_1
+		# 			amount = 50
+		# 			producer = GER
+		# 		}
+		# 		add_equipment_to_stockpile = { 
+		# 			type = medium_plane_airframe_1
+		# 			amount = 50
+		# 			producer = GER
+		# 		}
+		# 	}
+		# 	ELSE = {
 				add_equipment_to_stockpile = { 
 					type = fighter_equipment_1
 					amount = 100
 					producer = GER
 				}
-			}
+		# 	}
 			add_manpower = 2200		
 			custom_effect_tooltip = generic_skip_one_line_tt
 			custom_effect_tooltip = available_military_high_command
@@ -7034,6 +7218,11 @@ focus_tree = {
 		available = {
 			is_subject = no
 			has_government = fascism
+			554 = {
+				OWNER = {
+					has_government = fascism
+				}
+			}
 			NOT = {
 				hidden_trigger = {
 					has_war_with = 680.OWNER
@@ -7050,37 +7239,12 @@ focus_tree = {
 				}
 				
 			}
-			680 = {
-				NOT = {
-					OR = {
-						is_owned_by = ROOT
-						OWNER = { is_subject_of = ROOT }
-					}
+			if = {
+				limit = {
+					is_ai = yes
 				}
-			} 
-			554 = {
-				NOT = {
-					OR = {
-						is_owned_by = ROOT
-						OWNER = { is_subject_of = ROOT }
-					}
-				}
-			}
-			677 = {
-				NOT = {
-					OR = {
-						is_owned_by = ROOT
-						OWNER = { is_subject_of = ROOT }
-					}
-				}
-			}
-			799 = {
-				NOT = {
-					OR = {
-						is_owned_by = ROOT
-						OWNER = { is_subject_of = ROOT }
-					}
-				}
+				454 = { is_controlled_by_ROOT_or_ally = yes }
+				455 = { is_controlled_by_ROOT_or_ally = yes }
 			}
 		}
 
@@ -7151,6 +7315,7 @@ focus_tree = {
 					every_state = {
 						limit = {
 							is_core_of = SYR
+							NOT = { state = 799 }
 						}
 						transfer_state_to = ROOT
 					}
@@ -7285,8 +7450,12 @@ focus_tree = {
 		icon = GFX_focus_ETH_an_arabic_base
 		prerequisite = { focus = IRQ_rally_the_arab_world }
 		x = 0
-		y = 1
+		y = 2
 		relative_position_id = IRQ_rally_the_arab_world
+
+		allow_branch = {
+			always = no
+		}
 
 		cost = 10
 
@@ -7362,10 +7531,22 @@ focus_tree = {
 					is_controlled_by = PER
 				}
 			}
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				any_other_country = {
+					OR = {
+						is_in_faction_with = GER
+						is_in_faction_with = JAP
+					}
+					is_justifying_wargoal_against = PER
+				}
+			}
 		}
 
 		bypass = {
-
+			has_war_with = PER
 		}
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
@@ -7390,6 +7571,10 @@ focus_tree = {
 				}
 			}
 
+		}
+		bypass_effect = {
+			421 = { add_claim_by = ROOT }
+			413 = { add_claim_by = ROOT }
 		}
 	}
 
@@ -7509,10 +7694,10 @@ focus_tree = {
 	focus = {
 		id = IRQ_proclaim_united_arab_republic
 		icon = GFX_focus_IRQ_proclaim_united_arab_republic
-		prerequisite = { focus = IRQ_regime_change_in_arabia }
+		prerequisite = { focus = IRQ_rally_the_arab_world }
 		x = 0
-		y = 2
-		relative_position_id = IRQ_regime_change_in_arabia
+		y = 1
+		relative_position_id = IRQ_rally_the_arab_world
 
 		cost = 10
 
@@ -7523,6 +7708,7 @@ focus_tree = {
 		available = {
 			is_subject = no
 			has_government = fascism
+			NOT = { has_idea = IRQ_anglo_iraqi_treaty }
 		}
 
 		bypass = {
@@ -7550,7 +7736,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = IRQ_strengthen_the_golden_square
 
-		cost = 10
+		will_lead_to_war_with = ENG
+
+		cost = 2
 
 		ai_will_do = {
 			base = 1
@@ -7558,6 +7746,34 @@ focus_tree = {
 
 		available = {
 			is_subject = no
+			if = {
+				limit = {
+					is_ai = yes
+					OR = {
+						has_country_flag = IRQ_AI_RANDOM_FASCISM
+						has_game_rule = {
+							rule = IRQ_AI_BEHAVIOR
+							option = FASCISM
+						}	
+					}
+				}
+				any_other_country = {
+					is_ally_with = GER
+					OR = {
+						AND = {
+							controls_state = 452
+							controls_state = 1082
+							controls_state = 447
+							controls_state = 907
+						}
+						num_divisions_in_states = {
+							count > 5
+							states = { 452 1082 }
+							types = { armor }
+						}
+					}
+				}
+			}
 		}
 
 		bypass = {
@@ -7565,7 +7781,7 @@ focus_tree = {
 				NOT = {
 					has_idea = IRQ_anglo_iraqi_treaty
 				}
-				is_subject = yes
+				#is_subject = yes
 			}
 		}
 
@@ -7610,6 +7826,19 @@ focus_tree = {
 					hours = 1
 				}
 			}
+			every_other_country = {
+				limit = {
+					has_military_access_to = ROOT
+					is_ally_with = ENG
+					NOT = { tag = ENG }
+				}
+				diplomatic_relation = {
+					country = ROOT
+					relation = military_access
+					active = no
+				}
+			}
+			set_country_flag = IRQ_delay_flag
 		}
 	}
 
@@ -7628,15 +7857,26 @@ focus_tree = {
 		}
 
 		available = {
-			is_ai = no
 			has_government = fascism
 			GER = {
 				has_government = fascism
 			}
 			is_in_faction = no
 			is_subject = no
+			has_country_flag = {
+				flag = IRQ_delay_flag
+				days > 60
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRQ_delay_flag_tt
+				has_country_flag = {
+					flag = IRQ_delay_flag
+					days > 60
+				}
+			}
 		}
 
+		enable_automatic_bypass = no
 		bypass = {
 			is_in_faction_with = GER
 		}
@@ -7648,9 +7888,13 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
+			set_rule = {
+				can_join_factions = yes
+			}
 			GER = {
 				country_event = { id = generic.2 hours = 4 }
 			}
+			unlock_decision_category_tooltip = AXIS_propaganda_campaigns
 		}
 	}
 
@@ -7692,7 +7936,7 @@ focus_tree = {
 					has_dlc = "No Step Back"
 				}
 				add_equipment_to_stockpile = { 
-					type = light_tank_chassis_1
+					type = ger_light_tank_chassis_p2
 					amount = 200
 					producer = GER
 				}
@@ -7804,15 +8048,12 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			custom_effect_tooltip = IRQ_invite_oil_mission_ctt
-			
-			hidden_effect = {
-				GER = {
-					country_event = {
-						id = IRQ_political_events.74
-					}	
+			GER = {
+				country_event = {
+					id = IRQ_political_events.74
 				}
 			}
+			custom_effect_tooltip = IRQ_invite_oil_mission_ctt
 			
 			effect_tooltip = {
 				add_equipment_to_stockpile = { 
@@ -7865,7 +8106,7 @@ focus_tree = {
 
 		cancel_if_invalid = yes
 		continue_if_invalid = no
-		available_if_capitulated = no
+		available_if_capitulated = yes
 
 		completion_reward = {
 			ENG = {
@@ -7874,6 +8115,18 @@ focus_tree = {
 					hours = 1
 				}
 			}
+			IF = {
+				limit = {
+					has_idea = IRQ_bakr_sidqi_pm
+				}
+				remove_ideas = IRQ_bakr_sidqi_pm
+			}
+			IF = {
+				limit = {
+					has_character = IRQ_bakr_sidqi
+				}
+				retire_character = IRQ_bakr_sidqi
+			}
 		}
 	}
 
@@ -7881,7 +8134,7 @@ focus_tree = {
 		id = IRQ_refuge_for_the_grand_mufti
 		icon = GFX_focus_IRQ_refuge_for_the_grand_mufti
 		prerequisite = { focus = IRQ_attempted_assasination_of_sidqi focus = IRQ_assasination_of_sidqi}
-		x = -2
+		x = 2
 		y = 1
 		relative_position_id = IRQ_attempted_assasination_of_sidqi
 
@@ -7892,7 +8145,10 @@ focus_tree = {
 		}
 
 		available = {
-			has_global_flag = the_1936_PAL_revolt_has_happened
+			OR = {
+				has_global_flag = the_1936_PAL_revolt_has_happened
+				date > 1936.4.19
+			}
 		}
 
 		bypass = {
@@ -10379,33 +10635,33 @@ focus_tree = {
 				limit = {
 					is_in_faction_with = SOV
 					SOV = {
-						OR = { 
-							has_design_based_on = small_plane_cas_airframe
+						# OR = { 
+						# 	has_design_based_on = small_plane_cas_airframe
 							has_tech = CAS1
-						}
+						# }
 					}
 				}
 
-				IF = {
-					limit = {
-						has_dlc = "By Blood Alone"
+				# IF = {
+				# 	limit = {
+				# 		has_dlc = "By Blood Alone"
 
-					}
+				# 	}
 
-					add_equipment_to_stockpile = { 
-						type = small_plane_cas_airframe_1
-						amount = 100
-						producer = SOV
-					}
-				}
+				# 	add_equipment_to_stockpile = { 
+				# 		type = small_plane_cas_airframe_1
+				# 		amount = 100
+				# 		producer = SOV
+				# 	}
+				# }
 
-				ELSE_IF = {
+				# ELSE_IF = {
 					add_equipment_to_stockpile = {
 						type = CAS_equipment_1
 						amount = 100
 						producer = SOV
 					}
-				}
+				# }
 			}
 			ELSE = {
 				custom_effect_tooltip = generic_skip_one_line_tt
@@ -10449,18 +10705,24 @@ focus_tree = {
 					name = IRQ_support_from_the_mountains
 					cost_reduction = 0.2
 					uses = 2
-					category = cat_mountaineers_doctrine
+					category = special_forces_doctrine
 				}
+				custom_effect_tooltip = mountaineer_subdoctrines_default_add_mastery_bonus_effect_tooltip
+				hidden_effect = {
+					add_mastery_bonus = {
+						name = IRQ_support_from_the_mountains
+						bonus = 0.1
+						days = 240
+						sub_doctrine = mountaineers_1
+					}
+					add_mastery_bonus = {
+						name = IRQ_support_from_the_mountains
+						bonus = 0.1
+						days = 240
+						sub_doctrine = mountaineers_2
+					}
+				}				
 			}
-			
-
-			# custom_effect_tooltip = ROM_mountain_artillery_tech_tt
-			# hidden_effect = { 
-			# 	set_technology = { 
-			# 		mountain_gun = 1 
-			# 		popup = no
-			# 	} 
-			# }
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 

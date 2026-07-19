@@ -233,10 +233,10 @@ sp_air_earthshaker_bomb = {
 		country_effects = {
 			custom_effect_tooltip = sp_air_earthshaker_bomb_completion_tt
 		}
-		enable_equipment_modules = {
-			limit = { has_dlc = "By Blood Alone" }
-			earthshaker_bomb_release
-		}
+		# enable_equipment_modules = {
+		# 	limit = { has_dlc = "By Blood Alone" }
+		# 	earthshaker_bomb_release
+		# }
 	}
 
 	generic_prototype_rewards = {
@@ -274,15 +274,25 @@ sp_air_earthshaker_bomb = {
 				
 				iteration_output = {
 					country_effects = {
-						if = {
-							limit = { has_dlc = "By Blood Alone"}							
+					# 	if = {
+					# 		limit = { has_dlc = "By Blood Alone"}							
 						
+					# 		add_equipment_bonus = {
+					# 			name = sp_earthshaker_bomb_naval_targetting
+					# 			bonus = {
+					# 				large_plane_airframe = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
+					# 					naval_strike_targetting = 0.1									
+					# 				}
+					# 			}
+					# 		}
+					# 	}
+					# 	else = {
 							add_equipment_bonus = {
 								name = sp_earthshaker_bomb_naval_targetting
 								bonus = {
-									# large_plane_airframe = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
-									# 	naval_strike_targetting = 0.1									
-									# }
+								# 	large_plane_airframe = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
+								# 		naval_strike_targetting = 0.1
+								# 	}
 									jet_strat_bomber_equipment = {
 										naval_strike_targetting = 0.1
 									}
@@ -292,19 +302,12 @@ sp_air_earthshaker_bomb = {
 									transport_plane_equipment = {
 										naval_strike_targetting = 0.1
 									}
-								}
-							}
-						}
-						else = {
-							add_equipment_bonus = {
-								name = sp_earthshaker_bomb_naval_targetting
-								bonus = {
-									large_plane_airframe = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
+									flying_boat_equipment = {
 										naval_strike_targetting = 0.1
 									}
 								}
 							}
-						}
+					# 	}
 					}
 				}
 			}
@@ -314,9 +317,20 @@ sp_air_earthshaker_bomb = {
 				default = yes
 				iteration_output = {
 					country_effects = {
-						if = {
-							limit = { has_dlc = "By Blood Alone"}							
+					# 	if = {
+					# 		limit = { has_dlc = "By Blood Alone"}							
 						
+					# 		add_equipment_bonus = {
+					# 			name = sp_earthshaker_bomb_power
+					# 			bonus = {
+					# 				large_plane_airframe = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
+					# 					naval_strike_attack = 0.05
+					# 					air_bombing = 0.05									
+					# 				}
+					# 			}
+					# 		}
+					# 	}
+					# 	else = {
 							add_equipment_bonus = {
 								name = sp_earthshaker_bomb_power
 								bonus = {
@@ -332,28 +346,13 @@ sp_air_earthshaker_bomb = {
 										naval_strike_attack = 0.05
 										air_bombing = 0.05
 									}
-								}
-							}
-						}
-						else = {
-							add_equipment_bonus = {
-								name = sp_earthshaker_bomb_power
-								bonus = {
-									jet_strat_bomber_equipment = {
-										naval_strike_attack = 0.05
-										air_bombing = 0.05
-									}
-									strat_bomber_equipment = {
-										naval_strike_attack = 0.05
-										air_bombing = 0.05
-									}
-									transport_plane_equipment = {
+									flying_boat_equipment = {
 										naval_strike_attack = 0.05
 										air_bombing = 0.05
 									}
 								}
 							}
-						}
+					# 	}
 					}
 				}
 			}
@@ -363,44 +362,50 @@ sp_air_earthshaker_bomb = {
 				
 				iteration_output = {
 					country_effects = {
-						if = {
-							limit = { has_dlc = "By Blood Alone"}							
+					# 	if = {
+					# 		limit = { has_dlc = "By Blood Alone"}							
 						
+					# 		add_equipment_bonus = {
+					# 			name = sp_earthshaker_bomb_both
+					# 			bonus = {
+					# 				large_plane_airframe = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
+					# 					naval_strike_targetting = 0.1
+					# 					naval_strike_attack = 0.05
+					# 					air_bombing = 0.05
+					# 					build_cost_ic = 0.05								
+					# 				}
+					# 			}
+					# 		}
+					# 	}
+					# 	else = {
 							add_equipment_bonus = {
 								name = sp_earthshaker_bomb_both
 								bonus = {
+								# 	large_plane_airframe = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
+								# 		naval_strike_targetting = 0.1
+								# 		naval_strike_attack = 0.05
+								# 		air_bombing = 0.05
+								# 		build_cost_ic = 0.05
+								# 	}
 									jet_strat_bomber_equipment = {
 										naval_strike_targetting = 0.1
 										naval_strike_attack = 0.05
 										air_bombing = 0.05
-										build_cost_ic = 0.05	
+										build_cost_ic = 0.05
 									}
 									strat_bomber_equipment = {
 										naval_strike_targetting = 0.1
 										naval_strike_attack = 0.05
 										air_bombing = 0.05
-										build_cost_ic = 0.05	
+										build_cost_ic = 0.05
 									}
 									transport_plane_equipment = {
 										naval_strike_targetting = 0.1
 										naval_strike_attack = 0.05
 										air_bombing = 0.05
-										build_cost_ic = 0.05	
+										build_cost_ic = 0.05
 									}
-									# large_plane_airframe = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
-									# 	naval_strike_targetting = 0.1
-									# 	naval_strike_attack = 0.05
-									# 	air_bombing = 0.05
-									# 	build_cost_ic = 0.05								
-									# }
-								}
-							}
-						}
-						else = {
-							add_equipment_bonus = {
-								name = sp_earthshaker_bomb_both
-								bonus = {
-									large_plane_airframe = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
+									flying_boat_equipment = {
 										naval_strike_targetting = 0.1
 										naval_strike_attack = 0.05
 										air_bombing = 0.05
@@ -408,7 +413,7 @@ sp_air_earthshaker_bomb = {
 									}
 								}
 							}
-						}
+					# 	}
 					}
 				}
 			}
@@ -527,19 +532,19 @@ sp_air_intercontinental_bomber = {
 				
 				iteration_output = {
 					country_effects = {
-						if = {
-							limit = { has_dlc = "By Blood Alone"}							
+					# 	if = {
+					# 		limit = { has_dlc = "By Blood Alone"}							
 						
-							add_equipment_bonus = {
-								name = sp_air_intercontinental_bomber_balanced
-								bonus = {
-									strat_bomber_intercontinental_equipment = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
-										reliability = 0.05									
-									}
-								}
-							}
-						}
-						else = {
+					# 		add_equipment_bonus = {
+					# 			name = sp_air_intercontinental_bomber_balanced
+					# 			bonus = {
+					# 				strat_bomber_intercontinental_equipment = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
+					# 					reliability = 0.05									
+					# 				}
+					# 			}
+					# 		}
+					# 	}
+					# 	else = {
 							add_equipment_bonus = {
 								name = sp_air_intercontinental_bomber_balanced
 								bonus = {
@@ -548,7 +553,7 @@ sp_air_intercontinental_bomber = {
 									}
 								}
 							}
-						}
+					# 	}
 					}
 				}
 			}
@@ -558,21 +563,21 @@ sp_air_intercontinental_bomber = {
 				
 				iteration_output = {
 					country_effects = {
-						if = {
-							limit = { has_dlc = "By Blood Alone"}							
+					# 	if = {
+					# 		limit = { has_dlc = "By Blood Alone"}							
 						
-							add_equipment_bonus = {
-								name = sp_air_intercontinental_bomber_bombing_payload
-								bonus = {
-									strat_bomber_intercontinental_equipment = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
-										air_bombing = 0.075
-										air_defence	= -0.025
-										air_attack = -0.05
-									}
-								}
-							}
-						}
-						else = {
+					# 		add_equipment_bonus = {
+					# 			name = sp_air_intercontinental_bomber_bombing_payload
+					# 			bonus = {
+					# 				strat_bomber_intercontinental_equipment = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
+					# 					air_bombing = 0.075
+					# 					air_defence	= -0.025
+					# 					air_attack = -0.05
+					# 				}
+					# 			}
+					# 		}
+					# 	}
+					# 	else = {
 							add_equipment_bonus = {
 								name = sp_air_intercontinental_bomber_bombing_payload
 								bonus = {
@@ -583,7 +588,7 @@ sp_air_intercontinental_bomber = {
 									}
 								}
 							}
-						}
+					# 	}
 					}
 				}
 			}
@@ -593,9 +598,21 @@ sp_air_intercontinental_bomber = {
 				
 				iteration_output = {
 					country_effects = {
-						if = {
-							limit = { has_dlc = "By Blood Alone"}							
+					# 	if = {
+					# 		limit = { has_dlc = "By Blood Alone"}							
 						
+					# 		add_equipment_bonus = {
+					# 			name = sp_air_intercontinental_bomber_protection
+					# 			bonus = {
+					# 				strat_bomber_intercontinental_equipment = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
+					# 					air_defence = 0.075
+					# 					air_attack = -0.05
+					# 					air_bombing = -0.05
+					# 				}
+					# 			}
+					# 		}
+					# 	}
+					# 	else = {
 							add_equipment_bonus = {
 								name = sp_air_intercontinental_bomber_protection
 								bonus = {
@@ -606,19 +623,7 @@ sp_air_intercontinental_bomber = {
 									}
 								}
 							}
-						}
-						else = {
-							add_equipment_bonus = {
-								name = sp_air_intercontinental_bomber_protection
-								bonus = {
-									strat_bomber_intercontinental_equipment = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
-										air_defence = 0.075
-										air_attack = -0.05
-										air_bombing = -0.05
-									}
-								}
-							}
-						}
+					# 	}
 					}
 				}
 			}
@@ -723,21 +728,21 @@ sp_air_mothership_aircraft = {
 				
 				iteration_output = {
 					country_effects = {
-						if = {
-							limit = { has_dlc = "By Blood Alone"}							
+					# 	if = {
+					# 		limit = { has_dlc = "By Blood Alone"}							
 						
-							add_equipment_bonus = {
-								name = sp_air_mothership_speed_agility
-								bonus = {
-									mothership_equipment = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
-										air_agility = 0.1
-										maximum_speed = 0.1
-										fuel_consumption = 0.15
-									}
-								}
-							}
-						}	
-						else = {
+					# 		add_equipment_bonus = {
+					# 			name = sp_air_mothership_speed_agility
+					# 			bonus = {
+					# 				mothership_equipment = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
+					# 					air_agility = 0.1
+					# 					maximum_speed = 0.1
+					# 					fuel_consumption = 0.15
+					# 				}
+					# 			}
+					# 		}
+					# 	}	
+					# 	else = {
 							add_equipment_bonus = {
 								name = sp_air_mothership_speed_agility
 								bonus = {
@@ -748,7 +753,7 @@ sp_air_mothership_aircraft = {
 									}
 								}
 							}						
-						}		
+					# 	}		
 					}
 				}
 			}
@@ -758,19 +763,19 @@ sp_air_mothership_aircraft = {
 				default = yes
 				iteration_output = {
 					country_effects = {
-						if = {
-							limit = { has_dlc = "By Blood Alone"}							
-						
-							add_equipment_bonus = {
-								name = sp_air_mothership_balanced
-								bonus = {
-									mothership_equipment = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
-										reliability = 0.1									
-									}
-								}
-							}
-						}							
-						else = {
+					# 	if = {
+					# 		limit = { has_dlc = "By Blood Alone"}							
+					# 	
+					# 		add_equipment_bonus = {
+					# 			name = sp_air_mothership_balanced
+					# 			bonus = {
+					# 				mothership_equipment = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
+					# 					reliability = 0.1									
+					# 				}
+					# 			}
+					# 		}
+					# 	}							
+					# 	else = {
 							add_equipment_bonus = {
 								name = sp_air_mothership_balanced
 								bonus = {
@@ -779,7 +784,7 @@ sp_air_mothership_aircraft = {
 									}
 								}
 							}						
-						}
+					# 	}
 					} 
 				}
 			}
@@ -789,21 +794,21 @@ sp_air_mothership_aircraft = {
 				
 				iteration_output = {
 					country_effects = {
-						if = {
-							limit = { has_dlc = "By Blood Alone"}							
+					# 	if = {
+					# 		limit = { has_dlc = "By Blood Alone"}							
 						
-							add_equipment_bonus = {
-								name = sp_air_mothership_strength
-								bonus = {
-									mothership_equipment = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
-										air_defence = 0.1
-										air_attack = 0.1	
-										build_cost_ic = 0.1						
-									}
-								}
-							}
-						}	
-						else = {
+					# 		add_equipment_bonus = {
+					# 			name = sp_air_mothership_strength
+					# 			bonus = {
+					# 				mothership_equipment = { #SETUP IN CASE OF HAVING TO BALANCE DIFFERENTLY FOR NON-BBA AND BBA
+					# 					air_defence = 0.1
+					# 					air_attack = 0.1	
+					# 					build_cost_ic = 0.1						
+					# 				}
+					# 			}
+					# 		}
+					# 	}	
+					# 	else = {
 							add_equipment_bonus = {
 								name = sp_air_mothership_strength
 								bonus = {
@@ -814,7 +819,7 @@ sp_air_mothership_aircraft = {
 									}
 								}
 							}						
-						}
+					# 	}
 					}
 				}
 			}		
@@ -922,7 +927,32 @@ sp_air_jet_engine = {
 				add_equipment_bonus = {
 					name = sp_air_jet_engine
 					bonus = {
-						medium_plane_airframe = {
+						fighter_equipment = {
+							air_agility = 0.05
+							maximum_speed = 0.05
+							instant = yes
+						}
+						cv_fighter_equipment = {
+							air_agility = 0.05
+							maximum_speed = 0.05
+							instant = yes
+						}
+						CAS_equipment = {
+							air_agility = 0.05
+							maximum_speed = 0.05
+							instant = yes
+						}
+						cv_CAS_equipment = {
+							air_agility = 0.05
+							maximum_speed = 0.05
+							instant = yes
+						}
+						nav_bomber_equipment = {
+							air_agility = 0.05
+							maximum_speed = 0.05
+							instant = yes
+						}
+						cv_nav_bomber_equipment = {
 							air_agility = 0.05
 							maximum_speed = 0.05
 							instant = yes
@@ -932,7 +962,17 @@ sp_air_jet_engine = {
 				add_equipment_bonus = {
 					name = sp_air_jet_engine
 					bonus = {
-						small_plane_airframe = {
+						tac_bomber_equipment = {
+							air_agility = 0.05
+							maximum_speed = 0.05
+							instant = yes
+						}
+						heavy_fighter_equipment = {
+							air_agility = 0.05
+							maximum_speed = 0.05
+							instant = yes
+						}
+						scout_plane_equipment = {
 							air_agility = 0.05
 							maximum_speed = 0.05
 							instant = yes
@@ -1207,7 +1247,27 @@ sp_air_axial_jet_engine = {
 				add_equipment_bonus = {
 					name = sp_air_axial_jet_engine
 					bonus = {
-						medium_plane_airframe = {
+						fighter_equipment = {
+							air_range = 0.1
+							instant = yes
+						}
+						cv_fighter_equipment = {
+							air_range = 0.1
+							instant = yes
+						}
+						CAS_equipment = {
+							air_range = 0.1
+							instant = yes
+						}
+						cv_CAS_equipment = {
+							air_range = 0.1
+							instant = yes
+						}
+						nav_bomber_equipment = {
+							air_range = 0.1
+							instant = yes
+						}
+						cv_nav_bomber_equipment = {
 							air_range = 0.1
 							instant = yes
 						}
@@ -1216,7 +1276,15 @@ sp_air_axial_jet_engine = {
 				add_equipment_bonus = {
 					name = sp_air_axial_jet_engine
 					bonus = {
-						small_plane_airframe = {
+						tac_bomber_equipment = {
+							air_range = 0.1
+							instant = yes
+						}
+						heavy_fighter_equipment = {
+							air_range = 0.1
+							instant = yes
+						}
+						scout_plane_equipment = {
 							air_range = 0.1
 							instant = yes
 						}
@@ -1225,7 +1293,19 @@ sp_air_axial_jet_engine = {
 				add_equipment_bonus = {
 					name = sp_air_axial_jet_engine
 					bonus = {
-						large_plane_airframe = {
+						strat_bomber_equipment = {
+							air_agility = 0.05
+							maximum_speed = 0.05
+							air_range = 0.1
+							instant = yes
+						}
+						transport_plane_equipment = {
+							air_agility = 0.05
+							maximum_speed = 0.05
+							air_range = 0.1
+							instant = yes
+						}
+						flying_boat_equipment = {
 							air_agility = 0.05
 							maximum_speed = 0.05
 							air_range = 0.1
@@ -1451,9 +1531,9 @@ sp_air_supersonic_jet = {
 		# }
 
 		enable_equipments = {
-			limit = {
-				NOT = { has_dlc = "By Blood Alone" }
-			}
+		# 	limit = {
+		# 		NOT = { has_dlc = "By Blood Alone" }
+		# 	}
 			supersonic_fighter_equipment_1 
 		}	
 	}

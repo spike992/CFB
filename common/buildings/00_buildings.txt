@@ -471,7 +471,7 @@ buildings = {
 	
 	naval_supply_hub = {
 		show_on_map = 1
-		base_cost = 12500
+		base_cost = 10000
 		icon_frame = 28
 		disabled_in_dmz = yes
 		naval_supply_hub = yes
@@ -481,7 +481,7 @@ buildings = {
 		building_prerequisite = {
 			building_dependency = {
 				building = naval_base
-				level = 8
+				level = 6
 			}
 		}
 		level_cap = {
@@ -587,7 +587,8 @@ buildings = {
 		show_on_map = 1
 		base_cost = 35000
 		icon_frame = 27
-		#nuclear_reactor = yes
+		nuclear_reactor = yes
+		affects_energy = yes
 		value = 10
 		infrastructure_construction_effect = yes
 		
@@ -746,6 +747,34 @@ buildings = {
 		}
 	}
 
+	cataract_dam_mountain = {
+		show_on_map = 1
+		base_cost = 20000
+		damage_factor = 0 # This building can't be damaged by regular strat bombing
+		icon_frame = 26
+		value = 5
+		tags = { dam_building }
+		spawn_point = dam_spawn
+		damage_factor = -1
+		is_buildable = no
+		affects_energy = yes
+		need_detection = yes
+		detecting_intel_type = civilian 
+		province_damage_modifiers = { flooded }
+		only_display_if_exists = yes
+		special_icon = GFX_dam_icon_small
+		level_cap = {
+			province_max = 1
+		}
+		show_modifier = yes
+		state_modifiers = {
+			state_production_speed_buildings_factor = 0.15
+			local_building_slots_factor = 0.15
+			state_resources_factor = 0.1
+			local_factory_energy_consumption = -0.65
+		}
+	}
+
 	canal_kiel = {
 		show_on_map = 1
 		base_cost = 20000
@@ -795,7 +824,7 @@ buildings = {
 	#### Energy
 	
 	energy_infrastructure = {
-		base_cost = 16000
+		base_cost = 12000
 		icon_frame = 30
 		value = 1
 
@@ -809,12 +838,12 @@ buildings = {
 			group_by = infrastructure_keystone
 		}
 		state_modifiers = {
-			local_factory_energy_consumption_per_infrastructure = -0.05
+			local_factory_energy_consumption_per_infrastructure = -0.075
 		}
 	}
 	
 	industrial_infrastructure = {
-		base_cost = 16000
+		base_cost = 20000
 		icon_frame = 31
 		value = 1
 

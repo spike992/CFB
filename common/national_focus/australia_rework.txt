@@ -5,12 +5,14 @@ focus_tree = {
 		factor = 0
 		
 		modifier = {
-			add = 50
+			add = 1000
 			tag = AST
 		}
 	}
 	
 	default = no
+
+	shared_focus = ABDA_abdacom
 	
 	continuous_focus_position = { x = 1500 y = 1500 }
 	
@@ -23,7 +25,7 @@ focus_tree = {
 	
 	focus = {
 		id = AST_modernise_the_ran
-		icon = GFX_focus_generic_naval_discipline
+		icon = GFX_focus_AST_royal_australian_navy
 		x = 25
 		y = 7
 		cost = 5
@@ -79,7 +81,15 @@ focus_tree = {
 			}
 			custom_effect_tooltip = generic_skip_one_line_tt
 			custom_effect_tooltip = available_mio_tt
-			show_mio_tooltip = AST_evans_deakin_co_organization
+			if = {
+				limit = {
+					has_dlc = "Thunder at Our Gates"
+				}
+				show_mio_tooltip = AST_evan_deakin_and_company_organization
+			}
+			else = {
+				show_mio_tooltip = AST_evans_deakin_co_organization
+			}
 		}
 	}
 	
@@ -153,6 +163,17 @@ focus_tree = {
                 amount = 50
 				track = submarines
             }
+			AST_john_crace = {
+				add_naval_commander_role = {
+					traits={ lancer inshore_fighter }
+					skill=4
+					attack_skill=2
+					defense_skill=3
+					coordination_skill=6
+					maneuvering_skill=2
+					legacy_id=-1
+				}  
+			}
 		}
 	}
 	
@@ -187,7 +208,15 @@ focus_tree = {
 			}
 			custom_effect_tooltip = generic_skip_one_line_tt
 			custom_effect_tooltip = available_mio_tt
-			show_mio_tooltip = AST_cockatoo_doe_organization
+			if = {
+				limit = {
+					has_dlc = "Thunder at Our Gates"
+				}
+				show_mio_tooltip = AST_cockatoo_docks_organization
+			}
+			else = {
+				show_mio_tooltip = AST_cockatoo_doe_organization
+			}	
 		}
 	}
 	
@@ -354,7 +383,7 @@ focus_tree = {
 	
 	focus = {
 		id = AST_far_east_imperial_fleet
-		icon = GFX_focus_SWE_Vasa_II
+		icon = GFX_focus_AST_british_pacific_fleet
 		x = 1
 		y = 1
 		relative_position_id = AST_legacy_of_the_hmas_australia
@@ -489,18 +518,44 @@ focus_tree = {
 
 			custom_effect_tooltip = ROM_potential_bonus_tt
 			custom_effect_tooltip = AST_has_completed_expand_our_role
-			effect_tooltip = {
-				mio:AST_evans_deakin_co_organization = {
-					complete_mio_trait = AST_mio_trait_cruise_group_evans
+			if = {
+				limit = {
+					has_dlc = "Thunder at Our Gates"
+				}
+				effect_tooltip = {
+					mio:AST_evan_deakin_and_company_organization = {
+						complete_mio_trait = AST_mio_trait_cruise_group_evans2
+					}
 				}
 			}
+			else = {
+				effect_tooltip = {
+					mio:AST_evans_deakin_co_organization = {
+						complete_mio_trait = AST_mio_trait_cruise_group_evans
+					}
+				}
+			}
+
 			custom_effect_tooltip = generic_skip_one_line_tt
 			custom_effect_tooltip = AST_has_completed_ran_as_support
-			effect_tooltip = {
-				mio:AST_cockatoo_doe_organization = {
-					complete_mio_trait = AST_mio_trait_cruise_group_cockatoo
+			if = {
+				limit = {
+					has_dlc = "Thunder at Our Gates"
+				}
+				effect_tooltip = {
+					mio:AST_cockatoo_docks_organization = {
+						complete_mio_trait = AST_mio_trait_cruise_group_cockatoo2
+					}
 				}
 			}
+			else = {
+				effect_tooltip = {
+					mio:AST_cockatoo_doe_organization = {
+						complete_mio_trait = AST_mio_trait_cruise_group_cockatoo
+					}
+				}
+			}
+
 		}
 	}
 	
@@ -728,7 +783,7 @@ focus_tree = {
 	
 	focus = {
 		id = AST_expand_the_raaf
-		icon = GFX_focus_PER_raf_planes
+		icon = GFX_focus_AST_no1_flying_training_school
 		x = 37
 		y = 7
 		cost = 5
@@ -751,8 +806,8 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = AST_commonwealth_aircraft_corporation
-		icon = GFX_focus_generic_air_research_boost
+		id = AST_commonwealth_aircraft_corporation_tfb
+		icon = GFX_focus_AST_commonwealth_aircraft_corporation_taog
 		x = -3
 		y = 1
 		relative_position_id = AST_expand_the_raaf
@@ -762,11 +817,106 @@ focus_tree = {
 		
 		completion_reward = {
 			custom_effect_tooltip = available_mio_tt
-			show_mio_tooltip = AST_com_aircraft_corporation_organization
-            mio:AST_com_aircraft_corporation_organization = {
-                add_mio_size = 2
-            }
+			#show_mio_tooltip = AST_com_aircraft_corporation_organization
+            # mio:AST_com_aircraft_corporation_organization = {
+            #     add_mio_size = 2
+            # }
+
+			mio:AST_commonwealth_aircraft_corporation_organization = {
+				add_mio_size = 1
+				add_mio_funds_gain_factor = 0.1
+				add_mio_research_bonus = 0.05
+			}
+
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			random_owned_controlled_state = {
+				limit = {
+					impassable = no
+					is_core_of = AST
+					is_fully_controlled_by = AST
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}	
+			}
 		}
+	}
+
+	focus = {
+		id = AST_government_aircraft_factories_tfb
+		icon = GFX_goal_generic_air_production
+
+		prerequisite = { focus = AST_commonwealth_aircraft_corporation_tfb }
+		#mutually_exclusive = { }
+		relative_position_id = AST_commonwealth_aircraft_corporation_tfb
+		x = 3
+		y = 1
+	
+		cost = 10
+
+		available = {
+			OR = {
+				has_tech = CAS2
+				has_tech = fighter2
+				has_tech = naval_bomber2
+				has_tech = heavy_fighter2
+				has_tech = tactical_bomber2
+				has_tech = strategic_bomber2
+			}
+		}
+
+		bypass = {
+		}
+
+		available_if_capitulated = no
+	
+		completion_reward = {
+			IF = {
+				limit = { has_dlc = "Arms Against Tyranny"}
+
+				mio:AST_government_aircraft_factories_organization = {
+					add_mio_size = 1
+					add_mio_funds_gain_factor = 0.1
+					add_mio_research_bonus = 0.05
+				}
+			}
+
+			# ELSE = {
+			# 	custom_effect_tooltip = available_designer
+			# 	show_ideas_tooltip = AST_government_aircraft_factories_organization
+			# }
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			random_owned_controlled_state = {
+				limit = {
+					impassable = no
+					is_core_of = AST
+					is_fully_controlled_by = AST
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}	
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
 	}
 	
 	focus = {
@@ -839,10 +989,10 @@ focus_tree = {
 		icon = GFX_goal_generic_air_fighter
 		x = -1
 		y = 1
-		relative_position_id = AST_commonwealth_aircraft_corporation
+		relative_position_id = AST_commonwealth_aircraft_corporation_tfb
 		cost = 5
 		
-		prerequisite = { focus = AST_commonwealth_aircraft_corporation }
+		prerequisite = { focus = AST_commonwealth_aircraft_corporation_tfb }
 		mutually_exclusive = { focus = AST_cac_woomera }
 		
 		completion_reward = {
@@ -875,10 +1025,10 @@ focus_tree = {
 		icon = GFX_goal_generic_air_bomber
 		x = 1
 		y = 1
-		relative_position_id = AST_commonwealth_aircraft_corporation
+		relative_position_id = AST_commonwealth_aircraft_corporation_tfb
 		cost = 5
 		
-		prerequisite = { focus = AST_commonwealth_aircraft_corporation }
+		prerequisite = { focus = AST_commonwealth_aircraft_corporation_tfb }
 		mutually_exclusive = { focus = AST_cac_boomerang }
 		
 		completion_reward = {
@@ -1114,7 +1264,7 @@ focus_tree = {
 	
 	focus = {
 		id = AST_death_from_down_under
-		icon = GFX_focus_generic_air_defense
+		icon = GFX_focus_AST_death_from_down_under_taog
 		x = 1
 		y = 1
 		relative_position_id = AST_volunteer_air_observers_corps
@@ -1180,7 +1330,7 @@ focus_tree = {
 		x = -9
 		y = 1
 		relative_position_id = AST_reconnect_the_states
-		cost = 3
+		cost = 2
 		
 		prerequisite = { focus = AST_reconnect_the_states }
 		
@@ -1198,7 +1348,7 @@ focus_tree = {
 		x = 0
 		y = 2
 		relative_position_id = AST_expand_the_northern_railway
-		cost = 3
+		cost = 2
 		
 		prerequisite = { focus = AST_expand_the_northern_railway }
 		
@@ -1217,7 +1367,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = AST_attract_migrants_to_darwin
-		cost = 3
+		cost = 5
 		
 		prerequisite = { focus = AST_attract_migrants_to_darwin }
 		
@@ -1254,6 +1404,13 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
+			custom_effect_tooltip = AST_northern_territory_reconnaissance_unit_tt
+			hidden_effect = {
+				set_technology = {
+					northern_territory_recon_support_tech = 1
+					popup = no
+				}
+			}
 		}
 	}
 	
@@ -1263,7 +1420,7 @@ focus_tree = {
 		x = -6
 		y = 1
 		relative_position_id = AST_reconnect_the_states
-		cost = 3
+		cost = 2
 		
 		prerequisite = { focus = AST_reconnect_the_states }
 		
@@ -1283,7 +1440,7 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = AST_north_ipswich_railway_workshops
-		cost = 3
+		cost = 5
 		
 		prerequisite = { focus = AST_north_ipswich_railway_workshops }
 		
@@ -1311,7 +1468,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = AST_north_ipswich_railway_workshops
-		cost = 3
+		cost = 5
 		
 		prerequisite = { focus = AST_north_ipswich_railway_workshops }
 		
@@ -1338,7 +1495,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = AST_main_roads
-		cost = 3
+		cost = 5
 		
 		prerequisite = { focus = AST_main_roads }
 		prerequisite = { focus = AST_construct_the_story_bridge }
@@ -1355,7 +1512,7 @@ focus_tree = {
 		x = -2
 		y = 1
 		relative_position_id = AST_reconnect_the_states
-		cost = 3
+		cost = 2
 		
 		prerequisite = { focus = AST_reconnect_the_states }
 		
@@ -1379,7 +1536,7 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = AST_standard_gauge_railway
-		cost = 3
+		cost = 5
 		
 		prerequisite = { focus = AST_standard_gauge_railway }
 		
@@ -1410,11 +1567,11 @@ focus_tree = {
 	
 	focus = {
 		id = AST_expand_lithgow_small_arms_factory
-		icon = GFX_focus_generic_reorient_production
+		icon = GFX_focus_AST_lithgow_small_arms_factory
 		x = 1
 		y = 1
 		relative_position_id = AST_standard_gauge_railway
-		cost = 3
+		cost = 5
 		
 		prerequisite = { focus = AST_standard_gauge_railway }
 		
@@ -1436,7 +1593,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = AST_city_of_greater_newcastle
-		cost = 3
+		cost = 5
 		
 		prerequisite = { focus = AST_city_of_greater_newcastle }
 		prerequisite = { focus = AST_expand_lithgow_small_arms_factory }
@@ -1455,7 +1612,7 @@ focus_tree = {
 		x = 2
 		y = 1
 		relative_position_id = AST_reconnect_the_states
-		cost = 3
+		cost = 2
 		
 		prerequisite = { focus = AST_reconnect_the_states }
 		
@@ -1477,12 +1634,11 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = AST_spirit_of_progress
-		cost = 3
+		cost = 5
 		
 		prerequisite = { focus = AST_spirit_of_progress }
 		
 		completion_reward = {
-			# Add 1 level to truck MIO?
 			517 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
@@ -1496,6 +1652,20 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
+
+			mio:AST_ford_australia_organization = {
+				add_mio_size = 1
+				add_mio_funds_gain_factor = 0.1
+				add_mio_research_bonus = 0.05
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			mio:AST_holden_organization = {
+				add_mio_size = 1
+				add_mio_funds_gain_factor = 0.1
+				add_mio_research_bonus = 0.05
+			}
 		}
 	}
 	
@@ -1505,7 +1675,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = AST_spirit_of_progress
-		cost = 3
+		cost = 5
 		
 		prerequisite = { focus = AST_spirit_of_progress }
 		
@@ -1529,7 +1699,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = AST_expand_general_motors_holden
-		cost = 3
+		cost = 5
 		
 		prerequisite = { focus = AST_expand_general_motors_holden }
 		prerequisite = { focus = AST_finish_the_hume_dam }
@@ -1548,7 +1718,7 @@ focus_tree = {
 		x = 6
 		y = 1
 		relative_position_id = AST_reconnect_the_states
-		cost = 3
+		cost = 2
 		
 		prerequisite = { focus = AST_reconnect_the_states }
 		
@@ -1566,7 +1736,7 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = AST_expand_the_sar
-		cost = 3
+		cost = 5
 		
 		prerequisite = { focus = AST_expand_the_sar }
 		
@@ -1588,7 +1758,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = AST_expand_the_sar
-		cost = 3
+		cost = 5
 		
 		prerequisite = { focus = AST_expand_the_sar }
 		
@@ -1605,6 +1775,24 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
+			if = {
+				limit = {
+					has_idea = AST_whyalla_steelworks_ic
+				}
+				custom_effect_tooltip = AST_whyalla_steelworks_ic_tt
+				swap_ideas = {
+					remove_idea = AST_whyalla_steelworks_ic
+					add_idea = AST_whyalla_steelworks_improved_ic
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = AST_whyalla_steelworks_ic
+						add_idea = AST_whyalla_steelworks_improved_ic
+					}
+				}
+			}
 		}
 	}
 	
@@ -1614,7 +1802,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = AST_south_australian_housing_trust
-		cost = 3
+		cost = 5
 		
 		prerequisite = { focus = AST_south_australian_housing_trust }
 		prerequisite = { focus = AST_whyalla_steel_works }
@@ -1655,7 +1843,7 @@ focus_tree = {
 		x = 0
 		y = 2
 		relative_position_id = AST_western_australian_government_railways
-		cost = 3
+		cost = 5
 		
 		prerequisite = { focus = AST_western_australian_government_railways }
 		
@@ -1676,7 +1864,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = AST_golden_eagle
-		cost = 3
+		cost = 5
 		
 		prerequisite = { focus = AST_golden_eagle }
 		
@@ -1698,6 +1886,35 @@ focus_tree = {
 					level = 1
 					instant_build = yes
 				}
+			}
+			IF = { 
+
+				limit = {
+					NOT = {
+						any_core_state = {
+							naval_headquarters > 0
+						}
+					}
+				}
+
+				random_owned_controlled_state = {
+					limit = {
+						impassable = no
+						is_controlled_by = ROOT
+						is_coastal = yes
+					}
+					prioritize = { 522 }
+					add_building_construction = {
+						type = naval_headquarters
+						level = 1
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_naval_base = yes
+						}
+					}
+				}
+
 			}
 		}
 	}
@@ -1728,7 +1945,7 @@ focus_tree = {
 	focus = {
 		id = AST_prospecting_for_bauxite
 		icon = GFX_focus_generic_aluminum
-		x = -1
+		x = -2
 		y = 1
 		relative_position_id = AST_together_for_tomorrow
 		cost = 5
@@ -1747,7 +1964,7 @@ focus_tree = {
 	focus = {
 		id = AST_uranium_mining
 		icon = GFX_focus_generic_uranium_extraction
-		x = 1
+		x = 2
 		y = 1
 		relative_position_id = AST_together_for_tomorrow
 		cost = 5
@@ -1771,6 +1988,54 @@ focus_tree = {
 		}
 	}
 
+	focus = {
+		id = AST_broken_hill_propietary_company_tfb
+		icon = GFX_focus_AST_broken_hill_proprietary_company
+		prerequisite = { focus = AST_together_for_tomorrow }
+#		mutually_exclusive = { }
+		relative_position_id = AST_together_for_tomorrow
+		x = 0
+		y = 1
+	
+		cost = 5
+
+		available = {
+		}
+
+		bypass = {
+		}
+
+		available_if_capitulated = no
+	
+		completion_reward = {
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = AST_essington_lewis
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			if = {
+				limit = {
+					has_idea = AST_broken_hill_proprietary_company_ic
+				}
+				custom_effect_tooltip = AST_broken_hill_proprietary_company_ic_tt
+				swap_ideas = {
+					remove_idea = AST_broken_hill_proprietary_company_ic
+					add_idea = AST_broken_hill_proprietary_company_improved_ic
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = AST_broken_hill_proprietary_company_ic
+						add_idea = AST_broken_hill_proprietary_company_improved_ic
+					}
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_POLITICAL_CHARACTER }
+	}
+
 
 	############################
 	####### ARMY SECTION #######
@@ -1779,7 +2044,7 @@ focus_tree = {
 	
 	focus = {
 		id = AST_increase_the_australian_armys_funding
-		icon = GFX_goal_generic_allies_build_infantry
+		icon = GFX_focus_AST_australian_military_forces
         # TODO: Find Icon
 		x = 50
 		y = 0
@@ -1848,9 +2113,9 @@ focus_tree = {
 				uses = 1
 				category = cat_armored_cars
 			}
-            MIO:ENG_crossley_motors_organization = {
-                add_mio_funds = 1000
-            }
+            # MIO:ENG_crossley_motors_organization = {
+            #     add_mio_funds = 1000
+            # }
 		}
 	}
 	
@@ -1876,9 +2141,9 @@ focus_tree = {
             }
             custom_effect_tooltip = GER_heavy_armored_car_recon_company_tt
 			custom_effect_tooltip = generic_skip_one_line_tt
-            MIO:ENG_crossley_motors_organization = {
-                add_mio_size = 1
-            }
+            # MIO:ENG_crossley_motors_organization = {
+            #     add_mio_size = 1
+            # }
 		}
 	}
 	
@@ -1918,7 +2183,16 @@ focus_tree = {
 				uses = 1
 				category = cat_light_armor
 			}
-			mio:AST_new_south_wales_rc_organization = {
+			mio:AST_nuffield_mechanizations_and_aero_organization = {
+				complete_mio_trait = AST_mio_trait_lightning_warfare
+			}
+			mio:AST_vulcan_foundry_organization = {
+				complete_mio_trait = AST_mio_trait_lightning_warfare
+			}
+			mio:AST_new_south_wales_government_railways_organization = {
+				complete_mio_trait = AST_mio_trait_lightning_warfare
+			}
+			mio:AST_american_car_and_foundry_organization = {
 				complete_mio_trait = AST_mio_trait_lightning_warfare
 			}
 		}
@@ -1941,26 +2215,35 @@ focus_tree = {
 				uses = 1
 				category = cat_heavy_armor
 			}
-			mio:AST_new_south_wales_rc_organization = {
+			mio:AST_nuffield_mechanizations_and_aero_organization = {
+				complete_mio_trait = AST_mio_trait_thunder_warfare
+			}
+			mio:AST_vulcan_foundry_organization = {
+				complete_mio_trait = AST_mio_trait_thunder_warfare
+			}
+			mio:AST_new_south_wales_government_railways_organization = {
+				complete_mio_trait = AST_mio_trait_thunder_warfare
+			}
+			mio:AST_american_car_and_foundry_organization = {
 				complete_mio_trait = AST_mio_trait_thunder_warfare
 			}
 		}
 	}
 	
-	focus = {
-		id = AST_streamlined_tank_factories
-		icon = GFX_goal_continuous_armor_production
-		x = 0
-		y = 1
-		relative_position_id = AST_lightning_warfare
-		cost = 5
+	# focus = {
+	# 	id = AST_streamlined_tank_factories
+	# 	icon = GFX_goal_continuous_armor_production
+	# 	x = 0
+	# 	y = 1
+	# 	relative_position_id = AST_lightning_warfare
+	# 	cost = 5
 		
-		prerequisite = { focus = AST_lightning_warfare focus = AST_thunder_warfare }
+	# 	prerequisite = { focus = AST_lightning_warfare focus = AST_thunder_warfare }
 		
-		completion_reward = {
-            add_ideas = AST_streamlined_tank_factories
-		}
-	}
+	# 	completion_reward = {
+    #         add_ideas = AST_streamlined_tank_factories
+	# 	}
+	# }
 	
 	focus = {
 		id = AST_coordinate_central_bureau
@@ -2068,7 +2351,7 @@ focus_tree = {
 	
 	focus = {
 		id = AST_fund_owen_gun_research
-		icon = GFX_goal_generic_small_arms
+		icon = GFX_focus_AST_owen_gun
 		x = 0
 		y = 1
 		relative_position_id = AST_specialise_equipment
@@ -2206,8 +2489,8 @@ focus_tree = {
 	
 	# Second AIF Branch
 	focus = {
-		id = AST_second_australian_imperial_force
-		icon = GFX_focus_generic_commonwealth_build_infantry
+		id = AST_second_australian_imperial_force_tfb
+		icon = GFX_focus_AST_second_australian_imperial_force
 		x = -13
 		y = 1
 		relative_position_id = AST_increase_the_australian_armys_funding
@@ -2221,21 +2504,31 @@ focus_tree = {
 		
 		completion_reward = {
 			army_experience = 50
+			custom_effect_tooltip = AST_modify_australian_gallipoli_modifier_tt
+			add_to_variable = {
+				AST_army_non_core_defence_factor = 0.1
+				tooltip = army_non_core_defence_factor_tt
+			}
+			add_to_variable = {
+				AST_army_non_core_attack_factor = 0.1
+				tooltip = army_non_core_attack_factor_tt
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
 			custom_effect_tooltip = AST_modify_australian_army_modifier_tt
-			add_to_variable = {
-				AST_special_forces_attack_factor = 0.05
-				tooltip = special_forces_attack_factor_tt
-			}
-			add_to_variable = {
-				AST_army_armoured_attack_factor = 0.05
-				tooltip = army_armor_attack_factor_tt
-			}
+			# add_to_variable = {
+			# 	AST_special_forces_attack_factor = 0.05
+			# 	tooltip = special_forces_attack_factor_tt
+			# }
+			# add_to_variable = {
+			# 	AST_army_armoured_attack_factor = 0.05
+			# 	tooltip = army_armor_attack_factor_tt
+			# }
 			add_to_variable = {
 				AST_recruitable_population_factor = -0.2
 				tooltip = conscription_factor_tt
 			}
             add_doctrine_cost_reduction = {
-                name = AST_second_australian_imperial_force
+                name = AST_second_australian_imperial_force_tfb
                 cost_reduction = 0.25
                 uses = 1
                 category = land_doctrine	
@@ -2245,13 +2538,13 @@ focus_tree = {
 	
 	focus = {
 		id = AST_deployment_in_africa
-		icon = GFX_focus_IRQ_liberate_north_africa
+		icon = GFX_focus_AST_undeniably_ours
 		x = -3
 		y = 1
-		relative_position_id = AST_second_australian_imperial_force
+		relative_position_id = AST_second_australian_imperial_force_tfb
 		cost = 5
 		
-		prerequisite = { focus = AST_second_australian_imperial_force }
+		prerequisite = { focus = AST_second_australian_imperial_force_tfb }
 		
 		completion_reward = {
 			custom_effect_tooltip = AST_modify_australian_army_modifier_tt
@@ -2263,12 +2556,12 @@ focus_tree = {
 				AST_acclimatization_hot_climate_gain_factor = 0.15
 				tooltip = acclimatization_hot_climate_gain_factor_tt
 			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-            random_army_leader = {
-                limit = { NOT = { has_trait = desert_fox has_trait = scavenger } }
-                add_unit_leader_trait = desert_fox
-                add_unit_leader_trait = scavenger
-            }
+			# custom_effect_tooltip = generic_skip_one_line_tt
+            # random_army_leader = {
+            #     limit = { NOT = { has_trait = desert_fox has_trait = scavenger } }
+            #     add_unit_leader_trait = desert_fox
+            #     add_unit_leader_trait = scavenger
+            # }
 		}
 	}
 	
@@ -2292,6 +2585,7 @@ focus_tree = {
 			hidden_effect = {
 				set_technology = { desert_training_tech = 1 }
 			}
+			AST_leslie_morshead = { add_unit_leader_trait = desert_fox add_unit_leader_trait = scavenger }
 		}
 	}
 	
@@ -2311,6 +2605,7 @@ focus_tree = {
 			hidden_effect = {
 				set_technology = { desert_adaptable_armor_designs = 1 }
 			}
+			AST_iven_mackay = { add_unit_leader_trait = desert_fox add_unit_leader_trait = brilliant_strategist }
 		}
 	}
 	
@@ -2319,26 +2614,28 @@ focus_tree = {
 		icon = GFX_focus_ETH_ecole_militaire_haile_selassie_1er
 		x = 0
 		y = 1
-		relative_position_id = AST_second_australian_imperial_force
+		relative_position_id = AST_second_australian_imperial_force_tfb
 		cost = 5
 		
-		prerequisite = { focus = AST_second_australian_imperial_force }
+		prerequisite = { focus = AST_second_australian_imperial_force_tfb }
 		
 		completion_reward = {
 			add_mastery = {
 				amount = 50
 				folder = land
 			}
-			create_corps_commander = {
-				name = "Iven Mackay"
-				picture = "Portrait_Australia_Iven_Mackay.dds"
-				traits = { }
-				skill = 3
-				attack_skill = 2
-				defense_skill = 2
-				planning_skill = 3
-				logistics_skill = 3
-			}
+			# create_corps_commander = {
+			# 	name = "Iven Mackay"
+			# 	picture = "Portrait_Australia_Iven_Mackay.dds"
+			# 	traits = { }
+			# 	skill = 3
+			# 	attack_skill = 2
+			# 	defense_skill = 2
+			# 	planning_skill = 3
+			# 	logistics_skill = 3
+			# }
+			show_unit_leaders_tooltip = AST_alan_vasey
+			show_unit_leaders_tooltip = AST_george_wootten
 		}
 	}
 	
@@ -2417,9 +2714,13 @@ focus_tree = {
 		
 		completion_reward = {
 			custom_effect_tooltip = AST_modify_australian_army_modifier_tt
+			# add_to_variable = {
+			# 	AST_recon_factor = 0.1
+			# 	tooltip = recon_factor_tt
+			# }
 			add_to_variable = {
-				AST_recon_factor = 0.1
-				tooltip = recon_factor_tt
+				AST_operative_slot = 1
+				tooltip = operative_slot_tt
 			}
 			custom_effect_tooltip = generic_skip_one_line_tt
 			add_tech_bonus = {
@@ -2433,30 +2734,32 @@ focus_tree = {
 	
 	focus = {
 		id = AST_pacific_training
-		icon = GFX_focus_generic_jungle_training
+		icon = GFX_focus_AST_the_pacific_resistance
 		x = 3
 		y = 1
-		relative_position_id = AST_second_australian_imperial_force
+		relative_position_id = AST_second_australian_imperial_force_tfb
 		cost = 5
 		
-		prerequisite = { focus = AST_second_australian_imperial_force }
+		prerequisite = { focus = AST_second_australian_imperial_force_tfb }
 		
 		completion_reward = {
-			custom_effect_tooltip = AST_modify_australian_army_modifier_tt
-			add_to_variable = {
-				AST_heat_attrition_factor = -0.1
-				tooltip = heat_attrition_factor_tt
-			}
-			add_to_variable = {
-				AST_acclimatization_hot_climate_gain_factor = 0.15
-				tooltip = acclimatization_hot_climate_gain_factor_tt
-			}
-			custom_effect_tooltip = generic_skip_one_line_tt
-            random_army_leader = {
-                limit = { NOT = { has_trait = jungle_rat has_trait = trickster } }
-                add_unit_leader_trait = jungle_rat
-                add_unit_leader_trait = trickster
-            }
+			# custom_effect_tooltip = AST_modify_australian_army_modifier_tt
+			# add_to_variable = {
+			# 	AST_heat_attrition_factor = -0.1
+			# 	tooltip = heat_attrition_factor_tt
+			# }
+			# add_to_variable = {
+			# 	AST_acclimatization_hot_climate_gain_factor = 0.15
+			# 	tooltip = acclimatization_hot_climate_gain_factor_tt
+			# }
+			# custom_effect_tooltip = generic_skip_one_line_tt
+            # random_army_leader = {
+            #     limit = { NOT = { has_trait = jungle_rat has_trait = trickster } }
+            #     add_unit_leader_trait = jungle_rat
+            #     add_unit_leader_trait = trickster
+            # }
+			set_country_flag = has_quinine
+			custom_effect_tooltip = RAJ_quinine_tt
 		}
 	}
 	
@@ -2501,6 +2804,36 @@ focus_tree = {
 			}
 		}
 	}
+
+	focus = {
+		id = AST_coast_watchers_tfb
+		icon = GFX_focus_AST_coast_watchers
+
+		prerequisite = { focus = AST_jungle_blitz focus = AST_light_infantry_jungle_divisions}
+		#mutually_exclusive = { }
+		relative_position_id = AST_jungle_blitz
+		x = 1
+		y = 1
+	
+		cost = 5
+
+		available = {
+		}
+
+		bypass = {
+		}
+
+		available_if_capitulated = no
+	
+		completion_reward = {
+			custom_effect_tooltip = AST_royal_australian_navy_spirit_tt
+			add_to_variable = { AST_royal_australian_navy_spirit_navy_intel_factor = 0.10 tooltip = navy_intel_factor_tt }
+			add_to_variable = { AST_royal_australian_navy_spirit_airforce_intel_factor = 0.10 tooltip = airforce_intel_factor_tt }
+			add_to_variable = { AST_royal_australian_navy_spirit_air_wing_xp_loss_when_killed_factor = -0.10 tooltip = air_wing_xp_loss_when_killed_factor_tt }
+		}
+
+		search_filters = {  }
+	}
 	
 	# Militia Branch
 	focus = {
@@ -2514,11 +2847,20 @@ focus_tree = {
 		prerequisite = { focus = AST_increase_the_australian_armys_funding }
 		
 		completion_reward = {
-			custom_effect_tooltip = AST_modify_australian_army_modifier_tt
+			custom_effect_tooltip = AST_modify_australian_gallipoli_modifier_tt
 			add_to_variable = {
-				AST_army_infantry_defence_factor = 0.05
-				tooltip = army_infantry_defence_factor_tt
+				AST_army_non_core_defence_factor = -0.05
+				tooltip = army_non_core_defence_factor_tt
 			}
+			add_to_variable = {
+				AST_army_non_core_attack_factor = -0.05
+				tooltip = army_non_core_attack_factor_tt
+			}
+			custom_effect_tooltip = AST_modify_australian_army_modifier_tt
+			# add_to_variable = {
+			# 	AST_army_infantry_defence_factor = 0.05
+			# 	tooltip = army_infantry_defence_factor_tt
+			# }
 			add_to_variable = {
 				AST_recruitable_population_factor = 0.2
 				tooltip = conscription_factor_tt
@@ -2548,7 +2890,7 @@ focus_tree = {
 	
 	focus = {
 		id = AST_spirit_of_the_digger
-		icon = GFX_focus_FIN_weapon_caches
+		icon = GFX_focus_AST_diggers
 		x = 0
 		y = 1
 		relative_position_id = AST_additional_militia_training
@@ -2753,7 +3095,7 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = AST_income_tax_assessment_act
+		id = AST_income_tax_assessment_act_tfb
 		icon = GFX_focus_RAJ_special_economic_zones
 		x = 1
 		y = 1
@@ -2779,7 +3121,7 @@ focus_tree = {
 		cost = 1
 		
 		prerequisite = { focus = AST_csir }
-		prerequisite = { focus = AST_income_tax_assessment_act }
+		prerequisite = { focus = AST_income_tax_assessment_act_tfb }
 		
 		available = {
 			date > 1937.6.1
@@ -2793,7 +3135,7 @@ focus_tree = {
 	# United Australia Branch
 	focus = {
 		id = AST_united_australia
-		icon = GFX_focus_generic_blue_flags
+		icon = GFX_focus_generic_commission_uap
 		x = -4
 		y = 3
 		relative_position_id = AST_support_the_policy_of_appeasement
@@ -2804,6 +3146,11 @@ focus_tree = {
 		
 		completion_reward = {
 			add_political_power = 50
+			set_variable = {
+				var = AST_ruling_party
+				value = 0
+				tooltip = AST_uap_becomes_ruling_party
+			}
 		}
 	}
 	
@@ -2822,8 +3169,30 @@ focus_tree = {
 		}
 	}
 	
+	# focus = {
+	# 	id = AST_commonwealth_trade_block
+	# 	icon = GFX_focus_generic_british_trade
+	# 	x = 0
+	# 	y = 1
+	# 	relative_position_id = AST_strengthen_ties_with_the_uk
+	# 	cost = 5
+		
+	# 	prerequisite = { focus = AST_strengthen_ties_with_the_uk }
+		
+	# 	completion_reward = {
+	# 		add_ideas = AST_commonwealth_trade_block
+    #         custom_effect_tooltip = generic_skip_one_line_tt
+    #         ENG = { add_ideas = AST_commonwealth_trade_block_2 }
+    #         CAN = { add_ideas = AST_commonwealth_trade_block_2 }
+    #         SAF = { add_ideas = AST_commonwealth_trade_block_2 }
+    #         NZL = { add_ideas = AST_commonwealth_trade_block_2 }
+    #         RAJ = { add_ideas = AST_commonwealth_trade_block_2 }
+    #         IRE = { add_ideas = AST_commonwealth_trade_block_2 }
+	# 	}
+	# }
+
 	focus = {
-		id = AST_commonwealth_trade_block
+		id = AST_encourage_british_company_investments
 		icon = GFX_focus_generic_british_trade
 		x = 0
 		y = 1
@@ -2833,14 +3202,50 @@ focus_tree = {
 		prerequisite = { focus = AST_strengthen_ties_with_the_uk }
 		
 		completion_reward = {
-			add_ideas = AST_commonwealth_trade_block
-            custom_effect_tooltip = generic_skip_one_line_tt
-            ENG = { add_ideas = AST_commonwealth_trade_block_2 }
-            CAN = { add_ideas = AST_commonwealth_trade_block_2 }
-            SAF = { add_ideas = AST_commonwealth_trade_block_2 }
-            NZL = { add_ideas = AST_commonwealth_trade_block_2 }
-            RAJ = { add_ideas = AST_commonwealth_trade_block_2 }
-            IRE = { add_ideas = AST_commonwealth_trade_block_2 }
+			custom_effect_tooltip = available_mio_tt
+			show_mio_tooltip = AST_gloster_aircraft_organization
+			mio:AST_gloster_aircraft_organization = {
+				add_mio_size = 2
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = available_mio_tt
+			show_mio_tooltip = AST_john_brown_and_company_organization
+			mio:AST_john_brown_and_company_organization = {
+				add_mio_size = 2
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			random_core_state = {
+				limit = {
+					is_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}	
+			}
+			random_core_state = {
+				limit = {
+					is_controlled_by = ROOT
+					free_building_slots = {
+						building = dockyard
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}	
+			}
 		}
 	}
 	
@@ -2849,18 +3254,38 @@ focus_tree = {
 		icon = GFX_focus_SWE_all_cards_on_deck
 		x = 0
 		y = 2
-		relative_position_id = AST_commonwealth_trade_block
+		relative_position_id = AST_encourage_british_company_investments
 		cost = 5
 		
-		prerequisite = { focus = AST_commonwealth_trade_block }
+		prerequisite = { focus = AST_encourage_british_company_investments }
 		
 		completion_reward = {
-			mio:AST_cockatoo_doe_organization = {
-				complete_mio_trait = AST_mio_trait_blue_water_strategy_cockatoo
+			if = {
+				limit = { has_dlc = "Thunder at Our Gates" }
+				mio:AST_cockatoo_docks_organization = {
+					complete_mio_trait = AST_mio_trait_blue_water_strategy
+				}
+			}else = {
+				mio:AST_cockatoo_doe_organization = {
+					complete_mio_trait = AST_mio_trait_blue_water_strategy
+				}
 			}
 			custom_effect_tooltip = generic_skip_one_line_tt
-			mio:AST_evans_deakin_co_organization = {
-				complete_mio_trait = AST_mio_trait_blue_water_strategy_evans
+			if = {
+				limit = { has_dlc = "Thunder at Our Gates" }
+				mio:AST_evan_deakin_and_company_organization = {
+					complete_mio_trait = AST_mio_trait_blue_water_strategy
+				}
+			}
+			else = {
+				mio:AST_evans_deakin_co_organization = {
+					complete_mio_trait = AST_mio_trait_blue_water_strategy
+				}
+			}
+	
+			custom_effect_tooltip = generic_skip_one_line_tt
+			mio:AST_john_brown_and_company_organization = {
+				complete_mio_trait = AST_mio_trait_blue_water_strategy
 			}
 		}
 	}
@@ -2893,16 +3318,17 @@ focus_tree = {
 		completion_reward = {
 			every_owned_state = {
 				limit = {
-					is_core_of = AST
-					NOT = { state = 674 }
+					controller = { tag = ROOT }
+					OR = {
+						state = 674
+						state = 873
+						state = 1075
+						state = 1074
+						state = 871
+					}
 				}
-				add_extra_state_shared_building_slots = 1
-			}
-			517 = {
-				add_building_construction = {
-					type = industrial_complex
-					level = 2
-					instant_build = yes
+				add_dynamic_modifier = {
+					modifier = INS_agrarian_funding_state
 				}
 			}
 		}
@@ -2977,6 +3403,11 @@ focus_tree = {
 				long_name = AST_labor_party_long
 				name = AST_labor_party
 			}
+			set_variable = {
+				var = AST_ruling_party
+				value = 1
+				tooltip = AST_alp_becomes_ruling_party
+			}
             AST_john_curtin = {
                 promote_character = yes
             }
@@ -3003,7 +3434,7 @@ focus_tree = {
 	
 	focus = {
 		id = AST_assist_the_wheat_farmers
-		icon = GFX_focus_generic_farmland
+		icon = GFX_focus_AST_rural_concessions
 		x = -1
 		y = 1
 		relative_position_id = AST_nationalise_the_commonwealth_bank
@@ -3014,11 +3445,18 @@ focus_tree = {
 		completion_reward = {
 			every_owned_state = {
 				limit = {
-					is_core_of = AST
+					controller = { tag = ROOT }
+					OR = {
+						state = 872
+						state = 522
+						state = 523
+						state = 979
+					}
 				}
-				add_extra_state_shared_building_slots = 1
+				add_dynamic_modifier = {
+					modifier = INS_agrarian_funding_state
+				}
 			}
-			add_political_power = 50
 		}
 	}
 	
@@ -3039,7 +3477,7 @@ focus_tree = {
 	
 	focus = {
 		id = AST_australian_self_reliance
-		icon = GFX_focus_ICE_embrace_the_workers_revolution
+		icon = GFX_focus_AST_the_publics_australia
 		x = 0
 		y = 2
 		relative_position_id = AST_nationalise_the_commonwealth_bank
@@ -3054,7 +3492,7 @@ focus_tree = {
 					name = AST
 				}
 				buildings = { steel_refinery }
-				size > 5
+				size > 3
 			}
 			count_in_collection = {
 				collection = {
@@ -3062,7 +3500,7 @@ focus_tree = {
 					name = AST
 				}
 				buildings = { synthetic_refinery }
-				size > 5
+				size > 3
 			}
 			count_in_collection = {
 				collection = {
@@ -3070,7 +3508,7 @@ focus_tree = {
 					name = AST
 				}
 				buildings = { synthetic_rubber_refinery }
-				size > 5
+				size > 3
 			}
 			count_in_collection = {
 				collection = {
@@ -3078,7 +3516,7 @@ focus_tree = {
 					name = AST
 				}
 				buildings = { fuel_silo }
-				size > 5
+				size > 3
 			}
 		}
 		
@@ -3146,7 +3584,23 @@ focus_tree = {
 		completion_reward = {
 			add_ideas = AST_reach_across_the_pacific
 			USA = { add_ideas = AST_reach_across_the_pacific_2 }
+			custom_effect_tooltip = generic_skip_one_line_tt
 			add_to_tech_sharing_group = us_research
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = available_mio_tt
+			show_mio_tooltip = AST_american_car_and_foundry_organization
+			show_mio_tooltip = AST_lockheed_organization
+			show_mio_tooltip = AST_curtiss-wright_organization
+			custom_effect_tooltip = generic_skip_one_line_tt
+			mio:AST_american_car_and_foundry_organization = {
+				add_mio_size = 2
+			}
+			mio:AST_lockheed_organization = {
+				add_mio_size = 2
+			}
+			mio:AST_curtiss-wright_organization = {
+				add_mio_size = 2
+			}
 		}
 	}
 	
@@ -3161,7 +3615,19 @@ focus_tree = {
 		prerequisite = { focus = AST_reach_across_the_pacific }
 		
 		completion_reward = {
-			mio:AST_com_aircraft_corporation_organization = {
+			mio:AST_commonwealth_aircraft_corporation_organization = {
+				complete_mio_trait = AST_mio_trait_blue_skies_strategy
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			mio:AST_lockheed_organization = {
+				complete_mio_trait = AST_mio_trait_blue_skies_strategy
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			mio:AST_curtiss-wright_organization = {
+				complete_mio_trait = AST_mio_trait_blue_skies_strategy
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			mio:AST_de_havilland_australia_organization = {
 				complete_mio_trait = AST_mio_trait_blue_skies_strategy
 			}
 		}
@@ -3277,7 +3743,6 @@ focus_tree = {
 				remove_idea = AST_invest_in_victory_2
 				add_idea = AST_all_in
 			}
-			add_manpower = 150000
 			custom_effect_tooltip = generic_skip_one_line_tt
 			add_ideas = tot_economic_mobilisation
 			custom_effect_tooltip = generic_skip_one_line_tt
@@ -3290,8 +3755,8 @@ focus_tree = {
 	# War Plans - Menzies Branch
 	focus = {
 		id = AST_menzies_war_plans
-		icon = GFX_goal_generic_position_armies
-		x = -3
+		icon = GFX_focus_AST_the_ultimate_overseas_duty_uap
+		x = -4
 		y = 1
 		relative_position_id = AST_fight_work_or_perish
 		cost = 1
@@ -3309,17 +3774,41 @@ focus_tree = {
 				long_name = AST_united_australia_party_long
 				name = AST_united_australia_party
 			}
+			set_variable = {
+				var = AST_ruling_party
+				value = 0
+				tooltip = AST_uap_becomes_ruling_party
+			}
             promote_character = {
-                character = AST_robert_g_menzies
+                character = AST_robert_menzies
                 ideology = liberalism
             }
 		}
 	}
 	
 	focus = {
+		id = AST_ban_the_communists
+		icon = GFX_focus_usa_voter_registration_act
+		x = -2
+		y = 1
+		relative_position_id = AST_menzies_war_plans
+		cost = 5
+		
+		prerequisite = { focus = AST_menzies_war_plans }
+		
+		completion_reward = {
+			add_stability = 0.15
+			add_popularity = {
+				ideology = communism
+				popularity = -0.1
+			}
+		}
+	}
+	
+	focus = {
 		id = AST_petrol_rationing_scheme
 		icon = GFX_focus_generic_stockpile_fuel
-		x = -1
+		x = 2
 		y = 1
 		relative_position_id = AST_menzies_war_plans
 		cost = 5
@@ -3333,8 +3822,8 @@ focus_tree = {
 	
 	focus = {
 		id = AST_trust_in_the_singapore_strategy
-		icon = GFX_goal_generic_defence
-		x = 1
+		icon = GFX_focus_generic_singapore
+		x = 0
 		y = 1
 		relative_position_id = AST_menzies_war_plans
 		cost = 5
@@ -3347,51 +3836,176 @@ focus_tree = {
 			custom_effect_tooltip = AST_singapore_strategy_tt
 		}
 	}
-	
+
 	focus = {
-		id = AST_ban_the_communists
-		icon = GFX_focus_usa_voter_registration_act
-		x = -1
-		y = 2
-		relative_position_id = AST_menzies_war_plans
-		cost = 5
-		
-		prerequisite = { focus = AST_petrol_rationing_scheme }
+		id = AST_wool_agreement_tfb
+		icon = GFX_focus_AST_wool_agreement
+
 		prerequisite = { focus = AST_trust_in_the_singapore_strategy }
-		
-		completion_reward = {
-			add_stability = 0.15
-			add_popularity = {
-				ideology = communism
-				popularity = -0.1
-			}
+#		mutually_exclusive = { }
+		relative_position_id = 	AST_trust_in_the_singapore_strategy
+		x = -2
+		y = 1
+	
+		cost = 5
+
+		available = {
 		}
+
+		bypass = {
+		}
+
+		available_if_capitulated = no
+	
+		completion_reward = {
+
+			if = {
+				limit = {
+					has_idea = AST_bradford_cotton_mills_ic
+				}
+				custom_effect_tooltip = AST_bradford_cotton_mills_ic_tt
+				swap_ideas = {
+					remove_idea = AST_bradford_cotton_mills_ic
+					add_idea = AST_bradford_cotton_mills_improved_ic
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = AST_bradford_cotton_mills_ic
+						add_idea = AST_bradford_cotton_mills_improved_ic
+					}
+				}
+			}
+
+			ENG = { 
+				add_ideas = {
+					AST_wool_agreement_idea
+				}
+			}
+
+		}
+
+		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY FOCUS_FILTER_INTERNATIONAL_TRADE }
 	}
+
 	
 	focus = {
 		id = AST_focus_on_the_mediterranean
 		icon = GFX_focus_generic_mediterranean_sea_focus
-		x = 1
+		x = 0
 		y = 2
 		relative_position_id = AST_menzies_war_plans
 		cost = 5
 		
-		prerequisite = { focus = AST_petrol_rationing_scheme }
 		prerequisite = { focus = AST_trust_in_the_singapore_strategy }
+
+		available = {
+			has_idea = AST_trust_in_the_singapore_strategy
+		}
 		
 		completion_reward = {
-			add_timed_idea = {
-				idea = AST_focus_on_the_mediterranean
-				days = 300
+			swap_ideas = {
+				add_idea = AST_trust_in_the_singapore_strategy2
+				remove_idea = AST_trust_in_the_singapore_strategy
 			}
+			# add_timed_idea = {
+			# 	idea = AST_focus_on_the_mediterranean
+			# 	days = 300
+			# }
 		}
+	}
+
+	focus = {
+		id = AST_australian_command_tfb
+		icon = GFX_focus_AST_part_with_colonizer
+
+		prerequisite = { focus = AST_trust_in_the_singapore_strategy }
+#		mutually_exclusive = { }
+		relative_position_id = 	AST_trust_in_the_singapore_strategy
+		x = 2
+		y = 1
+	
+		cost = 5
+
+		available = {
+			has_war = yes
+			OR = {
+				is_subject_of = ENG
+				is_in_faction_with = ENG
+			}	
+		}
+
+		bypass = {
+		}
+
+		available_if_capitulated = no
+	
+		completion_reward = {
+
+			# AST = {
+            #    	division_template = {
+	        #         name = "British Expeditionary Division"
+	        #         is_locked = yes
+	        #         support={
+	        #             #artillery={ x=0 y=0 }
+	        #             recon={ x=0 y=1 }
+	        #         }
+	        #         regiments={
+	        #             infantry={ x=0 y=0 }
+	        #             infantry={ x=0 y=1 }
+	        #             infantry={ x=0 y=2 }
+	        #             infantry={ x=1 y=0 }
+	        #             infantry={ x=1 y=1 }
+	        #             infantry={ x=1 y=2 }
+	        #             infantry={ x=2 y=0 }
+	        #             infantry={ x=2 y=1 }
+	        #             infantry={ x=2 y=2 }
+	        #         }
+            #     }
+
+            #         random_controlled_state = {
+            #             prioritize = { 523 }
+            #             create_unit = {
+            #                 division = "name = \"British Expeditionary Division\" division_template = \"British Expeditionary Division\" start_experience_factor = 0.8 start_equipment_factor = 1.0 start_manpower_factor = 1.0"
+            #                 owner = AST
+            #                 allow_spawning_on_enemy_provs = no 
+            #                 count = 10
+            #             }
+            #         }
+            # }
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = available_chief_of_airforce
+			show_ideas_tooltip = AST_charles_burnett
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = available_chief_of_navy
+			show_ideas_tooltip = AST_guy_royle
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			AST_victor_crutchley = { 
+				add_naval_commander_role = {
+					traits={ crisis_magician mine_craft }
+					skill=3
+					attack_skill=3
+					defense_skill=2
+					coordination_skill=1
+					maneuvering_skill=4
+					legacy_id=-1
+				}
+			}
+
+		}
+
+		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_MILITARY_CHARACTER }
 	}
 	
 	# War Plans - Shared
 	focus = {
 		id = AST_establish_advisory_war_council
-		icon = GFX_goal_generic_intelligence_exchange
-		x = 3
+		icon = GFX_focus_AST_under_the_rule_of_canberra
+		x = 4
 		y = 1
 		relative_position_id = AST_menzies_war_plans
 		cost = 5
@@ -3406,7 +4020,7 @@ focus_tree = {
 			show_ideas_tooltip = AST_john_curtin
 			custom_effect_tooltip = generic_skip_one_line_tt
 			custom_effect_tooltip = available_political_advisor
-			show_ideas_tooltip = AST_robert_g_menzies
+			show_ideas_tooltip = AST_robert_menzies
 		}
 	}
 	
@@ -3428,8 +4042,8 @@ focus_tree = {
 	# War Plans - Curtin Branch
 	focus = {
 		id = AST_curtins_war_plans
-		icon = GFX_focus_PER_communist_afghanistan_intervention
-		x = 3
+		icon = GFX_focus_AST_until_the_tide_of_battle_swings_alp
+		x = 4
 		y = 1
 		relative_position_id = AST_fight_work_or_perish
 		cost = 1
@@ -3447,17 +4061,78 @@ focus_tree = {
 				long_name = AST_labor_party_long
 				name = AST_labor_party
 			}
+			set_variable = {
+				var = AST_ruling_party
+				value = 1
+				tooltip = AST_alp_becomes_ruling_party
+			}
             promote_character = {
                 character = AST_john_curtin
             }
 		}
+	}
+
+	focus = {
+		id = AST_a_rational_request_tfb
+		icon = GFX_focus_generic_singapore_2
+
+		prerequisite = { focus = AST_curtins_war_plans }
+#		mutually_exclusive = { }
+		relative_position_id = 	AST_curtins_war_plans
+		x = -2
+		y = 1
+	
+		cost = 10
+
+		available = {
+
+			ENG = {
+  				controls_state = 1021 #Singapore
+			}
+
+			is_in_faction_with = ENG
+			compare_autonomy_progress_ratio > 0.50
+		}
+
+		bypass = {
+		}
+
+		available_if_capitulated = no
+	
+		completion_reward = {
+			ENG = { country_event = { id = AST_diplomatic_events.4 days = 7  random_days = 3 } }
+			custom_effect_tooltip = if_they_accept_tt
+			effect_tooltip = {
+				1021 = { transfer_state_to = AST } #Singapore
+				711 = { transfer_state_to = AST } #Christmas Island
+				712 = { transfer_state_to = AST } #Cocos Islands
+			}
+
+			hidden_effect =  {
+				remove_trait = {
+					character = AST_henry_wynter
+					slot = theorist
+					trait = military_theorist
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = add_trait_to_theorist_tt
+			add_trait = {
+				character = AST_henry_wynter
+				slot = theorist
+				trait = AST_vindicated_realist
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MILITARY_CHARACTER }
 	}
 	
 	focus = {
 		id = AST_secure_our_own_defence
 		icon = GFX_goal_generic_build_tank
         #TODO: Fix Icon
-		x = -1
+		x = 0
 		y = 1
 		relative_position_id = AST_curtins_war_plans
 		cost = 5
@@ -3472,32 +4147,87 @@ focus_tree = {
 	
 	focus = {
 		id = AST_prepare_for_the_northern_threat
-		icon = GFX_focus_eng_concessions_to_the_trade_unions
-		x = 1
+		icon = GFX_focus_AST_dividing_the_pacific
+		x = -2
 		y = 1
-		relative_position_id = AST_curtins_war_plans
+		relative_position_id = AST_secure_our_own_defence
 		cost = 5
 		
-		prerequisite = { focus = AST_curtins_war_plans }
+		prerequisite = { focus = AST_secure_our_own_defence }
+		available = {
+			has_idea = AST_secure_our_own_defence
+		}
+		
 		
 		completion_reward = {
-			add_timed_idea = {
-				idea = AST_prepare_for_the_northern_threat
-				days = 300
+			swap_ideas = {
+				add_idea = AST_secure_our_own_defence2
+				remove_idea = AST_secure_our_own_defence
+			}
+			# add_timed_idea = {
+			# 	idea = AST_prepare_for_the_northern_threat
+			# 	days = 300
+			# }
+		}
+	}
+
+	focus = {
+		id = AST_liberty_loans_tfb
+		icon = GFX_focus_AST_liberty_loans
+
+		prerequisite = { focus = AST_secure_our_own_defence }
+#		mutually_exclusive = { }
+		relative_position_id = AST_secure_our_own_defence
+		x = 0
+		y = 1
+	
+		cost = 5
+
+		available = {
+			OR = {
+				has_war = yes
+				threat > 0.75
+			}
+			AST_ben_chifley = {
+				OR = {
+					is_hired_as_advisor = yes
+					is_country_leader = yes
+				}
 			}
 		}
+
+		bypass = {
+		}
+
+		available_if_capitulated = no
+	
+		completion_reward = {
+			add_political_power = 50
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			add_autonomy_ratio = {
+				value = 0.075
+				localization = AST_liberty_loans
+			}
+			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_ideas = {
+				AST_liberty_loans_idea
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
 	}
 	
 	focus = {
 		id = AST_national_direction_of_investment
 		icon = GFX_focus_jap_strike_south
-		x = -1
+		x = 2
 		y = 2
 		relative_position_id = AST_curtins_war_plans
 		cost = 5
 		
 		prerequisite = { focus = AST_secure_our_own_defence }
-		prerequisite = { focus = AST_prepare_for_the_northern_threat }
 		
 		completion_reward = {
 			add_stability = -0.1
@@ -3568,13 +4298,12 @@ focus_tree = {
 	focus = {
 		id = AST_denounce_the_hands_of_russia
 		icon = GFX_goal_anti_comintern_pact
-		x = 1
-		y = 2
+		x = 2
+		y = 1
 		relative_position_id = AST_curtins_war_plans
 		cost = 5
 		
-		prerequisite = { focus = AST_secure_our_own_defence }
-		prerequisite = { focus = AST_prepare_for_the_northern_threat }
+		prerequisite = { focus = AST_curtins_war_plans }
 		
 		completion_reward = {
 			add_war_support = 0.1
@@ -3615,6 +4344,8 @@ focus_tree = {
 		y = 1
 		relative_position_id = AST_review_our_position
 		cost = 5
+
+		available_if_capitulated = yes
 		
 		prerequisite = { focus = AST_review_our_position }
 		mutually_exclusive = { focus = AST_hes_coming_south }
@@ -3624,11 +4355,13 @@ focus_tree = {
 		}
 		completion_reward = {
 			remove_ideas = AST_secure_our_own_defence
+
 			custom_effect_tooltip = generic_skip_one_line_tt
-			custom_effect_tooltip = AST_this_is_the_enemy_bonus_tt
-			hidden_effect = {
-				set_technology = { AST_this_is_the_enemy = 1 }
-			}
+			# custom_effect_tooltip = AST_this_is_the_enemy_bonus_tt
+			# hidden_effect = {
+			# 	set_technology = { AST_this_is_the_enemy = 1 }
+			# }
+			remove_dynamic_modifier = { modifier = AST_australian_gallipoli }
 			
 			custom_effect_tooltip = generic_skip_one_line_tt
             if = {
@@ -3716,25 +4449,27 @@ focus_tree = {
 		prerequisite = { focus = AST_on_the_beach }
 
         allow_branch = {
-            has_capitulated = yes
+            has_country_flag = AST_capitulated
         }
 		
-		available = {
-			has_capitulated = yes
-		}
+		# available = {
+		# 	has_capitulated = yes
+		# }
 
 		available_if_capitulated = yes
 		
 		completion_reward = {
-			create_country_leader = {
-				name = "Soviet Seal"
-				picture = "gfx/leaders/AST/Portrait_AST_Soviet_Seal.dds"
-				ideology = socialism
-				traits = { AST_seal_of_approval }
+			add_country_leader_role = {
+				character = AST_seal_of_approval
+				country_leader = {
+					ideology = socialism
+					expire = "1989.1.1.1"
+					traits = { AST_seal_of_approval }
+				}
+				promote_leader = yes
 			}
-			create_field_marshal = {
-				name = "Soviet Seal"
-				picture = "gfx/leaders/AST/Portrait_AST_Soviet_Seal.dds"
+			add_field_marshal_role = {
+				character = AST_seal_of_approval
 				traits = { JAP_communist_sympathizer trait_SOV_determined media_personality naval_invader }
 				skill = 3
 				attack_skill = 3
@@ -3747,11 +4482,13 @@ focus_tree = {
 	
 	focus = {
 		id = AST_hes_coming_south
-		icon = GFX_focus_AST_war_japan
+		icon = GFX_focus_AST_its_fight_work_or_perish
 		x = 3
 		y = 1
 		relative_position_id = AST_review_our_position
 		cost = 5
+
+		available_if_capitulated = yes
 		
 		prerequisite = { focus = AST_review_our_position }
 		mutually_exclusive = { focus = AST_this_is_the_enemy }
@@ -3763,16 +4500,17 @@ focus_tree = {
 		completion_reward = {
 			remove_ideas = AST_secure_our_own_defence
 			custom_effect_tooltip = generic_skip_one_line_tt
-			custom_effect_tooltip = AST_hes_coming_south_bonus_tt
-			hidden_effect = {
-				set_technology = { AST_hes_coming_south = 1 }
-			}
+			# custom_effect_tooltip = AST_hes_coming_south_bonus_tt
+			# hidden_effect = {
+			# 	set_technology = { AST_hes_coming_south = 1 }
+			# }
+			remove_dynamic_modifier = { modifier = AST_australian_gallipoli }
 			custom_effect_tooltip = generic_skip_one_line_tt
             if = {
                 limit = { 
 					has_country_leader = {
 						ruling_only = yes # default = yes
-						character = AST_robert_g_menzies 
+						character = AST_robert_menzies 
 					}
 				}
                 add_war_support = -0.1
@@ -3843,12 +4581,14 @@ focus_tree = {
 		available = {
 			date > 1939.1.1
 			owns_state = 523
+			owns_state = 1073
 		}
 		
 		mutually_exclusive = { focus = AST_incorporate_new_zealand_into_the_federation }
 		
 		completion_reward = {
 			523 = { add_core_of = AST }
+			1073 = { add_core_of = AST }
 		}
 	}
 	
@@ -3885,6 +4625,14 @@ focus_tree = {
             OR = {
                 669 = { controller = { original_tag = HOL }}
                 669 = { controller = { original_tag = INS }}
+            }
+            OR = {
+                1057 = { controller = { original_tag = HOL }}
+                1057 = { controller = { original_tag = INS }}
+            }
+            OR = {
+                1089 = { controller = { original_tag = HOL }}
+                1089 = { controller = { original_tag = INS }}
             }
            
 		}
@@ -4034,7 +4782,7 @@ focus_tree = {
 	
 	focus = {
 		id = AST_incorporate_new_zealand_into_the_federation
-		icon = GFX_focus_POL_complete_april_constitution
+		icon = GFX_focus_generic_new_zealand
         # TODO: Find Icon
 		x = 4
 		y = 0
@@ -4053,6 +4801,9 @@ focus_tree = {
 			add_state_core = 723
 			add_state_core = 284
 			add_state_core = 726
+			add_state_core = 1079
+			add_state_core = 1080
+			add_state_core = 1081
 			set_global_flag = AST_NZL_ANNEXED
 		}
 	}
@@ -4084,7 +4835,7 @@ focus_tree = {
 	
 	focus = {
 		id = AST_new_deal_for_aborigines
-		icon = GFX_focus_spr_torchbearers_of_tomorrow
+		icon = GFX_focus_AST_department_of_aboriginal_affairs
 		x = 2
 		y = 1
 		relative_position_id = AST_incorporate_new_zealand_into_the_federation

@@ -91,13 +91,33 @@ country_event = {
 	picture = GFX_report_event_finnish_soldiers_snow
 	
 	is_triggered_only = yes
-
+	immediate = { 
+		hidden_effect = {
+			add_ideas = winter_war_ns
+			add_timed_idea = {
+				idea = FIN_kolla_kesta
+				days = 120
+			}
+			activate_mission = FIN_evacuate_karjala
+			activate_mission = FIN_winter_war_timer_fake
+			country_event = {
+				id = finland.506
+				days = 10
+			}
+		}
+	}
 	option = {
 		name = finland.10.a
-
-		add_ideas = winter_war_ns
-
-		custom_effect_tooltip = FIN_winter_war_push_back_tt
+		effect_tooltip = {
+			add_ideas = winter_war_ns
+			custom_effect_tooltip = generic_skip_one_line_tt
+			add_timed_idea = {
+				idea = FIN_kolla_kesta
+				days = 105
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			activate_mission = FIN_evacuate_karjala
+		}
 	}
 }
 
@@ -191,5 +211,373 @@ country_event = {
 
 	option = {
 		name = finland.504.a
+	}
+}
+
+country_event = { #SOVIET WON ECO KARJALA
+	id = finland.505
+	title = finland.505.t
+	desc = finland.505.d
+	picture = GFX_report_event_FIN_petsamo_melting_plant
+	
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = finland.505.a
+		146 = {
+			#set_temp_variable = { civ_total = industrial_complex_level }
+			set_temp_variable = { mil_total = arms_factory_level }
+			#remove_building = {
+			#	type = industrial_complex
+			#	level = civ_total
+			#}
+			remove_building = {
+				type = arms_factory
+				level = mil_total
+			}
+		}
+		#264 = {
+		#	add_building_construction = {
+		#		type = industrial_complex
+		#		level = civ_total
+		#		instant_build = yes 
+		#	}
+		#}
+		216 = {
+			add_building_construction = {
+				type = arms_factory
+				level = mil_total
+				instant_build = yes 
+			}
+			add_extra_state_shared_building_slots = mil_total
+		}
+		clear_variable = mil_total
+		#add_stability = 0.05
+	}
+}
+
+#country_event = { #SWEDISH GUNS
+#	id = finland.506
+#	title = finland.506.t
+#	desc = finland.506.d
+#	picture = GFX_report_event_swedish_soldier
+#	
+#	is_triggered_only = yes
+#
+#	fire_only_once = yes
+#
+#	option = {
+#		name = finland.506.a
+#		
+#		add_manpower = 8402
+#		add_equipment_to_stockpile = {
+#			type = artillery_equipment
+#			amount = 25
+#			producer = SWE
+#		}
+#		add_equipment_to_stockpile = {
+#			type = infantry_equipment
+#			amount = 350
+#			producer = SWE
+#		}
+#		custom_effect_tooltip = generic_skip_one_line_tt
+#		SWE = { add_manpower = -8402 }
+#		add_equipment_to_stockpile = {
+#			type = artillery_equipment
+#			amount = -25
+#		}
+#		add_equipment_to_stockpile = {
+#			type = infantry_equipment
+#			amount = -350
+#		}
+#	}
+#}
+
+country_event = { #SWEDISH Volunteers
+	id = finland.506
+	title = finland.506.t
+	desc = finland.506.d
+	picture = GFX_report_event_swedish_soldier
+	
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					has_war_with = SOV
+					NOT = { GER = { has_war_with = SOV } }
+				}
+				division_template = {
+					name = "Svenska Frivilligkåren"
+					division_names_group = FIN_INF_02
+					is_locked = yes
+					override_model = FIN_marine_entity
+					template_counter = 61
+	
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+						infantry = { x = 1 y = 3 }
+						infantry = { x = 2 y = 0 }
+						infantry = { x = 2 y = 1 }
+						infantry = { x = 2 y = 2 }
+						artillery_brigade = { x = 3 y = 0 }
+						artillery_brigade = { x = 3 y = 1 }
+						artillery_brigade = { x = 3 y = 2 }
+						artillery_brigade = { x = 3 y = 3 }
+						anti_tank_brigade = { x = 4 y = 0 }
+						anti_tank_brigade = { x = 4 y = 1 }
+						anti_tank_brigade = { x = 4 y = 2 }
+						anti_tank_brigade = { x = 4 y = 3 }
+					}
+					support = {
+						#hq_company = { x = 0 y = 0 } 
+						engineer = { x = 0 y = 0 }   
+						long_range_patrol_support = { x = 0 y = 1 }
+						#rangers_support = { x = 0 y = 2 }
+						winter_logistics_support = { x = 0 y = 2 }
+						#field_hospital = { x = 1 y = 0 }
+						signal_company = { x = 0 y = 3 }
+						anti_air = { x = 0 y = 4 }
+						logistics_company_mot = { x = 0 y = 5 }
+					}
+				}
+				148 = {
+					create_unit = {
+						division = "name = \"Svenska Frivilligkåren\" division_template = \"Svenska Frivilligkåren\" start_experience_factor = 0.4 start_equipment_factor = 1.0"
+						officer = {
+							name = FIN_ernst_linder
+							portraits = {
+								army = {
+									large = GFX_portrait_SWE_ernst_linder
+									small = GFX_portrait_SWE_ernst_linder_small
+								}
+							}
+						}
+						owner = ROOT
+						prioritize_location = 11125
+					}
+				}
+				if = {
+					limit = {
+						has_dlc = "By Blood Alone"
+					}
+					random_country_division = {
+						limit = {
+							has_officer_name = FIN_ernst_linder
+						}
+						add_history_entry = {
+							key = FIN_swedish_volunteers
+							subject = "Swedish Volunteer Battalion"
+							allow = no #(allow medal award)
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = finland.506.a
+		custom_effect_tooltip = FIN_finnish_volunteer_spawn_tt
+	}
+}
+
+country_event = { #Finland Defeat Winter War
+	id = finland.507
+	title = finland.507.t
+	desc = finland.507.d
+	picture = GFX_report_event_FIN_armistice_of_moscow_negotiations
+	
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = { has_completed_focus = FIN_operation_kilpapurjehdus }
+				}
+				145 = {
+					set_demilitarized_zone = yes
+				}
+			}
+			147 = { #Salla VP change
+				set_state_name = SALLA_STATE_ALT
+			}
+			set_province_name = {
+				id = 197
+				name = SALLA_VP_ALT
+			}
+			add_victory_points = {
+				province = 3156
+				value = 1
+			}
+			add_victory_points = {
+				province = 197
+				value = -1
+			}
+			111 = {
+				add_dynamic_modifier = {
+					modifier = FIN_hanko_state_modifier
+					scope = FIN
+				}
+			}
+			if = { #Remove Fortresses after Sov take Karelia
+				limit = {
+					has_completed_focus = FIN_mannerheim_line
+				}
+				146 = {
+					set_building_level = {
+						type = fortress
+						level = 0
+						instant_build = yes
+						province = 9100
+					}
+					set_building_level = {
+						type = fortress
+						level = 0
+						instant_build = yes
+						province = 9105
+					}
+					add_dynamic_modifier = {
+						modifier = FIN_mannerheim_line_crumbling_modifier
+					}
+				}
+			}
+			SOV = {
+				transfer_state = 146
+				transfer_state = 147
+				diplomatic_relation = {
+					country = FIN
+					relation = non_aggression_pact
+				}
+			}
+			MON = {
+				remove_ideas = MON_brothers_war
+			}
+			set_variable = { global.winter_war_end_date = global.date }
+			#Delete Swedish Volunteers
+			if = {
+				limit = {
+					has_template = "Svenska Frivilligkåren"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Svenska Frivilligkåren"
+					disband = no #will refund equipment and manpower
+				}
+			}
+		}
+	}
+	option = {
+		name = finland.507.a
+		FIN_bop_very_low_increase_effect = yes
+		custom_effect_tooltip = generic_skip_one_line_tt
+		effect_tooltip = {
+			SOV = {
+				transfer_state = 146
+				transfer_state = 147
+				diplomatic_relation = {
+					country = FIN
+					relation = non_aggression_pact
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = FIN_salla_relocation_tt
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					NOT = { has_completed_focus = FIN_operation_kilpapurjehdus }
+				}
+				145 = {
+					set_demilitarized_zone = yes
+				}
+			}
+			111 = {
+				add_dynamic_modifier = {
+					modifier = FIN_hanko_state_modifier
+					scope = FIN
+				}
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = { #Remove Fortresses after Sov take Karelia
+				limit = {
+					has_completed_focus = FIN_mannerheim_line
+				}
+				146 = {
+					set_building_level = {
+						type = fortress
+						level = 0
+						instant_build = yes
+						province = 9100
+					}
+					set_building_level = {
+						type = fortress
+						level = 0
+						instant_build = yes
+						province = 9105
+					}
+					add_dynamic_modifier = {
+						modifier = FIN_mannerheim_line_crumbling_modifier
+					}
+				}
+			}
+			#Delete Swedish Volunteers
+			delete_unit_template_and_units = {
+				division_template = "Svenska Frivilligkåren"
+				disband = no #will refund equipment and manpower
+			}
+		}
+	}
+}
+
+country_event = { #Finland Win Winter War
+	id = finland.508
+	title = finland.508.t
+	desc = finland.508.d
+	picture = GFX_report_event_FIN_three_country_cairn_flag_raising
+	
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			if = { #Delete Swedish Volunteers
+				limit = {
+					has_template = "Svenska Frivilligkåren"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Svenska Frivilligkåren"
+					disband = no #will refund equipment and manpower
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = finland.508.a
+		FIN_bop_very_high_increase_effect = yes
+		custom_effect_tooltip = generic_skip_one_line_tt
+		effect_tooltip = {
+			diplomatic_relation = {
+				country = SOV
+				relation = non_aggression_pact
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+			delete_unit_template_and_units = {
+				division_template = "Svenska Frivilligkåren"
+				disband = no #will refund equipment and manpower
+			}
+		}
 	}
 }

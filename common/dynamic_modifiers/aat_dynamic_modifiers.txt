@@ -1067,7 +1067,8 @@ FIN_finnish_army = {
 	supply_combat_penalties_on_core_factor = FIN_finnish_army_supply_combat_penalties_on_core_factor #-0.15
 	org_loss_when_moving = FIN_finnish_army_org_loss_when_moving #-0.15
 	recon_factor_while_entrenched = FIN_finnish_army_recon_factor_while_entrenched #0.1
-	army_attack_speed_factor = FIN_finnish_army_army_attack_speed_factor #0.1
+	army_attack_speed_factor = FIN_finnish_army_army_attack_speed_factor #0.05
+	army_retreat_speed_factor = FIN_finnish_army_army_retreat_speed_factor #0.1
 	intel_from_combat_factor = FIN_finnish_army_intel_from_combat_factor #0.1
 	initiative_factor = FIN_finnish_army_initiative_factor #0.02
 	modifier_army_sub_unit_long_range_patrol_support_attack_factor = FIN_finnish_army_modifier_army_sub_unit_long_range_patrol_support_attack_factor
@@ -1093,6 +1094,9 @@ FIN_finnish_airforce = {
 	naval_strike_targetting_factor = FIN_finnish_airforce_naval_strike_targetting_factor #0.1
 	air_cas_efficiency = FIN_finnish_airforce_air_cas_efficiency #0.1
 	air_superiority_efficiency = FIN_finnish_airforce_air_superiority_efficiency #0.1
+	air_manpower_requirement_factor = FIN_finnish_airforce_air_manpower_requirement_factor #0.2
+	production_factory_start_efficiency_factor = FIN_finnish_airforce_production_factory_start_efficiency_factor #0.05
+	line_change_production_efficiency_factor = FIN_finnish_airforce_line_change_production_efficiency_factor #0.15
 }
 
 FIN_finnish_navy = {
@@ -1147,18 +1151,79 @@ FIN_fascist_regime = {
 ##### STATE MODIFIERS ######
 ############################
 
-FIN_mannerheim_line_expansion_modifier = {
+#Finland Rework New
+FIN_fin_coal = { #Basically half a civ as a slight buff, matters more if Karjala is fully evacuated because of the energy consumption
+	enable = { always = yes }
+	icon = GFX_modifiers_PRC_urban_development
+	
+	state_resource_coal = 42
+	local_factory_energy_consumption = -0.1
+}
+
+FIN_hanko_state_modifier = { #Small Debuff (Scoped for FIN)
+	enable = { always = yes }
+	icon = GFX_modifiers_PRC_anti_japanese_base
+	
+	remove_trigger = {  # Removed once continuation war starts
+		ROOT = {
+			controller = {
+				has_war_with = SOV
+			}
+		}
+	}
+	
+	local_intel_to_enemies = 0.15
+	enemy_operative_detection_chance_factor_over_occupied_tag = -0.25
+	local_manpower = -0.1
+}
+
+FIN_raid_stat_modifier = { #Attack bonuses for Finland in enemy states (scoped for FIN)
+	enable = { always = yes } 
+	icon = GFX_modifier_generic_sabotage
+
+	army_attack_factor = 0.05
+	breakthrough_factor = 0.1
+}
+
+FIN_hokki_modifier = { #Unique Operation Hokki Modifier (scoped for SOV)
+	enable = { always = yes } 
+	icon = GFX_modifiers_FIN_motti_tactics_modifier
+	remove_trigger = {  # Remove once you take state
+		ROOT = {
+			controller = {
+				NOT = { original_tag = SOV }
+			}
+		}
+	}
+    local_supplies_for_controller = -0.3
+	army_speed_factor_for_controller = -0.05
+    attrition_for_controller = 0.05
+	disable_strategic_redeployment_for_controller = 1
+}
+
+FIN_mannerheim_line_crumbling_modifier = {
 	enable = { always = yes }
 	icon = GFX_modifiers_SOV_civilian_labor_in_defense
+	
+	land_bunker_effectiveness_factor = -0.15
+	state_bunker_max_level_terrain_limit = -2
+}
+
+#Base Game
+FIN_mannerheim_line_expansion_modifier = {
+	enable = { always = yes }
+	icon = GFX_modifiers_generic_defense
 
 	remove_trigger = {
-		ROOT = { NOT = { is_core_of = ROOT.controller } } # ROOT refers to the state on which the modifier is added
+		ROOT = { NOT = { is_core_of = ROOT.owner } } # ROOT refers to the state on which the modifier is added
 	}
-
+	
 	army_core_defence_factor = 0.05
-	production_speed_bunker_factor = 0.1
-	production_speed_coastal_bunker_factor = 0.1
+	#state_production_speed_bunker_factor = 0.1
+	#state_production_speed_coastal_bunker_factor = 0.1
 	local_supplies = 0.1
+	enemy_local_supplies = -0.1
+	state_bunker_max_level_terrain_limit = -1
 }
 
 FIN_motti_tactics_modifier = { #Gets removed via on_action

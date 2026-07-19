@@ -1,0 +1,120 @@
+SPR_spain_appeasement_struggle = {
+	initial_value = -1
+	left_side = SPR_spain_appeasement	
+	right_side = SPR_spain_active_war	
+	decision_category = SPR_balance_of_power_category 
+
+	range = {
+		id = SPR_axis_sympathies
+		min = -0.25
+		max = 0.25
+		modifier = {
+			send_volunteer_size = 2
+		}
+	}
+
+	side = {
+		id = SPR_spain_appeasement
+		icon = GFX_bop_DEN_warfare_side
+		
+		range = {
+			id = SPR_strained_neutrality
+			min = -0.75
+			max = -0.25
+			modifier = {
+				send_volunteer_size = 1
+			}
+			on_activate = {
+				set_rule = { can_send_volunteers = yes }
+				add_ideas = SPA_volunteer_cap
+				hidden_effect = {
+					country_event = {
+						id = lar_spain.657
+						days = 1
+					}
+				}
+			}
+		}
+		range = {
+			id = SPR_appeasement
+			min = -1
+			max = -0.75
+			modifier = {
+				stability_factor = 0.05
+				war_support_factor = -0.05
+			}
+			on_activate = {
+				hidden_effect = {
+					country_event = {
+						id = lar_spain.657
+						days = 1
+					}
+				}
+			}
+		}
+	}
+
+	side = {
+		id = SPR_spain_active_war
+		icon = GFX_bop_DEN_warfare_improved_side
+		
+		range = {
+			id = SPR_allied_embargo
+			min = 0.25
+			max = 0.99
+			modifier = {
+				send_volunteer_size = 4
+			}
+			on_activate = {
+				hidden_effect = {
+					country_event = {
+						id = lar_spain.657
+						days = 1
+					}
+				}
+				ENG = {
+					country_event = {
+						id = lar_spain.654
+						days = 3
+					}
+				}
+				USA = {
+					country_event = {
+						id = lar_spain.655
+						days = 3
+					}
+				}
+				FRA = {
+					country_event = {
+						id = lar_spain.656
+						days = 3
+					}
+				}
+			}
+		}
+		range = {
+			id = SPR_open_war
+			min = 0.99
+			max = 1
+			on_activate = {
+				ENG = {
+				create_wargoal = {
+					type = puppet_wargoal_focus
+						target = SPR
+					}
+				}
+				remove_power_balance = {
+					id = SPR_spain_appeasement_struggle
+				}
+				remove_ideas = SPA_neutrality_idea
+				GER = {
+					country_event = {
+						id = WW_hungary.26
+						days = 2
+						random_days = 3
+					}
+				}
+			}
+		}
+	}
+}

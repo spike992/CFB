@@ -140,6 +140,8 @@ if = {
 	recruit_character = RAJ_mughal_industrialist
 	recruit_character = RAJ_silent_mughal
 	recruit_character = RAJ_backroom_mughal
+	recruit_character = RAJ_abdul_ghaffar_khan
+	recruit_character = RAJ_GOE_muhammad_musa
 	
 	else = {
 		recruit_character = RAJ_karam_singh_mann
@@ -476,23 +478,6 @@ set_variable = { RAJ_fyp_production_speed_dockyard_factor = 0 }
 set_variable = { RAJ_fyp_production_factory_efficiency_gain_factor = 0 }
 set_variable = { RAJ_fyp_production_factory_max_efficiency_factor = 0 }
 
-if = {
-	limit = {
-		is_historical_focus_on = yes
-	}
-	430 = {
-	 	set_variable = { global.famine_state = THIS }
-	}
-	
-}
-if = {
-	limit = { is_historical_focus_on = no }
-	random_owned_state = {
-		set_variable = { global.famine_state = THIS }	
-		
-	}
-}
-
 # if = {
 # 	limit = {
 # 		AND = {
@@ -532,8 +517,8 @@ if = {
 	limit = {
 		NOT = { has_dlc = "Arms Against Tyranny" }
 	}
-	set_variable = { khadi_level = 0 }
-	set_variable = { gun_and_shell_level = 0 }
+	set_variable = { global.khadi_level = 0 }
+	set_variable = { global.gun_and_shell_level = 0 }
 }
 
 set_variable = { RAJ_recruitment_offices_timeout_max = 12 } 

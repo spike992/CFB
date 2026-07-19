@@ -9,7 +9,6 @@ prospect_for_resources = {
 		}
 		
 		available = {
-			has_completed_focus = ITA_oil_prospecting
 			OR = {
 				NOT = { has_country_flag = ITA_lib_3 }
 				has_tech = excavation1
@@ -34,6 +33,7 @@ prospect_for_resources = {
 				}
 			}
 			NOT = { has_country_flag = ITA_lib_6 }
+			has_completed_focus = ITA_libyan_oil
 		}
 
 		days_remove = 120
@@ -115,6 +115,482 @@ prospect_for_resources = {
 		}
 		
 	}
+
+	develop_sardinian_iron_deposits = { #114
+
+		icon = steel
+
+		allowed = {
+			original_tag = ITA
+		}
+		available = {
+			OR = {
+				NOT = { has_country_flag = ITA_sard_3 }
+				has_tech = excavation1
+			}
+			OR = {
+				NOT = { has_country_flag = ITA_sard_4 }
+				has_tech = excavation2
+			}
+			OR = {
+				NOT = { has_country_flag = ITA_sard_5 }
+				has_tech = excavation3
+			}
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 114
+			}
+		}
+
+		visible = {
+			114 = {
+				CONTROLLER = {
+					OR = {
+						tag = ITA
+						is_subject_of = ITA
+					}
+				}
+			}
+			NOT = { has_country_flag = ITA_sard_6 }
+			has_completed_focus = ITA_sardinian_iron
+		}
+
+		days_remove = 100
+		
+		modifier = {
+			civilian_factory_use = 4
+		}
+
+		remove_effect = {
+			if = {
+				limit = {
+					has_country_flag = ITA_sard_1
+				}
+				set_country_flag = ITA_sard_2
+				clr_country_flag = ITA_sard_1
+				add_resource = {
+					type = steel
+					amount = 110
+					state = 114
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ITA_sard_2
+				}
+				set_country_flag = ITA_sard_3
+				clr_country_flag = ITA_sard_2
+				add_resource = {
+					type = steel
+					amount = 120
+					state = 114
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ITA_sard_3
+				}
+				set_country_flag = ITA_sard_4
+				clr_country_flag = ITA_sard_3
+				add_resource = {
+					type = steel
+					amount = 130
+					state = 114
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ITA_sard_4
+				}
+				set_country_flag = ITA_sard_5
+				clr_country_flag = ITA_sard_4
+				add_resource = {
+					type = steel
+					amount = 140
+					state = 114
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ITA_sard_5
+				}
+				set_country_flag = ITA_sard_6
+				clr_country_flag = ITA_sard_5
+				add_resource = {
+					type = steel
+					amount = 150
+					state = 114
+				}
+			}
+			else = {
+				set_country_flag = ITA_sard_1
+				add_resource = {
+					type = steel
+					amount = 100
+					state = 114
+				}
+			}
+		}
+	}
+	ITA_develop_sardinian_coal_deposits = { #114
+
+		icon = coal
+
+		allowed = {
+			original_tag = ITA
+		}
+		available = {
+			OR = {
+				NOT = { has_country_flag = ITA_sard_coal_3 }
+				has_tech = excavation1
+			}
+			OR = {
+				NOT = { has_country_flag = ITA_sard_coal_4 }
+				has_tech = excavation2
+			}
+			OR = {
+				NOT = { has_country_flag = ITA_sard_coal_5 }
+				has_tech = excavation3
+			}
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 114
+			}
+		}
+
+		visible = {
+			114 = {
+				CONTROLLER = {
+					OR = {
+						tag = ITA
+						is_subject_of = ITA
+					}
+				}
+			}
+			NOT = { has_country_flag = ITA_sard_6 }
+			has_completed_focus = ITA_sardinian_coal
+		}
+
+		days_remove = 75
+		
+		modifier = {
+			civilian_factory_use = 4
+		}
+
+		remove_effect = {
+			if = {
+				limit = {
+					has_country_flag = ITA_sard_coal_1
+				}
+				set_country_flag = ITA_sard_coal_2
+				clr_country_flag = ITA_sard_coal_1
+				add_resource = {
+					type = coal
+					amount = 60
+					state = 114
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ITA_sard_coal_2
+				}
+				set_country_flag = ITA_sard_coal_3
+				clr_country_flag = ITA_sard_coal_2
+				add_resource = {
+					type = coal
+					amount = 70
+					state = 114
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ITA_sard_coal_3
+				}
+				set_country_flag = ITA_sard_coal_4
+				clr_country_flag = ITA_sard_coal_3
+				add_resource = {
+					type = coal
+					amount = 80
+					state = 114
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ITA_sard_coal_4
+				}
+				set_country_flag = ITA_sard_coal_5
+				clr_country_flag = ITA_sard_coal_4
+				add_resource = {
+					type = coal
+					amount = 90
+					state = 114
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ITA_sard_coal_5
+				}
+				set_country_flag = ITA_sard_coal_6
+				clr_country_flag = ITA_sard_coal_5
+				add_resource = {
+					type = coal
+					amount = 100
+					state = 114
+				}
+			}
+			else = {
+				set_country_flag = ITA_sard_coal_1
+				add_resource = {
+					type = coal
+					amount = 50
+					state = 114
+				}
+			}
+		}
+	}
+
+	ITA_mine_albanian_chromium = { #44
+
+		icon = chromium
+
+		allowed = {
+			original_tag = ITA
+		}
+		available = {
+			OR = {
+				NOT = { has_country_flag = ITA_alb_chrome_3 }
+				has_tech = excavation1
+			}
+			OR = {
+				NOT = { has_country_flag = ITA_alb_chrome_4 }
+				has_tech = excavation2
+			}
+			OR = {
+				NOT = { has_country_flag = ITA_alb_chrome_5 }
+				has_tech = excavation3
+			}
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 44
+			}
+		}
+
+		visible = {
+			44 = {
+				CONTROLLER = {
+					OR = {
+						tag = ITA
+						is_subject_of = ITA
+					}
+				}
+			}
+			NOT = { has_country_flag = ITA_alb_chrome_6 }
+			has_completed_focus = ITA_albanian_chromium
+		}
+
+		days_remove = 120
+		
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		remove_effect = {
+			if = {
+				limit = {
+					has_country_flag = ITA_alb_chrome_1
+				}
+				set_country_flag = ITA_alb_chrome_2
+				clr_country_flag = ITA_alb_chrome_1
+				add_resource = {
+					type = chromium
+					amount = 20
+					state = 44
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ITA_alb_chrome_2
+				}
+				set_country_flag = ITA_alb_chrome_3
+				clr_country_flag = ITA_alb_chrome_2
+				add_resource = {
+					type = chromium
+					amount = 20
+					state = 44
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ITA_alb_chrome_3
+				}
+				set_country_flag = ITA_alb_chrome_4
+				clr_country_flag = ITA_alb_chrome_3
+				add_resource = {
+					type = chromium
+					amount = 30
+					state = 44
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ITA_alb_chrome_4
+				}
+				set_country_flag = ITA_alb_chrome_5
+				clr_country_flag = ITA_alb_chrome_4
+				add_resource = {
+					type = chromium
+					amount = 30
+					state = 44
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ITA_alb_chrome_5
+				}
+				set_country_flag = ITA_alb_chrome_6
+				clr_country_flag = ITA_alb_chrome_5
+				add_resource = {
+					type = chromium
+					amount = 30
+					state = 44
+				}
+			}
+			else = {
+				set_country_flag = ITA_alb_chrome_1
+				add_resource = {
+					type = chromium
+					amount = 20
+					state = 44
+				}
+			}
+		}
+	}	
+
+	develop_ethiopian_rubber_deposits = { #271
+
+		icon = rubber
+
+		allowed = {
+			original_tag = ITA
+		}
+		available = {
+			has_completed_focus = ITA_ethiopian_rubber
+			OR = {
+				NOT = { has_country_flag = ITA_eth_3 }
+				has_tech = excavation1
+			}
+			OR = {
+				NOT = { has_country_flag = ITA_eth_4 }
+				has_tech = excavation2
+			}
+			OR = {
+				NOT = { has_country_flag = ITA_eth_5 }
+				has_tech = excavation3
+			}
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 271
+			}
+		}
+
+		visible = {
+			271 = {
+				CONTROLLER = {
+					OR = {
+						tag = ITA
+						is_subject_of = ITA
+					}
+				}
+			}
+			NOT = { has_country_flag = ITA_eth_6 }
+			NOT = { has_completed_focus = ITA_venezuela_rubber }
+		}
+
+		days_remove = 120
+		
+		modifier = {
+			civilian_factory_use = 8
+		}
+
+		remove_effect = {
+			if = {
+				limit = {
+					has_country_flag = ITA_eth_1
+				}
+				set_country_flag = ITA_eth_2
+				clr_country_flag = ITA_eth_1
+				add_resource = {
+					type = rubber
+					amount = 60
+					state = 271
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ITA_eth_2
+				}
+				set_country_flag = ITA_eth_3
+				clr_country_flag = ITA_eth_2
+				add_resource = {
+					type = rubber
+					amount = 70
+					state = 271
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ITA_eth_3
+				}
+				set_country_flag = ITA_eth_4
+				clr_country_flag = ITA_eth_3
+				add_resource = {
+					type = rubber
+					amount = 80
+					state = 271
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ITA_eth_4
+				}
+				set_country_flag = ITA_eth_5
+				clr_country_flag = ITA_eth_4
+				add_resource = {
+					type = rubber
+					amount = 90
+					state = 271
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ITA_eth_5
+				}
+				set_country_flag = ITA_eth_6
+				clr_country_flag = ITA_eth_5
+				add_resource = {
+					type = rubber
+					amount = 100
+					state = 271
+				}
+			}
+			else = {
+				set_country_flag = ITA_eth_1
+				add_resource = {
+					type = rubber
+					amount = 50
+					state = 271
+				}
+			}
+		}
+	}
 }
 
 political_actions = {
@@ -148,6 +624,67 @@ political_actions = {
 			801 = { set_compliance = 60 }
 
 		}
+	}
+	
+	# Night City
+	ITA_rename_Tripoli_decision  = {
+
+		priority = 8
+
+		icon = GFX_decision_eng_trade_unions_support
+
+		ai_will_do = {
+			base = 50
+		}
+	
+		allowed = {  
+		}
+
+		visible = { 
+			owns_state = 448
+		}
+	
+		available = {
+			has_completed_focus = ITA_night_city
+		}
+
+		#days_remove = 70
+
+		#days_re_enable = 180
+
+		cost = 0
+
+		cancel_trigger = {
+		}
+
+        cancel_effect = {
+        }
+
+		modifier = {
+		}
+
+		complete_effect = { 
+
+			add_stability = 0.05
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			448 = {
+				set_state_name = 448_night_city_name
+			}
+			set_province_name = {
+				id = 1149
+				name = 1149_night_city_name
+			}
+
+		}
+
+		fire_only_once = yes
+
+		remove_effect = {
+
+		}
+
 	}
 
 	ITA_go_to_war_with_france = {
@@ -325,6 +862,1254 @@ political_actions = {
 	
 }	
 
+ITA_iri_decisions = {
+
+	ITA_steel_ref_steel = {
+
+		icon = steel
+
+		allowed = {
+			original_tag = ITA
+		}
+		available = {
+			NOT = { has_country_flag = ITA_funding_iri_ongoing }
+			check_variable = {
+				tooltip = ITA_industrial_points_Available_tt
+				ITA_industrial_points > 0
+			}
+		}
+
+		visible = {
+		}
+
+		days_remove = 30
+		
+		modifier = {
+		}
+		complete_effect = {
+		
+			set_country_flag = ITA_funding_iri_ongoing
+			
+			modify_building_resources = {
+			   building = steel_refinery
+			   resource = steel
+			   amount = 30
+			}
+			if = {
+				limit = { has_idea = ITA_iri_3 }
+				swap_ideas = {
+					remove_idea = ITA_iri_3
+					add_idea = ITA_iri_4
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_iri_2 }
+				swap_ideas = {
+					remove_idea = ITA_iri_2
+					add_idea = ITA_iri_3
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_iri_1 }
+				swap_ideas = {
+					remove_idea = ITA_iri_1
+					add_idea = ITA_iri_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_iri_0 }
+				swap_ideas = {
+					remove_idea = ITA_iri_0
+					add_idea = ITA_iri_1
+				}
+			}
+			add_to_variable = { ITA_industrial_points = -1 }
+		}
+		
+		cost = 25
+		
+		remove_effect = {
+			hidden_effect = {
+				clr_country_flag = ITA_funding_iri_ongoing
+			}
+		}
+
+	}
+	
+	ITA_steel_ref_aluminium = {
+
+		icon = aluminium
+
+		allowed = {
+			original_tag = ITA
+		}
+		available = {
+			NOT = { has_country_flag = ITA_funding_iri_ongoing }
+			check_variable = {
+				tooltip = ITA_industrial_points_Available_tt
+				ITA_industrial_points > 0
+			}
+		}
+
+		visible = {
+		}
+
+		days_remove = 30
+		
+		modifier = {
+		}
+		
+		complete_effect = {
+			set_country_flag = ITA_funding_iri_ongoing
+			set_country_flag = ITA_funded_iri_tungsten
+			modify_building_resources = {
+			   building = steel_refinery
+			   resource = aluminium
+			   amount = 20
+			}
+			if = {
+				limit = { has_idea = ITA_iri_3 }
+				swap_ideas = {
+					remove_idea = ITA_iri_3
+					add_idea = ITA_iri_4
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_iri_2 }
+				swap_ideas = {
+					remove_idea = ITA_iri_2
+					add_idea = ITA_iri_3
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_iri_1 }
+				swap_ideas = {
+					remove_idea = ITA_iri_1
+					add_idea = ITA_iri_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_iri_0 }
+				swap_ideas = {
+					remove_idea = ITA_iri_0
+					add_idea = ITA_iri_1
+				}
+			}
+			add_to_variable = { ITA_industrial_points = -1 }
+		}
+		
+		remove_effect = {
+			hidden_effect = {
+				clr_country_flag = ITA_funding_iri_ongoing
+			}
+		}
+		
+		cost = 25
+
+	}
+
+	ITA_steel_ref_tungsten = {
+
+		icon = tungsten
+
+		allowed = {
+			original_tag = ITA
+		}
+		available = {
+			NOT = { has_country_flag = ITA_funding_iri_ongoing }
+			check_variable = {
+				tooltip = ITA_industrial_points_Available_tt
+				ITA_industrial_points > 0
+			}
+		}
+
+		visible = {
+		}
+
+		days_remove = 30
+		
+		modifier = {
+		}
+		
+		complete_effect = {
+			set_country_flag = ITA_funding_iri_ongoing
+			set_country_flag = ITA_funded_iri_tungsten
+			modify_building_resources = {
+			   building = steel_refinery
+			   resource = tungsten
+			   amount = 15
+			}
+			if = {
+				limit = { has_idea = ITA_iri_3 }
+				swap_ideas = {
+					remove_idea = ITA_iri_3
+					add_idea = ITA_iri_4
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_iri_2 }
+				swap_ideas = {
+					remove_idea = ITA_iri_2
+					add_idea = ITA_iri_3
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_iri_1 }
+				swap_ideas = {
+					remove_idea = ITA_iri_1
+					add_idea = ITA_iri_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_iri_0 }
+				swap_ideas = {
+					remove_idea = ITA_iri_0
+					add_idea = ITA_iri_1
+				}
+			}
+			add_to_variable = { ITA_industrial_points = -1 }
+		}
+		
+		remove_effect = {
+			hidden_effect = {
+				clr_country_flag = ITA_funding_iri_ongoing
+			}
+		}
+		
+		cost = 25
+
+	}
+	ITA_steel_ref_chromium = {
+
+		icon = chromium
+
+		allowed = {
+			original_tag = ITA
+		}
+		available = {
+			NOT = { has_country_flag = ITA_funding_iri_ongoing }
+			check_variable = {
+				tooltip = ITA_industrial_points_Available_tt
+				ITA_industrial_points > 0
+			}
+		}
+
+		visible = {
+		}
+
+		days_remove = 30
+
+		modifier = {
+		}
+		complete_effect = {
+			set_country_flag = ITA_funding_iri_ongoing
+			set_country_flag = ITA_funded_iri_chromium
+			modify_building_resources = {
+			   building = steel_refinery
+			   resource = chromium
+			   amount = 10
+			}		
+			if = {
+				limit = { has_idea = ITA_iri_3 }
+				swap_ideas = {
+					remove_idea = ITA_iri_3
+					add_idea = ITA_iri_4
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_iri_2 }
+				swap_ideas = {
+					remove_idea = ITA_iri_2
+					add_idea = ITA_iri_3
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_iri_1 }
+				swap_ideas = {
+					remove_idea = ITA_iri_1
+					add_idea = ITA_iri_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_iri_0 }
+				swap_ideas = {
+					remove_idea = ITA_iri_0
+					add_idea = ITA_iri_1
+				}
+			}
+			add_to_variable = { ITA_industrial_points = -1 }
+		}
+		remove_effect = {
+			hidden_effect = {
+				clr_country_flag = ITA_funding_iri_ongoing
+			}
+		}
+		
+		cost = 25
+
+	}
+}
+
+ITA_old_prov_decisions = {
+
+	ITA_trade_deal_bulgaria = {
+
+		icon = GFX_decision_faction_gre_fascist
+
+		allowed = {
+			original_tag = ITA
+		}
+		available = {
+			has_completed_focus = ITA_our_old_provinces
+			NOT = { has_country_flag = ITA_trade_deal_ongoing }
+			NOT = { has_country_flag = ITA_trade_deal_bulgaria }
+			check_variable = {
+				tooltip = ITA_industrial_points_Available_tt
+				ITA_industrial_points > 0
+			}
+		}
+
+		visible = {
+		}
+
+		days_remove = 30
+		
+		modifier = {
+		}
+		
+		fire_only_once = yes
+		
+		complete_effect = {
+			set_country_flag = ITA_trade_deal_ongoing
+			set_country_flag = ITA_trade_deal_bulgaria
+			BUL = {
+				country_event = {
+					id = italy_trade.1
+					days = 1
+				}
+			}
+			if = {
+				limit = { has_idea = ITA_trade_3 }
+				swap_ideas = {
+					remove_idea = ITA_trade_3
+					add_idea = ITA_trade_4
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_trade_2 }
+				swap_ideas = {
+					remove_idea = ITA_trade_2
+					add_idea = ITA_trade_3
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_trade_1 }
+				swap_ideas = {
+					remove_idea = ITA_trade_1
+					add_idea = ITA_trade_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_trade_0 }
+				swap_ideas = {
+					remove_idea = ITA_trade_0
+					add_idea = ITA_trade_1
+				}
+			}
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 2
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			BUL = {
+				every_core_state = {
+					limit = {
+						is_fully_controlled_by = BUL
+						free_building_slots = {
+							building = industrial_complex
+							size > 2
+							include_locked = yes
+						}
+					}
+					random_select_amount = 2
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = industrial_complex
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			add_to_variable = { ITA_industrial_points = -1 }			
+		}
+		remove_effect = {
+			hidden_effect = {
+				clr_country_flag = ITA_trade_deal_ongoing
+			}
+		}
+		
+		cost = 25
+
+	}
+
+	ITA_trade_deal_hungary = {
+
+		icon = GFX_decision_faction_gre_fascist
+
+		allowed = {
+			original_tag = ITA
+		}
+		available = {
+			has_completed_focus = ITA_our_old_provinces
+			NOT = { has_country_flag = ITA_trade_deal_ongoing }
+			NOT = { has_country_flag = ITA_trade_deal_bulgaria }
+			check_variable = {
+				tooltip = ITA_industrial_points_Available_tt
+				ITA_industrial_points > 0
+			}
+		}
+
+		visible = {
+		}
+
+		days_remove = 30
+		
+		modifier = {
+		}
+		
+		fire_only_once = yes
+		
+		complete_effect = {
+			set_country_flag = ITA_trade_deal_ongoing
+			set_country_flag = ITA_trade_deal_hungary
+			HUN = {
+				country_event = {
+					id = italy_trade.2
+					days = 1
+				}
+			}
+			if = {
+				limit = { has_idea = ITA_trade_3 }
+				swap_ideas = {
+					remove_idea = ITA_trade_3
+					add_idea = ITA_trade_4
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_trade_2 }
+				swap_ideas = {
+					remove_idea = ITA_trade_2
+					add_idea = ITA_trade_3
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_trade_1 }
+				swap_ideas = {
+					remove_idea = ITA_trade_1
+					add_idea = ITA_trade_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_trade_0 }
+				swap_ideas = {
+					remove_idea = ITA_trade_0
+					add_idea = ITA_trade_1
+				}
+			}
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 2
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			HUN = {
+				every_core_state = {
+					limit = {
+						is_fully_controlled_by = HUN
+						free_building_slots = {
+							building = industrial_complex
+							size > 2
+							include_locked = yes
+						}
+					}
+					random_select_amount = 2
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = industrial_complex
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			add_to_variable = { ITA_industrial_points = -1 }			
+		}
+		remove_effect = {
+			hidden_effect = {
+				clr_country_flag = ITA_trade_deal_ongoing
+			}
+		}
+		
+		cost = 25
+
+	}
+
+	ITA_trade_deal_spain = {
+
+		icon = GFX_decision_faction_gre_fascist
+
+		allowed = {
+			original_tag = ITA
+		}
+		available = {
+			has_completed_focus = ITA_our_old_provinces
+			NOT = { has_country_flag = ITA_trade_deal_ongoing }
+			NOT = { has_country_flag = ITA_trade_deal_bulgaria }
+			check_variable = {
+				tooltip = ITA_industrial_points_Available_tt
+				ITA_industrial_points > 0
+			}
+		}
+
+		visible = {
+		}
+
+		days_remove = 30
+		
+		modifier = {
+		}
+		
+		fire_only_once = yes
+		
+		complete_effect = {
+			set_country_flag = ITA_trade_deal_ongoing
+			set_country_flag = ITA_trade_deal_spain
+			SPR = {
+				country_event = {
+					id = italy_trade.3
+					days = 1
+				}
+			}
+			if = {
+				limit = { has_idea = ITA_trade_3 }
+				swap_ideas = {
+					remove_idea = ITA_trade_3
+					add_idea = ITA_trade_4
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_trade_2 }
+				swap_ideas = {
+					remove_idea = ITA_trade_2
+					add_idea = ITA_trade_3
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_trade_1 }
+				swap_ideas = {
+					remove_idea = ITA_trade_1
+					add_idea = ITA_trade_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_trade_0 }
+				swap_ideas = {
+					remove_idea = ITA_trade_0
+					add_idea = ITA_trade_1
+				}
+			}		
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 2
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			SPR = {
+				every_core_state = {
+					limit = {
+						is_fully_controlled_by = SPR
+						free_building_slots = {
+							building = industrial_complex
+							size > 2
+							include_locked = yes
+						}
+					}
+					random_select_amount = 2
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = industrial_complex
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			add_to_variable = { ITA_industrial_points = -1 }
+		}
+		remove_effect = {
+			hidden_effect = {
+				clr_country_flag = ITA_trade_deal_ongoing
+			}
+		}
+		
+		cost = 25
+
+	}
+	
+	ITA_trade_deal_yugoslavia = {
+
+		icon = GFX_decision_faction_gre_fascist
+
+		allowed = {
+			original_tag = ITA
+		}
+		available = {
+			has_completed_focus = ITA_our_old_provinces
+			NOT = { has_country_flag = ITA_trade_deal_ongoing }
+			NOT = { has_country_flag = ITA_trade_deal_bulgaria }
+			check_variable = {
+				tooltip = ITA_industrial_points_Available_tt
+				ITA_industrial_points > 0
+			}
+			NOT = {	YUG = { is_ai = yes } }
+		}
+
+		visible = {
+		}
+
+		days_remove = 30
+		
+		modifier = {
+		}
+		
+		fire_only_once = yes
+		
+		complete_effect = {
+			set_country_flag = ITA_trade_deal_ongoing
+			set_country_flag = ITA_trade_deal_yugoslavia
+			YUG = {
+				country_event = {
+					id = italy_trade.4
+					days = 1
+				}
+			}
+			if = {
+				limit = { has_idea = ITA_trade_3 }
+				swap_ideas = {
+					remove_idea = ITA_trade_3
+					add_idea = ITA_trade_4
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_trade_2 }
+				swap_ideas = {
+					remove_idea = ITA_trade_2
+					add_idea = ITA_trade_3
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_trade_1 }
+				swap_ideas = {
+					remove_idea = ITA_trade_1
+					add_idea = ITA_trade_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = ITA_trade_0 }
+				swap_ideas = {
+					remove_idea = ITA_trade_0
+					add_idea = ITA_trade_1
+				}
+			}		
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 2
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			YUG = {
+				every_core_state = {
+					limit = {
+						is_fully_controlled_by = YUG
+						free_building_slots = {
+							building = industrial_complex
+							size > 2
+							include_locked = yes
+						}
+					}
+					random_select_amount = 2
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = industrial_complex
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			add_to_variable = { ITA_industrial_points = -1 }
+		}
+		remove_effect = {
+			hidden_effect = {
+				clr_country_flag = ITA_trade_deal_ongoing
+			}
+		}
+		
+		cost = 25
+
+	}
+}
+ITA_carve_up_africa_decisions = {
+
+	ITA_demand_tunisia = {
+		icon = GFX_decision_generic_belgian_colonial_helmet
+
+		allowed = {
+			original_tag = ITA
+		}
+
+		fire_only_once = yes
+
+		visible = { 
+			has_completed_focus = ITA_carve_up_africa
+			NOT = { owns_state = 458 }
+		}
+		available =	{
+			has_completed_focus = ITA_carve_up_africa
+			controls_state = 448
+			D04 = {
+				458	= {
+					CONTROLLER = {
+						OR = {
+							tag = D04
+							is_subject_of = D04
+						}
+					}
+				}
+			}
+		}
+		complete_effect = {
+			transfer_state = 458
+			transfer_state = 665
+		}
+		
+	}
+	
+	ITA_demand_algeria = {
+		icon = GFX_decision_generic_belgian_colonial_helmet
+
+		allowed = {
+			original_tag = ITA
+		}
+
+		fire_only_once = yes
+
+		visible = { 
+			has_completed_focus = ITA_carve_up_africa
+			NOT = { owns_state = 459 }
+		}
+		available =	{
+			has_completed_focus = ITA_carve_up_africa
+			controls_state = 458
+			controls_state = 1082
+			OR = {
+				D04 = {
+					460	= {
+						CONTROLLER = {
+							OR = {
+								tag = D04
+								is_subject_of = D04
+							}
+						}
+					}
+				}
+				D04 = {
+					459	= {
+						CONTROLLER = {
+							OR = {
+								tag = D04
+								is_subject_of = D04
+							}
+						}
+					}
+				}
+			}
+			907 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+		complete_effect = {
+			transfer_state = 460			
+			transfer_state = 459
+			transfer_state = 513
+		}
+	}
+	
+	ITA_demand_morocco = {
+		icon = GFX_decision_generic_belgian_colonial_helmet
+
+		allowed = {
+			original_tag = ITA
+		}
+
+		fire_only_once = yes
+
+		visible = { 
+			has_completed_focus = ITA_carve_up_africa
+			NOT = { owns_state = 461 }
+		}
+		available =	{
+			has_completed_focus = ITA_carve_up_africa
+			NOT = { has_completed_focus = ITA_seize_balearics }
+			controls_state = 459
+			controls_state = 455
+			OR = {
+				D04 = {
+					461	= {
+						CONTROLLER = {
+							OR = {
+								tag = D04
+								is_subject_of = D04
+							}
+						}
+					}
+				}
+				D04 = {
+					462	= {
+						CONTROLLER = {
+							OR = {
+								tag = D04
+								is_subject_of = D04
+							}
+						}
+					}
+				}
+			}
+			547 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+		complete_effect = {
+			transfer_state = 461			
+			transfer_state = 462
+		}
+	}
+	
+	ITA_demand_syria = {
+		icon = GFX_decision_generic_belgian_colonial_helmet
+
+		allowed = {
+			original_tag = ITA
+		}
+
+		fire_only_once = yes
+
+		visible = { 
+			has_completed_focus = ITA_carve_up_africa
+			NOT = { owns_state = 677 }
+		}
+		available =	{
+			has_completed_focus = ITA_carve_up_africa
+			454 = { is_controlled_by_ROOT_or_ally = yes }
+			455 = { is_controlled_by_ROOT_or_ally = yes }
+			OR = {
+				D04 = {
+					553	= {
+						CONTROLLER = {
+							OR = {
+								tag = D04
+								is_subject_of = D04
+							}
+						}
+					}
+				}
+				D04 = {
+					554	= {
+						CONTROLLER = {
+							OR = {
+								tag = D04
+								is_subject_of = D04
+							}
+						}
+					}
+				}
+			}
+		}
+		complete_effect = {
+			transfer_state = 553
+			transfer_state = 554
+			transfer_state = 677
+			transfer_state = 680
+		}
+	}	
+	
+	ITA_demand_djibouti = {
+		icon = GFX_decision_generic_belgian_colonial_helmet
+
+		allowed = {
+			original_tag = ITA
+		}
+
+		fire_only_once = yes
+
+		visible = { 
+			has_completed_focus = ITA_carve_up_africa
+			NOT = { owns_state = 268 }
+		}
+		available =	{
+			has_completed_focus = ITA_carve_up_africa
+			550 = { is_controlled_by_ROOT_or_ally = yes }
+			269 = { is_controlled_by_ROOT_or_ally = yes }
+			D04 = {
+				268	= {
+					CONTROLLER = {
+						OR = {
+							tag = D04
+							is_subject_of = D04
+						}
+					}
+				}
+			}
+		}
+		complete_effect = {
+			transfer_state = 268
+		}
+	}
+}
+
+ITA_italianisation_decisions = {
+
+	ITA_italianise_yugo = {
+		icon = GFX_decision_generic_confiscation
+
+		allowed = {
+			original_tag = ITA
+		}
+
+		fire_only_once = yes
+		days_remove = 730
+
+		visible = { 
+			has_completed_focus = ITA_italianisation 
+			NOT = { 
+				has_country_flag = yug_italianized 
+			}
+		}
+		
+		available =	{
+			has_completed_focus = ITA_italianisation
+			controls_state = 109
+		}
+		
+		complete_effect = {
+			every_controlled_state = {
+				limit = {
+					is_core_of = YUG
+					NOT = { is_core_of = ITA }
+				}
+				add_dynamic_modifier = { modifier = italianisation }
+			}
+		}
+		
+		remove_effect = {
+			every_state = {
+				limit = {
+					is_core_of = YUG
+					NOT = { is_core_of = ITA }
+					has_dynamic_modifier = { modifier = italianisation }
+				}
+				remove_dynamic_modifier = { modifier = italianisation }
+				add_dynamic_modifier = { modifier = italianised }
+			}
+			set_country_flag = yug_italianized 
+		}
+	}
+
+	ITA_italianise_greece = {
+		icon = GFX_decision_generic_confiscation
+
+		allowed = {
+			original_tag = ITA
+		}
+
+		fire_only_once = yes
+		days_remove = 730
+
+		visible = { 
+			has_completed_focus = ITA_italianisation 
+			NOT = { 
+				has_country_flag = gre_italianized 
+			}
+		}
+		
+		available =	{
+			has_completed_focus = ITA_italianisation
+			controls_state = 47
+		}
+		
+		complete_effect = {
+			every_controlled_state = {
+				limit = {
+					is_core_of = GRE
+					NOT = { is_core_of = ITA }
+				}
+				add_dynamic_modifier = { modifier = italianisation }
+			}
+		}
+		
+		remove_effect = {
+			every_state = {
+				limit = {
+					is_core_of = GRE
+					NOT = { is_core_of = ITA }
+					has_dynamic_modifier = { modifier = italianisation }
+				}
+				remove_dynamic_modifier = { modifier = italianisation }
+				add_dynamic_modifier = { modifier = italianised }
+			}
+			set_country_flag = gre_italianized 
+		}
+	}
+	
+	ITA_italianise_france = {
+		icon = GFX_decision_generic_confiscation
+
+		allowed = {
+			original_tag = ITA
+		}
+
+		fire_only_once = yes
+		days_remove = 730
+
+		visible = { 
+			has_completed_focus = ITA_italianisation 
+			NOT = { 
+				has_country_flag = fra_italianized 
+			}
+		}
+		
+		available =	{
+			has_completed_focus = ITA_italianisation
+			controls_state = 735
+		}
+		
+		complete_effect = {
+			every_controlled_state = {
+				limit = {
+					is_core_of = FRA
+					NOT = { is_core_of = ITA }
+				}
+				add_dynamic_modifier = { modifier = italianisation }
+			}
+		}
+		
+		remove_effect = {
+			every_state = {
+				limit = {
+					is_core_of = FRA
+					NOT = { is_core_of = ITA }
+					has_dynamic_modifier = { modifier = italianisation }
+				}
+				remove_dynamic_modifier = { modifier = italianisation }
+				add_dynamic_modifier = { modifier = italianised }
+			}
+			set_country_flag = fra_italianized
+		}
+	}
+}
+ITA_triumph_decisions = {
+
+	ITA_triumph_france = {
+		icon = generic_nationalism
+
+		allowed = {
+			original_tag = ITA
+		}
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = ITA_roman_triumphs }
+		
+		available =	{
+			has_completed_focus = ITA_roman_triumphs
+			controls_state = 735
+		}
+		
+		complete_effect = {
+			every_controlled_state = {
+				limit = {
+					is_core_of = FRA
+				}
+				add_compliance = 5
+			}	
+		}
+	}	
+	ITA_triumph_yugo = {
+		icon = generic_nationalism
+
+		allowed = {
+			original_tag = ITA
+		}
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = ITA_roman_triumphs }
+		
+		available =	{
+			has_completed_focus = ITA_roman_triumphs
+			controls_state = 109
+		}
+		
+		complete_effect = {
+			every_controlled_state = {
+				limit = {
+					is_core_of = YUG
+				}
+				add_compliance = 5
+			}	
+		}
+	}	
+
+	ITA_triumph_greece = {
+		icon = generic_nationalism
+
+		allowed = {
+			original_tag = ITA
+		}
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = ITA_roman_triumphs }
+		
+		available =	{
+			has_completed_focus = ITA_roman_triumphs
+			controls_state = 47
+		}
+		
+		complete_effect = {
+			every_controlled_state = {
+				limit = {
+					is_core_of = GRE
+				}
+				add_compliance = 5
+			}	
+		}
+	}	
+	
+	ITA_triumph_north_africa = {
+		icon = generic_nationalism
+
+		allowed = {
+			original_tag = ITA
+		}
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = ITA_roman_triumphs }
+		
+		available =	{
+			has_completed_focus = ITA_roman_triumphs
+			controls_state = 459
+		}
+		
+		complete_effect = {
+			every_controlled_state = {
+				limit = {
+					is_core_of = MOR
+				}
+				add_compliance = 5
+			}	
+		}
+	}	
+	
+	ITA_triumph_egypt = {
+		icon = generic_nationalism
+
+		allowed = {
+			original_tag = ITA
+		}
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = ITA_roman_triumphs }
+		
+		available =	{
+			has_completed_focus = ITA_roman_triumphs
+			controls_state = 907
+		}
+		
+		complete_effect = {
+			every_controlled_state = {
+				limit = {
+					is_core_of = EGY
+				}
+				add_compliance = 5
+			}	
+		}
+	}
+	
+	ITA_triumph_syria = {
+		icon = generic_nationalism
+
+		allowed = {
+			original_tag = ITA
+		}
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = ITA_roman_triumphs }
+		available =	{
+			has_completed_focus = ITA_roman_triumphs
+			controls_state = 554
+		}
+		complete_effect = {
+			every_controlled_state = {
+				limit = {
+					is_core_of = SYR
+				}
+				add_compliance = 5
+			}	
+		}
+	}
+}
 operations = {
 
 	ITA_human_torpedo_raid = {
@@ -783,8 +2568,7 @@ operations = {
 			}
 		}
 	}
-    
-	
+    	
 	# ITA_unify_colonies = {
 
 	# 	icon = generic_nationalism
@@ -872,32 +2656,9 @@ operations = {
 	# 	}
 	# }
 
-	ITA_demand_tunisia = {
-		icon = generic_nationalism
-
-		allowed = {
-			original_tag = ITA
-		}
-
-		fire_only_once = yes
-
-		visible = { has_completed_focus = ITA_claims_on_france }
-		available ={ 
-			has_completed_focus = ITA_claims_on_france
-			controls_state = 448
-			controls_state = 450
-
-		}
-		complete_effect = {
-			transfer_state = 458
-			transfer_state = 665
-		}
-		
-	}
-
 	ITA_return_france = {
 		visible = {
-			country_exists = VIC
+			country_exists = D04
 			controls_state = 21
 			controls_state = 32
 		}
@@ -909,19 +2670,42 @@ operations = {
 		fire_only_once = yes
 
 		available = {
-			country_exists = VIC
+			country_exists = D04
 			controls_state = 21
 			controls_state = 32
 		}
 		complete_effect = {
-			VIC = {
+			D04 = {
 				transfer_state = 21
 				transfer_state = 32
 			}
 		}
 	}
-
 	
+	ITA_demand_ticino = {
+		visible = {
+		has_completed_focus = ITA_rome_berlin_axis
+			country_exists = SWI
+		}
+
+		allowed = {
+			original_tag = ITA
+		}
+
+		fire_only_once = yes
+
+		available = {
+			country_exists = SWI
+			SWI = {
+				controls_state = 846
+			}
+		}
+		complete_effect = {
+			transfer_state = 846
+			846 = { add_core_of = ROOT }
+			add_threat = 2
+		}
+	}
 }
 
 ITA_propaganda_campaigns = {
@@ -1383,6 +3167,1306 @@ ITA_propaganda_campaigns = {
 			set_variable = { ITA_propaganda_campaign_to_remove = 13 }
 			ITA_reset_propaganda_campaign_slot_effect = yes
 			hidden_effect = { FROM = { country_event = { id = generic.26 hours = 1} } }
+		}
+	}
+}
+	
+ITA_LBY_evacuations_category = {
+	ITA_evacuate_tripoli = {
+		name = "Tripoli Evacuation"
+		activation = {
+			has_completed_focus = ITA_evac_libya
+			ITA = {
+				has_war_with = ENG 
+			}
+		}
+		available = {
+			ITA = {
+				NOT = {
+					controls_state = 448
+				}
+			}
+		}
+		is_good = yes
+		fire_only_once = yes
+		
+		icon = generic_construction
+		highlight_states = {
+ 			highlight_state_targets = { 
+				 state = 448 
+			}
+		}
+
+		on_map_mode = map_only
+		days_mission_timeout = 25
+
+		timeout_effect = {
+			
+			if = {
+				limit = {
+					448 = {
+						arms_factory > 0
+					}
+				}
+				448 = {
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = cuck_italy_flag
+					}
+					random_state = {
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else = {
+					random_state = {
+						prioritize = { 117 }
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					448 = {
+						industrial_complex > 0
+					}
+				}
+				448 = {
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = cuck_italy_flag
+					}
+					random_state = {
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else = {
+					random_state = {
+						prioritize = { 117 }
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					448 = {
+						OR = {
+							arms_factory > 0
+							industrial_complex > 0
+						}
+					}
+				}
+				activate_mission = ITA_evacuate_tripoli
+			}
+		}
+	}
+	
+	ITA_evacuate_sirte = {
+		name = "Sirte Evacuation"
+		activation = {
+			has_completed_focus = ITA_evac_libya
+			ITA = {
+				has_war_with = ENG 
+			}
+		}
+		available = {
+			ITA = {
+				NOT = {
+					controls_state = 449
+				}
+			}
+		}
+		is_good = yes
+		fire_only_once = yes
+		
+		icon = generic_construction
+		highlight_states = {
+ 			highlight_state_targets = { 
+				 state = 449 
+			}
+		}
+
+		on_map_mode = map_only
+		days_mission_timeout = 25
+
+		timeout_effect = {
+			
+			if = {
+				limit = {
+					449 = {
+						arms_factory > 0
+					}
+				}
+				449 = {
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = cuck_italy_flag
+					}
+					random_state = {
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else = {
+					random_state = {
+						prioritize = { 117 }
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					449 = {
+						industrial_complex > 0
+					}
+				}
+				449 = {
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = cuck_italy_flag
+					}
+					random_state = {
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else = {
+					random_state = {
+						prioritize = { 117 }
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					449 = {
+						OR = {
+							arms_factory > 0
+							industrial_complex > 0
+						}
+					}
+				}
+				activate_mission = ITA_evacuate_sirte
+			}
+		}
+	}	
+	ITA_evacuate_bengasi = {
+		name = "Bengasi Evacuation"
+		activation = {
+			has_completed_focus = ITA_evac_libya
+			ITA = {
+				has_war_with = ENG 
+			}
+		}
+		available = {
+			ITA = {
+				NOT = {
+					controls_state = 450
+				}
+			}
+		}
+		is_good = yes
+		fire_only_once = yes
+		
+		icon = generic_construction
+		highlight_states = {
+ 			highlight_state_targets = { 
+				 state = 450
+			}
+		}
+
+		on_map_mode = map_only
+		days_mission_timeout = 25
+
+		timeout_effect = {
+			
+			if = {
+				limit = {
+					450 = {
+						arms_factory > 0
+					}
+				}
+				450 = {
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = cuck_italy_flag
+					}
+					random_state = {
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else = {
+					random_state = {
+						prioritize = { 117 }
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					450 = {
+						industrial_complex > 0
+					}
+				}
+				450 = {
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = cuck_italy_flag
+					}
+					random_state = {
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else = {
+					random_state = {
+						prioritize = { 117 }
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					450 = {
+						OR = {
+							arms_factory > 0
+							industrial_complex > 0
+						}
+					}
+				}
+				activate_mission = ITA_evacuate_bengasi
+			}
+		}
+	}	
+	
+	ITA_evacuate_tobruk = {
+		name = "Tobruk Evacuation"
+		activation = {
+			has_completed_focus = ITA_evac_libya
+			ITA = {
+				has_war_with = ENG 
+			}
+		}
+		available = {
+			ITA = {
+				NOT = {
+					controls_state = 451
+				}
+			}
+		}
+		is_good = yes
+		fire_only_once = yes
+		
+		icon = generic_construction
+		highlight_states = {
+ 			highlight_state_targets = { 
+				 state = 451
+			}
+		}
+
+		on_map_mode = map_only
+		days_mission_timeout = 25
+
+		timeout_effect = {
+			
+			if = {
+				limit = {
+					451 = {
+						arms_factory > 0
+					}
+				}
+				451 = {
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = cuck_italy_flag
+					}
+					random_state = {
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else = {
+					random_state = {
+						prioritize = { 117 }
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					451 = {
+						industrial_complex > 0
+					}
+				}
+				451 = {
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = cuck_italy_flag
+					}
+					random_state = {
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else = {
+					random_state = {
+						prioritize = { 117 }
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					451 = {
+						OR = {
+							arms_factory > 0
+							industrial_complex > 0
+						}
+					}
+				}
+				activate_mission = ITA_evacuate_tobruk
+			}
+		}
+	}	
+	ITA_evacuate_tripolitania = {
+		name = "Tripolitania Evacuation"
+		activation = {
+			has_completed_focus = ITA_evac_libya
+			ITA = {
+				has_war_with = ENG 
+			}
+		}
+		available = {
+			ITA = {
+				NOT = {
+					controls_state = 661
+				}
+			}
+		}
+		is_good = yes
+		fire_only_once = yes
+		
+		icon = generic_construction
+		highlight_states = {
+ 			highlight_state_targets = { 
+				 state = 661
+			}
+		}
+
+		on_map_mode = map_only
+		days_mission_timeout = 25
+
+		timeout_effect = {
+			
+			if = {
+				limit = {
+					661 = {
+						arms_factory > 0
+					}
+				}
+				661 = {
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = cuck_italy_flag
+					}
+					random_state = {
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else = {
+					random_state = {
+						prioritize = { 117 }
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					661 = {
+						industrial_complex > 0
+					}
+				}
+				661 = {
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = cuck_italy_flag
+					}
+					random_state = {
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else = {
+					random_state = {
+						prioritize = { 117 }
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					661 = {
+						OR = {
+							arms_factory > 0
+							industrial_complex > 0
+						}
+					}
+				}
+				activate_mission = ITA_evacuate_tripolitania
+			}
+		}
+	}	
+	ITA_evacuate_sirte_desert = {
+		name = "Sirte Desert Evacuation"
+		activation = {
+			has_completed_focus = ITA_evac_libya
+			ITA = {
+				has_war_with = ENG 
+			}
+		}
+		available = {
+			ITA = {
+				NOT = {
+					controls_state = 662
+				}
+			}
+		}
+		is_good = yes
+		fire_only_once = yes
+		
+		icon = generic_construction
+		highlight_states = {
+ 			highlight_state_targets = { 
+				 state = 662
+			}
+		}
+
+		on_map_mode = map_only
+		days_mission_timeout = 25
+
+		timeout_effect = {
+			
+			if = {
+				limit = {
+					662 = {
+						arms_factory > 0
+					}
+				}
+				662 = {
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = cuck_italy_flag
+					}
+					random_state = {
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else = {
+					random_state = {
+						prioritize = { 117 }
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					662 = {
+						industrial_complex > 0
+					}
+				}
+				662 = {
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = cuck_italy_flag
+					}
+					random_state = {
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else = {
+					random_state = {
+						prioritize = { 117 }
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					662 = {
+						OR = {
+							arms_factory > 0
+							industrial_complex > 0
+						}
+					}
+				}
+				activate_mission = ITA_evacuate_sirte_desert
+			}
+		}
+	}
+	ITA_evacuate_cyrenaica = {
+		name = "Cyrenaica Evacuation"
+		activation = {
+			has_completed_focus = ITA_evac_libya
+			ITA = {
+				has_war_with = ENG 
+			}
+		}
+		available = {
+			ITA = {
+				NOT = {
+					controls_state = 663
+				}
+			}
+		}
+		is_good = yes
+		fire_only_once = yes
+		
+		icon = generic_construction
+		highlight_states = {
+ 			highlight_state_targets = { 
+				 state = 663
+			}
+		}
+
+		on_map_mode = map_only
+		days_mission_timeout = 25
+
+		timeout_effect = {
+			
+			if = {
+				limit = {
+					663 = {
+						arms_factory > 0
+					}
+				}
+				663 = {
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = cuck_italy_flag
+					}
+					random_state = {
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else = {
+					random_state = {
+						prioritize = { 117 }
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					663 = {
+						industrial_complex > 0
+					}
+				}
+				663 = {
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = cuck_italy_flag
+					}
+					random_state = {
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else = {
+					random_state = {
+						prioritize = { 117 }
+						limit = {
+							OR = {
+								state = 156
+								state = 157
+								state = 2
+								state = 162
+								state = 158
+								state = 161
+								state = 159
+								state = 160
+								state = 736
+								state = 852
+							}
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					663 = {
+						OR = {
+							arms_factory > 0
+							industrial_complex > 0
+						}
+					}
+				}
+				activate_mission = ITA_evacuate_cyrenaica
+			}
 		}
 	}
 }

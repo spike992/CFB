@@ -112,10 +112,13 @@ sub_units = {
 		group = support
 		categories = {
 			category_support_battalions
+			category_divisional_support_battalions
 			category_all_armor
 			category_army
 			category_self_propelled_anti_air
-		}		
+		}
+
+		regimental = no
 		
 		transport = armored_car_aa_chassis
 		essential = { armored_car_aa_chassis }
@@ -150,7 +153,7 @@ sub_units = {
 			armor
 			artillery
 		}
-		group = artillery
+		group = combat_support
 		categories = {
 			category_all_armor
 			category_army
@@ -237,7 +240,7 @@ sub_units = {
 			armor
 			anti_tank
 		}
-		group = artillery
+		group = combat_support
 		categories = {
 			category_front_line
 			category_all_armor
@@ -416,6 +419,184 @@ sub_units = {
 		town = {
 			attack = 0.1
 		}
+
+	}
+
+	armored_car_aa_support = {
+		abbreviation = "CARAAS"
+		sprite = armored_car
+		map_icon_category = armored
+		priority = 501
+		ai_priority = 100
+		active = yes
+
+		type = {
+			armor
+			anti_air
+			support
+		}
+
+		group = support
+		allowed_battalion_groups = { infantry combat_support mobile armor mobile_combat_support armor_combat_support }
+
+		categories = {
+			category_support_battalions
+			category_regimental_support_battalions
+			category_all_armor
+			category_army
+			category_self_propelled_anti_air
+		}
+
+		divisional = no
+				
+		transport = armored_car_aa_chassis
+		essential = { armored_car_aa_chassis }
+		need = { armored_car_aa_chassis = 10 }
+		
+		manpower = 250
+		training_time = 100
+		weight = 0.3
+		supply_consumption = 0.05
+
+		armor_value = -0.75
+		breakthrough = -0.95
+		air_attack = -0.7
+
+		same_support_type = anti_air
+
+	}
+	armored_car_artillery_support = {
+		abbreviation = "CARARTS"
+		sprite = armored_car
+		map_icon_category = armored
+		priority = 501
+		ai_priority = 100
+		active = yes
+		is_artillery_brigade = yes
+		
+		type = {
+			armor
+			artillery
+			support
+		}
+
+		group = support
+		allowed_battalion_groups = { mobile mobile_combat_support armor_combat_support armor }
+
+		categories = {
+			category_support_battalions
+			category_regimental_support_battalions
+			category_all_armor
+			category_army
+			category_artillery
+			category_self_propelled_artillery
+			category_regimental_support_battalions_combat_width
+		}
+
+		divisional = no
+		
+		transport = armored_car_artillery_chassis
+		essential = { armored_car_artillery_chassis }
+		need = { armored_car_artillery_chassis = 12 }
+		
+		manpower = 250
+		training_time = 100
+		weight = 0.6
+		supply_consumption = 0.05
+		supply_consumption_factor = 0.01
+
+		armor_value = -0.75
+		soft_attack = -0.6
+		breakthrough = -0.5
+
+	}
+	armored_car_tank_destroyer_support = {
+		abbreviation = "CARTDS"
+		sprite = armored_car
+		map_icon_category = armored
+		priority = 501
+		ai_priority = 100
+		active = yes
+		
+		type = {
+			armor
+			anti_tank
+			support
+		}
+
+		group = support
+		allowed_battalion_groups = { mobile mobile_combat_support armor_combat_support armor }
+
+		categories = {
+			category_support_battalions
+			category_regimental_support_battalions
+			category_front_line
+			category_all_armor
+			category_army
+			category_tank_destroyers
+			category_regimental_support_battalions_combat_width
+		}
+
+		divisional = no	
+		
+		transport = armored_car_tank_destroyer_chassis
+		essential = { armored_car_tank_destroyer_chassis }
+		need = { armored_car_tank_destroyer_chassis = 12 }
+		
+		manpower = 250
+		training_time = 100
+		weight = 0.3
+		supply_consumption = 0.05
+		supply_consumption_factor = 0.01
+
+		armor_value = -0.75
+		ap_attack = -0.5
+		soft_attack = -0.75
+		hard_attack = -0.25
+		breakthrough = -0.9
+		defense = 0.15
+
+	}
+	armored_car_assault_gun_support = {
+		abbreviation = "CARAGS"
+		sprite = armored_car
+		map_icon_category = armored
+		priority = 501
+		ai_priority = 0
+		active = yes
+		
+		type = {
+			armor
+			artillery
+			support
+		}
+
+		group = support
+		allowed_battalion_groups = { mobile armor }
+
+		categories = {
+			category_support_battalions
+			category_regimental_support_battalions
+			category_front_line
+			category_all_armor
+			category_army
+			category_assault_gun
+		}		
+		
+		transport = armored_car_assault_gun_chassis
+		essential = { armored_car_assault_gun_chassis }
+		need = { armored_car_assault_gun_chassis = 20 }
+		
+		manpower = 250
+		training_time = 100
+		weight = 0.3
+		supply_consumption = 0.1
+		supply_consumption_factor = 0.01
+
+		armor_value = -0.75
+		breakthrough = 0.2
+		soft_attack = -0.6
+		hard_attack = -0.6
 
 	}
 }

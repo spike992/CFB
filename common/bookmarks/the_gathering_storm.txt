@@ -6,10 +6,24 @@ bookmarks = {
 		picture = "GFX_select_date_1936"
 		default_country = "GER"
 		default = yes
-		
+
+		filters = { new_content continent }
+		# filters can also contain 'label'
+		# in that case the countries below can have 'label = { label_1 }' or 'label = { label_1 label_2 }'
+		# all these labels will be gathered and displayed as filter buttons
+
+		# sort_unplayed_first = no            # defaults to yes: countries with unplayed content are listed first
+		# include_majors_in_minor_list = no   # defaults to yes: when a filter is active, majors also show in the mini list
+		# apply_filter_to_majors = yes        # defaults to no: when yes, the major row also respects the filter (only majors matching it are shown)
+		# apply_filter_to_other_country = yes # defaults to no: by default the "other" (---) entry is always shown; when yes it respects the filter too
+		# label_order = { label_1 label_2 }   # optional: forces the label filter button order; a warning is logged for
+		#                                     # any label used by a country that is missing from this list
+		# scrollable_country_list = yes       # defaults to no: scroll the minor list with its vertical scrollbar instead of the overflow dropdown
+
 		"FRA"={
 			history = "FRA_GATHERING_STORM_DESC"
 			ideology = democratic
+			version = base_game
 			ideas = {
 				FRA_victors_of_wwi
 				FRA_disjointed_government
@@ -24,6 +38,7 @@ bookmarks = {
 		"USA"={
 			history = "USA_GATHERING_STORM_DESC"
 			ideology = democratic
+			version = base_game
 			ideas = {
 				new_deal
 				great_depression
@@ -38,6 +53,7 @@ bookmarks = {
 		"ENG"={
 			history = "ENG_GATHERING_STORM_DESC"
 			ideology = democratic
+			version = base_game
 			ideas = {
 				MTG_naval_treaty_adherent
 				ENG_the_sun_never_sets_idea_1
@@ -83,7 +99,7 @@ bookmarks = {
 			history = "JAP_GATHERING_STORM_DESC"
 			available = {  has_dlc = "No Compromise, No Surrender" }
 			ideology = neutrality
-			new_content = yes
+			#new_content = yes
 			override_leader_portrait = JAP_emperor_hirohito
 			ideas = {
 				JAP_1936_fake_state_shintoism_idea
@@ -105,8 +121,8 @@ bookmarks = {
 				SOV_order_270_idea
 			}
 			focuses = {
-				SOV_the_centre
-				SOV_red_army
+				#SOV_pol_general1
+				SOV_mil1
 				SOV_war_mobilisation
 			}	
 		}
@@ -115,10 +131,12 @@ bookmarks = {
 			history = "OTHER_GATHERING_STORM_DESC"
 		}
 
+
 		# minors from DLC ####
 		"CAN"={
 			minor = yes
 			history = "CAN_GATHERING_STORM_DESC"
+			version = base_game
 			ideology = democratic
 			ideas = {
 				CAN_great_depression_1
@@ -134,6 +152,7 @@ bookmarks = {
 		"AST"={
 			minor = yes
 			history = "AST_GATHERING_STORM_DESC"
+			version = base_game
 			ideology = democratic
 			ideas = {
 				AST_great_depression_1
@@ -149,6 +168,7 @@ bookmarks = {
 		"NZL"={
 			minor = yes
 			history = "NZL_GATHERING_STORM_DESC"
+			version = base_game
 			ideology = democratic
 			ideas = {
 				NZL_bob_semple_tank
@@ -164,6 +184,7 @@ bookmarks = {
 		"SAF"={
 			minor = yes
 			history = "SAF_GATHERING_STORM_DESC"
+			version = base_game
 			ideology = democratic
 			ideas = {
 				SAF_ossewabrandwag
@@ -176,13 +197,13 @@ bookmarks = {
 				SAF_armor_effort
 			}
 		}
+
 		RAJ = {
 			minor = yes
 			history = "RAJ_GATHERING_STORM_DESC"
-			available = { 		
-				NOT = { has_dlc = "Graveyard of Empires" }
-			}
+			available = {  NOT = { has_dlc = "Graveyard of Empires" } }
 			ideology = neutrality
+			version = base_game
 			ideas = {
 				RAJ_agrarian_society
 				RAJ_princely_states
@@ -194,13 +215,13 @@ bookmarks = {
 				RAJ_the_smiling_buddha
 			}
 		}
+
 		RAJ = {
 			minor = yes
 			history = "RAJ_GATHERING_STORM_DESC"
-			available = {  					
-				has_dlc = "Graveyard of Empires"
-			}
+			required_dlc = { "Graveyard of Empires" }
 			ideology = neutrality
+			version = graveyard_of_empires
 			ideas = {
 				RAJ_marginalized_muslim_community
 				RAJ_princely_states
@@ -246,10 +267,12 @@ bookmarks = {
 				BRA_end_the_state_of_emergency
 			}
 		}
+		
 		"MEX"={
 			minor = yes
 			history = "MEXICO_GATHERING_STORM_DESC"
 			ideology = neutrality
+			version = base_game
 			ideas = {
 				MEX_church_power_2
 				MEX_politicised_army
@@ -261,10 +284,12 @@ bookmarks = {
 				MEX_focus_smash_the_bureaucrats
 			}
 		}
+
 		"HOL"={
 			minor = yes
 			history = "NETHERLANDS_GATHERING_STORM_DESC"
 			ideology = democratic
+			version = base_game
 			ideas = {
 				HOL_wilhelmina
 				HOL_shell_shocked_spectator_5
@@ -280,6 +305,7 @@ bookmarks = {
 			minor = yes
 			history = "POL_GATHERING_STORM_DESC"
 			ideology = neutrality
+			version = base_game
 			ideas = {
 				POL_influx_of_exiles
 				POL_april_constitution_1
@@ -295,6 +321,7 @@ bookmarks = {
 			minor = yes
 			history = NOR_GATHERING_STORM_DESC
 			ideology = democratic
+			version = base_game
 			ideas = {
 				NOR_complacent_cabinet_ns
 				NOR_the_hard_thirties_ns
@@ -310,7 +337,8 @@ bookmarks = {
 			minor = yes
 			history = BEL_GATHERING_STORM_DESC
 			ideology = democratic
-			available = { has_dlc = "Gotterdammerung" has_dlc = "No Compromise, No Surrender" } 
+			required_dlc = { "Gotterdammerung" "No Compromise, No Surrender" }
+			version = no_compromise_no_surrender
 			ideas = {
 				BEL_chasseurs_ardennais_ns_ncns
 				BEL_scars_of_ww1_ns_fake
@@ -326,7 +354,8 @@ bookmarks = {
 			minor = yes
 			history = COG_GATHERING_STORM_DESC
 			ideology = neutrality
-			available = { has_dlc = "Gotterdammerung" }
+			required_dlc = { "Gotterdammerung" }
+			version = gotterdammerung
 			ideas = {
 				COG_the_invisible_roof
 				COG_vast_decentralized_state_idea
@@ -338,12 +367,29 @@ bookmarks = {
 				COG_the_kingdom_of_kongo_focus
 			}
 		}
+		INS = {
+			minor = yes
+			history = "INS_GATHERING_STORM_DESC"
+			ideology = neutrality
+			required_dlc  = { "Thunder at Our Gates" }
+			version = thunder_at_our_gates
+			ideas = {
+				idea_INS_volksraad
+				idea_INS_great_depression_fake
+				idea_INS_mismanaged_admin_fake
+			}
+			focuses = {
+				INSHOL_autonomous_dominion
+				INS_the_declaration_of_independence
+				INS_support_tan_malakas_coup
+			}
+		}
 		CHI = {
 			minor = yes
 			history = "CHI_GATHERING_STORM_DESC"
 			#available = { has_dlc = "No Compromise, No Surrender" }
 			ideology = neutrality
-			new_content = yes
+			#new_content = yes
 			ideas = {
 				CHI_neglected_countryside_fake_ns
 				CHI_corruption_in_the_armed_forces_fake_ns
@@ -421,7 +467,7 @@ bookmarks = {
 			history = "MAN_TSR_GATHERING_STORM_DESC"
 			available = { has_dlc = "No Compromise, No Surrender" } 
 			ideology = fascism
-			new_content = yes
+			#new_content = yes
 			ideas = {
 				MAN_banditry
 				MAN_the_kangde_emperor
@@ -444,8 +490,8 @@ bookmarks = {
 			}
 			focuses = {
 				SPA_caudillo_of_spain
-				SPA_unite_iberia
-				SPA_iberian_pact
+				#SPA_unite_iberia
+				#SPA_iberian_pact
 			}
 		}
 		"BUL"={
@@ -480,6 +526,24 @@ bookmarks = {
 			minor = yes
 			history = "SIA_GATHERING_STORM_DESC"
 			ideology = neutrality
+			required_dlc  = { "Thunder at Our Gates" }
+			version = thunder_at_our_gates
+			ideas = {
+				idea_SIA_military_neutral
+				idea_SIA_civilian_neutral
+			}
+			focuses = {
+				SIA_the_khana_ratsadon
+				SIA_shuffle_pridi_to_the_minister_of_interior
+				SIA_for_the_preservation_of_siamese_independence
+			}
+		}
+		"SIA"={
+			minor = yes
+			history = "SIA_GATHERING_STORM_DESC"
+			ideology = neutrality
+			version = base_game
+			available = { NOT = { has_dlc = "Thunder at Our Gates" } }
 			ideas = {
 				SIA_kingdom_restored
 				SIA_golden_era
@@ -559,7 +623,7 @@ bookmarks = {
 			history = "PHI_GATHERING_STORM_DESC" #might need an edit because it is not very good at the moment.
 			ideology = neutrality
 			#available = { has_dlc = "No Compromise, No Surrender" }
-			new_content = yes
+			#new_content = yes
 			ideas = {
 				PHI_island_nation_ns_fake
 				PHI_the_great_depression_ns_fake
@@ -576,7 +640,7 @@ bookmarks = {
 			history = "CZE_GATHERING_STORM_DESC"
 			ideology = democratic
 			available = { has_dlc = "Peace For Our Time" }
-			new_content = yes
+			#new_content = yes
 			ideas = {
 				CZE_a_divided_nation_fake_ns
 				CZE_sudeten_german_quandary

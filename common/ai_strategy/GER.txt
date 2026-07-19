@@ -1024,7 +1024,7 @@ spain_ally = {
 	}
 	enable = {
 		SPR = {
-		has_completed_focus = SPA_abandon_neutrality
+			has_completed_focus = SPA_espana_en_guerra
 		}
 		country_exists = SPR
 		SPR = { has_government = fascism } # TODO Find way to detect dynamic revolter tag
@@ -2237,7 +2237,7 @@ GER_spain_scw_support_la_resistance = {
 	abort = {
 		OR = {
 			NOT = { country_exists = SPA }
-			SPA = { has_completed_focus = SPA_join_the_allies }
+			#SPA = { has_completed_focus = SPA_join_the_allies }
 		}
 	}
 
@@ -2560,7 +2560,7 @@ GER_have_some_train_production = {
 		date > 1936.7.1
 	}
 	abort_when_not_enabled = yes
-
+	
 	ai_strategy = {
 		type = equipment_production_min_factories
 		id = train
@@ -2576,14 +2576,11 @@ GER_stock_up_on_trains_before_barbarossa = {
 	enable = {
 		is_historical_focus_on = yes
 		date > 1940.7.1
-		date < 1943.1.1
+		date < 1941.7.1
 		has_war = yes
 		# always = no
 	}
-	abort = {
-		has_war_with = SOV # Barbarossa has started, let wartime prioritization do its thing
-		date > 1943.1.1
-	}
+	abort_when_not_enabled = yes
 
 	#ai_strategy = {
 	#	type = min_wanted_supply_trains  # Causes large spike, not optimal
@@ -2594,6 +2591,26 @@ GER_stock_up_on_trains_before_barbarossa = {
 		type = equipment_production_min_factories
 		id = train
 		value = 4  # Boost train production before Barbarossa
+	}
+}
+
+GER_more_trains_after_barbarossa = {
+	allowed = {
+		original_tag = GER
+	}
+
+	enable = {
+		is_historical_focus_on = yes
+		date > 1941.7.1
+		has_war = yes
+	}
+	abort_when_not_enabled = yes
+
+
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = train
+		value = 1  # Slightly build more trains after barbarossa started
 	}
 }
 
@@ -2872,7 +2889,7 @@ GER_tanks_in_the_snow = {
 
 	ai_strategy = {
 		type = front_armor_score
-		id = "SOV"
+		id = SOV
 		value = 500
 	}
 
@@ -2884,6 +2901,16 @@ GER_tanks_in_the_snow = {
 		value = 75
 	}
 
+	ai_strategy = { #GER might be fighting GRE when Barbarossa needs to take place; prioritize SOV
+		type = prepare_for_war
+		id = SOV
+		value = 100
+	}
+	
+	ai_strategy = {
+		type = force_concentration_factor
+		value = 20
+	}
 }
 
 GER_tanks_against_france = {
@@ -2943,9 +2970,7 @@ GER_blitzkrieg_russia_hard  = { #STEINER, IT IS NOT TIME YET
 	}
 
 	enable = {
-		date < 1942.8.1
-		date > 1941.7.1
-		has_war_with = SOV
+		date < 1941.9.1
 		OR = {
 			has_idea = GER_barbarossa
 			SOV = { has_idea = SOV_desperate_measures_ns }
@@ -2967,12 +2992,140 @@ GER_blitzkrieg_russia_hard  = { #STEINER, IT IS NOT TIME YET
 		execution_type = rush
 		execute_order = yes
 	}
+	ai_strategy = {
+		# Avoid the Pripyat Marshes
+		type = force_concentration_target_weight
+		state = 94 # Polesie
+		state = 93 # Volyn
+		state = 194 # Mozyr
+
+		value = -40 # -40%
+	}
+}
+
+GER_blitzkrieg_russia_hard_air_north  = { #get GER to focus on breaking border defenses in the initial stages of Barb
+	allowed = {
+		original_tag = GER
+	}
+
+	enable = {
+		date < 1942.1.1
+
+		OR = {
+			focus_progress = {
+				focus = GER_war_with_the_ussr
+				progress > 0.01
+			}
+			has_war_with = SOV
+		}
+		NOT = {
+			GER = {
+				controls_state = 188 
+				controls_state = 189
+				controls_state = 814
+				controls_state = 11
+				controls_state = 815
+				controls_state = 190
+				controls_state = 809
+				controls_state = 808
+				controls_state = 810
+				controls_state = 12
+				controls_state = 811
+				controls_state = 13
+				controls_state = 812
+				controls_state = 191
+				controls_state = 813
+			}
+		}
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = strategic_air_importance
+		id = 37 #Strategic Region ID - Baltic States
+		value = 20000 #value of stocked main front in active combat is usually around 35,000
+	}
+}
+
+GER_blitzkrieg_russia_hard_air_center  = { #get GER to focus on breaking border defenses in the initial stages of Barb
+	allowed = {
+		original_tag = GER
+	}
+
+	enable = {
+		date < 1942.1.1
+		OR = {
+			focus_progress = {
+				focus = GER_war_with_the_ussr
+				progress > 0.01
+			}
+			has_war_with = SOV
+		}
+		NOT = {
+			GER = {
+				controls_state = 96
+				controls_state = 784
+				controls_state = 95
+				controls_state = 97
+				controls_state = 92
+				controls_state = 94
+				controls_state = 93
+				controls_state = 91
+				controls_state = 89
+			}
+		}
+	}
+
+	abort_when_not_enabled = yes
 
 	ai_strategy = {
 		type = strategic_air_importance
 		id = 39 #Strategic Region ID - Eastern Poland
 		value = 20000 #value of stocked main front in active combat is usually around 35,000
 	}
+}
+
+GER_blitzkrieg_russia_hard_air_south  = { #get GER to focus on breaking border defenses in the initial stages of Barb
+	allowed = {
+		original_tag = GER
+	}
+
+	enable = {
+		date < 1942.1.1
+
+		OR = {
+			focus_progress = {
+				focus = GER_war_with_the_ussr
+				progress > 0.01
+			}
+			has_war_with = SOV
+		}
+		NOT = {
+			GER = {
+				controls_state = 199
+				controls_state = 201
+				controls_state = 198
+				controls_state = 834
+				controls_state = 192
+				controls_state = 202
+				controls_state = 203
+				controls_state = 197
+				controls_state = 196
+				controls_state = 137
+				controls_state = 200
+				controls_state = 226
+				controls_state = 259
+				controls_state = 193
+				controls_state = 225
+				controls_state = 221
+				controls_state = 227
+				controls_state = 228
+			}
+		}
+	}
+
+	abort_when_not_enabled = yes
 
 	ai_strategy = {
 		type = strategic_air_importance
@@ -3428,10 +3581,9 @@ GER_protect_hungary = {
 
 	ai_strategy = {
 		type = protect
-		id = "HUN"
+		id = HUN
 		value = 50
 	}
-
 }
 
 GER_protect_romania = {
@@ -3449,7 +3601,7 @@ GER_protect_romania = {
 
 	ai_strategy = {
 		type = protect
-		id = "ROM"
+		id = ROM
 		value = 50
 	}
 }

@@ -1,4 +1,259 @@
 types = {
+	FIN_operation_hokki = {
+
+		days_to_prepare = 7
+
+		category = paratrooper_raids
+		custom_map_icon = GFX_raid_type_icon_other_raid
+
+		ai_will_do = {
+			base = 100 # Unique raid that we really want to do
+
+			modifier = {
+				# no longer meaningful
+				factor = 0
+				OR = {
+					date > 1941.1.1
+					is_in_faction_with = BEL
+				}
+			}
+		}
+
+		command_power = 25
+
+		allowed = {
+			original_tag = FIN
+		}
+
+		fire_only_once = yes
+
+		visible = {
+			has_completed_focus = FIN_german_military_advisors
+			has_tech = paratroopers
+		}
+
+		show_target = {
+			216 = {
+				is_owned_and_controlled_by = SOV
+			}
+		}
+
+		available = {
+			216 = {
+				is_owned_and_controlled_by = SOV
+			}
+		}
+
+		launchable = {
+			has_war_with = SOV
+		}
+
+		unit_requirements = {
+			battalion_types = {
+				paratrooper = { min = 8 }
+			}
+		}
+		essential_equipment = {
+			transport_plane_equipment = 5
+		}
+
+		additional_equipment = {
+			# list of equipment archetypes and numbers
+			support_equipment = 100
+			infantry_equipment = 200
+		}
+
+		target_type = {
+			province = 11159
+		}
+		target_icon = GFX_other_target_icon
+		target_loc_key = raid_target_name_hokki
+
+		launch_sound = raid_launch_paratrooper
+		arrow = {
+		    type = air
+		}
+        unit_model = {
+            equipment = air_transport
+        }
+
+		starting_point = {
+		    types = { air_base }
+		}
+
+		success_factors = {
+			success = {
+				base = 0.75
+
+				# Raiding unit modifiers
+				experience = {
+					weight = 0.25
+					start_weight = -0.2
+					reference = 1.0
+				}
+
+				organisation = {
+					weight = 0.1
+					start_weight = -0.1
+					reference = 100
+				}
+				
+				recon = {
+					weight = 0.05
+					reference = 10
+				}
+
+				### Target Modifiers
+
+				resistance = {
+					reference = 100
+					start_reference = 20 # Resistance below 20 doesn't help
+					weight = 0.4
+				}
+				air_superiority = {
+					reference = 1
+					weight = 0.75
+					start_weight = -0.75
+				}
+
+				anti_air = {
+					reference = 5
+					weight = -0.1
+				}
+				interception = {
+					reference = 500 # More than 500 fighters won't really make any difference
+					weight = -0.2
+				}
+				intel = {
+					weight = 0.2
+					#start_reference = 50
+					reference = 100
+				}
+			}
+		}
+
+		success_levels = {
+			failure = {
+			    victim_effects = {
+					var:target_state = {
+					}
+			    }
+				actor_effects = {
+					# Damage to unit
+					raid_damage_units = {
+						org_damage = 0.95
+						str_damage = 0.25
+						ratio = yes
+					}
+
+					# Unit Experience
+					raid_add_unit_experience = 0.05
+					add_raid_history_entry = yes
+				}
+				# Other unit effects
+				division_effects = {
+					add_divisional_commander_xp = 5
+				}
+				visual_effect = {
+					entity = "raid_failed_entity"
+					animation = "attack"
+				}
+			}
+			limited_success = {
+			    victim_effects = {
+					var:target_state = {
+						add_dynamic_modifier = {
+							modifier = FIN_hokki_modifier
+							scope = SOV
+							days = 45
+						}
+					}
+			    }
+				actor_effects = {
+					# Damage to unit
+					raid_damage_units = {
+						org_damage = 0.65
+						str_damage = 0.2
+						ratio = yes
+					}
+
+					# Unit Experience
+					raid_add_unit_experience = 0.1
+					add_raid_history_entry = yes
+				}
+				# Other unit effects
+				division_effects = {
+					add_divisional_commander_xp = 10
+				}
+				visual_effect = {
+					entity = "air_raids_paradrop_limited_success_entity"
+					animation = "attack"
+				}
+			}
+			success = {
+			    victim_effects = {
+					var:target_state = {
+						add_dynamic_modifier = {
+							modifier = FIN_hokki_modifier
+							scope = SOV
+							days = 60
+						}
+					}
+			    }
+				actor_effects = {
+					# Damage to unit
+					raid_damage_units = {
+						org_damage = 0.45
+						str_damage = 0.15
+						ratio = yes
+					}
+
+					# Unit Experience
+					raid_add_unit_experience = 0.15
+					add_raid_history_entry = yes
+				}
+				# Other unit effects
+				division_effects = {
+					add_divisional_commander_xp = 15
+				}
+				visual_effect = {
+					entity = "air_raids_paradrop_success_entity"
+					animation = "attack"
+				}
+			}
+			critical_success = {
+			    victim_effects = {
+					var:target_state = {
+						add_dynamic_modifier = {
+							modifier = FIN_hokki_modifier
+							scope = SOV
+							days = 75
+						}
+					}
+			    }
+				actor_effects = {
+					# Damage to unit
+					raid_damage_units = {
+						org_damage = 0.25
+						str_damage = 0.1
+						ratio = yes
+					}
+
+					# Unit Experience
+					raid_add_unit_experience = 0.2
+					add_raid_history_entry = yes
+				}
+				# Other unit effects
+				division_effects = {
+					add_divisional_commander_xp = 20
+				}
+				visual_effect = {
+					entity = "air_raids_paradrop_critical_success_entity"
+					animation = "attack"
+				}
+			}
+		}
+	}
 
 	GER_eben_emael_raid = {
 
@@ -345,7 +600,7 @@ types = {
 					CZE = {
 						OR = {
 							exists = no
-							surrender_progress > 0.10 #we broke them elsewhere
+							surrender_progress > 0.15 #we broke them elsewhere
 						}
 					}
 				}
@@ -360,18 +615,18 @@ types = {
 			# }
 			modifier = { #Might want to start thinking about speeding this whole thing up
 				add = 5
-				date > 1939.1.1
+				date > 1938.11.11
 				surrender_progress < 0.05
 				CZE = {
 					surrender_progress < 0.05
 				}
 				casualties_inflicted_by = {
     				opponent = CZE
-    				thousands > 9
+    				thousands > 5
 				}
 			}
 			modifier = { #Gave me a bloody nose
-				factor = 5
+				factor = 10
 				date > 1939.3.3
 				surrender_progress < 0.05
 				CZE = {
@@ -379,11 +634,11 @@ types = {
 				}
 				casualties_inflicted_by = {
     				opponent = CZE
-    				thousands > 24
+    				thousands > 15
 				}
 			}
 			modifier = { #no more mister nice guy
-				factor = 10
+				factor = 25
 				date > 1939.5.5
 				surrender_progress < 0.05
 				CZE = {
@@ -391,7 +646,7 @@ types = {
 				}
 				casualties_inflicted_by = {
     				opponent = CZE
-    				thousands > 99
+    				thousands > 74
 				}
 			}
 			# modifier = { #please cease this nonsense
@@ -454,7 +709,7 @@ types = {
 
 		unit_requirements = {
 			battalion_types = {
-			 	paratrooper = { min = 2 }
+			 	paratrooper = { min = 1 }
 			}
 		}
 		essential_equipment = {

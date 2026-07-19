@@ -1,0 +1,394 @@
+on_actions = {
+    on_startup = {
+        effect = {
+            set_variable_to_random = {
+                var = global.game_hash
+                max = 99999
+                integer = yes
+            }
+        }
+    }
+    on_war_relation_added = {
+        effect = {
+			if = {
+				limit = {
+                    OR = {
+                        AND = {
+                            ROOT = { original_tag = GER }
+                            FROM = { original_tag = POL }
+                        }
+                        AND = {
+                            ROOT = { original_tag = POL }
+                            FROM = { original_tag = GER }
+                        }
+                    }
+				}
+                set_variable = { global.danzig_date = global.date }
+                log = "Danzig Eco"
+                eco_log = yes
+            }
+        }
+        effect = {
+			if = {
+				limit = {
+                    OR = {
+                        AND = {
+                            ROOT = { original_tag = ITA }
+                            FROM = { original_tag = ENG }
+                        }
+                        AND = {
+                            ROOT = { original_tag = ENG }
+                            FROM = { original_tag = ITA }
+                        }
+                    }
+				}
+                set_variable = { global.italy_war_start = global.date }
+                log = "Italy Joins War Eco"
+                eco_log = yes
+            }
+        }
+        effect = {
+			if = {
+				limit = {
+                    OR = {
+                        AND = {
+                            ROOT = { original_tag = JAP }
+                            FROM = { original_tag = ENG }
+                        }
+                        AND = {
+                            ROOT = { original_tag = ENG }
+                            FROM = { original_tag = JAP }
+                        }
+                    }
+				}
+                set_variable = { global.japan_war_start = global.date }
+                log = "Pacific Start Eco"
+				eco_log = yes
+            }
+        }
+        effect = {
+			if = {
+				limit = {
+                    OR = {
+                        AND = {
+                            ROOT = { original_tag = JAP }
+                            FROM = { original_tag = SOV }
+                        }
+                        AND = {
+                            ROOT = { original_tag = SOV }
+                            FROM = { original_tag = JAP }
+                        }
+                    }
+				}
+                set_variable = { global.japan_sov_war_start = global.date }
+                log = "Japan Soviet Attack Eco"
+				eco_log = yes
+            }
+        }
+        effect = {
+			if = {
+				limit = {
+                    OR = {
+                        AND = {
+                            ROOT = { original_tag = SPR }
+                            OR = {
+                                FROM = { original_tag = ENG }
+                                FROM = { original_tag = SOV }
+                            }
+                        }
+                        AND = {
+                            OR = {
+                                ROOT = { original_tag = ENG }
+                                ROOT = { original_tag = SOV }
+                            }
+                            FROM = { original_tag = SPR }
+                        }
+                    }
+				}
+                set_variable = { global.spain_war_join = global.date }
+            }
+        }
+    }
+    on_capitulation = {
+        effect = {
+            if = {
+                limit = {
+                    ROOT = { original_tag = CHI }
+                    FROM = { original_tag = JAP }
+                }
+            }
+            set_variable = { global.china_cap_date = global.date }
+        }
+        effect = {
+            if = {
+                limit = {
+                    ROOT = { original_tag = SOV }
+                }
+            }
+            set_variable = { global.soviet_cap_date = global.date }
+        }
+        effect = {
+            if = {
+                limit = {
+                    ROOT = { original_tag = FIN }
+                    FROM = { original_tag = SOV }
+                }
+            }
+            set_variable = { global.finland_cap_date = global.date }
+        }
+    }
+
+    on_state_control_changed = {
+        effect = {
+            if = {
+                limit = { FROM.FROM = { state = 195 } ROOT = { has_war_with = FROM } } add_to_variable = { global.lenningrad_fall_count = 1 }
+                if = { limit = { check_variable = { global.lenningrad_fall_count = 1 } } set_variable = { global.leningrad_fall = global.date } }
+            }
+            if = {
+                limit = { FROM.FROM = { state = 202 } ROOT = { has_war_with = FROM } } add_to_variable = { global.kiev_fall_count = 1 }
+                if = { limit = { check_variable = { global.kiev_fall_count = 1 } } set_variable = { global.kiev_fall = global.date } }
+            }
+            if = {
+                limit = { FROM.FROM = { state = 217 } ROOT = { has_war_with = FROM } } add_to_variable = { global.stalingrad_fall_count = 1 }
+                if = { limit = { check_variable = { global.stalingrad_fall_count = 1 } } set_variable = { global.stalingrad_fall = global.date } }
+            }
+            if = {
+                limit = { FROM.FROM = { state = 219 } ROOT = { has_war_with = FROM } } add_to_variable = { global.moscow_fall_count = 1 }
+                if = { limit = { check_variable = { global.moscow_fall_count = 1 } } set_variable = { global.moscow_fall = global.date } }
+            }
+          # Africa and Med
+            # Gibraltar
+            if = {
+                limit = { FROM.FROM = { state = 118 } ROOT = { has_war_with = FROM } } add_to_variable = { global.gibraltar_fall_count = 1 }
+                if = { limit = { check_variable = { global.gibraltar_fall_count = 1 } } set_variable = { global.gibraltar_fall_date = global.date } }
+            }
+            # El Alemain
+            if = {
+                limit = { FROM.FROM = { state = 1082 } ROOT = { has_war_with = FROM } } add_to_variable = { global.el_alemain_fall_count = 1 }
+                if = { limit = { check_variable = { global.el_alemain_fall_count = 1 } } set_variable = { global.el_alemain_fall_date = global.date } }
+            }
+            # East Suez
+            if = {
+                limit = { FROM.FROM = { state = 1091 } ROOT = { has_war_with = FROM } } add_to_variable = { global.east_suez_fall_count = 1 }
+                if = { limit = { check_variable = { global.east_suez_fall_count = 1 } } set_variable = { global.east_suez_fall_date = global.date } }
+            }
+            # Khartoum
+            if = {
+                limit = { FROM.FROM = { state = 551 } ROOT = { has_war_with = FROM } } add_to_variable = { global.khartoum_fall_count = 1 }
+                if = { limit = { check_variable = { global.khartoum_fall_count = 1 } } set_variable = { global.khartoum_fall_date = global.date } }
+            }
+            # Lagos
+            if = {
+                limit = { FROM.FROM = { state = 558 } ROOT = { has_war_with = FROM } } add_to_variable = { global.lagos_fall_count = 1 }
+                if = { limit = { check_variable = { global.lagos_fall_count = 1 } } set_variable = { global.lagos_fall_date = global.date } }
+            }
+            # Cape Town
+            if = {
+                limit = { FROM.FROM = { state = 681 } ROOT = { has_war_with = FROM } } add_to_variable = { global.cape_town_fall_count = 1 }
+                if = { limit = { check_variable = { global.cape_town_fall_count = 1 } } set_variable = { global.cape_town_fall_date = global.date } }
+            }
+          # Asia
+            # Singapore
+            if = {
+                limit = { FROM.FROM = { state = 1021 } ROOT = { has_war_with = FROM } } add_to_variable = { global.singapore_fall_count = 1 }
+                if = { limit = { check_variable = { global.singapore_fall_count = 1 } } set_variable = { global.singapore_fall_date = global.date } }
+            }
+            # Batavia
+            if = {
+                limit = { FROM.FROM = { state = 1058 } ROOT = { has_war_with = FROM } } add_to_variable = { global.batavia_fall_count = 1 }
+                if = { limit = { check_variable = { global.batavia_fall_count = 1 } } set_variable = { global.batavia_fall_date = global.date } }
+            }
+            # South Sumatra
+            if = {
+                limit = { FROM.FROM = { state = 672 } ROOT = { has_war_with = FROM } } add_to_variable = { global.south_sumatra_fall_count = 1 }
+                if = { limit = { check_variable = { global.south_sumatra_fall_count = 1 } } set_variable = { global.south_sumatra_fall_date = global.date } }
+            }
+            # Sulawesi
+            if = {
+                limit = { FROM.FROM = { state = 673 } ROOT = { has_war_with = FROM } } add_to_variable = { global.sulawesi_fall_count = 1 }
+                if = { limit = { check_variable = { global.sulawesi_fall_count = 1 } } set_variable = { global.sulawesi_fall_date = global.date } }
+            }
+            # East Kalimantan
+            if = {
+                limit = { FROM.FROM = { state = 1055 } ROOT = { has_war_with = FROM } } add_to_variable = { global.east_kalimantan_fall_count = 1 }
+                if = { limit = { check_variable = { global.east_kalimantan_fall_count = 1 } } set_variable = { global.east_kalimantan_fall_date = global.date } }
+            }
+            # Papua
+            if = {
+                limit = { FROM.FROM = { state = 523 } ROOT = { has_war_with = FROM } } add_to_variable = { global.papua_fall_count = 1 }
+                if = { limit = { check_variable = { global.papua_fall_count = 1 } } set_variable = { global.papua_fall_date = global.date } }
+            }
+            # Solomon Islands
+            if = {
+                limit = { FROM.FROM = { state = 634 } ROOT = { has_war_with = FROM } } add_to_variable = { global.solomon_islands_fall_count = 1 }
+                if = { limit = { check_variable = { global.solomon_islands_fall_count = 1 } } set_variable = { global.solomon_islands_fall_date = global.date } }
+            }
+            # New Caledonia
+            if = {
+                limit = { FROM.FROM = { state = 635 } ROOT = { has_war_with = FROM } } add_to_variable = { global.new_caledonia_fall_count = 1 }
+                if = { limit = { check_variable = { global.new_caledonia_fall_count = 1 } } set_variable = { global.new_caledonia_fall_date = global.date } }
+            }
+            # Manilla
+            if = {
+                limit = { FROM.FROM = { state = 327 } ROOT = { has_war_with = FROM } } add_to_variable = { global.manilla_fall_count = 1 }
+                if = { limit = { check_variable = { global.manilla_fall_count = 1 } } set_variable = { global.manilla_fall_date = global.date } }
+            }
+            # Formosa
+            if = {
+                limit = { FROM.FROM = { state = 524 } ROOT = { has_war_with = FROM } } add_to_variable = { global.formosa_fall_count = 1 }
+                if = { limit = { check_variable = { global.formosa_fall_count = 1 } } set_variable = { global.formosa_fall_date = global.date } }
+            }
+            # Bangkok
+            if = {
+                limit = { FROM.FROM = { state = 1076 } ROOT = { has_war_with = FROM } } add_to_variable = { global.bangkok_fall_count = 1 }
+                if = { limit = { check_variable = { global.bangkok_fall_count = 1 } } set_variable = { global.bangkok_fall_date = global.date } }
+            }
+           # The Islands
+            # Okinowa
+            if = {
+                limit = { FROM.FROM = { state = 526 } ROOT = { has_war_with = FROM } } add_to_variable = { global.okinowa_fall_count = 1 }
+                if = { limit = { check_variable = { global.okinowa_fall_count = 1 } } set_variable = { global.okinowa_fall_date = global.date } }
+            }
+            # Iwo Jima
+            if = {
+                limit = { FROM.FROM = { state = 645 } ROOT = { has_war_with = FROM } } add_to_variable = { global.iwo_jima_fall_count = 1 }
+                if = { limit = { check_variable = { global.iwo_jima_fall_count = 1 } } set_variable = { global.iwo_jima_fall_date = global.date } }
+            }
+            # Saipan
+            if = {
+                limit = { FROM.FROM = { state = 646 } ROOT = { has_war_with = FROM } } add_to_variable = { global.saipan_fall_count = 1 }
+                if = { limit = { check_variable = { global.saipan_fall_count = 1 } } set_variable = { global.saipan_fall_date = global.date } }
+            }
+            # Palau
+            if = {
+                limit = { FROM.FROM = { state = 647 } ROOT = { has_war_with = FROM } } add_to_variable = { global.palau_fall_count = 1 }
+                if = { limit = { check_variable = { global.palau_fall_count = 1 } } set_variable = { global.palau_fall_date = global.date } }
+            }
+            # Wake Island
+            if = {
+                limit = { FROM.FROM = { state = 632 } ROOT = { has_war_with = FROM } } add_to_variable = { global.wake_island_fall_count = 1 }
+                if = { limit = { check_variable = { global.wake_island_fall_count = 1 } } set_variable = { global.wake_island_fall_date = global.date } }
+            }
+            # Midway
+            if = {
+                limit = { FROM.FROM = { state = 631 } ROOT = { has_war_with = FROM } } add_to_variable = { global.midway_fall_count = 1 }
+                if = { limit = { check_variable = { global.midway_fall_count = 1 } } set_variable = { global.midway_fall_date = global.date } }
+            }
+            # Guam
+            if = {
+                limit = { FROM.FROM = { state = 638 } ROOT = { has_war_with = FROM } } add_to_variable = { global.guam_fall_count = 1 }
+                if = { limit = { check_variable = { global.guam_fall_count = 1 } } set_variable = { global.guam_fall_date = global.date } }
+            }
+            # Hawaii
+            if = {
+                limit = { FROM.FROM = { state = 629 } ROOT = { has_war_with = FROM } } add_to_variable = { global.hawaii_fall_count = 1 }
+                if = { limit = { check_variable = { global.hawaii_fall_count = 1 } } set_variable = { global.hawaii_fall_date = global.date } }
+            }
+
+        }
+    }
+
+	# ROOT is invading country, scope is the state being invaded
+	on_naval_invasion = {
+		effect = {
+			if = {
+				limit = {
+					ROOT = { has_war_with = RAJ }
+					OWNER = { 
+						original_tag = RAJ
+					}
+					OR = {
+						state = 444
+						state = 443
+						state = 428
+						state = 429
+						state = 983
+						state = 321
+						state = 425
+						state = 423
+						state = 982
+						state = 320
+						state = 424
+						state = 426
+						state = 431
+						state = 430
+						state = 1092
+					}
+				}
+                set_variable = { global.raj_naval_invasion_date = global.date }
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					ROOT = { has_war_with = ENG }
+					OWNER = { original_tag = ENG }
+					GER_is_RGB_state = yes
+                    check_variable = { global.sealion_naval_invasion_date > 0 }
+				}
+                set_variable = { global.sealion_naval_invasion_date = global.date }
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					ROOT = { has_war_with = ENG }
+					OWNER = { OR = { original_tag = ENG original_tag = IRE } }
+					GER_is_RGB_ireland_state = yes
+                    check_variable = { global.ireland_naval_invasion_date > 0 }
+				}
+                set_variable = { global.ireland_naval_invasion_date = global.date }
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					ROOT = { has_war_with = ITA }
+					OWNER = { original_tag = ITA }
+					OR = {
+						state = 444
+						state = 443
+						state = 428
+						state = 429
+						state = 983
+						state = 321
+						state = 425
+						state = 423
+						state = 982
+						state = 320
+						state = 424
+						state = 426
+						state = 431
+						state = 430
+						state = 1092
+					}
+                    check_variable = { france_fall_date > 0}
+                    check_variable = { global.ita_naval_invasion_date > 0 }
+				}
+                set_variable = { global.ita_naval_invasion_date = global.date }
+			}
+		}
+    }
+
+    on_monthly_SOV = {
+        effect = {
+            # Log the Eco Yearly
+            if = { limit = { date > 1936.12.30  date < 1937.1.2 } eco_log = yes }
+            if = { limit = { date > 1937.12.30  date < 1938.1.2 } eco_log = yes }
+            if = { limit = { date > 1938.12.30  date < 1939.1.2 } eco_log = yes }
+            if = { limit = { date > 1939.12.30  date < 1940.1.2 } eco_log = yes }
+            if = { limit = { date > 1940.12.30  date < 1941.1.2 } eco_log = yes }
+            if = { limit = { date > 1941.12.30  date < 1942.1.2 } eco_log = yes }
+            if = { limit = { date > 1942.12.30  date < 1943.1.2 } eco_log = yes }
+            if = { limit = { date > 1943.12.30  date < 1944.1.2 } eco_log = yes }
+            if = { limit = { date > 1944.12.30  date < 1945.1.2 } eco_log = yes }
+            if = { limit = { date > 1945.12.30  date < 1946.1.2 } eco_log = yes }
+            if = { limit = { date > 1946.12.30  date < 1947.1.2 } eco_log = yes }
+            if = { limit = { date > 1947.12.30  date < 1948.1.2 } eco_log = yes }
+            if = { limit = { date > 1948.12.30  date < 1949.1.2 } eco_log = yes }
+            if = { limit = { date > 1949.12.30  date < 1950.1.2 } eco_log = yes }
+        }
+
+    }
+
+}

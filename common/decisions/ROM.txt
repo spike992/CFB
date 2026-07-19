@@ -19,7 +19,7 @@ operations = {
 		}
 
 		visible = {
-
+			always = no
 		}
 		
 		complete_effect = {
@@ -149,8 +149,7 @@ operations = {
 		fire_only_once = yes
 		
 		visible = {
-			has_war_with = SOV
-			NOT = { has_country_flag = bessarabia_finished  }
+			SOV = { has_active_mission = SOV_besserabia_war }
 		}
 
 		state_target = yes
@@ -169,7 +168,7 @@ operations = {
 				casualties > 50000
 				surrender_progress > 0.20
 				NOT = {
-					78 = {
+					79 = {
 						CONTROLLER = {
 							OR = {
 								tag = ROM
@@ -189,6 +188,7 @@ operations = {
  				transfer_state = 766
 			}
 			ROM = { set_country_flag = bessarabia_finished }
+			ROM = { set_country_flag = ROM_lost_bessarabia }
 			diplomatic_relation = {
 				country = SOV
 				relation = non_aggression_pact
@@ -206,15 +206,14 @@ operations = {
 		}
 		fire_only_once = yes
 		visible = {
-			has_war_with = SOV
-			NOT = { has_country_flag = bessarabia_finished  }
+			SOV = { has_active_mission = SOV_besserabia_war }
 		}
 		fire_only_once = yes
 
 		state_target = yes
 		on_map_mode = map_and_decisions_view
 		targets = {
-			202
+			192
     	}
 
 		available = {
@@ -224,7 +223,7 @@ operations = {
 				SOV = {
 					casualties > 250000
 				}
-				202 = {
+				192 = {
 					CONTROLLER = {
 						OR = {
 							tag = ROM
@@ -253,40 +252,40 @@ operations = {
 		}
 	}
 
-	ROM_iron_guard_coup = {
-		icon = generic_nationalism
-		allowed = {
-			original_tag = ROM
-		}
-		visible = {
-			has_completed_focus = ROM_force_abdication
-		}
+	# ROM_iron_guard_coup = {
+	# 	icon = generic_nationalism
+	# 	allowed = {
+	# 		original_tag = ROM
+	# 	}
+	# 	visible = {
+	# 		has_completed_focus = ROM_force_abdication
+	# 	}
 
-		available = {
-			hidden_trigger = {
-				always = no
-			}
-		}
+	# 	available = {
+	# 		hidden_trigger = {
+	# 			always = no
+	# 		}
+	# 	}
 
-		cancel_trigger = {
-			OR = {
-				has_completed_focus = ROM_execute_the_coup
-				has_completed_focus = ROM_crush_legionnaires
-			}
-		}
-		fire_only_once = yes
+	# 	cancel_trigger = {
+	# 		OR = {
+	# 			has_completed_focus = ROM_execute_the_coup
+	# 			has_completed_focus = ROM_crush_legionnaires
+	# 		}
+	# 	}
+	# 	fire_only_once = yes
 
-		activation = {
-			has_completed_focus = ROM_force_abdication
-		}
+	# 	activation = {
+	# 		has_completed_focus = ROM_force_abdication
+	# 	}
 		
-		days_mission_timeout = 140
+	# 	days_mission_timeout = 140
 
-		timeout_effect = {
-			start_civil_war = {
-				ideology = fascism
-			}
-		}
-	}
+	# 	timeout_effect = {
+	# 		start_civil_war = {
+	# 			ideology = fascism
+	# 		}
+	# 	}
+	# }
 }
 

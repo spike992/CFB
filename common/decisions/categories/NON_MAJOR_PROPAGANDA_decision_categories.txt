@@ -10,7 +10,6 @@ AXIS_propaganda_campaigns = {
 
 	allowed = {
 		OR = {
-			original_tag = FIN
 			original_tag = ROM
 			original_tag = HUN
 			original_tag = BUL
@@ -20,8 +19,32 @@ AXIS_propaganda_campaigns = {
 			#original_tag = LUX
 			#original_tag = SIA
 			#original_tag = VIC
+			#original_tag = FIN
+			original_tag = IRQ
 		}
 		
+	}
+ 
+	visible = {
+		if = {
+			limit = {
+				original_tag = IRQ
+			}
+			has_completed_focus = IRQ_join_axis
+			is_in_faction_with = GER
+		}
+	}
+}
+
+FIN_propaganda_campaigns = {
+	priority = 100
+
+	icon = GER_propaganda
+
+	scripted_gui = fin_propaganda_campaigns_ui
+
+	allowed = {
+		original_tag = FIN
 	}
 
 	visible = {
@@ -87,10 +110,17 @@ ALLIES_propaganda_campaigns = {
 			original_tag = COG
 			original_tag = GRE
 			#original_tag = INS
+			original_tag = IRQ
 		}		
 	}
 
 	visible = {
+		if = {
+			limit = {
+				original_tag = IRQ
+			}
+			is_in_faction_with = ENG
+		}
 	}
 }
 

@@ -77,8 +77,83 @@ country_event = {
 				}
 			}
 		}
+		custom_effect_tooltip = generic_skip_one_line_tt
 		add_timed_idea = { idea = ROM_national_struggle days = 365 }
+		custom_effect_tooltip = generic_skip_one_line_tt
 		custom_effect_tooltip = fight_for_bessarabia
+		custom_effect_tooltip = generic_skip_one_line_tt
+		custom_effect_tooltip = ROM_bessarabia_war_explainer
+		effect_tooltip = {
+			# Constiutional
+			if = {
+				limit = {
+					has_idea = ROM_constitutional_guarantees
+				}
+				remove_ideas = ROM_constitutional_guarantees
+			}
+			else_if = {
+				limit = {
+					has_idea = ROM_constitutional_guarantees2
+				}
+				remove_ideas = ROM_constitutional_guarantees2
+			}
+			else_if = {
+				limit = {
+					has_idea = ROM_constitutional_guarantees3
+				}
+				remove_ideas = ROM_constitutional_guarantees3
+			}
+
+			# Christian
+			if = {
+				limit = {
+					has_idea = ROM_national_christian_party_in_power
+				}
+				remove_ideas = ROM_national_christian_party_in_power
+			}
+			else_if = {
+				limit = {
+					has_idea = ROM_national_christian_party_in_power2
+				}
+				remove_ideas = ROM_national_christian_party_in_power2
+			}
+
+			# Cult
+			if = {
+				limit = {
+					has_idea = ROM_archangel_michaels_cult
+				}
+				remove_ideas = ROM_archangel_michaels_cult
+			}
+
+			# Iron Guard
+			if = {
+				limit = { has_country_leader = { character = ROM_corneliu_codreanu ruling_only = yes } }
+				remove_dynamic_modifier = { modifier = ROM_iron_guard }
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_completed_focus = ROM_the_royal_dictatorship
+				}
+				if = { limit = { has_idea = ROM_the_sentinel_of_the_motherland } remove_ideas = ROM_the_sentinel_of_the_motherland }
+				if = { limit = { has_idea = ROM_the_sentinel_of_the_motherland_2 } remove_ideas = ROM_the_sentinel_of_the_motherland_2 }
+				if = { limit = { has_idea = ROM_the_sentinel_of_the_motherland_3 } remove_ideas = ROM_the_sentinel_of_the_motherland_3 }
+			}
+			else_if = {
+				limit = {
+					NOT = { has_completed_focus = ROM_all_parties_must_end }
+				}
+				custom_effect_tooltip = ROM_carol_gone_tt
+				remove_dynamic_modifier = { modifier = ROM_king_carol_ii }
+			}
+			else = {
+				custom_effect_tooltip = ROM_carol_gone_tt
+				remove_ideas = { ROM_king_carol_ii_handled_2 }
+			}
+			custom_effect_tooltip = generic_skip_one_line_tt
+		}
 	}
 }
 

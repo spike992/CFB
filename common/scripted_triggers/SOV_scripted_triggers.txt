@@ -252,6 +252,26 @@ SOV_is_valid_academy_of_sciences_target = {
 	}
 }
 
+SOV_is_industrial_relocation_destiny_fallback_state = {
+	OR = {
+		#Central Asia + KAZAKHSTAN
+		state = 405 #Tashkent
+		state = 586 #Alma-Ata
+		state = 830 #Bukhara
+		#Volga Region
+		state = 249 #Kazan
+		state = 251 #Kuybyshev
+		state = 400 #Kirov
+		#Western/Eastern Siberia
+		state = 587 #Kostanay
+		state = 571 #Omsk
+		state = 570 #Novosibirsk
+		state = 569 #Kemerovo
+		state = 568 #Krasnoyarsk
+		state = 40 #Altai Krai
+	}
+}
+
 SOV_has_already_built_national_academy_of_sciences = {
 	OR = {
 		AND = {
@@ -841,34 +861,129 @@ SOV_is_military_offensive_main_objective = {
 
 SOV_is_industrial_relocation_destiny_state = {
 	OR = {
-		state = 573 #Zlatoust
-		state = 653 #Sverdlovsk
-		state = 651 #Ufa
-		state = 572 #Chelyabinsk
-		state = 582 #Magnitogorsk
-		state = 398 #Perm
-		state = 652 #Orenburg
+        state = 249  # Tartarstan
+        state = 398  # Perm
+        state = 651  # Ufa
+        state = 251  # Gorky
+        state = 652  # Orenburg
+        state = 582  # Magnitogorsk
+        state = 572  # Chelyabinsk
+        state = 653  # Sverdlovsk
+        state = 405  # Tyumen
+        state = 586  # Omsk
+        state = 403  # Novosibirsk
+        state = 571  # Kurgan
+        state = 570  # Kostanai
+        state = 569  # Petropavlovsk
+        state = 568  # Kokchetav
+        state = 567  # Akmolinsk
+        state = 566  # Pavlodar
+        state = 564  # Semipalatinsk
+        state = 563  # Karaganda
+        state = 561  # Dzhambul
+        state = 657  # Kyzyl Orda
+        state = 409  # Tomsk
+        state = 408  # Krasnoyarsk
+		state = 251  # Kuybyshev
+		state = 407  # Ural`sk
+		state = 585  # Navoi
+		state = 589  # Ayaguz
+		state = 399  # Udmurtia
+		state = 579  # Salekhard
+		state = 583  # Kostanay
+		state = 590  # Akmolinsk
+		state = 882  # Pavlodar
 	}
 }
 
-SOV_is_industrial_relocation_destiny_fallback_state = {
+# Area 1 states (easiest to capture by germany, first wave evacs)
+SOV_is_industrial_relocation_area_1_state = {
 	OR = {
-		#Central Asia + KAZAKHSTAN
-		state = 405 #Tashkent
-		state = 586 #Alma-Ata
-		state = 830 #Bukhara
-		#Volga Region
-		state = 249 #Kazan
-		state = 251 #Kuybyshev
-		state = 400 #Kirov
-		#Western/Eastern Siberia
-		state = 587 #Kostanay
-		state = 571 #Omsk
-		state = 570 #Novosibirsk
-		state = 569 #Kemerovo
-		state = 568 #Krasnoyarsk
-		state = 40 #Altai Krai
+        state = 766
+        state = 78
+        state = 80
+        state = 192
+        state = 834
+        state = 198
+        state = 199
+        state = 89
+        state = 91
+        state = 201
+        state = 203
+        state = 197
+        state = 93
+        state = 94
+        state = 97
+        state = 95
+        state = 784
+        state = 96
+        state = 814
+        state = 11
+        state = 188
+        state = 189
+        state = 190
+        state = 815
+        state = 809
 	}
+}
+
+# Area 2 states
+SOV_is_industrial_relocation_area_2_state = {
+	OR = {
+        state = 808  # Polotsk
+        state = 810  # Lepel
+        state = 12   # Kingisepp
+        state = 191  # Vitebsk
+        state = 13   # Luga
+        state = 811  # Orsha
+        state = 812  # Borisov
+        state = 813  # Bobruysk
+        state = 207  # Mogilev
+        state = 206  # Minsk
+        state = 204  # Gomel
+        state = 194  # Pskov
+        state = 202  # Kiev
+        state = 226  # Poltava
+        state = 196  # Novgorod
+        state = 200  # Chernigov
+        state = 193  # Smolensk
+        state = 241  # Kursk
+        state = 259  # Belgorod
+        state = 221  # Kharkov
+        state = 227  # Sumy
+		#state = 213  # Murmansk
+        #state = 215  # Onega
+		#state = 216  # Olonets
+		#state = 146 # Karjala
+	}
+}
+
+# Area 3 States
+SOV_is_industrial_relocation_area_3_state = {
+    OR = {
+        state = 195
+        state = 208
+        state = 244
+        state = 263
+        state = 210
+        state = 246
+        state = 247
+        state = 242
+        state = 243
+        state = 224
+        state = 205
+        state = 223
+        state = 222
+        state = 220
+        state = 225
+        state = 240
+        state = 228
+        state = 218
+        state = 258
+        state = 260
+        state = 137
+		state = 209
+    }
 }
 
 SOV_is_threated_by_japan = {
@@ -883,30 +998,30 @@ SOV_is_threated_by_japan = {
 SOV_paranoia_is_finishing_purge_focus = {
 	OR = {
 		AND = {
-			NOT = { has_completed_focus = SOV_the_zinovyevite_terrorist_center }
+			NOT = { has_completed_focus = SOV_pol_PURGE1 }
 			focus_progress = {
-				focus = SOV_the_zinovyevite_terrorist_center
+				focus = SOV_pol_PURGE1
 				progress > 0.5
 			}
 		}
 		AND = {
-			NOT = { has_completed_focus = SOV_the_anti_soviet_trotskyist_center }
+			NOT = { has_completed_focus = SOV_pol_PURGE2 }
 			focus_progress = {
-				focus = SOV_the_anti_soviet_trotskyist_center
+				focus = SOV_pol_PURGE2
 				progress > 0.5
 			}
 		}
 		AND = {
-			NOT = { has_completed_focus = SOV_the_military_conspiracy }
+			NOT = { has_completed_focus = SOV_pol_PURGE3 }
 			focus_progress = {
-				focus = SOV_the_military_conspiracy
+				focus = SOV_pol_PURGE3
 				progress > 0.5
 			}
 		}
 		AND = {
-			NOT = { has_completed_focus = SOV_the_bloc_of_rights_and_trotskyites }
+			NOT = { has_completed_focus = SOV_pol_PURGE4 }
 			focus_progress = {
-				focus = SOV_the_bloc_of_rights_and_trotskyites
+				focus = SOV_pol_PURGE4
 				progress > 0.5
 			}
 		}
@@ -914,7 +1029,7 @@ SOV_paranoia_is_finishing_purge_focus = {
 }
 
 SOV_is_going_historical_stalinist = { # Add/Change stuff here instead of doing it in 2243987238472854294 places, tack så mycket
-	has_completed_focus = SOV_the_centre	
+	has_completed_focus = SOV_pol_general1	
 }
 
 # SOV_target_capital_is_on_unlocked_continent_fifth_columnists = {
@@ -1250,14 +1365,14 @@ SOV_is_major_not_original_sov = {
 }
 
 SOV_is_stalinist = {
-	has_completed_focus = SOV_the_centre
+	has_completed_focus = SOV_pol_general1
 }
 
 SOV_we_want_to_send_ultimatums = {
 	OR = {
-		has_completed_focus = SOV_claims_on_baltic
+		has_completed_focus = SOV_prepare_expansion
 		focus_progress = {
-			focus = SOV_claims_on_baltic
+			focus = SOV_prepare_expansion
 			progress > 0.01
 		}
 	}

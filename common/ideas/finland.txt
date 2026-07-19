@@ -21,9 +21,10 @@ ideas = {
 				army_core_defence_factor = 0.2
 			}
 		}
-
+		
 		winter_war_ns = {
-			picture = tur_sub_zero_survival_training
+			#picture = tur_sub_zero_survival_training
+			picture = SWE_with_finland_for_sweden_swe
 			allowed = {
 				always = no
 			}
@@ -33,17 +34,83 @@ ideas = {
 			}
 
 			cancel = {
-				NOT = { has_war_with = SOV }
+				OR = {
+					NOT = { has_war_with = SOV }
+					GER = { has_war_with = SOV }
+				}
+			}
+
+			removal_cost = -1
+			
+			
+			modifier = {
+				hidden_modifier = {
+					conscription = 0.03
+					mobilization_speed = 0.85
+					industry_air_damage_factor = -0.85
+					#army_core_defence_factor = 0.05
+					army_org_factor = 0.05
+				}
+				custom_modifier_tooltip = FIN_winter_war_idea_tt
+			}
+		}
+		
+		FIN_kolla_kesta = {
+			picture = ger_bulwark_against_bolshevism
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			cancel = {
+				OR = {
+					NOT = { has_war_with = SOV }
+					GER = { has_war_with = SOV }
+				}
 			}
 
 			removal_cost = -1
 			
 			modifier = {
-				conscription = 0.03
-				mobilization_speed = 0.85
-				winter_attrition_factor = -0.1
-				army_core_defence_factor = 0.1
-				industry_air_damage_factor = -0.8
+				supply_node_range = 0.05
+				#supply_combat_penalties_on_core_factor = -0.05
+				#army_speed_factor = 0.1
+				#winter_attrition = -0.1
+				army_core_attack_factor = 0.05
+				army_core_defence_factor = 0.05
+				#army_org_factor = 0.05
+				power_balance_weekly = -0.015
+			}
+			equipment_bonus = {
+				anti_tank_equipment = {
+					ap_attack = 0.15
+					hard_attack = 0.1
+					instant = yes
+				}
+			}
+		}
+
+		FIN_blenheim_purchased = {
+			picture = generic_air_payment
+			allowed = {
+				always = no
+			}
+		
+			allowed_civil_war = {
+				always = no
+			}
+		
+			cancel = {
+			}
+		
+			removal_cost = -1
+			
+			targeted_modifier = {
+				tag = ENG
+				cic_to_target_factor = 0.15
 			}
 		}
 
@@ -239,7 +306,7 @@ ideas = {
 				#attrition = 0
 				#army_core_attack_factor = 0
 				#army_core_defence_factor = 0.05
-				industry_air_damage_factor = -0.75
+				industry_air_damage_factor = -0.5
 				acclimatization_hot_climate_gain_factor = -9.99
 			}
 		}
@@ -266,7 +333,7 @@ ideas = {
 				#attrition = 0
 				army_core_attack_factor = 0.05
 				army_core_defence_factor = 0.05
-				industry_air_damage_factor = -0.75
+				industry_air_damage_factor = -0.5
 				acclimatization_hot_climate_gain_factor = -9.99
 			}
 		}
@@ -293,7 +360,7 @@ ideas = {
 				attrition = -0.025
 				army_core_attack_factor = 0.1
 				army_core_defence_factor = 0.1
-				industry_air_damage_factor = -0.75
+				industry_air_damage_factor = -0.5
 				acclimatization_hot_climate_gain_factor = -9.99
 			}
 		}
@@ -320,7 +387,7 @@ ideas = {
 				attrition = -0.05
 				army_core_attack_factor = 0.15
 				army_core_defence_factor = 0.15
-				industry_air_damage_factor = -0.75
+				industry_air_damage_factor = -0.5
 				acclimatization_hot_climate_gain_factor = -9.99
 			}
 		}
@@ -347,7 +414,7 @@ ideas = {
 				attrition = -0.075
 				army_core_attack_factor = 0.2
 				army_core_defence_factor = 0.2
-				industry_air_damage_factor = -0.75
+				industry_air_damage_factor = -0.5
 				acclimatization_hot_climate_gain_factor = -9.99
 			}
 		}
@@ -453,8 +520,9 @@ ideas = {
 				resistance_decay_on_our_occupied_states = -0.20
 				resistance_target_on_our_occupied_states = 0.1
 				resistance_damage_to_garrison_on_our_occupied_states = 0.1
-				target_sabotage_cost = -0.15
-				target_sabotage_factor = 0.1
+				compliance_growth_on_our_occupied_states = -0.2
+				#target_sabotage_cost = -0.15
+				#target_sabotage_factor = 0.1
 			}
 		}
 
@@ -512,7 +580,7 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				production_speed_bunker_factor = 0.2
+				production_speed_bunker_factor = 0.1
 			}
 		}
 
@@ -572,8 +640,8 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				conscription_factor = 0.1
-				conscription = 0.01
+				#conscription_factor = 0.1
+				conscription = 0.015
 				army_morale_factor = 0.05
 				weekly_casualties_war_support = 0.001
 			}
@@ -639,34 +707,34 @@ ideas = {
 
 			available = {
 				is_subject = no
-				is_in_faction = no
+				#is_in_faction = no
 				NOT = { has_government = democratic }
 				NOT = { has_government = communism }
 			}
 			
-			on_add = {
-				set_rule = { 
-					desc = FIN_the_lone_wolf
-					can_create_factions = no
-					can_join_factions = no
-					can_send_volunteers = yes
-				}
-			}
+			#on_add = {
+			#	set_rule = { 
+			#		desc = FIN_the_lone_wolf
+			#		can_create_factions = no
+			#		can_join_factions = no
+			#		can_send_volunteers = yes
+			#	}
+			#}
 
 			modifier = {
-				conscription_factor = 0.05
-				conscription = 0.005
-				defensive_war_stability_factor = 0.35
-				improve_relations_maintain_cost_factor = -0.5
+				#conscription_factor = 0.05
+				conscription = 0.01
+				army_core_attack_factor = 0.05
+				#defensive_war_stability_factor = 0.35
+				#improve_relations_maintain_cost_factor = -0.5
 				weekly_casualties_war_support = 0.005
-				weekly_bombing_war_support = 0.005
 				fascism_acceptance = 50
-				enemy_justify_war_goal_time = 1
-				custom_modifier_tooltip = FIN_the_lone_wolf_tt
+				#enemy_justify_war_goal_time = 1
+				#custom_modifier_tooltip = FIN_the_lone_wolf_tt
 			}
 		}
 
-		FIN_finnish_march_of_conquest = {
+		FIN_finnish_march_of_conquest_idea = {
 			picture = FIN_finnish_march_of_conquest
 			allowed = {
 				always = no
@@ -684,7 +752,7 @@ ideas = {
 			modifier = {
 				army_attack_against_major_factor = 0.05
 				army_breakthrough_against_major_factor = 0.05
-				army_morale_factor = 0.05
+				#army_morale_factor = 0.05
 			}
 		}
 
@@ -1178,7 +1246,7 @@ ideas = {
 				fascism_drift = 0.1
 				political_advisor_cost_factor = -0.2
 				war_support_factor = 0.05
-				conscription = 0.005
+				conscription = 0.01
 				training_time_army_factor = -0.1
 				army_morale_factor = 0.075
 				army_org_regain = 0.075
@@ -1204,14 +1272,14 @@ ideas = {
 				fascism_drift = 0.1
 				political_advisor_cost_factor = -0.2
 				war_support_factor = 0.05
-				conscription = 0.01
+				conscription = 0.015
 				training_time_army_factor = -0.1
 				army_morale_factor = 0.075
 				army_org_regain = 0.075
 				army_core_attack_factor = 0.03
 				army_core_defence_factor = 0.03
-				modifier_army_sub_unit_militia_speed_factor = 0.05
-				modifier_army_sub_unit_militia_max_org_factor = 0.1
+				#modifier_army_sub_unit_militia_speed_factor = 0.05
+				modifier_army_sub_unit_militia_max_org_factor = 0.05
 			}
 		}
 
@@ -1377,7 +1445,7 @@ ideas = {
 			
 			modifier = {
 				drift_defence_factor = 0.5
-				war_support_factor = 0.05
+				#war_support_factor = 0.05
 				
 				operative_slot = 1
 				agency_upgrade_time = -0.2

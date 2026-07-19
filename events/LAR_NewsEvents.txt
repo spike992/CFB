@@ -67,12 +67,12 @@ news_event = {
 
 	immediate = {
 		hidden_effect = {
-			if = {
-				limit = {
-					has_completed_focus = SPA_the_phalanx_ascendant
-				}
-				set_global_flag = SPR_falange_won
-			}
+			# if = {
+			# 	limit = {
+			# 		has_completed_focus = SPA_the_phalanx_ascendant
+			# 	}
+			# 	set_global_flag = SPR_falange_won
+			# }
 			if = {
 				limit = {
 					has_completed_focus = SPA_unify_the_nationalist_front
@@ -108,16 +108,16 @@ news_event = {
 					division_template = "Brigada Legionario"
 					disband = yes
 				}
-				if = {
-					limit = {
-						tag = SPA
-						has_completed_focus = SPA_the_fifth_column
-					}
-					delete_unit_template_and_units = {
-						division_template = "Fifth Columnist Brigade"
-						disband = yes
-					}
-				}
+				# if = {
+				# 	limit = {
+				# 		tag = SPA
+				# 		has_completed_focus = SPA_the_fifth_column
+				# 	}
+				# 	delete_unit_template_and_units = {
+				# 		division_template = "Fifth Columnist Brigade"
+				# 		disband = yes
+				# 	}
+				# }
 				if = {
 					limit = {
 						NOT = {
@@ -215,6 +215,11 @@ news_event = {
 				}
 				remove_ideas = SPA_death_before_surrender
 				add_timed_idea = { idea = SPA_recovering_from_civil_war days = 2190 }
+				set_power_balance = {
+					id = SPR_spain_appeasement_struggle
+					set_value = -1
+				}
+				add_dynamic_modifier = { modifier = SPR_appeasement_modifier }
 				if = {
 					limit = {
 						has_idea = SPA_foreign_training_staff
@@ -361,16 +366,16 @@ news_event = {
 					division_template = "Brigada Legionario"
 					disband = yes
 			}
-			if = {
-				limit = {
-					tag = SPA
-					has_completed_focus = SPA_the_fifth_column
-				}
-				delete_unit_template_and_units = {
-					division_template = "Fifth Columnist Brigade"
-					disband = yes
-				}
-			}
+			# if = {
+			# 	limit = {
+			# 		tag = SPA
+			# 		has_completed_focus = SPA_the_fifth_column
+			# 	}
+			# 	delete_unit_template_and_units = {
+			# 		division_template = "Fifth Columnist Brigade"
+			# 		disband = yes
+			# 	}
+			# }
 			if = {
 				limit = {
 					NOT = {
@@ -390,6 +395,10 @@ news_event = {
 				remove_ideas = SPA_a_methodical_approach
 			}
 			add_timed_idea = { idea = SPA_recovering_from_civil_war days = 2190 }
+			set_power_balance = {
+				id = SPR_spain_appeasement_struggle
+				set_value = -1
+			}
 			if = {
 				limit = {
 					has_idea = SPA_foreign_training_staff
@@ -514,18 +523,18 @@ news_event = {
 
 	immediate = {
 		hidden_effect = {
-			if = {
-				limit = {
-					has_completed_focus = SPR_regional_defense_council_of_aragon
-				}
-				set_global_flag = SPR_anarchists_won
-			}
-			if = {
-				limit = {
-					has_completed_focus = SPR_hinder_nkvd_interference
-				}
-				set_global_flag = SPR_poum_won
-			}
+			# if = {
+			# 	limit = {
+			# 		has_completed_focus = SPR_regional_defense_council_of_aragon
+			# 	}
+			# 	set_global_flag = SPR_anarchists_won
+			# }
+			# if = {
+			# 	limit = {
+			# 		has_completed_focus = SPR_hinder_nkvd_interference
+			# 	}
+			# 	set_global_flag = SPR_poum_won
+			# }
 			if = {
 				limit = {
 					has_completed_focus = SPR_the_stalinist_doctrine
@@ -548,7 +557,7 @@ news_event = {
 				if = {
 					limit = {
 						tag = SPC
-						SPC = { has_completed_focus = SPR_regional_defense_council_of_aragon }
+						#SPC = { has_completed_focus = SPR_regional_defense_council_of_aragon }
 					}
 					set_global_flag = { flag = SPR_anarchist_victory_timer_flag value = 1 days = 365 }
 				}
@@ -784,7 +793,8 @@ news_event = {
 			SPC = { has_capitulated = no }
 			NOT = { tag = SPC }
 			NOT = { original_tag = SPR }
-			SPC = { has_completed_focus = SPR_regional_defense_council_of_aragon }
+			always = no
+			#SPC = { has_completed_focus = SPR_regional_defense_council_of_aragon }
 		}
 	}
 	option = {
@@ -815,7 +825,8 @@ news_event = {
 			country_exists = SPC
 			SPC = { has_capitulated = no }
 			NOT = { tag = SPC }
-			SPC = { has_completed_focus = SPR_hinder_nkvd_interference }
+			always = no
+			#SPC = { has_completed_focus = SPR_hinder_nkvd_interference }
 		}
 	}
 	option = {
@@ -856,7 +867,8 @@ news_event = {
 			country_exists = SPC
 			SPC = { has_capitulated = no }
 			NOT = { tag = SPC }
-			SPC = { has_completed_focus = SPR_hinder_nkvd_interference }
+			always = no
+			#SPC = { has_completed_focus = SPR_hinder_nkvd_interference }
 		}
 	}
 	option = {
@@ -884,7 +896,8 @@ news_event = {
 			country_exists = SPC
 			SPC = { has_capitulated = no }
 			NOT = { tag = SPC }
-			SPC = { has_completed_focus = SPR_hinder_nkvd_interference }
+			always = no
+			#SPC = { has_completed_focus = SPR_hinder_nkvd_interference }
 		}
 	}
 	option = {
@@ -997,7 +1010,7 @@ news_event = {
 			if = {
 				limit = {
 					tag = SPC
-					SPC = { has_completed_focus = SPR_regional_defense_council_of_aragon }
+					#SPC = { has_completed_focus = SPR_regional_defense_council_of_aragon }
 				}
 				set_global_flag = { flag = SPR_anarchist_victory_timer_flag value = 1 days = 365 }
 			}

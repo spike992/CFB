@@ -3829,6 +3829,10 @@ country_event = {
 					NOT = { is_in_faction_with = FROM }
 				}
 			}
+			modifier = {
+				factor = 10
+				enemies_strength_ratio > 0.5
+			}
 		}
 		FROM = {
 			country_event = {
@@ -5026,7 +5030,17 @@ country_event = {
 				amount = 2500  
 				producer = ITA
 			}
-			 clr_country_flag = ETH_wants_inf_equip_flag
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				add_equipment_subsidy = {
+					cic = 500
+					equipment_type = infantry_equipment
+					seller_tags  = { ITA }
+				}
+			}
+			clr_country_flag = ETH_wants_inf_equip_flag
 		}
 		ELSE_IF = {
 			limit = {
@@ -5037,7 +5051,17 @@ country_event = {
 				amount = 500  
 				producer = ITA
 			}
-			clr_country_flag = ETH_wants_inf_equip_flag
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				add_equipment_subsidy = {
+					cic = 250
+					equipment_type = artillery_equipment
+					seller_tags  = { ITA }
+				}
+			}
+			clr_country_flag = ETH_wants_artillery_flag
 		}
 
 	}
@@ -5306,7 +5330,7 @@ country_event = {
 			modifier = {
 				add = -10
 				FROM = {
-					NOT = { is_puppet_of = ROOT }
+					NOT = { is_subject_of = ROOT }
 				}
 			}
 		}
@@ -5325,7 +5349,7 @@ country_event = {
 			modifier = {
 				add = 10
 				FROM = {
-					NOT = { is_puppet_of = ROOT }
+					NOT = { is_subject_of = ROOT }
 				}
 			}
 		}	
@@ -7813,6 +7837,7 @@ country_event = {
 					limit = {
 						#PREV.PREV is target country for release
 						is_core_of = PREV.PREV
+						is_on_continent = africa
 					}
 					set_state_flag = ETH_prio_state_flag
 				}

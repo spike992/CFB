@@ -25,6 +25,95 @@ add_namespace = AAT_germany
 # 	}
 # }
 
+country_event = {
+	id = germany.355 # I hope this ID isnt used / never gets used
+	title = germany.355.t
+	desc = germany.355.d
+	picture = GFX_report_event_military_planning
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	timeout_days = 3
+
+	option = {
+		name = germany.355.a		
+		# if = {
+		# 	limit = {
+		# 		NOT = { has_country_flag = GER_army_equipped_for_winter }
+		# 	}
+		# 	add_timed_idea = {
+		# 		idea = GER_barb_winter_debuff
+		# 		days = 120
+		# 	}
+		# 	custom_effect_tooltip = generic_skip_one_line_tt
+		# }
+
+		remove_dynamic_modifier = { modifier = GER_barb_buff_dynamic_modifier }
+	}
+}
+
+
+country_event = {
+	id = germany.375 # I hope this ID isnt used / never gets used
+	title = germany.375.t
+	desc = germany.375.d
+	picture = GFX_report_event_military_planning
+
+	is_triggered_only = yes
+
+	option = {
+		name = germany.375.a
+		add_political_power = 10
+		hidden_effect = {
+			country_event = { id = germany.376 days = 90 } # make this 90
+		}
+	}
+	option = {
+		name = germany.375.b
+		army_experience = 5
+		hidden_effect = {
+			country_event = { id = germany.376 days = 90 } # make this 90
+		}
+	}
+	option = {
+		name = germany.375.c
+		add_stability = 0.01
+		hidden_effect = {
+			country_event = { id = germany.376 days = 90 } # make this 90
+		}
+	}
+}
+
+# No matter your choice in the first even, wargames always end in failure
+country_event = {
+	id = germany.376 # I hope this ID isnt used / never gets used
+	title = germany.376.t
+	desc = germany.376.d
+	picture = GFX_report_event_soviet_tanks
+
+	is_triggered_only = yes
+
+	option = {
+		name = germany.376.a
+		add_political_power = -35
+		add_war_support = -0.05
+		custom_effect_tooltip = GER_generic_modify_barb_buff_tt
+
+		custom_effect_tooltip = GER_barb_buff_coordination_bonus_var_5_tt
+		add_to_variable = { var = GER_barb_buff_coordination_bonus_var value = 0.05 }
+
+		custom_effect_tooltip = GER_barb_buff_planning_speed_var_5_tt
+		add_to_variable = { var = GER_barb_buff_planning_speed_var value = 0.05 }
+
+		custom_effect_tooltip = GER_barb_buff_max_planning_factor_var_5_tt
+		add_to_variable = { var = GER_barb_buff_max_planning_factor_var value = 0.05 }
+
+		# custom_effect_tooltip = GER_barb_buff_org_loss_when_moving_var_-5_tt
+		# add_to_variable = { var = GER_barb_buff_org_loss_when_moving_var value = -0.05 }
+	}
+}
+
 
 # Austrian Anschluss Completed
 country_event = {
@@ -364,6 +453,7 @@ country_event = {
 	fire_only_once = yes
 
 	trigger = {
+		always = no
 		tag = GER
 		has_global_flag = sov_yes_pact
 		SOV = { exists = yes }
@@ -3557,12 +3647,6 @@ country_event = {
 
 		hidden_effect = {
 			country_event = { hours = 6 id = news.60 }
-			every_state = {
-				limit = {
-					is_controlled_by = SLO
-				}
-				add_core_of = SLO
-			}
 			SLO = {
 				add_manpower = 9876
 				if = {
@@ -3575,6 +3659,133 @@ country_event = {
 					load_oob = "SLO_1939"
 				}
 			}
+			#Czech Exile Events
+			if = {
+				limit = {
+					has_dlc = "Peace For Our Time"
+					any_country_with_original_tag = {
+						original_tag_to_check = CZE
+						is_government_in_exile = no
+						is_ai = yes #Don't steal from a player
+						OR = {
+							exists = no
+							has_capitulated = yes
+							is_subject_of = GER #idk how but you can never be too safe
+						}
+					}
+				}
+				#Sanity checks for each country to get the exile event
+				if = {
+					limit = {
+						10 = {
+							is_fully_controlled_by = POL
+						}
+						POL = {
+							exists = yes
+							is_government_in_exile = no
+							OR = {
+								has_government = democratic
+								#has_completed_focus = POL_coerce_czechoslovakia
+								has_completed_focus = POL_camp_of_national_unity
+								has_completed_focus = POL_dissolve_the_bbwr
+								has_completed_focus = POL_align_with_the_west
+								AND = {
+									has_completed_focus = POL_the_castle
+									GER = {
+										has_completed_focus = GER_reassert_eastern_claims
+									}
+								}
+							}
+							NOT = {
+								OR = {
+									is_in_faction_with = GER
+									has_war_with = CZE
+								}
+							}
+						}
+					}
+					POL = {
+						country_event = { id = MUN_czech_exile.1 days = 7 } 
+					}
+				}
+				if = {
+					limit = {
+						16 = {
+							is_fully_controlled_by = FRA
+						}
+						FRA = {
+							exists = yes
+							is_government_in_exile = no
+							OR = {
+								has_government = democratic
+								has_completed_focus = FRA_buy_time
+								has_completed_focus = FRA_confirm_eastern_commitments
+								#has_completed_focus = FRA_anti_fascist_coalition
+							}
+							NOT = {
+								OR = {
+									is_in_faction_with = GER
+									has_war_with = CZE
+								}
+							}
+						}
+					}
+					FRA = {
+						country_event = { id = MUN_czech_exile.1 days = 35 } 
+					}
+				}
+				if = {
+					limit = {
+						126 = {
+							is_fully_controlled_by = ENG
+						}
+						ENG = {
+							exists = yes
+							is_government_in_exile = no
+							OR = {
+								has_government = democratic
+								#has_completed_focus = ENG_steady_as_she_goes
+								#has_completed_focus = ENG_tackle_fascism
+							}
+							NOT = {
+								OR = {
+									is_in_faction_with = GER
+									has_war_with = CZE
+								}
+							}
+						}
+					}
+					ENG = {
+						country_event = { id = MUN_czech_exile.1 days = 35 } 
+					}
+				}
+				if = {
+					limit = {
+						219 = {
+							is_fully_controlled_by = SOV
+						}
+						SOV = {
+							exists = yes
+							is_government_in_exile = no
+							OR = {
+								has_government = democratic
+								#has_completed_focus = SOV_eradicate_western_fascism
+								#has_completed_focus = SOV_the_centre
+							}
+							NOT = {
+								OR = {
+									is_in_faction_with = GER
+									has_war_with = CZE
+								}
+							}
+						}
+					}
+					SOV = { #Going to check back in and see if this is still sane to do
+						country_event = { id = MUN_czech_exile.2 days = 1265 }
+					}
+				}
+			}
+			#End Exile CZE Events
 		}
 	}
 
@@ -3956,12 +4167,6 @@ country_event = {
 
 		hidden_effect = {
 			country_event = { hours = 6 id = news.60 }
-			every_state = {
-				limit = {
-					is_controlled_by = SLO
-				}
-				add_core_of = SLO
-			}
 			SLO = {
 				add_manpower = 9876
 				if = {
@@ -3974,6 +4179,133 @@ country_event = {
 					load_oob = "SLO_1939"
 				}
 			}
+			#Czech Exile Events
+			if = {
+				limit = {
+					has_dlc = "Peace For Our Time"
+					any_country_with_original_tag = {
+						original_tag_to_check = CZE
+						is_government_in_exile = no
+						is_ai = yes #Don't steal from a player
+						OR = {
+							exists = no
+							has_capitulated = yes
+							is_subject_of = GER #idk how but you can never be too safe
+						}
+					}
+				}
+				#Sanity checks for each country to get the exile event
+				if = {
+					limit = {
+						10 = {
+							is_fully_controlled_by = POL
+						}
+						POL = {
+							exists = yes
+							is_government_in_exile = no
+							OR = {
+								has_government = democratic
+								#has_completed_focus = POL_coerce_czechoslovakia
+								has_completed_focus = POL_camp_of_national_unity
+								has_completed_focus = POL_dissolve_the_bbwr
+								has_completed_focus = POL_align_with_the_west
+								AND = {
+									has_completed_focus = POL_the_castle
+									GER = {
+										has_completed_focus = GER_reassert_eastern_claims
+									}
+								}
+							}
+							NOT = {
+								OR = {
+									is_in_faction_with = GER
+									has_war_with = CZE
+								}
+							}
+						}
+					}
+					POL = {
+						country_event = { id = MUN_czech_exile.1 days = 8 } 
+					}
+				}
+				if = {
+					limit = {
+						16 = {
+							is_fully_controlled_by = FRA
+						}
+						FRA = {
+							exists = yes
+							is_government_in_exile = no
+							OR = {
+								has_government = democratic
+								has_completed_focus = FRA_buy_time
+								has_completed_focus = FRA_confirm_eastern_commitments
+								#has_completed_focus = FRA_anti_fascist_coalition
+							}
+							NOT = {
+								OR = {
+									is_in_faction_with = GER
+									has_war_with = CZE
+								}
+							}
+						}
+					}
+					FRA = {
+						country_event = { id = MUN_czech_exile.1 days = 35 } 
+					}
+				}
+				if = {
+					limit = {
+						126 = {
+							is_fully_controlled_by = ENG
+						}
+						ENG = {
+							exists = yes
+							is_government_in_exile = no
+							OR = {
+								has_government = democratic
+								#has_completed_focus = ENG_steady_as_she_goes
+								#has_completed_focus = ENG_tackle_fascism
+							}
+							NOT = {
+								OR = {
+									is_in_faction_with = GER
+									has_war_with = CZE
+								}
+							}
+						}
+					}
+					ENG = {
+						country_event = { id = MUN_czech_exile.1 days = 35 } 
+					}
+				}
+				if = {
+					limit = {
+						219 = {
+							is_fully_controlled_by = SOV
+						}
+						SOV = {
+							exists = yes
+							is_government_in_exile = no
+							OR = {
+								has_government = democratic
+								#has_completed_focus = SOV_eradicate_western_fascism
+								#has_completed_focus = SOV_the_centre
+							}
+							NOT = {
+								OR = {
+									is_in_faction_with = GER
+									has_war_with = CZE
+								}
+							}
+						}
+					}
+					SOV = { #Going to check back in and see if this is still sane to do
+						country_event = { id = MUN_czech_exile.2 days = 1265 }
+					}
+				}
+			}
+			#End Exile CZE Events
 		}
 	}
 	option = {
@@ -4395,6 +4727,136 @@ country_event = {
 		GER_czechoslovakia_modify_mefo_bills_or_economy_of_conquest = yes
 		GER_seize_gold_reserves_in_europe_peacefully = yes
 		add_to_variable = { var = GER_mefo_bill_counter value = -10 }
+
+		hidden_effect = {
+			#Czech Exile Events
+			if = {
+				limit = {
+					has_dlc = "Peace For Our Time"
+					any_country_with_original_tag = {
+						original_tag_to_check = CZE
+						is_government_in_exile = no
+						is_ai = yes #Don't steal from a player
+						OR = {
+							exists = no
+							has_capitulated = yes
+							is_subject_of = GER #idk how but you can never be too safe
+						}
+					}
+				}
+				#Sanity checks for each country to get the exile event
+				if = {
+					limit = {
+						10 = {
+							is_fully_controlled_by = POL
+						}
+						POL = {
+							exists = yes
+							is_government_in_exile = no
+							OR = {
+								has_government = democratic
+								#has_completed_focus = POL_coerce_czechoslovakia
+								has_completed_focus = POL_camp_of_national_unity
+								has_completed_focus = POL_dissolve_the_bbwr
+								has_completed_focus = POL_align_with_the_west
+								AND = {
+									has_completed_focus = POL_the_castle
+									GER = {
+										has_completed_focus = GER_reassert_eastern_claims
+									}
+								}
+							}
+							NOT = {
+								OR = {
+									is_in_faction_with = GER
+									has_war_with = CZE
+								}
+							}
+						}
+					}
+					POL = {
+						country_event = { id = MUN_czech_exile.1 days = 7 } 
+					}
+				}
+				if = {
+					limit = {
+						16 = {
+							is_fully_controlled_by = FRA
+						}
+						FRA = {
+							exists = yes
+							is_government_in_exile = no
+							OR = {
+								has_government = democratic
+								has_completed_focus = FRA_buy_time
+								has_completed_focus = FRA_confirm_eastern_commitments
+								#has_completed_focus = FRA_anti_fascist_coalition
+							}
+							NOT = {
+								OR = {
+									is_in_faction_with = GER
+									has_war_with = CZE
+								}
+							}
+						}
+					}
+					FRA = {
+						country_event = { id = MUN_czech_exile.1 days = 35 } 
+					}
+				}
+				if = {
+					limit = {
+						126 = {
+							is_fully_controlled_by = ENG
+						}
+						ENG = {
+							exists = yes
+							is_government_in_exile = no
+							OR = {
+								has_government = democratic
+								#has_completed_focus = ENG_steady_as_she_goes
+								#has_completed_focus = ENG_tackle_fascism
+							}
+							NOT = {
+								OR = {
+									is_in_faction_with = GER
+									has_war_with = CZE
+								}
+							}
+						}
+					}
+					ENG = {
+						country_event = { id = MUN_czech_exile.1 days = 35 } 
+					}
+				}
+				if = {
+					limit = {
+						219 = {
+							is_fully_controlled_by = SOV
+						}
+						SOV = {
+							exists = yes
+							is_government_in_exile = no
+							OR = {
+								has_government = democratic
+								#has_completed_focus = SOV_eradicate_western_fascism
+								#has_completed_focus = SOV_the_centre
+							}
+							NOT = {
+								OR = {
+									is_in_faction_with = GER
+									has_war_with = CZE
+								}
+							}
+						}
+					}
+					SOV = { #Going to check back in and see if this is still sane to do
+						country_event = { id = MUN_czech_exile.2 days = 1265 }
+					}
+				}
+			}
+			#End Exile CZE Events
+		}
 	}
 
 	after = {

@@ -22,6 +22,7 @@ add_namespace = NSB_soviet_civil_war_common
 add_namespace = NSB_soviet_fascist_tsarist
 add_namespace = NSB_soviet_nationalist
 add_namespace = soviet
+add_namespace = SOV_auto_complete_focus
 
 
 #########################
@@ -29,42 +30,42 @@ add_namespace = soviet
 #########################
 
 ### PARANOIA SYSTEM STARTS ###
-country_event = {
-	id = NSB_soviet_paranoia_system_events.01
-	title = NSB_soviet_paranoia_system_events.01.t
-	desc = NSB_soviet_paranoia_system_events.01.desc
-	picture = GFX_report_event_stalin_01
-	
-	is_triggered_only = yes
-
-	fire_only_once = yes
-
-	immediate = {
-		hidden_effect = {
-			SOV_initiate_paranoia_effect = yes
-		}
-		set_country_flag = SOV_purge 
-	}
-
-	trigger = {
-		NOT = { has_completed_focus = SOV_the_bloc_of_rights_and_trotskyites }
-	}
-
-	option = { #GOOD TO KNOW, THANKS
-		name = NSB_soviet_paranoia_system_events.01.a
-		
-		custom_effect_tooltip = SOV_paranoia_system_intro_tt
-		unlock_decision_category_tooltip = SOV_paranoia_system
-
-		#Stalin gets paranoid
-		effect_tooltip = {
-			add_country_leader_trait = stalin_political_paranoia
-		}
-
-		#NKVD chiefs will make Political Paranoia worse
-		custom_effect_tooltip = SOV_paranoia_system_nkvd_trait_tt
-	}
-}
+#country_event = {
+#	id = NSB_soviet_paranoia_system_events.01
+#	title = NSB_soviet_paranoia_system_events.01.t
+#	desc = NSB_soviet_paranoia_system_events.01.desc
+#	picture = GFX_report_event_stalin_01
+#	
+#	is_triggered_only = yes
+#
+#	fire_only_once = yes
+#
+#	immediate = {
+#		hidden_effect = {
+#			 SOV_initiate_paranoia_effect = yes
+#		}
+#		 set_country_flag = SOV_purge 
+#	}
+#
+#	trigger = {
+#		NOT = { has_completed_focus = SOV_the_bloc_of_rights_and_trotskyites }
+#	}
+#
+#	option = { #GOOD TO KNOW, THANKS
+#		name = NSB_soviet_paranoia_system_events.01.a
+#		
+#		custom_effect_tooltip = SOV_paranoia_system_intro_tt
+#		unlock_decision_category_tooltip = SOV_paranoia_system
+#
+#		#Stalin gets paranoid
+#		effect_tooltip = {
+#			add_country_leader_trait = stalin_political_paranoia
+#		}
+#
+#		#NKVD chiefs will make Political Paranoia worse
+#		custom_effect_tooltip = SOV_paranoia_system_nkvd_trait_tt
+#	}
+#}
 
 ####################
 ### ADMIN PURGES ###
@@ -937,224 +938,224 @@ country_event = {
 }
 
 ### GREAT PURGE TRIAL OF THE GENERALS - ARMY ###
-country_event = {
-	id = NSB_soviet_paranoia_system_events.29
-	title = NSB_soviet_paranoia_system_events.29.t
-	desc = NSB_soviet_paranoia_system_events.29.desc
-	picture = GFX_report_event_soviet_purge_officers_01
-	
-	is_triggered_only = yes
-
-	immediate = {
-		hidden_effect = {
-			SOV_paranoia_increase_purge_counter_great = yes
-		}
-	}
-
-	option = { #PURGE THEM!!
-		name = NSB_soviet_paranoia_system_events.29.a
-		ai_chance = {
-			base = 10
-		}
-
-		trigger = {
-			NOT = { has_global_flag = SOV_border_war_loss }
-		}
-
-		hidden_effect = {
-			#Purge any Advisors
-			every_character = {
-				limit = {
-					has_army_ledger = yes
-					OR = {
-						has_character_flag = SOV_targeted_for_purge_flag
-						has_character_flag = SOV_blyukher_targeted_for_purge_flag
-						has_character_flag = SOV_tukhachevsky_targeted_for_purge_flag
-					}
-					
-				}
-				SOV_purge_character_effect = yes	
-				#log = "Hey I am [THIS.GetName] I am in the Event!"
-			}
-
-			#Purge any Marshals/Generals #This is a duplicate as a workaround for tooltip purposes
-			every_army_leader = {
-				limit = {
-					OR = {
-						is_field_marshal = yes
-						is_corps_commander = yes
-					}
-					OR = {
-						has_character_flag = SOV_targeted_for_purge_flag
-						has_character_flag = SOV_blyukher_targeted_for_purge_flag
-						has_character_flag = SOV_tukhachevsky_targeted_for_purge_flag
-					}
-				}
-				SOV_purge_character_effect = yes	
-				#log = "Hey I am [THIS.GetName] I am in the Event!"
-			}
-
-			if = {
-				limit = {
-					has_global_flag = SOV_border_war_loss
-				}
-				every_army_leader = {
-					limit = {
-						OR = {
-							is_field_marshal = yes
-							is_corps_commander = yes
-						}
-						has_character_flag = SOV_blyukher_targeted_for_purge_flag
-					}
-					SOV_purge_character_effect = yes	
-					#log = "Hey I am [THIS.GetName] I am in the Event!"
-				}
-			}
-
-			# Yegerov may come in left side
-			every_character = {
-				limit = {
-					has_character_flag = SOV_POSSIBLE_targeted_for_purge_flag2			
-				}
-				set_character_flag = SOV_exiled_flag
-			}
-		}
-
-		#Update purged portraits in UI
-		hidden_effect = {
-			SOV_paranoia_update_portraits_ui = yes
-		}
-
-		custom_effect_tooltip = SOV_characters_will_be_purged_tt
-		character_list_tooltip = {
-			limit = {
-				OR = {
-					has_character_flag = SOV_targeted_for_purge_flag
-					has_character_flag = SOV_tukhachevsky_targeted_for_purge_flag
-					has_character_flag = SOV_blyukher_targeted_for_purge_flag
-				}
-			}
-		}
-
-
-		#RANDOM GENERALS COWED
-		SOV_paranoia_daunt_generals_effect = yes
-
-		#PARANOIA decreases
-		SOV_paranoia_very_high_decrease_effect = yes
-
-		if = {
-			limit = {
-				has_country_flag = SOV_purge_event_unavoidable_flag
-			}
-			custom_effect_tooltip = SOV_purge_event_unavoidable_purge_great_tt
-		}
-		else_if = {
-			limit = {
-				has_political_power < SOV_purge_event_pp_to_avoid_great
-			}
-			custom_effect_tooltip = SOV_purge_event_not_enough_pp_to_avoid_great_tt
-		}
-
-		#Clear flags forbidding the "avoid purge" option from showing up
-		SOV_clear_unavoidable_purge_flags_effect = yes
-
-		# Increase opposition Army Support 
-		SOV_increase_opposition_army_support_small = yes  
-	}
-
-	option = { #Save Blukyhr Only
-		name = NSB_soviet_paranoia_system_events.29.b
-		ai_chance = {
-			base = 1
-			modifier = { #Don't go to negative PP please
-				factor = 0
-				has_political_power < SOV_purge_event_pp_to_avoid_great_pay
-			}
-			modifier = { #Don't risk starting CW too early
-				factor = 0
-				SOV_is_opposition = yes 
-			}
-		}
-
-		trigger = {
-			NOT = { has_global_flag = SOV_border_war_loss }
-		}
-
-		hidden_effect = {
-			#Purge any Advisors
-			every_character = {
-				limit = {
-					has_army_ledger = yes
-					OR = {
-						has_character_flag = SOV_targeted_for_purge_flag
-						has_character_flag = SOV_tukhachevsky_targeted_for_purge_flag
-					}
-				}
-				SOV_purge_character_effect = yes	
-				#log = "Hey I am [THIS.GetName] I am in the Event!"
-			}
-
-			#Purge any Marshals/Generals #This is a duplicate as a workaround for tooltip purposes
-			every_army_leader = {
-				limit = {
-					OR = {
-						is_field_marshal = yes
-						is_corps_commander = yes
-					}
-					OR = {
-						has_character_flag = SOV_targeted_for_purge_flag
-						has_character_flag = SOV_tukhachevsky_targeted_for_purge_flag
-					}
-
-				}
-				SOV_purge_character_effect = yes	
-				#log = "Hey I am [THIS.GetName] I am in the Event!"
-			}
-
-
-			# Yegerov and Bluker may come in
-			every_character = {
-				limit = {
-					OR = {
-						has_character_flag = SOV_blyukher_targeted_for_purge_flag
-						has_character_flag = SOV_POSSIBLE_targeted_for_purge_flag2
-					}				
-				}
-				set_character_flag = SOV_exiled_flag
-			}
-
-		}
-
-		#Update purged portraits in UI
-		hidden_effect = {
-			SOV_paranoia_update_portraits_ui = yes
-		}
-
-		custom_effect_tooltip = SOV_spare_bluker_tt
-
-		add_stability = -0.05
-
-		custom_effect_tooltip = SOV_characters_will_be_purged_tt
-		character_list_tooltip = {
-			limit = {
-				OR = {
-					has_character_flag = SOV_targeted_for_purge_flag
-					has_character_flag = SOV_tukhachevsky_targeted_for_purge_flag
-				}			
-			}
-		}
-
-		#RANDOM GENERALS COWED
-		SOV_paranoia_daunt_generals_effect = yes
-
-		#PARANOIA decreases
-		SOV_paranoia_very_high_decrease_effect = yes
-
-		# if = {
-		# 	limit = {
-		# 		has_country_flag = SOV_purge_event_unavoidable_flag
-		# 	}
+#country_event = {
+#	id = NSB_soviet_paranoia_system_events.29
+#	title = NSB_soviet_paranoia_system_events.29.t
+#	desc = NSB_soviet_paranoia_system_events.29.desc
+#	picture = GFX_report_event_soviet_purge_officers_01
+#	
+#	is_triggered_only = yes
+#
+#	immediate = {
+#		hidden_effect = {
+#			SOV_paranoia_increase_purge_counter_great = yes
+#		}
+#	}
+#
+#	option = { #PURGE THEM!!
+#		name = NSB_soviet_paranoia_system_events.29.a
+#		ai_chance = {
+#			base = 10
+#		}
+#
+#		trigger = {
+#			NOT = { has_global_flag = SOV_border_war_loss }
+#		}
+#
+#		hidden_effect = {
+#			#Purge any Advisors
+#			every_character = {
+#				limit = {
+#					has_army_ledger = yes
+#					OR = {
+#						has_character_flag = SOV_targeted_for_purge_flag
+#						has_character_flag = SOV_blyukher_targeted_for_purge_flag
+#						has_character_flag = SOV_tukhachevsky_targeted_for_purge_flag
+#					}
+#					
+#				}
+#				SOV_purge_character_effect = yes	
+#				#log = "Hey I am [THIS.GetName] I am in the Event!"
+#			}
+#
+#			#Purge any Marshals/Generals #This is a duplicate as a workaround for tooltip purposes
+#			every_army_leader = {
+#				limit = {
+#					OR = {
+#						is_field_marshal = yes
+#						is_corps_commander = yes
+#					}
+#					OR = {
+#						has_character_flag = SOV_targeted_for_purge_flag
+#						has_character_flag = SOV_blyukher_targeted_for_purge_flag
+#						has_character_flag = SOV_tukhachevsky_targeted_for_purge_flag
+#					}
+#				}
+#				SOV_purge_character_effect = yes	
+#				#log = "Hey I am [THIS.GetName] I am in the Event!"
+#			}
+#
+#			if = {
+#				limit = {
+#					has_global_flag = SOV_border_war_loss
+#				}
+##				every_army_leader = {
+#					limit = {
+#						OR = {
+#							is_field_marshal = yes
+#							is_corps_commander = yes
+#						}
+#						has_character_flag = SOV_blyukher_targeted_for_purge_flag
+#					}
+#					SOV_purge_character_effect = yes	
+#					#log = "Hey I am [THIS.GetName] I am in the Event!"
+#				}
+#			}
+#
+#			# Yegerov may come in left side
+#			every_character = {
+#				limit = {
+#					has_character_flag = SOV_POSSIBLE_targeted_for_purge_flag2			
+#				}
+#				set_character_flag = SOV_exiled_flag
+#			}
+#		}
+#
+#		#Update purged portraits in UI
+#		hidden_effect = {
+#			SOV_paranoia_update_portraits_ui = yes
+#		}
+#
+#		custom_effect_tooltip = SOV_characters_will_be_purged_tt
+#		character_list_tooltip = {
+#			limit = {
+#				OR = {
+#					has_character_flag = SOV_targeted_for_purge_flag
+#					has_character_flag = SOV_tukhachevsky_targeted_for_purge_flag
+#					has_character_flag = SOV_blyukher_targeted_for_purge_flag
+#				}
+#			}
+#		}
+#
+#
+#		#RANDOM GENERALS COWED
+##		SOV_paranoia_daunt_generals_effect = yes
+#
+#		#PARANOIA decreases
+#		SOV_paranoia_very_high_decrease_effect = yes
+#
+#		if = {
+#			limit = {
+#				has_country_flag = SOV_purge_event_unavoidable_flag
+#			}
+#			custom_effect_tooltip = SOV_purge_event_unavoidable_purge_great_tt
+#		}
+#		else_if = {
+#			limit = {
+#				has_political_power < SOV_purge_event_pp_to_avoid_great
+#			}
+#			custom_effect_tooltip = SOV_purge_event_not_enough_pp_to_avoid_great_tt
+#		}
+#
+#		#Clear flags forbidding the "avoid purge" option from showing up
+#		SOV_clear_unavoidable_purge_flags_effect = yes
+#
+#		# Increase opposition Army Support 
+#		SOV_increase_opposition_army_support_small = yes  
+#	}
+#
+#	option = { #Save Blukyhr Only
+#		name = NSB_soviet_paranoia_system_events.29.b
+#		ai_chance = {
+#			base = 1
+#			modifier = { #Don't go to negative PP please
+#				factor = 0
+#				has_political_power < SOV_purge_event_pp_to_avoid_great_pay
+#			}
+#			modifier = { #Don't risk starting CW too early
+#				factor = 0
+#				SOV_is_opposition = yes 
+#			}
+#		}
+#
+#		trigger = {
+#			NOT = { has_global_flag = SOV_border_war_loss }
+#		}
+#
+#		hidden_effect = {
+#			#Purge any Advisors
+#			every_character = {
+#				limit = {
+#					has_army_ledger = yes
+#					OR = {
+#						has_character_flag = SOV_targeted_for_purge_flag
+#						has_character_flag = SOV_tukhachevsky_targeted_for_purge_flag
+#					}
+#				}
+#				SOV_purge_character_effect = yes	
+#				#log = "Hey I am [THIS.GetName] I am in the Event!"
+#			}
+#
+#			#Purge any Marshals/Generals #This is a duplicate as a workaround for tooltip purposes
+#			every_army_leader = {
+#				limit = {
+#					OR = {
+#						is_field_marshal = yes
+#						is_corps_commander = yes
+#					}
+#					OR = {
+#						has_character_flag = SOV_targeted_for_purge_flag
+#						has_character_flag = SOV_tukhachevsky_targeted_for_purge_flag
+#					}
+#
+#				}
+#				SOV_purge_character_effect = yes	
+#				#log = "Hey I am [THIS.GetName] I am in the Event!"
+#			}
+#
+#
+#			# Yegerov and Bluker may come in
+#			every_character = {
+#				limit = {
+#					OR = {
+#						has_character_flag = SOV_blyukher_targeted_for_purge_flag
+#						has_character_flag = SOV_POSSIBLE_targeted_for_purge_flag2
+#					}				
+#				}
+#				set_character_flag = SOV_exiled_flag
+#			}
+#
+#		}
+#
+#		#Update purged portraits in UI
+#		hidden_effect = {
+#			SOV_paranoia_update_portraits_ui = yes
+#		}
+#
+#		custom_effect_tooltip = SOV_spare_bluker_tt
+#
+#		add_stability = -0.05
+#
+#		custom_effect_tooltip = SOV_characters_will_be_purged_tt
+#		character_list_tooltip = {
+#			limit = {
+#				OR = {
+#					has_character_flag = SOV_targeted_for_purge_flag
+#					has_character_flag = SOV_tukhachevsky_targeted_for_purge_flag
+#				}			
+#			}
+#		}
+#
+#		#RANDOM GENERALS COWED
+#		SOV_paranoia_daunt_generals_effect = yes
+#
+#		#PARANOIA decreases
+#		SOV_paranoia_very_high_decrease_effect = yes
+#
+#		# if = {
+#		# 	limit = {
+#		# 		has_country_flag = SOV_purge_event_unavoidable_flag
+#		# 	}
 		# 	custom_effect_tooltip = SOV_purge_event_unavoidable_purge_great_tt
 		# }
 		# else_if = {
@@ -1165,96 +1166,96 @@ country_event = {
 		# }
 
 		#Clear flags forbidding the "avoid purge" option from showing up
-		SOV_clear_unavoidable_purge_flags_effect = yes
-
-		# # Increase opposition Army Support 
-		# SOV_increase_opposition_army_support_small = yes 
-	}
-
-	option = { #Save Blukyr and Tuhka
-		name = NSB_soviet_paranoia_system_events.29.c
-		ai_chance = {
-			base = 1
-			modifier = { #Don't go to negative PP please
-				factor = 0
-				has_political_power < SOV_purge_event_pp_to_avoid_great_pay
-			}
-			modifier = { #Don't risk starting CW too early
-				factor = 0
-				SOV_is_opposition = yes 
-			}
-		}
-
-		trigger = {
-			NOT = { has_global_flag = SOV_border_war_loss }
-		}
-
-		hidden_effect = {
-			#Purge any Advisors
-			every_character = {
-				limit = {
-					has_army_ledger = yes
-					has_character_flag = SOV_targeted_for_purge_flag
-				}
-				SOV_purge_character_effect = yes	
-				#log = "Hey I am [THIS.GetName] I am in the Event!"
-			}
-
-			#Purge any Marshals/Generals #This is a duplicate as a workaround for tooltip purposes
-			every_army_leader = {
-				limit = {
-					OR = {
-						is_field_marshal = yes
-						is_corps_commander = yes
-					}
-					has_character_flag = SOV_targeted_for_purge_flag
-				}
-				SOV_purge_character_effect = yes	
-				#log = "Hey I am [THIS.GetName] I am in the Event!"
-			}
-
-
-			# Yegerov, Tukchevsky and Bluker may come in
-			every_character = {
-				limit = {
-					OR = {
-						has_character_flag = SOV_tukhachevsky_targeted_for_purge_flag
-						has_character_flag = SOV_blyukher_targeted_for_purge_flag
-						has_character_flag = SOV_POSSIBLE_targeted_for_purge_flag2
-					}				
-				}
-				set_character_flag = SOV_exiled_flag
-			}
-
-		}
-
-		#Update purged portraits in UI
-		hidden_effect = {
-			SOV_paranoia_update_portraits_ui = yes
-		}
-
-		custom_effect_tooltip = SOV_spare_tukhachevsky_tt
-
-		add_stability = -0.1
-
-		custom_effect_tooltip = SOV_characters_will_be_purged_tt
-		character_list_tooltip = {
-			limit = {
-				has_character_flag = SOV_targeted_for_purge_flag
-			}
-		}
-
-		#RANDOM GENERALS COWED
-		SOV_paranoia_daunt_generals_effect = yes
-
-		#PARANOIA decreases
-		SOV_paranoia_very_high_decrease_effect = yes
-
-		# if = {
-		# 	limit = {
-		# 		has_country_flag = SOV_purge_event_unavoidable_flag
-		# 	}
-		# 	custom_effect_tooltip = SOV_purge_event_unavoidable_purge_great_tt
+#		SOV_clear_unavoidable_purge_flags_effect = yes
+#
+#		# # Increase opposition Army Support 
+#		# SOV_increase_opposition_army_support_small = yes 
+#	}
+#
+#	option = { #Save Blukyr and Tuhka
+#		name = NSB_soviet_paranoia_system_events.29.c
+#		ai_chance = {
+#			base = 1
+#			modifier = { #Don't go to negative PP please
+#				factor = 0
+#				has_political_power < SOV_purge_event_pp_to_avoid_great_pay
+#			}
+#			modifier = { #Don't risk starting CW too early
+#				factor = 0
+#				SOV_is_opposition = yes 
+#			}
+#		}
+#
+#		trigger = {
+#			NOT = { has_global_flag = SOV_border_war_loss }
+#		}
+#
+#		hidden_effect = {
+#			#Purge any Advisors
+#			every_character = {
+#				limit = {
+#					has_army_ledger = yes
+#					has_character_flag = SOV_targeted_for_purge_flag
+#				}
+#				SOV_purge_character_effect = yes	
+#				#log = "Hey I am [THIS.GetName] I am in the Event!"
+#			}
+#
+#			#Purge any Marshals/Generals #This is a duplicate as a workaround for tooltip purposes
+#			every_army_leader = {
+#				limit = {
+#					OR = {
+#						is_field_marshal = yes
+#						is_corps_commander = yes
+#					}
+#					has_character_flag = SOV_targeted_for_purge_flag
+#				}
+#				SOV_purge_character_effect = yes	
+#				#log = "Hey I am [THIS.GetName] I am in the Event!"
+#			}
+#
+#
+#			# Yegerov, Tukchevsky and Bluker may come in
+#			every_character = {
+#				limit = {
+#					OR = {
+#						has_character_flag = SOV_tukhachevsky_targeted_for_purge_flag
+#						has_character_flag = SOV_blyukher_targeted_for_purge_flag
+#						has_character_flag = SOV_POSSIBLE_targeted_for_purge_flag2
+#					}				
+#				}
+#				set_character_flag = SOV_exiled_flag
+#			}
+#
+#		}
+#
+#		#Update purged portraits in UI
+#		hidden_effect = {
+#			SOV_paranoia_update_portraits_ui = yes
+#		}
+#
+#		custom_effect_tooltip = SOV_spare_tukhachevsky_tt
+#
+#		add_stability = -0.1
+#
+#		custom_effect_tooltip = SOV_characters_will_be_purged_tt
+#		character_list_tooltip = {
+#			limit = {
+#				has_character_flag = SOV_targeted_for_purge_flag
+#			}
+#		}
+#
+#		#RANDOM GENERALS COWED
+#		SOV_paranoia_daunt_generals_effect = yes
+#
+#		#PARANOIA decreases
+#		SOV_paranoia_very_high_decrease_effect = yes
+#
+#		# if = {
+#		# 	limit = {
+#		# 		has_country_flag = SOV_purge_event_unavoidable_flag
+#		# 	}
+#		# 	custom_effect_tooltip = SOV_purge_event_unavoidable_purge_great_tt
 		# }
 		# else_if = {
 		# 	limit = {
@@ -1264,12 +1265,12 @@ country_event = {
 		# }
 
 		#Clear flags forbidding the "avoid purge" option from showing up
-		SOV_clear_unavoidable_purge_flags_effect = yes
+		#SOV_clear_unavoidable_purge_flags_effect = yes
 
 		# # Increase opposition Army Support 
 		# SOV_increase_opposition_army_support_small = yes 
-	}
-}
+#	}
+#}
 
 ###################
 ### NAVY PURGES ###
@@ -2452,7 +2453,60 @@ country_event = {
 			NOT = { has_government = FROM }
 		}
 
+		#Lone Wolf Finland can't join any factions - Tooltip for player
+		if = {
+			limit = {	
+				FIN_is_lone_wolf_finland = yes
+			}
+			custom_effect_tooltip = FIN_the_lone_wolf_no_faction_tt
+		}
+
 		set_politics = { ruling_party = FROM }
+		if = { #TODO should prob do this with all other ideologies and contexts. Limiting this just for Czechs for now. - Logan
+			limit = {
+				FROM = {
+					has_government = communism
+					original_tag = CZE
+				}
+			}
+			if = {
+				limit = {
+					communism < 0.06
+				}
+				add_popularity = {
+    				ideology = communism
+    				popularity = 0.15
+				}
+			}
+			if = {
+				limit = {
+					communism < 0.31
+				}
+				add_popularity = {
+    				ideology = communism
+    				popularity = 0.10
+				}
+			}
+			if = {
+				limit = {
+					communism < 0.41
+				}
+				add_popularity = {
+    				ideology = communism
+    				popularity = 0.05
+				}
+			}
+			if = {
+				limit = {
+					communism < 0.51
+				}
+				add_popularity = {
+    				ideology = communism
+    				popularity = 0.025
+				}
+			}
+		}
+
 		add_opinion_modifier = {
 			target = FROM
 			modifier = SOV_pressured_our_government
@@ -2494,6 +2548,14 @@ country_event = {
 					has_guaranteed = ROOT
 				}
 			}
+		}
+
+		#Lone Wolf Finland can't join any factions - Tooltip for player
+		if = {
+			limit = {	
+				FIN_is_lone_wolf_finland = yes
+			}
+			custom_effect_tooltip = FIN_the_lone_wolf_no_faction_tt
 		}
 
 		add_popularity = {
@@ -7344,30 +7406,6 @@ country_event = {
 		}
 	}
 }
-
-
-######################
-### FIVE YEAR PLAN ###
-######################
-
-### THIRD FIVE YEAR PLAN CANCELED ###
-country_event = {
-	id = NSB_soviet_five_year_plan.01
-	title = NSB_soviet_five_year_plan.01.t
-	desc = NSB_soviet_five_year_plan.01.desc
-	picture = GFX_report_event_stalin_01
-	
-	is_triggered_only = yes
-
-	fire_only_once = yes
-
-	option = { #VAYA POR DIOS
-		name = NSB_soviet_five_year_plan.01.a
-		
-		custom_effect_tooltip = NSB_soviet_five_year_plan_tt
-	}
-}
-
 
 
 ######################
@@ -13018,12 +13056,23 @@ country_event = {
 	trigger = {
 		original_tag = GER
 		has_war_with = SOV
-		SOV = {
+		IF = {
+			LIMIT = {has_global_flag = vlaslov_focus}
+			SOV = {
 			has_government = communism
 			has_country_leader = { character = SOV_iosif_stalin ruling_only = yes }
-			surrender_progress > 0.25
+			surrender_progress > 0.5
 		}
 		has_dlc = "No Step Back"
+		}
+		ELSE = {
+			SOV = {
+				has_government = communism
+				has_country_leader = { character = SOV_iosif_stalin ruling_only = yes }
+				surrender_progress > 0.25
+			}
+		has_dlc = "No Step Back"
+		}
 	}
 
 	mean_time_to_happen = {
@@ -13333,5 +13382,363 @@ country_event = {
 	
 	option = {
 		name = soviet.3100.a
+	}
+}
+
+# Soviet Auto Completing Focuses
+country_event = {
+	id = SOV_auto_complete_focus.02
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_war_mobilisation
+			use_side_message = yes
+		}
+		clr_country_flag = SOV_war_mobilisation_in_progress_flag
+	}
+}
+
+
+country_event = {
+	id = SOV_auto_complete_focus.03
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_order_270
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_order_270
+		clr_country_flag = SOV_order_270_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.04
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_allied_lend_lease
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_allied_lend_lease
+		clr_country_flag = SOV_allied_lend_lease_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.05
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_the_road_of_life
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_the_road_of_life
+		clr_country_flag = SOV_the_road_of_life_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.06
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_technical_assistance
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_technical_assistance
+		clr_country_flag = SOV_technical_assistance_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.07
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_found_state_defense_committee
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_found_state_defense_committee
+		clr_country_flag = SOV_found_state_defense_committee_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.08
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_empower_stavka
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_empower_stavka
+		clr_country_flag = SOV_empower_stavka_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.09
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_american_logistical_assistance
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_american_logistical_assistance
+		clr_country_flag = SOV_american_logistical_assistance_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.10
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_defend_leningrad
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_defend_leningrad
+		clr_country_flag = SOV_defend_leningrad_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.11
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_defend_moscow
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_defend_moscow
+		clr_country_flag = SOV_defend_moscow_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.12
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_defend_stalingrad
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_defend_stalingrad
+		clr_country_flag = SOV_defend_stalingrad_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.13
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_coordinate_industry
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_coordinate_industry
+		clr_country_flag = SOV_coordinate_industry_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.14
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_mass_tank_production
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_mass_tank_production
+		clr_country_flag = SOV_mass_tank_production_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.15
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_focus_forced_labour
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_focus_forced_labour
+		clr_country_flag = SOV_focus_forced_labour_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.16
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_reorganize_red_army
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_reorganize_red_army
+		clr_country_flag = SOV_reorganize_red_army_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.17
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_new_doctrine
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_new_doctrine
+		clr_country_flag = SOV_new_doctrine_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.18
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_learn_from_our_losses
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_learn_from_our_losses
+		clr_country_flag = SOV_learn_from_our_losses_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.19
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_learn_from_losses_2
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_learn_from_losses_2
+		clr_country_flag = SOV_learn_from_losses_2_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.20
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_enforced_fanaticism
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_enforced_fanaticism
+		clr_country_flag = SOV_enforced_fanaticism_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.21
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_defend_kiev
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_defend_kiev
+		clr_country_flag = SOV_defend_kiev_in_progress_flag
+	}
+}
+
+country_event = {
+	id = SOV_auto_complete_focus.22
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = {
+			focus = SOV_defend_crimea
+			use_side_message = yes
+		}
+		deactivate_shine_on_focus = SOV_defend_crimea
+		clr_country_flag = SOV_defend_crimea_in_progress_flag
 	}
 }
