@@ -1,60 +1,197 @@
 political_actions = {
 
-	# AST_annex_nz = {
+	AST_annex_nz = {
 
-	# 	allowed = {
-	# 		original_tag = AST
-	# 	}
+		allowed = {
+			original_tag = AST
+		}
 
-	# 	available = {
-	# 		date > 1939.1.1
-	# 		NZL = {is_ai = yes}
-	# 		NOT = { 523 = {is_core_of = AST} }
-	# 	}
+		available = {
+			date > 1939.1.1
+			NZL = {is_ai = yes}
+			NOT = { 523 = {is_core_of = AST} }
+		}
 
-	# 	ai_will_do = {
-	# 		factor = 200
-	# 	}
+		ai_will_do = {
+			factor = 200
+		}
 
-	# 	visible = {
-	# 		always = yes
-	# 		country_exists = NZL
-	# 	}
-	# 	fire_only_once = yes
-	# 	complete_effect = {
-	# 		annex_country = { target = NZL transfer_troops = yes }
-	# 		add_state_core = 723 
-	# 		add_state_core = 284
-	# 		add_state_core = 726
-	# 		set_global_flag = AST_NZL_ANNEXED
-	# 	}
-	# }
+		visible = {
+			always = yes
+		}
+		fire_only_once = yes
+		complete_effect = {
+			annex_country = { target = NZL transfer_troops = yes }
+			add_state_core = 723
+			add_state_core = 284
+			add_state_core = 726
+			add_state_core = 1079
+			add_state_core = 1080
+			add_state_core = 1081
+			set_global_flag = AST_NZL_ANNEXED
+		}
+	}
 
-	# AST_core_papua = {
+	AST_annex_INS = {
 
-	# 	allowed = {
-	# 		original_tag = AST
-	# 	}
+		allowed = {
+			original_tag = AST
+		}
 
-	# 	available = {
-	# 		date > 1939.1.1
-	# 		country_exists = NZL
-	# 	}
+		available = {
+			date > 1940.1.1
+			HOL = { is_ai = yes }
+			INS = { is_ai = yes }
+			NOT = { 1073 = { is_core_of = AST } }
+			not = {
+				has_global_flag = AST_INS_FREE
+			}
+		}
 
-	# 	ai_will_do = {
-	# 		factor = 0
-	# 	}
+		ai_will_do = {
+			factor = 200
+		}
 
-	# 	visible = {
-	# 		always = yes
-	# 	}
-	# 	fire_only_once = yes
-	# 	complete_effect = {
-	# 		523 = { add_core_of = AST }
-	# 		979 = { add_core_of = AST }
-	# 		add_ideas = AST_no_nzl_annex
-	# 	}
-	# }
+		visible = {
+			always = yes
+		}
+		fire_only_once = yes
+		complete_effect = {
+			annex_country = { target = INS transfer_troops = yes }
+				every_owned_state = {
+					limit = {
+						is_core_of = INS
+					}
+					set_compliance = 35
+				set_global_flag = AST_INS_ANNEXED
+			}
+		}
+	}
+
+	AST_core_papua = {
+
+		allowed = {
+			original_tag = AST
+		}
+
+		available = {
+			date > 1939.1.1
+			country_exists = NZL
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			always = yes
+		}
+		fire_only_once = yes
+		complete_effect = {
+			1070 = { add_core_of = AST }
+			737 = { add_core_of = AST }
+			979 = { add_core_of = AST }
+			523 = { add_core_of = AST }
+			634 = { add_core_of = AST }
+			669 = { add_core_of = AST }
+			1089 = { add_core_of = AST }
+			1057 = { add_core_of = AST }
+			transfer_state = 669
+			transfer_state = 1089
+			transfer_state = 1057
+			add_ideas = AST_no_nzl_annex
+		}
+	}
+
+	AST_core_papua2 = {
+
+		allowed = {
+			original_tag = AST
+		}
+
+		available = {
+			date > 1940.1.1
+			country_exists = INS
+#			HOL = {
+#				is_ai = no
+#			}
+			not = {
+				has_global_flag = AST_INS_ANNEXED
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			always = yes
+		}
+		fire_only_once = yes
+		complete_effect = {
+
+			1073 = { add_core_of = AST }
+
+			if = {
+				limit = {
+					has_idea = AST_no_nzl_annex
+				}
+				swap_ideas = {
+					remove_idea = AST_no_nzl_annex
+					add_idea = AST_no_nzl_annex2
+				}
+			}
+			else_if = {
+				limit = {
+					not = {
+						or = {
+							has_idea = AST_no_nzl_annex
+							has_idea = AST_no_nzl_annex2
+						}	
+					}
+				}
+				add_ideas = AST_no_dei_annex
+			}
+			custom_effect_tooltip = AST_dei_immigrants
+			hidden_effect = {
+				set_global_flag = AST_INS_FREE
+				335 = {
+					add_manpower = -3500000
+				}
+				672 = {
+					add_manpower = -1000000
+				}
+				673 = {
+					add_manpower = -750000
+				}
+				334 = {
+					add_manpower = -750000
+				}
+				285 = {
+					add_manpower = 1750000
+				}
+				519 = {
+					add_manpower = 1000000
+				}
+				517 = {
+					add_manpower = 1250000
+				}
+				521 = {
+					add_manpower = 500000
+				}
+				523 = {
+					add_manpower = 500000
+				}
+				979 = {
+					add_manpower = 500000
+				}
+				669 = {
+					add_manpower = 500000
+				}
+			}
+		}
+	}
+}
 
 	AST_cancel_insurance_act = {
 
@@ -109,7 +246,7 @@ political_actions = {
 			remove_ideas = AST_nationalise_the_commonwealth_bank
 		}
 	}
-}
+
 
 war_measures = {
 

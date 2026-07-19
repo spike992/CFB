@@ -861,7 +861,7 @@ focus_tree = {
 		x = 3
 		y = 1
 	
-		cost = 10
+		cost = 5
 
 		available = {
 			OR = {
@@ -4082,7 +4082,7 @@ focus_tree = {
 		x = -2
 		y = 1
 	
-		cost = 10
+		cost = 5
 
 		available = {
 
@@ -4570,282 +4570,282 @@ focus_tree = {
 	#### ANNEXATION SECTION ####
 	############################
 	# Perpetual Union with Papua (to New Deal for Aborigines) - 9 focuses
-	
-	focus = {
-		id = AST_perpetual_union_with_papua
-		icon = GFX_goal_generic_territory_or_war
-		x = 12
-		y = 7
-		cost = 5
-		
-		available = {
-			date > 1939.1.1
-			owns_state = 523
-			owns_state = 1073
-		}
-		
-		mutually_exclusive = { focus = AST_incorporate_new_zealand_into_the_federation }
-		
-		completion_reward = {
-			523 = { add_core_of = AST }
-			1073 = { add_core_of = AST }
-		}
-	}
-	
-	focus = {
-		id = AST_unite_papua_with_new_guinea
-		icon = GFX_goal_generic_propaganda
-		x = -2
-		y = 1
-		relative_position_id = AST_perpetual_union_with_papua
-		cost = 5
-		
-		prerequisite = { focus = AST_perpetual_union_with_papua }
-		
-		completion_reward = {
-			979 = { add_core_of = AST }
-		}
-	}
-	
-	focus = {
-		id = AST_request_control_of_west_papua
-		icon = GFX_focus_hol_oranje_boven
-		x = 0
-		y = 1
-		relative_position_id = AST_unite_papua_with_new_guinea
-		cost = 5
-		
-		prerequisite = { focus = AST_unite_papua_with_new_guinea }
-		
-		available = {
-			OR = {
-				is_in_faction_with = HOL
-				is_in_faction_with = INS
-			}
-            OR = {
-                669 = { controller = { original_tag = HOL }}
-                669 = { controller = { original_tag = INS }}
-            }
-            OR = {
-                1057 = { controller = { original_tag = HOL }}
-                1057 = { controller = { original_tag = INS }}
-            }
-            OR = {
-                1089 = { controller = { original_tag = HOL }}
-                1089 = { controller = { original_tag = INS }}
-            }
-           
-		}
-		
-		completion_reward = {
-            if = {
-                limit = { HOL = { controls_state = 669 } }
-                HOL = {
-                    country_event = { id = tfb_australia.1 hours = 1 }
-                }
-            }
-            else_if = {
-                limit = { INS = { controls_state = 669 } }
-                INS = {
-                    country_event = { id = tfb_australia.1 hours = 1 }
-                }
-            }
-		}
-	}
-	
-	focus = {
-		id = AST_develop_port_moresby
-		icon = GFX_focus_BRA_amazon_colonization
-		x = 0
-		y = 1
-		relative_position_id = AST_perpetual_union_with_papua
-		cost = 5
-		
-		prerequisite = { focus = AST_perpetual_union_with_papua }
-		
-		completion_reward = {
-			523 = {
-				add_extra_state_shared_building_slots = 6
-				add_building_construction = {
-					type = infrastructure
-					level = 2
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = industrial_complex
-					level = 2
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 2
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = naval_base
-					level = 2
-					province = 1440
-					instant_build = yes
-				}
-			}
-		}
-	}
-	
-	focus = {
-		id = AST_fuzzy_wuzzy_angels
-		icon = GFX_goal_generic_allies_build_infantry
-        # TODO: Find Icon
-		x = 0
-		y = 1
-		relative_position_id = AST_develop_port_moresby
-		cost = 5
-		
-		prerequisite = { focus = AST_unite_papua_with_new_guinea }
-		prerequisite = { focus = AST_develop_port_moresby }
-		
-		completion_reward = {
-            523 = {
-                add_dynamic_modifier = {
-                    modifier = AST_fuzzy_wuzzy_angels_modifier
-                    scope = AST
-                }
-            }
-            979 = {
-                add_dynamic_modifier = {
-                    modifier = AST_fuzzy_wuzzy_angels_modifier
-                    scope = AST
-                }
-            }
-            669 = {
-                add_dynamic_modifier = {
-                    modifier = AST_fuzzy_wuzzy_angels_modifier
-                    scope = AST
-                }
-            }
-		}
-	}
-	
-	focus = {
-		id = AST_expand_rubber_production
-		icon = GFX_focus_generic_rubber_plantations
-		x = 2
-		y = 1
-		relative_position_id = AST_perpetual_union_with_papua
-		cost = 5
-		
-		prerequisite = { focus = AST_perpetual_union_with_papua focus = AST_incorporate_new_zealand_into_the_federation }
-		
-		completion_reward = {
-		    custom_effect_tooltip = AST_expand_rubber_production_papua_tt
-			effect_tooltip = {
-				523 = {
-					add_resource = {
-						type = rubber
-						amount = 150
-						state = 523
-					}
-				}
-			}
-			custom_effect_tooltip = AST_expand_rubber_production_nzl_tt
-			effect_tooltip = {
-				523 = {
-					add_resource = {
-						type = rubber
-						amount = 75
-						state = 523
-					}
-				}
-			}
-
-			if = {
-				limit = { has_completed_focus = AST_perpetual_union_with_papua }
-				523 = {
-					add_resource = {
-						type = rubber
-						amount = 150
-						state = 523
-					}
-				}
-			}
-			else_if = {
-				limit = { has_completed_focus = AST_incorporate_new_zealand_into_the_federation }
-				523 = {
-					add_resource = {
-						type = rubber
-						amount = 75
-						state = 523
-					}
-				}
-			}
-		}
-	}
-	
-	focus = {
-		id = AST_incorporate_new_zealand_into_the_federation
-		icon = GFX_focus_generic_new_zealand
-        # TODO: Find Icon
-		x = 4
-		y = 0
-		relative_position_id = AST_perpetual_union_with_papua
-		cost = 5
-		
-		available = {
-			date > 1939.1.1
-			NZL = { is_ai = yes }
-		}
-		
-		mutually_exclusive = { focus = AST_perpetual_union_with_papua }
-		
-		completion_reward = {
-			annex_country = { target = NZL transfer_troops = yes }
-			add_state_core = 723
-			add_state_core = 284
-			add_state_core = 726
-			add_state_core = 1079
-			add_state_core = 1080
-			add_state_core = 1081
-			set_global_flag = AST_NZL_ANNEXED
-		}
-	}
-	
-	focus = {
-		id = AST_admit_pacific_territories_to_the_federation
-		icon = GFX_focus_GER_sentinels_of_the_pacific
-		x = 0
-		y = 1
-		relative_position_id = AST_incorporate_new_zealand_into_the_federation
-		cost = 5
-		
-		prerequisite = { focus = AST_incorporate_new_zealand_into_the_federation }
-		
-		available = {
-			owns_state = 684
-			owns_state = 646
-			owns_state = 647
-            owns_state = 524
-		}
-		
-		completion_reward = {
-			684 = { add_core_of = AST }
-			646 = { add_core_of = AST }
-			647 = { add_core_of = AST }
-			524 = { add_core_of = AST }
-		}
-	}
-	
-	focus = {
-		id = AST_new_deal_for_aborigines
-		icon = GFX_focus_AST_department_of_aboriginal_affairs
-		x = 2
-		y = 1
-		relative_position_id = AST_incorporate_new_zealand_into_the_federation
-		cost = 5
-		
-		prerequisite = { focus = AST_incorporate_new_zealand_into_the_federation }
-		
-		completion_reward = {
-			add_ideas = AST_new_deal_for_aborigines
-		}
-	}
+#	
+	#focus = {
+		#id = AST_perpetual_union_with_papua
+		#icon = GFX_goal_generic_territory_or_war
+		#x = 12
+		#y = 7
+		#cost = 5
+#		
+		#available = {
+			#date > 1939.1.1
+			#owns_state = 523
+			#owns_state = 1073
+		#}
+#		
+		#mutually_exclusive = { focus = AST_incorporate_new_zealand_into_the_federation }
+#		
+		#completion_reward = {
+			#523 = { add_core_of = AST }
+			#1073 = { add_core_of = AST }
+		#}
+	#}
+#	
+	#focus = {
+		#id = AST_unite_papua_with_new_guinea
+		#icon = GFX_goal_generic_propaganda
+		#x = -2
+		#y = 1
+		#relative_position_id = AST_perpetual_union_with_papua
+		#cost = 5
+#		
+		#prerequisite = { focus = AST_perpetual_union_with_papua }
+#		
+		#completion_reward = {
+			#979 = { add_core_of = AST }
+		#}
+	#}
+#	
+	#focus = {
+		#id = AST_request_control_of_west_papua
+		#icon = GFX_focus_hol_oranje_boven
+		#x = 0
+		#y = 1
+		#relative_position_id = AST_unite_papua_with_new_guinea
+		#cost = 5
+#		
+		#prerequisite = { focus = AST_unite_papua_with_new_guinea }
+#		
+		#available = {
+			#OR = {
+				#is_in_faction_with = HOL
+				#is_in_faction_with = INS
+			#}
+            #OR = {
+                #669 = { controller = { original_tag = HOL }}
+                #669 = { controller = { original_tag = INS }}
+            #}
+            #OR = {
+                #1057 = { controller = { original_tag = HOL }}
+                #1057 = { controller = { original_tag = INS }}
+            #}
+            #OR = {
+                #1089 = { controller = { original_tag = HOL }}
+                #1089 = { controller = { original_tag = INS }}
+            #}
+#           
+		#}
+#		
+		#completion_reward = {
+            #if = {
+                #limit = { HOL = { controls_state = 669 } }
+                #HOL = {
+                    #country_event = { id = tfb_australia.1 hours = 1 }
+                #}
+            #}
+            #else_if = {
+                #limit = { INS = { controls_state = 669 } }
+                #INS = {
+                    #country_event = { id = tfb_australia.1 hours = 1 }
+                #}
+            #}
+		#}
+	#}
+#	
+	#focus = {
+		#id = AST_develop_port_moresby
+		#icon = GFX_focus_BRA_amazon_colonization
+		#x = 0
+		#y = 1
+		#relative_position_id = AST_perpetual_union_with_papua
+		#cost = 5
+#		
+		#prerequisite = { focus = AST_perpetual_union_with_papua }
+#		
+		#completion_reward = {
+			#523 = {
+				#add_extra_state_shared_building_slots = 6
+				#add_building_construction = {
+					#type = infrastructure
+					#level = 2
+					#instant_build = yes
+				#}
+				#add_building_construction = {
+					#type = industrial_complex
+					#level = 2
+					#instant_build = yes
+				#}
+				#add_building_construction = {
+					#type = arms_factory
+					#level = 2
+					#instant_build = yes
+				#}
+				#add_building_construction = {
+					#type = naval_base
+					#level = 2
+					#province = 1440
+					#instant_build = yes
+				#}
+			#}
+		#}
+	#}
+#	
+	#focus = {
+		#id = AST_fuzzy_wuzzy_angels
+		#icon = GFX_goal_generic_allies_build_infantry
+        ## TODO: Find Icon
+		#x = 0
+		#y = 1
+		#relative_position_id = AST_develop_port_moresby
+		#cost = 5
+#		
+		#prerequisite = { focus = AST_unite_papua_with_new_guinea }
+		#prerequisite = { focus = AST_develop_port_moresby }
+#		
+		#completion_reward = {
+            #523 = {
+                #add_dynamic_modifier = {
+                    #modifier = AST_fuzzy_wuzzy_angels_modifier
+                    #scope = AST
+                #}
+            #}
+            #979 = {
+                #add_dynamic_modifier = {
+                    #modifier = AST_fuzzy_wuzzy_angels_modifier
+                    #scope = AST
+                #}
+            #}
+            #669 = {
+                #add_dynamic_modifier = {
+                    #modifier = AST_fuzzy_wuzzy_angels_modifier
+                    #scope = AST
+                #}
+            #}
+		#}
+	#}
+#	
+	#focus = {
+		#id = AST_expand_rubber_production
+		#icon = GFX_focus_generic_rubber_plantations
+		#x = 2
+		#y = 1
+		#relative_position_id = AST_perpetual_union_with_papua
+		#cost = 5
+#		
+		#prerequisite = { focus = AST_perpetual_union_with_papua focus = AST_incorporate_new_zealand_into_the_federation }
+#		
+		#completion_reward = {
+		    #custom_effect_tooltip = AST_expand_rubber_production_papua_tt
+			#effect_tooltip = {
+				#523 = {
+					#add_resource = {
+						#type = rubber
+						#amount = 150
+						#state = 523
+					#}
+				#}
+			#}
+			#custom_effect_tooltip = AST_expand_rubber_production_nzl_tt
+			#effect_tooltip = {
+				#523 = {
+					#add_resource = {
+						#type = rubber
+						#amount = 75
+						#state = 523
+					#}
+				#}
+			#}
+#
+			#if = {
+				#limit = { has_completed_focus = AST_perpetual_union_with_papua }
+				#523 = {
+					#add_resource = {
+						#type = rubber
+						#amount = 150
+						#state = 523
+					#}
+				#}
+			#}
+			#else_if = {
+				#limit = { has_completed_focus = AST_incorporate_new_zealand_into_the_federation }
+				#523 = {
+					#add_resource = {
+						#type = rubber
+						#amount = 75
+						#state = 523
+					#}
+				#}
+			#}
+		#}
+	#}
+#	
+	#focus = {
+		#id = AST_incorporate_new_zealand_into_the_federation
+		#icon = GFX_focus_generic_new_zealand
+        ## TODO: Find Icon
+		#x = 4
+		#y = 0
+		#relative_position_id = AST_perpetual_union_with_papua
+		#cost = 5
+#		
+		#available = {
+			#date > 1939.1.1
+			#NZL = { is_ai = yes }
+		#}
+#		
+		#mutually_exclusive = { focus = AST_perpetual_union_with_papua }
+#		
+		#completion_reward = {
+			#annex_country = { target = NZL transfer_troops = yes }
+			#add_state_core = 723
+			#add_state_core = 284
+			#add_state_core = 726
+			#add_state_core = 1079
+			#add_state_core = 1080
+			#add_state_core = 1081
+			#set_global_flag = AST_NZL_ANNEXED
+		#}
+	#}
+#	
+	#focus = {
+		#id = AST_admit_pacific_territories_to_the_federation
+		#icon = GFX_focus_GER_sentinels_of_the_pacific
+		#x = 0
+		#y = 1
+		#relative_position_id = AST_incorporate_new_zealand_into_the_federation
+		#cost = 5
+#		
+		#prerequisite = { focus = AST_incorporate_new_zealand_into_the_federation }
+#		
+		#available = {
+			#owns_state = 684
+			#owns_state = 646
+			#owns_state = 647
+            #owns_state = 524
+		#}
+#		
+		#completion_reward = {
+			#684 = { add_core_of = AST }
+			#646 = { add_core_of = AST }
+			#647 = { add_core_of = AST }
+			#524 = { add_core_of = AST }
+		#}
+	#}
+#	
+	#focus = {
+		#id = AST_new_deal_for_aborigines
+		#icon = GFX_focus_AST_department_of_aboriginal_affairs
+		#x = 2
+		#y = 1
+		#relative_position_id = AST_incorporate_new_zealand_into_the_federation
+		#cost = 5
+#		
+		#prerequisite = { focus = AST_incorporate_new_zealand_into_the_federation }
+#		
+		#completion_reward = {
+			#add_ideas = AST_new_deal_for_aborigines
+		#}
+	#}
 
 }

@@ -2481,6 +2481,30 @@ on_actions = {
 	# 	}
 	# }
 
+	on_declare_war = {
+		effect = {
+			if = {
+				limit = {
+					tag = JAP
+					or = {
+						FROM = { tag = USA }
+						FROM = { tag = AST }
+						FROM = { tag = ENG }
+						FROM = { tag = RAJ }
+					}
+				}
+				every_possible_country = {
+					limit = {
+						has_idea = USA_reliance_on_asian_rubber
+					}
+					remove_ideas = USA_reliance_on_asian_rubber
+					add_ideas = USA_reliance_on_asian_rubber_2
+					activate_mission = reducing_reliance_on_asian_rubber
+				}
+			}
+		}
+	}
+
 	on_naval_invasion = {
 		effect = { 
 			THIS = {
