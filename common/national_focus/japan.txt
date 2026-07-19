@@ -14166,49 +14166,13 @@ focus_tree = {
 
 		completion_reward = {
 
-			SIA = {
-				every_core_state = {
+			annex_country = { target = SIA transfer_troops = yes }
+				every_owned_state = {
 					limit = {
-						NOT = {
-							is_core_of = ROOT
-							is_claimed_by = ROOT
-						}
+						is_core_of = SIA
 					}
-					add_claim_by = ROOT
-				}
+					set_compliance = 35
 			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-			if = {
-				limit = {
-					has_non_aggression_pact_with = SIA
-				}
-
-				diplomatic_relation = { 
-					country = SIA
-					relation = non_aggression_pact 
-					active = no 
-				}
-			}
-
-			if = {
-				limit = {
-					is_ai = yes
-					is_historical_focus_on = yes
-				}
-				declare_war_on = {
-					target = SIA
-					type = annex_everything
-				}
-			}
-			else = {
-				create_wargoal = {
-					type = annex_everything
-					target = SIA
-					expire = 0
-				}	
-			}
-
 		}
 	}
 
@@ -14230,6 +14194,7 @@ focus_tree = {
 
 		available = {
 			is_subject = no
+			NOT = { has_war_with = CHI }
 			IF = {
 				limit = {
 					is_ai = no
@@ -14243,358 +14208,201 @@ focus_tree = {
 					has_army_manpower = { size > 999999 }
 				}
 			}
-			date > 1941.1.1
+			date > 1941.4.1
 		}
 
 		bypass = {
-			OR = {			
-				has_wargoal_against = INS
-				has_war_with = INS
-			}
 			OR = {
-				has_wargoal_against = MAL
-				has_war_with = MAL
-			}
-			OR = {
-				has_wargoal_against = PHI
-				has_war_with = PHI
-			}
-			OR = {
-				AND = {
-					671 = {
-						NOT = { is_controlled_by = FRA }
-					}
-					670 = {
-						NOT = { is_controlled_by = FRA }
-					}
-					286 = {
-						NOT = { is_controlled_by = FRA }
-					}
-					741 = {
-						NOT = { is_controlled_by = FRA }
-					}
-				}
-				has_wargoal_against = FRA
-				has_war_with = FRA
+				has_war_with = ENG
+				has_war_with = USA
 			}
 		}
 
-		will_lead_to_war_with = PHI
-		will_lead_to_war_with = MAL
-		will_lead_to_war_with = ENG
-		will_lead_to_war_with = FRA
-		# will_lead_to_war_with = SNG
-		will_lead_to_war_with = INS
-		will_lead_to_war_with = HOL
-		# will_lead_to_war_with = SAR
-		# will_lead_to_war_with = SAB
-		# will_lead_to_war_with = BRN
-		# will_lead_to_war_with = BRM
-		# will_lead_to_war_with = WPG
-
-		cancel_if_invalid = no
-		continue_if_invalid = yes
-		available_if_capitulated = no
-
 		search_filters = { FOCUS_FILTER_HISTORICAL FOCUS_FILTER_ANNEXATION FOCUS_FILTER_IMPERIAL_INFLUENCE }
 
-		completion_reward = {
 				
-			IF = {
+		completion_reward = {
+			declare_war_on = {
+				target = ENG
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = USA
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = AST
+				type = annex_everything
+			}
+			if = {
 				limit = {
-					PHI = {
-						exists = yes
-						NOT = {
-							is_ally_with = ROOT
-							has_war_with = ROOT
-						}
-					}
+					NZL = { exists = yes }
 				}
-				create_wargoal = {
-					target = PHI
-					type = puppet_wargoal_focus
-					expire = 0
-				}
-				add_ai_strategy = {
-					type = conquer
-					id = PHI
-					value = 200
+				declare_war_on = {
+					target = NZL
+					type = annex_everything
 				}
 			}
-
-			IF = {
+			declare_war_on = {
+				target = RAJ
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = CAN
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = SAF
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = MAL
+				type = annex_everything
+			}
+			if = {
 				limit = {
-					country_exists = INS
-					NOT = { 
-						has_wargoal_against = INS 
-						has_war_with = INS
-					}
-					IF = {
-						limit = {
-							INS = { is_subject_of = HOL }
-						}
-						OR = {
-							has_country_flag = HOL_declare_war_indies_allowed
-							HOL = { NOT = { has_completed_focus = HOL_placate_the_japanese } }
-						}
-					}
+					INS = { exists = yes }
 				}
-				create_wargoal = {
+				declare_war_on = {
 					target = INS
 					type = annex_everything
-					expire = 0
-				}
-				add_ai_strategy = {
-					type = conquer
-					id = INS
-					value = 200
-				}
-
-				IF = {
-					limit = {
-						INS = {
-							any_core_state = {
-								NOT = {
-									is_owned_and_controlled_by = INS
-								}
-							}
-						}
-					}
-
-					INS = { #I see what you are doing you cheeky exploiter
-						every_core_state = {
-							limit = {
-								NOT = { is_owned_and_controlled_by = PREV }
-							}
-
-							ROOT = {
-								create_wargoal = {
-									target = PREV.controller
-									type = annex_everything
-									expire = 0
-								}
-							}
-						}
-					}
 				}
 			}
-			IF = {
-				limit = {
-					INS = { exists = no }
-					335 = {
-						CONTROLLER = {
-							NOT = {
-								is_in_faction_with = ROOT
-							}
-						}
+			random_country = { 
+				limit = { original_tag = HOL  has_government = democratic}
+				JAP = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
 					}
-					IF = {
+				}	
+			}
+			declare_war_on = {
+				target = FRA
+				type = annex_everything
+			}
+			hidden_effect = {
+				# Puppets also declare war
+				MAN = {
+					declare_war_on = {
+						target = ENG
+						type = annex_everything
+					}
+					declare_war_on = {
+						target = AST
+						type = annex_everything
+					}
+					if = {
 						limit = {
-							335 = {
-								CONTROLLER = {
-									tag = HOL
-								}
-							}
+							NZL = { exists = yes }
 						}
-						OR = {
-							has_country_flag = HOL_declare_war_indies_allowed
-							HOL = { NOT = { has_completed_focus = HOL_placate_the_japanese } }
+						declare_war_on = {
+							target = NZL
+							type = annex_everything
 						}
 					}
-				}
-				335 = {
-					OWNER = {
-						ROOT = {
-							create_wargoal = {
-								target = PREV
-								type = take_state_focus
-								expire = 0
-								generator = { 335 334 672 673 668 667 669 738 }
-							}
-							add_ai_strategy = {
-								type = conquer
-								id = PREV
-								value = 200
-							}
-						}
-					}
-				}
-				INS_cancel_hol_ally_strategy_entirely_effect = yes
-			}
-			IF = {
-				limit = {
-					NOT = { has_wargoal_against = MAL }
-					NOT = { has_war_with = MAL }
-					country_exists = MAL
-				}
-				create_wargoal = {
-					target = MAL
+					declare_war_on = {
+					target = USA
 					type = annex_everything
-					expire = 0
-				}
-				add_ai_strategy = {
-					type = conquer
-					id = MAL
-					value = 200
-				}
-			}
-			IF = {
-				limit = {
-					MAL = { exists = no }
-					336 = {
-						CONTROLLER = {
-							NOT = {
-								is_in_faction_with = ROOT
-							}
+					}
+					declare_war_on = {
+						target = RAJ
+						type = annex_everything
+					}
+					declare_war_on = {
+						target = CAN
+						type = annex_everything
+					}
+					declare_war_on = {
+						target = SAF
+						type = annex_everything
+					}
+					declare_war_on = {
+						target = MAL
+						type = annex_everything
+					}
+					if = {
+						limit = {
+							INS = { exists = yes }
+						}
+						declare_war_on = {
+							target = INS
+							type = annex_everything
 						}
 					}
-				}
-				336 = {
-					OWNER = {
-						ROOT = {
-							create_wargoal = {
+					random_country = { 
+						limit = { original_tag = HOL  has_government = democratic}
+						MAN = {
+							declare_war_on = {
 								target = PREV
-								type = take_state_focus
-								expire = 0
-								generator = { 336 }
+								type = annex_everything
 							}
-							add_ai_strategy = {
-								type = conquer
-								id = PREV
-								value = 200
+						}	
+					}
+				}
+				if = {
+					limit = {
+						country_exists = SIA
+					}
+					SIA = {
+						declare_war_on = {
+							target = ENG
+							type = annex_everything
+						}
+						declare_war_on = {
+							target = AST
+							type = annex_everything
+						}
+						declare_war_on = {
+						target = USA
+						type = annex_everything
+						}
+						if = {
+							limit = {
+								NZL = { exists = yes }
 							}
+							declare_war_on = {
+								target = NZL
+								type = annex_everything
+							}
+						}
+						declare_war_on = {
+							target = RAJ
+							type = annex_everything
+						}
+						declare_war_on = {
+							target = CAN
+							type = annex_everything
+						}
+						declare_war_on = {
+							target = SAF
+							type = annex_everything
+						}
+						declare_war_on = {
+							target = MAL
+							type = annex_everything
+						}
+						if = {
+							limit = {
+								INS = { exists = yes }
+							}
+							declare_war_on = {
+								target = INS
+								type = annex_everything
+							}
+						}
+						random_country = { 
+							limit = { original_tag = HOL  has_government = democratic}
+							SIA = {
+								declare_war_on = {
+									target = PREV
+									type = annex_everything
+								}
+							}	
 						}
 					}
 				}
 			}
-			IF = {
-				limit = {
-					OR = {
-						671 = {
-							is_controlled_by = FRA
-						}
-						670 = {
-							is_controlled_by = FRA
-						}
-						286 = {
-							is_controlled_by = FRA
-						}
-						741 = {
-							is_controlled_by = FRA
-						}
-					}
-					NOT = { has_wargoal_against = FRA }
-					NOT = { has_war_with = FRA }
-				}
-				#Might be generating on states FRA does not own, but not worth the time to get it exact. Should have no gameplay impact.
-				create_wargoal = {
-					target = FRA
-					type = take_state_focus
-					expire = 0
-					generator = { 671 670 286 741 }
-				}
-			}
-			# IF = {
-			# 	limit = {
-			# 		NOT = { has_wargoal_against = WPG }
-			# 		NOT = { has_war_with = WPG }
-			# 		country_exists = WPG
-			# 	}
-			# 	create_wargoal = {
-			# 		target = WPG
-			# 		type = annex_everything
-			# 		expire = 0
-			# 	}
-			# 	add_ai_strategy = {
-			# 		type = conquer
-			# 		id = WPG
-			# 		value = 200
-			# 	}
-			# }
-			# IF = {
-			# 	limit = {
-			# 		NOT = { has_wargoal_against = SNG }
-			# 		NOT = { has_war_with = SNG }
-			# 		country_exists = SNG
-			# 	}
-			# 	create_wargoal = {
-			# 		target = SNG
-			# 		type = annex_everything
-			# 		expire = 0
-			# 	}
-			# 	add_ai_strategy = {
-			# 		type = conquer
-			# 		id = SNG
-			# 		value = 200
-			# 	}
-			# }
-			# IF = {
-			# 	limit = {
-			# 		NOT = { has_wargoal_against = SAR }
-			# 		NOT = { has_war_with = SAR }
-			# 		country_exists = SAR
-			# 	}
-			# 	create_wargoal = {
-			# 		target = SAR
-			# 		type = annex_everything
-			# 		expire = 0
-			# 	}
-			# 	add_ai_strategy = {
-			# 		type = conquer
-			# 		id = SAR
-			# 		value = 200
-			# 	}
-			# }
-			# IF = {
-			# 	limit = {
-			# 		NOT = { has_wargoal_against = SAB }
-			# 		NOT = { has_war_with = SAB }
-			# 		country_exists = SAB
-			# 	}
-			# 	create_wargoal = {
-			# 		target = SAB
-			# 		type = annex_everything
-			# 		expire = 0
-			# 	}
-			# 	add_ai_strategy = {
-			# 		type = conquer
-			# 		id = SAB
-			# 		value = 200
-			# 	}
-			# }
-			# IF = {
-			# 	limit = {
-			# 		NOT = { has_wargoal_against = BRN }
-			# 		NOT = { has_war_with = BRN }
-			# 		country_exists = BRN
-			# 	}
-			# 	create_wargoal = {
-			# 		target = BRN
-			# 		type = annex_everything
-			# 		expire = 0
-			# 	}
-			# 	add_ai_strategy = {
-			# 		type = conquer
-			# 		id = BRN
-			# 		value = 200
-			# 	}
-			# }
-
-			# custom_effect_tooltip = generic_skip_one_line_tt
-
-			# unlock_decision_tooltip = {
-			# 	decision = JAP_establish_the_state_of_burma_decision
-			# 	show_effect_tooltip = no 
-			# }
-			# unlock_decision_tooltip = {
-			# 	decision = JAP_establish_the_provisional_government_of_free_india_decision
-			# 	show_effect_tooltip = no 
-			# }	
-			# unlock_decision_tooltip = {
-			# 	decision = JAP_establish_the_second_philippine_republic_decision
-			# 	show_effect_tooltip = no 
-			# }	
-
 		}
 
 	}
